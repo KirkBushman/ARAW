@@ -1,0 +1,49 @@
+package com.kirkbushman.sampleapp.activities
+
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.kirkbushman.araw.models.mixins.CommentData
+import com.kirkbushman.sampleapp.R
+import com.kirkbushman.sampleapp.TestApplication
+import com.kirkbushman.sampleapp.controllers.CommentController
+import com.kirkbushman.sampleapp.doAsync
+import kotlinx.android.synthetic.main.activity_comments.*
+
+class CommentsActivity : AppCompatActivity() {
+
+    private val client by lazy { TestApplication.instance.getClient() }
+
+    private val comments = ArrayList<CommentData>()
+    private val controller by lazy { CommentController() }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_comments)
+
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+
+        list.setController(controller)
+
+        search_bttn.setOnClickListener {
+
+            val submissionId = search.text.toString().trim()
+
+            doAsync(doWork = {
+
+                val fetcher = client?.comments(submissionId)
+                val temp = fetcher?.fetchNext() ?: listOf()
+
+                if (fetcher!!.getSubmission() != null) {
+                    controller.setSubmission(fetcher.getSubmission()!!)
+                }
+
+                comments.addAll(temp)
+            }, onPost = {
+
+                controller.setComments(comments)
+            })
+        }
+    }
+}

@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">SampleApp</string>
+    <string name="main_title">Test Actions:</string>
+
+    <string name="linear_layout">androidx.recyclerview.widget.LinearLayoutManager</string>
+
+    <string name="bttn_me">Me</string>
+    <string name="bttn_my_info">My Info</string>
+    <string name="bttn_inbox">Inbox</string>
+    <string name="bttn_my_subreddits">My Subreddits</string>
+    <string name="bttn_user">User</string>
+    <string name="bttn_user_info">User Info</string>
+    <string name="bttn_subreddit">Subreddit</string>
+    <string name="bttn_submission">Submission</string>
+    <string name="bttn_submissions">Submissions</string>
+    <string name="bttn_comment">Comment</string>
+    <string name="bttn_comments">Comments</string>
+    <string name="bttn_wiki">Wiki</string>
+    <string name="bttn_rules">Rules</string>
+    <string name="edit_insert_user">Insert user:</string>
+    <string name="edit_insert_subreddit">Insert subreddit:</string>
+    <string name="edit_insert_submission_id">Insert submission id:</string>
+    <string name="edit_insert_comment_id">Insert comment id:</string>
+    <string name="bttn_search_user">Search</string>
+</resources>
