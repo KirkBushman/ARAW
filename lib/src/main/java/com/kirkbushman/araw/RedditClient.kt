@@ -22,6 +22,7 @@ import com.kirkbushman.araw.models.Redditor
 import com.kirkbushman.araw.models.Submission
 import com.kirkbushman.araw.models.Subreddit
 import com.kirkbushman.araw.models.SubredditRule
+import com.kirkbushman.araw.models.Trophy
 import com.kirkbushman.araw.models.WikiPage
 import com.kirkbushman.araw.utils.NullRepliesInterceptor
 import com.kirkbushman.auth.models.TokenBearer
@@ -258,6 +259,19 @@ class RedditClient(private val bearer: TokenBearer) {
         fun gilded(username: String, limit: Int = Fetcher.DEFAULT_LIMIT): ContributionFetcher {
             return ContributionFetcher(api, username, "gilded", limit) { getHeaderMap() }
         }
+
+        fun trophies(username: String): List<Trophy>? {
+
+            val authMap = getHeaderMap()
+            val req = api.userTrophies(username = username, header = authMap)
+            val res = req.execute()
+
+            if (!res.isSuccessful) {
+                return null
+            }
+
+            return res.body()?.data?.trophies?.map { it.data }?.toList()
+        }
     }
 
     class SelfAccountHandler(
@@ -303,6 +317,19 @@ class RedditClient(private val bearer: TokenBearer) {
 
         fun subscribedSubreddits(limit: Int = Fetcher.DEFAULT_LIMIT): SubredditFetcher {
             return SubredditFetcher(api, "subscriber", limit) { getHeaderMap() }
+        }
+
+        fun trophies(): List<Trophy>? {
+
+            val authMap = getHeaderMap()
+            val req = api.selfUserTrophies(header = authMap)
+            val res = req.execute()
+
+            if (!res.isSuccessful) {
+                return null
+            }
+
+            return res.body()?.data?.trophies?.map { it.data }?.toList()
         }
 
         private fun getUserCached(): String {

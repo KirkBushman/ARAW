@@ -11,10 +11,12 @@ import com.kirkbushman.sampleapp.activities.RedditorInfoActivity
 import com.kirkbushman.sampleapp.activities.RulesActivity
 import com.kirkbushman.sampleapp.activities.SelfAccountActivity
 import com.kirkbushman.sampleapp.activities.SelfAccountInfoActivity
+import com.kirkbushman.sampleapp.activities.SelfTrophiesActivity
 import com.kirkbushman.sampleapp.activities.SubmissionActivity
 import com.kirkbushman.sampleapp.activities.SubmissionsActivity
 import com.kirkbushman.sampleapp.activities.SubredditActivity
 import com.kirkbushman.sampleapp.activities.SubscribedSubredditsActivity
+import com.kirkbushman.sampleapp.activities.UserTrophiesActivity
 import com.kirkbushman.sampleapp.activities.WikiPageActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -48,6 +50,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        bttn_my_trophies.setOnClickListener {
+
+            val intent = Intent(this, SelfTrophiesActivity::class.java)
+            startActivity(intent)
+        }
+
         bttn_user.setOnClickListener {
 
             val intent = Intent(this, RedditorActivity::class.java)
@@ -57,6 +65,12 @@ class MainActivity : AppCompatActivity() {
         bttn_user_info.setOnClickListener {
 
             val intent = Intent(this, RedditorInfoActivity::class.java)
+            startActivity(intent)
+        }
+
+        bttn_user_trophies.setOnClickListener {
+
+            val intent = Intent(this, UserTrophiesActivity::class.java)
             startActivity(intent)
         }
 

@@ -7,6 +7,7 @@ import com.kirkbushman.araw.http.EnvelopedRedditor
 import com.kirkbushman.araw.http.EnvelopedSubmissionListing
 import com.kirkbushman.araw.http.EnvelopedSubreddit
 import com.kirkbushman.araw.http.EnvelopedSubredditListing
+import com.kirkbushman.araw.http.EnvelopedTrophyList
 import com.kirkbushman.araw.http.EnvelopedWikiPage
 import com.kirkbushman.araw.models.Me
 import com.kirkbushman.araw.models.SubredditRules
@@ -69,6 +70,17 @@ interface RedditApi {
         @Query("before") before: String? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedSubredditListing>
+
+    @GET("/api/v1/me/trophies/.json")
+    fun selfUserTrophies(
+        @HeaderMap header: HashMap<String, String>
+    ): Call<EnvelopedTrophyList>
+
+    @GET("/api/v1/user/{username}/trophies/.json")
+    fun userTrophies(
+        @Path("username") username: String,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<EnvelopedTrophyList>
 
     @GET("/r/{subreddit}/about/.json")
     fun subreddit(

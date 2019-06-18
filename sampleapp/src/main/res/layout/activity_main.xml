@@ -62,6 +62,13 @@
                     android:text="@string/bttn_my_subreddits" />
 
             <Button
+                    android:id="@+id/bttn_my_trophies"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="@string/bttn_my_trophies" />
+
+            <Button
                     android:id="@+id/bttn_user"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -74,6 +81,13 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:text="@string/bttn_user_info" />
+
+            <Button
+                    android:id="@+id/bttn_user_trophies"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="@string/bttn_user_trophies" />
 
             <Button
                     android:id="@+id/bttn_subreddit"

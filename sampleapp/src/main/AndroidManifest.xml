@@ -35,6 +35,8 @@
         <activity android:name=".activities.WikiPageActivity"></activity>
         <activity android:name=".activities.RulesActivity"></activity>
         <activity android:name=".activities.SubscribedSubredditsActivity"></activity>
+        <activity android:name=".activities.SelfTrophiesActivity"></activity>
+        <activity android:name=".activities.UserTrophiesActivity"></activity>
     </application>
 
 </manifest>

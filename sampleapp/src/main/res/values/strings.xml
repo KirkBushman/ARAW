@@ -8,8 +8,10 @@
     <string name="bttn_my_info">My Info</string>
     <string name="bttn_inbox">Inbox</string>
     <string name="bttn_my_subreddits">My Subreddits</string>
+    <string name="bttn_my_trophies">My Trophies</string>
     <string name="bttn_user">User</string>
     <string name="bttn_user_info">User Info</string>
+    <string name="bttn_user_trophies">User Trophies</string>
     <string name="bttn_subreddit">Subreddit</string>
     <string name="bttn_submission">Submission</string>
     <string name="bttn_submissions">Submissions</string>
