@@ -11,6 +11,11 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
+    companion object {
+
+        private const val LOGGING = true
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -24,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
         val auth = TestApplication.instance.auth
         if (!auth.shouldLogin()) {
 
-            val client = auth.getSavedRedditClient()
+            val client = auth.getSavedRedditClient(LOGGING)
             TestApplication.instance.setClient(client)
 
             val intent = Intent(this@LoginActivity, MainActivity::class.java)
@@ -41,7 +46,7 @@ class LoginActivity : AppCompatActivity() {
 
                         doAsync(doWork = {
 
-                            val client = auth.getRedditClient(url)
+                            val client = auth.getRedditClient(url, LOGGING)
                             TestApplication.instance.setClient(client)
 
                             val intent = Intent(this@LoginActivity, MainActivity::class.java)

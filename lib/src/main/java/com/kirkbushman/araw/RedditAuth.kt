@@ -28,12 +28,12 @@ class RedditAuth(context: Context, clientId: String, redirectUrl: String, scopes
         return authManager.isRedirectedUrl(url)
     }
 
-    fun getSavedRedditClient(): RedditClient {
-        return RedditClient(authManager.getSavedBearer())
+    fun getSavedRedditClient(logging: Boolean): RedditClient {
+        return RedditClient(authManager.getSavedBearer(), logging)
     }
 
-    fun getRedditClient(url: String): RedditClient {
+    fun getRedditClient(url: String, logging: Boolean): RedditClient {
         val bearer = authManager.getTokenBearer(url) ?: throw IllegalStateException("Bearer is null!")
-        return RedditClient(bearer)
+        return RedditClient(bearer, logging)
     }
 }

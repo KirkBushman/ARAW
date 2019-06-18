@@ -6,16 +6,6 @@ import com.kirkbushman.araw.fetcher.Fetcher
 import com.kirkbushman.araw.fetcher.InboxFetcher
 import com.kirkbushman.araw.fetcher.SubmissionFetcher
 import com.kirkbushman.araw.fetcher.SubredditFetcher
-import com.kirkbushman.araw.http.EnvelopedComment
-import com.kirkbushman.araw.http.EnvelopedCommentData
-import com.kirkbushman.araw.http.EnvelopedContribution
-import com.kirkbushman.araw.http.EnvelopedData
-import com.kirkbushman.araw.http.EnvelopedMessage
-import com.kirkbushman.araw.http.EnvelopedMoreComment
-import com.kirkbushman.araw.http.EnvelopedRedditor
-import com.kirkbushman.araw.http.EnvelopedSubmission
-import com.kirkbushman.araw.http.EnvelopedSubreddit
-import com.kirkbushman.araw.http.base.EnvelopeKind
 import com.kirkbushman.araw.models.Account
 import com.kirkbushman.araw.models.Comment
 import com.kirkbushman.araw.models.Me
@@ -25,81 +15,17 @@ import com.kirkbushman.araw.models.Subreddit
 import com.kirkbushman.araw.models.SubredditRule
 import com.kirkbushman.araw.models.Trophy
 import com.kirkbushman.araw.models.WikiPage
-import com.kirkbushman.araw.utils.NullRepliesInterceptor
+import com.kirkbushman.araw.utils.Utils.getRetrofit
 import com.kirkbushman.auth.models.TokenBearer
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.adapters.PolymorphicJsonAdapterFactory
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
 
-class RedditClient(private val bearer: TokenBearer) {
+class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
 
-    companion object {
+    private val retrofit = getRetrofit(logging)
+    private val api = retrofit.create(RedditApi::class.java)
 
-        private const val BASE_URL = "https://oauth.reddit.com"
-
-        private val retrofit = getRetrofit(true)
-        private val api = retrofit.create(RedditApi::class.java)
-
-        private fun getRetrofit(logging: Boolean): Retrofit {
-
-            val moshi = Moshi.Builder()
-                .add(
-                    PolymorphicJsonAdapterFactory.of(EnvelopedData::class.java, "kind")
-                        .withSubtype(EnvelopedComment::class.java, EnvelopeKind.Comment.value)
-                        .withSubtype(EnvelopedMoreComment::class.java, EnvelopeKind.More.value)
-                        .withSubtype(EnvelopedMessage::class.java, EnvelopeKind.Message.value)
-                        .withSubtype(EnvelopedRedditor::class.java, EnvelopeKind.Account.value)
-                        .withSubtype(EnvelopedSubmission::class.java, EnvelopeKind.Link.value)
-                        .withSubtype(EnvelopedSubreddit::class.java, EnvelopeKind.Subreddit.value)
-                )
-                .add(
-                    PolymorphicJsonAdapterFactory.of(EnvelopedContribution::class.java, "kind")
-                        .withSubtype(EnvelopedSubmission::class.java, EnvelopeKind.Link.value)
-                        .withSubtype(EnvelopedComment::class.java, EnvelopeKind.Comment.value)
-                        .withSubtype(EnvelopedMoreComment::class.java, EnvelopeKind.More.value)
-                )
-                .add(
-                    PolymorphicJsonAdapterFactory.of(EnvelopedCommentData::class.java, "kind")
-                        .withSubtype(EnvelopedComment::class.java, EnvelopeKind.Comment.value)
-                        .withSubtype(EnvelopedMoreComment::class.java, EnvelopeKind.More.value)
-                )
-                .build()
-
-            val moshiFactory = MoshiConverterFactory.create(moshi)
-            val nullRepliesInterceptor = NullRepliesInterceptor
-
-            val httpClient = if (logging) {
-
-                val logger = HttpLoggingInterceptor()
-                logger.level = HttpLoggingInterceptor.Level.BODY
-
-                OkHttpClient
-                    .Builder()
-                    .addInterceptor(nullRepliesInterceptor)
-                    .addInterceptor(logger)
-                    .build()
-            } else {
-
-                OkHttpClient
-                    .Builder()
-                    .addInterceptor(nullRepliesInterceptor)
-                    .build()
-            }
-
-            return Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(moshiFactory)
-                .client(httpClient)
-                .build()
-        }
-    }
-
-    val messages by lazy { MessagesHandler(::getHeaderMap) }
-    val account by lazy { AccountHandler(::getHeaderMap) }
-    val selfAccount by lazy { SelfAccountHandler({ me() ?: throw IllegalStateException("Could not found logged user") }, ::getHeaderMap) }
+    val messages by lazy { MessagesHandler(api, ::getHeaderMap) }
+    val account by lazy { AccountHandler(api, ::getHeaderMap) }
+    val selfAccount by lazy { SelfAccountHandler(api, { me() ?: throw IllegalStateException("Could not found logged user") }, ::getHeaderMap) }
 
     fun me(): Me? {
 
@@ -209,14 +135,19 @@ class RedditClient(private val bearer: TokenBearer) {
     }
 
     fun accountHandler(account: Account): UserAccountHandler {
-        return UserAccountHandler(account, ::getHeaderMap)
+        return UserAccountHandler(api, account, ::getHeaderMap)
     }
 
     private fun getHeaderMap(): HashMap<String, String> {
         return hashMapOf("Authorization" to "bearer ".plus(bearer.getRawAccessToken()))
     }
 
-    class MessagesHandler(private inline val getHeaderMap: () -> HashMap<String, String>) {
+    class MessagesHandler(
+
+        private val api: RedditApi,
+        private inline val getHeaderMap: () -> HashMap<String, String>
+
+    ) {
 
         fun inbox(limit: Int = Fetcher.DEFAULT_LIMIT): InboxFetcher {
             return InboxFetcher(api, "inbox", limit) { getHeaderMap() }
@@ -247,7 +178,12 @@ class RedditClient(private val bearer: TokenBearer) {
         }
     }
 
-    open class AccountHandler(private inline val getHeaderMap: () -> HashMap<String, String>) {
+    open class AccountHandler(
+
+        private val api: RedditApi,
+        private inline val getHeaderMap: () -> HashMap<String, String>
+
+    ) {
 
         fun overview(username: String, limit: Int = Fetcher.DEFAULT_LIMIT): ContributionFetcher {
             return ContributionFetcher(api, username, "", limit) { getHeaderMap() }
@@ -279,7 +215,13 @@ class RedditClient(private val bearer: TokenBearer) {
         }
     }
 
-    class UserAccountHandler(private val user: Account, getHeaderMap: () -> HashMap<String, String>) : AccountHandler(getHeaderMap) {
+    class UserAccountHandler(
+
+        api: RedditApi,
+        private val user: Account,
+        getHeaderMap: () -> HashMap<String, String>
+
+    ) : AccountHandler(api, getHeaderMap) {
 
         fun overview(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionFetcher {
             return super.overview(user.name, limit)
@@ -304,6 +246,7 @@ class RedditClient(private val bearer: TokenBearer) {
 
     class SelfAccountHandler(
 
+        private val api: RedditApi,
         private inline val getSelfAccount: () -> Me,
         private inline val getHeaderMap: () -> HashMap<String, String>
 
