@@ -1,22 +1,20 @@
 package com.kirkbushman.araw.models
 
 import android.os.Parcelable
-import com.kirkbushman.araw.models.general.Distinguished
 import com.kirkbushman.araw.models.general.Gildings
 import com.kirkbushman.araw.models.general.SubmissionPreview
-import com.kirkbushman.araw.models.general.Vote
 import com.kirkbushman.araw.models.mixins.Contribution
 import com.kirkbushman.araw.models.mixins.Created
 import com.kirkbushman.araw.models.mixins.Distinguishable
 import com.kirkbushman.araw.models.mixins.Editable
 import com.kirkbushman.araw.models.mixins.Gildable
 import com.kirkbushman.araw.models.mixins.Votable
+import com.kirkbushman.araw.utils.vote
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.parcel.RawValue
 import java.io.Serializable
-import java.util.*
 
 @JsonClass(generateAdapter = true)
 @Parcelize
@@ -47,7 +45,7 @@ data class Submission(
     override val createdUtc: Long,
 
     @Json(name = "distinguished")
-    override val rawDistinguished: String?,
+    override val distinguishedRaw: String?,
 
     @Json(name = "domain")
     val domain: String,
@@ -146,50 +144,6 @@ data class Submission(
     val url: String
 
 ) : Contribution, Votable, Created, Editable, Distinguishable, Gildable, Parcelable, Serializable {
-
-    override val vote: Vote
-        get() {
-            return when (likes) {
-                true -> Vote.UPVOTE
-                false -> Vote.DOWNVOTE
-                else -> Vote.NONE
-            }
-        }
-
-    override val distinguished: Distinguished
-        get() {
-            return when (rawDistinguished) {
-                "moderator" -> Distinguished.MODERATOR
-                "admin" -> Distinguished.ADMIN
-                "special" -> Distinguished.SPECIAL
-                else -> Distinguished.NOT_DISTINGUISHED
-            }
-        }
-
-    override val hasEdited: Boolean
-        get() {
-
-            if (editedRaw is Long) {
-                return true
-            }
-
-            if (editedRaw is Boolean) {
-                return editedRaw
-            }
-
-            return false
-        }
-
-    override val edited: Date
-        get() {
-
-            if (editedRaw is Long) {
-                val milliseconds = editedRaw / 1000L
-                return Date(milliseconds)
-            }
-
-            return Date()
-        }
 
     override fun hashCode(): Int {
         return id.hashCode()

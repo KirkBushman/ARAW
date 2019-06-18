@@ -1,8 +1,6 @@
 package com.kirkbushman.araw.models
 
 import android.os.Parcelable
-import com.kirkbushman.araw.models.general.Distinguished
-import com.kirkbushman.araw.models.general.Vote
 import com.kirkbushman.araw.models.mixins.Created
 import com.kirkbushman.araw.models.mixins.Distinguishable
 import com.kirkbushman.araw.models.mixins.Thing
@@ -41,7 +39,7 @@ data class Message(
     val dest: String,
 
     @Json(name = "distinguished")
-    override val rawDistinguished: String?,
+    override val distinguishedRaw: String?,
 
     @Json(name = "first_message")
     val firstMessage: Long?,
@@ -81,25 +79,6 @@ data class Message(
 
 ) : Thing, Votable, Created, Distinguishable, Parcelable, Serializable {
 
-    override val vote: Vote
-        get() {
-            return when (likes) {
-                true -> Vote.UPVOTE
-                false -> Vote.DOWNVOTE
-                else -> Vote.NONE
-            }
-        }
-
-    override val distinguished: Distinguished
-        get() {
-            return when (rawDistinguished) {
-                "moderator" -> Distinguished.MODERATOR
-                "admin" -> Distinguished.ADMIN
-                "special" -> Distinguished.SPECIAL
-                else -> Distinguished.NOT_DISTINGUISHED
-            }
-        }
-
     override fun hashCode(): Int {
         return id.hashCode()
     }
@@ -127,7 +106,7 @@ data class Message(
                 "created: $created, " +
                 "createdUtc: $createdUtc, " +
                 "dest: $dest, " +
-                "rawDistinguished: $rawDistinguished, " +
+                "rawDistinguished: $distinguishedRaw, " +
                 "firstMessage: $firstMessage, " +
                 "firstMessageName: $firstMessageName, " +
                 "isComment: $isComment, " +

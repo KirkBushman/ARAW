@@ -2,9 +2,7 @@ package com.kirkbushman.araw.models
 
 import android.os.Parcelable
 import com.kirkbushman.araw.http.EnvelopedCommentDataListing
-import com.kirkbushman.araw.models.general.Distinguished
 import com.kirkbushman.araw.models.general.Gildings
-import com.kirkbushman.araw.models.general.Vote
 import com.kirkbushman.araw.models.mixins.CommentData
 import com.kirkbushman.araw.models.mixins.Created
 import com.kirkbushman.araw.models.mixins.Distinguishable
@@ -16,7 +14,6 @@ import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.parcel.RawValue
 import java.io.Serializable
-import java.util.*
 
 @JsonClass(generateAdapter = true)
 @Parcelize
@@ -47,7 +44,7 @@ data class Comment(
     override val editedRaw: @RawValue Any,
 
     @Json(name = "distinguished")
-    override val rawDistinguished: String?,
+    override val distinguishedRaw: String?,
 
     @Json(name = "archived")
     val isArchived: Boolean,
@@ -105,50 +102,6 @@ data class Comment(
 
 ) : CommentData, Votable, Created, Editable, Distinguishable, Gildable, Parcelable, Serializable {
 
-    override val vote: Vote
-        get() {
-            return when (likes) {
-                true -> Vote.UPVOTE
-                false -> Vote.DOWNVOTE
-                else -> Vote.NONE
-            }
-        }
-
-    override val distinguished: Distinguished
-        get() {
-            return when (rawDistinguished) {
-                "moderator" -> Distinguished.MODERATOR
-                "admin" -> Distinguished.ADMIN
-                "special" -> Distinguished.SPECIAL
-                else -> Distinguished.NOT_DISTINGUISHED
-            }
-        }
-
-    override val hasEdited: Boolean
-        get() {
-
-            if (editedRaw is Long) {
-                return true
-            }
-
-            if (editedRaw is Boolean) {
-                return editedRaw
-            }
-
-            return false
-        }
-
-    override val edited: Date
-        get() {
-
-            if (editedRaw is Long) {
-                val milliseconds = editedRaw / 1000L
-                return Date(milliseconds)
-            }
-
-            return Date()
-        }
-
     val hasReplies: Boolean
         get() {
 
@@ -196,7 +149,7 @@ data class Comment(
                 "created: $created, " +
                 "createdUtc: $createdUtc, " +
                 "editedRaw: $editedRaw, " +
-                "rawDistinguished: $rawDistinguished, " +
+                "rawDistinguished: $distinguishedRaw, " +
                 "isArchived: $isArchived, " +
                 "isSaved: $isSaved, " +
                 "isStickied: $isStickied, " +

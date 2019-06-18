@@ -1,6 +1,7 @@
 package com.kirkbushman.araw.models
 
 import android.os.Parcelable
+import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.models.mixins.Created
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -45,6 +46,10 @@ data class Redditor(
     override val name: String
 
 ) : Account, Created, Parcelable, Serializable {
+
+    fun withClient(client: RedditClient): RedditClient.UserAccountHandler {
+        return client.accountHandler(this)
+    }
 
     override fun hashCode(): Int {
         return id.hashCode()

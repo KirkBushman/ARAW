@@ -16,6 +16,7 @@ import com.kirkbushman.araw.http.EnvelopedRedditor
 import com.kirkbushman.araw.http.EnvelopedSubmission
 import com.kirkbushman.araw.http.EnvelopedSubreddit
 import com.kirkbushman.araw.http.base.EnvelopeKind
+import com.kirkbushman.araw.models.Account
 import com.kirkbushman.araw.models.Comment
 import com.kirkbushman.araw.models.Me
 import com.kirkbushman.araw.models.Redditor
@@ -207,6 +208,10 @@ class RedditClient(private val bearer: TokenBearer) {
         return res.body()?.rules
     }
 
+    fun accountHandler(account: Account): UserAccountHandler {
+        return UserAccountHandler(account, ::getHeaderMap)
+    }
+
     private fun getHeaderMap(): HashMap<String, String> {
         return hashMapOf("Authorization" to "bearer ".plus(bearer.getRawAccessToken()))
     }
@@ -242,7 +247,7 @@ class RedditClient(private val bearer: TokenBearer) {
         }
     }
 
-    class AccountHandler(private inline val getHeaderMap: () -> HashMap<String, String>) {
+    open class AccountHandler(private inline val getHeaderMap: () -> HashMap<String, String>) {
 
         fun overview(username: String, limit: Int = Fetcher.DEFAULT_LIMIT): ContributionFetcher {
             return ContributionFetcher(api, username, "", limit) { getHeaderMap() }
@@ -271,6 +276,29 @@ class RedditClient(private val bearer: TokenBearer) {
             }
 
             return res.body()?.data?.trophies?.map { it.data }?.toList()
+        }
+    }
+
+    class UserAccountHandler(private val user: Account, getHeaderMap: () -> HashMap<String, String>) : AccountHandler(getHeaderMap) {
+
+        fun overview(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionFetcher {
+            return super.overview(user.name, limit)
+        }
+
+        fun submitted(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionFetcher {
+            return super.submitted(user.name, limit)
+        }
+
+        fun comments(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionFetcher {
+            return super.comments(user.name, limit)
+        }
+
+        fun gilded(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionFetcher {
+            return super.gilded(user.name, limit)
+        }
+
+        fun trophies(): List<Trophy>? {
+            return super.trophies(user.name)
         }
     }
 
