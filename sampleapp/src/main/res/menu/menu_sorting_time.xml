@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:id="@+id/group_sorting"
+           android:menuCategory="container">
+
+        <item android:id="@+id/item_sorting_hot"
+              app:showAsAction="never"
+              android:title="Hot"
+        />
+
+        <item android:id="@+id/item_sorting_best"
+              app:showAsAction="never"
+              android:title="Best"
+        />
+
+        <item android:id="@+id/item_sorting_new"
+              app:showAsAction="never"
+              android:title="New"
+        />
+
+        <item android:id="@+id/item_sorting_rising"
+              app:showAsAction="never"
+              android:title="Rising"
+        />
+
+        <item android:id="@+id/item_sorting_controversial"
+              app:showAsAction="never"
+              android:title="Controversial"
+        />
+
+        <item android:id="@+id/item_sorting_top"
+              app:showAsAction="never"
+              android:title="Top"
+        />
+
+    </group>
+
+    <group android:id="@+id/group_timeperiod"
+           android:menuCategory="container">
+
+        <item android:id="@+id/item_timeperiod_hour"
+              app:showAsAction="never"
+              android:title="Hour"
+        />
+
+        <item android:id="@+id/item_timeperiod_day"
+              app:showAsAction="never"
+              android:title="Day"
+        />
+
+        <item android:id="@+id/item_timeperiod_week"
+              app:showAsAction="never"
+              android:title="Week"
+        />
+
+        <item android:id="@+id/item_timeperiod_month"
+              app:showAsAction="never"
+              android:title="Month"
+        />
+
+        <item android:id="@+id/item_timeperiod_year"
+              app:showAsAction="never"
+              android:title="Year"
+        />
+
+        <item android:id="@+id/item_timeperiod_all"
+              app:showAsAction="never"
+              android:title="All"
+        />
+
+    </group>
+</menu>

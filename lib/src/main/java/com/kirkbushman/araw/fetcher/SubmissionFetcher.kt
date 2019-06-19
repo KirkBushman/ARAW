@@ -5,7 +5,7 @@ import com.kirkbushman.araw.http.EnvelopedSubmission
 import com.kirkbushman.araw.http.base.Listing
 import com.kirkbushman.araw.http.listings.SubmissionListing
 import com.kirkbushman.araw.models.Submission
-import com.kirkbushman.araw.models.general.Sorting
+import com.kirkbushman.araw.models.general.SubmissionSorting
 import com.kirkbushman.araw.models.general.TimePeriod
 
 class SubmissionFetcher(
@@ -15,7 +15,7 @@ class SubmissionFetcher(
 
     limit: Int = DEFAULT_LIMIT,
 
-    private var sorting: Sorting = DEFAULT_SORTING,
+    private var sorting: SubmissionSorting = DEFAULT_SORTING,
     private var timePeriod: TimePeriod = DEFAULT_TIMEPERIOD,
 
     private inline val getHeader: () -> HashMap<String, String>
@@ -23,7 +23,7 @@ class SubmissionFetcher(
 ) : Fetcher<Submission, EnvelopedSubmission>(limit) {
 
     companion object {
-        private val DEFAULT_SORTING = Sorting.HOT
+        private val DEFAULT_SORTING = SubmissionSorting.HOT
         private val DEFAULT_TIMEPERIOD = TimePeriod.LAST_DAY
     }
 
@@ -31,6 +31,8 @@ class SubmissionFetcher(
 
         val req = api.fetchSubmissions(
             subreddit = subreddit,
+            sorting = getSorting().sortingStr,
+            timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
             limit = if (forward) getLimit() else getLimit() + 1,
             count = getCount(),
             after = if (forward) dirToken else null,
@@ -58,11 +60,11 @@ class SubmissionFetcher(
             .toList()
     }
 
-    fun getSorting(): Sorting {
+    fun getSorting(): SubmissionSorting {
         return sorting
     }
 
-    fun setSorting(newSorting: Sorting) {
+    fun setSorting(newSorting: SubmissionSorting) {
         sorting = newSorting
 
         reset()
@@ -76,6 +78,10 @@ class SubmissionFetcher(
         timePeriod = newTimePeriod
 
         reset()
+    }
+
+    fun requiresTimePeriod(): Boolean {
+        return getSorting().requiresTimePeriod
     }
 
     override fun toString(): String {

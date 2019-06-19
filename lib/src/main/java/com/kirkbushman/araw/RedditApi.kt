@@ -43,6 +43,8 @@ interface RedditApi {
     @GET("/user/{username}/.json")
     fun fetchUserOverview(
         @Path("username") username: String,
+        @Query("sort") sorting: String,
+        @Query("t") timePeriod: String?,
         @Query("limit") limit: Int,
         @Query("count") count: Int,
         @Query("after") after: String? = null,
@@ -54,6 +56,8 @@ interface RedditApi {
     fun fetchUserInfo(
         @Path("username") username: String,
         @Path("where") where: String,
+        @Query("sort") sorting: String,
+        @Query("t") timePeriod: String?,
         @Query("limit") limit: Int,
         @Query("count") count: Int,
         @Query("after") after: String? = null,
@@ -94,9 +98,11 @@ interface RedditApi {
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedSubmissionListing>
 
-    @GET("/r/{subreddit}/.json")
+    @GET("/r/{subreddit}/{sorting}/.json")
     fun fetchSubmissions(
         @Path("subreddit") subreddit: String,
+        @Path("sorting") sorting: String,
+        @Query("t") timePeriod: String?,
         @Query("limit") limit: Int,
         @Query("count") count: Int,
         @Query("after") after: String? = null,

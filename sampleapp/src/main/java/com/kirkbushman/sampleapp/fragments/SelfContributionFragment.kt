@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.kirkbushman.araw.fetcher.ContributionFetcher
+import com.kirkbushman.araw.models.general.ContributionSorting
+import com.kirkbushman.araw.models.general.TimePeriod
 import com.kirkbushman.araw.models.mixins.Contribution
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
@@ -44,6 +46,8 @@ class SelfContributionFragment : Fragment(R.layout.fragment_contribution) {
     private val contributions = ArrayList<Contribution>()
     private val controller by lazy { ContributionController() }
 
+    private var fetcher: ContributionFetcher? = null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -51,13 +55,41 @@ class SelfContributionFragment : Fragment(R.layout.fragment_contribution) {
 
         doAsync(doWork = {
 
-            val fetcher = getFetcher()
-            val temp = fetcher?.fetchNext() ?: listOf()
-            contributions.addAll(temp)
+            fetcher = getFetcher()
+            contributions.addAll(fetcher?.fetchNext() ?: listOf())
         }, onPost = {
 
             controller.setContributions(contributions)
         })
+    }
+
+    fun reload(sorting: ContributionSorting? = null, timePeriod: TimePeriod? = null) {
+
+        if (sorting != null) {
+
+            doAsync(doWork = {
+
+                fetcher!!.setSorting(sorting)
+
+                contributions.clear()
+                contributions.addAll(fetcher?.fetchNext() ?: listOf())
+            }, onPost = {
+                controller.setContributions(contributions)
+            })
+        }
+
+        if (timePeriod != null) {
+
+            doAsync(doWork = {
+
+                fetcher!!.setTimePeriod(timePeriod)
+
+                contributions.clear()
+                contributions.addAll(fetcher?.fetchNext() ?: listOf())
+            }, onPost = {
+                controller.setContributions(contributions)
+            })
+        }
     }
 
     private fun getFetcher(): ContributionFetcher? {

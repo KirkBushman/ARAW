@@ -1,10 +1,14 @@
 package com.kirkbushman.sampleapp.activities
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
+import com.kirkbushman.araw.models.general.ContributionSorting
+import com.kirkbushman.araw.models.general.TimePeriod
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.fragments.ContributionFragment
 import kotlinx.android.synthetic.main.activity_redditor_info.*
@@ -43,8 +47,38 @@ class RedditorInfoActivity : AppCompatActivity() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_sorting_time_contrib, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        return when (item.itemId) {
+
+            R.id.item_sorting_hot -> { reloadFragment(sorting = ContributionSorting.HOT); true }
+            R.id.item_sorting_new -> { reloadFragment(sorting = ContributionSorting.NEW); true }
+            R.id.item_sorting_controversial -> { reloadFragment(sorting = ContributionSorting.CONTROVERSIAL); true }
+            R.id.item_sorting_top -> { reloadFragment(sorting = ContributionSorting.TOP); true }
+
+            R.id.item_timeperiod_hour -> { reloadFragment(timePeriod = TimePeriod.LAST_HOUR); true }
+            R.id.item_timeperiod_day -> { reloadFragment(timePeriod = TimePeriod.LAST_DAY); true }
+            R.id.item_timeperiod_week -> { reloadFragment(timePeriod = TimePeriod.LAST_WEEK); true }
+            R.id.item_timeperiod_month -> { reloadFragment(timePeriod = TimePeriod.LAST_MONTH); true }
+            R.id.item_timeperiod_year -> { reloadFragment(timePeriod = TimePeriod.LAST_YEAR); true }
+            R.id.item_timeperiod_all -> { reloadFragment(timePeriod = TimePeriod.ALL_TIME); true }
+
+            else -> { false }
+        }
+    }
+
     fun getUsername(): String {
         return search.text.toString().trim()
+    }
+
+    private fun reloadFragment(sorting: ContributionSorting? = null, timePeriod: TimePeriod? = null) {
+
+        (adapter.getItem(pager.currentItem) as ContributionFragment).reload(sorting, timePeriod)
     }
 
     private class ContributionPagerAdapter(manager: FragmentManager) : FragmentStatePagerAdapter(manager) {
