@@ -4,12 +4,17 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.kirkbushman.araw.fetcher.ContributionFetcher
+import com.kirkbushman.araw.models.Comment
+import com.kirkbushman.araw.models.Submission
 import com.kirkbushman.araw.models.general.ContributionSorting
 import com.kirkbushman.araw.models.general.TimePeriod
+import com.kirkbushman.araw.models.general.Vote
 import com.kirkbushman.araw.models.mixins.Contribution
+import com.kirkbushman.araw.models.mixins.Votable
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.controllers.ContributionController
+import com.kirkbushman.sampleapp.controllers.SubmissionController
 import com.kirkbushman.sampleapp.doAsync
 import kotlinx.android.synthetic.main.fragment_inbox.*
 
@@ -44,7 +49,49 @@ class SelfContributionFragment : Fragment(R.layout.fragment_contribution) {
     private val client by lazy { TestApplication.instance.getClient() }
 
     private val contributions = ArrayList<Contribution>()
-    private val controller by lazy { ContributionController() }
+    private val controller by lazy {
+        ContributionController(object : SubmissionController.SubmissionCallback {
+
+            override fun onUpvoteClick(index: Int) {
+
+                doAsync(doWork = {
+                    val votable = contributions[index] as Votable
+                    client?.contributions?.vote(Vote.UPVOTE, votable)
+                })
+            }
+
+            override fun onNoneClick(index: Int) {
+
+                doAsync(doWork = {
+                    val votable = contributions[index] as Votable
+                    client?.contributions?.vote(Vote.NONE, votable)
+                })
+            }
+
+            override fun onDownClick(index: Int) {
+
+                doAsync(doWork = {
+                    val votable = contributions[index] as Votable
+                    client?.contributions?.vote(Vote.DOWNVOTE, votable)
+                })
+            }
+
+            override fun onSaveClick(index: Int) {
+
+                doAsync(doWork = {
+                    val contribution = contributions[index]
+                    val saved = when {
+                        contribution is Submission -> (contribution).saved
+                        contribution is Comment -> (contribution).isSaved
+
+                        else -> false
+                    }
+
+                    client?.contributions?.save(!saved, contribution)
+                })
+            }
+        })
+    }
 
     private var fetcher: ContributionFetcher? = null
 

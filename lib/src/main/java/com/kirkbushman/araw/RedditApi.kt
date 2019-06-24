@@ -12,8 +12,11 @@ import com.kirkbushman.araw.http.EnvelopedWikiPage
 import com.kirkbushman.araw.models.Me
 import com.kirkbushman.araw.models.SubredditRules
 import retrofit2.Call
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.HeaderMap
+import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -33,6 +36,20 @@ interface RedditApi {
         @Query("before") before: String? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedMessageListing>
+
+    @FormUrlEncoded
+    @POST("/api/read_message")
+    fun readMessage(
+        @Field("id") id: String,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<Any?>
+
+    @FormUrlEncoded
+    @POST("/api/unread_message")
+    fun unreadMessage(
+        @Field("id") id: String,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<Any?>
 
     @GET("/user/{username}/about/.json")
     fun user(
@@ -123,6 +140,28 @@ interface RedditApi {
         @Query("depth") depth: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<List<EnvelopedContributionListing>>
+
+    @FormUrlEncoded
+    @POST("/api/vote")
+    fun vote(
+        @Field("id") id: String,
+        @Field("dir") dir: Int,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<Any?>
+
+    @FormUrlEncoded
+    @POST("/api/save")
+    fun save(
+        @Field("id") id: String,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<Any?>
+
+    @FormUrlEncoded
+    @POST("/api/unsave")
+    fun unsave(
+        @Field("id") id: String,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<Any?>
 
     @GET("/r/{subreddit}/wiki/.json")
     fun wiki(

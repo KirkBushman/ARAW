@@ -47,7 +47,7 @@ data class Redditor(
 
 ) : Account, Created, Parcelable, Serializable {
 
-    fun withClient(client: RedditClient): RedditClient.UserAccountHandler {
+    fun withClient(client: RedditClient): RedditClient.AccountHandler {
         return client.accountHandler(this)
     }
 

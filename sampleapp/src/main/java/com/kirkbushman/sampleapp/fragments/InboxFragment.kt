@@ -51,7 +51,27 @@ class InboxFragment : Fragment(R.layout.fragment_inbox) {
     }
 
     private val messages = ArrayList<Message>()
-    private val controller by lazy { InboxController() }
+    private val controller by lazy {
+
+        InboxController(object : InboxController.InboxCallback {
+
+            override fun readMessageClick(index: Int) {
+
+                doAsync(doWork = {
+                    val message = messages[index]
+                    client?.messages?.markAsRead(true, message)
+                })
+            }
+
+            override fun unreadMessageClick(index: Int) {
+
+                doAsync(doWork = {
+                    val message = messages[index]
+                    client?.messages?.markAsRead(false, message)
+                })
+            }
+        })
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 

@@ -9,12 +9,16 @@ import com.kirkbushman.araw.fetcher.SubredditFetcher
 import com.kirkbushman.araw.models.Account
 import com.kirkbushman.araw.models.Comment
 import com.kirkbushman.araw.models.Me
+import com.kirkbushman.araw.models.Message
 import com.kirkbushman.araw.models.Redditor
 import com.kirkbushman.araw.models.Submission
 import com.kirkbushman.araw.models.Subreddit
 import com.kirkbushman.araw.models.SubredditRule
 import com.kirkbushman.araw.models.Trophy
 import com.kirkbushman.araw.models.WikiPage
+import com.kirkbushman.araw.models.general.Vote
+import com.kirkbushman.araw.models.mixins.Contribution
+import com.kirkbushman.araw.models.mixins.Votable
 import com.kirkbushman.araw.utils.Utils.getRetrofit
 import com.kirkbushman.auth.models.TokenBearer
 
@@ -23,9 +27,10 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
     private val retrofit = getRetrofit(logging)
     private val api = retrofit.create(RedditApi::class.java)
 
-    val messages by lazy { MessagesHandler(api, ::getHeaderMap) }
-    val account by lazy { AccountHandler(api, ::getHeaderMap) }
+    val messages by lazy { GeneralMessagesHandler(api, ::getHeaderMap) }
+    val account by lazy { GeneralAccountHandler(api, ::getHeaderMap) }
     val selfAccount by lazy { SelfAccountHandler(api, { me() ?: throw IllegalStateException("Could not found logged user") }, ::getHeaderMap) }
+    val contributions by lazy { GeneralContributionHandler(api, ::getHeaderMap) }
 
     fun me(): Me? {
 
@@ -134,15 +139,19 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
         return res.body()?.rules
     }
 
-    fun accountHandler(account: Account): UserAccountHandler {
-        return UserAccountHandler(api, account, ::getHeaderMap)
+    fun accountHandler(account: Account): AccountHandler {
+        return AccountHandler(api, account, ::getHeaderMap)
+    }
+
+    fun contributionHandler(contribution: Contribution): ContributionHandler {
+        return ContributionHandler(api, contribution, ::getHeaderMap)
     }
 
     private fun getHeaderMap(): HashMap<String, String> {
         return hashMapOf("Authorization" to "bearer ".plus(bearer.getRawAccessToken()))
     }
 
-    class MessagesHandler(
+    class GeneralMessagesHandler(
 
         private val api: RedditApi,
         private inline val getHeaderMap: () -> HashMap<String, String>
@@ -176,9 +185,30 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
         fun mentions(limit: Int = Fetcher.DEFAULT_LIMIT): InboxFetcher {
             return InboxFetcher(api, "mentions", limit) { getHeaderMap() }
         }
+
+        fun markAsRead(read: Boolean, message: Message): Any? {
+            return markAsRead(read, message.name)
+        }
+
+        fun markAsRead(read: Boolean, fullname: String): Any? {
+
+            val authMap = getHeaderMap()
+            val req = if (read)
+                api.readMessage(id = fullname, header = authMap)
+            else
+                api.unreadMessage(id = fullname, header = authMap)
+
+            val res = req.execute()
+
+            if (!res.isSuccessful) {
+                return null
+            }
+
+            return res.body()
+        }
     }
 
-    open class AccountHandler(
+    class GeneralAccountHandler(
 
         private val api: RedditApi,
         private inline val getHeaderMap: () -> HashMap<String, String>
@@ -215,32 +245,34 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
         }
     }
 
-    class UserAccountHandler(
+    class AccountHandler(
 
         api: RedditApi,
         private val user: Account,
         getHeaderMap: () -> HashMap<String, String>
 
-    ) : AccountHandler(api, getHeaderMap) {
+    ) {
+
+        private val accountHandler = GeneralAccountHandler(api, getHeaderMap)
 
         fun overview(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionFetcher {
-            return super.overview(user.name, limit)
+            return accountHandler.overview(user.name, limit)
         }
 
         fun submitted(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionFetcher {
-            return super.submitted(user.name, limit)
+            return accountHandler.submitted(user.name, limit)
         }
 
         fun comments(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionFetcher {
-            return super.comments(user.name, limit)
+            return accountHandler.comments(user.name, limit)
         }
 
         fun gilded(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionFetcher {
-            return super.gilded(user.name, limit)
+            return accountHandler.gilded(user.name, limit)
         }
 
         fun trophies(): List<Trophy>? {
-            return super.trophies(user.name)
+            return accountHandler.trophies(user.name)
         }
     }
 
@@ -311,6 +343,70 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
                 currentUser = getSelfAccount().name
                 currentUser!!
             }
+        }
+    }
+
+    class GeneralContributionHandler(
+
+        private val api: RedditApi,
+        private inline val getHeaderMap: () -> HashMap<String, String>
+
+    ) {
+
+        fun vote(vote: Vote, votable: Votable): Any? {
+            return vote(vote, votable.name)
+        }
+
+        fun vote(vote: Vote, fullname: String): Any? {
+
+            val authMap = getHeaderMap()
+            val req = api.vote(id = fullname, dir = vote.dir, header = authMap)
+            val res = req.execute()
+
+            if (!res.isSuccessful) {
+                return null
+            }
+
+            return res.body()
+        }
+
+        fun save(save: Boolean, contribution: Contribution): Any? {
+            return save(save, contribution.name)
+        }
+
+        fun save(save: Boolean, fullname: String): Any? {
+
+            val authMap = getHeaderMap()
+            val req = if (save)
+                api.save(id = fullname, header = authMap)
+            else
+                api.unsave(id = fullname, header = authMap)
+            val res = req.execute()
+
+            if (!res.isSuccessful) {
+                return null
+            }
+
+            return res.body()
+        }
+    }
+
+    class ContributionHandler(
+
+        api: RedditApi,
+        private val contribution: Contribution,
+        getHeaderMap: () -> HashMap<String, String>
+
+    ) {
+
+        private val contributionsHandler = GeneralContributionHandler(api, getHeaderMap)
+
+        fun vote(vote: Vote): Any? {
+            return contributionsHandler.vote(vote, contribution as Votable)
+        }
+
+        fun save(save: Boolean): Any? {
+            return contributionsHandler.save(save, contribution)
         }
     }
 }

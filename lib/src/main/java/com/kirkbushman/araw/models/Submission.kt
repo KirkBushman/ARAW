@@ -1,6 +1,7 @@
 package com.kirkbushman.araw.models
 
 import android.os.Parcelable
+import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.models.general.Gildings
 import com.kirkbushman.araw.models.general.SubmissionPreview
 import com.kirkbushman.araw.models.mixins.Contribution
@@ -87,7 +88,7 @@ data class Submission(
     override val likes: Boolean?,
 
     @Json(name = "name")
-    val name: String,
+    override val name: String,
 
     @Json(name = "num_crossposts")
     val numCrossposts: Int,
@@ -144,6 +145,10 @@ data class Submission(
     val url: String
 
 ) : Contribution, Votable, Created, Editable, Distinguishable, Gildable, Parcelable, Serializable {
+
+    fun withClient(client: RedditClient): RedditClient.ContributionHandler {
+        return client.contributionHandler(this)
+    }
 
     override fun hashCode(): Int {
         return id.hashCode()

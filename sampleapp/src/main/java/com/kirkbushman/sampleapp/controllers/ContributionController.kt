@@ -1,5 +1,6 @@
 package com.kirkbushman.sampleapp.controllers
 
+import android.view.View
 import com.airbnb.epoxy.EpoxyController
 import com.kirkbushman.araw.models.Comment
 import com.kirkbushman.araw.models.Submission
@@ -8,7 +9,7 @@ import com.kirkbushman.sampleapp.models.comment
 import com.kirkbushman.sampleapp.models.empty
 import com.kirkbushman.sampleapp.models.submission
 
-class ContributionController : EpoxyController() {
+class ContributionController(private val callback: SubmissionController.SubmissionCallback) : EpoxyController() {
 
     private val contributions = ArrayList<Contribution>()
 
@@ -26,7 +27,7 @@ class ContributionController : EpoxyController() {
             }
         }
 
-        contributions.forEach {
+        contributions.forEachIndexed { index, it ->
 
             if (it is Comment) {
                 comment {
@@ -41,8 +42,12 @@ class ContributionController : EpoxyController() {
                     id(it.id)
                     subreddit(it.subreddit)
                     author(it.author)
-                    title(it.title)
+                    title(getTaggedTitle(it))
                     body(it.selftext ?: "")
+
+                    upvoteClick(View.OnClickListener { callback.onUpvoteClick(index) })
+                    noneClick(View.OnClickListener { callback.onNoneClick(index) })
+                    downvoteClick(View.OnClickListener { callback.onDownClick(index) })
                 }
             }
         }

@@ -57,7 +57,7 @@ data class Message(
     override val likes: Boolean?,
 
     @Json(name = "name")
-    val name: String,
+    override val name: String,
 
     @Json(name = "num_comments")
     val numComments: Int?,

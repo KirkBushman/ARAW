@@ -21,7 +21,7 @@ data class MoreComment(
     val depth: Int,
 
     @Json(name = "name")
-    val name: String,
+    override val name: String,
 
     @Json(name = "parent_id")
     val parentId: String,

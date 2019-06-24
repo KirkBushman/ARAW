@@ -1,11 +1,18 @@
 package com.kirkbushman.sampleapp.controllers
 
+import android.view.View
 import com.airbnb.epoxy.EpoxyController
 import com.kirkbushman.araw.models.Message
 import com.kirkbushman.sampleapp.models.empty
 import com.kirkbushman.sampleapp.models.message
 
-class InboxController : EpoxyController() {
+class InboxController(private val callback: InboxCallback) : EpoxyController() {
+
+    interface InboxCallback {
+
+        fun readMessageClick(index: Int)
+        fun unreadMessageClick(index: Int)
+    }
 
     private val messages = ArrayList<Message>()
 
@@ -23,13 +30,15 @@ class InboxController : EpoxyController() {
             }
         }
 
-        messages.forEach {
+        messages.forEachIndexed { index, it ->
 
             message {
                 id(it.id)
                 subject(it.subject)
                 author(it.author ?: "")
                 body(it.body)
+                readBttn(View.OnClickListener { callback.readMessageClick(index) })
+                unreadBttn(View.OnClickListener { callback.unreadMessageClick(index) })
             }
         }
     }
