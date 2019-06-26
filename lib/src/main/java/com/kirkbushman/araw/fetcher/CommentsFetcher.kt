@@ -6,7 +6,7 @@ import com.kirkbushman.araw.http.base.Listing
 import com.kirkbushman.araw.models.Submission
 import com.kirkbushman.araw.models.mixins.CommentData
 
-class CommentFetcher(
+class CommentsFetcher(
 
     private val api: RedditApi,
     private val submissionId: String,

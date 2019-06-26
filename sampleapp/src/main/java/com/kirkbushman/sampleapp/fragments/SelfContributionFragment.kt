@@ -3,7 +3,7 @@ package com.kirkbushman.sampleapp.fragments
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import com.kirkbushman.araw.fetcher.ContributionFetcher
+import com.kirkbushman.araw.fetcher.ContributionsFetcher
 import com.kirkbushman.araw.models.Comment
 import com.kirkbushman.araw.models.Submission
 import com.kirkbushman.araw.models.general.ContributionSorting
@@ -80,9 +80,9 @@ class SelfContributionFragment : Fragment(R.layout.fragment_contribution) {
 
                 doAsync(doWork = {
                     val contribution = contributions[index]
-                    val saved = when {
-                        contribution is Submission -> (contribution).saved
-                        contribution is Comment -> (contribution).isSaved
+                    val saved = when (contribution) {
+                        is Submission -> (contribution).saved
+                        is Comment -> (contribution).isSaved
 
                         else -> false
                     }
@@ -93,7 +93,7 @@ class SelfContributionFragment : Fragment(R.layout.fragment_contribution) {
         })
     }
 
-    private var fetcher: ContributionFetcher? = null
+    private var fetcher: ContributionsFetcher? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -139,7 +139,7 @@ class SelfContributionFragment : Fragment(R.layout.fragment_contribution) {
         }
     }
 
-    private fun getFetcher(): ContributionFetcher? {
+    private fun getFetcher(): ContributionsFetcher? {
 
         return when (passedTag) {
             TAG_OVERVIEW -> client?.selfAccount?.overview()

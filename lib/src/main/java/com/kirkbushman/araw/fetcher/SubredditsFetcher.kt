@@ -6,7 +6,7 @@ import com.kirkbushman.araw.http.base.Listing
 import com.kirkbushman.araw.http.listings.SubredditListing
 import com.kirkbushman.araw.models.Subreddit
 
-class SubredditFetcher(
+class SubredditsFetcher(
 
     private val api: RedditApi,
     private val where: String,

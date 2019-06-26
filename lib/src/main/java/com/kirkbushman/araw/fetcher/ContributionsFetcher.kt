@@ -8,7 +8,7 @@ import com.kirkbushman.araw.models.general.ContributionSorting
 import com.kirkbushman.araw.models.general.TimePeriod
 import com.kirkbushman.araw.models.mixins.Contribution
 
-class ContributionFetcher(
+class ContributionsFetcher(
 
     private val api: RedditApi,
     private val username: String,
@@ -102,7 +102,7 @@ class ContributionFetcher(
     }
 
     override fun toString(): String {
-        return "ContributionFetcher { " +
+        return "ContributionsFetcher { " +
                 "username: $username, " +
                 "where: $where, " +
                 "sorting: $sorting, " +

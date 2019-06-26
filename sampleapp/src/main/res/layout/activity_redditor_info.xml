@@ -25,14 +25,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:hint="Insert username:"
+                        android:hint="@string/edit_insert_username"
                 />
 
                 <Button android:id="@+id/search_bttn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="5"
-                        android:text="Ok"
+                        android:text="@string/bttn_ok"
                 />
 
             </LinearLayout>

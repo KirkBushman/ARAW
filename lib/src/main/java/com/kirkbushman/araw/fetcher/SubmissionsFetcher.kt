@@ -8,7 +8,7 @@ import com.kirkbushman.araw.models.Submission
 import com.kirkbushman.araw.models.general.SubmissionSorting
 import com.kirkbushman.araw.models.general.TimePeriod
 
-class SubmissionFetcher(
+class SubmissionsFetcher(
 
     private val api: RedditApi,
     private val subreddit: String,
@@ -97,7 +97,7 @@ class SubmissionFetcher(
     }
 
     override fun toString(): String {
-        return "SubmissionFetcher { " +
+        return "SubmissionsFetcher { " +
                 "subreddit: $subreddit, " +
                 "sorting: $sorting, " +
                 "timePeriod: $timePeriod, " +

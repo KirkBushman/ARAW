@@ -25,14 +25,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:hint="Insert subreddit:"
+                        android:hint="@string/edit_insert_subreddit"
                 />
 
                 <Button android:id="@+id/search_bttn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="6"
-                        android:text="Ok"
+                        android:text="@string/bttn_ok"
                 />
 
             </LinearLayout>

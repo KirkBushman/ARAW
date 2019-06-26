@@ -21,8 +21,31 @@
     <string name="bttn_wiki">Wiki</string>
     <string name="bttn_rules">Rules</string>
     <string name="edit_insert_user">Insert user:</string>
+    <string name="edit_insert_username">Insert username:</string>
     <string name="edit_insert_subreddit">Insert subreddit:</string>
     <string name="edit_insert_submission_id">Insert submission id:</string>
     <string name="edit_insert_comment_id">Insert comment id:</string>
     <string name="bttn_search_user">Search</string>
+    <string name="bttn_ok">OK</string>
+    <string name="bttn_read">Read</string>
+    <string name="bttn_unread">Unread</string>
+    <string name="bttn_upvote">Upvote</string>
+    <string name="bttn_none">None</string>
+    <string name="bttn_downvote">Downvote</string>
+    <string name="bttn_save">Save</string>
+    <string name="no_items">No items to show.</string>
+
+    <string name="sorting_hot">Hot</string>
+    <string name="sorting_best">Best</string>
+    <string name="sorting_new">New</string>
+    <string name="sorting_rising">Rising</string>
+    <string name="sorting_controversial">Controversial</string>
+    <string name="sorting_top">Top</string>
+
+    <string name="timeperiod_hour">Hour</string>
+    <string name="timeperiod_day">Day</string>
+    <string name="timeperiod_week">Week</string>
+    <string name="timeperiod_month">Month</string>
+    <string name="timeperiod_year">Year</string>
+    <string name="timeperiod_all">All</string>
 </resources>

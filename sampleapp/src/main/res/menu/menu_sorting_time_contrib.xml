@@ -7,22 +7,22 @@
 
         <item android:id="@+id/item_sorting_hot"
               app:showAsAction="never"
-              android:title="Hot"
+              android:title="@string/sorting_hot"
         />
 
         <item android:id="@+id/item_sorting_new"
               app:showAsAction="never"
-              android:title="New"
+              android:title="@string/sorting_new"
         />
 
         <item android:id="@+id/item_sorting_controversial"
               app:showAsAction="never"
-              android:title="Controversial"
+              android:title="@string/sorting_controversial"
         />
 
         <item android:id="@+id/item_sorting_top"
               app:showAsAction="never"
-              android:title="Top"
+              android:title="@string/sorting_top"
         />
 
     </group>
@@ -32,32 +32,32 @@
 
         <item android:id="@+id/item_timeperiod_hour"
               app:showAsAction="never"
-              android:title="Hour"
+              android:title="@string/timeperiod_hour"
         />
 
         <item android:id="@+id/item_timeperiod_day"
               app:showAsAction="never"
-              android:title="Day"
+              android:title="@string/timeperiod_day"
         />
 
         <item android:id="@+id/item_timeperiod_week"
               app:showAsAction="never"
-              android:title="Week"
+              android:title="@string/timeperiod_week"
         />
 
         <item android:id="@+id/item_timeperiod_month"
               app:showAsAction="never"
-              android:title="Month"
+              android:title="@string/timeperiod_month"
         />
 
         <item android:id="@+id/item_timeperiod_year"
               app:showAsAction="never"
-              android:title="Year"
+              android:title="@string/timeperiod_year"
         />
 
         <item android:id="@+id/item_timeperiod_all"
               app:showAsAction="never"
-              android:title="All"
+              android:title="@string/timeperiod_all"
         />
 
     </group>

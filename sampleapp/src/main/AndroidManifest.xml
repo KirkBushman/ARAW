@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.kirkbushman.sampleapp">
+          xmlns:tools="http://schemas.android.com/tools" package="com.kirkbushman.sampleapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-            android:allowBackup="true"
+            android:allowBackup="false"
             android:name=".TestApplication"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            tools:ignore="GoogleAppIndexingWarning">
 
         <activity android:name=".LoginActivity">
             <intent-filter>
@@ -21,23 +22,23 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".activities.SelfAccountActivity"></activity>
-        <activity android:name=".activities.SelfAccountInfoActivity"></activity>
-        <activity android:name=".activities.InboxActivity"></activity>
-        <activity android:name=".activities.RedditorActivity"></activity>
-        <activity android:name=".activities.RedditorInfoActivity"></activity>
-        <activity android:name=".activities.SubredditActivity"></activity>
-        <activity android:name=".activities.SubmissionActivity"></activity>
-        <activity android:name=".activities.SubmissionsActivity"></activity>
-        <activity android:name=".activities.CommonSubmissionsActivity"></activity>
-        <activity android:name=".activities.CommentActivity"></activity>
-        <activity android:name=".activities.CommentsActivity"></activity>
-        <activity android:name=".activities.WikiPageActivity"></activity>
-        <activity android:name=".activities.RulesActivity"></activity>
-        <activity android:name=".activities.SubscribedSubredditsActivity"></activity>
-        <activity android:name=".activities.SelfTrophiesActivity"></activity>
-        <activity android:name=".activities.UserTrophiesActivity"></activity>
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".activities.SelfAccountActivity"/>
+        <activity android:name=".activities.SelfAccountInfoActivity"/>
+        <activity android:name=".activities.InboxActivity"/>
+        <activity android:name=".activities.RedditorActivity"/>
+        <activity android:name=".activities.RedditorInfoActivity"/>
+        <activity android:name=".activities.SubredditActivity"/>
+        <activity android:name=".activities.SubmissionActivity"/>
+        <activity android:name=".activities.SubmissionsActivity"/>
+        <activity android:name=".activities.CommonSubmissionsActivity"/>
+        <activity android:name=".activities.CommentActivity"/>
+        <activity android:name=".activities.CommentsActivity"/>
+        <activity android:name=".activities.WikiPageActivity"/>
+        <activity android:name=".activities.RulesActivity"/>
+        <activity android:name=".activities.SubscribedSubredditsActivity"/>
+        <activity android:name=".activities.SelfTrophiesActivity"/>
+        <activity android:name=".activities.UserTrophiesActivity"/>
     </application>
 
 </manifest>

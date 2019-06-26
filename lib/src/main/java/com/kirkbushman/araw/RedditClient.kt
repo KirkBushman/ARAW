@@ -1,11 +1,11 @@
 package com.kirkbushman.araw
 
-import com.kirkbushman.araw.fetcher.CommentFetcher
-import com.kirkbushman.araw.fetcher.ContributionFetcher
+import com.kirkbushman.araw.fetcher.CommentsFetcher
+import com.kirkbushman.araw.fetcher.ContributionsFetcher
 import com.kirkbushman.araw.fetcher.Fetcher
 import com.kirkbushman.araw.fetcher.InboxFetcher
-import com.kirkbushman.araw.fetcher.SubmissionFetcher
-import com.kirkbushman.araw.fetcher.SubredditFetcher
+import com.kirkbushman.araw.fetcher.SubmissionsFetcher
+import com.kirkbushman.araw.fetcher.SubredditsFetcher
 import com.kirkbushman.araw.models.Account
 import com.kirkbushman.araw.models.Comment
 import com.kirkbushman.araw.models.Me
@@ -86,8 +86,8 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
         return res.body()?.data?.children?.first()?.data
     }
 
-    fun submissions(subreddit: String, limit: Int = Fetcher.DEFAULT_LIMIT): SubmissionFetcher {
-        return SubmissionFetcher(api, subreddit, limit = limit) { getHeaderMap() }
+    fun submissions(subreddit: String, limit: Int = Fetcher.DEFAULT_LIMIT): SubmissionsFetcher {
+        return SubmissionsFetcher(api, subreddit, limit = limit) { getHeaderMap() }
     }
 
     fun comment(commentId: String): Comment? {
@@ -109,9 +109,9 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
         limit: Int = Fetcher.DEFAULT_LIMIT,
         depth: Int? = null
 
-    ): CommentFetcher {
+    ): CommentsFetcher {
 
-        return CommentFetcher(api, submissionId, limit = limit, depth = depth) { getHeaderMap() }
+        return CommentsFetcher(api, submissionId, limit = limit, depth = depth) { getHeaderMap() }
     }
 
     fun wiki(subreddit: String): WikiPage? {
@@ -216,20 +216,20 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
 
     ) {
 
-        fun overview(username: String, limit: Int = Fetcher.DEFAULT_LIMIT): ContributionFetcher {
-            return ContributionFetcher(api, username, "", limit) { getHeaderMap() }
+        fun overview(username: String, limit: Int = Fetcher.DEFAULT_LIMIT): ContributionsFetcher {
+            return ContributionsFetcher(api, username, "", limit) { getHeaderMap() }
         }
 
-        fun submitted(username: String, limit: Int = Fetcher.DEFAULT_LIMIT): ContributionFetcher {
-            return ContributionFetcher(api, username, "submitted", limit) { getHeaderMap() }
+        fun submitted(username: String, limit: Int = Fetcher.DEFAULT_LIMIT): ContributionsFetcher {
+            return ContributionsFetcher(api, username, "submitted", limit) { getHeaderMap() }
         }
 
-        fun comments(username: String, limit: Int = Fetcher.DEFAULT_LIMIT): ContributionFetcher {
-            return ContributionFetcher(api, username, "comments", limit) { getHeaderMap() }
+        fun comments(username: String, limit: Int = Fetcher.DEFAULT_LIMIT): ContributionsFetcher {
+            return ContributionsFetcher(api, username, "comments", limit) { getHeaderMap() }
         }
 
-        fun gilded(username: String, limit: Int = Fetcher.DEFAULT_LIMIT): ContributionFetcher {
-            return ContributionFetcher(api, username, "gilded", limit) { getHeaderMap() }
+        fun gilded(username: String, limit: Int = Fetcher.DEFAULT_LIMIT): ContributionsFetcher {
+            return ContributionsFetcher(api, username, "gilded", limit) { getHeaderMap() }
         }
 
         fun trophies(username: String): List<Trophy>? {
@@ -256,19 +256,19 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
 
         private val accountHandler = GeneralAccountHandler(api, getHeaderMap)
 
-        fun overview(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionFetcher {
+        fun overview(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionsFetcher {
             return accountHandler.overview(user.name, limit)
         }
 
-        fun submitted(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionFetcher {
+        fun submitted(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionsFetcher {
             return accountHandler.submitted(user.name, limit)
         }
 
-        fun comments(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionFetcher {
+        fun comments(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionsFetcher {
             return accountHandler.comments(user.name, limit)
         }
 
-        fun gilded(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionFetcher {
+        fun gilded(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionsFetcher {
             return accountHandler.gilded(user.name, limit)
         }
 
@@ -287,40 +287,40 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
 
         private var currentUser: String? = null
 
-        fun overview(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionFetcher {
-            return ContributionFetcher(api, getUserCached(), "", limit) { getHeaderMap() }
+        fun overview(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionsFetcher {
+            return ContributionsFetcher(api, getUserCached(), "", limit) { getHeaderMap() }
         }
 
-        fun submitted(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionFetcher {
-            return ContributionFetcher(api, getUserCached(), "submitted", limit) { getHeaderMap() }
+        fun submitted(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionsFetcher {
+            return ContributionsFetcher(api, getUserCached(), "submitted", limit) { getHeaderMap() }
         }
 
-        fun comments(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionFetcher {
-            return ContributionFetcher(api, getUserCached(), "comments", limit) { getHeaderMap() }
+        fun comments(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionsFetcher {
+            return ContributionsFetcher(api, getUserCached(), "comments", limit) { getHeaderMap() }
         }
 
-        fun saved(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionFetcher {
-            return ContributionFetcher(api, getUserCached(), "saved", limit) { getHeaderMap() }
+        fun saved(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionsFetcher {
+            return ContributionsFetcher(api, getUserCached(), "saved", limit) { getHeaderMap() }
         }
 
-        fun hidden(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionFetcher {
-            return ContributionFetcher(api, getUserCached(), "hidden", limit) { getHeaderMap() }
+        fun hidden(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionsFetcher {
+            return ContributionsFetcher(api, getUserCached(), "hidden", limit) { getHeaderMap() }
         }
 
-        fun upvoted(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionFetcher {
-            return ContributionFetcher(api, getUserCached(), "upvoted", limit) { getHeaderMap() }
+        fun upvoted(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionsFetcher {
+            return ContributionsFetcher(api, getUserCached(), "upvoted", limit) { getHeaderMap() }
         }
 
-        fun downvoted(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionFetcher {
-            return ContributionFetcher(api, getUserCached(), "downvoted", limit) { getHeaderMap() }
+        fun downvoted(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionsFetcher {
+            return ContributionsFetcher(api, getUserCached(), "downvoted", limit) { getHeaderMap() }
         }
 
-        fun gilded(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionFetcher {
-            return ContributionFetcher(api, getUserCached(), "gilded", limit) { getHeaderMap() }
+        fun gilded(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionsFetcher {
+            return ContributionsFetcher(api, getUserCached(), "gilded", limit) { getHeaderMap() }
         }
 
-        fun subscribedSubreddits(limit: Int = Fetcher.DEFAULT_LIMIT): SubredditFetcher {
-            return SubredditFetcher(api, "subscriber", limit) { getHeaderMap() }
+        fun subscribedSubreddits(limit: Int = Fetcher.DEFAULT_LIMIT): SubredditsFetcher {
+            return SubredditsFetcher(api, "subscriber", limit) { getHeaderMap() }
         }
 
         fun trophies(): List<Trophy>? {
@@ -418,20 +418,20 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
 
     ) {
 
-        fun frontpage(limit: Int = Fetcher.DEFAULT_LIMIT): SubmissionFetcher {
-            return SubmissionFetcher(api, "", limit = limit) { getHeaderMap() }
+        fun frontpage(limit: Int = Fetcher.DEFAULT_LIMIT): SubmissionsFetcher {
+            return SubmissionsFetcher(api, "", limit = limit) { getHeaderMap() }
         }
 
-        fun all(limit: Int = Fetcher.DEFAULT_LIMIT): SubmissionFetcher {
-            return SubmissionFetcher(api, "all", limit = limit) { getHeaderMap() }
+        fun all(limit: Int = Fetcher.DEFAULT_LIMIT): SubmissionsFetcher {
+            return SubmissionsFetcher(api, "all", limit = limit) { getHeaderMap() }
         }
 
-        fun popular(limit: Int = Fetcher.DEFAULT_LIMIT): SubmissionFetcher {
-            return SubmissionFetcher(api, "popular", limit = limit) { getHeaderMap() }
+        fun popular(limit: Int = Fetcher.DEFAULT_LIMIT): SubmissionsFetcher {
+            return SubmissionsFetcher(api, "popular", limit = limit) { getHeaderMap() }
         }
 
-        fun friends(limit: Int = Fetcher.DEFAULT_LIMIT): SubmissionFetcher {
-            return SubmissionFetcher(api, "friends", limit = limit) { getHeaderMap() }
+        fun friends(limit: Int = Fetcher.DEFAULT_LIMIT): SubmissionsFetcher {
+            return SubmissionsFetcher(api, "friends", limit = limit) { getHeaderMap() }
         }
     }
 }

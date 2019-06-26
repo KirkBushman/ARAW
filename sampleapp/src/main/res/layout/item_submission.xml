@@ -58,21 +58,21 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:text="Upvote"
+                android:text="@string/bttn_upvote"
         />
 
         <Button android:id="@+id/none_button"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:text="None"
+                android:text="@string/bttn_none"
         />
 
         <Button android:id="@+id/downvote_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:text="Downvote"
+                android:text="@string/bttn_downvote"
         />
 
     </LinearLayout>
@@ -81,7 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="Save"
+            android:text="@string/bttn_save"
     />
 
 </LinearLayout>

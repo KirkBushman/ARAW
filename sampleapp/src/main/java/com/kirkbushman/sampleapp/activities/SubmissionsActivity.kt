@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.kirkbushman.araw.fetcher.SubmissionFetcher
+import com.kirkbushman.araw.fetcher.SubmissionsFetcher
 import com.kirkbushman.araw.models.Submission
 import com.kirkbushman.araw.models.general.SubmissionSorting
 import com.kirkbushman.araw.models.general.TimePeriod
@@ -57,7 +57,7 @@ class SubmissionsActivity : AppCompatActivity() {
         })
     }
 
-    private var fetcher: SubmissionFetcher? = null
+    private var fetcher: SubmissionsFetcher? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
