@@ -31,6 +31,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
     val account by lazy { GeneralAccountHandler(api, ::getHeaderMap) }
     val selfAccount by lazy { SelfAccountHandler(api, { me() ?: throw IllegalStateException("Could not found logged user") }, ::getHeaderMap) }
     val contributions by lazy { GeneralContributionHandler(api, ::getHeaderMap) }
+    val commonSubreddits by lazy { CommonSubredditsHandler(api, ::getHeaderMap) }
 
     fun me(): Me? {
 
@@ -407,6 +408,30 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
 
         fun save(save: Boolean): Any? {
             return contributionsHandler.save(save, contribution)
+        }
+    }
+
+    class CommonSubredditsHandler(
+
+        private val api: RedditApi,
+        private inline val getHeaderMap: () -> HashMap<String, String>
+
+    ) {
+
+        fun frontpage(limit: Int = Fetcher.DEFAULT_LIMIT): SubmissionFetcher {
+            return SubmissionFetcher(api, "", limit = limit) { getHeaderMap() }
+        }
+
+        fun all(limit: Int = Fetcher.DEFAULT_LIMIT): SubmissionFetcher {
+            return SubmissionFetcher(api, "all", limit = limit) { getHeaderMap() }
+        }
+
+        fun popular(limit: Int = Fetcher.DEFAULT_LIMIT): SubmissionFetcher {
+            return SubmissionFetcher(api, "popular", limit = limit) { getHeaderMap() }
+        }
+
+        fun friends(limit: Int = Fetcher.DEFAULT_LIMIT): SubmissionFetcher {
+            return SubmissionFetcher(api, "friends", limit = limit) { getHeaderMap() }
         }
     }
 }

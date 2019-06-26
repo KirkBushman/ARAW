@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.kirkbushman.sampleapp.activities.CommentActivity
 import com.kirkbushman.sampleapp.activities.CommentsActivity
+import com.kirkbushman.sampleapp.activities.CommonSubmissionsActivity
 import com.kirkbushman.sampleapp.activities.InboxActivity
 import com.kirkbushman.sampleapp.activities.RedditorActivity
 import com.kirkbushman.sampleapp.activities.RedditorInfoActivity
@@ -89,6 +90,12 @@ class MainActivity : AppCompatActivity() {
         bttn_submissions.setOnClickListener {
 
             val intent = Intent(this, SubmissionsActivity::class.java)
+            startActivity(intent)
+        }
+
+        bttn_submissions_commons.setOnClickListener {
+
+            val intent = Intent(this, CommonSubmissionsActivity::class.java)
             startActivity(intent)
         }
 

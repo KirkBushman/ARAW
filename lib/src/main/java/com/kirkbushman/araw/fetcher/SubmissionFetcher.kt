@@ -29,16 +29,28 @@ class SubmissionFetcher(
 
     override fun onFetching(forward: Boolean, dirToken: String): Listing<EnvelopedSubmission>? {
 
-        val req = api.fetchSubmissions(
-            subreddit = subreddit,
-            sorting = getSorting().sortingStr,
-            timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
-            limit = if (forward) getLimit() else getLimit() + 1,
-            count = getCount(),
-            after = if (forward) dirToken else null,
-            before = if (!forward) dirToken else null,
-            header = getHeader()
-        )
+        val req = if (subreddit != "") {
+            api.fetchSubmissions(
+                subreddit = subreddit,
+                sorting = getSorting().sortingStr,
+                timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
+                limit = if (forward) getLimit() else getLimit() + 1,
+                count = getCount(),
+                after = if (forward) dirToken else null,
+                before = if (!forward) dirToken else null,
+                header = getHeader()
+            )
+        } else {
+            api.fetchSubmissions(
+                sorting = getSorting().sortingStr,
+                timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
+                limit = if (forward) getLimit() else getLimit() + 1,
+                count = getCount(),
+                after = if (forward) dirToken else null,
+                before = if (!forward) dirToken else null,
+                header = getHeader()
+            )
+        }
 
         val res = req.execute()
         if (!res.isSuccessful) {

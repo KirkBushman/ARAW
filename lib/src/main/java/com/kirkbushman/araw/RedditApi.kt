@@ -115,6 +115,17 @@ interface RedditApi {
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedSubmissionListing>
 
+    @GET("/{sorting}/.json")
+    fun fetchSubmissions(
+        @Path("sorting") sorting: String,
+        @Query("t") timePeriod: String?,
+        @Query("limit") limit: Int,
+        @Query("count") count: Int,
+        @Query("after") after: String? = null,
+        @Query("before") before: String? = null,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<EnvelopedSubmissionListing>
+
     @GET("/r/{subreddit}/{sorting}/.json")
     fun fetchSubmissions(
         @Path("subreddit") subreddit: String,
