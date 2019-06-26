@@ -48,6 +48,8 @@ class ContributionController(private val callback: SubmissionController.Submissi
                     upvoteClick(View.OnClickListener { callback.onUpvoteClick(index) })
                     noneClick(View.OnClickListener { callback.onNoneClick(index) })
                     downvoteClick(View.OnClickListener { callback.onDownClick(index) })
+
+                    saveClick(View.OnClickListener { callback.onSaveClick(index) })
                 }
             }
         }

@@ -2,6 +2,8 @@ package com.kirkbushman.sampleapp.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.kirkbushman.araw.models.Submission
+import com.kirkbushman.araw.models.general.Vote
 import com.kirkbushman.araw.models.mixins.CommentData
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
@@ -14,7 +16,26 @@ class CommentsActivity : AppCompatActivity() {
     private val client by lazy { TestApplication.instance.getClient() }
 
     private val comments = ArrayList<CommentData>()
-    private val controller by lazy { CommentController() }
+    private val controller by lazy {
+        CommentController(object : CommentController.CommentCallback {
+
+            override fun onUpvoteClick(submission: Submission) {
+                client?.contributions?.vote(Vote.UPVOTE, submission)
+            }
+
+            override fun onNoneClick(submission: Submission) {
+                client?.contributions?.vote(Vote.NONE, submission)
+            }
+
+            override fun onDownClick(submission: Submission) {
+                client?.contributions?.vote(Vote.DOWNVOTE, submission)
+            }
+
+            override fun onSaveClick(submission: Submission) {
+                client?.contributions?.save(!submission.saved, submission)
+            }
+        })
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

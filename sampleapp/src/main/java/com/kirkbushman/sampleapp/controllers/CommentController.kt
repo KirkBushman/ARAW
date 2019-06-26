@@ -1,5 +1,6 @@
 package com.kirkbushman.sampleapp.controllers
 
+import android.view.View
 import com.airbnb.epoxy.EpoxyController
 import com.kirkbushman.araw.models.Comment
 import com.kirkbushman.araw.models.MoreComment
@@ -11,7 +12,16 @@ import com.kirkbushman.sampleapp.models.empty
 import com.kirkbushman.sampleapp.models.moreComment
 import com.kirkbushman.sampleapp.models.submission
 
-class CommentController : EpoxyController() {
+class CommentController(private val callback: CommentCallback) : EpoxyController() {
+
+    interface CommentCallback {
+
+        fun onUpvoteClick(submission: Submission)
+        fun onNoneClick(submission: Submission)
+        fun onDownClick(submission: Submission)
+
+        fun onSaveClick(submission: Submission)
+    }
 
     private val comments = ArrayList<CommentData>()
     private var submission: Submission? = null
@@ -41,6 +51,12 @@ class CommentController : EpoxyController() {
                 author(submission!!.author)
                 title(submission!!.title)
                 body(submission!!.selftext ?: "")
+
+                upvoteClick(View.OnClickListener { callback.onUpvoteClick(submission!!) })
+                noneClick(View.OnClickListener { callback.onNoneClick(submission!!) })
+                downvoteClick(View.OnClickListener { callback.onDownClick(submission!!) })
+
+                saveClick(View.OnClickListener { callback.onSaveClick(submission!!) })
             }
         }
 
