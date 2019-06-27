@@ -4,7 +4,7 @@ interface Votable {
 
     val id: String
 
-    val name: String
+    val fullname: String
 
     val likes: Boolean?
 

@@ -50,7 +50,7 @@ class CommentController(private val callback: CommentCallback) : EpoxyController
                 subreddit(submission!!.subreddit)
                 author(submission!!.author)
                 title(submission!!.title)
-                body(submission!!.selftext ?: "")
+                body(submission!!.selfText ?: "")
 
                 upvoteClick(View.OnClickListener { callback.onUpvoteClick(submission!!) })
                 noneClick(View.OnClickListener { callback.onNoneClick(submission!!) })
@@ -74,7 +74,7 @@ class CommentController(private val callback: CommentCallback) : EpoxyController
             if (it is MoreComment) {
 
                 moreComment {
-                    id(it.name)
+                    id(it.fullname)
                     more("${it.count} more children")
                 }
             }

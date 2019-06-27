@@ -23,6 +23,9 @@ data class Submission(
     @Json(name = "id")
     override val id: String,
 
+    @Json(name = "name")
+    override val fullname: String,
+
     @Json(name = "author")
     val author: String,
 
@@ -71,6 +74,9 @@ data class Submission(
     @Json(name = "is_robot_indexable")
     val isRobotIndexable: Boolean,
 
+    @Json(name = "saved")
+    val isSaved: Boolean,
+
     @Json(name = "is_self")
     val isSelf: Boolean,
 
@@ -85,9 +91,6 @@ data class Submission(
 
     @Json(name = "likes")
     override val likes: Boolean?,
-
-    @Json(name = "name")
-    override val name: String,
 
     @Json(name = "num_crossposts")
     val numCrossposts: Int,
@@ -104,17 +107,14 @@ data class Submission(
     @Json(name = "preview")
     val preview: SubmissionPreview?,
 
-    @Json(name = "saved")
-    val saved: Boolean,
-
     @Json(name = "score")
     override val score: Int,
 
     @Json(name = "selftext")
-    val selftext: String?,
+    val selfText: String?,
 
     @Json(name = "selftext_html")
-    val selftextHtml: String?,
+    val selfTextHtml: String?,
 
     @Json(name = "subreddit")
     val subreddit: String,
@@ -169,6 +169,7 @@ data class Submission(
     override fun toString(): String {
         return "Submission { " +
                 "id: $id, " +
+                "fullname: $fullname, " +
                 "author: $author, " +
                 "authorFlairText: $authorFlairText, " +
                 "authorFullname: $authorFullname, " +
@@ -189,16 +190,15 @@ data class Submission(
                 "isStickied: $isStickied, " +
                 "isVideo: $isVideo, " +
                 "likes: $likes, " +
-                "name: $name, " +
                 "numCrossposts: $numCrossposts, " +
                 "numComments: $numComments, " +
                 "over18: $over18, " +
                 "permalink: $permalink, " +
                 "preview: $preview, " +
-                "saved: $saved, " +
+                "saved: $isSaved, " +
                 "score: $score, " +
-                "selftext: $selftext, " +
-                "selftextHtml: $selftextHtml, " +
+                "selftext: $selfText, " +
+                "selftextHtml: $selfTextHtml, " +
                 "subreddit: $subreddit, " +
                 "subredditId: $subredditId, " +
                 "subredditNamePrefixed: $subredditNamePrefixed, " +

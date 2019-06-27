@@ -30,6 +30,7 @@ class ContributionController(private val callback: SubmissionController.Submissi
         contributions.forEachIndexed { index, it ->
 
             if (it is Comment) {
+
                 comment {
                     id(it.id)
                     author(it.author)
@@ -38,12 +39,13 @@ class ContributionController(private val callback: SubmissionController.Submissi
             }
 
             if (it is Submission) {
+
                 submission {
                     id(it.id)
                     subreddit(it.subreddit)
                     author(it.author)
                     title(getTaggedTitle(it))
-                    body(it.selftext ?: "")
+                    body(it.selfText ?: "")
 
                     upvoteClick(View.OnClickListener { callback.onUpvoteClick(index) })
                     noneClick(View.OnClickListener { callback.onNoneClick(index) })

@@ -4,5 +4,5 @@ interface Contribution : Thing {
 
     override val id: String
 
-    val name: String
+    val fullname: String
 }

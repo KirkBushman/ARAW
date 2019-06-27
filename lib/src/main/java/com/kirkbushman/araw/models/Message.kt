@@ -16,6 +16,9 @@ data class Message(
     @Json(name = "id")
     override val id: String,
 
+    @Json(name = "name")
+    override val fullname: String,
+
     @Json(name = "author")
     val author: String?,
 
@@ -54,9 +57,6 @@ data class Message(
 
     @Json(name = "likes")
     override val likes: Boolean?,
-
-    @Json(name = "name")
-    override val name: String,
 
     @Json(name = "num_comments")
     val numComments: Int?,
@@ -98,6 +98,7 @@ data class Message(
     override fun toString(): String {
         return "Message { " +
                 "id: $id, " +
+                "fullname: $fullname, " +
                 "author: $author, " +
                 "body: $body, " +
                 "bodyHtml: $bodyHtml, " +
@@ -111,7 +112,6 @@ data class Message(
                 "isComment: $isComment, " +
                 "isUnread: $isUnread, " +
                 "likes: $likes, " +
-                "name: $name, " +
                 "numComments: $numComments, " +
                 "parentId: $parentId, " +
                 "score: $score, " +

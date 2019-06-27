@@ -13,14 +13,14 @@ data class MoreComment(
     @Json(name = "id")
     override val id: String,
 
+    @Json(name = "name")
+    override val fullname: String,
+
     @Json(name = "count")
     val count: Int,
 
     @Json(name = "depth")
     val depth: Int,
-
-    @Json(name = "name")
-    override val name: String,
 
     @Json(name = "parent_id")
     val parentId: String,
@@ -50,9 +50,9 @@ data class MoreComment(
     override fun toString(): String {
         return "MoreComment { " +
                 "id: $id, " +
+                "fullname: $fullname, " +
                 "count: $count, " +
                 "depth: $depth, " +
-                "name: $name, " +
                 "parentId: $parentId, " +
                 "children: $children " +
                 "}"

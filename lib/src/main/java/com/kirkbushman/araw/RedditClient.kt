@@ -188,7 +188,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
         }
 
         fun markAsRead(read: Boolean, message: Message): Any? {
-            return markAsRead(read, message.name)
+            return markAsRead(read, message.fullname)
         }
 
         fun markAsRead(read: Boolean, fullname: String): Any? {
@@ -355,7 +355,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
     ) {
 
         fun vote(vote: Vote, votable: Votable): Any? {
-            return vote(vote, votable.name)
+            return vote(vote, votable.fullname)
         }
 
         fun vote(vote: Vote, fullname: String): Any? {
@@ -372,7 +372,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
         }
 
         fun save(save: Boolean, contribution: Contribution): Any? {
-            return save(save, contribution.name)
+            return save(save, contribution.fullname)
         }
 
         fun save(save: Boolean, fullname: String): Any? {

@@ -51,7 +51,7 @@ class SubmissionsActivity : AppCompatActivity() {
 
                 doAsync(doWork = {
                     val submission = submissions[index]
-                    client?.contributions?.save(!submission.saved, submission)
+                    client?.contributions?.save(!submission.isSaved, submission)
                 })
             }
         })

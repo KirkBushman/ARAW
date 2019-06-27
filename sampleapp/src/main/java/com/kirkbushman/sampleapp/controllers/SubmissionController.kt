@@ -42,7 +42,7 @@ class SubmissionController(private val callback: SubmissionCallback) : EpoxyCont
                 subreddit(it.subreddit)
                 author(it.author)
                 title(getTaggedTitle(it))
-                body(it.selftext ?: "")
+                body(it.selfText ?: "")
 
                 upvoteClick(View.OnClickListener { callback.onUpvoteClick(index) })
                 noneClick(View.OnClickListener { callback.onNoneClick(index) })
@@ -62,7 +62,7 @@ fun getTaggedTitle(submission: Submission): String {
         out += "[${submission.vote}]"
     }
 
-    if (submission.saved) {
+    if (submission.isSaved) {
         out += "[SAVED]"
     }
 

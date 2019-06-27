@@ -32,7 +32,7 @@ class CommentsActivity : AppCompatActivity() {
             }
 
             override fun onSaveClick(submission: Submission) {
-                client?.contributions?.save(!submission.saved, submission)
+                client?.contributions?.save(!submission.isSaved, submission)
             }
         })
     }

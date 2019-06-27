@@ -22,6 +22,9 @@ data class Comment(
     @Json(name = "id")
     override val id: String,
 
+    @Json(name = "name")
+    override val fullname: String,
+
     @Json(name = "author")
     val author: String,
 
@@ -75,9 +78,6 @@ data class Comment(
 
     @Json(name = "gildings")
     override val gildings: Gildings,
-
-    @Json(name = "name")
-    override val name: String,
 
     @Json(name = "parent_id")
     val parentId: String,
@@ -146,6 +146,7 @@ data class Comment(
     override fun toString(): String {
         return "Comment { " +
                 "id: $id, " +
+                "fullname: $fullname, " +
                 "author: $author, " +
                 "body: $body, " +
                 "bodyHtml: $bodyHtml, " +
@@ -164,7 +165,6 @@ data class Comment(
                 "linkUrl: $linkUrl, " +
                 "linkPermalink: $linkPermalink, " +
                 "gildings: $gildings, " +
-                "name: $name, " +
                 "parentId: $parentId, " +
                 "permalink: $permalink, " +
                 "score: $score, " +
