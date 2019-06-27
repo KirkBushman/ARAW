@@ -4,7 +4,6 @@ import android.os.Parcelable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
-import java.io.Serializable
 import java.util.*
 
 @JsonClass(generateAdapter = true)
@@ -20,7 +19,7 @@ data class WikiPage(
     @Json(name = "revision_date")
     val revisionRaw: Long?
 
-) : Parcelable, Serializable {
+) : Parcelable {
 
     val revisionDate: Date
         get() {

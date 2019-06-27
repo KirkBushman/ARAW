@@ -5,7 +5,6 @@ import com.kirkbushman.araw.models.mixins.Created
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
-import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
 @Parcelize
@@ -53,7 +52,7 @@ data class Me(
     @Json(name = "over_18")
     val over18: Boolean
 
-) : Account, Created, Parcelable, Serializable {
+) : Account, Created, Parcelable {
 
     override fun hashCode(): Int {
         return id.hashCode()

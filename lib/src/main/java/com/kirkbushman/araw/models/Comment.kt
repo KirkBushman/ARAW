@@ -14,7 +14,6 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.parcel.RawValue
-import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
 @Parcelize
@@ -101,7 +100,7 @@ data class Comment(
     @Json(name = "subreddit_name_prefixed")
     val subredditNamePrefixed: String
 
-) : CommentData, Votable, Created, Editable, Distinguishable, Gildable, Parcelable, Serializable {
+) : CommentData, Votable, Created, Editable, Distinguishable, Gildable, Parcelable {
 
     fun withClient(client: RedditClient): RedditClient.ContributionHandler {
         return client.contributionHandler(this)

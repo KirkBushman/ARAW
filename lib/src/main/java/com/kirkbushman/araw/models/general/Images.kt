@@ -4,7 +4,6 @@ import android.os.Parcelable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
-import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
 @Parcelize
@@ -19,7 +18,7 @@ data class Images(
     @Json(name = "resolutions")
     val resolutions: Array<ImageDetail>
 
-) : Parcelable, Serializable {
+) : Parcelable {
 
     override fun hashCode(): Int {
         return id.hashCode()
@@ -52,4 +51,4 @@ data class ImageDetail(
     @Json(name = "height")
     val height: Int
 
-) : Parcelable, Serializable
+) : Parcelable

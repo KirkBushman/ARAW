@@ -4,7 +4,6 @@ import android.os.Parcelable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
-import java.io.Serializable
 
 /**
  * Gildings might be null, even if the object exists
@@ -22,7 +21,7 @@ class Gildings(
     @Json(name = "gid_3")
     val platinumCount: Short?
 
-) : Parcelable, Serializable {
+) : Parcelable {
 
     fun hasGildings(): Boolean {
         return silverCount != null ||

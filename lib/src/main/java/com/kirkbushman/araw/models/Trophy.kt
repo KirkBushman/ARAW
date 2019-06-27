@@ -4,7 +4,6 @@ import android.os.Parcelable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
-import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
 @Parcelize
@@ -28,4 +27,4 @@ data class Trophy(
     @Json(name = "url")
     val url: String?
 
-) : Parcelable, Serializable
+) : Parcelable

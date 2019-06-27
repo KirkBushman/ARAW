@@ -4,7 +4,6 @@ import android.os.Parcelable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
-import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
 @Parcelize
@@ -16,7 +15,7 @@ data class SubmissionPreview(
     @Json(name = "enabled")
     val isEnabled: Boolean
 
-) : Parcelable, Serializable {
+) : Parcelable {
 
     fun id(): String? {
 

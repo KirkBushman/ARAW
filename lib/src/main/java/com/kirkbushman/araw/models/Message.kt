@@ -8,7 +8,6 @@ import com.kirkbushman.araw.models.mixins.Votable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
-import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
 @Parcelize
@@ -77,7 +76,7 @@ data class Message(
     @Json(name = "subreddit_name_prefixed")
     val subredditNamePrefixed: String?
 
-) : Thing, Votable, Created, Distinguishable, Parcelable, Serializable {
+) : Thing, Votable, Created, Distinguishable, Parcelable {
 
     override fun hashCode(): Int {
         return id.hashCode()

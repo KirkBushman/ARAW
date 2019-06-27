@@ -6,7 +6,6 @@ import com.kirkbushman.araw.models.mixins.Thing
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
-import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
 @Parcelize
@@ -93,7 +92,7 @@ data class Subreddit(
     @Json(name = "url")
     val url: String
 
-) : Thing, Created, Parcelable, Serializable {
+) : Thing, Created, Parcelable {
 
     override fun hashCode(): Int {
         return id.hashCode()

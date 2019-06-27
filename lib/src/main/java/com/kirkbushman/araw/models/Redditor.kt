@@ -6,7 +6,6 @@ import com.kirkbushman.araw.models.mixins.Created
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
-import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
 @Parcelize
@@ -45,7 +44,7 @@ data class Redditor(
     @Json(name = "name")
     override val name: String
 
-) : Account, Created, Parcelable, Serializable {
+) : Account, Created, Parcelable {
 
     fun withClient(client: RedditClient): RedditClient.AccountHandler {
         return client.accountHandler(this)

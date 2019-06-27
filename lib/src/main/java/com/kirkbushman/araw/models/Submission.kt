@@ -15,7 +15,6 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.parcel.RawValue
-import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
 @Parcelize
@@ -144,7 +143,7 @@ data class Submission(
     @Json(name = "url")
     val url: String
 
-) : Contribution, Votable, Created, Editable, Distinguishable, Gildable, Parcelable, Serializable {
+) : Contribution, Votable, Created, Editable, Distinguishable, Gildable, Parcelable {
 
     fun withClient(client: RedditClient): RedditClient.ContributionHandler {
         return client.contributionHandler(this)
