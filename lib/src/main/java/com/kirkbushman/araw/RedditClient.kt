@@ -16,6 +16,9 @@ import com.kirkbushman.araw.models.Subreddit
 import com.kirkbushman.araw.models.SubredditRule
 import com.kirkbushman.araw.models.Trophy
 import com.kirkbushman.araw.models.WikiPage
+import com.kirkbushman.araw.models.general.ContributionSorting
+import com.kirkbushman.araw.models.general.SubmissionSorting
+import com.kirkbushman.araw.models.general.TimePeriod
 import com.kirkbushman.araw.models.general.Vote
 import com.kirkbushman.araw.models.mixins.Contribution
 import com.kirkbushman.araw.models.mixins.Votable
@@ -86,8 +89,24 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
         return res.body()?.data?.children?.first()?.data
     }
 
-    fun submissions(subreddit: String, limit: Int = Fetcher.DEFAULT_LIMIT): SubmissionsFetcher {
-        return SubmissionsFetcher(api, subreddit, limit = limit) { getHeaderMap() }
+    fun submissions(
+
+        subreddit: String,
+        limit: Int = Fetcher.DEFAULT_LIMIT,
+
+        sorting: SubmissionSorting = SubmissionsFetcher.DEFAULT_SORTING,
+        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD
+
+    ): SubmissionsFetcher {
+        return SubmissionsFetcher(
+
+            api = api,
+            subreddit = subreddit,
+            limit = limit,
+            sorting = sorting,
+            timePeriod = timePeriod
+
+        ) { getHeaderMap() }
     }
 
     fun comment(commentId: String): Comment? {
@@ -216,20 +235,95 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
 
     ) {
 
-        fun overview(username: String, limit: Int = Fetcher.DEFAULT_LIMIT): ContributionsFetcher {
-            return ContributionsFetcher(api, username, "", limit) { getHeaderMap() }
+        fun overview(
+
+            username: String,
+            limit: Int = Fetcher.DEFAULT_LIMIT,
+
+            sorting: ContributionSorting = ContributionsFetcher.DEFAULT_SORTING,
+            timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
+
+        ): ContributionsFetcher {
+
+            return ContributionsFetcher(
+
+                api = api,
+                username = username,
+                where = "",
+                limit = limit,
+                sorting = sorting,
+                timePeriod = timePeriod
+
+            ) { getHeaderMap() }
         }
 
-        fun submitted(username: String, limit: Int = Fetcher.DEFAULT_LIMIT): ContributionsFetcher {
-            return ContributionsFetcher(api, username, "submitted", limit) { getHeaderMap() }
+        fun submitted(
+
+            username: String,
+
+            limit: Int = Fetcher.DEFAULT_LIMIT,
+
+            sorting: ContributionSorting = ContributionsFetcher.DEFAULT_SORTING,
+            timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
+
+        ): ContributionsFetcher {
+
+            return ContributionsFetcher(
+
+                api = api,
+                username = username,
+                where = "submitted",
+                limit = limit,
+                sorting = sorting,
+                timePeriod = timePeriod
+
+            ) { getHeaderMap() }
         }
 
-        fun comments(username: String, limit: Int = Fetcher.DEFAULT_LIMIT): ContributionsFetcher {
-            return ContributionsFetcher(api, username, "comments", limit) { getHeaderMap() }
+        fun comments(
+
+            username: String,
+
+            limit: Int = Fetcher.DEFAULT_LIMIT,
+
+            sorting: ContributionSorting = ContributionsFetcher.DEFAULT_SORTING,
+            timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
+
+        ): ContributionsFetcher {
+
+            return ContributionsFetcher(
+
+                api = api,
+                username = username,
+                where = "comments",
+                limit = limit,
+                sorting = sorting,
+                timePeriod = timePeriod
+
+            ) { getHeaderMap() }
         }
 
-        fun gilded(username: String, limit: Int = Fetcher.DEFAULT_LIMIT): ContributionsFetcher {
-            return ContributionsFetcher(api, username, "gilded", limit) { getHeaderMap() }
+        fun gilded(
+
+            username: String,
+
+            limit: Int = Fetcher.DEFAULT_LIMIT,
+
+            sorting: ContributionSorting = ContributionsFetcher.DEFAULT_SORTING,
+            timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
+
+        ): ContributionsFetcher {
+
+            return ContributionsFetcher(
+
+                api = api,
+                username = username,
+                where = "gilded",
+                limit = limit,
+                sorting = sorting,
+                timePeriod = timePeriod
+
+            ) { getHeaderMap() }
         }
 
         fun trophies(username: String): List<Trophy>? {
@@ -287,36 +381,172 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
 
         private var currentUser: String? = null
 
-        fun overview(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionsFetcher {
-            return ContributionsFetcher(api, getUserCached(), "", limit) { getHeaderMap() }
+        fun overview(
+
+            limit: Int = Fetcher.DEFAULT_LIMIT,
+
+            sorting: ContributionSorting = ContributionsFetcher.DEFAULT_SORTING,
+            timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
+
+        ): ContributionsFetcher {
+
+            return ContributionsFetcher(
+
+                api = api,
+                username = getUserCached(),
+                where = "",
+                limit = limit,
+                sorting = sorting,
+                timePeriod = timePeriod
+
+            ) { getHeaderMap() }
         }
 
-        fun submitted(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionsFetcher {
-            return ContributionsFetcher(api, getUserCached(), "submitted", limit) { getHeaderMap() }
+        fun submitted(
+
+            limit: Int = Fetcher.DEFAULT_LIMIT,
+
+            sorting: ContributionSorting = ContributionsFetcher.DEFAULT_SORTING,
+            timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
+
+        ): ContributionsFetcher {
+
+            return ContributionsFetcher(
+
+                api = api,
+                username = getUserCached(),
+                where = "submitted",
+                limit = limit,
+                sorting = sorting,
+                timePeriod = timePeriod
+
+            ) { getHeaderMap() }
         }
 
-        fun comments(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionsFetcher {
-            return ContributionsFetcher(api, getUserCached(), "comments", limit) { getHeaderMap() }
+        fun comments(
+
+            limit: Int = Fetcher.DEFAULT_LIMIT,
+
+            sorting: ContributionSorting = ContributionsFetcher.DEFAULT_SORTING,
+            timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
+
+        ): ContributionsFetcher {
+
+            return ContributionsFetcher(
+
+                api = api,
+                username = getUserCached(),
+                where = "comments",
+                limit = limit,
+                sorting = sorting,
+                timePeriod = timePeriod
+
+            ) { getHeaderMap() }
         }
 
-        fun saved(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionsFetcher {
-            return ContributionsFetcher(api, getUserCached(), "saved", limit) { getHeaderMap() }
+        fun saved(
+
+            limit: Int = Fetcher.DEFAULT_LIMIT,
+
+            sorting: ContributionSorting = ContributionsFetcher.DEFAULT_SORTING,
+            timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
+
+        ): ContributionsFetcher {
+
+            return ContributionsFetcher(
+
+                api = api,
+                username = getUserCached(),
+                where = "saved",
+                limit = limit,
+                sorting = sorting,
+                timePeriod = timePeriod
+
+            ) { getHeaderMap() }
         }
 
-        fun hidden(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionsFetcher {
-            return ContributionsFetcher(api, getUserCached(), "hidden", limit) { getHeaderMap() }
+        fun hidden(
+
+            limit: Int = Fetcher.DEFAULT_LIMIT,
+
+            sorting: ContributionSorting = ContributionsFetcher.DEFAULT_SORTING,
+            timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
+
+        ): ContributionsFetcher {
+
+            return ContributionsFetcher(
+
+                api = api,
+                username = getUserCached(),
+                where = "hidden",
+                limit = limit,
+                sorting = sorting,
+                timePeriod = timePeriod
+
+            ) { getHeaderMap() }
         }
 
-        fun upvoted(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionsFetcher {
-            return ContributionsFetcher(api, getUserCached(), "upvoted", limit) { getHeaderMap() }
+        fun upvoted(
+
+            limit: Int = Fetcher.DEFAULT_LIMIT,
+
+            sorting: ContributionSorting = ContributionsFetcher.DEFAULT_SORTING,
+            timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
+
+        ): ContributionsFetcher {
+
+            return ContributionsFetcher(
+
+                api = api,
+                username = getUserCached(),
+                where = "upvoted",
+                limit = limit,
+                sorting = sorting,
+                timePeriod = timePeriod
+
+            ) { getHeaderMap() }
         }
 
-        fun downvoted(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionsFetcher {
-            return ContributionsFetcher(api, getUserCached(), "downvoted", limit) { getHeaderMap() }
+        fun downvoted(
+
+            limit: Int = Fetcher.DEFAULT_LIMIT,
+
+            sorting: ContributionSorting = ContributionsFetcher.DEFAULT_SORTING,
+            timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
+
+        ): ContributionsFetcher {
+
+            return ContributionsFetcher(
+
+                api = api,
+                username = getUserCached(),
+                where = "downvoted",
+                limit = limit,
+                sorting = sorting,
+                timePeriod = timePeriod
+
+            ) { getHeaderMap() }
         }
 
-        fun gilded(limit: Int = Fetcher.DEFAULT_LIMIT): ContributionsFetcher {
-            return ContributionsFetcher(api, getUserCached(), "gilded", limit) { getHeaderMap() }
+        fun gilded(
+
+            limit: Int = Fetcher.DEFAULT_LIMIT,
+
+            sorting: ContributionSorting = ContributionsFetcher.DEFAULT_SORTING,
+            timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
+
+        ): ContributionsFetcher {
+
+            return ContributionsFetcher(
+
+                api = api,
+                username = getUserCached(),
+                where = "gilded",
+                limit = limit,
+                sorting = sorting,
+                timePeriod = timePeriod
+
+            ) { getHeaderMap() }
         }
 
         fun subscribedSubreddits(limit: Int = Fetcher.DEFAULT_LIMIT): SubredditsFetcher {
@@ -418,20 +648,84 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
 
     ) {
 
-        fun frontpage(limit: Int = Fetcher.DEFAULT_LIMIT): SubmissionsFetcher {
-            return SubmissionsFetcher(api, "", limit = limit) { getHeaderMap() }
+        fun frontpage(
+
+            limit: Int = Fetcher.DEFAULT_LIMIT,
+
+            sorting: SubmissionSorting = SubmissionsFetcher.DEFAULT_SORTING,
+            timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD
+
+        ): SubmissionsFetcher {
+
+            return SubmissionsFetcher(
+
+                api = api,
+                subreddit = "",
+                limit = limit,
+                sorting = sorting,
+                timePeriod = timePeriod
+
+            ) { getHeaderMap() }
         }
 
-        fun all(limit: Int = Fetcher.DEFAULT_LIMIT): SubmissionsFetcher {
-            return SubmissionsFetcher(api, "all", limit = limit) { getHeaderMap() }
+        fun all(
+
+            limit: Int = Fetcher.DEFAULT_LIMIT,
+
+            sorting: SubmissionSorting = SubmissionsFetcher.DEFAULT_SORTING,
+            timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD
+
+        ): SubmissionsFetcher {
+
+            return SubmissionsFetcher(
+
+                api = api,
+                subreddit = "all",
+                limit = limit,
+                sorting = sorting,
+                timePeriod = timePeriod
+
+            ) { getHeaderMap() }
         }
 
-        fun popular(limit: Int = Fetcher.DEFAULT_LIMIT): SubmissionsFetcher {
-            return SubmissionsFetcher(api, "popular", limit = limit) { getHeaderMap() }
+        fun popular(
+
+            limit: Int = Fetcher.DEFAULT_LIMIT,
+
+            sorting: SubmissionSorting = SubmissionsFetcher.DEFAULT_SORTING,
+            timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD
+
+        ): SubmissionsFetcher {
+
+            return SubmissionsFetcher(
+
+                api = api,
+                subreddit = "popular",
+                limit = limit,
+                sorting = sorting,
+                timePeriod = timePeriod
+
+            ) { getHeaderMap() }
         }
 
-        fun friends(limit: Int = Fetcher.DEFAULT_LIMIT): SubmissionsFetcher {
-            return SubmissionsFetcher(api, "friends", limit = limit) { getHeaderMap() }
+        fun friends(
+
+            limit: Int = Fetcher.DEFAULT_LIMIT,
+
+            sorting: SubmissionSorting = SubmissionsFetcher.DEFAULT_SORTING,
+            timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD
+
+        ): SubmissionsFetcher {
+
+            return SubmissionsFetcher(
+
+                api = api,
+                subreddit = "friends",
+                limit = limit,
+                sorting = sorting,
+                timePeriod = timePeriod
+
+            ) { getHeaderMap() }
         }
     }
 }

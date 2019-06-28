@@ -24,8 +24,8 @@ class ContributionsFetcher(
 ) : Fetcher<Contribution, EnvelopedContribution>(limit) {
 
     companion object {
-        private val DEFAULT_SORTING = ContributionSorting.NEW
-        private val DEFAULT_TIMEPERIOD = TimePeriod.ALL_TIME
+        val DEFAULT_SORTING = ContributionSorting.NEW
+        val DEFAULT_TIMEPERIOD = TimePeriod.ALL_TIME
     }
 
     override fun onFetching(forward: Boolean, dirToken: String): Listing<EnvelopedContribution>? {

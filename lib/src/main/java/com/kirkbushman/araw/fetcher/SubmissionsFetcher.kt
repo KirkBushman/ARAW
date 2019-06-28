@@ -23,8 +23,9 @@ class SubmissionsFetcher(
 ) : Fetcher<Submission, EnvelopedSubmission>(limit) {
 
     companion object {
-        private val DEFAULT_SORTING = SubmissionSorting.HOT
-        private val DEFAULT_TIMEPERIOD = TimePeriod.LAST_DAY
+
+        val DEFAULT_SORTING = SubmissionSorting.HOT
+        val DEFAULT_TIMEPERIOD = TimePeriod.LAST_DAY
     }
 
     override fun onFetching(forward: Boolean, dirToken: String): Listing<EnvelopedSubmission>? {

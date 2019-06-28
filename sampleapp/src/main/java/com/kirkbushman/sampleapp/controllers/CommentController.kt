@@ -33,18 +33,21 @@ class CommentController(private val callback: CommentCallback) : EpoxyController
     fun setComments(comments: List<CommentData>) {
         this.comments.clear()
         this.comments.addAll(comments)
+
         requestModelBuild()
     }
 
     override fun buildModels() {
 
         if (comments.isEmpty()) {
+
             empty {
                 id("empty_model")
             }
         }
 
         if (submission != null) {
+
             submission {
                 id(submission!!.id)
                 subreddit(submission!!.subreddit)
