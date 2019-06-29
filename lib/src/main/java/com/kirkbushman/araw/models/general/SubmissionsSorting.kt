@@ -1,6 +1,6 @@
 package com.kirkbushman.araw.models.general
 
-enum class SubmissionSorting(
+enum class SubmissionsSorting(
 
     override val requiresTimePeriod: Boolean = false,
     override val sortingStr: String

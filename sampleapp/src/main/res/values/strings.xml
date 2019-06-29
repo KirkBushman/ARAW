@@ -16,6 +16,7 @@
     <string name="bttn_submission">Submission</string>
     <string name="bttn_submissions">Submissions</string>
     <string name="bttn_submissions_commons">Common submissions</string>
+    <string name="bttn_submissions_search">Submissions Search</string>
     <string name="bttn_comment">Comment</string>
     <string name="bttn_comments">Comments</string>
     <string name="bttn_wiki">Wiki</string>
@@ -24,6 +25,7 @@
     <string name="edit_insert_username">Insert username:</string>
     <string name="edit_insert_subreddit">Insert subreddit:</string>
     <string name="edit_insert_submission_id">Insert submission id:</string>
+    <string name="edit_insert_query">Insert query:</string>
     <string name="edit_insert_comment_id">Insert comment id:</string>
     <string name="bttn_search_user">Search</string>
     <string name="bttn_ok">OK</string>

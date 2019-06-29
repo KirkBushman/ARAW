@@ -75,6 +75,7 @@ class InboxFragment : Fragment(R.layout.fragment_inbox) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+        list.setHasFixedSize(true)
         list.setController(controller)
 
         doAsync(doWork = {

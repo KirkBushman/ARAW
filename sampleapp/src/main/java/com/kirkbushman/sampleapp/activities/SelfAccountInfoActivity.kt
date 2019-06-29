@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import com.kirkbushman.araw.models.general.ContributionSorting
+import com.kirkbushman.araw.models.general.ContributionsSorting
 import com.kirkbushman.araw.models.general.TimePeriod
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.fragments.SelfContributionFragment
@@ -51,10 +51,10 @@ class SelfAccountInfoActivity : AppCompatActivity() {
 
         return when (item.itemId) {
 
-            R.id.item_sorting_hot -> { reloadFragment(sorting = ContributionSorting.HOT); true }
-            R.id.item_sorting_new -> { reloadFragment(sorting = ContributionSorting.NEW); true }
-            R.id.item_sorting_controversial -> { reloadFragment(sorting = ContributionSorting.CONTROVERSIAL); true }
-            R.id.item_sorting_top -> { reloadFragment(sorting = ContributionSorting.TOP); true }
+            R.id.item_sorting_hot -> { reloadFragment(sorting = ContributionsSorting.HOT); true }
+            R.id.item_sorting_new -> { reloadFragment(sorting = ContributionsSorting.NEW); true }
+            R.id.item_sorting_controversial -> { reloadFragment(sorting = ContributionsSorting.CONTROVERSIAL); true }
+            R.id.item_sorting_top -> { reloadFragment(sorting = ContributionsSorting.TOP); true }
 
             R.id.item_timeperiod_hour -> { reloadFragment(timePeriod = TimePeriod.LAST_HOUR); true }
             R.id.item_timeperiod_day -> { reloadFragment(timePeriod = TimePeriod.LAST_DAY); true }
@@ -67,7 +67,7 @@ class SelfAccountInfoActivity : AppCompatActivity() {
         }
     }
 
-    private fun reloadFragment(sorting: ContributionSorting? = null, timePeriod: TimePeriod? = null) {
+    private fun reloadFragment(sorting: ContributionsSorting? = null, timePeriod: TimePeriod? = null) {
 
         (adapter.getItem(pager.currentItem) as SelfContributionFragment).reload(sorting, timePeriod)
     }

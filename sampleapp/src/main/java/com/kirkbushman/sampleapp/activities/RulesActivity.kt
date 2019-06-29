@@ -8,6 +8,8 @@ import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.controllers.RulesController
 import com.kirkbushman.sampleapp.doAsync
 import kotlinx.android.synthetic.main.activity_rules.*
+import kotlinx.android.synthetic.main.activity_rules.list
+import kotlinx.android.synthetic.main.fragment_inbox.*
 
 class RulesActivity : AppCompatActivity() {
 
@@ -24,6 +26,7 @@ class RulesActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
+        list.setHasFixedSize(true)
         list.setController(controller)
 
         search_bttn.setOnClickListener {

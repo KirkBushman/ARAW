@@ -5,17 +5,18 @@ import com.kirkbushman.araw.http.EnvelopedSubmission
 import com.kirkbushman.araw.http.base.Listing
 import com.kirkbushman.araw.http.listings.SubmissionListing
 import com.kirkbushman.araw.models.Submission
-import com.kirkbushman.araw.models.general.SubmissionsSorting
+import com.kirkbushman.araw.models.general.SearchSorting
 import com.kirkbushman.araw.models.general.TimePeriod
 
-class SubmissionsFetcher(
+class SubmissionsSearchFetcher(
 
     private val api: RedditApi,
     private val subreddit: String,
+    private val query: String,
 
     limit: Int = DEFAULT_LIMIT,
 
-    private var sorting: SubmissionsSorting = DEFAULT_SORTING,
+    private var sorting: SearchSorting = DEFAULT_SORTING,
     private var timePeriod: TimePeriod = DEFAULT_TIMEPERIOD,
 
     private inline val getHeader: () -> HashMap<String, String>
@@ -24,34 +25,23 @@ class SubmissionsFetcher(
 
     companion object {
 
-        val DEFAULT_SORTING = SubmissionsSorting.HOT
-        val DEFAULT_TIMEPERIOD = TimePeriod.LAST_DAY
+        val DEFAULT_SORTING = SearchSorting.RELEVANCE
+        val DEFAULT_TIMEPERIOD = TimePeriod.ALL_TIME
     }
 
     override fun onFetching(forward: Boolean, dirToken: String): Listing<EnvelopedSubmission>? {
 
-        val req = if (subreddit != "") {
-            api.fetchSubmissions(
-                subreddit = subreddit,
-                sorting = getSorting().sortingStr,
-                timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
-                limit = if (forward) getLimit() else getLimit() + 1,
-                count = getCount(),
-                after = if (forward) dirToken else null,
-                before = if (!forward) dirToken else null,
-                header = getHeader()
-            )
-        } else {
-            api.fetchSubmissions(
-                sorting = getSorting().sortingStr,
-                timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
-                limit = if (forward) getLimit() else getLimit() + 1,
-                count = getCount(),
-                after = if (forward) dirToken else null,
-                before = if (!forward) dirToken else null,
-                header = getHeader()
-            )
-        }
+        val req = api.fetchSubmissionsSearch(
+            subreddit = subreddit,
+            query = query,
+            sorting = getSorting().sortingStr,
+            timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
+            limit = if (forward) getLimit() else getLimit() + 1,
+            count = getCount(),
+            after = if (forward) dirToken else null,
+            before = if (!forward) dirToken else null,
+            header = getHeader()
+        )
 
         val res = req.execute()
         if (!res.isSuccessful) {
@@ -73,11 +63,11 @@ class SubmissionsFetcher(
             .toList()
     }
 
-    fun getSorting(): SubmissionsSorting {
+    fun getSorting(): SearchSorting {
         return sorting
     }
 
-    fun setSorting(newSorting: SubmissionsSorting) {
+    fun setSorting(newSorting: SearchSorting) {
         sorting = newSorting
 
         reset()
@@ -98,7 +88,7 @@ class SubmissionsFetcher(
     }
 
     override fun toString(): String {
-        return "SubmissionsFetcher { " +
+        return "SubmissionsSearchFetcher { " +
                 "subreddit: $subreddit, " +
                 "sorting: $sorting, " +
                 "timePeriod: $timePeriod, " +

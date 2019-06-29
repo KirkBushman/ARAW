@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import com.kirkbushman.araw.models.general.SubmissionSorting
+import com.kirkbushman.araw.models.general.SubmissionsSorting
 import com.kirkbushman.araw.models.general.TimePeriod
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.fragments.SubmissionFragment
@@ -48,12 +48,12 @@ class CommonSubmissionsActivity : AppCompatActivity() {
 
         return when (item.itemId) {
 
-            R.id.item_sorting_hot -> { reloadFragment(sorting = SubmissionSorting.HOT); true }
-            R.id.item_sorting_best -> { reloadFragment(sorting = SubmissionSorting.BEST); true }
-            R.id.item_sorting_new -> { reloadFragment(sorting = SubmissionSorting.NEW); true }
-            R.id.item_sorting_rising -> { reloadFragment(sorting = SubmissionSorting.RISING); true }
-            R.id.item_sorting_controversial -> { reloadFragment(sorting = SubmissionSorting.CONTROVERSIAL); true }
-            R.id.item_sorting_top -> { reloadFragment(sorting = SubmissionSorting.TOP); true }
+            R.id.item_sorting_hot -> { reloadFragment(sorting = SubmissionsSorting.HOT); true }
+            R.id.item_sorting_best -> { reloadFragment(sorting = SubmissionsSorting.BEST); true }
+            R.id.item_sorting_new -> { reloadFragment(sorting = SubmissionsSorting.NEW); true }
+            R.id.item_sorting_rising -> { reloadFragment(sorting = SubmissionsSorting.RISING); true }
+            R.id.item_sorting_controversial -> { reloadFragment(sorting = SubmissionsSorting.CONTROVERSIAL); true }
+            R.id.item_sorting_top -> { reloadFragment(sorting = SubmissionsSorting.TOP); true }
 
             R.id.item_timeperiod_hour -> { reloadFragment(timePeriod = TimePeriod.LAST_HOUR); true }
             R.id.item_timeperiod_day -> { reloadFragment(timePeriod = TimePeriod.LAST_DAY); true }
@@ -66,7 +66,7 @@ class CommonSubmissionsActivity : AppCompatActivity() {
         }
     }
 
-    private fun reloadFragment(sorting: SubmissionSorting? = null, timePeriod: TimePeriod? = null) {
+    private fun reloadFragment(sorting: SubmissionsSorting? = null, timePeriod: TimePeriod? = null) {
 
         (adapter.getItem(pager.currentItem) as SubmissionFragment).reload(sorting, timePeriod)
     }

@@ -1,14 +1,14 @@
 package com.kirkbushman.araw.models.general
 
-enum class ContributionSorting(
+enum class SearchSorting(
 
     override val requiresTimePeriod: Boolean = false,
     override val sortingStr: String
 
 ) : Sorting {
 
-    HOT(sortingStr = "hot"),
+    RELEVANCE(true, sortingStr = "relevance"),
     NEW(sortingStr = "new"),
-    CONTROVERSIAL(true, "controversial"),
-    TOP(true, "top")
+    TOP(true, "top"),
+    COMMENTS(true, "comments")
 }

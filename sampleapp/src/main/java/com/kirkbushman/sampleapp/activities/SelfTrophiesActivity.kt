@@ -8,6 +8,8 @@ import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.controllers.TrophiesController
 import com.kirkbushman.sampleapp.doAsync
 import kotlinx.android.synthetic.main.activity_self_trophies.*
+import kotlinx.android.synthetic.main.activity_self_trophies.list
+import kotlinx.android.synthetic.main.fragment_inbox.*
 
 class SelfTrophiesActivity : AppCompatActivity() {
 
@@ -20,6 +22,7 @@ class SelfTrophiesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_self_trophies)
 
+        list.setHasFixedSize(true)
         list.setController(controller)
 
         doAsync(doWork = {

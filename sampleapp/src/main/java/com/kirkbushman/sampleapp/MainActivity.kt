@@ -15,6 +15,7 @@ import com.kirkbushman.sampleapp.activities.SelfAccountInfoActivity
 import com.kirkbushman.sampleapp.activities.SelfTrophiesActivity
 import com.kirkbushman.sampleapp.activities.SubmissionActivity
 import com.kirkbushman.sampleapp.activities.SubmissionsActivity
+import com.kirkbushman.sampleapp.activities.SubmissionsSearchActivity
 import com.kirkbushman.sampleapp.activities.SubredditActivity
 import com.kirkbushman.sampleapp.activities.SubscribedSubredditsActivity
 import com.kirkbushman.sampleapp.activities.UserTrophiesActivity
@@ -90,6 +91,12 @@ class MainActivity : AppCompatActivity() {
         bttn_submissions.setOnClickListener {
 
             val intent = Intent(this, SubmissionsActivity::class.java)
+            startActivity(intent)
+        }
+
+        bttn_submissions_search.setOnClickListener {
+
+            val intent = Intent(this, SubmissionsSearchActivity::class.java)
             startActivity(intent)
         }
 

@@ -24,6 +24,7 @@ class UserTrophiesActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
+        list.setHasFixedSize(true)
         list.setController(controller)
 
         search_bttn.setOnClickListener {

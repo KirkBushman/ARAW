@@ -6,7 +6,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.kirkbushman.araw.fetcher.SubmissionsFetcher
 import com.kirkbushman.araw.models.Submission
-import com.kirkbushman.araw.models.general.SubmissionSorting
+import com.kirkbushman.araw.models.general.SubmissionsSorting
 import com.kirkbushman.araw.models.general.TimePeriod
 import com.kirkbushman.araw.models.general.Vote
 import com.kirkbushman.sampleapp.R
@@ -67,6 +67,7 @@ class SubmissionsActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
+        list.setHasFixedSize(true)
         list.setController(controller)
 
         search_bttn.setOnClickListener {
@@ -93,12 +94,12 @@ class SubmissionsActivity : AppCompatActivity() {
 
         return when (item.itemId) {
 
-            R.id.item_sorting_hot -> { reloadSubmission(sorting = SubmissionSorting.HOT); true }
-            R.id.item_sorting_best -> { reloadSubmission(sorting = SubmissionSorting.BEST); true }
-            R.id.item_sorting_new -> { reloadSubmission(sorting = SubmissionSorting.NEW); true }
-            R.id.item_sorting_rising -> { reloadSubmission(sorting = SubmissionSorting.RISING); true }
-            R.id.item_sorting_controversial -> { reloadSubmission(sorting = SubmissionSorting.CONTROVERSIAL); true }
-            R.id.item_sorting_top -> { reloadSubmission(sorting = SubmissionSorting.TOP); true }
+            R.id.item_sorting_hot -> { reloadSubmission(sorting = SubmissionsSorting.HOT); true }
+            R.id.item_sorting_best -> { reloadSubmission(sorting = SubmissionsSorting.BEST); true }
+            R.id.item_sorting_new -> { reloadSubmission(sorting = SubmissionsSorting.NEW); true }
+            R.id.item_sorting_rising -> { reloadSubmission(sorting = SubmissionsSorting.RISING); true }
+            R.id.item_sorting_controversial -> { reloadSubmission(sorting = SubmissionsSorting.CONTROVERSIAL); true }
+            R.id.item_sorting_top -> { reloadSubmission(sorting = SubmissionsSorting.TOP); true }
 
             R.id.item_timeperiod_hour -> { reloadSubmission(timePeriod = TimePeriod.LAST_HOUR); true }
             R.id.item_timeperiod_day -> { reloadSubmission(timePeriod = TimePeriod.LAST_DAY); true }
@@ -111,7 +112,7 @@ class SubmissionsActivity : AppCompatActivity() {
         }
     }
 
-    private fun reloadSubmission(sorting: SubmissionSorting? = null, timePeriod: TimePeriod? = null) {
+    private fun reloadSubmission(sorting: SubmissionsSorting? = null, timePeriod: TimePeriod? = null) {
 
         if (sorting != null) {
 

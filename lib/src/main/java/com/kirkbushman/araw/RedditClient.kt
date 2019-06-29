@@ -5,6 +5,7 @@ import com.kirkbushman.araw.fetcher.ContributionsFetcher
 import com.kirkbushman.araw.fetcher.Fetcher
 import com.kirkbushman.araw.fetcher.InboxFetcher
 import com.kirkbushman.araw.fetcher.SubmissionsFetcher
+import com.kirkbushman.araw.fetcher.SubmissionsSearchFetcher
 import com.kirkbushman.araw.fetcher.SubredditsFetcher
 import com.kirkbushman.araw.models.Account
 import com.kirkbushman.araw.models.Comment
@@ -16,8 +17,9 @@ import com.kirkbushman.araw.models.Subreddit
 import com.kirkbushman.araw.models.SubredditRule
 import com.kirkbushman.araw.models.Trophy
 import com.kirkbushman.araw.models.WikiPage
-import com.kirkbushman.araw.models.general.ContributionSorting
-import com.kirkbushman.araw.models.general.SubmissionSorting
+import com.kirkbushman.araw.models.general.ContributionsSorting
+import com.kirkbushman.araw.models.general.SearchSorting
+import com.kirkbushman.araw.models.general.SubmissionsSorting
 import com.kirkbushman.araw.models.general.TimePeriod
 import com.kirkbushman.araw.models.general.Vote
 import com.kirkbushman.araw.models.mixins.Contribution
@@ -94,7 +96,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
         subreddit: String,
         limit: Int = Fetcher.DEFAULT_LIMIT,
 
-        sorting: SubmissionSorting = SubmissionsFetcher.DEFAULT_SORTING,
+        sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
         timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD
 
     ): SubmissionsFetcher {
@@ -102,6 +104,29 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
 
             api = api,
             subreddit = subreddit,
+            limit = limit,
+            sorting = sorting,
+            timePeriod = timePeriod
+
+        ) { getHeaderMap() }
+    }
+
+    fun submissionsSearch(
+
+        subreddit: String,
+        query: String,
+
+        limit: Int = Fetcher.DEFAULT_LIMIT,
+
+        sorting: SearchSorting = SubmissionsSearchFetcher.DEFAULT_SORTING,
+        timePeriod: TimePeriod = SubmissionsSearchFetcher.DEFAULT_TIMEPERIOD
+
+    ): SubmissionsSearchFetcher {
+        return SubmissionsSearchFetcher(
+
+            api = api,
+            subreddit = subreddit,
+            query = query,
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod
@@ -240,7 +265,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
             username: String,
             limit: Int = Fetcher.DEFAULT_LIMIT,
 
-            sorting: ContributionSorting = ContributionsFetcher.DEFAULT_SORTING,
+            sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
             timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
 
         ): ContributionsFetcher {
@@ -263,7 +288,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
 
             limit: Int = Fetcher.DEFAULT_LIMIT,
 
-            sorting: ContributionSorting = ContributionsFetcher.DEFAULT_SORTING,
+            sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
             timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
 
         ): ContributionsFetcher {
@@ -286,7 +311,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
 
             limit: Int = Fetcher.DEFAULT_LIMIT,
 
-            sorting: ContributionSorting = ContributionsFetcher.DEFAULT_SORTING,
+            sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
             timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
 
         ): ContributionsFetcher {
@@ -309,7 +334,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
 
             limit: Int = Fetcher.DEFAULT_LIMIT,
 
-            sorting: ContributionSorting = ContributionsFetcher.DEFAULT_SORTING,
+            sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
             timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
 
         ): ContributionsFetcher {
@@ -385,7 +410,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
 
             limit: Int = Fetcher.DEFAULT_LIMIT,
 
-            sorting: ContributionSorting = ContributionsFetcher.DEFAULT_SORTING,
+            sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
             timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
 
         ): ContributionsFetcher {
@@ -406,7 +431,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
 
             limit: Int = Fetcher.DEFAULT_LIMIT,
 
-            sorting: ContributionSorting = ContributionsFetcher.DEFAULT_SORTING,
+            sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
             timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
 
         ): ContributionsFetcher {
@@ -427,7 +452,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
 
             limit: Int = Fetcher.DEFAULT_LIMIT,
 
-            sorting: ContributionSorting = ContributionsFetcher.DEFAULT_SORTING,
+            sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
             timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
 
         ): ContributionsFetcher {
@@ -448,7 +473,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
 
             limit: Int = Fetcher.DEFAULT_LIMIT,
 
-            sorting: ContributionSorting = ContributionsFetcher.DEFAULT_SORTING,
+            sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
             timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
 
         ): ContributionsFetcher {
@@ -469,7 +494,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
 
             limit: Int = Fetcher.DEFAULT_LIMIT,
 
-            sorting: ContributionSorting = ContributionsFetcher.DEFAULT_SORTING,
+            sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
             timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
 
         ): ContributionsFetcher {
@@ -490,7 +515,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
 
             limit: Int = Fetcher.DEFAULT_LIMIT,
 
-            sorting: ContributionSorting = ContributionsFetcher.DEFAULT_SORTING,
+            sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
             timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
 
         ): ContributionsFetcher {
@@ -511,7 +536,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
 
             limit: Int = Fetcher.DEFAULT_LIMIT,
 
-            sorting: ContributionSorting = ContributionsFetcher.DEFAULT_SORTING,
+            sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
             timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
 
         ): ContributionsFetcher {
@@ -532,7 +557,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
 
             limit: Int = Fetcher.DEFAULT_LIMIT,
 
-            sorting: ContributionSorting = ContributionsFetcher.DEFAULT_SORTING,
+            sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
             timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
 
         ): ContributionsFetcher {
@@ -652,7 +677,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
 
             limit: Int = Fetcher.DEFAULT_LIMIT,
 
-            sorting: SubmissionSorting = SubmissionsFetcher.DEFAULT_SORTING,
+            sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
             timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD
 
         ): SubmissionsFetcher {
@@ -672,7 +697,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
 
             limit: Int = Fetcher.DEFAULT_LIMIT,
 
-            sorting: SubmissionSorting = SubmissionsFetcher.DEFAULT_SORTING,
+            sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
             timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD
 
         ): SubmissionsFetcher {
@@ -692,7 +717,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
 
             limit: Int = Fetcher.DEFAULT_LIMIT,
 
-            sorting: SubmissionSorting = SubmissionsFetcher.DEFAULT_SORTING,
+            sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
             timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD
 
         ): SubmissionsFetcher {
@@ -712,7 +737,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
 
             limit: Int = Fetcher.DEFAULT_LIMIT,
 
-            sorting: SubmissionSorting = SubmissionsFetcher.DEFAULT_SORTING,
+            sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
             timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD
 
         ): SubmissionsFetcher {

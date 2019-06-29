@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.kirkbushman.araw.models.Submission
-import com.kirkbushman.araw.models.general.SubmissionSorting
+import com.kirkbushman.araw.models.general.SubmissionsSorting
 import com.kirkbushman.araw.models.general.TimePeriod
 import com.kirkbushman.araw.models.general.Vote
 import com.kirkbushman.sampleapp.R
@@ -12,6 +12,8 @@ import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.controllers.SubmissionController
 import com.kirkbushman.sampleapp.doAsync
 import kotlinx.android.synthetic.main.activity_submissions.*
+import kotlinx.android.synthetic.main.activity_submissions.list
+import kotlinx.android.synthetic.main.fragment_inbox.*
 
 class SubmissionFragment : Fragment(R.layout.fragment_submission) {
 
@@ -92,6 +94,7 @@ class SubmissionFragment : Fragment(R.layout.fragment_submission) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+        list.setHasFixedSize(true)
         list.setController(controller)
 
         doAsync(doWork = {
@@ -103,7 +106,7 @@ class SubmissionFragment : Fragment(R.layout.fragment_submission) {
         })
     }
 
-    fun reload(sorting: SubmissionSorting? = null, timePeriod: TimePeriod? = null) {
+    fun reload(sorting: SubmissionsSorting? = null, timePeriod: TimePeriod? = null) {
 
         if (sorting != null) {
 

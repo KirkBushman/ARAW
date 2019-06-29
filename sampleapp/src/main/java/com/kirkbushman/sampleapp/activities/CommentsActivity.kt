@@ -10,6 +10,8 @@ import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.controllers.CommentController
 import com.kirkbushman.sampleapp.doAsync
 import kotlinx.android.synthetic.main.activity_comments.*
+import kotlinx.android.synthetic.main.activity_comments.list
+import kotlinx.android.synthetic.main.fragment_inbox.*
 
 class CommentsActivity : AppCompatActivity() {
 
@@ -45,6 +47,7 @@ class CommentsActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
+        list.setHasFixedSize(true)
         list.setController(controller)
 
         search_bttn.setOnClickListener {

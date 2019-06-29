@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import com.kirkbushman.araw.fetcher.ContributionsFetcher
 import com.kirkbushman.araw.models.Comment
 import com.kirkbushman.araw.models.Submission
-import com.kirkbushman.araw.models.general.ContributionSorting
+import com.kirkbushman.araw.models.general.ContributionsSorting
 import com.kirkbushman.araw.models.general.TimePeriod
 import com.kirkbushman.araw.models.general.Vote
 import com.kirkbushman.araw.models.mixins.Contribution
@@ -97,6 +97,7 @@ class ContributionFragment : Fragment(R.layout.fragment_contribution) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        list.setHasFixedSize(true)
         list.setController(controller)
     }
 
@@ -112,7 +113,7 @@ class ContributionFragment : Fragment(R.layout.fragment_contribution) {
         })
     }
 
-    fun reload(sorting: ContributionSorting? = null, timePeriod: TimePeriod? = null) {
+    fun reload(sorting: ContributionsSorting? = null, timePeriod: TimePeriod? = null) {
 
         if (sorting != null) {
 

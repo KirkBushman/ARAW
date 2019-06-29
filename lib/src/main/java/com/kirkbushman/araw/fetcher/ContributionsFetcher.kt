@@ -4,7 +4,7 @@ import com.kirkbushman.araw.RedditApi
 import com.kirkbushman.araw.http.EnvelopedContribution
 import com.kirkbushman.araw.http.base.Listing
 import com.kirkbushman.araw.http.listings.ContributionListing
-import com.kirkbushman.araw.models.general.ContributionSorting
+import com.kirkbushman.araw.models.general.ContributionsSorting
 import com.kirkbushman.araw.models.general.TimePeriod
 import com.kirkbushman.araw.models.mixins.Contribution
 
@@ -16,7 +16,7 @@ class ContributionsFetcher(
 
     limit: Int = DEFAULT_LIMIT,
 
-    private var sorting: ContributionSorting = DEFAULT_SORTING,
+    private var sorting: ContributionsSorting = DEFAULT_SORTING,
     private var timePeriod: TimePeriod = DEFAULT_TIMEPERIOD,
 
     private inline val getHeader: () -> HashMap<String, String>
@@ -24,7 +24,7 @@ class ContributionsFetcher(
 ) : Fetcher<Contribution, EnvelopedContribution>(limit) {
 
     companion object {
-        val DEFAULT_SORTING = ContributionSorting.NEW
+        val DEFAULT_SORTING = ContributionsSorting.NEW
         val DEFAULT_TIMEPERIOD = TimePeriod.ALL_TIME
     }
 
@@ -77,11 +77,11 @@ class ContributionsFetcher(
             .toList()
     }
 
-    fun getSorting(): ContributionSorting {
+    fun getSorting(): ContributionsSorting {
         return sorting
     }
 
-    fun setSorting(newSorting: ContributionSorting) {
+    fun setSorting(newSorting: ContributionsSorting) {
         sorting = newSorting
 
         reset()
