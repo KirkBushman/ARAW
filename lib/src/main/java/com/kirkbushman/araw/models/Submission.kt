@@ -3,6 +3,9 @@ package com.kirkbushman.araw.models
 import android.os.Parcelable
 import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.models.general.Gildings
+import com.kirkbushman.araw.models.general.Media
+import com.kirkbushman.araw.models.general.MediaEmbed
+import com.kirkbushman.araw.models.general.RedditMedia
 import com.kirkbushman.araw.models.general.SubmissionPreview
 import com.kirkbushman.araw.models.mixins.Contribution
 import com.kirkbushman.araw.models.mixins.Created
@@ -71,6 +74,9 @@ data class Submission(
     @Json(name = "pinned")
     val isPinned: Boolean,
 
+    @Json(name = "is_reddit_media_domain")
+    val isRedditMediaDomain: Boolean,
+
     @Json(name = "is_robot_indexable")
     val isRobotIndexable: Boolean,
 
@@ -91,6 +97,15 @@ data class Submission(
 
     @Json(name = "likes")
     override val likes: Boolean?,
+
+    @Json(name = "secure_media")
+    val media: Media?,
+
+    @Json(name = "secure_media_embed")
+    val mediaEmbed: MediaEmbed,
+
+    @Json(name = "media")
+    val redditMedia: RedditMedia?,
 
     @Json(name = "num_crossposts")
     val numCrossposts: Int,
@@ -184,6 +199,7 @@ data class Submission(
                 "isArchived: $isArchived, " +
                 "isLocked: $isLocked, " +
                 "isPinned: $isPinned, " +
+                "isRedditMediaDomain: $isRedditMediaDomain, " +
                 "isRobotIndexable: $isRobotIndexable, " +
                 "isSelf: $isSelf, " +
                 "isSpoiler: $isSpoiler, " +
