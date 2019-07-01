@@ -188,6 +188,10 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
         return AccountHandler(api, account, ::getHeaderMap)
     }
 
+    fun selfAccountHadler(me: Me): SelfAccountHandler {
+        return SelfAccountHandler(api, { me }, ::getHeaderMap)
+    }
+
     fun contributionHandler(contribution: Contribution): ContributionHandler {
         return ContributionHandler(api, contribution, ::getHeaderMap)
     }
