@@ -46,6 +46,9 @@ data class Comment(
     @Json(name = "edited")
     override val editedRaw: @RawValue Any,
 
+    @Json(name = "depth")
+    override val depth: Int,
+
     @Json(name = "distinguished")
     override val distinguishedRaw: String?,
 
@@ -154,7 +157,8 @@ data class Comment(
                 "created: $created, " +
                 "createdUtc: $createdUtc, " +
                 "editedRaw: $editedRaw, " +
-                "rawDistinguished: $distinguishedRaw, " +
+                "depth: $depth, " +
+                "distinguishedRaw: $distinguishedRaw, " +
                 "isArchived: $isArchived, " +
                 "isSaved: $isSaved, " +
                 "isStickied: $isStickied, " +
