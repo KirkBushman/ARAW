@@ -47,7 +47,7 @@ data class Comment(
     override val editedRaw: @RawValue Any,
 
     @Json(name = "depth")
-    override val depth: Int,
+    override val depth: Int = 0,
 
     @Json(name = "distinguished")
     override val distinguishedRaw: String?,

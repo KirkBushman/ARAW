@@ -34,9 +34,16 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
 
     val messages by lazy { GeneralMessagesHandler(api, ::getHeaderMap) }
     val account by lazy { GeneralAccountHandler(api, ::getHeaderMap) }
-    val selfAccount by lazy { SelfAccountHandler(api, { me() ?: throw IllegalStateException("Could not found logged user") }, ::getHeaderMap) }
+    val selfAccount by lazy { SelfAccountHandler(api, currentUser!!, ::getHeaderMap) }
     val contributions by lazy { GeneralContributionHandler(api, ::getHeaderMap) }
     val commonSubreddits by lazy { CommonSubredditsHandler(api, ::getHeaderMap) }
+
+    private var currentUser: Me? = null
+    fun getCurrentUser(): Me? = currentUser
+
+    init {
+        currentUser = me() ?: throw IllegalStateException("Could not found logged user")
+    }
 
     fun me(): Me? {
 
@@ -48,7 +55,8 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
             return null
         }
 
-        return res.body()
+        currentUser = res.body()
+        return currentUser
     }
 
     fun user(username: String): Redditor? {
@@ -189,7 +197,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
     }
 
     fun selfAccountHadler(me: Me): SelfAccountHandler {
-        return SelfAccountHandler(api, { me }, ::getHeaderMap)
+        return SelfAccountHandler(api, currentUser!!, ::getHeaderMap)
     }
 
     fun contributionHandler(contribution: Contribution): ContributionHandler {
@@ -373,6 +381,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
 
         api: RedditApi,
         private val user: Account,
+
         getHeaderMap: () -> HashMap<String, String>
 
     ) {
@@ -403,12 +412,11 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
     class SelfAccountHandler(
 
         private val api: RedditApi,
-        private inline val getSelfAccount: () -> Me,
+        private val me: Me,
+
         private inline val getHeaderMap: () -> HashMap<String, String>
 
     ) {
-
-        private var currentUser: String? = null
 
         fun overview(
 
@@ -422,7 +430,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
             return ContributionsFetcher(
 
                 api = api,
-                username = getUserCached(),
+                username = me.name,
                 where = "",
                 limit = limit,
                 sorting = sorting,
@@ -443,7 +451,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
             return ContributionsFetcher(
 
                 api = api,
-                username = getUserCached(),
+                username = me.name,
                 where = "submitted",
                 limit = limit,
                 sorting = sorting,
@@ -464,7 +472,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
             return ContributionsFetcher(
 
                 api = api,
-                username = getUserCached(),
+                username = me.name,
                 where = "comments",
                 limit = limit,
                 sorting = sorting,
@@ -485,7 +493,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
             return ContributionsFetcher(
 
                 api = api,
-                username = getUserCached(),
+                username = me.name,
                 where = "saved",
                 limit = limit,
                 sorting = sorting,
@@ -506,7 +514,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
             return ContributionsFetcher(
 
                 api = api,
-                username = getUserCached(),
+                username = me.name,
                 where = "hidden",
                 limit = limit,
                 sorting = sorting,
@@ -527,7 +535,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
             return ContributionsFetcher(
 
                 api = api,
-                username = getUserCached(),
+                username = me.name,
                 where = "upvoted",
                 limit = limit,
                 sorting = sorting,
@@ -548,7 +556,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
             return ContributionsFetcher(
 
                 api = api,
-                username = getUserCached(),
+                username = me.name,
                 where = "downvoted",
                 limit = limit,
                 sorting = sorting,
@@ -569,7 +577,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
             return ContributionsFetcher(
 
                 api = api,
-                username = getUserCached(),
+                username = me.name,
                 where = "gilded",
                 limit = limit,
                 sorting = sorting,
@@ -593,16 +601,6 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
             }
 
             return res.body()?.data?.trophies?.map { it.data }?.toList()
-        }
-
-        private fun getUserCached(): String {
-
-            return if (currentUser != null) {
-                currentUser!!
-            } else {
-                currentUser = getSelfAccount().name
-                currentUser!!
-            }
         }
     }
 

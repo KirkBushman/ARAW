@@ -29,11 +29,15 @@ class LoginActivity : AppCompatActivity() {
         val auth = TestApplication.instance.auth
         if (!auth.shouldLogin()) {
 
-            val client = auth.getSavedRedditClient(LOGGING)
-            TestApplication.instance.setClient(client)
+            doAsync(doWork = {
 
-            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-            startActivity(intent)
+                val client = auth.getSavedRedditClient(LOGGING)
+                TestApplication.instance.setClient(client)
+            }, onPost = {
+
+                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                startActivity(intent)
+            })
         } else {
 
             CookieManager.getInstance().removeAllCookies(null)
