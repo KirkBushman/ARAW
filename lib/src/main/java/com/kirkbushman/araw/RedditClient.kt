@@ -168,7 +168,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
 
         val res = req.execute()
 
-        if(!res.isSuccessful) {
+        if (!res.isSuccessful) {
             return null
         }
 

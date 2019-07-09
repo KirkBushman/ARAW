@@ -7,7 +7,7 @@ import kotlinx.android.parcel.Parcelize
 
 @JsonClass(generateAdapter = true)
 @Parcelize
-data class MoreChildrenResponse (
+data class MoreChildrenResponse(
 
     @Json(name = "json")
     val json: MoreChildrenResponseJSON
@@ -16,16 +16,16 @@ data class MoreChildrenResponse (
 
 @JsonClass(generateAdapter = true)
 @Parcelize
-data class MoreChildrenResponseJSON (
+data class MoreChildrenResponseJSON(
 
     @Json(name = "data")
-    val data:  MoreChildrenResponseThings
+    val data: MoreChildrenResponseThings
 
 ) : Parcelable
 
 @JsonClass(generateAdapter = true)
 @Parcelize
-data class MoreChildrenResponseThings (
+data class MoreChildrenResponseThings(
 
     @Json(name = "things")
     val things: List<EnvelopedCommentData>
