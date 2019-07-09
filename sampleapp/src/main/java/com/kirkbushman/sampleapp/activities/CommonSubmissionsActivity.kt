@@ -71,7 +71,7 @@ class CommonSubmissionsActivity : AppCompatActivity() {
         (adapter.getItem(pager.currentItem) as SubmissionFragment).reload(sorting, timePeriod)
     }
 
-    private class SubmissionsPagerAdapter(manager: FragmentManager) : FragmentStatePagerAdapter(manager) {
+    private class SubmissionsPagerAdapter(manager: FragmentManager) : FragmentStatePagerAdapter(manager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
         private val fragments = ArrayList<Fragment>()
 

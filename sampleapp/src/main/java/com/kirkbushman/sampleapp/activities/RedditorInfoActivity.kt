@@ -81,7 +81,7 @@ class RedditorInfoActivity : AppCompatActivity() {
         (adapter.getItem(pager.currentItem) as ContributionFragment).reload(sorting, timePeriod)
     }
 
-    private class ContributionPagerAdapter(manager: FragmentManager) : FragmentStatePagerAdapter(manager) {
+    private class ContributionPagerAdapter(manager: FragmentManager) : FragmentStatePagerAdapter(manager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
         val fragments = ArrayList<Fragment>()
 

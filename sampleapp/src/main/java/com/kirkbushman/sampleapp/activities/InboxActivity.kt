@@ -41,7 +41,7 @@ class InboxActivity : AppCompatActivity() {
         }
     }
 
-    private class InboxPagerAdapter(manager: FragmentManager) : FragmentStatePagerAdapter(manager) {
+    private class InboxPagerAdapter(manager: FragmentManager) : FragmentStatePagerAdapter(manager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
         private val fragments = ArrayList<Fragment>()
 
