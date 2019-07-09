@@ -13,13 +13,13 @@ import kotlin.collections.ArrayList
 
 val Created.createdDate: Date
     get() {
-        val milliseconds = created / 1000L
+        val milliseconds = created * 1000L
         return Date(milliseconds)
     }
 
 val Created.createdUtcDate: Date
     get() {
-        val milliseconds = createdUtc / 1000L
+        val milliseconds = createdUtc * 1000L
         return Date(milliseconds)
     }
 
