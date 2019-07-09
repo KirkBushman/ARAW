@@ -2,7 +2,7 @@ package com.kirkbushman.araw.utils
 
 import okhttp3.Interceptor
 import okhttp3.Response
-import okhttp3.ResponseBody
+import okhttp3.ResponseBody.Companion.toResponseBody
 
 object NullRepliesInterceptor : Interceptor {
 
@@ -13,13 +13,13 @@ object NullRepliesInterceptor : Interceptor {
         val request = chain.request()
         val response = chain.proceed(request)
 
-        var rawJson = response.body()?.string() ?: ""
+        var rawJson = response.body?.string() ?: ""
 
         if (rawJson.contains(TAG_BEFORE)) {
             rawJson = rawJson.replace(TAG_BEFORE, TAG_AFTER)
         }
 
         return response.newBuilder()
-            .body(ResponseBody.create(response.body()?.contentType(), rawJson)).build()
+            .body(rawJson.toResponseBody(response.body?.contentType())).build()
     }
 }
