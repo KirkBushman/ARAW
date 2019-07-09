@@ -8,7 +8,7 @@ import kotlinx.android.parcel.Parcelize
 
 @JsonClass(generateAdapter = true)
 @Parcelize
-data class MoreComment(
+data class MoreComments(
 
     @Json(name = "id")
     override val id: String,
@@ -40,7 +40,7 @@ data class MoreComment(
             return false
         }
 
-        if (other !is MoreComment) {
+        if (other !is MoreComments) {
             return false
         }
 
@@ -48,7 +48,7 @@ data class MoreComment(
     }
 
     override fun toString(): String {
-        return "MoreComment { " +
+        return "MoreComments { " +
                 "id: $id, " +
                 "fullname: $fullname, " +
                 "count: $count, " +

@@ -3,10 +3,9 @@ package com.kirkbushman.sampleapp.controllers
 import android.view.View
 import com.airbnb.epoxy.EpoxyController
 import com.kirkbushman.araw.models.Comment
-import com.kirkbushman.araw.models.MoreComment
+import com.kirkbushman.araw.models.MoreComments
 import com.kirkbushman.araw.models.Submission
 import com.kirkbushman.araw.models.mixins.CommentData
-import com.kirkbushman.araw.utils.toCommentSequence
 import com.kirkbushman.sampleapp.models.comment
 import com.kirkbushman.sampleapp.models.empty
 import com.kirkbushman.sampleapp.models.moreComment
@@ -21,6 +20,8 @@ class CommentController(private val callback: CommentCallback) : EpoxyController
         fun onDownClick(submission: Submission)
 
         fun onSaveClick(submission: Submission)
+
+        fun onLoadMoreClick(moreComments: MoreComments, submission: Submission)
     }
 
     private val comments = ArrayList<CommentData>()
@@ -63,7 +64,7 @@ class CommentController(private val callback: CommentCallback) : EpoxyController
             }
         }
 
-        comments.toCommentSequence().forEach {
+        comments.forEach {
 
             if (it is Comment) {
 
@@ -74,11 +75,12 @@ class CommentController(private val callback: CommentCallback) : EpoxyController
                 }
             }
 
-            if (it is MoreComment) {
+            if (it is MoreComments) {
 
                 moreComment {
                     id(it.fullname)
                     more("${it.count} more children")
+                    clickListener(View.OnClickListener { _ -> callback.onLoadMoreClick(it, submission!!) })
                 }
             }
         }

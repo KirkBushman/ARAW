@@ -9,6 +9,7 @@ import com.kirkbushman.araw.http.EnvelopedSubreddit
 import com.kirkbushman.araw.http.EnvelopedSubredditListing
 import com.kirkbushman.araw.http.EnvelopedTrophyList
 import com.kirkbushman.araw.http.EnvelopedWikiPage
+import com.kirkbushman.araw.http.MoreChildrenResponse
 import com.kirkbushman.araw.models.Me
 import com.kirkbushman.araw.models.SubredditRules
 import retrofit2.Call
@@ -156,6 +157,14 @@ interface RedditApi {
         @Query("id") commentId: String,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedCommentListing>
+
+    @GET("/api/morechildren")
+    fun moreChildren(
+        @Query("api_type") apiType: String = "json",
+        @Query("children") children: String,
+        @Query("link_id") linkId: String,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<MoreChildrenResponse>
 
     @GET("/comments/{submissionId}/.json")
     fun fetchComments(

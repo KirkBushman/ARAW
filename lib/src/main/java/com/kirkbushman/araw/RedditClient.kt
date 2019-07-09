@@ -11,6 +11,7 @@ import com.kirkbushman.araw.models.Account
 import com.kirkbushman.araw.models.Comment
 import com.kirkbushman.araw.models.Me
 import com.kirkbushman.araw.models.Message
+import com.kirkbushman.araw.models.MoreComments
 import com.kirkbushman.araw.models.Redditor
 import com.kirkbushman.araw.models.Submission
 import com.kirkbushman.araw.models.Subreddit
@@ -22,6 +23,7 @@ import com.kirkbushman.araw.models.general.SearchSorting
 import com.kirkbushman.araw.models.general.SubmissionsSorting
 import com.kirkbushman.araw.models.general.TimePeriod
 import com.kirkbushman.araw.models.general.Vote
+import com.kirkbushman.araw.models.mixins.CommentData
 import com.kirkbushman.araw.models.mixins.Contribution
 import com.kirkbushman.araw.models.mixins.Votable
 import com.kirkbushman.araw.utils.Utils.getRetrofit
@@ -153,6 +155,24 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
         }
 
         return res.body()?.data?.children?.first()?.data
+    }
+
+    fun moreChildren(moreComments: MoreComments, submission: Submission): List<CommentData>? {
+
+        val authMap = getHeaderMap()
+        val req = api.moreChildren(
+            children = moreComments.children.joinToString(separator = ","),
+            linkId = submission.fullname,
+            header = authMap
+        )
+
+        val res = req.execute()
+
+        if(!res.isSuccessful) {
+            return null
+        }
+
+        return res.body()?.json?.data?.things?.map { it.data }?.toList()
     }
 
     fun comments(

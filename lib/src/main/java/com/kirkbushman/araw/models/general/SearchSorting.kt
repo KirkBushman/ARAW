@@ -8,6 +8,7 @@ enum class SearchSorting(
 ) : Sorting {
 
     RELEVANCE(true, sortingStr = "relevance"),
+    HOT(sortingStr = "hot"),
     NEW(sortingStr = "new"),
     TOP(true, "top"),
     COMMENTS(true, "comments")

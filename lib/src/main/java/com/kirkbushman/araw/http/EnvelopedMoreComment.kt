@@ -3,7 +3,7 @@ package com.kirkbushman.araw.http
 import android.os.Parcelable
 import com.kirkbushman.araw.http.base.Envelope
 import com.kirkbushman.araw.http.base.EnvelopeKind
-import com.kirkbushman.araw.models.MoreComment
+import com.kirkbushman.araw.models.MoreComments
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
@@ -17,6 +17,6 @@ data class EnvelopedMoreComment(
     override val kind: EnvelopeKind,
 
     @Json(name = "data")
-    override val data: MoreComment
+    override val data: MoreComments
 
-) : Envelope<MoreComment>, EnvelopedCommentData(kind, data), Parcelable, Serializable
+) : Envelope<MoreComments>, EnvelopedCommentData(kind, data), Parcelable, Serializable

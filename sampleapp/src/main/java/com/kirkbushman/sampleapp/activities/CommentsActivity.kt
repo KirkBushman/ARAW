@@ -2,16 +2,16 @@ package com.kirkbushman.sampleapp.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.kirkbushman.araw.models.MoreComments
 import com.kirkbushman.araw.models.Submission
 import com.kirkbushman.araw.models.general.Vote
 import com.kirkbushman.araw.models.mixins.CommentData
+import com.kirkbushman.araw.utils.toCommentSequence
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.controllers.CommentController
 import com.kirkbushman.sampleapp.doAsync
 import kotlinx.android.synthetic.main.activity_comments.*
-import kotlinx.android.synthetic.main.activity_comments.list
-import kotlinx.android.synthetic.main.fragment_inbox.*
 
 class CommentsActivity : AppCompatActivity() {
 
@@ -22,19 +22,45 @@ class CommentsActivity : AppCompatActivity() {
         CommentController(object : CommentController.CommentCallback {
 
             override fun onUpvoteClick(submission: Submission) {
-                client?.contributions?.vote(Vote.UPVOTE, submission)
+
+                doAsync(doWork = {
+                    client?.contributions?.vote(Vote.UPVOTE, submission)
+                })
             }
 
             override fun onNoneClick(submission: Submission) {
-                client?.contributions?.vote(Vote.NONE, submission)
+
+                doAsync(doWork = {
+                    client?.contributions?.vote(Vote.NONE, submission)
+                })
             }
 
             override fun onDownClick(submission: Submission) {
-                client?.contributions?.vote(Vote.DOWNVOTE, submission)
+
+                doAsync(doWork = {
+                    client?.contributions?.vote(Vote.DOWNVOTE, submission)
+                })
             }
 
             override fun onSaveClick(submission: Submission) {
-                client?.contributions?.save(!submission.isSaved, submission)
+
+                doAsync(doWork = {
+                    client?.contributions?.save(!submission.isSaved, submission)
+                })
+            }
+
+            override fun onLoadMoreClick(moreComments: MoreComments, submission: Submission) {
+
+                val addendum = ArrayList<CommentData>()
+
+                doAsync(doWork = {
+
+                    val more = client?.moreChildren(moreComments, submission)
+                    addendum.addAll(more ?: listOf())
+                }, onPost = {
+
+                    replaceMoreComments(moreComments, addendum)
+                })
             }
         })
     }
@@ -63,11 +89,20 @@ class CommentsActivity : AppCompatActivity() {
                     controller.setSubmission(fetcher.getSubmission()!!)
                 }
 
-                comments.addAll(temp)
+                comments.addAll(temp.toCommentSequence())
             }, onPost = {
 
                 controller.setComments(comments)
             })
         }
+    }
+
+    private fun replaceMoreComments(moreComments: MoreComments, addendum: List<CommentData>) {
+
+        val index = comments.indexOf(moreComments)
+        comments.remove(moreComments)
+        comments.addAll(index, addendum)
+
+        controller.setComments(comments)
     }
 }
