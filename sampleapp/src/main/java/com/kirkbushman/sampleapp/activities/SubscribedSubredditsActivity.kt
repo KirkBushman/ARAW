@@ -8,8 +8,6 @@ import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.controllers.SubredditController
 import com.kirkbushman.sampleapp.doAsync
 import kotlinx.android.synthetic.main.activity_mine_subreddits.*
-import kotlinx.android.synthetic.main.activity_mine_subreddits.list
-import kotlinx.android.synthetic.main.fragment_inbox.*
 
 class SubscribedSubredditsActivity : AppCompatActivity() {
 

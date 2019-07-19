@@ -1,0 +1,3 @@
+[*.{kt,kts}]
+# allow wild cards input
+disabled_rules=no-wildcard-imports,import-ordering

@@ -12,8 +12,6 @@ import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.controllers.SubmissionController
 import com.kirkbushman.sampleapp.doAsync
 import kotlinx.android.synthetic.main.activity_submissions.*
-import kotlinx.android.synthetic.main.activity_submissions.list
-import kotlinx.android.synthetic.main.fragment_inbox.*
 
 class SubmissionFragment : Fragment(R.layout.fragment_submission) {
 

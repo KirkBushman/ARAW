@@ -17,43 +17,44 @@ data class Media(
 
 ) : Parcelable
 
+@JsonClass(generateAdapter = true)
 @Parcelize
 data class OEmbed(
 
     @Json(name = "title")
-    val title: String,
+    val title: String?,
 
     @Json(name = "type")
     val type: String,
 
     @Json(name = "html")
-    val html: String,
+    val html: String?,
 
     @Json(name = "provider_name")
-    val providerName: String,
+    val providerName: String?,
 
     @Json(name = "provider_url")
-    val providerUrl: String,
+    val providerUrl: String?,
 
     @Json(name = "author_name")
-    val authorName: String,
+    val authorName: String?,
 
     @Json(name = "author_url")
-    val authorUrl: String,
+    val authorUrl: String?,
 
     @Json(name = "thumbnail_url")
-    val thumbnailUrl: String,
+    val thumbnailUrl: String?,
 
     @Json(name = "thumbnail_width")
-    val thumbnailWidth: Int,
+    val thumbnailWidth: Int?,
 
     @Json(name = "thumbnail_height")
-    val thumbnailHeight: Int,
+    val thumbnailHeight: Int?,
 
     @Json(name = "width")
-    val width: Int,
+    val width: Int?,
 
     @Json(name = "height")
-    val height: Int
+    val height: Int?
 
 ) : Parcelable
