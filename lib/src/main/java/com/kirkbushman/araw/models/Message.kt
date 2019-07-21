@@ -3,6 +3,7 @@ package com.kirkbushman.araw.models
 import android.os.Parcelable
 import com.kirkbushman.araw.models.mixins.Created
 import com.kirkbushman.araw.models.mixins.Distinguishable
+import com.kirkbushman.araw.models.mixins.Replyable
 import com.kirkbushman.araw.models.mixins.Thing
 import com.kirkbushman.araw.models.mixins.Votable
 import com.squareup.moshi.Json
@@ -76,7 +77,7 @@ data class Message(
     @Json(name = "subreddit_name_prefixed")
     val subredditNamePrefixed: String?
 
-) : Thing, Votable, Created, Distinguishable, Parcelable {
+) : Thing, Votable, Created, Distinguishable, Replyable, Parcelable {
 
     override fun hashCode(): Int {
         return id.hashCode()

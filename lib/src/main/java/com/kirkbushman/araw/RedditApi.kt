@@ -10,6 +10,7 @@ import com.kirkbushman.araw.http.EnvelopedSubredditListing
 import com.kirkbushman.araw.http.EnvelopedTrophyList
 import com.kirkbushman.araw.http.EnvelopedWikiPage
 import com.kirkbushman.araw.http.MoreChildrenResponse
+import com.kirkbushman.araw.http.Reply
 import com.kirkbushman.araw.models.Me
 import com.kirkbushman.araw.models.SubredditRules
 import retrofit2.Call
@@ -110,6 +111,16 @@ interface RedditApi {
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedSubreddit>
 
+    @FormUrlEncoded
+    @POST("/api/subscribe")
+    fun subscribe(
+        @Field("action") action: String,
+        @Field("sr") subredditIds: String? = null,
+        @Field("sr_name") subredditNames: String? = null,
+        @Field("skip_initial_defaults") skipInitialDefaults: Boolean? = null,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<Any?>
+
     @GET("/api/info/.json")
     fun submission(
         @Query("id") submissionId: String,
@@ -152,6 +163,23 @@ interface RedditApi {
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedSubmissionListing>
 
+    @FormUrlEncoded
+    @POST("/api/submit")
+    fun submit(
+        @Field("api_type") apiType: String = "json",
+        @Field("extension") extension: String = "json",
+        @Field("sr") subreddit: String,
+        @Field("title") title: String,
+        @Field("kind") kind: String,
+        @Field("text") text: String? = null,
+        @Field("url") url: String? = null,
+        @Field("resubmit") resubmit: Boolean = false,
+        @Field("sendreplies") sendReplies: Boolean,
+        @Field("nsfw") isNsfw: Boolean,
+        @Field("spoiler") isSpoiler: Boolean,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<Any?>
+
     @GET("/api/info/.json")
     fun comment(
         @Query("id") commentId: String,
@@ -173,6 +201,15 @@ interface RedditApi {
         @Query("depth") depth: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<List<EnvelopedContributionListing>>
+
+    @FormUrlEncoded
+    @POST("/api/comment")
+    fun reply(
+        @Field("api_type") apiType: String = "json",
+        @Field("thing_id") fullname: String,
+        @Field("text") text: String,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<Reply>
 
     @FormUrlEncoded
     @POST("/api/vote")

@@ -20,11 +20,13 @@ import com.kirkbushman.araw.models.Trophy
 import com.kirkbushman.araw.models.WikiPage
 import com.kirkbushman.araw.models.general.ContributionsSorting
 import com.kirkbushman.araw.models.general.SearchSorting
+import com.kirkbushman.araw.models.general.SubmissionKind
 import com.kirkbushman.araw.models.general.SubmissionsSorting
 import com.kirkbushman.araw.models.general.TimePeriod
 import com.kirkbushman.araw.models.general.Vote
 import com.kirkbushman.araw.models.mixins.CommentData
 import com.kirkbushman.araw.models.mixins.Contribution
+import com.kirkbushman.araw.models.mixins.Replyable
 import com.kirkbushman.araw.models.mixins.Votable
 import com.kirkbushman.araw.utils.Utils.getRetrofit
 import com.kirkbushman.auth.models.TokenBearer
@@ -87,6 +89,46 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
         return res.body()?.data
     }
 
+    fun subscribe(subreddit: Subreddit, skipInitialDefaults: Boolean = true): Any? {
+
+        return subscribe(
+
+            subredditNames = listOf(subreddit.displayName),
+
+            action = !subreddit.isSubscriber,
+            skipInitialDefaults = skipInitialDefaults
+        )
+    }
+
+    fun subscribe(
+
+        subredditIds: List<String>? = null,
+        subredditNames: List<String>? = null,
+
+        action: Boolean,
+
+        skipInitialDefaults: Boolean = true
+
+    ): Any? {
+
+        val authMap = getHeaderMap()
+        val req = api.subscribe(
+            subredditIds = subredditIds?.joinToString(separator = ","),
+            subredditNames = subredditNames?.joinToString(separator = ","),
+            action = if (action) "sub" else "unsub",
+            skipInitialDefaults = if (action) skipInitialDefaults else null,
+            header = authMap
+        )
+
+        val res = req.execute()
+
+        if (!res.isSuccessful) {
+            return null
+        }
+
+        return res.body()
+    }
+
     fun submission(submissionId: String): Submission? {
 
         val authMap = getHeaderMap()
@@ -144,6 +186,86 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
         ) { getHeaderMap() }
     }
 
+    fun submit(
+
+        subredditName: String,
+
+        title: String,
+        kind: SubmissionKind,
+
+        text: String = "",
+        url: String = "",
+
+        resubmit: Boolean = false,
+        sendReplies: Boolean = false,
+        isNsfw: Boolean = false,
+        isSpoiler: Boolean = false
+
+    ): Any? {
+
+        val authMap = getHeaderMap()
+        val req = api.submit(
+            subreddit = subredditName,
+            title = title,
+            kind = kind.toString(),
+            text = if (kind == SubmissionKind.self) text else null,
+            url = if (kind == SubmissionKind.link) url else null,
+            resubmit = resubmit,
+            sendReplies = sendReplies,
+            isNsfw = isNsfw,
+            isSpoiler = isSpoiler,
+            header = authMap
+        )
+
+        val res = req.execute()
+
+        if (!res.isSuccessful) {
+            return null
+        }
+
+        return res.body()
+    }
+
+    fun submit(
+
+        subreddit: Subreddit,
+
+        title: String,
+        kind: SubmissionKind,
+
+        text: String = "",
+        url: String = "",
+
+        resubmit: Boolean = false,
+        sendReplies: Boolean = false,
+        isNsfw: Boolean? = null,
+        isSpoiler: Boolean = false
+
+    ): Any? {
+
+        val authMap = getHeaderMap()
+        val req = api.submit(
+            subreddit = subreddit.displayName,
+            title = title,
+            kind = kind.toString(),
+            text = if (kind == SubmissionKind.self) text else null,
+            url = if (kind == SubmissionKind.link) url else null,
+            resubmit = resubmit,
+            sendReplies = sendReplies,
+            isNsfw = isNsfw ?: subreddit.over18,
+            isSpoiler = isSpoiler,
+            header = authMap
+        )
+
+        val res = req.execute()
+
+        if (!res.isSuccessful) {
+            return null
+        }
+
+        return res.body()
+    }
+
     fun comment(commentId: String): Comment? {
 
         val authMap = getHeaderMap()
@@ -186,6 +308,28 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
         return CommentsFetcher(api, submissionId, limit = limit, depth = depth) { getHeaderMap() }
     }
 
+    fun reply(replyable: Replyable, text: String): Any? {
+        return reply(replyable.fullname, text)
+    }
+
+    fun reply(fullname: String, text: String): Comment? {
+
+        val authMap = getHeaderMap()
+        val req = api.reply(
+            fullname = fullname,
+            text = text,
+            header = authMap
+        )
+
+        val res = req.execute()
+
+        if (!res.isSuccessful) {
+            return null
+        }
+
+        return res.body()?.json?.data?.things?.first()?.data
+    }
+
     fun wiki(subreddit: String): WikiPage? {
 
         val authMap = getHeaderMap()
@@ -222,6 +366,10 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
 
     fun contributionHandler(contribution: Contribution): ContributionHandler {
         return ContributionHandler(api, contribution, ::getHeaderMap)
+    }
+
+    fun subredditHandler(redditClient: RedditClient, subreddit: Subreddit): SubredditHandler {
+        return SubredditHandler(redditClient, subreddit)
     }
 
     private fun getHeaderMap(): HashMap<String, String> {
@@ -621,6 +769,36 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
             }
 
             return res.body()?.data?.trophies?.map { it.data }?.toList()
+        }
+    }
+
+    class SubredditHandler(
+
+        private val client: RedditClient,
+        private val subreddit: Subreddit
+
+    ) {
+
+        fun subscribe(skipInitialDefaults: Boolean = true): Any? {
+            return client.subscribe(subreddit, skipInitialDefaults)
+        }
+
+        fun submit(
+
+            title: String,
+            kind: SubmissionKind,
+
+            text: String = "",
+            url: String = "",
+
+            resubmit: Boolean = false,
+            sendReplies: Boolean = false,
+            isNsfw: Boolean? = null,
+            isSpoiler: Boolean = false
+
+        ): Any? {
+
+            return client.submit(subreddit, title, kind, text, url, resubmit, sendReplies, isNsfw, isSpoiler)
         }
     }
 

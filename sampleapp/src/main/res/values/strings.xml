@@ -17,6 +17,9 @@
     <string name="bttn_submissions">Submissions</string>
     <string name="bttn_submissions_commons">Common submissions</string>
     <string name="bttn_submissions_search">Submissions Search</string>
+    <string name="bttn_submit">Submit</string>
+    <string name="bttn_submit_radio_self">Self Post</string>
+    <string name="bttn_submit_radio_link">Link Post</string>
     <string name="bttn_comment">Comment</string>
     <string name="bttn_comments">Comments</string>
     <string name="bttn_wiki">Wiki</string>
@@ -27,6 +30,11 @@
     <string name="edit_insert_submission_id">Insert submission id:</string>
     <string name="edit_insert_query">Insert query:</string>
     <string name="edit_insert_comment_id">Insert comment id:</string>
+    <string name="edit_insert_title">Insert title:</string>
+    <string name="edit_insert_text_or_link">Insert text or link:</string>
+    <string name="check_sendreplies">Send Replies</string>
+    <string name="check_isnsfw">Is Nsfw</string>
+    <string name="check_isspoiler">Is Spoiler</string>
     <string name="bttn_search_user">Search</string>
     <string name="bttn_ok">OK</string>
     <string name="bttn_read">Read</string>
@@ -35,6 +43,8 @@
     <string name="bttn_none">None</string>
     <string name="bttn_downvote">Downvote</string>
     <string name="bttn_save">Save</string>
+    <string name="bttn_subscribe">Subscribe</string>
+    <string name="bttn_reply">Reply</string>
     <string name="no_items">No items to show.</string>
 
     <string name="sorting_hot">Hot</string>

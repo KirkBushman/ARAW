@@ -1,6 +1,7 @@
 package com.kirkbushman.araw.models
 
 import android.os.Parcelable
+import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.models.mixins.Created
 import com.kirkbushman.araw.models.mixins.Thing
 import com.squareup.moshi.Json
@@ -13,6 +14,9 @@ data class Subreddit(
 
     @Json(name = "id")
     override val id: String,
+
+    @Json(name = "name")
+    val fullname: String,
 
     @Json(name = "accounts_active")
     val accountsActive: Int?,
@@ -93,6 +97,10 @@ data class Subreddit(
     val url: String
 
 ) : Thing, Created, Parcelable {
+
+    fun withClient(client: RedditClient): RedditClient.SubredditHandler {
+        return client.subredditHandler(client, this)
+    }
 
     override fun hashCode(): Int {
         return id.hashCode()

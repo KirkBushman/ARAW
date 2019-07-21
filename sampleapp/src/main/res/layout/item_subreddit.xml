@@ -14,4 +14,11 @@
             android:maxLines="3"
     />
 
+    <Button android:id="@+id/subscribe_button"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/bttn_subscribe"
+    />
+
 </LinearLayout>

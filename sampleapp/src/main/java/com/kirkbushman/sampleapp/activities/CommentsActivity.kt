@@ -2,6 +2,7 @@ package com.kirkbushman.sampleapp.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.kirkbushman.araw.models.Comment
 import com.kirkbushman.araw.models.MoreComments
 import com.kirkbushman.araw.models.Submission
 import com.kirkbushman.araw.models.general.Vote
@@ -11,6 +12,7 @@ import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.controllers.CommentController
 import com.kirkbushman.sampleapp.doAsync
+import com.kirkbushman.sampleapp.fragments.ReplyBottomFragment
 import kotlinx.android.synthetic.main.activity_comments.*
 
 class CommentsActivity : AppCompatActivity() {
@@ -62,6 +64,12 @@ class CommentsActivity : AppCompatActivity() {
                     replaceMoreComments(moreComments, addendum)
                 })
             }
+
+            override fun onReplyClick(comment: Comment) {
+
+                val fr = ReplyBottomFragment.instance(comment)
+                fr.show(supportFragmentManager, "Reply Bottom Fragment")
+            }
         })
     }
 
@@ -70,8 +78,10 @@ class CommentsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_comments)
 
         setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.let {
+            it.setDisplayHomeAsUpEnabled(true)
+            it.setDisplayShowHomeEnabled(true)
+        }
 
         list.setHasFixedSize(true)
         list.setController(controller)

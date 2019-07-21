@@ -15,7 +15,23 @@ class SubscribedSubredditsActivity : AppCompatActivity() {
     private val fetcher by lazy { client?.selfAccount?.subscribedSubreddits(limit = 100) }
 
     private val subreddits = ArrayList<Subreddit>()
-    private val controller by lazy { SubredditController() }
+    private val controller by lazy { SubredditController(callback) }
+
+    private val callback = object : SubredditController.SubredditCallback {
+
+        override fun subscribeClick(index: Int) {
+
+            val subreddit = subreddits[index]
+            doAsync(doWork = {
+
+                client?.subscribe(subreddit)
+            }, onPost = {
+
+                subreddits[index] = subreddit.copy(isSubscriber = !subreddit.isSubscriber)
+                refresh()
+            })
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +46,11 @@ class SubscribedSubredditsActivity : AppCompatActivity() {
             subreddits.addAll(temp)
         }, onPost = {
 
-            controller.setSubreddits(subreddits)
+            refresh()
         })
+    }
+
+    private fun refresh() {
+        controller.setSubreddits(subreddits)
     }
 }

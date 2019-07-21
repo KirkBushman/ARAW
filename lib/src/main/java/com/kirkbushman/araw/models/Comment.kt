@@ -9,6 +9,7 @@ import com.kirkbushman.araw.models.mixins.Created
 import com.kirkbushman.araw.models.mixins.Distinguishable
 import com.kirkbushman.araw.models.mixins.Editable
 import com.kirkbushman.araw.models.mixins.Gildable
+import com.kirkbushman.araw.models.mixins.Replyable
 import com.kirkbushman.araw.models.mixins.Votable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -103,7 +104,7 @@ data class Comment(
     @Json(name = "subreddit_name_prefixed")
     val subredditNamePrefixed: String
 
-) : CommentData, Votable, Created, Editable, Distinguishable, Gildable, Parcelable {
+) : CommentData, Votable, Created, Editable, Distinguishable, Gildable, Replyable, Parcelable {
 
     fun withClient(client: RedditClient): RedditClient.ContributionHandler {
         return client.contributionHandler(this)

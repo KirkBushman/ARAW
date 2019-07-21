@@ -22,6 +22,8 @@ class CommentController(private val callback: CommentCallback) : EpoxyController
         fun onSaveClick(submission: Submission)
 
         fun onLoadMoreClick(moreComments: MoreComments, submission: Submission)
+
+        fun onReplyClick(comment: Comment)
     }
 
     private val comments = ArrayList<CommentData>()
@@ -72,6 +74,7 @@ class CommentController(private val callback: CommentCallback) : EpoxyController
                     id(it.id)
                     author(it.author)
                     body(it.body)
+                    replyClick { _ -> callback.onReplyClick(it) }
                 }
             }
 
@@ -80,7 +83,7 @@ class CommentController(private val callback: CommentCallback) : EpoxyController
                 moreComment {
                     id(it.fullname)
                     more("${it.count} more children")
-                    clickListener(View.OnClickListener { _ -> callback.onLoadMoreClick(it, submission!!) })
+                    clickListener { _ -> callback.onLoadMoreClick(it, submission!!) }
                 }
             }
         }
