@@ -37,7 +37,7 @@ data class Subreddit(
     val description: String,
 
     @Json(name = "description_html")
-    val descriptionHtml: String,
+    val descriptionHtml: String?,
 
     @Json(name = "display_name")
     val displayName: String,
