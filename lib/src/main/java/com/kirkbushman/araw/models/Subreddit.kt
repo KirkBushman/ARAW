@@ -48,6 +48,9 @@ data class Subreddit(
     @Json(name = "header_img")
     val headerImg: String?,
 
+    @Json(name = "header_size")
+    val headerImgSize: List<Int>?,
+
     @Json(name = "header_title")
     val headerTitle: String?,
 
