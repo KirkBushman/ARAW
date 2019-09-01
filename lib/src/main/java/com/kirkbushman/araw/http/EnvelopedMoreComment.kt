@@ -7,7 +7,6 @@ import com.kirkbushman.araw.models.MoreComments
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
-import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
 @Parcelize
@@ -19,4 +18,4 @@ data class EnvelopedMoreComment(
     @Json(name = "data")
     override val data: MoreComments
 
-) : Envelope<MoreComments>, EnvelopedCommentData(kind, data), Parcelable, Serializable
+) : Envelope<MoreComments>, EnvelopedCommentData(kind, data), Parcelable

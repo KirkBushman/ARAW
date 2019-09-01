@@ -3,24 +3,7 @@ package com.kirkbushman.sampleapp
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.kirkbushman.sampleapp.activities.CommentActivity
-import com.kirkbushman.sampleapp.activities.CommentsActivity
-import com.kirkbushman.sampleapp.activities.CommonSubmissionsActivity
-import com.kirkbushman.sampleapp.activities.InboxActivity
-import com.kirkbushman.sampleapp.activities.RedditorActivity
-import com.kirkbushman.sampleapp.activities.RedditorInfoActivity
-import com.kirkbushman.sampleapp.activities.RulesActivity
-import com.kirkbushman.sampleapp.activities.SelfAccountActivity
-import com.kirkbushman.sampleapp.activities.SelfAccountInfoActivity
-import com.kirkbushman.sampleapp.activities.SelfTrophiesActivity
-import com.kirkbushman.sampleapp.activities.SubmissionActivity
-import com.kirkbushman.sampleapp.activities.SubmissionsActivity
-import com.kirkbushman.sampleapp.activities.SubmissionsSearchActivity
-import com.kirkbushman.sampleapp.activities.SubmitActivity
-import com.kirkbushman.sampleapp.activities.SubredditActivity
-import com.kirkbushman.sampleapp.activities.SubscribedSubredditsActivity
-import com.kirkbushman.sampleapp.activities.UserTrophiesActivity
-import com.kirkbushman.sampleapp.activities.WikiPageActivity
+import com.kirkbushman.sampleapp.activities.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -77,6 +60,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        bttn_user_search.setOnClickListener {
+
+            val intent = Intent(this, UserSearchActivity::class.java)
+            startActivity(intent)
+        }
+
         bttn_subreddit.setOnClickListener {
 
             val intent = Intent(this, SubredditActivity::class.java)
@@ -98,6 +87,12 @@ class MainActivity : AppCompatActivity() {
         bttn_submissions_search.setOnClickListener {
 
             val intent = Intent(this, SubmissionsSearchActivity::class.java)
+            startActivity(intent)
+        }
+
+        bttn_subreddit_search.setOnClickListener {
+
+            val intent = Intent(this, SubredditsSearchActivity::class.java)
             startActivity(intent)
         }
 

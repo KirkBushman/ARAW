@@ -6,7 +6,6 @@ import com.kirkbushman.araw.http.base.Listing
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
-import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
 @Parcelize
@@ -25,4 +24,4 @@ data class CommentListing(
     @Json(name = "before")
     override val before: String?
 
-) : Listing<EnvelopedComment>, Parcelable, Serializable
+) : Listing<EnvelopedComment>, Parcelable

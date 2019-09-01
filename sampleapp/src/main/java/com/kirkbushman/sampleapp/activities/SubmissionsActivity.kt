@@ -54,6 +54,8 @@ class SubmissionsActivity : AppCompatActivity() {
                     client?.contributions?.save(!submission.isSaved, submission)
                 })
             }
+
+            override fun onReplyClick(index: Int) {}
         })
     }
 

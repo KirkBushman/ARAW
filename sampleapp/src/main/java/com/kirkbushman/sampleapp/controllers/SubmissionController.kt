@@ -17,6 +17,7 @@ class SubmissionController(private val callback: SubmissionCallback) : EpoxyCont
         fun onDownClick(index: Int)
 
         fun onSaveClick(index: Int)
+        fun onReplyClick(index: Int)
     }
 
     private val submissions = ArrayList<Submission>()

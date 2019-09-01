@@ -4,15 +4,17 @@ import com.kirkbushman.araw.http.EnvelopedCommentListing
 import com.kirkbushman.araw.http.EnvelopedContributionListing
 import com.kirkbushman.araw.http.EnvelopedMessageListing
 import com.kirkbushman.araw.http.EnvelopedRedditor
+import com.kirkbushman.araw.http.EnvelopedRedditorListing
 import com.kirkbushman.araw.http.EnvelopedSubmissionListing
 import com.kirkbushman.araw.http.EnvelopedSubreddit
 import com.kirkbushman.araw.http.EnvelopedSubredditListing
 import com.kirkbushman.araw.http.EnvelopedTrophyList
 import com.kirkbushman.araw.http.EnvelopedWikiPage
-import com.kirkbushman.araw.http.MoreChildrenResponse
-import com.kirkbushman.araw.http.Reply
 import com.kirkbushman.araw.models.Me
+import com.kirkbushman.araw.models.MoreChildrenResponse
+import com.kirkbushman.araw.models.Reply
 import com.kirkbushman.araw.models.SubredditRules
+import com.kirkbushman.araw.models.SubredditSearchResult
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -52,6 +54,19 @@ interface RedditApi {
         @Field("id") id: String,
         @HeaderMap header: HashMap<String, String>
     ): Call<Any?>
+
+    @GET("/search")
+    fun search(
+        @Query("type") type: String? = null,
+        @Query("sort") sorting: String? = null,
+        @Query("t") timePeriod: String? = null,
+        @Query("show") show: Boolean? = null,
+        @Query("limit") limit: Int,
+        @Query("count") count: Int,
+        @Query("after") after: String? = null,
+        @Query("before") before: String? = null,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<EnvelopedRedditor>
 
     @GET("/user/{username}/about/.json")
     fun user(
@@ -94,6 +109,19 @@ interface RedditApi {
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedSubredditListing>
 
+    @GET("/search")
+    fun fetchRedditorSearch(
+        @Query("q") query: String,
+        @Query("show") show: String? = null,
+        @Query("sort") sorting: String,
+        @Query("type") type: String = "user",
+        @Query("limit") limit: Int,
+        @Query("count") count: Int,
+        @Query("after") after: String? = null,
+        @Query("before") before: String? = null,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<EnvelopedRedditorListing>
+
     @GET("/api/v1/me/trophies/.json")
     fun selfUserTrophies(
         @HeaderMap header: HashMap<String, String>
@@ -110,6 +138,29 @@ interface RedditApi {
         @Path("subreddit") subreddit: String,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedSubreddit>
+
+    @GET("/search")
+    fun fetchSubredditsSearch(
+        @Query("q") query: String,
+        @Query("show") show: String? = null,
+        @Query("sort") sorting: String,
+        @Query("type") type: String = "sr",
+        @Query("limit") limit: Int,
+        @Query("count") count: Int,
+        @Query("after") after: String? = null,
+        @Query("before") before: String? = null,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<EnvelopedSubredditListing>
+
+    @FormUrlEncoded
+    @POST("/api/search_subreddits")
+    fun searchSubreddits(
+        @Field("query") query: String,
+        @Field("exact") exact: Boolean? = null,
+        @Field("include_over_18") includeOver18: Boolean? = null,
+        @Field("include_unadvertisable") includeUnadvertisable: Boolean? = null,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<SubredditSearchResult>
 
     @FormUrlEncoded
     @POST("/api/subscribe")

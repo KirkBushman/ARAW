@@ -4,9 +4,11 @@ import com.kirkbushman.araw.fetcher.CommentsFetcher
 import com.kirkbushman.araw.fetcher.ContributionsFetcher
 import com.kirkbushman.araw.fetcher.Fetcher
 import com.kirkbushman.araw.fetcher.InboxFetcher
+import com.kirkbushman.araw.fetcher.RedditorSearchFetcher
 import com.kirkbushman.araw.fetcher.SubmissionsFetcher
 import com.kirkbushman.araw.fetcher.SubmissionsSearchFetcher
 import com.kirkbushman.araw.fetcher.SubredditsFetcher
+import com.kirkbushman.araw.fetcher.SubredditsSearchFetcher
 import com.kirkbushman.araw.models.Account
 import com.kirkbushman.araw.models.Comment
 import com.kirkbushman.araw.models.Me
@@ -16,12 +18,15 @@ import com.kirkbushman.araw.models.Redditor
 import com.kirkbushman.araw.models.Submission
 import com.kirkbushman.araw.models.Subreddit
 import com.kirkbushman.araw.models.SubredditRule
+import com.kirkbushman.araw.models.SubredditSearchResult
 import com.kirkbushman.araw.models.Trophy
 import com.kirkbushman.araw.models.WikiPage
 import com.kirkbushman.araw.models.general.ContributionsSorting
+import com.kirkbushman.araw.models.general.RedditorSearchSorting
 import com.kirkbushman.araw.models.general.SearchSorting
 import com.kirkbushman.araw.models.general.SubmissionKind
 import com.kirkbushman.araw.models.general.SubmissionsSorting
+import com.kirkbushman.araw.models.general.SubredditSearchSorting
 import com.kirkbushman.araw.models.general.TimePeriod
 import com.kirkbushman.araw.models.general.Vote
 import com.kirkbushman.araw.models.mixins.CommentData
@@ -76,6 +81,18 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
         return res.body()?.data
     }
 
+    fun fetchRedditorSearch(
+
+        query: String,
+        show: String? = null,
+
+        limit: Int = Fetcher.DEFAULT_LIMIT,
+        sorting: RedditorSearchSorting = RedditorSearchFetcher.DEFAULT_SORTING
+
+    ): RedditorSearchFetcher {
+        return RedditorSearchFetcher(api, query, show, limit, sorting) { getHeaderMap() }
+    }
+
     fun subreddit(subreddit: String): Subreddit? {
 
         val authMap = getHeaderMap()
@@ -87,6 +104,42 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
         }
 
         return res.body()?.data
+    }
+
+    fun fetchSubredditsSearch(
+
+        query: String,
+
+        limit: Int = Fetcher.DEFAULT_LIMIT,
+        sorting: SubredditSearchSorting = SubredditsSearchFetcher.DEFAULT_SORTING
+
+    ): SubredditsSearchFetcher {
+        return SubredditsSearchFetcher(api, query, limit, sorting) { getHeaderMap() }
+    }
+
+    fun searchSubreddits(
+        query: String,
+        exact: Boolean? = null,
+        includeOver18: Boolean? = null,
+        includeUnadvertisable: Boolean? = null
+    ): SubredditSearchResult? {
+
+        val authMap = getHeaderMap()
+        val req = api.searchSubreddits(
+            query = query,
+            exact = exact,
+            includeOver18 = includeOver18,
+            includeUnadvertisable = includeUnadvertisable,
+            header = authMap
+        )
+
+        val res = req.execute()
+
+        if (!res.isSuccessful) {
+            return null
+        }
+
+        return res.body()
     }
 
     fun subscribe(subreddit: Subreddit, skipInitialDefaults: Boolean = true): Any? {

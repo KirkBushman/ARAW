@@ -1,6 +1,7 @@
-package com.kirkbushman.araw.http
+package com.kirkbushman.araw.models
 
 import android.os.Parcelable
+import com.kirkbushman.araw.http.EnvelopedComment
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize

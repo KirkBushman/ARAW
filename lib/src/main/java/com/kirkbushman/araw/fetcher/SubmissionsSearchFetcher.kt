@@ -63,20 +63,14 @@ class SubmissionsSearchFetcher(
             .toList()
     }
 
-    fun getSorting(): SearchSorting {
-        return sorting
-    }
-
+    fun getSorting(): SearchSorting = sorting
     fun setSorting(newSorting: SearchSorting) {
         sorting = newSorting
 
         reset()
     }
 
-    fun getTimePeriod(): TimePeriod {
-        return timePeriod
-    }
-
+    fun getTimePeriod(): TimePeriod = timePeriod
     fun setTimePeriod(newTimePeriod: TimePeriod) {
         timePeriod = newTimePeriod
 

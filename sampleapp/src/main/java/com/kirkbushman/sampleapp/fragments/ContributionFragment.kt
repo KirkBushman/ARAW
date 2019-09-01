@@ -89,6 +89,8 @@ class ContributionFragment : Fragment(R.layout.fragment_contribution) {
                     client?.contributions?.save(!saved, contribution)
                 })
             }
+
+            override fun onReplyClick(index: Int) {}
         })
     }
 

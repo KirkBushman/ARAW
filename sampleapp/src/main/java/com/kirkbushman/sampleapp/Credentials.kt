@@ -1,9 +1,11 @@
 package com.kirkbushman.sampleapp
 
 data class Credentials(
+
     val clientId: String,
     val redirectUrl: String,
     val scopes: List<String>
+
 ) {
 
     override fun equals(other: Any?): Boolean {

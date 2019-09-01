@@ -3,6 +3,7 @@ package com.kirkbushman.sampleapp.controllers
 import android.view.View
 import com.airbnb.epoxy.EpoxyController
 import com.kirkbushman.araw.models.Subreddit
+import com.kirkbushman.araw.models.SubredditSearchResult
 import com.kirkbushman.sampleapp.models.empty
 import com.kirkbushman.sampleapp.models.subreddit
 
@@ -14,6 +15,7 @@ class SubredditController(private val callback: SubredditCallback) : EpoxyContro
     }
 
     private val subreddits = ArrayList<Subreddit>()
+    private var searchResult: SubredditSearchResult? = null
 
     fun setSubreddits(subreddits: List<Subreddit>) {
         this.subreddits.clear()
@@ -21,9 +23,14 @@ class SubredditController(private val callback: SubredditCallback) : EpoxyContro
         requestModelBuild()
     }
 
+    fun setSearchResult(searchResult: SubredditSearchResult) {
+        this.searchResult = searchResult
+        requestModelBuild()
+    }
+
     override fun buildModels() {
 
-        if (subreddits.isEmpty()) {
+        if (subreddits.isEmpty() && searchResult == null) {
             empty {
                 id("empty_model")
             }
@@ -36,6 +43,18 @@ class SubredditController(private val callback: SubredditCallback) : EpoxyContro
                 subreddit(it.displayNamePrefixed)
                 subscribed(it.isSubscriber)
                 subscribeClick(View.OnClickListener { callback.subscribeClick(index) })
+            }
+        }
+
+        if (searchResult != null) {
+            searchResult!!.subreddits.forEach {
+
+                subreddit {
+                    id(it.name)
+                    subreddit(it.name)
+                    subscribed(false)
+                    subscribeClick(View.OnClickListener {})
+                }
             }
         }
     }

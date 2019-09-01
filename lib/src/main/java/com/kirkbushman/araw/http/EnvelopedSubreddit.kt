@@ -7,7 +7,6 @@ import com.kirkbushman.araw.models.Subreddit
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
-import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
 @Parcelize
@@ -19,4 +18,4 @@ data class EnvelopedSubreddit(
     @Json(name = "data")
     override val data: Subreddit
 
-) : Envelope<Subreddit>, EnvelopedData(kind, data), Parcelable, Serializable
+) : Envelope<Subreddit>, EnvelopedData(kind, data), Parcelable

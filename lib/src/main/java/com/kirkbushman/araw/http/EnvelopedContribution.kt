@@ -1,12 +1,14 @@
 package com.kirkbushman.araw.http
 
+import android.os.Parcelable
 import com.kirkbushman.araw.http.base.EnvelopeKind
 import com.kirkbushman.araw.models.mixins.Contribution
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import java.io.Serializable
+import kotlinx.android.parcel.Parcelize
 
 @JsonClass(generateAdapter = true)
+@Parcelize
 open class EnvelopedContribution(
 
     @Json(name = "kind")
@@ -15,4 +17,4 @@ open class EnvelopedContribution(
     @Json(name = "data")
     override val data: Contribution
 
-) : EnvelopedData(kind, data), Serializable
+) : EnvelopedData(kind, data), Parcelable

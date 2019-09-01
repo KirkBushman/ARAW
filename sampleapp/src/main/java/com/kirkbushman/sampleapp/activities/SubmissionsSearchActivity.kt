@@ -49,6 +49,8 @@ class SubmissionsSearchActivity : AppCompatActivity() {
                     client?.contributions?.save(!submission.isSaved, submission)
                 })
             }
+
+            override fun onReplyClick(index: Int) {}
         })
     }
 
@@ -57,8 +59,10 @@ class SubmissionsSearchActivity : AppCompatActivity() {
         setContentView(R.layout.activity_submissions_search)
 
         setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.let {
+            it.setDisplayHomeAsUpEnabled(true)
+            it.setDisplayShowHomeEnabled(true)
+        }
 
         list.setHasFixedSize(true)
         list.setController(controller)

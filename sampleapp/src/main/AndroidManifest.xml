@@ -32,6 +32,7 @@
         <activity android:name=".activities.SubmissionActivity"/>
         <activity android:name=".activities.SubmissionsActivity"/>
         <activity android:name=".activities.SubmissionsSearchActivity"/>
+        <activity android:name=".activities.SubredditsSearchActivity"/>
         <activity android:name=".activities.SubmitActivity"/>
         <activity android:name=".activities.CommonSubmissionsActivity"/>
         <activity android:name=".activities.CommentActivity"/>
@@ -40,6 +41,7 @@
         <activity android:name=".activities.RulesActivity"/>
         <activity android:name=".activities.SubscribedSubredditsActivity"/>
         <activity android:name=".activities.SelfTrophiesActivity"/>
+        <activity android:name=".activities.UserSearchActivity"/>
         <activity android:name=".activities.UserTrophiesActivity"/>
     </application>
 

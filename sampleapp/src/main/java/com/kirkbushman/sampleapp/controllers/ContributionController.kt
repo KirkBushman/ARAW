@@ -35,6 +35,7 @@ class ContributionController(private val callback: SubmissionController.Submissi
                     id(it.id)
                     author(it.author)
                     body(it.body)
+                    replyClick { _ -> callback.onReplyClick(index) }
                 }
             }
 

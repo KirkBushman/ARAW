@@ -12,11 +12,13 @@
     <string name="bttn_user">User</string>
     <string name="bttn_user_info">User Info</string>
     <string name="bttn_user_trophies">User Trophies</string>
+    <string name="bttn_user_search">User Search</string>
     <string name="bttn_subreddit">Subreddit</string>
     <string name="bttn_submission">Submission</string>
     <string name="bttn_submissions">Submissions</string>
     <string name="bttn_submissions_commons">Common submissions</string>
     <string name="bttn_submissions_search">Submissions Search</string>
+    <string name="bttn_subreddit_search">Subreddit Search</string>
     <string name="bttn_submit">Submit</string>
     <string name="bttn_submit_radio_self">Self Post</string>
     <string name="bttn_submit_radio_link">Link Post</string>
@@ -35,6 +37,7 @@
     <string name="check_sendreplies">Send Replies</string>
     <string name="check_isnsfw">Is Nsfw</string>
     <string name="check_isspoiler">Is Spoiler</string>
+    <string name="check_starts_with">Starts with:</string>
     <string name="bttn_search_user">Search</string>
     <string name="bttn_ok">OK</string>
     <string name="bttn_read">Read</string>

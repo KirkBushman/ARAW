@@ -7,7 +7,6 @@ import com.kirkbushman.araw.models.WikiPage
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
-import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
 @Parcelize
@@ -19,4 +18,4 @@ data class EnvelopedWikiPage(
     @Json(name = "data")
     override val data: WikiPage
 
-) : Envelope<WikiPage>, Parcelable, Serializable
+) : Envelope<WikiPage>, Parcelable
