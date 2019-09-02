@@ -100,14 +100,4 @@ class ContributionsFetcher(
     fun requiresTimePeriod(): Boolean {
         return getSorting().requiresTimePeriod
     }
-
-    override fun toString(): String {
-        return "ContributionsFetcher { " +
-                "username: $username, " +
-                "where: $where, " +
-                "sorting: $sorting, " +
-                "timePeriod: $timePeriod, " +
-                "${super.toString()} " +
-                "}"
-    }
 }

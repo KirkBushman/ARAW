@@ -97,8 +97,4 @@ abstract class Fetcher<T, E>(
         currentAfter = ""
         currentBefore = ""
     }
-
-    override fun toString(): String {
-        return "limit: $limit, itemsCount: $itemsCount, currentPage: $currentPage, currentBefore: $currentBefore, currentAfter: $currentAfter"
-    }
 }

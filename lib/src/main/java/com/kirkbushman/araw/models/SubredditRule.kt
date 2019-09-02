@@ -38,16 +38,4 @@ data class SubredditRule(
             val milliseconds = createdUtc / 1000L
             return Date(milliseconds)
         }
-
-    override fun toString(): String {
-        return "SubredditRule { " +
-                "kind: $kind, " +
-                "description: $description, " +
-                "descriptionHtml: $descriptionHtml, " +
-                "shortName: $shortName, " +
-                "violationReason: $violationReason, " +
-                "priority: $priority, " +
-                "createdUtc: $createdUtc " +
-                "}"
-    }
 }

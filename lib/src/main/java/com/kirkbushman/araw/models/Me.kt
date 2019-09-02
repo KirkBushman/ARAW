@@ -57,10 +57,7 @@ data class Me(
         return client.selfAccountHadler(this)
     }
 
-    override fun hashCode(): Int {
-        return id.hashCode()
-    }
-
+    override fun hashCode(): Int = id.hashCode()
     override fun equals(other: Any?): Boolean {
 
         if (other == null) {
@@ -72,24 +69,5 @@ data class Me(
         }
 
         return id == other.id
-    }
-
-    override fun toString(): String {
-        return "Me { " +
-                "id: $id, " +
-                "commentKarma: $commentKarma, " +
-                "created: $created, " +
-                "createdUtc: $createdUtc, " +
-                "hasMail: $hasMail, " +
-                "hasModMail: $hasModMail, " +
-                "hasVerifiedEmail: $hasVerifiedEmail, " +
-                "inboxCount: $inboxCount, " +
-                "isEmployee: $isEmployee, " +
-                "isGold: $isGold," +
-                "isMod: $isMod, " +
-                "linkKarma: $linkKarma, " +
-                "name: $name, " +
-                "over18: $over18 " +
-                "}"
     }
 }

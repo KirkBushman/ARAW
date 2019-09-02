@@ -47,11 +47,4 @@ class InboxFetcher(
             .map { it.data }
             .toList()
     }
-
-    override fun toString(): String {
-        return "InboxFetcher { " +
-                "where: $where, " +
-                "${super.toString()} " +
-                "}"
-    }
 }

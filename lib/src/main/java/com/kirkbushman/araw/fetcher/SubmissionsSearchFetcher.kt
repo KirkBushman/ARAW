@@ -80,13 +80,4 @@ class SubmissionsSearchFetcher(
     fun requiresTimePeriod(): Boolean {
         return getSorting().requiresTimePeriod
     }
-
-    override fun toString(): String {
-        return "SubmissionsSearchFetcher { " +
-                "subreddit: $subreddit, " +
-                "sorting: $sorting, " +
-                "timePeriod: $timePeriod, " +
-                "${super.toString()} " +
-                "}"
-    }
 }

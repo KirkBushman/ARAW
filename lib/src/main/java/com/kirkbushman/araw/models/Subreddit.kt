@@ -108,10 +108,7 @@ data class Subreddit(
         return client.subredditHandler(client, this)
     }
 
-    override fun hashCode(): Int {
-        return id.hashCode()
-    }
-
+    override fun hashCode(): Int = id.hashCode()
     override fun equals(other: Any?): Boolean {
 
         if (other == null) {
@@ -123,37 +120,5 @@ data class Subreddit(
         }
 
         return id == other.id
-    }
-
-    override fun toString(): String {
-        return "Subreddit { " +
-                "id: $id, " +
-                "accountsActive: $accountsActive, " +
-                "allowImages: $allowImages, " +
-                "areSpoilersEnabled: $areSpoilersEnabled, " +
-                "created: $created, " +
-                "createdUtc: $createdUtc, " +
-                "description: $description, " +
-                "descriptionHtml: $descriptionHtml, " +
-                "displayName: $displayName, " +
-                "displayNamePrefixed: $displayNamePrefixed, " +
-                "headerImg: $headerImg, " +
-                "headerTitle: $headerTitle, " +
-                "iconImg: $iconImg, " +
-                "isBanned: $isBanned, " +
-                "isContributor: $isContributor, " +
-                "isModerator: $isModerator, " +
-                "isMuted: $isMuted, " +
-                "isQuarantined: $isQuarantined, " +
-                "isSubscriber: $isSubscriber, " +
-                "isWikiEnabled: $isWikiEnabled, " +
-                "lang: $lang, " +
-                "over18: $over18, " +
-                "publicDescription: $publicDescription, " +
-                "publicDescriptionHtml: $publicDescriptionHtml, " +
-                "subscribers: $subscribers, " +
-                "title: $title, " +
-                "url: $url " +
-                "}"
     }
 }

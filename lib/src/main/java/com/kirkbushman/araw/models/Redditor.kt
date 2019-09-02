@@ -48,10 +48,7 @@ data class Redditor(
         return client.accountHandler(this)
     }
 
-    override fun hashCode(): Int {
-        return id.hashCode()
-    }
-
+    override fun hashCode(): Int = id.hashCode()
     override fun equals(other: Any?): Boolean {
 
         if (other == null) {
@@ -63,21 +60,5 @@ data class Redditor(
         }
 
         return id == other.id
-    }
-
-    override fun toString(): String {
-        return "Redditor { " +
-                "id: $id, " +
-                "commentKarma: $commentKarma, " +
-                "created: $created, " +
-                "createdUtc: $createdUtc, " +
-                "hasVerifiedEmail: $hasVerifiedEmail, " +
-                "isEmployee: $isEmployee, " +
-                "isFriend: $isFriend, " +
-                "isGold: $isGold, " +
-                "isMod: $isMod, " +
-                "linkKarma: $linkKarma, " +
-                "name: $name " +
-                "}"
     }
 }

@@ -30,10 +30,7 @@ data class MoreComments(
 
 ) : CommentData, Parcelable {
 
-    override fun hashCode(): Int {
-        return id.hashCode()
-    }
-
+    override fun hashCode(): Int = id.hashCode()
     override fun equals(other: Any?): Boolean {
 
         if (other == null) {
@@ -45,16 +42,5 @@ data class MoreComments(
         }
 
         return id == other.id
-    }
-
-    override fun toString(): String {
-        return "MoreComments { " +
-                "id: $id, " +
-                "fullname: $fullname, " +
-                "count: $count, " +
-                "depth: $depth, " +
-                "parentId: $parentId, " +
-                "children: $children " +
-                "}"
     }
 }

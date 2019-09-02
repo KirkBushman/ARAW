@@ -130,10 +130,7 @@ data class Comment(
             return repliesRaw.data.children.map { it.data }.toList()
         }
 
-    override fun hashCode(): Int {
-        return id.hashCode()
-    }
-
+    override fun hashCode(): Int = id.hashCode()
     override fun equals(other: Any?): Boolean {
 
         if (other == null) {
@@ -145,37 +142,5 @@ data class Comment(
         }
 
         return id == other.id
-    }
-
-    override fun toString(): String {
-        return "Comment { " +
-                "id: $id, " +
-                "fullname: $fullname, " +
-                "author: $author, " +
-                "body: $body, " +
-                "bodyHtml: $bodyHtml, " +
-                "canGild: $canGild, " +
-                "created: $created, " +
-                "createdUtc: $createdUtc, " +
-                "editedRaw: $editedRaw, " +
-                "depth: $depth, " +
-                "distinguishedRaw: $distinguishedRaw, " +
-                "isArchived: $isArchived, " +
-                "isSaved: $isSaved, " +
-                "isStickied: $isStickied, " +
-                "isSubmitter: $isSubmitter, " +
-                "likes: $likes, " +
-                "linkAuthor: $linkAuthor, " +
-                "linkId: $linkId, " +
-                "linkUrl: $linkUrl, " +
-                "linkPermalink: $linkPermalink, " +
-                "gildings: $gildings, " +
-                "parentId: $parentId, " +
-                "permalink: $permalink, " +
-                "score: $score, " +
-                "subreddit: $subreddit, " +
-                "subredditId: $subredditId, " +
-                "subredditNamePrefixed: $subredditNamePrefixed " +
-                "}"
     }
 }

@@ -14,7 +14,6 @@ import com.kirkbushman.araw.models.mixins.Editable
 import com.kirkbushman.araw.models.mixins.Gildable
 import com.kirkbushman.araw.models.mixins.Replyable
 import com.kirkbushman.araw.models.mixins.Votable
-import com.kirkbushman.araw.utils.vote
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
@@ -213,10 +212,7 @@ data class Submission(
         return client.contributionHandler(this)
     }
 
-    override fun hashCode(): Int {
-        return id.hashCode()
-    }
-
+    override fun hashCode(): Int = id.hashCode()
     override fun equals(other: Any?): Boolean {
 
         if (other == null) {
@@ -228,52 +224,5 @@ data class Submission(
         }
 
         return id == other.id
-    }
-
-    override fun toString(): String {
-        return "Submission { " +
-                "id: $id, " +
-                "fullname: $fullname, " +
-                "author: $author, " +
-                "authorFlairText: $authorFlairText, " +
-                "authorFullname: $authorFullname, " +
-                "canGild: $canGild, " +
-                "clicked: $clicked, " +
-                "created: $created, " +
-                "createdUtc: $createdUtc, " +
-                "domain: $domain, " +
-                "editedRaw: $editedRaw, " +
-                "gildings: $gildings, " +
-                "hidden: $hidden, " +
-                "isArchived: $isArchived, " +
-                "isLocked: $isLocked, " +
-                "isPinned: $isPinned, " +
-                "isRedditMediaDomain: $isRedditMediaDomain, " +
-                "isRobotIndexable: $isRobotIndexable, " +
-                "isSelf: $isSelf, " +
-                "isSpoiler: $isSpoiler, " +
-                "isStickied: $isStickied, " +
-                "isVideo: $isVideo, " +
-                "likes: $likes, " +
-                "numCrossposts: $numCrossposts, " +
-                "numComments: $numComments, " +
-                "over18: $over18, " +
-                "permalink: $permalink, " +
-                "preview: $preview, " +
-                "saved: $isSaved, " +
-                "score: $score, " +
-                "selftext: $selfText, " +
-                "selftextHtml: $selfTextHtml, " +
-                "subreddit: $subreddit, " +
-                "subredditId: $subredditId, " +
-                "subredditNamePrefixed: $subredditNamePrefixed, " +
-                "thumbnailUrl: $thumbnailUrl, " +
-                "thumbnailWidth: $thumbnailWidth, " +
-                "thumbnailHeight: $thumbnailHeight, " +
-                "title: $title, " +
-                "url: $url, " +
-                "upvoteRatio: $upvoteRatio, " +
-                "vote: $vote " +
-                "}"
     }
 }

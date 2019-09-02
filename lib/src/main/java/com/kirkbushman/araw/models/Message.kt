@@ -79,10 +79,7 @@ data class Message(
 
 ) : Thing, Votable, Created, Distinguishable, Replyable, Parcelable {
 
-    override fun hashCode(): Int {
-        return id.hashCode()
-    }
-
+    override fun hashCode(): Int = id.hashCode()
     override fun equals(other: Any?): Boolean {
 
         if (other == null) {
@@ -94,31 +91,5 @@ data class Message(
         }
 
         return id == other.id
-    }
-
-    override fun toString(): String {
-        return "Message { " +
-                "id: $id, " +
-                "fullname: $fullname, " +
-                "author: $author, " +
-                "body: $body, " +
-                "bodyHtml: $bodyHtml, " +
-                "context: $context, " +
-                "created: $created, " +
-                "createdUtc: $createdUtc, " +
-                "dest: $dest, " +
-                "rawDistinguished: $distinguishedRaw, " +
-                "firstMessage: $firstMessage, " +
-                "firstMessageName: $firstMessageName, " +
-                "isComment: $isComment, " +
-                "isUnread: $isUnread, " +
-                "likes: $likes, " +
-                "numComments: $numComments, " +
-                "parentId: $parentId, " +
-                "score: $score, " +
-                "subject: $subject, " +
-                "subreddit: $subreddit, " +
-                "subredditNamePrefixed: $subredditNamePrefixed " +
-                "}"
     }
 }
