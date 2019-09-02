@@ -30,11 +30,29 @@ data class Submission(
     @Json(name = "name")
     override val fullname: String,
 
+    @Json(name = "all_awardings")
+    val allAwarding: List<Awarding>?,
+
     @Json(name = "author")
     val author: String,
 
+    @Json(name = "author_flair_background_color")
+    val authorFlairBackgroundColor: String?,
+
+    @Json(name = "author_flair_css_class")
+    val authorFlairCssClass: String?,
+
     @Json(name = "author_flair_text")
     val authorFlairText: String?,
+
+    @Json(name = "author_flair_text_color")
+    val authorFlairTextColor: String?,
+
+    @Json(name = "author_flair_template_id")
+    val authorFlairTemplateId: String?,
+
+    @Json(name = "author_flair_type")
+    val authorFlairType: String?,
 
     @Json(name = "author_fullname")
     val authorFullname: String?,
@@ -60,6 +78,24 @@ data class Submission(
     @Json(name = "edited")
     override val editedRaw: @RawValue Any,
 
+    @Json(name = "link_flair_background_color")
+    val linkFlairBackgroundColor: String?,
+
+    @Json(name = "link_flair_css_class")
+    val linkFlairCssClass: String?,
+
+    @Json(name = "link_flair_text")
+    val linkFlairText: String?,
+
+    @Json(name = "link_flair_text_color")
+    val linkFlairTextColor: String?,
+
+    @Json(name = "link_flair_template_id")
+    val linkFlairTemplateId: String?,
+
+    @Json(name = "link_flair_type")
+    val linkFlairType: String?,
+
     @Json(name = "gildings")
     override val gildings: Gildings,
 
@@ -69,8 +105,17 @@ data class Submission(
     @Json(name = "archived")
     val isArchived: Boolean,
 
+    @Json(name = "is_crosspostable")
+    val isCrosspostable: Boolean,
+
     @Json(name = "locked")
     val isLocked: Boolean,
+
+    @Json(name = "media_only")
+    val isMediaOnly: Boolean,
+
+    @Json(name = "is_meta")
+    val isMeta: Boolean,
 
     @Json(name = "pinned")
     val isPinned: Boolean,
@@ -140,6 +185,9 @@ data class Submission(
 
     @Json(name = "subreddit_name_prefixed")
     val subredditNamePrefixed: String,
+
+    @Json(name = "subreddit_subscribers")
+    val subredditSubscribers: Int,
 
     @Json(name = "thumbnail")
     val thumbnailUrl: String?,
