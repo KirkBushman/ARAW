@@ -16,6 +16,12 @@ class SubredditActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_subreddit)
 
+        setSupportActionBar(toolbar)
+        supportActionBar?.let {
+            it.setDisplayHomeAsUpEnabled(true)
+            it.setDisplayShowHomeEnabled(true)
+        }
+
         bttn_search.setOnClickListener {
 
             val subredditName = edit_subreddit.text.toString().trim()

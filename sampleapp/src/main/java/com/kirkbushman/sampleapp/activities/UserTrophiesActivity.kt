@@ -21,8 +21,10 @@ class UserTrophiesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_user_trophies)
 
         setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.let {
+            it.setDisplayHomeAsUpEnabled(true)
+            it.setDisplayShowHomeEnabled(true)
+        }
 
         list.setHasFixedSize(true)
         list.setController(controller)
@@ -34,6 +36,8 @@ class UserTrophiesActivity : AppCompatActivity() {
             doAsync(doWork = {
 
                 val temp = client?.account?.trophies(username)
+
+                trophies.clear()
                 trophies.addAll(temp ?: listOf())
             }, onPost = {
 

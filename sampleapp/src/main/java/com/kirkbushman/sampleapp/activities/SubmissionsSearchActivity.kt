@@ -75,6 +75,8 @@ class SubmissionsSearchActivity : AppCompatActivity() {
             doAsync(doWork = {
 
                 val fetcher = client?.submissionsSearch(subreddit, query)
+
+                submissions.clear()
                 submissions.addAll(fetcher?.fetchNext() ?: listOf())
             }, onPost = {
 

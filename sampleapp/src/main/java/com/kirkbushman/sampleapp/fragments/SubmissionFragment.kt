@@ -99,6 +99,7 @@ class SubmissionFragment : Fragment(R.layout.fragment_submission) {
 
         doAsync(doWork = {
 
+            submissions.clear()
             submissions.addAll(fetcher?.fetchNext() ?: listOf())
         }, onPost = {
 

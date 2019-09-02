@@ -16,6 +16,12 @@ class WikiPageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wiki)
 
+        setSupportActionBar(toolbar)
+        supportActionBar?.let {
+            it.setDisplayHomeAsUpEnabled(true)
+            it.setDisplayShowHomeEnabled(true)
+        }
+
         bttn_search.setOnClickListener {
 
             val subreddit = edit_subreddit.text.toString().trim()

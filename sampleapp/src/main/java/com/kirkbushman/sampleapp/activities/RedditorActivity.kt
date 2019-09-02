@@ -16,6 +16,12 @@ class RedditorActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_redditor)
 
+        setSupportActionBar(toolbar)
+        supportActionBar?.let {
+            it.setDisplayHomeAsUpEnabled(true)
+            it.setDisplayShowHomeEnabled(true)
+        }
+
         bttn_search.setOnClickListener {
 
             val username = edit_user.text.toString().trim()

@@ -22,8 +22,10 @@ class RedditorInfoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_redditor_info)
 
         setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.let {
+            it.setDisplayHomeAsUpEnabled(true)
+            it.setDisplayShowHomeEnabled(true)
+        }
 
         pager.adapter = adapter
         pager.offscreenPageLimit = 4

@@ -22,8 +22,10 @@ class SelfAccountInfoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_selfaccount_info)
 
         setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.let {
+            it.setDisplayHomeAsUpEnabled(true)
+            it.setDisplayShowHomeEnabled(true)
+        }
 
         pager.adapter = adapter
         pager.offscreenPageLimit = 5

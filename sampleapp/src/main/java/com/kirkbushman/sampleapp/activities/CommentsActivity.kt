@@ -99,6 +99,7 @@ class CommentsActivity : AppCompatActivity() {
                     controller.setSubmission(fetcher.getSubmission()!!)
                 }
 
+                comments.clear()
                 comments.addAll(temp.toCommentSequence())
             }, onPost = {
 

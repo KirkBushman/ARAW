@@ -81,6 +81,8 @@ class InboxFragment : Fragment(R.layout.fragment_inbox) {
         doAsync(doWork = {
 
             val temp = fetcher?.fetchNext() ?: listOf()
+
+            messages.clear()
             messages.addAll(temp)
         }, onPost = {
 

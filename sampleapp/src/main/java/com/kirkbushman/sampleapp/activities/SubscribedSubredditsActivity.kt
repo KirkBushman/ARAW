@@ -37,12 +37,20 @@ class SubscribedSubredditsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mine_subreddits)
 
+        setSupportActionBar(toolbar)
+        supportActionBar?.let {
+            it.setDisplayHomeAsUpEnabled(true)
+            it.setDisplayShowHomeEnabled(true)
+        }
+
         list.setHasFixedSize(true)
         list.setController(controller)
 
         doAsync(doWork = {
 
             val temp = fetcher?.fetchNext() ?: listOf()
+
+            subreddits.clear()
             subreddits.addAll(temp)
         }, onPost = {
 

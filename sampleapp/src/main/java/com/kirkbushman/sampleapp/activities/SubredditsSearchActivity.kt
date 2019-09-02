@@ -56,6 +56,8 @@ class SubredditsSearchActivity : AppCompatActivity() {
                 doAsync(doWork = {
 
                     val fetcher = client?.fetchSubredditsSearch(query)
+
+                    subreddits.clear()
                     subreddits.addAll(fetcher?.fetchNext() ?: listOf())
                 }, onPost = {
 

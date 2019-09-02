@@ -66,8 +66,10 @@ class SubmissionsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_submissions)
 
         setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.let {
+            it.setDisplayHomeAsUpEnabled(true)
+            it.setDisplayShowHomeEnabled(true)
+        }
 
         list.setHasFixedSize(true)
         list.setController(controller)
@@ -79,6 +81,8 @@ class SubmissionsActivity : AppCompatActivity() {
             doAsync(doWork = {
 
                 fetcher = client?.submissions(subredditName)
+
+                submissions.clear()
                 submissions.addAll(fetcher?.fetchNext() ?: listOf())
             }, onPost = {
 

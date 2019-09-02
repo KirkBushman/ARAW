@@ -106,6 +106,8 @@ class SelfContributionFragment : Fragment(R.layout.fragment_contribution) {
         doAsync(doWork = {
 
             fetcher = getFetcher()
+
+            contributions.clear()
             contributions.addAll(fetcher?.fetchNext() ?: listOf())
         }, onPost = {
 

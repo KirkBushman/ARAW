@@ -21,8 +21,10 @@ class RulesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_rules)
 
         setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.let {
+            it.setDisplayHomeAsUpEnabled(true)
+            it.setDisplayShowHomeEnabled(true)
+        }
 
         list.setHasFixedSize(true)
         list.setController(controller)
@@ -34,6 +36,8 @@ class RulesActivity : AppCompatActivity() {
             doAsync(doWork = {
 
                 val newRules = client?.rules(subreddit)
+
+                rules.clear()
                 rules.addAll(newRules ?: arrayOf())
             }, onPost = {
 

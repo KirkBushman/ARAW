@@ -20,12 +20,20 @@ class SelfTrophiesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_self_trophies)
 
+        setSupportActionBar(toolbar)
+        supportActionBar?.let {
+            it.setDisplayHomeAsUpEnabled(true)
+            it.setDisplayShowHomeEnabled(true)
+        }
+
         list.setHasFixedSize(true)
         list.setController(controller)
 
         doAsync(doWork = {
 
             val temp = client?.selfAccount?.trophies()
+
+            trophies.clear()
             trophies.addAll(temp ?: listOf())
         }, onPost = {
 

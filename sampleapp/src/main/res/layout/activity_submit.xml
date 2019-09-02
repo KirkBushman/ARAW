@@ -1,86 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <RadioGroup
-            android:id="@+id/kind_radio_group"
+    <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <RadioButton
-                android:id="@+id/bttn_radio_self"
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                app:layout_scrollFlags="scroll|enterAlways" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <RadioGroup
+                android:id="@+id/kind_radio_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <RadioButton
+                    android:id="@+id/bttn_radio_self"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="@string/bttn_submit_radio_self"
+                    android:checked="true"/>
+
+            <RadioButton
+                    android:id="@+id/bttn_radio_link"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="@string/bttn_submit_radio_link"
+                    />
+
+        </RadioGroup>
+
+        <EditText
+                android:id="@+id/edit_subreddit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:text="@string/bttn_submit_radio_self"
-                android:checked="true"/>
+                android:hint="@string/edit_insert_subreddit"
+                />
 
-        <RadioButton
-                android:id="@+id/bttn_radio_link"
+        <EditText
+                android:id="@+id/edit_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:text="@string/bttn_submit_radio_link"
-        />
+                android:hint="@string/edit_insert_title"
+                />
 
-    </RadioGroup>
+        <EditText
+                android:id="@+id/edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:hint="@string/edit_insert_text_or_link"
+                />
 
-    <EditText
-            android:id="@+id/edit_subreddit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:hint="@string/edit_insert_subreddit"
-    />
+        <CheckBox
+                android:id="@+id/check_sendreplies"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/check_sendreplies"
+                />
 
-    <EditText
-            android:id="@+id/edit_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:hint="@string/edit_insert_title"
-    />
+        <CheckBox
+                android:id="@+id/check_isnsfw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/check_isnsfw"
+                />
 
-    <EditText
-            android:id="@+id/edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:hint="@string/edit_insert_text_or_link"
-    />
+        <CheckBox
+                android:id="@+id/check_isspoiler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/check_isspoiler"
+                />
 
-    <CheckBox
-            android:id="@+id/check_sendreplies"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="@string/check_sendreplies"
-    />
+        <Button
+                android:id="@+id/bttn_submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/bttn_submit"
+                />
 
-    <CheckBox
-            android:id="@+id/check_isnsfw"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="@string/check_isnsfw"
-    />
+    </LinearLayout>
 
-    <CheckBox
-            android:id="@+id/check_isspoiler"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="@string/check_isspoiler"
-    />
-
-    <Button
-            android:id="@+id/bttn_submit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="@string/bttn_submit"
-    />
-
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
