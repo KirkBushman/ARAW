@@ -86,7 +86,7 @@ class SubmissionsSearchActivity : AppCompatActivity() {
             })
         }
 
-        all_subs.setOnCheckedChangeListener { bttn, checked ->
+        all_subs.setOnCheckedChangeListener { _, checked ->
 
             if (checked) {
                 subreddit.visibility = View.INVISIBLE

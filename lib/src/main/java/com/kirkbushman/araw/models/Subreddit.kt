@@ -22,7 +22,7 @@ data class Subreddit(
     val accountsActive: Int?,
 
     @Json(name = "accounts_active_is_fuzzed")
-    val accountsActiveIsFuzzed: Boolean,
+    val accountsActiveIsFuzzed: Boolean?,
 
     @Json(name = "allow_images")
     val allowImages: Boolean,
@@ -58,7 +58,7 @@ data class Subreddit(
     val headerTitle: String?,
 
     @Json(name = "icon_img")
-    val iconImg: String,
+    val iconImg: String?,
 
     @Json(name = "user_is_banned")
     val isBanned: Boolean?,
@@ -73,7 +73,7 @@ data class Subreddit(
     val isMuted: Boolean?,
 
     @Json(name = "quarantine")
-    val isQuarantined: Boolean,
+    val isQuarantined: Boolean?,
 
     @Json(name = "user_is_subscriber")
     val isSubscriber: Boolean,
