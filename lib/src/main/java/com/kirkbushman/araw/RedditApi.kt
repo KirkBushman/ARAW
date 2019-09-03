@@ -2,6 +2,7 @@ package com.kirkbushman.araw
 
 import com.kirkbushman.araw.http.EnvelopedCommentListing
 import com.kirkbushman.araw.http.EnvelopedContributionListing
+import com.kirkbushman.araw.http.EnvelopedData
 import com.kirkbushman.araw.http.EnvelopedMessageListing
 import com.kirkbushman.araw.http.EnvelopedRedditor
 import com.kirkbushman.araw.http.EnvelopedRedditorListing
@@ -10,6 +11,7 @@ import com.kirkbushman.araw.http.EnvelopedSubreddit
 import com.kirkbushman.araw.http.EnvelopedSubredditListing
 import com.kirkbushman.araw.http.EnvelopedTrophyList
 import com.kirkbushman.araw.http.EnvelopedWikiPage
+import com.kirkbushman.araw.http.base.Listing
 import com.kirkbushman.araw.models.Me
 import com.kirkbushman.araw.models.MoreChildrenResponse
 import com.kirkbushman.araw.models.Reply
@@ -66,7 +68,7 @@ interface RedditApi {
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
         @HeaderMap header: HashMap<String, String>
-    ): Call<EnvelopedRedditor>
+    ): Call<List<Listing<EnvelopedData>>>
 
     @GET("/user/{username}/about/.json")
     fun user(
@@ -114,6 +116,7 @@ interface RedditApi {
         @Query("q") query: String,
         @Query("show") show: String? = null,
         @Query("sort") sorting: String,
+        @Query("t") timePeriod: String?,
         @Query("type") type: String = "user",
         @Query("limit") limit: Int,
         @Query("count") count: Int,
@@ -144,6 +147,7 @@ interface RedditApi {
         @Query("q") query: String,
         @Query("show") show: String? = null,
         @Query("sort") sorting: String,
+        @Query("t") timePeriod: String?,
         @Query("type") type: String = "sr",
         @Query("limit") limit: Int,
         @Query("count") count: Int,
@@ -194,6 +198,20 @@ interface RedditApi {
         @Path("subreddit") subreddit: String,
         @Path("sorting") sorting: String,
         @Query("t") timePeriod: String?,
+        @Query("limit") limit: Int,
+        @Query("count") count: Int,
+        @Query("after") after: String? = null,
+        @Query("before") before: String? = null,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<EnvelopedSubmissionListing>
+
+    @GET("/search")
+    fun fetchSubmissionsSearchGeneral(
+        @Query("q") query: String,
+        @Query("show") show: String? = null,
+        @Query("sort") sorting: String,
+        @Query("t") timePeriod: String?,
+        @Query("type") type: String = "link",
         @Query("limit") limit: Int,
         @Query("count") count: Int,
         @Query("after") after: String? = null,

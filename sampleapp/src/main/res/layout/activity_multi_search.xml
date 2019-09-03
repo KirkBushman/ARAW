@@ -20,43 +20,23 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                <androidx.appcompat.widget.LinearLayoutCompat
+                <EditText
+                        android:id="@+id/query"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:orientation="vertical">
-
-                    <EditText
-                            android:id="@+id/subreddit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/edit_insert_subreddit"
-                    />
-
-                    <EditText
-                            android:id="@+id/query"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/edit_insert_query"
-                    />
-
-                    <CheckBox
-                            android:id="@+id/all_subs"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/check_allsubs"
-                    />
-
-                </androidx.appcompat.widget.LinearLayoutCompat>
+                        android:hint="@string/edit_insert_query"
+                        />
 
                 <Button android:id="@+id/search_bttn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="5"
                         android:text="@string/bttn_ok"
-                />
+                        />
 
             </LinearLayout>
+
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>

@@ -11,7 +11,7 @@ import com.kirkbushman.araw.models.general.TimePeriod
 class SubmissionsSearchFetcher(
 
     private val api: RedditApi,
-    private val subreddit: String,
+    private val subreddit: String?,
     private val query: String,
 
     limit: Int = DEFAULT_LIMIT,
@@ -31,17 +31,30 @@ class SubmissionsSearchFetcher(
 
     override fun onFetching(forward: Boolean, dirToken: String): Listing<EnvelopedSubmission>? {
 
-        val req = api.fetchSubmissionsSearch(
-            subreddit = subreddit,
-            query = query,
-            sorting = getSorting().sortingStr,
-            timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
-            limit = if (forward) getLimit() else getLimit() + 1,
-            count = getCount(),
-            after = if (forward) dirToken else null,
-            before = if (!forward) dirToken else null,
-            header = getHeader()
-        )
+        val req = if (subreddit != null) {
+            api.fetchSubmissionsSearch(
+                subreddit = subreddit,
+                query = query,
+                sorting = getSorting().sortingStr,
+                timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
+                limit = if (forward) getLimit() else getLimit() + 1,
+                count = getCount(),
+                after = if (forward) dirToken else null,
+                before = if (!forward) dirToken else null,
+                header = getHeader()
+            )
+        } else {
+            api.fetchSubmissionsSearchGeneral(
+                query = query,
+                sorting = getSorting().sortingStr,
+                timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
+                limit = if (forward) getLimit() else getLimit() + 1,
+                count = getCount(),
+                after = if (forward) dirToken else null,
+                before = if (!forward) dirToken else null,
+                header = getHeader()
+            )
+        }
 
         val res = req.execute()
         if (!res.isSuccessful) {

@@ -218,7 +218,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
 
     fun submissionsSearch(
 
-        subreddit: String,
+        subreddit: String?,
         query: String,
 
         limit: Int = Fetcher.DEFAULT_LIMIT,

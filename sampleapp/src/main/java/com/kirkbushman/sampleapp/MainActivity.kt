@@ -96,6 +96,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        /*bttn_multi_search.setOnClickListener {
+
+            val intent = Intent(this, MultiSearchActivity::class.java)
+            startActivity(intent)
+        }*/
+
         bttn_submit.setOnClickListener {
 
             val intent = Intent(this, SubmitActivity::class.java)

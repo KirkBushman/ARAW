@@ -138,6 +138,13 @@
                     android:layout_margin="8dp"
                     android:text="@string/bttn_subreddit_search" />
 
+            <!--Button
+                    android:id="@+id/bttn_multi_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="@string/bttn_multi_search" /-->
+
             <Button
                     android:id="@+id/bttn_submit"
                     android:layout_width="match_parent"

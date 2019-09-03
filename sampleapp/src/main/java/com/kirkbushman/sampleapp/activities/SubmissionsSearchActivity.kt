@@ -1,6 +1,7 @@
 package com.kirkbushman.sampleapp.activities
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.kirkbushman.araw.models.Submission
 import com.kirkbushman.araw.models.general.Vote
@@ -71,10 +72,11 @@ class SubmissionsSearchActivity : AppCompatActivity() {
 
             val subreddit = subreddit.text.toString().trim()
             val query = query.text.toString().trim()
+            val allSubs = all_subs.isChecked
 
             doAsync(doWork = {
 
-                val fetcher = client?.submissionsSearch(subreddit, query)
+                val fetcher = client?.submissionsSearch(if (allSubs) null else subreddit, query)
 
                 submissions.clear()
                 submissions.addAll(fetcher?.fetchNext() ?: listOf())
@@ -82,6 +84,15 @@ class SubmissionsSearchActivity : AppCompatActivity() {
 
                 controller.setSubmission(submissions)
             })
+        }
+
+        all_subs.setOnCheckedChangeListener { bttn, checked ->
+
+            if (checked) {
+                subreddit.visibility = View.INVISIBLE
+            } else {
+                subreddit.visibility = View.VISIBLE
+            }
         }
     }
 }

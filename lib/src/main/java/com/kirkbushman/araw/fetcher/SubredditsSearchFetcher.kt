@@ -6,6 +6,7 @@ import com.kirkbushman.araw.http.base.Listing
 import com.kirkbushman.araw.http.listings.SubredditListing
 import com.kirkbushman.araw.models.Subreddit
 import com.kirkbushman.araw.models.general.SubredditSearchSorting
+import com.kirkbushman.araw.models.general.TimePeriod
 
 class SubredditsSearchFetcher(
 
@@ -15,6 +16,7 @@ class SubredditsSearchFetcher(
     limit: Int = DEFAULT_LIMIT,
 
     private var sorting: SubredditSearchSorting = DEFAULT_SORTING,
+    private var timePeriod: TimePeriod = DEFAULT_TIMEPERIOD,
 
     private inline val getHeader: () -> HashMap<String, String>
 
@@ -23,6 +25,7 @@ class SubredditsSearchFetcher(
     companion object {
 
         val DEFAULT_SORTING = SubredditSearchSorting.RELEVANCE
+        val DEFAULT_TIMEPERIOD = TimePeriod.ALL_TIME
     }
 
     override fun onFetching(forward: Boolean, dirToken: String): Listing<EnvelopedSubreddit>? {
@@ -30,6 +33,7 @@ class SubredditsSearchFetcher(
         val req = api.fetchSubredditsSearch(
             query = query,
             sorting = getSorting().sortingStr,
+            timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
             limit = if (forward) getLimit() else getLimit() + 1,
             count = getCount(),
             after = if (forward) dirToken else null,
@@ -60,6 +64,13 @@ class SubredditsSearchFetcher(
     fun getSorting(): SubredditSearchSorting = sorting
     fun setSorting(newSorting: SubredditSearchSorting) {
         sorting = newSorting
+
+        reset()
+    }
+
+    fun getTimePeriod(): TimePeriod = timePeriod
+    fun setTimePeriod(newTimePeriod: TimePeriod) {
+        timePeriod = newTimePeriod
 
         reset()
     }

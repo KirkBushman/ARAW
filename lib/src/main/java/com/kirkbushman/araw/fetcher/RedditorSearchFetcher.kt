@@ -6,6 +6,7 @@ import com.kirkbushman.araw.http.base.Listing
 import com.kirkbushman.araw.http.listings.RedditorListing
 import com.kirkbushman.araw.models.Redditor
 import com.kirkbushman.araw.models.general.RedditorSearchSorting
+import com.kirkbushman.araw.models.general.TimePeriod
 
 class RedditorSearchFetcher(
 
@@ -17,6 +18,7 @@ class RedditorSearchFetcher(
     limit: Int = DEFAULT_LIMIT,
 
     private var sorting: RedditorSearchSorting = DEFAULT_SORTING,
+    private var timePeriod: TimePeriod = DEFAULT_TIMEPERIOD,
 
     private inline val getHeader: () -> HashMap<String, String>
 
@@ -25,6 +27,7 @@ class RedditorSearchFetcher(
     companion object {
 
         val DEFAULT_SORTING = RedditorSearchSorting.RELEVANCE
+        val DEFAULT_TIMEPERIOD = TimePeriod.ALL_TIME
     }
 
     override fun onFetching(forward: Boolean, dirToken: String): Listing<EnvelopedRedditor>? {
@@ -33,6 +36,7 @@ class RedditorSearchFetcher(
             query = query,
             show = show,
             sorting = getSorting().sortingStr,
+            timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
             limit = if (forward) getLimit() else getLimit() + 1,
             count = getCount(),
             after = if (forward) dirToken else null,
@@ -63,6 +67,13 @@ class RedditorSearchFetcher(
     fun getSorting(): RedditorSearchSorting = sorting
     fun setSorting(newSorting: RedditorSearchSorting) {
         sorting = newSorting
+
+        reset()
+    }
+
+    fun getTimePeriod(): TimePeriod = timePeriod
+    fun setTimePeriod(newTimePeriod: TimePeriod) {
+        timePeriod = newTimePeriod
 
         reset()
     }
