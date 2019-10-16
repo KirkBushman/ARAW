@@ -26,14 +26,17 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
                         android:hint="@string/edit_insert_username"
-                />
+                        android:inputType="text"
+                        android:importantForAutofill="no"
+                        />
 
-                <Button android:id="@+id/search_bttn"
+                <com.google.android.material.button.MaterialButton
+                        android:id="@+id/search_bttn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="5"
                         android:text="@string/bttn_ok"
-                />
+                        />
 
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
@@ -43,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:tabMode="scrollable"
-        />
+                />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -52,6 +55,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    />
+            />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

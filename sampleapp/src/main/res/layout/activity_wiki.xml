@@ -27,9 +27,12 @@
                         android:layout_margin="8dp"
                         android:layout_weight="2"
                         android:layout_gravity="center"
-                        android:hint="@string/edit_insert_subreddit"/>
+                        android:hint="@string/edit_insert_subreddit"
+                        android:inputType="text"
+                        android:importantForAutofill="no"
+                        />
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                         android:id="@+id/bttn_search"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

@@ -27,7 +27,9 @@
                         android:layout_margin="8dp"
                         android:layout_weight="2"
                         android:layout_gravity="center"
-                        android:hint="@string/edit_insert_user"/>
+                        android:hint="@string/edit_insert_user"
+                        android:inputType="text"
+                        android:importantForAutofill="no" />
 
                 <Button
                         android:id="@+id/bttn_search"
@@ -50,12 +52,12 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <TextView
-                  android:id="@+id/redditor_text"
-                  android:orientation="vertical"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_margin="8dp"
-                  android:textSize="16sp" />
+                android:id="@+id/redditor_text"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:textSize="16sp" />
 
     </ScrollView>
 

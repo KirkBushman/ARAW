@@ -27,9 +27,11 @@
                         android:layout_margin="8dp"
                         android:layout_weight="2"
                         android:layout_gravity="center"
-                        android:hint="@string/edit_insert_comment_id"/>
+                        android:inputType="text"
+                        android:hint="@string/edit_insert_comment_id"
+                        android:importantForAutofill="no" />
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                         android:id="@+id/bttn_search"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

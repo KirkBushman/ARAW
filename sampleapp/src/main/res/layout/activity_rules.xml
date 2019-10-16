@@ -26,14 +26,17 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:hint="@string/edit_insert_subreddit"
-                />
+                        android:inputType="text"
+                        android:importantForAutofill="no"
+                        />
 
-                <Button android:id="@+id/search_bttn"
+                <com.google.android.material.button.MaterialButton
+                        android:id="@+id/search_bttn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="6"
                         android:text="@string/bttn_ok"
-                />
+                        />
 
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>

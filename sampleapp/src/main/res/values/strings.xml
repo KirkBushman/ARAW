@@ -19,7 +19,6 @@
     <string name="bttn_submissions_commons">Common submissions</string>
     <string name="bttn_submissions_search">Submissions Search</string>
     <string name="bttn_subreddit_search">Subreddit Search</string>
-    <string name="bttn_multi_search">Multi Search</string>
     <string name="bttn_submit">Submit</string>
     <string name="bttn_submit_radio_self">Self Post</string>
     <string name="bttn_submit_radio_link">Link Post</string>
@@ -35,6 +34,7 @@
     <string name="edit_insert_comment_id">Insert comment id:</string>
     <string name="edit_insert_title">Insert title:</string>
     <string name="edit_insert_text_or_link">Insert text or link:</string>
+    <string name="edit_comment_reply">Comment Reply:</string>
     <string name="check_sendreplies">Send Replies</string>
     <string name="check_isnsfw">Is Nsfw</string>
     <string name="check_isspoiler">Is Spoiler</string>

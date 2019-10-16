@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <TextView
             android:id="@+id/title"
@@ -13,14 +13,17 @@
             android:textSize="18sp"
             android:textStyle="bold"
             tools:text="Reply for comment deii8f:"
-    />
+            />
 
     <EditText
             android:id="@+id/edit_reply"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-    />
+            android:inputType="text"
+            android:hint="@string/edit_comment_reply"
+            android:importantForAutofill="no"
+            />
 
     <Button
             android:id="@+id/bttn_reply"
@@ -28,6 +31,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:text="@string/bttn_reply"
-    />
+            />
 
 </LinearLayout>

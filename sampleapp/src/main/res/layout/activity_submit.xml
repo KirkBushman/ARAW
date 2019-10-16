@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-            <RadioButton
+            <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/bttn_radio_self"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
                     android:text="@string/bttn_submit_radio_self"
                     android:checked="true"/>
 
-            <RadioButton
+            <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/bttn_radio_link"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -52,6 +52,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:hint="@string/edit_insert_subreddit"
+                android:inputType="text"
+                android:importantForAutofill="no"
                 />
 
         <EditText
@@ -60,6 +62,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:hint="@string/edit_insert_title"
+                android:inputType="text"
+                android:importantForAutofill="no"
                 />
 
         <EditText
@@ -68,6 +72,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:hint="@string/edit_insert_text_or_link"
+                android:inputType="text"
+                android:importantForAutofill="no"
                 />
 
         <CheckBox
@@ -94,7 +100,7 @@
                 android:text="@string/check_isspoiler"
                 />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

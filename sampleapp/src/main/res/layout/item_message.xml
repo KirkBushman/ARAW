@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <TextView
             android:id="@+id/subject"
@@ -11,14 +11,14 @@
             android:layout_margin="8dp"
             android:textSize="16sp"
             android:textStyle="bold"
-    />
+            />
 
     <TextView
             android:id="@+id/author"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-    />
+            />
 
     <TextView
             android:id="@+id/body"
@@ -27,26 +27,28 @@
             android:layout_margin="8dp"
             android:ellipsize="end"
             android:maxLines="5"
-    />
+            />
 
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-        <Button android:id="@+id/read_button"
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/read_button"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/bttn_read"
-        />
+                />
 
-        <Button android:id="@+id/unread_button"
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/unread_button"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/bttn_unread"
-        />
+                />
 
     </LinearLayout>
 </LinearLayout>

@@ -54,21 +54,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <Button android:id="@+id/upvote_button"
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/upvote_button"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/bttn_upvote"
         />
 
-        <Button android:id="@+id/none_button"
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/none_button"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/bttn_none"
         />
 
-        <Button android:id="@+id/downvote_button"
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/downvote_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -77,7 +80,8 @@
 
     </LinearLayout>
 
-    <Button android:id="@+id/save_button"
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/save_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"

@@ -31,21 +31,25 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/edit_insert_subreddit"
-                    />
+                            android:inputType="text"
+                            android:importantForAutofill="no"
+                            />
 
                     <EditText
                             android:id="@+id/query"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/edit_insert_query"
-                    />
+                            android:inputType="text"
+                            android:importantForAutofill="no"
+                            />
 
                     <CheckBox
                             android:id="@+id/all_subs"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/check_allsubs"
-                    />
+                            />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -54,7 +58,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="5"
                         android:text="@string/bttn_ok"
-                />
+                        />
 
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
