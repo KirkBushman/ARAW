@@ -361,7 +361,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
         return CommentsFetcher(api, submissionId, limit = limit, depth = depth) { getHeaderMap() }
     }
 
-    fun reply(replyable: Replyable, text: String): Any? {
+    fun reply(replyable: Replyable, text: String): Comment? {
         return reply(replyable.fullname, text)
     }
 
@@ -808,7 +808,15 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
         }
 
         fun subscribedSubreddits(limit: Int = Fetcher.DEFAULT_LIMIT): SubredditsFetcher {
-            return SubredditsFetcher(api, "subscriber", limit) { getHeaderMap() }
+            return SubredditsFetcher(api, "subscriber", limit, getHeaderMap)
+        }
+
+        fun contributedSubreddits(limit: Int = Fetcher.DEFAULT_LIMIT): SubredditsFetcher {
+            return SubredditsFetcher(api, "contributor", limit, getHeaderMap)
+        }
+
+        fun modeatedSubreddits(limit: Int = Fetcher.DEFAULT_LIMIT): SubredditsFetcher {
+            return SubredditsFetcher(api, "moderator", limit, getHeaderMap)
         }
 
         fun trophies(): List<Trophy>? {
