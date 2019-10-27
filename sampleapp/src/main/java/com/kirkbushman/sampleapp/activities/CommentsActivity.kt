@@ -26,28 +26,28 @@ class CommentsActivity : AppCompatActivity() {
             override fun onUpvoteClick(submission: Submission) {
 
                 doAsync(doWork = {
-                    client?.contributions?.vote(Vote.UPVOTE, submission)
+                    client?.contributionClient?.vote(Vote.UPVOTE, submission)
                 })
             }
 
             override fun onNoneClick(submission: Submission) {
 
                 doAsync(doWork = {
-                    client?.contributions?.vote(Vote.NONE, submission)
+                    client?.contributionClient?.vote(Vote.NONE, submission)
                 })
             }
 
             override fun onDownClick(submission: Submission) {
 
                 doAsync(doWork = {
-                    client?.contributions?.vote(Vote.DOWNVOTE, submission)
+                    client?.contributionClient?.vote(Vote.DOWNVOTE, submission)
                 })
             }
 
             override fun onSaveClick(submission: Submission) {
 
                 doAsync(doWork = {
-                    client?.contributions?.save(!submission.isSaved, submission)
+                    client?.contributionClient?.save(!submission.isSaved, submission)
                 })
             }
 

@@ -40,11 +40,11 @@ class InboxFragment : Fragment(R.layout.fragment_inbox) {
     private val fetcher by lazy {
 
         when (passedTag) {
-            TAG_INBOX -> client?.messages?.inbox()
-            TAG_UNREAD -> client?.messages?.unread()
-            TAG_MESSAGES -> client?.messages?.messages()
-            TAG_SENT -> client?.messages?.sent()
-            TAG_MENTIONS -> client?.messages?.mentions()
+            TAG_INBOX -> client?.messageClient?.inbox()
+            TAG_UNREAD -> client?.messageClient?.unread()
+            TAG_MESSAGES -> client?.messageClient?.messages()
+            TAG_SENT -> client?.messageClient?.sent()
+            TAG_MENTIONS -> client?.messageClient?.mentions()
 
             else -> null
         }
@@ -59,7 +59,7 @@ class InboxFragment : Fragment(R.layout.fragment_inbox) {
 
                 doAsync(doWork = {
                     val message = messages[index]
-                    client?.messages?.markAsRead(true, message)
+                    client?.messageClient?.markAsRead(true, message)
                 })
             }
 
@@ -67,7 +67,7 @@ class InboxFragment : Fragment(R.layout.fragment_inbox) {
 
                 doAsync(doWork = {
                     val message = messages[index]
-                    client?.messages?.markAsRead(false, message)
+                    client?.messageClient?.markAsRead(false, message)
                 })
             }
         })

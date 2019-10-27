@@ -1,6 +1,5 @@
 package com.kirkbushman.araw.models
 
-import com.kirkbushman.araw.RedditClient
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
@@ -52,10 +51,6 @@ data class Me(
     val over18: Boolean
 
 ) : Account {
-
-    fun withClient(client: RedditClient): RedditClient.SelfAccountHandler {
-        return client.selfAccountHadler(this)
-    }
 
     override fun hashCode(): Int = id.hashCode()
     override fun equals(other: Any?): Boolean {

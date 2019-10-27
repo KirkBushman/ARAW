@@ -1,6 +1,5 @@
 package com.kirkbushman.araw.models
 
-import com.kirkbushman.araw.RedditClient
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
@@ -43,10 +42,6 @@ data class Redditor(
     override val name: String
 
 ) : Account {
-
-    fun withClient(client: RedditClient): RedditClient.AccountHandler {
-        return client.accountHandler(this)
-    }
 
     override fun hashCode(): Int = id.hashCode()
     override fun equals(other: Any?): Boolean {

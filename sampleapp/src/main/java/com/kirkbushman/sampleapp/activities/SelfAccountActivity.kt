@@ -25,7 +25,7 @@ class SelfAccountActivity : AppCompatActivity() {
         var me: Me? = null
         doAsync(doWork = {
 
-            me = client?.me()
+            me = client?.accountClient?.me()
         }, onPost = {
 
             self_account.text = me.toString()

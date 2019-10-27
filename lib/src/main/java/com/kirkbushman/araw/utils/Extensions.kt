@@ -1,6 +1,7 @@
 package com.kirkbushman.araw.utils
 
 import com.kirkbushman.araw.models.Comment
+import com.kirkbushman.araw.models.Friend
 import com.kirkbushman.araw.models.general.Distinguished
 import com.kirkbushman.araw.models.general.Vote
 import com.kirkbushman.araw.models.mixins.CommentData
@@ -65,6 +66,12 @@ val Editable.edited: Date
         }
 
         return Date()
+    }
+
+val Friend.addedDate: Date
+    get() {
+        val milliseconds = added * 1000L
+        return Date(milliseconds)
     }
 
 fun List<CommentData>.toCommentSequence(): ArrayList<CommentData> {

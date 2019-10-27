@@ -36,7 +36,7 @@ class SubmitActivity : AppCompatActivity() {
                     else -> SubmissionKind.self
                 }
 
-                client?.submit(
+                client?.subredditClient?.submit(
                     subredditName = subredditName,
                     title = title,
                     kind = kind,

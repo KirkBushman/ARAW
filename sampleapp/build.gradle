@@ -41,6 +41,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_ver"
+    implementation "androidx.constraintlayout:constraintlayout:$constr_ver"
 
     implementation project(":lib")
 

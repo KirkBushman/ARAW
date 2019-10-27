@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_mine_subreddits.*
 class SubscribedSubredditsActivity : AppCompatActivity() {
 
     private val client by lazy { TestApplication.instance.getClient() }
-    private val fetcher by lazy { client?.selfAccount?.subscribedSubreddits(limit = 100) }
+    private val fetcher by lazy { client?.accountClient?.subscribedSubreddits(limit = 100) }
 
     private val subreddits = ArrayList<Subreddit>()
     private val controller by lazy { SubredditController(callback) }

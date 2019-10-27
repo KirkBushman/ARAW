@@ -1,7 +1,6 @@
 package com.kirkbushman.araw.models
 
 import android.os.Parcelable
-import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.http.EnvelopedCommentDataListing
 import com.kirkbushman.araw.models.general.Gildings
 import com.kirkbushman.araw.models.mixins.CommentData
@@ -105,10 +104,6 @@ data class Comment(
     val subredditNamePrefixed: String
 
 ) : CommentData, Votable, Created, Editable, Distinguishable, Gildable, Replyable, Parcelable {
-
-    fun withClient(client: RedditClient): RedditClient.ContributionHandler {
-        return client.contributionHandler(this)
-    }
 
     val hasReplies: Boolean
         get() {

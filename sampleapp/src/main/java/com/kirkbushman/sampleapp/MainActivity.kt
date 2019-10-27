@@ -12,6 +12,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        bttn_apis.setOnClickListener {
+
+            val intent = Intent(this, ApisActivity::class.java)
+            startActivity(intent)
+        }
+
         bttn_me.setOnClickListener {
 
             val intent = Intent(this, SelfAccountActivity::class.java)

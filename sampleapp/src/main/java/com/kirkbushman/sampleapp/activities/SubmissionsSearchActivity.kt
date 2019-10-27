@@ -23,7 +23,7 @@ class SubmissionsSearchActivity : AppCompatActivity() {
 
                 doAsync(doWork = {
                     val submission = submissions[index]
-                    client?.contributions?.vote(Vote.UPVOTE, submission)
+                    client?.contributionClient?.vote(Vote.UPVOTE, submission)
                 })
             }
 
@@ -31,7 +31,7 @@ class SubmissionsSearchActivity : AppCompatActivity() {
 
                 doAsync(doWork = {
                     val submission = submissions[index]
-                    client?.contributions?.vote(Vote.NONE, submission)
+                    client?.contributionClient?.vote(Vote.NONE, submission)
                 })
             }
 
@@ -39,7 +39,7 @@ class SubmissionsSearchActivity : AppCompatActivity() {
 
                 doAsync(doWork = {
                     val submission = submissions[index]
-                    client?.contributions?.vote(Vote.DOWNVOTE, submission)
+                    client?.contributionClient?.vote(Vote.DOWNVOTE, submission)
                 })
             }
 
@@ -47,7 +47,7 @@ class SubmissionsSearchActivity : AppCompatActivity() {
 
                 doAsync(doWork = {
                     val submission = submissions[index]
-                    client?.contributions?.save(!submission.isSaved, submission)
+                    client?.contributionClient?.save(!submission.isSaved, submission)
                 })
             }
 

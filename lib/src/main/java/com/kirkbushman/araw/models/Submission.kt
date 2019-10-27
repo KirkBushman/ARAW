@@ -1,7 +1,6 @@
 package com.kirkbushman.araw.models
 
 import android.os.Parcelable
-import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.models.general.Gildings
 import com.kirkbushman.araw.models.general.Media
 import com.kirkbushman.araw.models.general.MediaEmbed
@@ -207,10 +206,6 @@ data class Submission(
     val url: String
 
 ) : Contribution, Votable, Created, Editable, Distinguishable, Gildable, Replyable, Parcelable {
-
-    fun withClient(client: RedditClient): RedditClient.ContributionHandler {
-        return client.contributionHandler(this)
-    }
 
     override fun hashCode(): Int = id.hashCode()
     override fun equals(other: Any?): Boolean {

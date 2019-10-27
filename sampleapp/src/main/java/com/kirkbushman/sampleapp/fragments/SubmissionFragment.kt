@@ -42,10 +42,10 @@ class SubmissionFragment : Fragment(R.layout.fragment_submission) {
     private val fetcher by lazy {
 
         when (passedTag) {
-            TAG_FRONTPAGE -> client?.commonSubreddits?.frontpage()
-            TAG_ALL -> client?.commonSubreddits?.all()
-            TAG_POPULAR -> client?.commonSubreddits?.popular()
-            TAG_FRIENDS -> client?.commonSubreddits?.friends()
+            TAG_FRONTPAGE -> client?.frontpage()
+            TAG_ALL -> client?.all()
+            TAG_POPULAR -> client?.popular()
+            TAG_FRIENDS -> client?.friends()
 
             else -> null
         }
@@ -60,7 +60,7 @@ class SubmissionFragment : Fragment(R.layout.fragment_submission) {
 
                 doAsync(doWork = {
                     val submission = submissions[index]
-                    client?.contributions?.vote(Vote.UPVOTE, submission)
+                    client?.contributionClient?.vote(Vote.UPVOTE, submission)
                 })
             }
 
@@ -68,7 +68,7 @@ class SubmissionFragment : Fragment(R.layout.fragment_submission) {
 
                 doAsync(doWork = {
                     val submission = submissions[index]
-                    client?.contributions?.vote(Vote.NONE, submission)
+                    client?.contributionClient?.vote(Vote.NONE, submission)
                 })
             }
 
@@ -76,7 +76,7 @@ class SubmissionFragment : Fragment(R.layout.fragment_submission) {
 
                 doAsync(doWork = {
                     val submission = submissions[index]
-                    client?.contributions?.vote(Vote.DOWNVOTE, submission)
+                    client?.contributionClient?.vote(Vote.DOWNVOTE, submission)
                 })
             }
 
@@ -84,7 +84,7 @@ class SubmissionFragment : Fragment(R.layout.fragment_submission) {
 
                 doAsync(doWork = {
                     val submission = submissions[index]
-                    client?.contributions?.save(!submission.isSaved, submission)
+                    client?.contributionClient?.save(!submission.isSaved, submission)
                 })
             }
 

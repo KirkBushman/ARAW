@@ -55,7 +55,7 @@ class ContributionFragment : Fragment(R.layout.fragment_contribution) {
 
                 doAsync(doWork = {
                     val votable = contributions[index] as Votable
-                    client?.contributions?.vote(Vote.UPVOTE, votable)
+                    client?.contributionClient?.vote(Vote.UPVOTE, votable)
                 })
             }
 
@@ -63,7 +63,7 @@ class ContributionFragment : Fragment(R.layout.fragment_contribution) {
 
                 doAsync(doWork = {
                     val votable = contributions[index] as Votable
-                    client?.contributions?.vote(Vote.NONE, votable)
+                    client?.contributionClient?.vote(Vote.NONE, votable)
                 })
             }
 
@@ -71,7 +71,7 @@ class ContributionFragment : Fragment(R.layout.fragment_contribution) {
 
                 doAsync(doWork = {
                     val votable = contributions[index] as Votable
-                    client?.contributions?.vote(Vote.DOWNVOTE, votable)
+                    client?.contributionClient?.vote(Vote.DOWNVOTE, votable)
                 })
             }
 
@@ -86,7 +86,7 @@ class ContributionFragment : Fragment(R.layout.fragment_contribution) {
                         else -> false
                     }
 
-                    client?.contributions?.save(!saved, contribution)
+                    client?.contributionClient?.save(!saved, contribution)
                 })
             }
 
@@ -147,10 +147,10 @@ class ContributionFragment : Fragment(R.layout.fragment_contribution) {
     private fun getFetcher(): ContributionsFetcher? {
 
         return when (passedTag) {
-            TAG_OVERVIEW -> client?.account?.overview(username)
-            TAG_SUBMITTED -> client?.account?.submitted(username)
-            TAG_COMMENTS -> client?.account?.comments(username)
-            TAG_GILDED -> client?.account?.gilded(username)
+            TAG_OVERVIEW -> client?.usersClient?.overview(username)
+            TAG_SUBMITTED -> client?.usersClient?.submitted(username)
+            TAG_COMMENTS -> client?.usersClient?.comments(username)
+            TAG_GILDED -> client?.usersClient?.gilded(username)
 
             else -> null
         }

@@ -33,6 +33,12 @@
                     android:textSize="18sp"
                     android:text="@string/main_title" />
 
+            <Button android:id="@+id/bttn_apis"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="@string/bttn_apis" />
+
             <Button
                     android:id="@+id/bttn_me"
                     android:layout_width="match_parent"
