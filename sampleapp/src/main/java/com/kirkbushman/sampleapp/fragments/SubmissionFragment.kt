@@ -88,6 +88,22 @@ class SubmissionFragment : Fragment(R.layout.fragment_submission) {
                 })
             }
 
+            override fun onHideClick(index: Int) {
+
+                doAsync(doWork = {
+                    val submission = submissions[index]
+                    client?.contributionClient?.hide(submission)
+                })
+            }
+
+            override fun onLockClick(index: Int) {
+
+                doAsync(doWork = {
+                    val submission = submissions[index]
+                    client?.contributionClient?.lock(submission)
+                })
+            }
+
             override fun onReplyClick(index: Int) {}
         })
     }

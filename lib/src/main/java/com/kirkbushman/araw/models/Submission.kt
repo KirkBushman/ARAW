@@ -97,14 +97,14 @@ data class Submission(
     @Json(name = "gildings")
     override val gildings: Gildings,
 
-    @Json(name = "hidden")
-    val hidden: Boolean,
-
     @Json(name = "archived")
     val isArchived: Boolean,
 
     @Json(name = "is_crosspostable")
     val isCrosspostable: Boolean,
+
+    @Json(name = "hidden")
+    val isHidden: Boolean,
 
     @Json(name = "locked")
     val isLocked: Boolean,

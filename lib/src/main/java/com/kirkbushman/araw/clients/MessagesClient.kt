@@ -5,7 +5,7 @@ import com.kirkbushman.araw.fetcher.Fetcher
 import com.kirkbushman.araw.fetcher.InboxFetcher
 import com.kirkbushman.araw.models.Message
 
-class MessagesRedditClient(
+class MessagesClient(
 
     private val api: RedditApi,
     private inline val getHeaderMap: () -> HashMap<String, String>
@@ -40,6 +40,23 @@ class MessagesRedditClient(
         return InboxFetcher(api, "mentions", limit) { getHeaderMap() }
     }
 
+    fun deleteMessage(message: Message): Any? {
+        return deleteMessage(message.fullname)
+    }
+
+    fun deleteMessage(fullname: String): Any? {
+
+        val authMap = getHeaderMap()
+        val req = api.deleteMessage(id = fullname, header = authMap)
+        val res = req.execute()
+
+        if (!res.isSuccessful) {
+            return null
+        }
+
+        return res.body()
+    }
+
     fun markAsRead(read: Boolean, message: Message): Any? {
         return markAsRead(read, message.fullname)
     }
@@ -52,6 +69,24 @@ class MessagesRedditClient(
         else
             api.unreadMessage(id = fullname, header = authMap)
 
+        val res = req.execute()
+
+        if (!res.isSuccessful) {
+            return null
+        }
+
+        return res.body()
+    }
+
+    fun markAllAsRead(filters: List<Message>?): Any? {
+
+        return markAllAsRead(filters?.joinToString(separator = ",") { it.fullname })
+    }
+
+    fun markAllAsRead(filters: String?): Any? {
+
+        val authMap = getHeaderMap()
+        val req = api.readAllMessages(filters = filters ?: "", header = authMap)
         val res = req.execute()
 
         if (!res.isSuccessful) {

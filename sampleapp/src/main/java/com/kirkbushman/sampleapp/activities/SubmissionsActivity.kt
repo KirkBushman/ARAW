@@ -55,6 +55,22 @@ class SubmissionsActivity : AppCompatActivity() {
                 })
             }
 
+            override fun onHideClick(index: Int) {
+
+                doAsync(doWork = {
+                    val submission = submissions[index]
+                    client?.contributionClient?.hide(submission)
+                })
+            }
+
+            override fun onLockClick(index: Int) {
+
+                doAsync(doWork = {
+                    val submission = submissions[index]
+                    client?.contributionClient?.lock(submission)
+                })
+            }
+
             override fun onReplyClick(index: Int) {}
         })
     }
@@ -80,7 +96,7 @@ class SubmissionsActivity : AppCompatActivity() {
 
             doAsync(doWork = {
 
-                fetcher = client?.submissions(subredditName)
+                fetcher = client?.contributionClient?.submissions(subredditName)
 
                 submissions.clear()
                 submissions.addAll(fetcher?.fetchNext() ?: listOf())

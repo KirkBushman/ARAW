@@ -12,7 +12,7 @@ import com.kirkbushman.araw.models.Trophy
 import com.kirkbushman.araw.models.general.ContributionsSorting
 import com.kirkbushman.araw.models.general.TimePeriod
 
-class AccountRedditClient(
+class AccountsClient(
 
     private val api: RedditApi,
 
@@ -119,9 +119,9 @@ class AccountRedditClient(
             where = "",
             limit = limit,
             sorting = sorting,
-            timePeriod = timePeriod
-
-        ) { getHeaderMap() }
+            timePeriod = timePeriod,
+            getHeader = getHeaderMap
+        )
     }
 
     fun submitted(
@@ -140,9 +140,9 @@ class AccountRedditClient(
             where = "submitted",
             limit = limit,
             sorting = sorting,
-            timePeriod = timePeriod
-
-        ) { getHeaderMap() }
+            timePeriod = timePeriod,
+            getHeader = getHeaderMap
+        )
     }
 
     fun comments(
@@ -161,9 +161,9 @@ class AccountRedditClient(
             where = "comments",
             limit = limit,
             sorting = sorting,
-            timePeriod = timePeriod
-
-        ) { getHeaderMap() }
+            timePeriod = timePeriod,
+            getHeader = getHeaderMap
+        )
     }
 
     fun saved(
@@ -182,9 +182,9 @@ class AccountRedditClient(
             where = "saved",
             limit = limit,
             sorting = sorting,
-            timePeriod = timePeriod
-
-        ) { getHeaderMap() }
+            timePeriod = timePeriod,
+            getHeader = getHeaderMap
+        )
     }
 
     fun hidden(
@@ -203,9 +203,9 @@ class AccountRedditClient(
             where = "hidden",
             limit = limit,
             sorting = sorting,
-            timePeriod = timePeriod
-
-        ) { getHeaderMap() }
+            timePeriod = timePeriod,
+            getHeader = getHeaderMap
+        )
     }
 
     fun upvoted(
@@ -224,9 +224,9 @@ class AccountRedditClient(
             where = "upvoted",
             limit = limit,
             sorting = sorting,
-            timePeriod = timePeriod
-
-        ) { getHeaderMap() }
+            timePeriod = timePeriod,
+            getHeader = getHeaderMap
+        )
     }
 
     fun downvoted(
@@ -245,9 +245,9 @@ class AccountRedditClient(
             where = "downvoted",
             limit = limit,
             sorting = sorting,
-            timePeriod = timePeriod
-
-        ) { getHeaderMap() }
+            timePeriod = timePeriod,
+            getHeader = getHeaderMap
+        )
     }
 
     fun gilded(
@@ -266,9 +266,9 @@ class AccountRedditClient(
             where = "gilded",
             limit = limit,
             sorting = sorting,
-            timePeriod = timePeriod
-
-        ) { getHeaderMap() }
+            timePeriod = timePeriod,
+            getHeader = getHeaderMap
+        )
     }
 
     fun subscribedSubreddits(limit: Int = Fetcher.DEFAULT_LIMIT): SubredditsFetcher {

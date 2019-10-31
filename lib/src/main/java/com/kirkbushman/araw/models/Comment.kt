@@ -55,6 +55,9 @@ data class Comment(
     @Json(name = "archived")
     val isArchived: Boolean,
 
+    @Json(name = "locked")
+    val isLocked: Boolean,
+
     @Json(name = "saved")
     val isSaved: Boolean,
 

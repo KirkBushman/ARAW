@@ -17,6 +17,8 @@ class SubmissionController(private val callback: SubmissionCallback) : EpoxyCont
         fun onDownClick(index: Int)
 
         fun onSaveClick(index: Int)
+        fun onHideClick(index: Int)
+        fun onLockClick(index: Int)
         fun onReplyClick(index: Int)
     }
 
@@ -50,6 +52,8 @@ class SubmissionController(private val callback: SubmissionCallback) : EpoxyCont
                 downvoteClick(View.OnClickListener { callback.onDownClick(index) })
 
                 saveClick(View.OnClickListener { callback.onSaveClick(index) })
+                hideClick(View.OnClickListener { callback.onHideClick(index) })
+                lockClick(View.OnClickListener { callback.onLockClick(index) })
             }
         }
     }

@@ -30,7 +30,7 @@ class SubredditActivity : AppCompatActivity() {
                 var subreddit: Subreddit? = null
                 doAsync(doWork = {
 
-                    subreddit = client?.subreddit(subredditName)
+                    subreddit = client?.subredditClient?.subreddit(subredditName)
                 }, onPost = {
 
                     subreddit_text.text = subreddit.toString()

@@ -35,7 +35,7 @@ class RulesActivity : AppCompatActivity() {
 
             doAsync(doWork = {
 
-                val newRules = client?.rules(subreddit)
+                val newRules = client?.subredditClient?.rules(subreddit)
 
                 rules.clear()
                 rules.addAll(newRules ?: arrayOf())

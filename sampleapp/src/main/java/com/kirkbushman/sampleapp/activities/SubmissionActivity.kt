@@ -30,7 +30,7 @@ class SubmissionActivity : AppCompatActivity() {
                 var submission: Submission? = null
                 doAsync(doWork = {
 
-                    submission = client?.submission(submissionId)
+                    submission = client?.contributionClient?.submission(submissionId)
                 }, onPost = {
 
                     submission_text.text = submission.toString()

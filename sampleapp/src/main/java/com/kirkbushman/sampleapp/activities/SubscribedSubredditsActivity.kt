@@ -24,7 +24,7 @@ class SubscribedSubredditsActivity : AppCompatActivity() {
             val subreddit = subreddits[index]
             doAsync(doWork = {
 
-                client?.subscribe(subreddit)
+                client?.subredditClient?.subscribe(subreddit)
             }, onPost = {
 
                 subreddits[index] = subreddit.copy(isSubscriber = !subreddit.isSubscriber)

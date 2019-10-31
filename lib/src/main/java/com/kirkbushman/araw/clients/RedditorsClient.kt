@@ -3,16 +3,30 @@ package com.kirkbushman.araw.clients
 import com.kirkbushman.araw.RedditApi
 import com.kirkbushman.araw.fetcher.ContributionsFetcher
 import com.kirkbushman.araw.fetcher.Fetcher
+import com.kirkbushman.araw.models.Redditor
 import com.kirkbushman.araw.models.Trophy
 import com.kirkbushman.araw.models.general.ContributionsSorting
 import com.kirkbushman.araw.models.general.TimePeriod
 
-class UsersRedditClient(
+class RedditorsClient(
 
     private val api: RedditApi,
     private inline val getHeaderMap: () -> HashMap<String, String>
 
 ) : BaseRedditClient(api, getHeaderMap) {
+
+    fun redditor(username: String): Redditor? {
+
+        val authMap = getHeaderMap()
+        val req = api.user(username = username, header = authMap)
+        val res = req.execute()
+
+        if (!res.isSuccessful) {
+            return null
+        }
+
+        return res.body()?.data
+    }
 
     fun overview(
 

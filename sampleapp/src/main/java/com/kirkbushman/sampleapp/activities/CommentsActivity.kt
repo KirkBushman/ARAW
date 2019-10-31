@@ -51,13 +51,27 @@ class CommentsActivity : AppCompatActivity() {
                 })
             }
 
+            override fun onHideClick(submission: Submission) {
+
+                doAsync(doWork = {
+                    client?.contributionClient?.hide(submission)
+                })
+            }
+
+            override fun onLockClick(submission: Submission) {
+
+                doAsync(doWork = {
+                    client?.contributionClient?.lock(submission)
+                })
+            }
+
             override fun onLoadMoreClick(moreComments: MoreComments, submission: Submission) {
 
                 val addendum = ArrayList<CommentData>()
 
                 doAsync(doWork = {
 
-                    val more = client?.moreChildren(moreComments, submission)
+                    val more = client?.contributionClient?.moreChildren(moreComments, submission)
                     addendum.addAll(more ?: listOf())
                 }, onPost = {
 
@@ -92,7 +106,7 @@ class CommentsActivity : AppCompatActivity() {
 
             doAsync(doWork = {
 
-                val fetcher = client?.comments(submissionId)
+                val fetcher = client?.contributionClient?.comments(submissionId)
                 val temp = fetcher?.fetchNext() ?: listOf()
 
                 if (fetcher!!.getSubmission() != null) {

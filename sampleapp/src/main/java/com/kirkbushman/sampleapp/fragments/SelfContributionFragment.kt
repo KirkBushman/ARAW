@@ -91,6 +91,8 @@ class SelfContributionFragment : Fragment(R.layout.fragment_contribution) {
                 })
             }
 
+            override fun onHideClick(index: Int) {}
+            override fun onLockClick(index: Int) {}
             override fun onReplyClick(index: Int) {}
         })
     }

@@ -5,6 +5,9 @@
     <string name="linear_layout">androidx.recyclerview.widget.LinearLayoutManager</string>
 
     <string name="header_api_account">Account:</string>
+    <string name="header_api_message">Message:</string>
+    <string name="header_api_subreddit">Subreddit:</string>
+    <string name="header_api_users">Users:</string>
 
     <string name="bttn_apis">APIs</string>
     <string name="bttn_me">Me</string>
@@ -15,7 +18,24 @@
     <string name="bttn_my_prefs">My Prefs</string>
     <string name="bttn_my_trophies">My Trophies</string>
     <string name="bttn_my_subreddits">My Subreddits</string>
+    <string name="bttn_overview">Overview</string>
+    <string name="bttn_submitted">Submitted</string>
+    <string name="bttn_saved">Saved</string>
+    <string name="bttn_hidden">Hidden</string>
+    <string name="bttn_upvoted">Upvoted</string>
+    <string name="bttn_downvoted">Downvoted</string>
+    <string name="bttn_gilded">Gilded</string>
+    <string name="bttn_subreddit_banned">Banned</string>
+    <string name="bttn_subreddit_muted">Muted</string>
+    <string name="bttn_subreddit_wikibanned">Wiki Banned</string>
+    <string name="bttn_subreddit_contributors">Contributors</string>
+    <string name="bttn_subreddit_wikicontributors">Wiki Contributors</string>
+    <string name="bttn_subreddit_moderators">Moderators</string>
     <string name="bttn_inbox">Inbox</string>
+    <string name="bttn_messages">Messages</string>
+    <string name="bttn_comment_replies">Comments Replies</string>
+    <string name="bttn_self_replies">Self Replies</string>
+    <string name="bttn_sent">Sent</string>
     <string name="bttn_user">User</string>
     <string name="bttn_user_info">User Info</string>
     <string name="bttn_user_trophies">User Trophies</string>
@@ -55,6 +75,8 @@
     <string name="bttn_none">None</string>
     <string name="bttn_downvote">Downvote</string>
     <string name="bttn_save">Save</string>
+    <string name="bttn_hide">Hide</string>
+    <string name="bttn_lock">Lock</string>
     <string name="bttn_subscribe">Subscribe</string>
     <string name="bttn_reply">Reply</string>
     <string name="no_items">No items to show.</string>

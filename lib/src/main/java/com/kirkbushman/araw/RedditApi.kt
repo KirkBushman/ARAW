@@ -9,7 +9,6 @@ import com.kirkbushman.araw.http.EnvelopedRedditorListing
 import com.kirkbushman.araw.http.EnvelopedSubmissionListing
 import com.kirkbushman.araw.http.EnvelopedSubreddit
 import com.kirkbushman.araw.http.EnvelopedSubredditListing
-import com.kirkbushman.araw.http.EnvelopedTrophyList
 import com.kirkbushman.araw.http.EnvelopedWikiPage
 import com.kirkbushman.araw.http.base.Listing
 import com.kirkbushman.araw.models.FriendList
@@ -20,6 +19,8 @@ import com.kirkbushman.araw.models.Prefs
 import com.kirkbushman.araw.models.Reply
 import com.kirkbushman.araw.models.SubredditRules
 import com.kirkbushman.araw.models.SubredditSearchResult
+import com.kirkbushman.araw.models.TrophyList
+import com.kirkbushman.araw.models.UserList
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -61,7 +62,7 @@ interface RedditApi {
     @GET("/api/v1/me/trophies/.json")
     fun myTrophies(
         @HeaderMap header: HashMap<String, String>
-    ): Call<EnvelopedTrophyList>
+    ): Call<TrophyList>
 
     // --- Account section: END ---
 
@@ -88,14 +89,21 @@ interface RedditApi {
     fun markAsNsfw(
         @Field("id") id: String,
         @HeaderMap header: HashMap<String, String>
-    ): Call<Any>
+    ): Call<Any?>
 
     @FormUrlEncoded
     @POST("/api/spoiler")
     fun markAsSpoiler(
         @Field("id") id: String,
         @HeaderMap header: HashMap<String, String>
-    ): Call<Any>
+    ): Call<Any?>
+
+    @FormUrlEncoded
+    @POST("/api/hide")
+    fun hide(
+        @Field("id") id: String,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<Any?>
 
     @GET("/api/info/.json")
     fun comment(
@@ -108,6 +116,13 @@ interface RedditApi {
         @Query("id") submissionId: String,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedSubmissionListing>
+
+    @FormUrlEncoded
+    @POST("/api/hide")
+    fun lock(
+        @Field("id") id: String,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<Any?>
 
     @GET("/api/morechildren")
     fun moreChildren(
@@ -138,6 +153,20 @@ interface RedditApi {
         @Field("sendreplies") sendReplies: Boolean,
         @Field("nsfw") isNsfw: Boolean,
         @Field("spoiler") isSpoiler: Boolean,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<Any?>
+
+    @FormUrlEncoded
+    @POST("/api/unhide")
+    fun unhide(
+        @Field("id") id: String,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<Any?>
+
+    @FormUrlEncoded
+    @POST("/api/unlock")
+    fun unlock(
+        @Field("id") id: String,
         @HeaderMap header: HashMap<String, String>
     ): Call<Any?>
 
@@ -179,6 +208,20 @@ interface RedditApi {
     ): Call<EnvelopedMessageListing>
 
     @FormUrlEncoded
+    @POST("/api/del_msg")
+    fun deleteMessage(
+        @Field("id") id: String,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<Any>
+
+    @FormUrlEncoded
+    @POST("/api/read_all_messages")
+    fun readAllMessages(
+        @Field("filter_types") filters: String,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<Any>
+
+    @FormUrlEncoded
     @POST("/api/read_message")
     fun readMessage(
         @Field("id") id: String,
@@ -201,6 +244,19 @@ interface RedditApi {
         @Path("subreddit") subreddit: String,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedSubreddit>
+
+    @GET("/r/{subreddit}/about/{where}/.json")
+    fun subredditInfo(
+        @Path("subreddit") subreddit: String,
+        @Path("where") where: String,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<UserList>
+
+    @GET("/r/{subreddit}/about/rules/.json")
+    fun rules(
+        @Path("subreddit") subreddit: String,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<SubredditRules>
 
     @FormUrlEncoded
     @POST("/api/subscribe")
@@ -261,7 +317,7 @@ interface RedditApi {
     fun userTrophies(
         @Path("username") username: String,
         @HeaderMap header: HashMap<String, String>
-    ): Call<EnvelopedTrophyList>
+    ): Call<TrophyList>
 
     // --- Users sections: END ---
 
@@ -371,10 +427,4 @@ interface RedditApi {
         @Path("subreddit") subreddit: String,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedWikiPage>
-
-    @GET("/r/{subreddit}/about/rules/.json")
-    fun rules(
-        @Path("subreddit") subreddit: String,
-        @HeaderMap header: HashMap<String, String>
-    ): Call<SubredditRules>
 }

@@ -20,6 +20,8 @@ class CommentController(private val callback: CommentCallback) : EpoxyController
         fun onDownClick(submission: Submission)
 
         fun onSaveClick(submission: Submission)
+        fun onHideClick(submission: Submission)
+        fun onLockClick(submission: Submission)
 
         fun onLoadMoreClick(moreComments: MoreComments, submission: Submission)
 
@@ -63,6 +65,8 @@ class CommentController(private val callback: CommentCallback) : EpoxyController
                 downvoteClick(View.OnClickListener { callback.onDownClick(submission!!) })
 
                 saveClick(View.OnClickListener { callback.onSaveClick(submission!!) })
+                hideClick(View.OnClickListener { callback.onHideClick(submission!!) })
+                lockClick(View.OnClickListener { callback.onLockClick(submission!!) })
             }
         }
 

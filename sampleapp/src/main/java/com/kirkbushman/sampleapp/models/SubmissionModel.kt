@@ -24,6 +24,8 @@ abstract class SubmissionModel : EpoxyModelWithHolder<SubmissionHolder>() {
     @EpoxyAttribute lateinit var downvoteClick: View.OnClickListener
 
     @EpoxyAttribute lateinit var saveClick: View.OnClickListener
+    @EpoxyAttribute lateinit var hideClick: View.OnClickListener
+    @EpoxyAttribute lateinit var lockClick: View.OnClickListener
 
     override fun bind(holder: SubmissionHolder) {
 
@@ -37,6 +39,8 @@ abstract class SubmissionModel : EpoxyModelWithHolder<SubmissionHolder>() {
         holder.downvote.setOnClickListener(downvoteClick)
 
         holder.save.setOnClickListener(saveClick)
+        holder.hide.setOnClickListener(hideClick)
+        holder.lock.setOnClickListener(lockClick)
     }
 
     override fun unbind(holder: SubmissionHolder) {
@@ -46,6 +50,8 @@ abstract class SubmissionModel : EpoxyModelWithHolder<SubmissionHolder>() {
         holder.downvote.setOnClickListener(null)
 
         holder.save.setOnClickListener(null)
+        holder.hide.setOnClickListener(null)
+        holder.lock.setOnClickListener(null)
     }
 }
 
@@ -61,4 +67,6 @@ class SubmissionHolder : KotlinHolder() {
     val downvote by bind<TextView>(R.id.downvote_button)
 
     val save by bind<TextView>(R.id.save_button)
+    val hide by bind<TextView>(R.id.hide_button)
+    val lock by bind<TextView>(R.id.lock_button)
 }
