@@ -491,6 +491,55 @@
                 app:layout_constraintEnd_toStartOf="@id/bttn_user_gilded"
                 />
 
+        <TextView
+                android:id="@+id/header_api_wiki"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:text="@string/header_api_wiki"
+                app:layout_constraintTop_toBottomOf="@id/bttn_user_trophies"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/bttn_wiki"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/bttn_wiki"
+                app:layout_constraintTop_toBottomOf="@id/header_api_wiki"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/bttn_wiki_pages"
+                />
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/bttn_wiki_pages"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/bttn_wiki_pages"
+                app:layout_constraintTop_toBottomOf="@id/header_api_wiki"
+                app:layout_constraintStart_toEndOf="@id/bttn_wiki"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/bttn_wiki_revisions"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/bttn_wiki_revisions"
+                app:layout_constraintTop_toBottomOf="@id/bttn_wiki"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/bttn_wiki_pages"
+                />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

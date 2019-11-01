@@ -13,6 +13,7 @@ enum class EnvelopeKind(val value: String) {
 
     @Json(name = "Listing") Listing("Listing"),
     @Json(name = "wikipage") Wikipage("wikipage"),
+    @Json(name = "wikipagelisting") WikipageListing("wikipagelisting"),
     @Json(name = "more") More("more"),
     @Json(name = "TrophyList") TrophyList("TrophyList"),
     @Json(name = "UserList") UserList("UserList"),

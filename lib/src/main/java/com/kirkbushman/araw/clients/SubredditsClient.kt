@@ -7,7 +7,6 @@ import com.kirkbushman.araw.fetcher.SubredditsSearchFetcher
 import com.kirkbushman.araw.models.Subreddit
 import com.kirkbushman.araw.models.SubredditRule
 import com.kirkbushman.araw.models.User
-import com.kirkbushman.araw.models.WikiPage
 import com.kirkbushman.araw.models.general.SubmissionKind
 import com.kirkbushman.araw.models.general.SubmissionsSorting
 import com.kirkbushman.araw.models.general.SubredditSearchSorting
@@ -150,23 +149,6 @@ class SubredditsClient(
         }
 
         return res.body()?.rules
-    }
-
-    fun wiki(subreddit: Subreddit): WikiPage? {
-        return wiki(subreddit.displayName)
-    }
-
-    fun wiki(subreddit: String): WikiPage? {
-
-        val authMap = getHeaderMap()
-        val req = api.wiki(subreddit = subreddit, header = authMap)
-        val res = req.execute()
-
-        if (!res.isSuccessful) {
-            return null
-        }
-
-        return res.body()?.data
     }
 
     fun frontpage(

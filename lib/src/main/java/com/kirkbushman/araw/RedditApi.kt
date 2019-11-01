@@ -11,6 +11,7 @@ import com.kirkbushman.araw.http.EnvelopedSubreddit
 import com.kirkbushman.araw.http.EnvelopedSubredditListing
 import com.kirkbushman.araw.http.EnvelopedWikiPage
 import com.kirkbushman.araw.http.base.Listing
+import com.kirkbushman.araw.http.listings.WikiRevisionListing
 import com.kirkbushman.araw.models.FriendList
 import com.kirkbushman.araw.models.KarmaList
 import com.kirkbushman.araw.models.Me
@@ -22,6 +23,7 @@ import com.kirkbushman.araw.models.SubredditSearchResult
 import com.kirkbushman.araw.models.TrendingSubreddits
 import com.kirkbushman.araw.models.TrophyList
 import com.kirkbushman.araw.models.UserList
+import com.kirkbushman.araw.models.WikiPageList
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -302,12 +304,6 @@ interface RedditApi {
         @HeaderMap header: HashMap<String, String>
     ): Call<SubredditRules>
 
-    @GET("/r/{subreddit}/wiki/.json")
-    fun wiki(
-        @Path("subreddit") subreddit: String,
-        @HeaderMap header: HashMap<String, String>
-    ): Call<EnvelopedWikiPage>
-
     @FormUrlEncoded
     @POST("/api/subscribe")
     fun subscribe(
@@ -407,6 +403,28 @@ interface RedditApi {
     ): Call<TrophyList>
 
     // --- Redditor sections: END ---
+
+    // --- Wiki section: BEGIN ---
+
+    @GET("/r/{subreddit}/wiki/.json")
+    fun wiki(
+        @Path("subreddit") subreddit: String,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<EnvelopedWikiPage>
+
+    @GET("/r/{subreddit}/wiki/pages/.json")
+    fun wikiPages(
+        @Path("subreddit") subreddit: String,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<WikiPageList>
+
+    @GET("/r/{subreddit}/wiki/revisions/.json")
+    fun wikiRevisions(
+        @Path("subreddit") subreddit: String,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<Any>
+
+    // --- Wiki section: END ---
 
     @GET("/search")
     fun search(

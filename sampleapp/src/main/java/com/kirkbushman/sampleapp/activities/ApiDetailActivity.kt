@@ -52,6 +52,9 @@ class ApiDetailActivity : AppCompatActivity() {
         private const val API_USER_COMMENTS = "param_user_call_comments"
         private const val API_USER_GILDED = "param_user_call_gilded"
         private const val API_USER_TROPHIES = "param_user_call_trophies"
+        private const val API_WIKI = "param_wiki_call_wiki"
+        private const val API_WIKI_PAGES = "param_wiki_call_wiki_pages"
+        private const val API_WIKI_REVISIONS = "param_wiki_call_wiki_revisions"
 
         fun startApiMe(context: Context) {
             start(context, API_ME)
@@ -199,6 +202,18 @@ class ApiDetailActivity : AppCompatActivity() {
 
         fun startApiUserTrophies(context: Context) {
             start(context, API_USER_TROPHIES)
+        }
+
+        fun startApiWiki(context: Context) {
+            start(context, API_WIKI)
+        }
+
+        fun startApiWikiPages(context: Context) {
+            start(context, API_WIKI_PAGES)
+        }
+
+        fun startApiWikiRevisions(context: Context) {
+            start(context, API_WIKI_REVISIONS)
         }
 
         fun start(context: Context, call: String) {
@@ -444,6 +459,24 @@ class ApiDetailActivity : AppCompatActivity() {
                 val userName = getRandomUserFromRandomSubreddit()
                 val trophies = client?.redditorsClient?.trophies(userName)
                 return trophies.toString()
+            }
+
+            API_WIKI -> {
+                val subredditName = getRandomSubredditName()
+                val wiki = client?.wikisClient?.wiki(subredditName)
+                return wiki.toString()
+            }
+
+            API_WIKI_PAGES -> {
+                val subredditName = getRandomSubredditName()
+                val wikiPages = client?.wikisClient?.wikiPages(subredditName)
+                return wikiPages.toString()
+            }
+
+            API_WIKI_REVISIONS -> {
+                val subredditName = getRandomSubredditName()
+                val wikiRevisions = client?.wikisClient?.wikiRevisions(subredditName)
+                return wikiRevisions.toString()
             }
         }
 

@@ -158,5 +158,17 @@ class ApisActivity : AppCompatActivity() {
         bttn_user_trophies.setOnClickListener {
             ApiDetailActivity.startApiUserTrophies(this)
         }
+
+        bttn_wiki.setOnClickListener {
+            ApiDetailActivity.startApiWiki(this)
+        }
+
+        bttn_wiki_pages.setOnClickListener {
+            ApiDetailActivity.startApiWikiPages(this)
+        }
+
+        bttn_wiki_revisions.setOnClickListener {
+            ApiDetailActivity.startApiWikiRevisions(this)
+        }
     }
 }

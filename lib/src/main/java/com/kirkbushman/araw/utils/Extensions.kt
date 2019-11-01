@@ -3,6 +3,7 @@ package com.kirkbushman.araw.utils
 import com.kirkbushman.araw.models.Comment
 import com.kirkbushman.araw.models.Friend
 import com.kirkbushman.araw.models.User
+import com.kirkbushman.araw.models.WikiRevision
 import com.kirkbushman.araw.models.general.Distinguished
 import com.kirkbushman.araw.models.general.Vote
 import com.kirkbushman.araw.models.mixins.CommentData
@@ -78,6 +79,12 @@ val Friend.addedDate: Date
 val User.userDate: Date
     get() {
         val milliseconds = date * 1000L
+        return Date(milliseconds)
+    }
+
+val WikiRevision.timestampDate: Date
+    get() {
+        val milliseconds = timestamp * 1000L
         return Date(milliseconds)
     }
 

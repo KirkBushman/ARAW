@@ -5,6 +5,7 @@ import com.kirkbushman.araw.clients.ContributionsClient
 import com.kirkbushman.araw.clients.MessagesClient
 import com.kirkbushman.araw.clients.SubredditsClient
 import com.kirkbushman.araw.clients.RedditorsClient
+import com.kirkbushman.araw.clients.WikisClient
 import com.kirkbushman.araw.models.Me
 import com.kirkbushman.araw.models.SubredditSearchResult
 import com.kirkbushman.araw.utils.Utils.getRetrofit
@@ -20,6 +21,7 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
     val messagesClient by lazy { MessagesClient(api, ::getHeaderMap) }
     val subredditsClient by lazy { SubredditsClient(api, ::getHeaderMap) }
     val redditorsClient by lazy { RedditorsClient(api, ::getHeaderMap) }
+    val wikisClient by lazy { WikisClient(api, ::getHeaderMap) }
 
     private var currentUser: Me? = null
     fun getCurrentUser(): Me? = currentUser

@@ -9,6 +9,7 @@
     <string name="header_api_message">Message:</string>
     <string name="header_api_subreddit">Subreddit:</string>
     <string name="header_api_users">Users:</string>
+    <string name="header_api_wiki">Wiki:</string>
 
     <string name="bttn_apis">APIs</string>
     <string name="bttn_me">Me</string>
@@ -54,6 +55,8 @@
     <string name="bttn_comment">Comment</string>
     <string name="bttn_comments">Comments</string>
     <string name="bttn_wiki">Wiki</string>
+    <string name="bttn_wiki_pages">Wiki Pages</string>
+    <string name="bttn_wiki_revisions">Wiki Revisions</string>
     <string name="bttn_rules">Rules</string>
     <string name="edit_insert_user">Insert user:</string>
     <string name="edit_insert_username">Insert username:</string>
