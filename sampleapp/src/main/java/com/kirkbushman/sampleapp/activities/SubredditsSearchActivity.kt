@@ -24,7 +24,7 @@ class SubredditsSearchActivity : AppCompatActivity() {
                 val subreddit = subreddits[index]
                 doAsync(doWork = {
 
-                    client?.subredditClient?.subscribe(subreddit)
+                    client?.subredditsClient?.subscribe(subreddit)
                 }, onPost = {
 
                     subreddits[index] = subreddit.copy(isSubscriber = !subreddit.isSubscriber)
@@ -55,7 +55,7 @@ class SubredditsSearchActivity : AppCompatActivity() {
 
                 doAsync(doWork = {
 
-                    val fetcher = client?.fetchSubredditsSearch(query)
+                    val fetcher = client?.subredditsClient?.fetchSubredditsSearch(query)
 
                     subreddits.clear()
                     subreddits.addAll(fetcher?.fetchNext() ?: listOf())

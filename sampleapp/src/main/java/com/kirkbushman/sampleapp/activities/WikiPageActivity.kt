@@ -30,7 +30,7 @@ class WikiPageActivity : AppCompatActivity() {
                 var wiki: WikiPage? = null
                 doAsync(doWork = {
 
-                    wiki = client?.wiki(subreddit)
+                    wiki = client?.subredditsClient?.wiki(subreddit)
                 }, onPost = {
 
                     wiki_text.text = wiki.toString()

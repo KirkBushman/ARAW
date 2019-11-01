@@ -42,10 +42,10 @@ class SubmissionFragment : Fragment(R.layout.fragment_submission) {
     private val fetcher by lazy {
 
         when (passedTag) {
-            TAG_FRONTPAGE -> client?.frontpage()
-            TAG_ALL -> client?.all()
-            TAG_POPULAR -> client?.popular()
-            TAG_FRIENDS -> client?.friends()
+            TAG_FRONTPAGE -> client?.subredditsClient?.frontpage()
+            TAG_ALL -> client?.subredditsClient?.all()
+            TAG_POPULAR -> client?.subredditsClient?.popular()
+            TAG_FRIENDS -> client?.subredditsClient?.friends()
 
             else -> null
         }
@@ -60,7 +60,7 @@ class SubmissionFragment : Fragment(R.layout.fragment_submission) {
 
                 doAsync(doWork = {
                     val submission = submissions[index]
-                    client?.contributionClient?.vote(Vote.UPVOTE, submission)
+                    client?.contributionsClient?.vote(Vote.UPVOTE, submission)
                 })
             }
 
@@ -68,7 +68,7 @@ class SubmissionFragment : Fragment(R.layout.fragment_submission) {
 
                 doAsync(doWork = {
                     val submission = submissions[index]
-                    client?.contributionClient?.vote(Vote.NONE, submission)
+                    client?.contributionsClient?.vote(Vote.NONE, submission)
                 })
             }
 
@@ -76,7 +76,7 @@ class SubmissionFragment : Fragment(R.layout.fragment_submission) {
 
                 doAsync(doWork = {
                     val submission = submissions[index]
-                    client?.contributionClient?.vote(Vote.DOWNVOTE, submission)
+                    client?.contributionsClient?.vote(Vote.DOWNVOTE, submission)
                 })
             }
 
@@ -84,7 +84,7 @@ class SubmissionFragment : Fragment(R.layout.fragment_submission) {
 
                 doAsync(doWork = {
                     val submission = submissions[index]
-                    client?.contributionClient?.save(!submission.isSaved, submission)
+                    client?.contributionsClient?.save(!submission.isSaved, submission)
                 })
             }
 
@@ -92,7 +92,7 @@ class SubmissionFragment : Fragment(R.layout.fragment_submission) {
 
                 doAsync(doWork = {
                     val submission = submissions[index]
-                    client?.contributionClient?.hide(submission)
+                    client?.contributionsClient?.hide(submission)
                 })
             }
 
@@ -100,7 +100,7 @@ class SubmissionFragment : Fragment(R.layout.fragment_submission) {
 
                 doAsync(doWork = {
                     val submission = submissions[index]
-                    client?.contributionClient?.lock(submission)
+                    client?.contributionsClient?.lock(submission)
                 })
             }
 

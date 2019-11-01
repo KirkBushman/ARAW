@@ -32,7 +32,7 @@ class ContributionsFetcher(
 
         val req = if (where == "") {
 
-            api.fetchUserOverview(
+            api.fetchRedditorOverview(
                 username = username,
                 sorting = sorting.sortingStr,
                 timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
@@ -44,7 +44,7 @@ class ContributionsFetcher(
             )
         } else {
 
-            api.fetchUserInfo(
+            api.fetchRedditorInfo(
                 username = username,
                 where = where,
                 sorting = sorting.sortingStr,

@@ -23,7 +23,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_me"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
                 app:layout_constraintEnd_toStartOf="@id/bttn_my_blocked"
                 />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_my_blocked"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_my_friends"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
                 app:layout_constraintEnd_toStartOf="@id/bttn_my_karma"
                 />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_my_karma"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_my_prefs"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
                 app:layout_constraintEnd_toStartOf="@id/bttn_my_trophies"
                 />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_my_trophies"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -89,7 +89,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_overview"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -100,7 +100,7 @@
                 app:layout_constraintEnd_toStartOf="@id/bttn_submitted"
                 />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_submitted"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -111,7 +111,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_comments"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -122,7 +122,7 @@
                 app:layout_constraintEnd_toStartOf="@id/bttn_saved"
                 />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_saved"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -133,7 +133,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_hidden"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -144,7 +144,7 @@
                 app:layout_constraintEnd_toStartOf="@id/bttn_upvoted"
                 />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_upvoted"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -155,7 +155,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_downvoted"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -166,7 +166,7 @@
                 app:layout_constraintEnd_toStartOf="@id/bttn_gilded"
                 />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_gilded"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -175,6 +175,74 @@
                 app:layout_constraintTop_toBottomOf="@id/bttn_upvoted"
                 app:layout_constraintStart_toEndOf="@id/bttn_downvoted"
                 app:layout_constraintEnd_toEndOf="parent"
+                />
+
+        <TextView
+                android:id="@+id/header_api_contributions"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:text="@string/header_api_contributions"
+                app:layout_constraintTop_toBottomOf="@id/bttn_gilded"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/bttn_sub_submission"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/bttn_submission"
+                app:layout_constraintTop_toBottomOf="@id/header_api_contributions"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/bttn_sub_comment"
+                />
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/bttn_sub_comment"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/bttn_comment"
+                app:layout_constraintTop_toBottomOf="@id/header_api_contributions"
+                app:layout_constraintStart_toEndOf="@id/bttn_sub_submission"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/bttn_sub_submissions"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/bttn_submissions"
+                app:layout_constraintTop_toBottomOf="@id/bttn_sub_submission"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/bttn_sub_comments"
+                />
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/bttn_sub_comments"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/bttn_comments"
+                app:layout_constraintTop_toBottomOf="@id/bttn_sub_comment"
+                app:layout_constraintStart_toEndOf="@id/bttn_sub_submissions"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/bttn_trending"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/bttn_trending"
+                app:layout_constraintTop_toBottomOf="@id/bttn_sub_submissions"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/bttn_sub_comments"
                 />
 
         <TextView
@@ -188,12 +256,12 @@
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:text="@string/header_api_message"
-                app:layout_constraintTop_toBottomOf="@id/bttn_downvoted"
+                app:layout_constraintTop_toBottomOf="@id/bttn_trending"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_inbox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -204,7 +272,7 @@
                 app:layout_constraintEnd_toStartOf="@id/bttn_unread"
                 />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_unread"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -215,7 +283,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_messages"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -226,7 +294,7 @@
                 app:layout_constraintEnd_toStartOf="@id/bttn_sent"
                 />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_sent"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -237,7 +305,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_comment_replies"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -248,7 +316,7 @@
                 app:layout_constraintEnd_toStartOf="@id/bttn_self_replies"
                 />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_self_replies"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -275,7 +343,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_subreddit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -283,10 +351,10 @@
                 android:text="@string/bttn_subreddit"
                 app:layout_constraintTop_toBottomOf="@id/header_api_subreddit"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/bttn_subreddit_muted"
                 />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_subreddit_banned"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -297,7 +365,7 @@
                 app:layout_constraintEnd_toStartOf="@id/bttn_subreddit_muted"
                 />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_subreddit_muted"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -308,7 +376,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_subreddit_wikibanned"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -319,7 +387,7 @@
                 app:layout_constraintEnd_toStartOf="@id/bttn_subreddit_contributors"
                 />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_subreddit_contributors"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -330,7 +398,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_subreddit_wikicontributors"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -341,7 +409,7 @@
                 app:layout_constraintEnd_toStartOf="@id/bttn_subreddit_moderators"
                 />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_subreddit_moderators"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -368,7 +436,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_user_overview"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -379,7 +447,7 @@
                 app:layout_constraintEnd_toStartOf="@id/bttn_user_submitted"
                 />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_user_submitted"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -390,7 +458,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_user_comments"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -401,7 +469,7 @@
                 app:layout_constraintEnd_toStartOf="@id/bttn_user_gilded"
                 />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_user_gilded"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -412,7 +480,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_user_trophies"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -420,7 +488,7 @@
                 android:text="@string/bttn_my_trophies"
                 app:layout_constraintTop_toBottomOf="@id/bttn_user_comments"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/bttn_user_gilded"
                 />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

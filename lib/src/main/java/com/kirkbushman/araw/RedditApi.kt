@@ -19,6 +19,7 @@ import com.kirkbushman.araw.models.Prefs
 import com.kirkbushman.araw.models.Reply
 import com.kirkbushman.araw.models.SubredditRules
 import com.kirkbushman.araw.models.SubredditSearchResult
+import com.kirkbushman.araw.models.TrendingSubreddits
 import com.kirkbushman.araw.models.TrophyList
 import com.kirkbushman.araw.models.UserList
 import retrofit2.Call
@@ -29,6 +30,7 @@ import retrofit2.http.HeaderMap
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
+import retrofit2.http.Url
 
 interface RedditApi {
 
@@ -156,6 +158,11 @@ interface RedditApi {
         @HeaderMap header: HashMap<String, String>
     ): Call<Any?>
 
+    @GET
+    fun trendingSubreddits(
+        @Url url: String = "https://www.reddit.com/api/trending_subreddits/.json"
+    ): Call<TrendingSubreddits>
+
     @FormUrlEncoded
     @POST("/api/unhide")
     fun unhide(
@@ -171,8 +178,22 @@ interface RedditApi {
     ): Call<Any?>
 
     @FormUrlEncoded
+    @POST("/api/unmarknsfw")
+    fun unmarknsfw(
+        @Field("id") id: String,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<Any?>
+
+    @FormUrlEncoded
     @POST("/api/unsave")
     fun unsave(
+        @Field("id") id: String,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<Any?>
+
+    @FormUrlEncoded
+    @POST("/api/unspoiler")
+    fun unspoiler(
         @Field("id") id: String,
         @HeaderMap header: HashMap<String, String>
     ): Call<Any?>
@@ -184,6 +205,29 @@ interface RedditApi {
         @Field("dir") dir: Int,
         @HeaderMap header: HashMap<String, String>
     ): Call<Any?>
+
+    @GET("/{sorting}/.json")
+    fun fetchSubmissions(
+        @Path("sorting") sorting: String,
+        @Query("t") timePeriod: String?,
+        @Query("limit") limit: Int,
+        @Query("count") count: Int,
+        @Query("after") after: String? = null,
+        @Query("before") before: String? = null,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<EnvelopedSubmissionListing>
+
+    @GET("/r/{subreddit}/{sorting}/.json")
+    fun fetchSubmissions(
+        @Path("subreddit") subreddit: String,
+        @Path("sorting") sorting: String,
+        @Query("t") timePeriod: String?,
+        @Query("limit") limit: Int,
+        @Query("count") count: Int,
+        @Query("after") after: String? = null,
+        @Query("before") before: String? = null,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<EnvelopedSubmissionListing>
 
     @GET("/comments/{submissionId}/.json")
     fun fetchComments(
@@ -258,6 +302,12 @@ interface RedditApi {
         @HeaderMap header: HashMap<String, String>
     ): Call<SubredditRules>
 
+    @GET("/r/{subreddit}/wiki/.json")
+    fun wiki(
+        @Path("subreddit") subreddit: String,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<EnvelopedWikiPage>
+
     @FormUrlEncoded
     @POST("/api/subscribe")
     fun subscribe(
@@ -269,92 +319,8 @@ interface RedditApi {
     ): Call<Any?>
 
     @GET("/subreddits/mine/{where}/.json")
-    fun fetchUserSubreddits(
+    fun fetchRedditorSubreddits(
         @Path("where") where: String,
-        @Query("limit") limit: Int,
-        @Query("count") count: Int,
-        @Query("after") after: String? = null,
-        @Query("before") before: String? = null,
-        @HeaderMap header: HashMap<String, String>
-    ): Call<EnvelopedSubredditListing>
-
-    // --- Subreddits section: END ---
-
-    // --- Users sections: BEGIN ---
-
-    @GET("/user/{username}/about/.json")
-    fun user(
-        @Path("username") username: String,
-        @HeaderMap header: HashMap<String, String>
-    ): Call<EnvelopedRedditor>
-
-    @GET("/user/{username}/.json")
-    fun fetchUserOverview(
-        @Path("username") username: String,
-        @Query("sort") sorting: String,
-        @Query("t") timePeriod: String?,
-        @Query("limit") limit: Int,
-        @Query("count") count: Int,
-        @Query("after") after: String? = null,
-        @Query("before") before: String? = null,
-        @HeaderMap header: HashMap<String, String>
-    ): Call<EnvelopedContributionListing>
-
-    @GET("/user/{username}/{where}/.json")
-    fun fetchUserInfo(
-        @Path("username") username: String,
-        @Path("where") where: String,
-        @Query("sort") sorting: String,
-        @Query("t") timePeriod: String?,
-        @Query("limit") limit: Int,
-        @Query("count") count: Int,
-        @Query("after") after: String? = null,
-        @Query("before") before: String? = null,
-        @HeaderMap header: HashMap<String, String>
-    ): Call<EnvelopedContributionListing>
-
-    @GET("/api/v1/user/{username}/trophies/.json")
-    fun userTrophies(
-        @Path("username") username: String,
-        @HeaderMap header: HashMap<String, String>
-    ): Call<TrophyList>
-
-    // --- Users sections: END ---
-
-    @GET("/search")
-    fun search(
-        @Query("type") type: String? = null,
-        @Query("sort") sorting: String? = null,
-        @Query("t") timePeriod: String? = null,
-        @Query("show") show: Boolean? = null,
-        @Query("limit") limit: Int,
-        @Query("count") count: Int,
-        @Query("after") after: String? = null,
-        @Query("before") before: String? = null,
-        @HeaderMap header: HashMap<String, String>
-    ): Call<List<Listing<EnvelopedData>>>
-
-    @GET("/search")
-    fun fetchRedditorSearch(
-        @Query("q") query: String,
-        @Query("show") show: String? = null,
-        @Query("sort") sorting: String,
-        @Query("t") timePeriod: String?,
-        @Query("type") type: String = "user",
-        @Query("limit") limit: Int,
-        @Query("count") count: Int,
-        @Query("after") after: String? = null,
-        @Query("before") before: String? = null,
-        @HeaderMap header: HashMap<String, String>
-    ): Call<EnvelopedRedditorListing>
-
-    @GET("/search")
-    fun fetchSubredditsSearch(
-        @Query("q") query: String,
-        @Query("show") show: String? = null,
-        @Query("sort") sorting: String,
-        @Query("t") timePeriod: String?,
-        @Query("type") type: String = "sr",
         @Query("limit") limit: Int,
         @Query("count") count: Int,
         @Query("after") after: String? = null,
@@ -372,9 +338,11 @@ interface RedditApi {
         @HeaderMap header: HashMap<String, String>
     ): Call<SubredditSearchResult>
 
-    @GET("/{sorting}/.json")
-    fun fetchSubmissions(
-        @Path("sorting") sorting: String,
+    @GET("/r/{subreddit}/search/.json")
+    fun fetchSubmissionsSearch(
+        @Path("subreddit") subreddit: String,
+        @Query("q") query: String,
+        @Query("sort") sorting: String,
         @Query("t") timePeriod: String?,
         @Query("limit") limit: Int,
         @Query("count") count: Int,
@@ -383,17 +351,89 @@ interface RedditApi {
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedSubmissionListing>
 
-    @GET("/r/{subreddit}/{sorting}/.json")
-    fun fetchSubmissions(
-        @Path("subreddit") subreddit: String,
-        @Path("sorting") sorting: String,
+    // --- Subreddits section: END ---
+
+    // --- Redditor sections: BEGIN ---
+
+    @GET("/user/{username}/about/.json")
+    fun redditor(
+        @Path("username") username: String,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<EnvelopedRedditor>
+
+    @GET("/user/{username}/.json")
+    fun fetchRedditorOverview(
+        @Path("username") username: String,
+        @Query("sort") sorting: String,
         @Query("t") timePeriod: String?,
         @Query("limit") limit: Int,
         @Query("count") count: Int,
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
         @HeaderMap header: HashMap<String, String>
-    ): Call<EnvelopedSubmissionListing>
+    ): Call<EnvelopedContributionListing>
+
+    @GET("/user/{username}/{where}/.json")
+    fun fetchRedditorInfo(
+        @Path("username") username: String,
+        @Path("where") where: String,
+        @Query("sort") sorting: String,
+        @Query("t") timePeriod: String?,
+        @Query("limit") limit: Int,
+        @Query("count") count: Int,
+        @Query("after") after: String? = null,
+        @Query("before") before: String? = null,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<EnvelopedContributionListing>
+
+    @GET("/search")
+    fun fetchRedditorSearch(
+        @Query("q") query: String,
+        @Query("show") show: String? = null,
+        @Query("sort") sorting: String,
+        @Query("t") timePeriod: String?,
+        @Query("type") type: String = "user",
+        @Query("limit") limit: Int,
+        @Query("count") count: Int,
+        @Query("after") after: String? = null,
+        @Query("before") before: String? = null,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<EnvelopedRedditorListing>
+
+    @GET("/api/v1/user/{username}/trophies/.json")
+    fun redditorTrophies(
+        @Path("username") username: String,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<TrophyList>
+
+    // --- Redditor sections: END ---
+
+    @GET("/search")
+    fun search(
+        @Query("type") type: String? = null,
+        @Query("sort") sorting: String? = null,
+        @Query("t") timePeriod: String? = null,
+        @Query("show") show: Boolean? = null,
+        @Query("limit") limit: Int,
+        @Query("count") count: Int,
+        @Query("after") after: String? = null,
+        @Query("before") before: String? = null,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<List<Listing<EnvelopedData>>>
+
+    @GET("/search")
+    fun fetchSubredditsSearch(
+        @Query("q") query: String,
+        @Query("show") show: String? = null,
+        @Query("sort") sorting: String,
+        @Query("t") timePeriod: String?,
+        @Query("type") type: String = "sr",
+        @Query("limit") limit: Int,
+        @Query("count") count: Int,
+        @Query("after") after: String? = null,
+        @Query("before") before: String? = null,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<EnvelopedSubredditListing>
 
     @GET("/search")
     fun fetchSubmissionsSearchGeneral(
@@ -408,23 +448,4 @@ interface RedditApi {
         @Query("before") before: String? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedSubmissionListing>
-
-    @GET("/r/{subreddit}/search/.json")
-    fun fetchSubmissionsSearch(
-        @Path("subreddit") subreddit: String,
-        @Query("q") query: String,
-        @Query("sort") sorting: String,
-        @Query("t") timePeriod: String?,
-        @Query("limit") limit: Int,
-        @Query("count") count: Int,
-        @Query("after") after: String? = null,
-        @Query("before") before: String? = null,
-        @HeaderMap header: HashMap<String, String>
-    ): Call<EnvelopedSubmissionListing>
-
-    @GET("/r/{subreddit}/wiki/.json")
-    fun wiki(
-        @Path("subreddit") subreddit: String,
-        @HeaderMap header: HashMap<String, String>
-    ): Call<EnvelopedWikiPage>
 }

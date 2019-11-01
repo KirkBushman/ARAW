@@ -35,7 +35,7 @@ class UserSearchActivity : AppCompatActivity() {
 
             doAsync(doWork = {
 
-                val fetcher = client?.fetchRedditorSearch(query, show = "all")
+                val fetcher = client?.redditorsClient?.fetchRedditorSearch(query, show = "all")
 
                 redditors.clear()
                 redditors.addAll(fetcher?.fetchNext() ?: listOf())

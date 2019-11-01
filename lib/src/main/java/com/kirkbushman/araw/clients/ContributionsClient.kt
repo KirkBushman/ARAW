@@ -4,10 +4,13 @@ import com.kirkbushman.araw.RedditApi
 import com.kirkbushman.araw.fetcher.CommentsFetcher
 import com.kirkbushman.araw.fetcher.Fetcher
 import com.kirkbushman.araw.fetcher.SubmissionsFetcher
+import com.kirkbushman.araw.fetcher.SubmissionsSearchFetcher
 import com.kirkbushman.araw.models.Comment
 import com.kirkbushman.araw.models.MoreComments
 import com.kirkbushman.araw.models.Submission
 import com.kirkbushman.araw.models.Subreddit
+import com.kirkbushman.araw.models.TrendingSubreddits
+import com.kirkbushman.araw.models.general.SearchSorting
 import com.kirkbushman.araw.models.general.SubmissionsSorting
 import com.kirkbushman.araw.models.general.TimePeriod
 import com.kirkbushman.araw.models.general.Vote
@@ -69,6 +72,29 @@ class ContributionsClient(
         )
     }
 
+    fun submissionsSearch(
+
+        subreddit: String?,
+        query: String,
+
+        limit: Int = Fetcher.DEFAULT_LIMIT,
+
+        sorting: SearchSorting = SubmissionsSearchFetcher.DEFAULT_SORTING,
+        timePeriod: TimePeriod = SubmissionsSearchFetcher.DEFAULT_TIMEPERIOD
+
+    ): SubmissionsSearchFetcher {
+        return SubmissionsSearchFetcher(
+
+            api = api,
+            subreddit = subreddit,
+            query = query,
+            limit = limit,
+            sorting = sorting,
+            timePeriod = timePeriod,
+            getHeader = getHeaderMap
+        )
+    }
+
     fun comments(
 
         submissionId: String,
@@ -109,6 +135,18 @@ class ContributionsClient(
         }
 
         return res.body()?.json?.data?.things?.map { it.data }?.toList()
+    }
+
+    fun trendingSubreddits(): TrendingSubreddits? {
+
+        val req = api.trendingSubreddits()
+        val res = req.execute()
+
+        if (!res.isSuccessful) {
+            return null
+        }
+
+        return res.body()
     }
 
     fun delete(comment: Comment): Any? {
@@ -268,6 +306,23 @@ class ContributionsClient(
         return res.body()
     }
 
+    fun unmarkAsNsfw(submission: Submission): Any? {
+        return unmarkAsNsfw(submission.fullname)
+    }
+
+    fun unmarkAsNsfw(fullname: String): Any? {
+
+        val authMap = getHeaderMap()
+        val req = api.unmarknsfw(fullname, header = authMap)
+        val res = req.execute()
+
+        if (!res.isSuccessful) {
+            return null
+        }
+
+        return res.body()
+    }
+
     fun markAsSpoiler(comment: Comment): Any? {
         return markAsSpoiler(comment.fullname)
     }
@@ -280,6 +335,23 @@ class ContributionsClient(
 
         val authMap = getHeaderMap()
         val req = api.markAsSpoiler(fullname, header = authMap)
+        val res = req.execute()
+
+        if (!res.isSuccessful) {
+            return null
+        }
+
+        return res.body()
+    }
+
+    fun unspoiler(submission: Submission): Any? {
+        return unspoiler(submission.fullname)
+    }
+
+    fun unspoiler(fullname: String): Any? {
+
+        val authMap = getHeaderMap()
+        val req = api.unspoiler(fullname, header = authMap)
         val res = req.execute()
 
         if (!res.isSuccessful) {

@@ -30,7 +30,7 @@ class RedditorActivity : AppCompatActivity() {
                 var redditor: Redditor? = null
                 doAsync(doWork = {
 
-                    redditor = client?.usersClient?.redditor(username)
+                    redditor = client?.redditorsClient?.redditor(username)
                 }, onPost = {
 
                     redditor_text.text = redditor.toString()

@@ -5,6 +5,7 @@
     <string name="linear_layout">androidx.recyclerview.widget.LinearLayoutManager</string>
 
     <string name="header_api_account">Account:</string>
+    <string name="header_api_contributions">Contributions:</string>
     <string name="header_api_message">Message:</string>
     <string name="header_api_subreddit">Subreddit:</string>
     <string name="header_api_users">Users:</string>
@@ -45,6 +46,7 @@
     <string name="bttn_submissions">Submissions</string>
     <string name="bttn_submissions_commons">Common submissions</string>
     <string name="bttn_submissions_search">Submissions Search</string>
+    <string name="bttn_trending">Trending</string>
     <string name="bttn_subreddit_search">Subreddit Search</string>
     <string name="bttn_submit">Submit</string>
     <string name="bttn_submit_radio_self">Self Post</string>

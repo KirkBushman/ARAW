@@ -30,7 +30,7 @@ class CommentActivity : AppCompatActivity() {
                 var comment: Comment? = null
                 doAsync(doWork = {
 
-                    comment = client?.contributionClient?.comment(commentId)
+                    comment = client?.contributionsClient?.comment(commentId)
                 }, onPost = {
 
                     comment_text.text = comment.toString()

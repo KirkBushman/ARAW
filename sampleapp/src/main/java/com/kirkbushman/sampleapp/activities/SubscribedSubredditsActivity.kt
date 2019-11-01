@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_mine_subreddits.*
 class SubscribedSubredditsActivity : AppCompatActivity() {
 
     private val client by lazy { TestApplication.instance.getClient() }
-    private val fetcher by lazy { client?.accountClient?.subscribedSubreddits(limit = 100) }
+    private val fetcher by lazy { client?.accountsClient?.subscribedSubreddits(limit = 100) }
 
     private val subreddits = ArrayList<Subreddit>()
     private val controller by lazy { SubredditController(callback) }
@@ -24,7 +24,7 @@ class SubscribedSubredditsActivity : AppCompatActivity() {
             val subreddit = subreddits[index]
             doAsync(doWork = {
 
-                client?.subredditClient?.subscribe(subreddit)
+                client?.subredditsClient?.subscribe(subreddit)
             }, onPost = {
 
                 subreddits[index] = subreddit.copy(isSubscriber = !subreddit.isSubscriber)

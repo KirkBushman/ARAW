@@ -27,7 +27,7 @@ class SubmissionsActivity : AppCompatActivity() {
 
                 doAsync(doWork = {
                     val submission = submissions[index]
-                    client?.contributionClient?.vote(Vote.UPVOTE, submission)
+                    client?.contributionsClient?.vote(Vote.UPVOTE, submission)
                 })
             }
 
@@ -35,7 +35,7 @@ class SubmissionsActivity : AppCompatActivity() {
 
                 doAsync(doWork = {
                     val submission = submissions[index]
-                    client?.contributionClient?.vote(Vote.NONE, submission)
+                    client?.contributionsClient?.vote(Vote.NONE, submission)
                 })
             }
 
@@ -43,7 +43,7 @@ class SubmissionsActivity : AppCompatActivity() {
 
                 doAsync(doWork = {
                     val submission = submissions[index]
-                    client?.contributionClient?.vote(Vote.DOWNVOTE, submission)
+                    client?.contributionsClient?.vote(Vote.DOWNVOTE, submission)
                 })
             }
 
@@ -51,7 +51,7 @@ class SubmissionsActivity : AppCompatActivity() {
 
                 doAsync(doWork = {
                     val submission = submissions[index]
-                    client?.contributionClient?.save(!submission.isSaved, submission)
+                    client?.contributionsClient?.save(!submission.isSaved, submission)
                 })
             }
 
@@ -59,7 +59,7 @@ class SubmissionsActivity : AppCompatActivity() {
 
                 doAsync(doWork = {
                     val submission = submissions[index]
-                    client?.contributionClient?.hide(submission)
+                    client?.contributionsClient?.hide(submission)
                 })
             }
 
@@ -67,7 +67,7 @@ class SubmissionsActivity : AppCompatActivity() {
 
                 doAsync(doWork = {
                     val submission = submissions[index]
-                    client?.contributionClient?.lock(submission)
+                    client?.contributionsClient?.lock(submission)
                 })
             }
 
@@ -96,7 +96,7 @@ class SubmissionsActivity : AppCompatActivity() {
 
             doAsync(doWork = {
 
-                fetcher = client?.contributionClient?.submissions(subredditName)
+                fetcher = client?.contributionsClient?.submissions(subredditName)
 
                 submissions.clear()
                 submissions.addAll(fetcher?.fetchNext() ?: listOf())

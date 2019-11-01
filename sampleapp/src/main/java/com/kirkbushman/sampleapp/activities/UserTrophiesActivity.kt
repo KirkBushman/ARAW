@@ -35,7 +35,7 @@ class UserTrophiesActivity : AppCompatActivity() {
 
             doAsync(doWork = {
 
-                val temp = client?.usersClient?.trophies(username)
+                val temp = client?.redditorsClient?.trophies(username)
 
                 trophies.clear()
                 trophies.addAll(temp ?: listOf())

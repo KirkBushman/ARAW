@@ -29,6 +29,11 @@ class ApiDetailActivity : AppCompatActivity() {
         private const val API_UPVOTED = "param_api_call_upvoted"
         private const val API_DOWNVOTED = "param_api_call_downvoted"
         private const val API_GILDED = "param_api_call_gilded"
+        private const val API_SUB_SUBMISSION = "param_api_call_sub_submission"
+        private const val API_SUB_COMMENT = "param_api_call_sub_comment"
+        private const val API_SUB_SUBMISSIONS = "param_api_call_sub_submissions"
+        private const val API_SUB_COMMENTS = "param_api_call_sub_comments"
+        private const val API_SUB_TRENDING = "param_api_call_sub_trending"
         private const val API_MESSAGE_INBOX = "param_api_call_inbox"
         private const val API_MESSAGE_UNREAD = "param_api_call_unread"
         private const val API_MESSAGE_SENT = "param_api_call_sent"
@@ -102,6 +107,26 @@ class ApiDetailActivity : AppCompatActivity() {
 
         fun startApiGilded(context: Context) {
             start(context, API_GILDED)
+        }
+
+        fun startApiSubSubmission(context: Context) {
+            start(context, API_SUB_SUBMISSION)
+        }
+
+        fun startApiSubComment(context: Context) {
+            start(context, API_SUB_COMMENT)
+        }
+
+        fun startApiSubSubmissions(context: Context) {
+            start(context, API_SUB_SUBMISSIONS)
+        }
+
+        fun startApiSubComments(context: Context) {
+            start(context, API_SUB_COMMENTS)
+        }
+
+        fun startApiTrending(context: Context) {
+            start(context, API_SUB_TRENDING)
         }
 
         fun startApiInbox(context: Context) {
@@ -200,192 +225,224 @@ class ApiDetailActivity : AppCompatActivity() {
 
         when (apiParam) {
             API_ME -> {
-                val me = client?.accountClient?.me()
+                val me = client?.accountsClient?.me()
                 return me.toString()
             }
 
             API_MY_BLOCKED -> {
-                val blocked = client?.accountClient?.myBlocked()
+                val blocked = client?.accountsClient?.myBlocked()
                 return blocked.toString()
             }
 
             API_MY_FRIENDS -> {
-                val friends = client?.accountClient?.myFriends()
+                val friends = client?.accountsClient?.myFriends()
                 return friends.toString()
             }
 
             API_MY_KARMA -> {
-                val karma = client?.accountClient?.myKarma()
+                val karma = client?.accountsClient?.myKarma()
                 return karma.toString()
             }
 
             API_MY_PREFS -> {
-                val prefs = client?.accountClient?.myPrefs()
+                val prefs = client?.accountsClient?.myPrefs()
                 return prefs.toString()
             }
 
             API_MY_TROPHIES -> {
-                val trophies = client?.accountClient?.myTrophies()
+                val trophies = client?.accountsClient?.myTrophies()
                 return trophies.toString()
             }
 
             API_OVERVIEW -> {
-                val fetcher = client?.accountClient?.overview()
+                val fetcher = client?.accountsClient?.overview()
                 val overview = fetcher?.fetchNext()
                 return overview.toString()
             }
 
             API_SUBMITTED -> {
-                val fetcher = client?.accountClient?.submitted()
+                val fetcher = client?.accountsClient?.submitted()
                 val submitted = fetcher?.fetchNext()
                 return submitted.toString()
             }
 
             API_COMMENTS -> {
-                val fetcher = client?.accountClient?.comments()
+                val fetcher = client?.accountsClient?.comments()
                 val comments = fetcher?.fetchNext()
                 return comments.toString()
             }
 
             API_SAVED -> {
-                val fetcher = client?.accountClient?.saved()
+                val fetcher = client?.accountsClient?.saved()
                 val saved = fetcher?.fetchNext()
                 return saved.toString()
             }
 
             API_HIDDEN -> {
-                val fetcher = client?.accountClient?.hidden()
+                val fetcher = client?.accountsClient?.hidden()
                 val hidden = fetcher?.fetchNext()
                 return hidden.toString()
             }
 
             API_UPVOTED -> {
-                val fetcher = client?.accountClient?.upvoted()
+                val fetcher = client?.accountsClient?.upvoted()
                 val upvoted = fetcher?.fetchNext()
                 return upvoted.toString()
             }
 
             API_DOWNVOTED -> {
-                val fetcher = client?.accountClient?.downvoted()
+                val fetcher = client?.accountsClient?.downvoted()
                 val downvoted = fetcher?.fetchNext()
                 return downvoted.toString()
             }
 
             API_GILDED -> {
-                val fetcher = client?.accountClient?.gilded()
+                val fetcher = client?.accountsClient?.gilded()
                 val gilded = fetcher?.fetchNext()
                 return gilded.toString()
             }
 
+            API_SUB_SUBMISSION -> {
+                val submissionId = getRandomSubmissionIdFromRandomSubreddit()
+                val submission = client?.contributionsClient?.submission(submissionId)
+                return submission.toString()
+            }
+
+            API_SUB_COMMENT -> {
+                val submissionId = getRandomSubmissionIdFromRandomSubreddit()
+                val fetcher = client?.contributionsClient?.comments(submissionId)
+                val comments = fetcher?.fetchNext()
+                return comments?.random().toString()
+            }
+
+            API_SUB_SUBMISSIONS -> {
+                val subreddit = getRandomSubredditName()
+                val fetcher = client?.contributionsClient?.submissions(subreddit)
+                val submissions = fetcher?.fetchNext()
+                return submissions.toString()
+            }
+
+            API_SUB_COMMENTS -> {
+                val submissionId = getRandomSubmissionIdFromRandomSubreddit()
+                val fetcher = client?.contributionsClient?.comments(submissionId)
+                val comments = fetcher?.fetchNext()
+                return comments.toString()
+            }
+
+            API_SUB_TRENDING -> {
+                val trending = client?.contributionsClient?.trendingSubreddits()
+                return trending.toString()
+            }
+
             API_MESSAGE_INBOX -> {
-                val fetcher = client?.messageClient?.inbox()
+                val fetcher = client?.messagesClient?.inbox()
                 val inbox = fetcher?.fetchNext()
                 return inbox.toString()
             }
 
             API_MESSAGE_UNREAD -> {
-                val fetcher = client?.messageClient?.unread()
+                val fetcher = client?.messagesClient?.unread()
                 val unread = fetcher?.fetchNext()
                 return unread.toString()
             }
 
             API_MESSAGE_MESSAGES -> {
-                val fetcher = client?.messageClient?.messages()
+                val fetcher = client?.messagesClient?.messages()
                 val messages = fetcher?.fetchNext()
                 return messages.toString()
             }
 
             API_MESSAGE_SENT -> {
-                val fetcher = client?.messageClient?.sent()
+                val fetcher = client?.messagesClient?.sent()
                 val sent = fetcher?.fetchNext()
                 return sent.toString()
             }
 
             API_MESSAGE_COMMENT_REPLIES -> {
-                val fetcher = client?.messageClient?.commentsReplies()
+                val fetcher = client?.messagesClient?.commentsReplies()
                 val replies = fetcher?.fetchNext()
                 return replies.toString()
             }
 
             API_MESSAGE_SELF_REPLIES -> {
-                val fetcher = client?.messageClient?.selfReplies()
+                val fetcher = client?.messagesClient?.selfReplies()
                 val replies = fetcher?.fetchNext()
                 return replies.toString()
             }
 
             API_SUBREDDIT -> {
                 val subName = getRandomSubredditName()
-                val subreddit = client?.subredditClient?.subreddit(subName)
+                val subreddit = client?.subredditsClient?.subreddit(subName)
                 return subreddit.toString()
             }
 
             API_SUBREDDIT_BANNED -> {
                 val subName = getRandomSubredditName()
-                val banned = client?.subredditClient?.subredditBanned(subName)
+                val banned = client?.subredditsClient?.subredditBanned(subName)
                 return banned.toString()
             }
 
             API_SUBREDDIT_MUTED -> {
                 val subName = getRandomSubredditName()
-                val muted = client?.subredditClient?.subredditMuted(subName)
+                val muted = client?.subredditsClient?.subredditMuted(subName)
                 return muted.toString()
             }
 
             API_SUBREDDIT_WIKIBANNED -> {
                 val subName = getRandomSubredditName()
-                val wikibanned = client?.subredditClient?.subredditWikiBanned(subName)
+                val wikibanned = client?.subredditsClient?.subredditWikiBanned(subName)
                 return wikibanned.toString()
             }
 
             API_SUBREDDIT_CONTRIBUTORS -> {
                 val subName = getRandomSubredditName()
-                val contributors = client?.subredditClient?.subredditContributors(subName)
+                val contributors = client?.subredditsClient?.subredditContributors(subName)
                 return contributors.toString()
             }
 
             API_SUBREDDIT_WIKICONTRIBUTORS -> {
                 val subName = getRandomSubredditName()
-                val wikicontributors = client?.subredditClient?.subredditWikiContributors(subName)
+                val wikicontributors = client?.subredditsClient?.subredditWikiContributors(subName)
                 return wikicontributors.toString()
             }
 
             API_SUBREDDIT_MODERATORS -> {
                 val subName = getRandomSubredditName()
-                val moderators = client?.subredditClient?.subredditModerators(subName)
+                val moderators = client?.subredditsClient?.subredditModerators(subName)
                 return moderators.toString()
             }
 
             API_USER_OVERVIEW -> {
                 val userName = getRandomUserFromRandomSubreddit()
-                val fetcher = client?.usersClient?.overview(userName)
+                val fetcher = client?.redditorsClient?.overview(userName)
                 val overview = fetcher?.fetchNext()
                 return overview.toString()
             }
 
             API_USER_SUBMITTED -> {
                 val userName = getRandomUserFromRandomSubreddit()
-                val fetcher = client?.usersClient?.submitted(userName)
+                val fetcher = client?.redditorsClient?.submitted(userName)
                 val submitted = fetcher?.fetchNext()
                 return submitted.toString()
             }
 
             API_USER_COMMENTS -> {
                 val userName = getRandomUserFromRandomSubreddit()
-                val fetcher = client?.usersClient?.comments(userName)
+                val fetcher = client?.redditorsClient?.comments(userName)
                 val comments = fetcher?.fetchNext()
                 return comments.toString()
             }
 
             API_USER_GILDED -> {
                 val userName = getRandomUserFromRandomSubreddit()
-                val fetcher = client?.usersClient?.gilded(userName)
+                val fetcher = client?.redditorsClient?.gilded(userName)
                 val gilded = fetcher?.fetchNext()
                 return gilded.toString()
             }
 
             API_USER_TROPHIES -> {
                 val userName = getRandomUserFromRandomSubreddit()
-                val trophies = client?.usersClient?.trophies(userName)
+                val trophies = client?.redditorsClient?.trophies(userName)
                 return trophies.toString()
             }
         }
@@ -414,9 +471,17 @@ class ApiDetailActivity : AppCompatActivity() {
         return list.random()
     }
 
+    private fun getRandomSubmissionIdFromRandomSubreddit(): String {
+        val subredditName = getRandomSubredditName()
+        val fetcher = client?.contributionsClient?.submissions(subredditName)
+        val submissions = fetcher?.fetchNext()
+
+        return submissions?.map { it.id }?.random() ?: ""
+    }
+
     private fun getRandomUserFromRandomSubreddit(): String {
         val subredditName = getRandomSubredditName()
-        val fetcher = client?.contributionClient?.submissions(subredditName)
+        val fetcher = client?.contributionsClient?.submissions(subredditName)
         val submissions = fetcher?.fetchNext()
 
         return submissions?.map { it.author }?.toList()?.random() ?: ""

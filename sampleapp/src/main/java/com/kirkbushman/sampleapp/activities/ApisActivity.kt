@@ -67,6 +67,26 @@ class ApisActivity : AppCompatActivity() {
             ApiDetailActivity.startApiGilded(this)
         }
 
+        bttn_sub_submission.setOnClickListener {
+            ApiDetailActivity.startApiSubSubmission(this)
+        }
+
+        bttn_sub_comment.setOnClickListener {
+            ApiDetailActivity.startApiSubComment(this)
+        }
+
+        bttn_sub_submissions.setOnClickListener {
+            ApiDetailActivity.startApiSubSubmissions(this)
+        }
+
+        bttn_sub_comments.setOnClickListener {
+            ApiDetailActivity.startApiSubComments(this)
+        }
+
+        bttn_trending.setOnClickListener {
+            ApiDetailActivity.startApiTrending(this)
+        }
+
         bttn_inbox.setOnClickListener {
             ApiDetailActivity.startApiInbox(this)
         }

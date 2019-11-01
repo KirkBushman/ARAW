@@ -56,7 +56,7 @@ class SelfContributionFragment : Fragment(R.layout.fragment_contribution) {
 
                 doAsync(doWork = {
                     val votable = contributions[index] as Votable
-                    client?.contributionClient?.vote(Vote.UPVOTE, votable)
+                    client?.contributionsClient?.vote(Vote.UPVOTE, votable)
                 })
             }
 
@@ -64,7 +64,7 @@ class SelfContributionFragment : Fragment(R.layout.fragment_contribution) {
 
                 doAsync(doWork = {
                     val votable = contributions[index] as Votable
-                    client?.contributionClient?.vote(Vote.NONE, votable)
+                    client?.contributionsClient?.vote(Vote.NONE, votable)
                 })
             }
 
@@ -72,7 +72,7 @@ class SelfContributionFragment : Fragment(R.layout.fragment_contribution) {
 
                 doAsync(doWork = {
                     val votable = contributions[index] as Votable
-                    client?.contributionClient?.vote(Vote.DOWNVOTE, votable)
+                    client?.contributionsClient?.vote(Vote.DOWNVOTE, votable)
                 })
             }
 
@@ -87,7 +87,7 @@ class SelfContributionFragment : Fragment(R.layout.fragment_contribution) {
                         else -> false
                     }
 
-                    client?.contributionClient?.save(!saved, contribution)
+                    client?.contributionsClient?.save(!saved, contribution)
                 })
             }
 
@@ -149,13 +149,13 @@ class SelfContributionFragment : Fragment(R.layout.fragment_contribution) {
     private fun getFetcher(): ContributionsFetcher? {
 
         return when (passedTag) {
-            TAG_OVERVIEW -> client?.accountClient?.overview()
-            TAG_SUBMITTED -> client?.accountClient?.submitted()
-            TAG_COMMENTS -> client?.accountClient?.comments()
-            TAG_SAVED -> client?.accountClient?.saved()
-            TAG_UPVOTED -> client?.accountClient?.upvoted()
-            TAG_DOWNVOTED -> client?.accountClient?.downvoted()
-            TAG_GILDED -> client?.accountClient?.gilded()
+            TAG_OVERVIEW -> client?.accountsClient?.overview()
+            TAG_SUBMITTED -> client?.accountsClient?.submitted()
+            TAG_COMMENTS -> client?.accountsClient?.comments()
+            TAG_SAVED -> client?.accountsClient?.saved()
+            TAG_UPVOTED -> client?.accountsClient?.upvoted()
+            TAG_DOWNVOTED -> client?.accountsClient?.downvoted()
+            TAG_GILDED -> client?.accountsClient?.gilded()
 
             else -> null
         }

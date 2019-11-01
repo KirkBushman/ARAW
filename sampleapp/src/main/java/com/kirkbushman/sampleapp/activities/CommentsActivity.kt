@@ -26,42 +26,42 @@ class CommentsActivity : AppCompatActivity() {
             override fun onUpvoteClick(submission: Submission) {
 
                 doAsync(doWork = {
-                    client?.contributionClient?.vote(Vote.UPVOTE, submission)
+                    client?.contributionsClient?.vote(Vote.UPVOTE, submission)
                 })
             }
 
             override fun onNoneClick(submission: Submission) {
 
                 doAsync(doWork = {
-                    client?.contributionClient?.vote(Vote.NONE, submission)
+                    client?.contributionsClient?.vote(Vote.NONE, submission)
                 })
             }
 
             override fun onDownClick(submission: Submission) {
 
                 doAsync(doWork = {
-                    client?.contributionClient?.vote(Vote.DOWNVOTE, submission)
+                    client?.contributionsClient?.vote(Vote.DOWNVOTE, submission)
                 })
             }
 
             override fun onSaveClick(submission: Submission) {
 
                 doAsync(doWork = {
-                    client?.contributionClient?.save(!submission.isSaved, submission)
+                    client?.contributionsClient?.save(!submission.isSaved, submission)
                 })
             }
 
             override fun onHideClick(submission: Submission) {
 
                 doAsync(doWork = {
-                    client?.contributionClient?.hide(submission)
+                    client?.contributionsClient?.hide(submission)
                 })
             }
 
             override fun onLockClick(submission: Submission) {
 
                 doAsync(doWork = {
-                    client?.contributionClient?.lock(submission)
+                    client?.contributionsClient?.lock(submission)
                 })
             }
 
@@ -71,7 +71,7 @@ class CommentsActivity : AppCompatActivity() {
 
                 doAsync(doWork = {
 
-                    val more = client?.contributionClient?.moreChildren(moreComments, submission)
+                    val more = client?.contributionsClient?.moreChildren(moreComments, submission)
                     addendum.addAll(more ?: listOf())
                 }, onPost = {
 
@@ -106,7 +106,7 @@ class CommentsActivity : AppCompatActivity() {
 
             doAsync(doWork = {
 
-                val fetcher = client?.contributionClient?.comments(submissionId)
+                val fetcher = client?.contributionsClient?.comments(submissionId)
                 val temp = fetcher?.fetchNext() ?: listOf()
 
                 if (fetcher!!.getSubmission() != null) {

@@ -55,7 +55,7 @@ class ContributionFragment : Fragment(R.layout.fragment_contribution) {
 
                 doAsync(doWork = {
                     val votable = contributions[index] as Votable
-                    client?.contributionClient?.vote(Vote.UPVOTE, votable)
+                    client?.contributionsClient?.vote(Vote.UPVOTE, votable)
                 })
             }
 
@@ -63,7 +63,7 @@ class ContributionFragment : Fragment(R.layout.fragment_contribution) {
 
                 doAsync(doWork = {
                     val votable = contributions[index] as Votable
-                    client?.contributionClient?.vote(Vote.NONE, votable)
+                    client?.contributionsClient?.vote(Vote.NONE, votable)
                 })
             }
 
@@ -71,7 +71,7 @@ class ContributionFragment : Fragment(R.layout.fragment_contribution) {
 
                 doAsync(doWork = {
                     val votable = contributions[index] as Votable
-                    client?.contributionClient?.vote(Vote.DOWNVOTE, votable)
+                    client?.contributionsClient?.vote(Vote.DOWNVOTE, votable)
                 })
             }
 
@@ -86,7 +86,7 @@ class ContributionFragment : Fragment(R.layout.fragment_contribution) {
                         else -> false
                     }
 
-                    client?.contributionClient?.save(!saved, contribution)
+                    client?.contributionsClient?.save(!saved, contribution)
                 })
             }
 
@@ -149,10 +149,10 @@ class ContributionFragment : Fragment(R.layout.fragment_contribution) {
     private fun getFetcher(): ContributionsFetcher? {
 
         return when (passedTag) {
-            TAG_OVERVIEW -> client?.usersClient?.overview(username)
-            TAG_SUBMITTED -> client?.usersClient?.submitted(username)
-            TAG_COMMENTS -> client?.usersClient?.comments(username)
-            TAG_GILDED -> client?.usersClient?.gilded(username)
+            TAG_OVERVIEW -> client?.redditorsClient?.overview(username)
+            TAG_SUBMITTED -> client?.redditorsClient?.submitted(username)
+            TAG_COMMENTS -> client?.redditorsClient?.comments(username)
+            TAG_GILDED -> client?.redditorsClient?.gilded(username)
 
             else -> null
         }

@@ -1,10 +1,17 @@
 package com.kirkbushman.araw.clients
 
 import com.kirkbushman.araw.RedditApi
+import com.kirkbushman.araw.fetcher.Fetcher
+import com.kirkbushman.araw.fetcher.SubmissionsFetcher
+import com.kirkbushman.araw.fetcher.SubredditsSearchFetcher
 import com.kirkbushman.araw.models.Subreddit
 import com.kirkbushman.araw.models.SubredditRule
 import com.kirkbushman.araw.models.User
+import com.kirkbushman.araw.models.WikiPage
 import com.kirkbushman.araw.models.general.SubmissionKind
+import com.kirkbushman.araw.models.general.SubmissionsSorting
+import com.kirkbushman.araw.models.general.SubredditSearchSorting
+import com.kirkbushman.araw.models.general.TimePeriod
 
 class SubredditsClient(
 
@@ -145,6 +152,103 @@ class SubredditsClient(
         return res.body()?.rules
     }
 
+    fun wiki(subreddit: Subreddit): WikiPage? {
+        return wiki(subreddit.displayName)
+    }
+
+    fun wiki(subreddit: String): WikiPage? {
+
+        val authMap = getHeaderMap()
+        val req = api.wiki(subreddit = subreddit, header = authMap)
+        val res = req.execute()
+
+        if (!res.isSuccessful) {
+            return null
+        }
+
+        return res.body()?.data
+    }
+
+    fun frontpage(
+
+        limit: Int = Fetcher.DEFAULT_LIMIT,
+
+        sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
+        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD
+
+    ): SubmissionsFetcher {
+
+        return SubmissionsFetcher(
+
+            api = api,
+            subreddit = "",
+            limit = limit,
+            sorting = sorting,
+            timePeriod = timePeriod,
+            getHeader = getHeaderMap
+        )
+    }
+
+    fun all(
+
+        limit: Int = Fetcher.DEFAULT_LIMIT,
+
+        sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
+        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD
+
+    ): SubmissionsFetcher {
+
+        return SubmissionsFetcher(
+
+            api = api,
+            subreddit = "all",
+            limit = limit,
+            sorting = sorting,
+            timePeriod = timePeriod,
+            getHeader = getHeaderMap
+        )
+    }
+
+    fun popular(
+
+        limit: Int = Fetcher.DEFAULT_LIMIT,
+
+        sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
+        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD
+
+    ): SubmissionsFetcher {
+
+        return SubmissionsFetcher(
+
+            api = api,
+            subreddit = "popular",
+            limit = limit,
+            sorting = sorting,
+            timePeriod = timePeriod,
+            getHeader = getHeaderMap
+        )
+    }
+
+    fun friends(
+
+        limit: Int = Fetcher.DEFAULT_LIMIT,
+
+        sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
+        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD
+
+    ): SubmissionsFetcher {
+
+        return SubmissionsFetcher(
+
+            api = api,
+            subreddit = "friends",
+            limit = limit,
+            sorting = sorting,
+            timePeriod = timePeriod,
+            getHeader = getHeaderMap
+        )
+    }
+
     fun submit(
 
         subredditName: String,
@@ -263,5 +367,16 @@ class SubredditsClient(
         }
 
         return res.body()
+    }
+
+    fun fetchSubredditsSearch(
+
+        query: String,
+
+        limit: Int = Fetcher.DEFAULT_LIMIT,
+        sorting: SubredditSearchSorting = SubredditsSearchFetcher.DEFAULT_SORTING
+
+    ): SubredditsSearchFetcher {
+        return SubredditsSearchFetcher(api, query, limit, sorting, getHeader = getHeaderMap)
     }
 }

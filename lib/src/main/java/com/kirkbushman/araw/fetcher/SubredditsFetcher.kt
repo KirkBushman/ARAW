@@ -19,7 +19,7 @@ class SubredditsFetcher(
 
     override fun onFetching(forward: Boolean, dirToken: String): Listing<EnvelopedSubreddit>? {
 
-        val req = api.fetchUserSubreddits(
+        val req = api.fetchRedditorSubreddits(
             where = where,
             limit = if (forward) getLimit() else getLimit() + 1,
             count = getCount(),
