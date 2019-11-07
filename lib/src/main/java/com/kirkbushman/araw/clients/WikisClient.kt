@@ -3,7 +3,6 @@ package com.kirkbushman.araw.clients
 import com.kirkbushman.araw.RedditApi
 import com.kirkbushman.araw.models.Subreddit
 import com.kirkbushman.araw.models.WikiPage
-import com.kirkbushman.araw.models.WikiRevision
 
 class WikisClient(
 

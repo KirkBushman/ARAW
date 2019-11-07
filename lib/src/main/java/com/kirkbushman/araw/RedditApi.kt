@@ -11,7 +11,6 @@ import com.kirkbushman.araw.http.EnvelopedSubreddit
 import com.kirkbushman.araw.http.EnvelopedSubredditListing
 import com.kirkbushman.araw.http.EnvelopedWikiPage
 import com.kirkbushman.araw.http.base.Listing
-import com.kirkbushman.araw.http.listings.WikiRevisionListing
 import com.kirkbushman.araw.models.FriendList
 import com.kirkbushman.araw.models.KarmaList
 import com.kirkbushman.araw.models.Me
