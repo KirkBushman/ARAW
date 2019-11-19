@@ -7,6 +7,13 @@
 #Files for the VM
 *.dex
 
+#reports
+*.xml
+
+#credentials
+/lib/src/debug/res/xml/credentials.xml
+/sampleapp/src/main/res/xml/credentials.xml
+
 /bin
 /gen
 /out

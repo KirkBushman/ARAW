@@ -10,8 +10,11 @@ buildscript {
         moshi_ver      = '1.8.0'
         okhttp_ver     = '4.2.2'
         oauth2_ver     = 'v1.0.5'
-        mdc_ver        = '1.1.0-beta01'
+        mdc_ver        = '1.1.0-beta02'
         epoxy_ver      = '3.8.0'
+
+        test_ver       = '1.2.0'
+        espresso_ver   = '3.2.0'
         leakcanary_ver = '2.0-beta-3'
     }
 
