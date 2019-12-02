@@ -101,19 +101,4 @@ data class Subreddit(
     @Json(name = "url")
     val url: String
 
-) : Thing, Created, Parcelable {
-
-    override fun hashCode(): Int = id.hashCode()
-    override fun equals(other: Any?): Boolean {
-
-        if (other == null) {
-            return false
-        }
-
-        if (other !is Subreddit) {
-            return false
-        }
-
-        return id == other.id
-    }
-}
+) : Thing, Created, Parcelable

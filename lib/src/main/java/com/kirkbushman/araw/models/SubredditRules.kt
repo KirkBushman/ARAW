@@ -16,7 +16,7 @@ data class SubredditRules(
 ) : Parcelable {
 
     override fun hashCode(): Int {
-        return Arrays.hashCode(rules)
+        return rules.contentHashCode()
     }
 
     override fun equals(other: Any?): Boolean {

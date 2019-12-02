@@ -42,17 +42,4 @@ data class Awarding(
     @Json(name = "is_enabled")
     val isEnabled: Boolean
 
-) : Parcelable {
-
-    override fun hashCode(): Int = id.hashCode()
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as Awarding
-
-        if (id != other.id) return false
-
-        return true
-    }
-}
+) : Parcelable

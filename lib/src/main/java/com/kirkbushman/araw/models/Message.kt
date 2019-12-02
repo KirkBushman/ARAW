@@ -77,19 +77,4 @@ data class Message(
     @Json(name = "subreddit_name_prefixed")
     val subredditNamePrefixed: String?
 
-) : Thing, Votable, Created, Distinguishable, Replyable, Parcelable {
-
-    override fun hashCode(): Int = id.hashCode()
-    override fun equals(other: Any?): Boolean {
-
-        if (other == null) {
-            return false
-        }
-
-        if (other !is Message) {
-            return false
-        }
-
-        return id == other.id
-    }
-}
+) : Thing, Votable, Created, Distinguishable, Replyable, Parcelable

@@ -50,19 +50,4 @@ data class Me(
     @Json(name = "over_18")
     val over18: Boolean
 
-) : Account {
-
-    override fun hashCode(): Int = id.hashCode()
-    override fun equals(other: Any?): Boolean {
-
-        if (other == null) {
-            return false
-        }
-
-        if (other !is Me) {
-            return false
-        }
-
-        return id == other.id
-    }
-}
+) : Account

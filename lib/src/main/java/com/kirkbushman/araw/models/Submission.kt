@@ -205,19 +205,4 @@ data class Submission(
     @Json(name = "url")
     val url: String
 
-) : Contribution, Votable, Created, Editable, Distinguishable, Gildable, Replyable, Parcelable {
-
-    override fun hashCode(): Int = id.hashCode()
-    override fun equals(other: Any?): Boolean {
-
-        if (other == null) {
-            return false
-        }
-
-        if (other !is Submission) {
-            return false
-        }
-
-        return id == other.id
-    }
-}
+) : Contribution, Votable, Created, Editable, Distinguishable, Gildable, Replyable, Parcelable

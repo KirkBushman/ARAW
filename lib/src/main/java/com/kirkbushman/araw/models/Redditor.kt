@@ -41,19 +41,4 @@ data class Redditor(
     @Json(name = "name")
     override val name: String
 
-) : Account {
-
-    override fun hashCode(): Int = id.hashCode()
-    override fun equals(other: Any?): Boolean {
-
-        if (other == null) {
-            return false
-        }
-
-        if (other !is Redditor) {
-            return false
-        }
-
-        return id == other.id
-    }
-}
+) : Account

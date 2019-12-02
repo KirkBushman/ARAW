@@ -127,18 +127,4 @@ data class Comment(
 
             return repliesRaw.data.children.map { it.data }.toList()
         }
-
-    override fun hashCode(): Int = id.hashCode()
-    override fun equals(other: Any?): Boolean {
-
-        if (other == null) {
-            return false
-        }
-
-        if (other !is Comment) {
-            return false
-        }
-
-        return id == other.id
-    }
 }

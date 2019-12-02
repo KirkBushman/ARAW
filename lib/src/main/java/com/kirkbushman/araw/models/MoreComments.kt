@@ -28,19 +28,4 @@ data class MoreComments(
     @Json(name = "children")
     val children: List<String>
 
-) : CommentData, Parcelable {
-
-    override fun hashCode(): Int = id.hashCode()
-    override fun equals(other: Any?): Boolean {
-
-        if (other == null) {
-            return false
-        }
-
-        if (other !is MoreComments) {
-            return false
-        }
-
-        return id == other.id
-    }
-}
+) : CommentData, Parcelable

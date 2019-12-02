@@ -52,21 +52,4 @@ data class SubmissionPreview(
 
         return images.first().resolutions.last()
     }
-
-    override fun hashCode(): Int {
-        return id().hashCode()
-    }
-
-    override fun equals(other: Any?): Boolean {
-
-        if (other == null) {
-            return false
-        }
-
-        if (other !is SubmissionPreview) {
-            return false
-        }
-
-        return id() == other.id()
-    }
 }
