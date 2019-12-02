@@ -26,6 +26,8 @@ class LoginActivity : AppCompatActivity() {
             it.setDisplayShowHomeEnabled(true)
         }
 
+        browser.settings.javaScriptEnabled = true
+
         val auth = TestApplication.instance.auth
         if (!auth.shouldLogin()) {
 

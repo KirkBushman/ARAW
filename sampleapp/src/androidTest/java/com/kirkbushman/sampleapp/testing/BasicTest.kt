@@ -1,4 +1,4 @@
-package com.kirkbushman.araw.test
+package com.kirkbushman.sampleapp.testing
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 

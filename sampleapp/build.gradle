@@ -33,6 +33,10 @@ android {
         jvmTarget = '1.8'
         noReflect = true
     }
+
+    testOptions {
+        unitTests.includeAndroidResources = true
+    }
 }
 
 dependencies {
@@ -54,4 +58,16 @@ dependencies {
     implementation 'androidx.browser:browser:1.0.0'
 
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanary_ver"
+
+    androidTestImplementation "androidx.test:core:$test_ver"
+    androidTestImplementation "androidx.test:runner:$test_ver"
+    androidTestImplementation "androidx.test:rules:$test_ver"
+
+    androidTestImplementation "androidx.test.ext:junit:1.1.1"
+
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0"
+    androidTestImplementation "androidx.test.espresso:espresso-web:3.2.0"
+
+    androidTestImplementation "androidx.core:core:1.1.0"
+    androidTestImplementation "androidx.appcompat:appcompat:1.1.0"
 }

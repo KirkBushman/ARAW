@@ -1,6 +1,7 @@
-package com.kirkbushman.araw.test
+package com.kirkbushman.sampleapp.testing
 
 import android.content.Context
+import com.kirkbushman.sampleapp.R
 import org.xmlpull.v1.XmlPullParser
 
 object TestUtils {
@@ -12,6 +13,8 @@ object TestUtils {
         var clientId = ""
         var redirectUrl = ""
         val scopes = ArrayList<String>()
+        var username = ""
+        var password = ""
 
         while (xpp.eventType != XmlPullParser.END_DOCUMENT) {
 
@@ -23,6 +26,8 @@ object TestUtils {
                         "clientId" -> clientId = xpp.nextText()
                         "redirectUrl" -> redirectUrl = xpp.nextText()
                         "scope" -> scopes.add(xpp.nextText())
+                        "username" -> username = xpp.nextText()
+                        "password" -> password = xpp.nextText()
                     }
                 }
             }
@@ -30,6 +35,6 @@ object TestUtils {
             xpp.next()
         }
 
-        return Credentials(clientId, redirectUrl, scopes)
+        return Credentials(clientId, redirectUrl, scopes, username, password)
     }
 }
