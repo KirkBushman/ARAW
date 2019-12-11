@@ -1,9 +1,10 @@
 package com.kirkbushman.sampleapp.testing
 
-data class Credentials(
+data class TestCredentials(
 
     val clientId: String,
-    val redirectUrl: String,
+    val clientSecret: String,
+
     val scopes: List<String>,
 
     val username: String,

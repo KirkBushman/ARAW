@@ -1,16 +1,15 @@
 package com.kirkbushman.araw
 
 import android.content.Context
-import com.kirkbushman.auth.managers.RedditAuthManager
+import com.kirkbushman.auth.RedditAuth
 import com.kirkbushman.auth.managers.SharedPrefsStorageManager
 
 class RedditAuth(context: Context, clientId: String, redirectUrl: String, scopes: Array<String>) {
 
     private val authManager by lazy {
 
-        RedditAuthManager.Builder()
-            .setClientId(clientId)
-            .setRedirectUrl(redirectUrl)
+        RedditAuth.Builder()
+            .setCredentials(clientId, redirectUrl)
             .setScopes(scopes)
             .setStorageManager(SharedPrefsStorageManager(context))
             .build()
