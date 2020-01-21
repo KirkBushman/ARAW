@@ -8,13 +8,45 @@ import com.kirkbushman.araw.clients.RedditorsClient
 import com.kirkbushman.araw.clients.WikisClient
 import com.kirkbushman.araw.models.Me
 import com.kirkbushman.araw.models.SubredditSearchResult
-import com.kirkbushman.araw.utils.Utils.getRetrofit
+import com.kirkbushman.araw.utils.Utils.buildRetrofit
 import com.kirkbushman.auth.models.TokenBearer
+import retrofit2.Retrofit
 
 class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
 
-    private val retrofit = getRetrofit(logging)
-    private val api = retrofit.create(RedditApi::class.java)
+    companion object {
+
+        @Volatile
+        private var retrofit: Retrofit? = null
+        @Volatile
+        private var api: RedditApi? = null
+
+        @Synchronized
+        fun getRetrofit(logging: Boolean = false): Retrofit {
+            return synchronized(this) {
+
+                if (retrofit == null) {
+                    retrofit = buildRetrofit(logging)
+                }
+
+                retrofit!!
+            }
+        }
+
+        @Synchronized
+        fun getApi(logging: Boolean = false): RedditApi {
+            return synchronized(this) {
+
+                if (api == null) {
+                    api = getRetrofit(logging).create(RedditApi::class.java)
+                }
+
+                api!!
+            }
+        }
+    }
+
+    private val api = getApi(logging)
 
     val accountsClient by lazy { AccountsClient(api, ::getCurrentUser, { me -> currentUser = me }, ::getHeaderMap) }
     val contributionsClient by lazy { ContributionsClient(api, ::getHeaderMap) }

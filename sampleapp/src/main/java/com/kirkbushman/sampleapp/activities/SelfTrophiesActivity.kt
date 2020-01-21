@@ -31,11 +31,10 @@ class SelfTrophiesActivity : AppCompatActivity() {
 
         doAsync(doWork = {
 
-            // todo fix
-            /*val temp = client?.selfAccount?.trophies()
+            val temp = client?.accountsClient?.myTrophies()
 
             trophies.clear()
-            trophies.addAll(temp ?: listOf())*/
+            trophies.addAll(temp ?: listOf())
         }, onPost = {
 
             controller.setTrophies(trophies)

@@ -21,7 +21,7 @@ object Utils {
 
     private const val BASE_URL = "https://oauth.reddit.com"
 
-    fun getRetrofit(logging: Boolean): Retrofit {
+    fun buildRetrofit(logging: Boolean): Retrofit {
 
         val moshi = Moshi.Builder()
             .add(
