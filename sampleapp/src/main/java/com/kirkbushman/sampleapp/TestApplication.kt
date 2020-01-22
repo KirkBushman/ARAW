@@ -35,6 +35,12 @@ class TestApplication : Application() {
 
         var clientId = ""
         var redirectUrl = ""
+
+        var scriptClientId = ""
+        var scriptClientSecret = ""
+        var username = ""
+        var password = ""
+
         val scopes = ArrayList<String>()
 
         while (xpp.eventType != XmlPullParser.END_DOCUMENT) {
@@ -47,6 +53,10 @@ class TestApplication : Application() {
                         "clientId" -> clientId = xpp.nextText()
                         "redirectUrl" -> redirectUrl = xpp.nextText()
                         "scope" -> scopes.add(xpp.nextText())
+                        "scriptClientId" -> scriptClientId = xpp.nextText()
+                        "scriptClientSecret" -> scriptClientSecret = xpp.nextText()
+                        "username" -> username = xpp.nextText()
+                        "password" -> password = xpp.nextText()
                     }
                 }
             }
@@ -54,6 +64,16 @@ class TestApplication : Application() {
             xpp.next()
         }
 
-        return Credentials(clientId, redirectUrl, scopes)
+        return Credentials(
+            clientId,
+            redirectUrl,
+
+            scriptClientId,
+            scriptClientSecret,
+            username,
+            password,
+
+            scopes
+        )
     }
 }
