@@ -70,6 +70,9 @@ data class Comment(
     @Json(name = "likes")
     override val likes: Boolean?,
 
+    @Json(name = "link_title")
+    val linkTitle: String?,
+
     @Json(name = "link_author")
     val linkAuthor: String?,
 
