@@ -22,6 +22,11 @@ data class MoreComments(
     @Json(name = "depth")
     override val depth: Int,
 
+    @Transient
+    override val replies: List<CommentData>? = null,
+    @Transient
+    override val hasReplies: Boolean = false,
+
     @Json(name = "parent_id")
     val parentId: String,
 

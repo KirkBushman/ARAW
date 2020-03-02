@@ -9,17 +9,32 @@ import org.xmlpull.v1.XmlPullParser
 
 object TestUtils {
 
-    fun loadCredentialsFromXml(context: Context): TestCredentials {
+    fun getAuthManager(context: Context): RedditAuth {
+        val creds = loadCredentialsFromXml(context)
 
+        return RedditAuth.Builder()
+            .setCredentials(creds.username, creds.password, creds.scriptClientId, creds.scriptClientSecret)
+            .setScopes(creds.scopes.toTypedArray())
+            .setStorageManager(SharedPrefsStorageManager(context))
+            .build()
+    }
+
+    fun getTokenBearer(auth: RedditAuth): TokenBearer {
+        return auth.getTokenBearer() ?: throw IllegalStateException("Bearer is null!")
+    }
+
+    private fun loadCredentialsFromXml(context: Context): TestCredentials {
         val xpp = context.resources.getXml(R.xml.credentials)
 
         var clientId = ""
-        var clientSecret = ""
+        var redirectUrl = ""
 
-        val scopes = ArrayList<String>()
-
+        var scriptClientId = ""
+        var scriptClientSecret = ""
         var username = ""
         var password = ""
+
+        val scopes = ArrayList<String>()
 
         while (xpp.eventType != XmlPullParser.END_DOCUMENT) {
 
@@ -29,12 +44,12 @@ object TestUtils {
 
                     when (xpp.name) {
                         "clientId" -> clientId = xpp.nextText()
-                        "clientSecret" -> clientSecret = xpp.nextText()
+                        "redirectUrl" -> redirectUrl = xpp.nextText()
                         "scope" -> scopes.add(xpp.nextText())
+                        "scriptClientId" -> scriptClientId = xpp.nextText()
+                        "scriptClientSecret" -> scriptClientSecret = xpp.nextText()
                         "username" -> username = xpp.nextText()
                         "password" -> password = xpp.nextText()
-
-                        else -> {}
                     }
                 }
             }
@@ -42,20 +57,16 @@ object TestUtils {
             xpp.next()
         }
 
-        return TestCredentials(clientId, clientSecret, scopes, username, password)
-    }
+        return TestCredentials(
+            clientId,
+            redirectUrl,
 
-    fun getAuthManager(context: Context): RedditAuth {
-        val creds = loadCredentialsFromXml(context)
+            scriptClientId,
+            scriptClientSecret,
+            username,
+            password,
 
-        return RedditAuth.Builder()
-            .setCredentials(creds.username, creds.password, creds.clientId, creds.clientSecret)
-            .setScopes(creds.scopes.toTypedArray())
-            .setStorageManager(SharedPrefsStorageManager(context))
-            .build()
-    }
-
-    fun getTokenBearer(auth: RedditAuth): TokenBearer {
-        return auth.getTokenBearer() ?: throw IllegalStateException("Bearer is null!")
+            scopes
+        )
     }
 }

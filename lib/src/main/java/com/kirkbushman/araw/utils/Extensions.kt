@@ -88,27 +88,22 @@ val WikiRevision.timestampDate: Date
         return Date(milliseconds)
     }
 
-fun List<CommentData>.toCommentSequence(): ArrayList<CommentData> {
+fun List<CommentData>.toLinearList(): List<CommentData> {
 
-    val sequence = ArrayList<CommentData>()
-    val stack = ArrayDeque<CommentData>()
+    val list = ArrayList<CommentData>()
 
-    stack.addAll(this)
+    iterator()
+        .forEach {
 
-    while (!stack.isEmpty()) {
-        val item = stack.pop()
-        sequence.add(item)
+            if (it is Comment) {
+                val item = it
+                item.replies = null
 
-        if (item is Comment) {
-
-            if (item.replies.isNotEmpty()) {
-                item.replies.asReversed().forEach {
-
-                    stack.push(it)
-                }
+                list.add(item)
+            } else {
+                list.add(it)
             }
         }
-    }
 
-    return sequence
+    return list
 }

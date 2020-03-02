@@ -7,7 +7,7 @@ import com.kirkbushman.araw.models.MoreComments
 import com.kirkbushman.araw.models.Submission
 import com.kirkbushman.araw.models.general.Vote
 import com.kirkbushman.araw.models.mixins.CommentData
-import com.kirkbushman.araw.utils.toCommentSequence
+import com.kirkbushman.araw.utils.toLinearList
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.controllers.CommentController
@@ -114,7 +114,7 @@ class CommentsActivity : AppCompatActivity() {
                 }
 
                 comments.clear()
-                comments.addAll(temp.toCommentSequence())
+                comments.addAll(temp.toLinearList())
             }, onPost = {
 
                 controller.setComments(comments)

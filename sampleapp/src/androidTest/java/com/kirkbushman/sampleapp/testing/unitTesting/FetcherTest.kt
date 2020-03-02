@@ -79,8 +79,19 @@ class FetcherTest {
 
         // -----------------------------
 
-        assertTrue("Assert that listOne and listOneBack are the same (Deep equality)", compareSubmissionsLists(listOne ?: emptyList(), listOneBack ?: emptyList()))
-        assertTrue("Assert that listTwo and listTwoBack are the same (Deep equality)", compareSubmissionsLists(listTwo ?: emptyList(), listTwoBack ?: emptyList()))
+        if (listOne?.size ?: 0 == listOneBack?.size ?: 0) {
+            assertTrue(
+                "Assert that listOne and listOneBack are the same (Deep equality)",
+                compareSubmissionsLists(listOne ?: emptyList(), listOneBack ?: emptyList())
+            )
+        }
+
+        if (listTwo?.size ?: 0 == listTwoBack?.size ?: 0) {
+            assertTrue(
+                "Assert that listTwo and listTwoBack are the same (Deep equality)",
+                compareSubmissionsLists(listTwo ?: emptyList(), listTwoBack ?: emptyList())
+            )
+        }
     }
 
     @After
