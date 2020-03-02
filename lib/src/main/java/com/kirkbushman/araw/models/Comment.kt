@@ -97,6 +97,9 @@ data class Comment(
     @Json(name = "replies")
     val repliesRaw: EnvelopedCommentDataListing?,
 
+    var replies: List<CommentData> =
+        repliesRaw?.data?.children?.map { it.data }?.toList() ?: emptyList(),
+
     @Json(name = "score")
     override val score: Int,
 
@@ -109,25 +112,4 @@ data class Comment(
     @Json(name = "subreddit_name_prefixed")
     val subredditNamePrefixed: String
 
-) : CommentData, Votable, Created, Editable, Distinguishable, Gildable, Replyable, Parcelable {
-
-    val hasReplies: Boolean
-        get() {
-
-            if (repliesRaw == null) {
-                return false
-            }
-
-            return repliesRaw.data.children.isNotEmpty()
-        }
-
-    val replies: List<CommentData>
-        get() {
-
-            if (repliesRaw == null) {
-                return listOf()
-            }
-
-            return repliesRaw.data.children.map { it.data }.toList()
-        }
-}
+) : CommentData, Votable, Created, Editable, Distinguishable, Gildable, Replyable, Parcelable

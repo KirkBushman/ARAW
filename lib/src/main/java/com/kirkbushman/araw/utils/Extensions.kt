@@ -101,7 +101,7 @@ fun List<CommentData>.toCommentSequence(): ArrayList<CommentData> {
 
         if (item is Comment) {
 
-            if (item.hasReplies) {
+            if (item.replies.isNotEmpty()) {
                 item.replies.asReversed().forEach {
 
                     stack.push(it)

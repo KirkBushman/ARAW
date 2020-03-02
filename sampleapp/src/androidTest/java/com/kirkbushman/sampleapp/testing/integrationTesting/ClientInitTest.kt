@@ -12,7 +12,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class FetcherTest {
+class ClientInitTest {
 
     private val context by lazy { InstrumentationRegistry.getInstrumentation().targetContext.applicationContext }
     private val manager by lazy { TestUtils.getAuthManager(context) }
