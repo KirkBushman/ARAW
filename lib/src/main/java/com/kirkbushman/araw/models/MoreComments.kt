@@ -26,6 +26,8 @@ data class MoreComments(
     override val replies: List<CommentData>? = null,
     @Transient
     override val hasReplies: Boolean = false,
+    @Transient
+    override val repliesSize: Int = 0,
 
     @Json(name = "parent_id")
     val parentId: String,

@@ -13,6 +13,7 @@ import com.kirkbushman.araw.models.mixins.Editable
 import com.kirkbushman.araw.models.mixins.Votable
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.reflect.KClass
 
 val Created.createdDate: Date
     get() {
@@ -92,11 +93,11 @@ fun List<CommentData>.toLinearList(): List<CommentData> {
 
     val list = ArrayList<CommentData>()
 
-    iterator()
+    treeIterator()
         .forEach {
 
             if (it is Comment) {
-                val item = it
+                val item = it.copy()
                 item.replies = null
 
                 list.add(item)

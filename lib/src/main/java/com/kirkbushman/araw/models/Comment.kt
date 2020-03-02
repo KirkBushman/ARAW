@@ -119,4 +119,9 @@ data class Comment(
         get() {
             return replies != null && replies!!.isNotEmpty()
         }
+
+    override val repliesSize: Int
+        get() {
+            return replies?.size ?: 0
+        }
 }

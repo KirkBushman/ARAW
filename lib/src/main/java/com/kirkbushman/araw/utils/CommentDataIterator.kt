@@ -3,9 +3,17 @@ package com.kirkbushman.araw.utils
 import com.kirkbushman.araw.models.mixins.CommentData
 import java.util.*
 
-class CommentDataIterator(list: Collection<CommentData>) : Iterator<CommentData> {
+class CommentDataIterator : Iterator<CommentData> {
 
-    private val stack = ArrayDeque<CommentData>(list)
+    constructor(list: Collection<CommentData>) {
+        stack.addAll(list)
+    }
+
+    constructor(array: Array<CommentData>) {
+        stack.addAll(array)
+    }
+
+    private val stack = ArrayDeque<CommentData>()
 
     override fun hasNext(): Boolean {
         return stack.isNotEmpty()
@@ -24,7 +32,10 @@ class CommentDataIterator(list: Collection<CommentData>) : Iterator<CommentData>
     }
 }
 
-@Suppress("EXTENSION_SHADOWED_BY_MEMBER")
-operator fun Collection<CommentData>.iterator(): Iterator<CommentData> {
+fun Collection<CommentData>.treeIterator(): Iterator<CommentData> {
+    return CommentDataIterator(this)
+}
+
+fun Array<CommentData>.treeIterator(): Iterator<CommentData> {
     return CommentDataIterator(this)
 }
