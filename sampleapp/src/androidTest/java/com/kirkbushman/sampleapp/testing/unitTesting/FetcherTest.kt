@@ -1,9 +1,9 @@
 package com.kirkbushman.sampleapp.testing.unitTesting
 
-import kotlin.collections.contentDeepEquals
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.kirkbushman.araw.RedditClient
+import com.kirkbushman.araw.models.Submission
 import com.kirkbushman.sampleapp.testing.TestUtils
 import org.junit.Assert.*
 import org.junit.After
@@ -79,11 +79,28 @@ class FetcherTest {
 
         // -----------------------------
 
-        assertTrue("Assert that listOne and listOne are the same (Deep equality)", (listOne?.toTypedArray() ?: emptyArray()).contentDeepEquals(listOneBack?.toTypedArray() ?: emptyArray()))
+        assertTrue("Assert that listOne and listOneBack are the same (Deep equality)", compareSubmissionsLists(listOne ?: emptyList(), listOneBack ?: emptyList()))
+        assertTrue("Assert that listTwo and listTwoBack are the same (Deep equality)", compareSubmissionsLists(listTwo ?: emptyList(), listTwoBack ?: emptyList()))
     }
 
     @After
     fun onPost() {
         bearer.revokeToken()
+    }
+
+    private fun compareSubmissionsLists(list1: List<Submission>, list2: List<Submission>): Boolean {
+
+        if (list1.size != list2.size) {
+            return false
+        }
+
+        list1.zip(list2).forEach { (item1, item2) ->
+
+            if (item1.fullname != item2.fullname) {
+                return false
+            }
+        }
+
+        return true
     }
 }

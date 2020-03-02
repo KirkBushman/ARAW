@@ -34,7 +34,7 @@ class SubredditsSearchFetcher(
             query = query,
             sorting = getSorting().sortingStr,
             timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
-            limit = if (forward) getLimit() else getLimit() + 1,
+            limit = getLimit(),
             count = getCount(),
             after = if (forward) dirToken else null,
             before = if (!forward) dirToken else null,

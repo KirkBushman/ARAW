@@ -35,7 +35,7 @@ class SubmissionsFetcher(
                 subreddit = subreddit,
                 sorting = getSorting().sortingStr,
                 timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
-                limit = if (forward) getLimit() else getLimit() + 1,
+                limit = getLimit(),
                 count = getCount(),
                 after = if (forward) dirToken else null,
                 before = if (!forward) dirToken else null,
@@ -45,7 +45,7 @@ class SubmissionsFetcher(
             api.fetchSubmissions(
                 sorting = getSorting().sortingStr,
                 timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
-                limit = if (forward) getLimit() else getLimit() + 1,
+                limit = getLimit(),
                 count = getCount(),
                 after = if (forward) dirToken else null,
                 before = if (!forward) dirToken else null,

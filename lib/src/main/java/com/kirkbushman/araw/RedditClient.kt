@@ -12,7 +12,14 @@ import com.kirkbushman.araw.utils.Utils.buildRetrofit
 import com.kirkbushman.auth.models.TokenBearer
 import retrofit2.Retrofit
 
-class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
+class RedditClient @JvmOverloads constructor (
+
+    private val bearer: TokenBearer,
+
+    logging: Boolean = false,
+    me: Me? = null,
+    fetchMe: ((AccountsClient) -> Unit)? = null
+) {
 
     companion object {
 
@@ -59,7 +66,19 @@ class RedditClient(private val bearer: TokenBearer, logging: Boolean) {
     fun getCurrentUser(): Me? = currentUser
 
     init {
-        currentUser = accountsClient.me() ?: throw IllegalStateException("Could not found logged redditor")
+
+        when {
+
+            me != null -> {
+                currentUser = me
+            }
+
+            fetchMe != null -> {
+                fetchMe(accountsClient)
+            }
+
+            else -> { accountsClient.me() ?: throw IllegalStateException("Could not found logged redditor") }
+        }
     }
 
     fun searchSubreddits(

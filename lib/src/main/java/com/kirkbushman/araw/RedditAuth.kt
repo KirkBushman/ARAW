@@ -1,6 +1,8 @@
 package com.kirkbushman.araw
 
 import android.content.Context
+import com.kirkbushman.araw.clients.AccountsClient
+import com.kirkbushman.araw.models.Me
 import com.kirkbushman.auth.RedditAuth
 import com.kirkbushman.auth.managers.SharedPrefsStorageManager
 
@@ -33,8 +35,15 @@ class RedditAuth(context: Context, clientId: String, redirectUrl: String, scopes
         return RedditClient(authManager.getSavedBearer(), logging)
     }
 
-    fun getRedditClient(url: String, logging: Boolean): RedditClient {
+    fun getRedditClient(
+        url: String,
+        logging: Boolean,
+
+        me: Me? = null,
+        fetchMe: ((AccountsClient) -> Unit)? = null
+    ): RedditClient {
+
         val bearer = authManager.getTokenBearer(url) ?: throw IllegalStateException("Bearer is null!")
-        return RedditClient(bearer, logging)
+        return RedditClient(bearer, logging, me, fetchMe)
     }
 }

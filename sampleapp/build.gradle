@@ -5,7 +5,7 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion = '29.0.2'
+    buildToolsVersion = '29.0.3'
 
     defaultConfig {
         applicationId "com.kirkbushman.sampleapp"
@@ -59,7 +59,7 @@ dependencies {
 
     implementation "com.google.android.material:material:$mdc_ver"
 
-    implementation 'androidx.core:core-ktx:1.1.0'
+    implementation "androidx.core:core-ktx:$ktx_core_ver"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
     implementation 'androidx.browser:browser:1.2.0'
@@ -71,10 +71,9 @@ dependencies {
     androidTestImplementation "androidx.test:rules:$test_ver"
 
     androidTestImplementation "androidx.test.ext:junit:1.1.1"
-
     androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0"
 
-    androidTestImplementation "androidx.core:core:1.1.0"
+    androidTestImplementation "androidx.core:core:$ktx_core_ver"
     androidTestImplementation "androidx.appcompat:appcompat:1.1.0"
 
     androidTestImplementation "com.github.KirkBushman:Android-Reddit-OAuth2:$oauth2_ver"
