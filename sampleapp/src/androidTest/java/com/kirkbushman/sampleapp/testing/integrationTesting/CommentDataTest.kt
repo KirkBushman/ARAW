@@ -4,6 +4,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.models.Comment
+import com.kirkbushman.araw.models.MoreComments
 import com.kirkbushman.araw.models.Submission
 import com.kirkbushman.araw.models.mixins.CommentData
 import com.kirkbushman.araw.utils.toLinearList
@@ -61,10 +62,15 @@ class CommentDataTest {
         assertTrue("unwrapped comment structure should be equal to list returned by .toLinearList()",
             compareCommentList(comments, linearList))
 
-        val wrappedList = wrappedCommentModels(comments)
+        val wrappedComm = wrappedCommentModels(comments)
 
         assertTrue("once the models get wrapped, walking the tree there should be the same number of models and wrappers",
-            compareModelNumber(wrappedList, linearList))
+            compareModelNumber(wrappedComm, comments))
+
+        val wrappedList = wrappedLinearCommentModels(comments)
+
+        assertTrue("once the models get wrapped, walking the list there should be the same number of models and wrappers",
+            compareModelLinearNumber(wrappedList, linearList))
     }
 
     private fun areRepliesBlank(list: List<CommentData>): Boolean {
@@ -95,17 +101,94 @@ class CommentDataTest {
 
     private fun wrappedCommentModels(comments: List<CommentData>): List<CommentData> {
 
-        return comments.treeIterable().map {
+        val childMap = HashMap<String, CommentData>()
+        val newComm = ArrayList<CommentData>()
+
+        // wrap the children
+        comments.treeIterator().forEach {
+
+            if (it.depth == 0) {
+                val copyComm = deepCopy(it)
+                newComm.add(copyComm)
+
+                if (it.hasReplies) {
+                    it.replies?.forEach { r ->
+
+                        childMap[r.fullname] = copyComm
+                    }
+                }
+            } else {
+                val copyComm = deepCopy(it)
+                val parent = childMap[copyComm.fullname]
+
+                childMap.remove(copyComm.fullname)
+
+                if (parent != null) {
+                    addToNode(parent, copyComm)
+                } else {
+                    throw IllegalStateException("Cannot find parent node to add child!")
+                }
+
+                if (it.hasReplies) {
+                    it.replies?.forEach { r ->
+
+                        childMap[r.fullname] = copyComm
+                    }
+                }
+            }
+        }
+
+        return newComm
+    }
+
+    private fun wrappedLinearCommentModels(comments: List<CommentData>): List<CommentData> {
+
+        return comments.toList().treeIterable().map {
 
             if(it is Comment) {
-                TestComment(it)
+                TestComment(it.copy())
             } else {
-                it
+                deepCopy(it)
             }
         }
     }
 
-    private fun compareModelNumber(wrapped: List<CommentData>, linearList: List<CommentData>): Boolean {
+    /**
+     * Once wrapped there should be the same amount of items, in the same place, with the same id
+     */
+    private fun compareModelNumber(wrapped: List<CommentData>, comment: List<CommentData>): Boolean {
+
+        val wrappedNames = ArrayList<String>()
+        val commentNames = ArrayList<String>()
+
+        var wrappedNum = 0
+        wrapped.treeIterator().forEach {
+
+            if (it is TestComment) {
+                wrappedNum++
+            }
+
+            wrappedNames.add(it.fullname)
+        }
+
+        var commentsNum = 0
+        comment.treeIterator().forEach {
+
+            if (it is Comment) {
+                commentsNum++
+            }
+
+            commentNames.add(it.fullname)
+        }
+
+        return wrappedNum == commentsNum &&
+                wrappedNames.toTypedArray().contentEquals(commentNames.toTypedArray())
+    }
+
+    /**
+     * Walking the tree and running through the list one should have the same amounts of items
+     */
+    private fun compareModelLinearNumber(wrapped: List<CommentData>, linearList: List<CommentData>): Boolean {
 
         var wrappedNum = 0
         wrapped.treeIterator().forEach {
@@ -126,8 +209,54 @@ class CommentDataTest {
         return wrappedNum == linearNum
     }
 
+    /**
+     * Copy and wrap single CommentData
+     */
+    private fun deepCopy(item: CommentData): CommentData {
+        return when (item) {
+            is Comment -> {
+                val newItem = TestComment(item.copy())
+                newItem.replies = null
+
+                newItem
+            }
+            is MoreComments -> item.copy()
+            else -> item
+        }
+    }
+
+    private fun addToNode(parent: CommentData, child: CommentData) {
+        when(parent) {
+            is Comment -> {
+                if (parent.replies != null) {
+                    val newRep = parent.replies!!.toMutableList()
+                    newRep.add(child)
+
+                    parent.replies = newRep
+                } else {
+                    parent.replies = listOf(child)
+                }
+            }
+            is TestComment -> {
+                if (parent.replies != null) {
+                    val newRep = parent.replies!!.toMutableList()
+                    newRep.add(child)
+
+                    parent.replies = newRep
+                } else {
+                    parent.replies = listOf(child)
+                }
+            }
+        }
+    }
+
+    /**
+     * Wrapper class to Comment, implementing CommentData,
+     * we are using this class to test the possibility to use treeIterator()
+     * on CommentData lists to add additional methods on the items while in the tree structure
+     */
     @Parcelize
-    class TestComment(private val comment: Comment): CommentData {
+    data class TestComment(private val comment: Comment): CommentData {
 
         override val id: String
             get() = comment.id
@@ -138,11 +267,17 @@ class CommentDataTest {
         override val depth: Int
             get() = comment.depth
 
+        override val parentFullname: String
+            get() = comment.parentFullname
+
         override val hasReplies: Boolean
             get() = comment.hasReplies
 
-        override val replies: List<CommentData>?
+        override var replies: List<CommentData>?
             get() = comment.replies
+            set(value) {
+                comment.replies = value
+            }
 
         override val repliesSize: Int
             get() = comment.repliesSize

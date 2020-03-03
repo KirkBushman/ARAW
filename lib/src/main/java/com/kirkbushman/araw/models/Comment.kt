@@ -101,6 +101,9 @@ data class Comment(
     override var replies: List<CommentData>? =
         repliesRaw?.data?.children?.map { it.data }?.toList(),
 
+    @Transient
+    override val parentFullname: String = parentId,
+
     @Json(name = "score")
     override val score: Int,
 

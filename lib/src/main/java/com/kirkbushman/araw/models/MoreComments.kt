@@ -22,17 +22,19 @@ data class MoreComments(
     @Json(name = "depth")
     override val depth: Int,
 
+    @Json(name = "parent_id")
+    val parentId: String,
+
+    @Json(name = "children")
+    val children: List<String>,
+
+    @Transient
+    override val parentFullname: String = parentId,
     @Transient
     override val replies: List<CommentData>? = null,
     @Transient
     override val hasReplies: Boolean = false,
     @Transient
-    override val repliesSize: Int = 0,
-
-    @Json(name = "parent_id")
-    val parentId: String,
-
-    @Json(name = "children")
-    val children: List<String>
+    override val repliesSize: Int = 0
 
 ) : CommentData, Parcelable
