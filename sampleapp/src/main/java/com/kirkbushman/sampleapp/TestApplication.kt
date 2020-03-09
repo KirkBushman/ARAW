@@ -15,7 +15,12 @@ class TestApplication : Application() {
 
         val creds = loadCredsFromFile()
 
-        RedditAuth(this, creds.clientId, creds.redirectUrl, creds.scopes.toTypedArray())
+        RedditAuth(
+            this,
+            creds.clientId,
+            creds.redirectUrl,
+            creds.scopes.toTypedArray(),
+            logging = true)
     }
 
     init {

@@ -131,6 +131,9 @@ interface RedditApi {
     fun moreChildren(
         @Query("api_type") apiType: String = "json",
         @Query("children") children: String,
+        @Query("limit_children") limitChildren: Boolean? = null,
+        @Query("depth") depth: Int? = null,
+        @Query("id") id: String? = null,
         @Query("link_id") linkId: String,
         @HeaderMap header: HashMap<String, String>
     ): Call<MoreChildrenResponse>

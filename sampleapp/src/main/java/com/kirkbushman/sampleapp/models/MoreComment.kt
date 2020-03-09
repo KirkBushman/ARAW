@@ -1,6 +1,7 @@
 package com.kirkbushman.sampleapp.models
 
 import android.view.View
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.airbnb.epoxy.EpoxyAttribute
@@ -15,17 +16,23 @@ abstract class MoreCommentModel : EpoxyModelWithHolder<MoreCommentHolder>() {
     lateinit var more: String
 
     @EpoxyAttribute
-    lateinit var clickListener: View.OnClickListener
+    lateinit var moreListener: View.OnClickListener
 
     override fun bind(holder: MoreCommentHolder) {
 
         holder.more.text = more
-        holder.container.setOnClickListener(clickListener)
+        holder.loadMore.setOnClickListener(moreListener)
+    }
+
+    override fun unbind(holder: MoreCommentHolder) {
+
+        holder.loadMore.setOnClickListener(null)
     }
 }
 
 class MoreCommentHolder : KotlinHolder() {
 
-    val more by bind<TextView>(R.id.more)
     val container by bind<LinearLayout>(R.id.container)
+    val more by bind<TextView>(R.id.more)
+    val loadMore by bind<Button>(R.id.load_more_button)
 }

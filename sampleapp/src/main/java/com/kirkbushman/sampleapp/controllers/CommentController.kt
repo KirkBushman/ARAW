@@ -6,6 +6,7 @@ import com.kirkbushman.araw.models.Comment
 import com.kirkbushman.araw.models.MoreComments
 import com.kirkbushman.araw.models.Submission
 import com.kirkbushman.araw.models.mixins.CommentData
+import com.kirkbushman.araw.utils.treeIterator
 import com.kirkbushman.sampleapp.models.comment
 import com.kirkbushman.sampleapp.models.empty
 import com.kirkbushman.sampleapp.models.moreComment
@@ -70,7 +71,7 @@ class CommentController(private val callback: CommentCallback) : EpoxyController
             }
         }
 
-        comments.forEach {
+        comments.treeIterator().forEach {
 
             if (it is Comment) {
 
@@ -87,7 +88,7 @@ class CommentController(private val callback: CommentCallback) : EpoxyController
                 moreComment {
                     id(it.fullname)
                     more("${it.count} more children")
-                    clickListener { _ -> callback.onLoadMoreClick(it, submission!!) }
+                    moreListener { _ -> callback.onLoadMoreClick(it, submission!!) }
                 }
             }
         }

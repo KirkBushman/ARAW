@@ -71,7 +71,7 @@ class CommentsActivity : AppCompatActivity() {
 
                 doAsync(doWork = {
 
-                    val more = client?.contributionsClient?.moreChildren(moreComments, submission)
+                    val more = client?.contributionsClient?.moreChildren(moreComments, submission, limitChildren = false)
                     addendum.addAll(more ?: listOf())
                 }, onPost = {
 

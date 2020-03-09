@@ -36,6 +36,7 @@
     <string name="bttn_inbox">Inbox</string>
     <string name="bttn_messages">Messages</string>
     <string name="bttn_comment_replies">Comments Replies</string>
+    <string name="bttn_load_more">Load More</string>
     <string name="bttn_self_replies">Self Replies</string>
     <string name="bttn_sent">Sent</string>
     <string name="bttn_user">User</string>

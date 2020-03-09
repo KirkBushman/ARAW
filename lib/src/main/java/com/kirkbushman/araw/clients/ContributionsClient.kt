@@ -119,11 +119,21 @@ class ContributionsClient(
         return res.body()?.data?.children?.first()?.data
     }
 
-    fun moreChildren(moreComments: MoreComments, submission: Submission): List<CommentData>? {
+    fun moreChildren(
+
+        moreComments: MoreComments,
+        submission: Submission,
+
+        limitChildren: Boolean? = null,
+        depth: Int? = null
+    ): List<CommentData>? {
 
         val authMap = getHeaderMap()
         val req = api.moreChildren(
-            children = moreComments.children.joinToString(separator = ","),
+            children = "",// moreComments.children.joinToString(separator = ","),
+            limitChildren = limitChildren,
+            depth = depth,
+            id = moreComments.id,
             linkId = submission.fullname,
             header = authMap
         )
