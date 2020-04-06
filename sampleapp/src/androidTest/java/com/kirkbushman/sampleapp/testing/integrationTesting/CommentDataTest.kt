@@ -145,7 +145,7 @@ class CommentDataTest {
 
         return comments.toList().treeIterable().map {
 
-            if(it is Comment) {
+            if (it is Comment) {
                 TestComment(it.copy())
             } else {
                 deepCopy(it)
@@ -226,7 +226,7 @@ class CommentDataTest {
     }
 
     private fun addToNode(parent: CommentData, child: CommentData) {
-        when(parent) {
+        when (parent) {
             is Comment -> {
                 if (parent.replies != null) {
                     val newRep = parent.replies!!.toMutableList()
@@ -256,7 +256,7 @@ class CommentDataTest {
      * on CommentData lists to add additional methods on the items while in the tree structure
      */
     @Parcelize
-    data class TestComment(private val comment: Comment): CommentData {
+    data class TestComment(private val comment: Comment) : CommentData {
 
         override val id: String
             get() = comment.id

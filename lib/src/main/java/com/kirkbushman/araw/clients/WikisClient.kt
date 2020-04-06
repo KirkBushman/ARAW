@@ -1,6 +1,7 @@
 package com.kirkbushman.araw.clients
 
 import com.kirkbushman.araw.RedditApi
+import com.kirkbushman.araw.exceptions.WikiDisabledException
 import com.kirkbushman.araw.models.Subreddit
 import com.kirkbushman.araw.models.WikiPage
 
@@ -11,10 +12,12 @@ class WikisClient(
 
 ) : BaseRedditClient(api, getHeaderMap) {
 
+    @Throws(WikiDisabledException::class)
     fun wiki(subreddit: Subreddit): WikiPage? {
         return wiki(subreddit.displayName)
     }
 
+    @Throws(WikiDisabledException::class)
     fun wiki(subreddit: String): WikiPage? {
 
         val authMap = getHeaderMap()
@@ -22,6 +25,13 @@ class WikisClient(
         val res = req.execute()
 
         if (!res.isSuccessful) {
+
+            val errorBody = res.errorBody()
+            if (errorBody != null && errorBody.string().contains("WIKI_DISABLED")) {
+
+                throw WikiDisabledException()
+            }
+
             return null
         }
 

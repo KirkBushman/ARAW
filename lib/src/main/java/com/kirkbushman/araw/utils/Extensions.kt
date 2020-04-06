@@ -13,7 +13,6 @@ import com.kirkbushman.araw.models.mixins.Editable
 import com.kirkbushman.araw.models.mixins.Votable
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.reflect.KClass
 
 val Created.createdDate: Date
     get() {

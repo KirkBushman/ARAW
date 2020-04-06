@@ -7,6 +7,7 @@ import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.doAsync
 import kotlinx.android.synthetic.main.activity_wiki.*
+import kotlin.Exception
 
 class WikiPageActivity : AppCompatActivity() {
 
@@ -28,12 +29,23 @@ class WikiPageActivity : AppCompatActivity() {
             if (subreddit.isNotEmpty()) {
 
                 var wiki: WikiPage? = null
+                var exception: Exception? = null
                 doAsync(doWork = {
 
-                    wiki = client?.wikisClient?.wiki(subreddit)
+                    try {
+                        wiki = client?.wikisClient?.wiki(subreddit)
+                    } catch (ex: Exception) {
+                        exception = ex
+                    }
                 }, onPost = {
 
                     wiki_text.text = wiki.toString()
+
+                    if (exception != null) {
+                        exception!!.printStackTrace()
+
+                        wiki_text.text = exception!!.message
+                    }
                 })
             }
         }

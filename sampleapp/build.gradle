@@ -66,8 +66,6 @@ dependencies {
 
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanary_ver"
 
-    androidTestImplementation "junit:junit:4.13"
-
     androidTestImplementation "androidx.test:core:$test_ver"
     androidTestImplementation "androidx.test:runner:$test_ver"
     androidTestImplementation "androidx.test:rules:$test_ver"

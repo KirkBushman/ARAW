@@ -13,9 +13,15 @@ import kotlinx.android.parcel.Parcelize
 data class EnvelopedWikiPage(
 
     @Json(name = "kind")
-    override val kind: EnvelopeKind,
+    override val kind: EnvelopeKind?,
 
     @Json(name = "data")
-    override val data: WikiPage
+    override val data: WikiPage?,
+
+    @Json(name = "reason")
+    val reason: String? = null,
+
+    @Json(name = "message")
+    val message: String? = null
 
 ) : Envelope<WikiPage>, Parcelable
