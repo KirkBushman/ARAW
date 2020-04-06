@@ -5,7 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
             android:importantForAutofill="no"
             />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
             android:id="@+id/bttn_reply"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

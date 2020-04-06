@@ -4,7 +4,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
             android:id="@+id/subject"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -13,14 +13,14 @@
             android:textStyle="bold"
             />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
             android:id="@+id/author"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
             android:id="@+id/body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

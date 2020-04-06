@@ -4,14 +4,14 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
             android:id="@+id/author"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
     />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
             android:id="@+id/body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -20,7 +20,8 @@
             android:maxLines="5"
     />
 
-    <Button android:id="@+id/reply_button"
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/reply_button"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"

@@ -10,7 +10,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize" />
@@ -26,118 +26,119 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
                     android:textSize="18sp"
                     android:text="@string/main_title" />
 
-            <Button android:id="@+id/bttn_apis"
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/bttn_apis"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:text="@string/bttn_apis" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                     android:id="@+id/bttn_me"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:text="@string/bttn_me" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                     android:id="@+id/bttn_self_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:text="@string/bttn_my_info" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                     android:id="@+id/bttn_inbox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:text="@string/bttn_inbox" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                     android:id="@+id/bttn_my_subreddits"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:text="@string/bttn_my_subreddits" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                     android:id="@+id/bttn_my_trophies"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:text="@string/bttn_my_trophies" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                     android:id="@+id/bttn_user"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:text="@string/bttn_user" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                     android:id="@+id/bttn_user_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:text="@string/bttn_user_info" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                     android:id="@+id/bttn_user_trophies"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:text="@string/bttn_user_trophies" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                     android:id="@+id/bttn_user_search"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:text="@string/bttn_user_search" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                     android:id="@+id/bttn_subreddit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:text="@string/bttn_subreddit" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                     android:id="@+id/bttn_submission"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:text="@string/bttn_submission" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                     android:id="@+id/bttn_submissions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:text="@string/bttn_submissions" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                     android:id="@+id/bttn_submissions_commons"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:text="@string/bttn_submissions_commons" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                     android:id="@+id/bttn_submissions_search"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:text="@string/bttn_submissions_search" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                     android:id="@+id/bttn_subreddit_search"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -151,35 +152,42 @@
                     android:layout_margin="8dp"
                     android:text="@string/bttn_multi_search" /-->
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                     android:id="@+id/bttn_submit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:text="@string/bttn_submit" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                     android:id="@+id/bttn_comment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:text="@string/bttn_comment" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                     android:id="@+id/bttn_comments"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:text="@string/bttn_comments" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                     android:id="@+id/bttn_wiki"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:text="@string/bttn_wiki" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/bttn_wiki_pages"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="@string/bttn_wiki_pages" />
+
+            <com.google.android.material.button.MaterialButton
                     android:id="@+id/bttn_rules"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

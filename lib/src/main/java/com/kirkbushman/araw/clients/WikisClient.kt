@@ -38,6 +38,23 @@ class WikisClient(
         return res.body()?.data
     }
 
+    fun wikiPage(subreddit: Subreddit, page: String): WikiPage? {
+        return wikiPage(subreddit.displayName, page)
+    }
+
+    fun wikiPage(subreddit: String, page: String): WikiPage? {
+
+        val authMap = getHeaderMap()
+        val req = api.wikiPage(subreddit = subreddit, page = page, header = authMap)
+        val res = req.execute()
+
+        if (!res.isSuccessful) {
+            return null
+        }
+
+        return res.body()?.data
+    }
+
     fun wikiPages(subreddit: Subreddit): List<String>? {
         return wikiPages(subreddit.displayName)
     }

@@ -1,11 +1,22 @@
 package com.kirkbushman.sampleapp.activities
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.kirkbushman.sampleapp.R
 import kotlinx.android.synthetic.main.activity_apis.*
 
 class ApisActivity : AppCompatActivity() {
+
+    companion object {
+
+        fun start(context: Context) {
+
+            val intent = Intent(context, ApisActivity::class.java)
+            context.startActivity(intent)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

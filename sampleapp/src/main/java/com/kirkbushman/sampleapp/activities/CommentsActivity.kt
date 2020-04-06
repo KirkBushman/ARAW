@@ -1,5 +1,7 @@
 package com.kirkbushman.sampleapp.activities
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.kirkbushman.araw.models.Comment
@@ -16,6 +18,15 @@ import com.kirkbushman.sampleapp.fragments.ReplyBottomFragment
 import kotlinx.android.synthetic.main.activity_comments.*
 
 class CommentsActivity : AppCompatActivity() {
+
+    companion object {
+
+        fun start(context: Context) {
+
+            val intent = Intent(context, CommentsActivity::class.java)
+            context.startActivity(intent)
+        }
+    }
 
     private val client by lazy { TestApplication.instance.getClient() }
 
@@ -71,7 +82,7 @@ class CommentsActivity : AppCompatActivity() {
 
                 doAsync(doWork = {
 
-                    val more = client?.contributionsClient?.moreChildren(moreComments, submission, limitChildren = false)
+                    val more = client?.contributionsClient?.moreChildren(moreComments, submission)
                     addendum.addAll(more ?: listOf())
                 }, onPost = {
 

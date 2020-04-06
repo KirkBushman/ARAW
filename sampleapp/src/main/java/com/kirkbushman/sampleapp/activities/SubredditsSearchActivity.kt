@@ -1,5 +1,7 @@
 package com.kirkbushman.sampleapp.activities
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.kirkbushman.araw.models.Subreddit
@@ -11,6 +13,15 @@ import com.kirkbushman.sampleapp.doAsync
 import kotlinx.android.synthetic.main.activity_subreddits_search.*
 
 class SubredditsSearchActivity : AppCompatActivity() {
+
+    companion object {
+
+        fun start(context: Context) {
+
+            val intent = Intent(context, SubredditsSearchActivity::class.java)
+            context.startActivity(intent)
+        }
+    }
 
     private val client by lazy { TestApplication.instance.getClient() }
 

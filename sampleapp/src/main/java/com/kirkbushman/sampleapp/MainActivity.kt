@@ -1,6 +1,5 @@
 package com.kirkbushman.sampleapp
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.kirkbushman.sampleapp.activities.*
@@ -14,92 +13,77 @@ class MainActivity : AppCompatActivity() {
 
         bttn_apis.setOnClickListener {
 
-            val intent = Intent(this, ApisActivity::class.java)
-            startActivity(intent)
+            ApisActivity.start(this)
         }
 
         bttn_me.setOnClickListener {
 
-            val intent = Intent(this, SelfAccountActivity::class.java)
-            startActivity(intent)
+            SelfAccountActivity.start(this)
         }
 
         bttn_self_info.setOnClickListener {
 
-            val intent = Intent(this, SelfAccountInfoActivity::class.java)
-            startActivity(intent)
+            SelfAccountInfoActivity.start(this)
         }
 
         bttn_inbox.setOnClickListener {
 
-            val intent = Intent(this, InboxActivity::class.java)
-            startActivity(intent)
+            InboxActivity.start(this)
         }
 
         bttn_my_subreddits.setOnClickListener {
 
-            val intent = Intent(this, SubscribedSubredditsActivity::class.java)
-            startActivity(intent)
+            SubscribedSubredditsActivity.start(this)
         }
 
         bttn_my_trophies.setOnClickListener {
 
-            val intent = Intent(this, SelfTrophiesActivity::class.java)
-            startActivity(intent)
+            SelfTrophiesActivity.start(this)
         }
 
         bttn_user.setOnClickListener {
 
-            val intent = Intent(this, RedditorActivity::class.java)
-            startActivity(intent)
+            RedditorActivity.start(this)
         }
 
         bttn_user_info.setOnClickListener {
 
-            val intent = Intent(this, RedditorInfoActivity::class.java)
-            startActivity(intent)
+            RedditorInfoActivity.start(this)
         }
 
         bttn_user_trophies.setOnClickListener {
 
-            val intent = Intent(this, UserTrophiesActivity::class.java)
-            startActivity(intent)
+            UserTrophiesActivity.start(this)
         }
 
         bttn_user_search.setOnClickListener {
 
-            val intent = Intent(this, UserSearchActivity::class.java)
-            startActivity(intent)
+            UserSearchActivity.start(this)
         }
 
         bttn_subreddit.setOnClickListener {
 
-            val intent = Intent(this, SubredditActivity::class.java)
-            startActivity(intent)
+            SubredditActivity.start(this)
         }
 
         bttn_submission.setOnClickListener {
 
-            val intent = Intent(this, SubmissionActivity::class.java)
-            startActivity(intent)
+            SubmissionActivity.start(this)
         }
 
         bttn_submissions.setOnClickListener {
 
-            val intent = Intent(this, SubmissionsActivity::class.java)
-            startActivity(intent)
+            SubmissionsActivity.start(this)
         }
 
         bttn_submissions_search.setOnClickListener {
 
-            val intent = Intent(this, SubmissionsSearchActivity::class.java)
-            startActivity(intent)
+            SubmissionsSearchActivity.start(this)
         }
 
         bttn_subreddit_search.setOnClickListener {
 
-            val intent = Intent(this, SubredditsSearchActivity::class.java)
-            startActivity(intent)
+            SubredditsSearchActivity.start(this)
         }
 
         /*bttn_multi_search.setOnClickListener {
@@ -110,38 +94,37 @@ class MainActivity : AppCompatActivity() {
 
         bttn_submit.setOnClickListener {
 
-            val intent = Intent(this, SubmitActivity::class.java)
-            startActivity(intent)
+            SubmitActivity.start(this)
         }
 
         bttn_submissions_commons.setOnClickListener {
 
-            val intent = Intent(this, CommonSubmissionsActivity::class.java)
-            startActivity(intent)
+            CommonSubmissionsActivity.start(this)
         }
 
         bttn_comment.setOnClickListener {
 
-            val intent = Intent(this, CommentActivity::class.java)
-            startActivity(intent)
+            CommentActivity.start(this)
         }
 
         bttn_comments.setOnClickListener {
 
-            val intent = Intent(this, CommentsActivity::class.java)
-            startActivity(intent)
+            CommentsActivity.start(this)
         }
 
         bttn_wiki.setOnClickListener {
 
-            val intent = Intent(this, WikiPageActivity::class.java)
-            startActivity(intent)
+            WikiPageActivity.start(this)
+        }
+
+        bttn_wiki_pages.setOnClickListener {
+
+            WikiPagesActivity.start(this)
         }
 
         bttn_rules.setOnClickListener {
 
-            val intent = Intent(this, RulesActivity::class.java)
-            startActivity(intent)
+            RulesActivity.start(this)
         }
     }
 }

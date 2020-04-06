@@ -1,5 +1,7 @@
 package com.kirkbushman.sampleapp.activities
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -14,6 +16,15 @@ import com.kirkbushman.sampleapp.fragments.SubmissionFragment
 import kotlinx.android.synthetic.main.activity_inbox.*
 
 class CommonSubmissionsActivity : AppCompatActivity() {
+
+    companion object {
+
+        fun start(context: Context) {
+
+            val intent = Intent(context, CommonSubmissionsActivity::class.java)
+            context.startActivity(intent)
+        }
+    }
 
     private val adapter by lazy { SubmissionsPagerAdapter(supportFragmentManager) }
 

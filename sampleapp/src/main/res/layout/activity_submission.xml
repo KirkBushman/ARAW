@@ -32,7 +32,7 @@
                         android:importantForAutofill="no"
                         />
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                         android:id="@+id/bttn_search"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/submission_text"
                 android:orientation="vertical"
                 android:layout_width="match_parent"

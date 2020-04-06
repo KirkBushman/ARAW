@@ -4,7 +4,7 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -14,7 +14,8 @@
             android:maxLines="3"
     />
 
-    <Button android:id="@+id/subscribe_button"
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/subscribe_button"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"

@@ -10,7 +10,7 @@
             android:layout_height="wrap_content"
             android:paddingBottom="48dp">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/header_api_account"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -177,7 +177,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/header_api_contributions"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -245,7 +245,7 @@
                 app:layout_constraintEnd_toStartOf="@id/bttn_sub_comments"
                 />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/header_api_message"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -327,7 +327,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/header_api_subreddit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -420,7 +420,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/header_api_users"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -491,7 +491,7 @@
                 app:layout_constraintEnd_toStartOf="@id/bttn_user_gilded"
                 />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/header_api_wiki"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

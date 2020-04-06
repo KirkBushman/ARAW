@@ -1,5 +1,7 @@
 package com.kirkbushman.sampleapp.activities
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.kirkbushman.araw.models.Redditor
@@ -10,6 +12,15 @@ import com.kirkbushman.sampleapp.doAsync
 import kotlinx.android.synthetic.main.activity_user_search.*
 
 class UserSearchActivity : AppCompatActivity() {
+
+    companion object {
+
+        fun start(context: Context) {
+
+            val intent = Intent(context, SubmissionActivity::class.java)
+            context.startActivity(intent)
+        }
+    }
 
     private val client by lazy { TestApplication.instance.getClient() }
 

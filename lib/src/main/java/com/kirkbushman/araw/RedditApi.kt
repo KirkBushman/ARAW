@@ -414,6 +414,13 @@ interface RedditApi {
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedWikiPage>
 
+    @GET("/r/{subreddit}/wiki/{page}/.json")
+    fun wikiPage(
+        @Path("subreddit") subreddit: String,
+        @Path("page") page: String,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<EnvelopedWikiPage>
+
     @GET("/r/{subreddit}/wiki/pages/.json")
     fun wikiPages(
         @Path("subreddit") subreddit: String,

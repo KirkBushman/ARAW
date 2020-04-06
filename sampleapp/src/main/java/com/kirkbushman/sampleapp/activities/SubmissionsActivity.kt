@@ -1,5 +1,7 @@
 package com.kirkbushman.sampleapp.activities
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -16,6 +18,15 @@ import com.kirkbushman.sampleapp.doAsync
 import kotlinx.android.synthetic.main.activity_submissions.*
 
 class SubmissionsActivity : AppCompatActivity() {
+
+    companion object {
+
+        fun start(context: Context) {
+
+            val intent = Intent(context, SubmissionsActivity::class.java)
+            context.startActivity(intent)
+        }
+    }
 
     private val client by lazy { TestApplication.instance.getClient() }
 

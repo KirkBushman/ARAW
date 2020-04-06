@@ -1,5 +1,7 @@
 package com.kirkbushman.sampleapp.activities
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -15,6 +17,15 @@ import com.kirkbushman.sampleapp.fragments.InboxFragment.Companion.TAG_UNREAD
 import kotlinx.android.synthetic.main.activity_inbox.*
 
 class InboxActivity : AppCompatActivity() {
+
+    companion object {
+
+        fun start(context: Context) {
+
+            val intent = Intent(context, InboxActivity::class.java)
+            context.startActivity(intent)
+        }
+    }
 
     private val adapter by lazy { InboxPagerAdapter(supportFragmentManager) }
 

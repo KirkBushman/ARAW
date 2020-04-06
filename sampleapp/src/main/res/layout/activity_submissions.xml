@@ -30,7 +30,8 @@
                         android:importantForAutofill="no"
                         />
 
-                <Button android:id="@+id/search_bttn"
+                <com.google.android.material.button.MaterialButton
+                        android:id="@+id/search_bttn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="5"

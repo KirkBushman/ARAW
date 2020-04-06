@@ -9,7 +9,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/subreddit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
                 android:textStyle="bold"
         />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/author"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
 
     </LinearLayout>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
             android:maxLines="3"
     />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
             android:id="@+id/body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
