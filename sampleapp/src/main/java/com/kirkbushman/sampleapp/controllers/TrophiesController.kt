@@ -27,7 +27,7 @@ class TrophiesController : EpoxyController() {
 
             trophy {
                 id(it.id)
-                name(it.name)
+                name(it.fullname)
             }
         }
     }

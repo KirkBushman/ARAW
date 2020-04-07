@@ -1,6 +1,7 @@
 package com.kirkbushman.araw.models
 
 import android.os.Parcelable
+import com.kirkbushman.araw.models.mixins.Thing
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
@@ -10,7 +11,7 @@ import kotlinx.android.parcel.Parcelize
  *
  * @property id This item identifier, e.g. "8xwlg"
  *
- * @property name Fullname of comment, e.g. "t1_c3v7f8u"
+ * @property fullname Fullname of comment, e.g. "t1_c3v7f8u"
  *
  * @property description description of the trophy, the reason why it was given
  *
@@ -26,7 +27,10 @@ import kotlinx.android.parcel.Parcelize
 data class Trophy(
 
     @Json(name = "id")
-    val id: String?,
+    override val id: String,
+
+    @Json(name = "name")
+    override val fullname: String,
 
     @Json(name = "description")
     val description: String?,
@@ -37,10 +41,7 @@ data class Trophy(
     @Json(name = "icon_40")
     val icon40: String,
 
-    @Json(name = "name")
-    val name: String,
-
     @Json(name = "url")
     val url: String?
 
-) : Parcelable
+) : Thing, Parcelable

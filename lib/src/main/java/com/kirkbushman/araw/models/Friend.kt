@@ -1,6 +1,7 @@
 package com.kirkbushman.araw.models
 
 import android.os.Parcelable
+import com.kirkbushman.araw.models.mixins.Thing
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
@@ -10,10 +11,10 @@ import kotlinx.android.parcel.Parcelize
 data class Friend(
 
     @Json(name = "id")
-    val id: String,
+    override val id: String,
 
     @Json(name = "name")
-    val name: String,
+    override val fullname: String,
 
     @Json(name = "rel_id")
     val relId: String,
@@ -21,4 +22,4 @@ data class Friend(
     @Json(name = "date")
     val added: Long
 
-) : Parcelable
+) : Thing, Parcelable

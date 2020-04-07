@@ -11,6 +11,9 @@ data class Me(
     @Json(name = "id")
     override val id: String,
 
+    @Json(name = "name")
+    override val fullname: String,
+
     @Json(name = "comment_karma")
     override val commentKarma: Int,
 
@@ -43,9 +46,6 @@ data class Me(
 
     @Json(name = "link_karma")
     override val linkKarma: Int,
-
-    @Json(name = "name")
-    override val name: String,
 
     @Json(name = "over_18")
     val over18: Boolean

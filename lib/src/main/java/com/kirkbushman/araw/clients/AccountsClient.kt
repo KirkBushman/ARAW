@@ -115,7 +115,7 @@ class AccountsClient(
         return ContributionsFetcher(
 
             api = api,
-            username = getCurrentUser()!!.name,
+            username = getCurrentUser()!!.fullname,
             where = "",
             limit = limit,
             sorting = sorting,
@@ -136,7 +136,7 @@ class AccountsClient(
         return ContributionsFetcher(
 
             api = api,
-            username = getCurrentUser()!!.name,
+            username = getCurrentUser()!!.fullname,
             where = "submitted",
             limit = limit,
             sorting = sorting,
@@ -157,7 +157,7 @@ class AccountsClient(
         return ContributionsFetcher(
 
             api = api,
-            username = getCurrentUser()!!.name,
+            username = getCurrentUser()!!.fullname,
             where = "comments",
             limit = limit,
             sorting = sorting,
@@ -178,7 +178,7 @@ class AccountsClient(
         return ContributionsFetcher(
 
             api = api,
-            username = getCurrentUser()!!.name,
+            username = getCurrentUser()!!.fullname,
             where = "saved",
             limit = limit,
             sorting = sorting,
@@ -199,7 +199,7 @@ class AccountsClient(
         return ContributionsFetcher(
 
             api = api,
-            username = getCurrentUser()!!.name,
+            username = getCurrentUser()!!.fullname,
             where = "hidden",
             limit = limit,
             sorting = sorting,
@@ -220,7 +220,7 @@ class AccountsClient(
         return ContributionsFetcher(
 
             api = api,
-            username = getCurrentUser()!!.name,
+            username = getCurrentUser()!!.fullname,
             where = "upvoted",
             limit = limit,
             sorting = sorting,
@@ -241,7 +241,7 @@ class AccountsClient(
         return ContributionsFetcher(
 
             api = api,
-            username = getCurrentUser()!!.name,
+            username = getCurrentUser()!!.fullname,
             where = "downvoted",
             limit = limit,
             sorting = sorting,
@@ -262,7 +262,7 @@ class AccountsClient(
         return ContributionsFetcher(
 
             api = api,
-            username = getCurrentUser()!!.name,
+            username = getCurrentUser()!!.fullname,
             where = "gilded",
             limit = limit,
             sorting = sorting,

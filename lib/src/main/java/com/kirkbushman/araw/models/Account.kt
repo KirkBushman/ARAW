@@ -10,6 +10,8 @@ import com.kirkbushman.araw.models.mixins.Thing
  *
  * @property id This item identifier, e.g. "8xwlg"
  *
+ * @property fullname fullname of this class.
+ *
  * @property created The unix-time Long representing the creation date of the comment.
  *
  * @property createdUtc The unix-time Long representing the UTC creation date of the comment.
@@ -26,12 +28,12 @@ import com.kirkbushman.araw.models.mixins.Thing
  *
  * @property isMod if the user is Mod.
  *
- * @property name fullname of this class.
- *
  */
 interface Account : Thing, Created, Parcelable {
 
     override val id: String
+
+    override val fullname: String
 
     override val created: Long
 
@@ -48,6 +50,4 @@ interface Account : Thing, Created, Parcelable {
     val isMod: Boolean
 
     val linkKarma: Int
-
-    val name: String
 }

@@ -28,7 +28,7 @@ class RedditorController : EpoxyController() {
 
             redditor {
                 id(it.id)
-                redditorName(it.name)
+                redditorName(it.fullname)
                 redditorCreated(it.createdDate.toString())
                 redditorKarma((it.commentKarma + it.linkKarma).toString())
             }

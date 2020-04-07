@@ -15,7 +15,7 @@ data class Subreddit(
     override val id: String,
 
     @Json(name = "name")
-    val fullname: String,
+    override val fullname: String,
 
     @Json(name = "accounts_active")
     val accountsActive: Int?,

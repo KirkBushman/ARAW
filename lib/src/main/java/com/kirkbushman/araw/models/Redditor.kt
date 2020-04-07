@@ -11,6 +11,9 @@ data class Redditor(
     @Json(name = "id")
     override val id: String,
 
+    @Json(name = "name")
+    override val fullname: String,
+
     @Json(name = "comment_karma")
     override val commentKarma: Int,
 
@@ -36,9 +39,6 @@ data class Redditor(
     override val isMod: Boolean,
 
     @Json(name = "link_karma")
-    override val linkKarma: Int,
-
-    @Json(name = "name")
-    override val name: String
+    override val linkKarma: Int
 
 ) : Account
