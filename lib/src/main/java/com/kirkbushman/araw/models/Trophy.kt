@@ -5,6 +5,22 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
 
+/**
+ * This class represent a trophy given to a redditor.
+ *
+ * @property id This item identifier, e.g. "8xwlg"
+ *
+ * @property name Fullname of comment, e.g. "t1_c3v7f8u"
+ *
+ * @property description description of the trophy, the reason why it was given
+ *
+ * @property url url of the image at source resolution.
+ *
+ * @property icon40 url of the image at 40x40 resolution.
+ *
+ * @property icon70 url of the image at 70x70 resolution.
+ *
+ */
 @JsonClass(generateAdapter = true)
 @Parcelize
 data class Trophy(

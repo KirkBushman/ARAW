@@ -18,6 +18,7 @@ buildscript {
         test_ver       = '1.2.0'
         espresso_ver   = '3.2.0'
         leakcanary_ver = '2.2'
+        dokka_ver      = '0.10.1'
     }
 
     repositories {
@@ -27,6 +28,7 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:${android_gradle_ver}"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_ver"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokka_ver"
     }
 }
 
