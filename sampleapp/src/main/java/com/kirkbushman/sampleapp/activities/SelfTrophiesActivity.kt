@@ -30,8 +30,7 @@ class SelfTrophiesActivity : BaseControllerActivity2<Trophy>(R.layout.activity_s
     override val recyclerView: EpoxyRecyclerView
         get() = list
 
-    override val controller: BaseController<Trophy, BaseCallback>
-        get() = TrophiesController()
+    override val controller: BaseController<Trophy, BaseCallback> = TrophiesController()
 
     override fun fetchItem(client: RedditClient?): Collection<Trophy>? {
 

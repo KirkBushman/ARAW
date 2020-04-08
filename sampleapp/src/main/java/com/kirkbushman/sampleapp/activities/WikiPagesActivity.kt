@@ -47,8 +47,7 @@ class WikiPagesActivity : BaseSearchControllerActivity<String, WikiPagesControll
             }
         }
 
-    override val controller: BaseController<String, WikiPagesController.WikiPageCallback>
-        get() = WikiPagesController(callback!!)
+    override val controller: BaseController<String, WikiPagesController.WikiPageCallback> = WikiPagesController(callback!!)
 
     override fun fetchItem(client: RedditClient?, query: String): Collection<String>? {
 

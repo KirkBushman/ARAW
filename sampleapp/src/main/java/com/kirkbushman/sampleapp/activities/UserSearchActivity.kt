@@ -38,8 +38,7 @@ class UserSearchActivity : BaseSearchControllerActivity2<Redditor>(R.layout.acti
     override val recyclerView: EpoxyRecyclerView
         get() = list
 
-    override val controller: BaseController<Redditor, BaseCallback>
-        get() = RedditorController()
+    override val controller: BaseController<Redditor, BaseCallback> = RedditorController()
 
     override fun fetchItem(client: RedditClient?, query: String): Collection<Redditor>? {
 

@@ -59,8 +59,7 @@ class InboxFragment : BaseControllerFragment<Message, InboxController.InboxCallb
             }
         }
 
-    override val controller: BaseController<Message, InboxController.InboxCallback>
-        get() = InboxController(callback!!)
+    override val controller: BaseController<Message, InboxController.InboxCallback> = InboxController(callback!!)
 
     override fun fetchItem(client: RedditClient?): Collection<Message>? {
 
