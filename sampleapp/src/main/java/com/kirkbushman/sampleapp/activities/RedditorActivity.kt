@@ -2,15 +2,17 @@ package com.kirkbushman.sampleapp.activities
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
+import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.models.Redditor
 import com.kirkbushman.sampleapp.R
-import com.kirkbushman.sampleapp.TestApplication
-import com.kirkbushman.sampleapp.doAsync
+import com.kirkbushman.sampleapp.activities.base.BaseSearchPrintActivity
 import kotlinx.android.synthetic.main.activity_redditor.*
 
-class RedditorActivity : AppCompatActivity() {
+class RedditorActivity : BaseSearchPrintActivity<Redditor>(R.layout.activity_redditor) {
 
     companion object {
 
@@ -21,32 +23,20 @@ class RedditorActivity : AppCompatActivity() {
         }
     }
 
-    private val client by lazy { TestApplication.instance.getClient() }
+    override val actionBar: Toolbar
+        get() = toolbar
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_redditor)
+    override val bttnSearch: Button
+        get() = bttn_search
 
-        setSupportActionBar(toolbar)
-        supportActionBar?.let {
-            it.setDisplayHomeAsUpEnabled(true)
-            it.setDisplayShowHomeEnabled(true)
-        }
+    override val editSearch: EditText
+        get() = edit_user
 
-        bttn_search.setOnClickListener {
+    override val textPrint: TextView
+        get() = redditor_text
 
-            val username = edit_user.text.toString().trim()
-            if (username.isNotEmpty()) {
+    override fun fetchItem(client: RedditClient?, query: String): Redditor? {
 
-                var redditor: Redditor? = null
-                doAsync(doWork = {
-
-                    redditor = client?.redditorsClient?.redditor(username)
-                }, onPost = {
-
-                    redditor_text.text = redditor.toString()
-                })
-            }
-        }
+        return client?.redditorsClient?.redditor(query)
     }
 }

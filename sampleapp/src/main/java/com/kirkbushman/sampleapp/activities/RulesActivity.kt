@@ -2,16 +2,20 @@ package com.kirkbushman.sampleapp.activities
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Button
+import android.widget.EditText
+import androidx.appcompat.widget.Toolbar
+import com.airbnb.epoxy.EpoxyRecyclerView
+import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.models.SubredditRule
 import com.kirkbushman.sampleapp.R
-import com.kirkbushman.sampleapp.TestApplication
+import com.kirkbushman.sampleapp.activities.base.BaseSearchControllerActivity2
+import com.kirkbushman.sampleapp.controllers.BaseCallback
+import com.kirkbushman.sampleapp.controllers.BaseController
 import com.kirkbushman.sampleapp.controllers.RulesController
-import com.kirkbushman.sampleapp.doAsync
 import kotlinx.android.synthetic.main.activity_rules.*
 
-class RulesActivity : AppCompatActivity() {
+class RulesActivity : BaseSearchControllerActivity2<SubredditRule>(R.layout.activity_rules) {
 
     companion object {
 
@@ -22,38 +26,22 @@ class RulesActivity : AppCompatActivity() {
         }
     }
 
-    private val client by lazy { TestApplication.instance.getClient() }
+    override val actionBar: Toolbar
+        get() = toolbar
 
-    private val rules = ArrayList<SubredditRule>()
-    private val controller by lazy { RulesController() }
+    override val bttnSearch: Button
+        get() = search_bttn
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_rules)
+    override val editSearch: EditText
+        get() = search
 
-        setSupportActionBar(toolbar)
-        supportActionBar?.let {
-            it.setDisplayHomeAsUpEnabled(true)
-            it.setDisplayShowHomeEnabled(true)
-        }
+    override val recyclerView: EpoxyRecyclerView
+        get() = list
 
-        list.setHasFixedSize(true)
-        list.setController(controller)
+    override val controller: BaseController<SubredditRule, BaseCallback> = RulesController()
 
-        search_bttn.setOnClickListener {
+    override fun fetchItem(client: RedditClient?, query: String): Collection<SubredditRule>? {
 
-            val subreddit = search.text.toString().trim()
-
-            doAsync(doWork = {
-
-                val newRules = client?.subredditsClient?.rules(subreddit)
-
-                rules.clear()
-                rules.addAll(newRules ?: arrayOf())
-            }, onPost = {
-
-                controller.setRules(rules)
-            })
-        }
+        return client?.subredditsClient?.rules(query)?.toList()
     }
 }

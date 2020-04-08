@@ -4,16 +4,16 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import com.kirkbushman.araw.models.Submission
 import com.kirkbushman.araw.models.general.Vote
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
+import com.kirkbushman.sampleapp.activities.base.BaseActivity
 import com.kirkbushman.sampleapp.controllers.SubmissionController
 import com.kirkbushman.sampleapp.doAsync
 import kotlinx.android.synthetic.main.activity_submissions_search.*
 
-class SubmissionsSearchActivity : AppCompatActivity() {
+class SubmissionsSearchActivity : BaseActivity() {
 
     companion object {
 

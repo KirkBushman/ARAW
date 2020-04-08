@@ -3,15 +3,15 @@ package com.kirkbushman.sampleapp.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.kirkbushman.araw.models.Trophy
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
+import com.kirkbushman.sampleapp.activities.base.BaseActivity
 import com.kirkbushman.sampleapp.controllers.TrophiesController
 import com.kirkbushman.sampleapp.doAsync
 import kotlinx.android.synthetic.main.activity_user_trophies.*
 
-class UserTrophiesActivity : AppCompatActivity() {
+class UserTrophiesActivity : BaseActivity() {
 
     companion object {
 
@@ -52,7 +52,7 @@ class UserTrophiesActivity : AppCompatActivity() {
                 trophies.addAll(temp ?: listOf())
             }, onPost = {
 
-                controller.setTrophies(trophies)
+                controller.setItems(trophies)
             })
         }
     }

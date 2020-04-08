@@ -1,40 +1,20 @@
 package com.kirkbushman.sampleapp.controllers
 
-import com.airbnb.epoxy.EpoxyController
-import com.kirkbushman.sampleapp.models.empty
 import com.kirkbushman.sampleapp.models.wikiPage
 
-class WikiPagesController(private val callback: WikiPageCallback) : EpoxyController() {
+class WikiPagesController(callback: WikiPageCallback) : BaseController<String, WikiPagesController.WikiPageCallback>(callback) {
 
-    interface WikiPageCallback {
+    interface WikiPageCallback : BaseCallback {
 
-        fun onPageClick(index: Int)
+        fun onPageClick(items: List<String>, index: Int)
     }
 
-    private val wikiPages = ArrayList<String>()
+    override fun itemModel(index: Int, it: String, callback: WikiPageCallback?) {
 
-    fun setWikiPages(wikiPages: Collection<String>) {
-        this.wikiPages.clear()
-        this.wikiPages.addAll(wikiPages)
-        requestModelBuild()
-    }
-
-    override fun buildModels() {
-
-        if (wikiPages.isEmpty()) {
-
-            empty {
-                id("empty_model")
-            }
-        }
-
-        wikiPages.forEachIndexed { index, it ->
-
-            wikiPage {
-                id(it)
-                name(it)
-                listener { _ -> callback.onPageClick(index) }
-            }
+        wikiPage {
+            id(it)
+            name(it)
+            listener { _ -> callback?.onPageClick(items, index) }
         }
     }
 }

@@ -2,15 +2,17 @@ package com.kirkbushman.sampleapp.activities
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
+import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.models.Comment
 import com.kirkbushman.sampleapp.R
-import com.kirkbushman.sampleapp.TestApplication
-import com.kirkbushman.sampleapp.doAsync
+import com.kirkbushman.sampleapp.activities.base.BaseSearchPrintActivity
 import kotlinx.android.synthetic.main.activity_comment.*
 
-class CommentActivity : AppCompatActivity() {
+class CommentActivity : BaseSearchPrintActivity<Comment>(R.layout.activity_comment) {
 
     companion object {
 
@@ -21,32 +23,19 @@ class CommentActivity : AppCompatActivity() {
         }
     }
 
-    private val client by lazy { TestApplication.instance.getClient() }
+    override val actionBar: Toolbar
+        get() = toolbar
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_comment)
+    override val bttnSearch: Button
+        get() = bttn_search
 
-        setSupportActionBar(toolbar)
-        supportActionBar?.let {
-            it.setDisplayHomeAsUpEnabled(true)
-            it.setDisplayShowHomeEnabled(true)
-        }
+    override val editSearch: EditText
+        get() = edit_search
 
-        bttn_search.setOnClickListener {
+    override val textPrint: TextView
+        get() = comment_text
 
-            val commentId = edit_comment_id.text.toString().trim()
-            if (commentId.isNotEmpty()) {
-
-                var comment: Comment? = null
-                doAsync(doWork = {
-
-                    comment = client?.contributionsClient?.comment(commentId)
-                }, onPost = {
-
-                    comment_text.text = comment.toString()
-                })
-            }
-        }
+    override fun fetchItem(client: RedditClient?, query: String): Comment? {
+        return client?.contributionsClient?.comment(query)
     }
 }

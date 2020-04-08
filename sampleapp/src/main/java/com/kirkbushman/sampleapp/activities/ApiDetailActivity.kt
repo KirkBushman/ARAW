@@ -3,13 +3,13 @@ package com.kirkbushman.sampleapp.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
+import com.kirkbushman.sampleapp.activities.base.BaseActivity
 import com.kirkbushman.sampleapp.doAsync
 import kotlinx.android.synthetic.main.activity_api_detail.*
 
-class ApiDetailActivity : AppCompatActivity() {
+class ApiDetailActivity : BaseActivity() {
 
     companion object {
 

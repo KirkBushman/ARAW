@@ -2,15 +2,15 @@ package com.kirkbushman.sampleapp.activities
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
+import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.models.Me
 import com.kirkbushman.sampleapp.R
-import com.kirkbushman.sampleapp.TestApplication
-import com.kirkbushman.sampleapp.doAsync
+import com.kirkbushman.sampleapp.activities.base.BasePrintActivity
 import kotlinx.android.synthetic.main.activity_selfaccount.*
 
-class SelfAccountActivity : AppCompatActivity() {
+class SelfAccountActivity : BasePrintActivity<Me>(R.layout.activity_selfaccount) {
 
     companion object {
 
@@ -21,25 +21,14 @@ class SelfAccountActivity : AppCompatActivity() {
         }
     }
 
-    private val client by lazy { TestApplication.instance.getClient() }
+    override val actionBar: Toolbar
+        get() = toolbar
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_selfaccount)
+    override val textPrint: TextView
+        get() = self_account
 
-        setSupportActionBar(toolbar)
-        supportActionBar?.let {
-            it.setDisplayHomeAsUpEnabled(true)
-            it.setDisplayShowHomeEnabled(true)
-        }
+    override fun fetchItem(client: RedditClient?): Me? {
 
-        var me: Me? = null
-        doAsync(doWork = {
-
-            me = client?.accountsClient?.me()
-        }, onPost = {
-
-            self_account.text = me.toString()
-        })
+        return client?.accountsClient?.me()
     }
 }

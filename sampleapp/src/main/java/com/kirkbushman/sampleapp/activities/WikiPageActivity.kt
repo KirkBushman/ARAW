@@ -4,15 +4,15 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import com.kirkbushman.araw.models.WikiPage
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
+import com.kirkbushman.sampleapp.activities.base.BaseActivity
 import com.kirkbushman.sampleapp.doAsync
 import kotlinx.android.synthetic.main.activity_wiki.*
 import kotlin.Exception
 
-class WikiPageActivity : AppCompatActivity() {
+class WikiPageActivity : BaseActivity() {
 
     companion object {
 

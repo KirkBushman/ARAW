@@ -5,17 +5,17 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.kirkbushman.araw.models.general.SubmissionsSorting
 import com.kirkbushman.araw.models.general.TimePeriod
 import com.kirkbushman.sampleapp.R
+import com.kirkbushman.sampleapp.activities.base.BaseActivity
 import com.kirkbushman.sampleapp.fragments.SubmissionFragment
 import kotlinx.android.synthetic.main.activity_inbox.*
 
-class CommonSubmissionsActivity : AppCompatActivity() {
+class CommonSubmissionsActivity : BaseActivity() {
 
     companion object {
 

@@ -2,15 +2,18 @@ package com.kirkbushman.sampleapp.activities
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Button
+import android.widget.EditText
+import androidx.appcompat.widget.Toolbar
+import com.airbnb.epoxy.EpoxyRecyclerView
+import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.sampleapp.R
-import com.kirkbushman.sampleapp.TestApplication
+import com.kirkbushman.sampleapp.activities.base.BaseSearchControllerActivity
+import com.kirkbushman.sampleapp.controllers.BaseController
 import com.kirkbushman.sampleapp.controllers.WikiPagesController
-import com.kirkbushman.sampleapp.doAsync
 import kotlinx.android.synthetic.main.activity_wiki_pages.*
 
-class WikiPagesActivity : AppCompatActivity() {
+class WikiPagesActivity : BaseSearchControllerActivity<String, WikiPagesController.WikiPageCallback>(R.layout.activity_wiki_pages) {
 
     companion object {
 
@@ -21,48 +24,36 @@ class WikiPagesActivity : AppCompatActivity() {
         }
     }
 
-    private val client by lazy { TestApplication.instance.getClient() }
-
     private var subreddit: String? = null
 
-    private val wikiPages = ArrayList<String>()
-    private val controller by lazy {
+    override val actionBar: Toolbar
+        get() = toolbar
 
-        WikiPagesController(object : WikiPagesController.WikiPageCallback {
+    override val bttnSearch: Button
+        get() = search_bttn
 
-            override fun onPageClick(index: Int) {
+    override val editSearch: EditText
+        get() = search
 
-                val item = wikiPages[index]
-                WikiPageActivity.start(this@WikiPagesActivity, subreddit ?: "", item)
+    override val recyclerView: EpoxyRecyclerView
+        get() = list
+
+    override val callback: WikiPagesController.WikiPageCallback?
+        get() = object : WikiPagesController.WikiPageCallback {
+
+            override fun onPageClick(items: List<String>, index: Int) {
+
+                WikiPageActivity.start(this@WikiPagesActivity, subreddit ?: "", items[index])
             }
-        })
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_wiki_pages)
-
-        setSupportActionBar(toolbar)
-        supportActionBar?.let {
-            it.setDisplayHomeAsUpEnabled(true)
-            it.setDisplayShowHomeEnabled(true)
         }
 
-        list.setHasFixedSize(true)
-        list.setController(controller)
+    override val controller: BaseController<String, WikiPagesController.WikiPageCallback>
+        get() = WikiPagesController(callback!!)
 
-        search_bttn.setOnClickListener {
+    override fun fetchItem(client: RedditClient?, query: String): Collection<String>? {
 
-            subreddit = search.text.toString().trim()
+        subreddit = query
 
-            doAsync(doWork = {
-
-                wikiPages.clear()
-                wikiPages.addAll(client?.wikisClient?.wikiPages(subreddit ?: "") ?: emptyList())
-            }, onPost = {
-
-                controller.setWikiPages(wikiPages)
-            })
-        }
+        return client?.wikisClient?.wikiPages(query)
     }
 }

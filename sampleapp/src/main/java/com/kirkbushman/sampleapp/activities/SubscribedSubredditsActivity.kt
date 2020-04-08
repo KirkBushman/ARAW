@@ -3,15 +3,15 @@ package com.kirkbushman.sampleapp.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.kirkbushman.araw.models.Subreddit
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
+import com.kirkbushman.sampleapp.activities.base.BaseActivity
 import com.kirkbushman.sampleapp.controllers.SubredditController
 import com.kirkbushman.sampleapp.doAsync
 import kotlinx.android.synthetic.main.activity_mine_subreddits.*
 
-class SubscribedSubredditsActivity : AppCompatActivity() {
+class SubscribedSubredditsActivity : BaseActivity() {
 
     companion object {
 

@@ -3,7 +3,6 @@ package com.kirkbushman.sampleapp.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.kirkbushman.araw.models.Comment
 import com.kirkbushman.araw.models.MoreComments
 import com.kirkbushman.araw.models.Submission
@@ -12,12 +11,13 @@ import com.kirkbushman.araw.models.mixins.CommentData
 import com.kirkbushman.araw.utils.toLinearList
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
+import com.kirkbushman.sampleapp.activities.base.BaseActivity
 import com.kirkbushman.sampleapp.controllers.CommentController
 import com.kirkbushman.sampleapp.doAsync
 import com.kirkbushman.sampleapp.fragments.ReplyBottomFragment
 import kotlinx.android.synthetic.main.activity_comments.*
 
-class CommentsActivity : AppCompatActivity() {
+class CommentsActivity : BaseActivity() {
 
     companion object {
 

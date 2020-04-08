@@ -3,11 +3,11 @@ package com.kirkbushman.sampleapp.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.kirkbushman.sampleapp.R
+import com.kirkbushman.sampleapp.activities.base.BaseActivity
 import com.kirkbushman.sampleapp.fragments.InboxFragment
 import com.kirkbushman.sampleapp.fragments.InboxFragment.Companion.TAG_INBOX
 import com.kirkbushman.sampleapp.fragments.InboxFragment.Companion.TAG_MENTIONS
@@ -16,7 +16,7 @@ import com.kirkbushman.sampleapp.fragments.InboxFragment.Companion.TAG_SENT
 import com.kirkbushman.sampleapp.fragments.InboxFragment.Companion.TAG_UNREAD
 import kotlinx.android.synthetic.main.activity_inbox.*
 
-class InboxActivity : AppCompatActivity() {
+class InboxActivity : BaseActivity() {
 
     companion object {
 

@@ -21,7 +21,7 @@
                     android:orientation="horizontal">
 
                 <EditText
-                        android:id="@+id/edit_comment_id"
+                        android:id="@+id/edit_search"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"

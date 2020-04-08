@@ -2,16 +2,20 @@ package com.kirkbushman.sampleapp.activities
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Button
+import android.widget.EditText
+import androidx.appcompat.widget.Toolbar
+import com.airbnb.epoxy.EpoxyRecyclerView
+import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.models.Redditor
 import com.kirkbushman.sampleapp.R
-import com.kirkbushman.sampleapp.TestApplication
+import com.kirkbushman.sampleapp.activities.base.BaseSearchControllerActivity2
+import com.kirkbushman.sampleapp.controllers.BaseCallback
+import com.kirkbushman.sampleapp.controllers.BaseController
 import com.kirkbushman.sampleapp.controllers.RedditorController
-import com.kirkbushman.sampleapp.doAsync
 import kotlinx.android.synthetic.main.activity_user_search.*
 
-class UserSearchActivity : AppCompatActivity() {
+class UserSearchActivity : BaseSearchControllerActivity2<Redditor>(R.layout.activity_user_search) {
 
     companion object {
 
@@ -22,38 +26,24 @@ class UserSearchActivity : AppCompatActivity() {
         }
     }
 
-    private val client by lazy { TestApplication.instance.getClient() }
+    override val actionBar: Toolbar
+        get() = toolbar
 
-    private val redditors = ArrayList<Redditor>()
-    private val controller by lazy { RedditorController() }
+    override val bttnSearch: Button
+        get() = search_bttn
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_user_search)
+    override val editSearch: EditText
+        get() = query
 
-        setSupportActionBar(toolbar)
-        supportActionBar?.let {
-            it.setDisplayHomeAsUpEnabled(true)
-            it.setDisplayShowHomeEnabled(true)
-        }
+    override val recyclerView: EpoxyRecyclerView
+        get() = list
 
-        list.setHasFixedSize(true)
-        list.setController(controller)
+    override val controller: BaseController<Redditor, BaseCallback>
+        get() = RedditorController()
 
-        search_bttn.setOnClickListener {
+    override fun fetchItem(client: RedditClient?, query: String): Collection<Redditor>? {
 
-            val query = query.text.toString().trim()
-
-            doAsync(doWork = {
-
-                val fetcher = client?.redditorsClient?.fetchRedditorSearch(query, show = "all")
-
-                redditors.clear()
-                redditors.addAll(fetcher?.fetchNext() ?: listOf())
-            }, onPost = {
-
-                controller.setRedditors(redditors)
-            })
-        }
+        val fetcher = client?.redditorsClient?.fetchRedditorSearch(query, show = "all")
+        return fetcher?.fetchNext()
     }
 }

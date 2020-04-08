@@ -2,15 +2,17 @@ package com.kirkbushman.sampleapp.activities
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
+import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.models.Submission
 import com.kirkbushman.sampleapp.R
-import com.kirkbushman.sampleapp.TestApplication
-import com.kirkbushman.sampleapp.doAsync
+import com.kirkbushman.sampleapp.activities.base.BaseSearchPrintActivity
 import kotlinx.android.synthetic.main.activity_submission.*
 
-class SubmissionActivity : AppCompatActivity() {
+class SubmissionActivity : BaseSearchPrintActivity<Submission>(R.layout.activity_submission) {
 
     companion object {
 
@@ -21,32 +23,19 @@ class SubmissionActivity : AppCompatActivity() {
         }
     }
 
-    private val client by lazy { TestApplication.instance.getClient() }
+    override val actionBar: Toolbar
+        get() = toolbar
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_submission)
+    override val bttnSearch: Button
+        get() = bttn_search
 
-        setSupportActionBar(toolbar)
-        supportActionBar?.let {
-            it.setDisplayHomeAsUpEnabled(true)
-            it.setDisplayShowHomeEnabled(true)
-        }
+    override val editSearch: EditText
+        get() = edit_submission_id
 
-        bttn_search.setOnClickListener {
+    override val textPrint: TextView
+        get() = submission_text
 
-            val submissionId = edit_submission_id.text.toString().trim()
-            if (submissionId.isNotEmpty()) {
-
-                var submission: Submission? = null
-                doAsync(doWork = {
-
-                    submission = client?.contributionsClient?.submission(submissionId)
-                }, onPost = {
-
-                    submission_text.text = submission.toString()
-                })
-            }
-        }
+    override fun fetchItem(client: RedditClient?, query: String): Submission? {
+        return client?.contributionsClient?.submission(query)
     }
 }

@@ -3,11 +3,11 @@ package com.kirkbushman.sampleapp.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.kirkbushman.sampleapp.R
+import com.kirkbushman.sampleapp.activities.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_apis.*
 
-class ApisActivity : AppCompatActivity() {
+class ApisActivity : BaseActivity() {
 
     companion object {
 
