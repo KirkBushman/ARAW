@@ -10,6 +10,64 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
 
+/**
+ * This class represents the message a user can send or receive.
+ * Messages are grouped in the user inbox.
+ *
+ * @property id This item identifier, e.g. "8xwlg"
+ *
+ * @property fullname Fullname of message, e.g. "t1_c3v7f8u"
+ *
+ * @property author Name of the message's author
+ *
+ * @property body The raw text. this is the unformatted text which includes
+ * the raw markup characters such as ** for bold. <, >, and & are escaped.
+ *
+ * @property bodyHtml The formatted HTML text as displayed on reddit. For example,
+ * text that is emphasised by * will now have <em> tags wrapping it.
+ * Additionally, bullets and numbered lists will now be in HTML list format.
+ * NOTE: The HTML string will be escaped. You must unescape to get the raw HTML.
+ *
+ * @property context the message is a comment, then the permalink to the comment
+ * with ?context=3 appended to the end, otherwise an empty string
+ *
+ * @property created The unix-time Long representing the creation date of the message.
+ *
+ * @property createdUtc The unix-time Long representing the UTC creation date of the message.
+ *
+ * @property dest The destination of this message.
+ *
+ * @property distinguishedRaw to allow determining whether they have been distinguished by moderators/admins.
+ * null = not distinguished.
+ * moderator = the green.
+ * admin = the red.
+ * special = various other special distinguishes.
+ * NOTE: use the extensions in Distinguishable to have an enum representation.
+ *
+ * @property firstMessage either null or the first message's ID represented as base 10 (wtf).
+ *
+ * @property firstMessageName either null or the first message's fullname.
+ *
+ * @property isComment if the message relates to a comment under
+ * your submission or a reply to the current logged in comment.
+ *
+ * @property isUnread if the message is still unread.
+ *
+ * @property likes how the logged-in user has voted on the comment,
+ * True = upvoted, False = downvoted, null = no vote
+ * NOTE: use the extensions to have a practical enum class.
+ *
+ * @property parentId null if no parent is attached.
+ *
+ * @property replies an empty string if there are no replies.
+ *
+ * @property subject subject of the message.
+ *
+ * @property subreddit null if not a comment.
+ *
+ * @property subredditNamePrefixed subreddit name with the /r/ prefix, null if not a comment.
+ *
+ */
 @JsonClass(generateAdapter = true)
 @Parcelize
 data class Message(

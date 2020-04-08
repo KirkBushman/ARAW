@@ -1,7 +1,7 @@
 package com.kirkbushman.araw.models.mixins
 
 /**
- * Base interface for all items that can be voted on,
+ * Base interface for all the items that can be voted on,
  * likes = True -> Upvote, likes = False -> Downvote, likes = null
  *
  * @property id This item identifier, e.g. "8xwlg"
