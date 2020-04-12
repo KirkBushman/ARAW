@@ -18,6 +18,21 @@ import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.parcel.RawValue
 
+/**
+ * This class represents a user post in a specific Subreddit,
+ * this class can be replied to, in a form of a comment section.
+ *
+ * The user submission can be a text post, a link to a Url or can include images/media.
+ *
+ * @property id This item identifier, e.g. "8xwlg"
+ *
+ * @property fullname Fullname of sumbission, e.g. "t1_c3v7f8u"
+ *
+ * @property allAwarding List of the submission's received awardings.
+ *
+ * @property author Name of the Submission's author.
+ *
+ */
 @JsonClass(generateAdapter = true)
 @Parcelize
 data class Submission(

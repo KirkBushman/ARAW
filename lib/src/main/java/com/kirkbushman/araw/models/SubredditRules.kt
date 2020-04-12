@@ -4,14 +4,16 @@ import android.os.Parcelable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
-import java.util.*
 
 @JsonClass(generateAdapter = true)
 @Parcelize
 data class SubredditRules(
 
     @Json(name = "rules")
-    val rules: Array<SubredditRule>
+    val rules: Array<SubredditRule>,
+
+    @Json(name = "site_rules")
+    val siteRules: Array<String>
 
 ) : Parcelable {
 
