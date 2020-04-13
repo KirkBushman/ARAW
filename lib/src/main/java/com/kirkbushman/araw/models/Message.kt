@@ -59,8 +59,6 @@ import kotlinx.android.parcel.Parcelize
  *
  * @property parentId null if no parent is attached.
  *
- * @property replies an empty string if there are no replies.
- *
  * @property subject subject of the message.
  *
  * @property subreddit null if not a comment.

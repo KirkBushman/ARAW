@@ -32,6 +32,18 @@ import kotlinx.android.parcel.RawValue
  *
  * @property author Name of the Submission's author.
  *
+ * @property authorFlairBackgroundColor background color of the author's flair, used in the site UI.
+ *
+ * @property authorFlairCssClass predefined css class of the author's flair, used in the site UI.
+ *
+ * @property authorFlairText plain text of the author's flair.
+ *
+ * @property authorFlairTextColor text color of the author's flair, used in the site UI.
+ *
+ * @property authorFlairTemplateId template id of the author's flair, used in the site UI.
+ *
+ * @property authorFlairType type of author flair
+ *
  */
 @JsonClass(generateAdapter = true)
 @Parcelize

@@ -6,7 +6,17 @@ import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
 
 /**
- * Gildings might be null, even if the object exists
+ * This class represents the amount of silver, gold and platinum that a contribution has,
+ * given by users.
+ *
+ * Gildings might be null, even if the object exists.
+ *
+ * @property silverCount silver count.
+ *
+ * @property goldCount gold count.
+ *
+ * @property platinumCount platinum count.
+ *
  */
 @JsonClass(generateAdapter = true)
 @Parcelize
