@@ -1,7 +1,6 @@
 package com.kirkbushman.araw.models
 
 import android.os.Parcelable
-import com.kirkbushman.araw.models.mixins.Thing
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
@@ -27,10 +26,10 @@ import kotlinx.android.parcel.Parcelize
 data class Trophy(
 
     @Json(name = "id")
-    override val id: String,
+    val id: String?,
 
     @Json(name = "name")
-    override val fullname: String,
+    val fullname: String?,
 
     @Json(name = "description")
     val description: String?,
@@ -44,4 +43,4 @@ data class Trophy(
     @Json(name = "url")
     val url: String?
 
-) : Thing, Parcelable
+) : Parcelable

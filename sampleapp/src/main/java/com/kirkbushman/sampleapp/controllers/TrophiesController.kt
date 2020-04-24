@@ -9,7 +9,7 @@ class TrophiesController : BaseController2<Trophy>() {
 
         trophy {
             id(it.id)
-            name(it.fullname)
+            name(it.fullname ?: "")
         }
     }
 }

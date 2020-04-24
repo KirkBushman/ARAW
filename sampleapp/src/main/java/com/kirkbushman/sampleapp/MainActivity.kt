@@ -11,6 +11,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        bttn_back_to_login.setOnClickListener {
+
+            LoginActivity.start(this, stopAutoLogin = true)
+        }
+
         bttn_apis.setOnClickListener {
 
             ApisActivity.start(this)

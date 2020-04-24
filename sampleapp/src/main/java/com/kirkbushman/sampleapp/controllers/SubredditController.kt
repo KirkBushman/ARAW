@@ -41,7 +41,7 @@ class SubredditController(private val callback: SubredditCallback) : EpoxyContro
             subreddit {
                 id(it.id)
                 subreddit(it.displayNamePrefixed)
-                subscribed(it.isSubscriber)
+                subscribed(it.isSubscriber ?: false)
                 subscribeClick(View.OnClickListener { callback.subscribeClick(index) })
             }
         }

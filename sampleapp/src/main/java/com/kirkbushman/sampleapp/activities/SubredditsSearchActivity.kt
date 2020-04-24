@@ -38,8 +38,11 @@ class SubredditsSearchActivity : BaseActivity() {
                     client?.subredditsClient?.subscribe(subreddit)
                 }, onPost = {
 
-                    subreddits[index] = subreddit.copy(isSubscriber = !subreddit.isSubscriber)
-                    refresh()
+                    if (subreddit.isSubscriber != null) {
+
+                        subreddits[index] = subreddit.copy(isSubscriber = !subreddit.isSubscriber!!)
+                        refresh()
+                    }
                 })
             }
         })

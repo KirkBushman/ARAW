@@ -12,14 +12,7 @@ import com.kirkbushman.araw.utils.Utils.buildRetrofit
 import com.kirkbushman.auth.models.TokenBearer
 import retrofit2.Retrofit
 
-class RedditClient @JvmOverloads constructor (
-
-    private val bearer: TokenBearer,
-
-    logging: Boolean = false,
-    me: Me? = null,
-    fetchMe: ((AccountsClient) -> Unit)? = null
-) {
+class RedditClient @JvmOverloads constructor (private val bearer: TokenBearer, logging: Boolean = false) {
 
     companion object {
 
@@ -55,30 +48,15 @@ class RedditClient @JvmOverloads constructor (
 
     private val api = getApi(logging)
 
-    val accountsClient by lazy { AccountsClient(api, ::getCurrentUser, { me -> currentUser = me }, ::getHeaderMap) }
+    val accountsClient by lazy { AccountsClient(api, ::getHeaderMap) }
     val contributionsClient by lazy { ContributionsClient(api, ::getHeaderMap) }
     val messagesClient by lazy { MessagesClient(api, ::getHeaderMap) }
     val subredditsClient by lazy { SubredditsClient(api, ::getHeaderMap) }
     val redditorsClient by lazy { RedditorsClient(api, ::getHeaderMap) }
     val wikisClient by lazy { WikisClient(api, ::getHeaderMap) }
 
-    private var currentUser: Me? = null
-    fun getCurrentUser(): Me? = currentUser
-
-    init {
-
-        when {
-
-            me != null -> {
-                currentUser = me
-            }
-
-            fetchMe != null -> {
-                fetchMe(accountsClient)
-            }
-
-            else -> { accountsClient.me() ?: throw IllegalStateException("Could not found logged redditor") }
-        }
+    fun getCurrentUser(): Me? {
+        return accountsClient.getCurrentUser()
     }
 
     fun searchSubreddits(
@@ -107,6 +85,6 @@ class RedditClient @JvmOverloads constructor (
     }
 
     private fun getHeaderMap(): HashMap<String, String> {
-        return hashMapOf("Authorization" to "bearer ".plus(bearer.getRawAccessToken()))
+        return hashMapOf("Authorization" to "bearer ".plus(bearer.getAccessToken()))
     }
 }

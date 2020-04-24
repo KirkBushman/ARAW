@@ -1,20 +1,33 @@
 package com.kirkbushman.sampleapp
 
+import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
 import android.os.Bundle
-import android.webkit.CookieManager
-import android.webkit.WebView
-import android.webkit.WebViewClient
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.kirkbushman.araw.RedditClient
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
     companion object {
 
-        private const val LOGGING = true
+        private const val PARAM_AUTO_LOGIN = "intent_param_auto_login"
+
+        fun start(context: Context, stopAutoLogin: Boolean = false) {
+
+            val intent = Intent(context, LoginActivity::class.java)
+            intent.putExtra(PARAM_AUTO_LOGIN, stopAutoLogin)
+
+            context.startActivity(intent)
+        }
     }
+
+    private val stopAutoLogin by lazy { intent.getBooleanExtra(PARAM_AUTO_LOGIN, false) }
+
+    private val app = TestApplication.instance
+    private val appAuth = app.getAuthHelper()
+    private val userlessAuth = app.getUserlessHelper()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,44 +39,143 @@ class LoginActivity : AppCompatActivity() {
             it.setDisplayShowHomeEnabled(true)
         }
 
-        browser.settings.javaScriptEnabled = true
+        checkAuthStatus()
 
-        val auth = TestApplication.instance.auth
-        if (!auth.shouldLogin()) {
+        if (!stopAutoLogin) {
+
+            if (!appAuth.shouldLogin() || !userlessAuth.shouldLogin()) {
+
+                if (!appAuth.shouldLogin()) {
+
+                    savedInstalledApp()
+                }
+
+                if (!userlessAuth.shouldLogin()) {
+
+                    savedUserless()
+                }
+            }
+        }
+
+        bttn_app_login.setOnClickListener {
+
+            browser.visibility = View.VISIBLE
+            text_current_login.visibility = View.GONE
+            bttn_app_login.visibility = View.GONE
+            bttn_userless_login.visibility = View.GONE
+
+            if (!appAuth.shouldLogin()) {
+
+                savedInstalledApp()
+            } else {
+
+                fetchInstalledApp()
+            }
+        }
+
+        bttn_userless_login.setOnClickListener {
+
+            if (!userlessAuth.shouldLogin()) {
+
+                savedUserless()
+            } else {
+
+                fetchUserless()
+            }
+        }
+    }
+
+    private fun savedInstalledApp() {
+
+        doAsync(doWork = {
+
+            val client = appAuth.getSavedRedditClient()
+            if (client != null) {
+                app.setClient(client)
+            }
+        }, onPost = {
+
+            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+            startActivity(intent)
+        })
+    }
+
+    private fun savedUserless() {
+
+        doAsync(doWork = {
+
+            val client = userlessAuth.getSavedRedditClient()
+            if (client != null) {
+                app.setClient(client)
+            }
+        }, onPost = {
+
+            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+            startActivity(intent)
+        })
+    }
+
+    private fun fetchInstalledApp() {
+
+        appAuth.startWebViewAuthentication(browser) {
+
+            browser.stopLoading()
 
             doAsync(doWork = {
 
-                val client = auth.getSavedRedditClient(LOGGING)
-                TestApplication.instance.setClient(client)
-            }, onPost = {
+                if (!userlessAuth.shouldLogin()) {
+                    userlessAuth.forceRevoke()
+                }
+
+                appAuth.retrieveTokenBearerFromUrl(it)
+
+                val client = appAuth.getRedditClient()
+                if (client != null) {
+                    TestApplication.instance.setClient(client)
+                }
+
+                checkAuthStatus()
 
                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
                 startActivity(intent)
             })
-        } else {
+        }
+    }
 
-            CookieManager.getInstance().removeAllCookies(null)
+    private fun fetchUserless() {
 
-            browser.webViewClient = object : WebViewClient() {
-                override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
+        var client: RedditClient? = null
 
-                    if (auth.isRedirectedUrl(url)) {
-                        browser.stopLoading()
+        doAsync(doWork = {
 
-                        doAsync(doWork = {
-
-                            val client = auth.getRedditClient(url, LOGGING)
-                            TestApplication.instance.setClient(client)
-
-                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                            startActivity(intent)
-                        })
-                    }
-                }
+            if (!appAuth.shouldLogin()) {
+                appAuth.forceRevoke()
             }
 
-            browser.clearFormData()
-            browser.loadUrl(auth.provideAuthUrl())
+            client = userlessAuth.getRedditClient()
+        }, onPost = {
+
+            if (client != null) {
+                TestApplication.instance.setClient(client!!)
+            }
+
+            checkAuthStatus()
+
+            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+            startActivity(intent)
+        })
+    }
+
+    private fun checkAuthStatus() {
+
+        if (!appAuth.shouldLogin()) {
+
+            text_current_login.text = getString(R.string.header_login_type, "INSTALLED_APP")
+        } else if (!userlessAuth.shouldLogin()) {
+
+            text_current_login.text = getString(R.string.header_login_type, "USERLESS")
+        } else {
+            text_current_login.text = getString(R.string.header_login_no_logged_in)
         }
     }
 

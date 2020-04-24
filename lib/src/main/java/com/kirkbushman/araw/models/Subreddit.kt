@@ -75,7 +75,7 @@ data class Subreddit(
     val isQuarantined: Boolean?,
 
     @Json(name = "user_is_subscriber")
-    val isSubscriber: Boolean,
+    val isSubscriber: Boolean?,
 
     @Json(name = "wiki_enabled")
     val isWikiEnabled: Boolean?,

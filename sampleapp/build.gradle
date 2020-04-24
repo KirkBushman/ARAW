@@ -4,15 +4,15 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion = '29.0.3'
+    compileSdkVersion compile_sdk_ver
+    buildToolsVersion = build_tools_ver
 
     defaultConfig {
         applicationId "com.kirkbushman.sampleapp"
-        minSdkVersion 21
-        targetSdkVersion 29
+        minSdkVersion min_sdk_ver
+        targetSdkVersion compile_sdk_ver
         versionCode 1
-        versionName "1.0"
+        versionName VERSION_NAME
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

@@ -15,12 +15,15 @@ import com.kirkbushman.araw.models.general.TimePeriod
 class AccountsClient(
 
     private val api: RedditApi,
-
-    private inline val getCurrentUser: () -> Me?,
-    private inline val setCurrentUser: (Me?) -> Unit,
     private inline val getHeaderMap: () -> HashMap<String, String>
 
 ) : BaseRedditClient(api, getHeaderMap) {
+
+    private var currentUser: Me? = null
+
+    fun getCurrentUser(): Me? {
+        return currentUser
+    }
 
     fun me(): Me? {
 
@@ -33,7 +36,7 @@ class AccountsClient(
         }
 
         val me = res.body()
-        setCurrentUser(me)
+        currentUser = me
         return me
     }
 

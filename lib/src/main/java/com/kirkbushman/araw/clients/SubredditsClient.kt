@@ -11,6 +11,7 @@ import com.kirkbushman.araw.models.general.SubmissionKind
 import com.kirkbushman.araw.models.general.SubmissionsSorting
 import com.kirkbushman.araw.models.general.SubredditSearchSorting
 import com.kirkbushman.araw.models.general.TimePeriod
+import java.lang.IllegalStateException
 
 class SubredditsClient(
 
@@ -312,6 +313,10 @@ class SubredditsClient(
     }
 
     fun subscribe(subreddit: Subreddit, skipInitialDefaults: Boolean = true): Any? {
+
+        if (subreddit.isSubscriber == null) {
+            throw IllegalStateException("isSubscriber is null! Is this a userless grant...?")
+        }
 
         return subscribe(
 

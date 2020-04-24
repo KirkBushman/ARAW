@@ -1,8 +1,9 @@
 package com.kirkbushman.sampleapp
 
 import android.app.Application
-import com.kirkbushman.araw.RedditAuth
 import com.kirkbushman.araw.RedditClient
+import com.kirkbushman.araw.helpers.AuthAppHelper
+import com.kirkbushman.araw.helpers.AuthUserlessHelper
 import org.xmlpull.v1.XmlPullParser
 
 class TestApplication : Application() {
@@ -11,20 +12,34 @@ class TestApplication : Application() {
         lateinit var instance: TestApplication
     }
 
-    val auth by lazy {
+    init {
+        instance = this
+    }
+
+    fun getAuthHelper(): AuthAppHelper {
 
         val creds = loadCredsFromFile()
 
-        RedditAuth(
-            this,
-            creds.clientId,
-            creds.redirectUrl,
-            creds.scopes.toTypedArray(),
-            logging = true)
+        return AuthAppHelper(
+            context = this,
+            clientId = creds.clientId,
+            redirectUrl = creds.redirectUrl,
+            scopes = creds.scopes.toTypedArray(),
+            logging = true
+        )
     }
 
-    init {
-        instance = this
+    fun getUserlessHelper(): AuthUserlessHelper {
+
+        val creds = loadCredsFromFile()
+
+        return AuthUserlessHelper(
+            context = this,
+            clientId = creds.clientId,
+            deviceId = null,
+            scopes = creds.scopes.toTypedArray(),
+            logging = true
+        )
     }
 
     private var client: RedditClient? = null
