@@ -33,6 +33,19 @@ class SubredditsClient(
         return res.body()?.data
     }
 
+    fun subreddits(vararg ids: String): List<Subreddit>? {
+
+        val authMap = getHeaderMap()
+        val req = api.subreddits(subredditIds = ids.joinToString { "t5_$it" }, header = authMap)
+        val res = req.execute()
+
+        if (!res.isSuccessful) {
+            return null
+        }
+
+        return res.body()?.data?.children?.map { it.data }
+    }
+
     fun subredditBanned(subreddit: Subreddit): List<User>? {
         return subredditBanned(subreddit.fullname)
     }

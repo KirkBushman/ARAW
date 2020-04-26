@@ -41,6 +41,7 @@ class ApiDetailActivity : BaseActivity() {
         private const val API_MESSAGE_COMMENT_REPLIES = "param_api_call_comment_replies"
         private const val API_MESSAGE_SELF_REPLIES = "param_api_call_self_replies"
         private const val API_SUBREDDIT = "param_subreddit_call"
+        private const val API_SUBREDDITS = "param_subreddits_call"
         private const val API_SUBREDDIT_BANNED = "param_subreddit_call_banned"
         private const val API_SUBREDDIT_MUTED = "param_subreddit_call_muted"
         private const val API_SUBREDDIT_WIKIBANNED = "param_subreddit_call_wikibanned"
@@ -158,6 +159,10 @@ class ApiDetailActivity : BaseActivity() {
 
         fun startApiSubreddit(context: Context) {
             start(context, API_SUBREDDIT)
+        }
+
+        fun startApiSubreddits(context: Context) {
+            start(context, API_SUBREDDITS)
         }
 
         fun startApiSubBanned(context: Context) {
@@ -391,6 +396,12 @@ class ApiDetailActivity : BaseActivity() {
                 return subreddit.toString()
             }
 
+            API_SUBREDDITS -> {
+                val subIds = getRandomSubredditIds()
+                val subreddits = client?.subredditsClient?.subreddits(*subIds.toTypedArray())
+                return subreddits.toString()
+            }
+
             API_SUBREDDIT_BANNED -> {
                 val subName = getRandomSubredditName()
                 val banned = client?.subredditsClient?.subredditBanned(subName)
@@ -502,6 +513,25 @@ class ApiDetailActivity : BaseActivity() {
         )
 
         return list.random()
+    }
+
+    private fun getRandomSubredditIds(): List<String> {
+
+        val list = listOf(
+            "2qizd",
+            "2qh1i",
+            "2qh33",
+            "2qlqh",
+            "2qh13",
+            "2qjpg",
+            "2to41",
+            "2qh4j",
+            "2qh1e",
+            "2rab5",
+            "2k93si"
+        )
+
+        return list.shuffled().takeLast(5)
     }
 
     private fun getRandomSubmissionIdFromRandomSubreddit(): String {

@@ -293,6 +293,12 @@ interface RedditApi {
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedSubreddit>
 
+    @GET("/api/info/.json")
+    fun subreddits(
+        @Query("id") subredditIds: String,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<EnvelopedSubredditListing>
+
     @GET("/r/{subreddit}/about/{where}/.json")
     fun subredditInfo(
         @Path("subreddit") subreddit: String,

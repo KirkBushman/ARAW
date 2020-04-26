@@ -49,6 +49,7 @@
     <string name="bttn_user_trophies">User Trophies</string>
     <string name="bttn_user_search">User Search</string>
     <string name="bttn_subreddit">Subreddit</string>
+    <string name="bttn_subreddits">Subreddits</string>
     <string name="bttn_submission">Submission</string>
     <string name="bttn_submissions">Submissions</string>
     <string name="bttn_submissions_commons">Common submissions</string>

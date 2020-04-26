@@ -126,6 +126,10 @@ class ApisActivity : BaseActivity() {
             ApiDetailActivity.startApiSubreddit(this)
         }
 
+        bttn_subreddits.setOnClickListener {
+            ApiDetailActivity.startApiSubreddits(this)
+        }
+
         bttn_subreddit_banned.setOnClickListener {
             ApiDetailActivity.startApiSubBanned(this)
         }

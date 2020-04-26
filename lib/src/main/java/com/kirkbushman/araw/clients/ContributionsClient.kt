@@ -95,17 +95,6 @@ class ContributionsClient(
         )
     }
 
-    fun comments(
-
-        submissionId: String,
-        limit: Int = Fetcher.DEFAULT_LIMIT,
-        depth: Int? = null
-
-    ): CommentsFetcher {
-
-        return CommentsFetcher(api, submissionId, limit = limit, depth = depth, getHeader = getHeaderMap)
-    }
-
     fun comment(commentId: String): Comment? {
 
         val authMap = getHeaderMap()
@@ -117,6 +106,17 @@ class ContributionsClient(
         }
 
         return res.body()?.data?.children?.first()?.data
+    }
+
+    fun comments(
+
+        submissionId: String,
+        limit: Int = Fetcher.DEFAULT_LIMIT,
+        depth: Int? = null
+
+    ): CommentsFetcher {
+
+        return CommentsFetcher(api, submissionId, limit = limit, depth = depth, getHeader = getHeaderMap)
     }
 
     fun moreChildren(
