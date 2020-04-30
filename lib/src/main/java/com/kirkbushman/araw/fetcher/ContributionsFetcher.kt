@@ -11,7 +11,7 @@ import com.kirkbushman.araw.models.mixins.Contribution
 class ContributionsFetcher(
 
     private val api: RedditApi,
-    private val username: String,
+    private val username: String? = null,
     private val where: String,
 
     limit: Int = DEFAULT_LIMIT,
@@ -19,6 +19,7 @@ class ContributionsFetcher(
     private var sorting: ContributionsSorting = DEFAULT_SORTING,
     private var timePeriod: TimePeriod = DEFAULT_TIMEPERIOD,
 
+    private inline val getUsername: (() -> String)? = null,
     private inline val getHeader: () -> HashMap<String, String>
 
 ) : Fetcher<Contribution, EnvelopedContribution>(limit) {
@@ -28,12 +29,26 @@ class ContributionsFetcher(
         val DEFAULT_TIMEPERIOD = TimePeriod.ALL_TIME
     }
 
+    private var usernameToFetch: String? = null
+
     override fun onFetching(forward: Boolean, dirToken: String): Listing<EnvelopedContribution>? {
+
+        if (username == null && getUsername == null) {
+            throw IllegalStateException("username and getUsername cannot both be null!")
+        }
+
+        if (username != null) {
+            usernameToFetch = username
+        }
+
+        if (getUsername != null) {
+            usernameToFetch = getUsername.invoke()
+        }
 
         val req = if (where == "") {
 
             api.fetchRedditorOverview(
-                username = username,
+                username = usernameToFetch!!,
                 sorting = sorting.sortingStr,
                 timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
                 limit = getLimit(),
@@ -45,7 +60,7 @@ class ContributionsFetcher(
         } else {
 
             api.fetchRedditorInfo(
-                username = username,
+                username = usernameToFetch!!,
                 where = where,
                 sorting = sorting.sortingStr,
                 timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
