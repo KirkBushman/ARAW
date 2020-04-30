@@ -22,6 +22,11 @@ class AccountsClient(
     private var currentUser: Me? = null
 
     fun getCurrentUser(): Me? {
+
+        if (currentUser == null) {
+            currentUser = me()
+        }
+
         return currentUser
     }
 
