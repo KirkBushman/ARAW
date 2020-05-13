@@ -116,7 +116,9 @@ class AccountsClient(
         limit: Int = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
+
+        disableLegacyEncoding: Boolean = false
 
     ): ContributionsFetcher {
 
@@ -128,6 +130,7 @@ class AccountsClient(
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,
+            disableLegacyEncoding = disableLegacyEncoding,
             getHeader = getHeaderMap
         )
     }
@@ -137,7 +140,9 @@ class AccountsClient(
         limit: Int = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
+
+        disableLegacyEncoding: Boolean = false
 
     ): ContributionsFetcher {
 
@@ -149,6 +154,7 @@ class AccountsClient(
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,
+            disableLegacyEncoding = disableLegacyEncoding,
             getHeader = getHeaderMap
         )
     }
@@ -158,7 +164,9 @@ class AccountsClient(
         limit: Int = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
+
+        disableLegacyEncoding: Boolean = false
 
     ): ContributionsFetcher {
 
@@ -170,6 +178,7 @@ class AccountsClient(
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,
+            disableLegacyEncoding = disableLegacyEncoding,
             getHeader = getHeaderMap
         )
     }
@@ -179,7 +188,9 @@ class AccountsClient(
         limit: Int = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
+
+        disableLegacyEncoding: Boolean = false
 
     ): ContributionsFetcher {
 
@@ -191,6 +202,7 @@ class AccountsClient(
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,
+            disableLegacyEncoding = disableLegacyEncoding,
             getHeader = getHeaderMap
         )
     }
@@ -200,7 +212,9 @@ class AccountsClient(
         limit: Int = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
+
+        disableLegacyEncoding: Boolean = false
 
     ): ContributionsFetcher {
 
@@ -212,6 +226,7 @@ class AccountsClient(
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,
+            disableLegacyEncoding = disableLegacyEncoding,
             getHeader = getHeaderMap
         )
     }
@@ -221,7 +236,9 @@ class AccountsClient(
         limit: Int = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
+
+        disableLegacyEncoding: Boolean = false
 
     ): ContributionsFetcher {
 
@@ -233,6 +250,7 @@ class AccountsClient(
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,
+            disableLegacyEncoding = disableLegacyEncoding,
             getHeader = getHeaderMap
         )
     }
@@ -242,7 +260,9 @@ class AccountsClient(
         limit: Int = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
+
+        disableLegacyEncoding: Boolean = false
 
     ): ContributionsFetcher {
 
@@ -254,6 +274,7 @@ class AccountsClient(
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,
+            disableLegacyEncoding = disableLegacyEncoding,
             getHeader = getHeaderMap
         )
     }
@@ -263,7 +284,9 @@ class AccountsClient(
         limit: Int = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
+
+        disableLegacyEncoding: Boolean = false
 
     ): ContributionsFetcher {
 
@@ -275,19 +298,20 @@ class AccountsClient(
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,
+            disableLegacyEncoding = disableLegacyEncoding,
             getHeader = getHeaderMap
         )
     }
 
-    fun subscribedSubreddits(limit: Int = Fetcher.DEFAULT_LIMIT): SubredditsFetcher {
-        return SubredditsFetcher(api, "subscriber", limit, getHeaderMap)
+    fun subscribedSubreddits(limit: Int = Fetcher.DEFAULT_LIMIT, disableLegacyEncoding: Boolean = false): SubredditsFetcher {
+        return SubredditsFetcher(api, "subscriber", limit, disableLegacyEncoding, getHeaderMap)
     }
 
-    fun contributedSubreddits(limit: Int = Fetcher.DEFAULT_LIMIT): SubredditsFetcher {
-        return SubredditsFetcher(api, "contributor", limit, getHeaderMap)
+    fun contributedSubreddits(limit: Int = Fetcher.DEFAULT_LIMIT, disableLegacyEncoding: Boolean = false): SubredditsFetcher {
+        return SubredditsFetcher(api, "contributor", limit, disableLegacyEncoding, getHeaderMap)
     }
 
-    fun moderatedSubreddits(limit: Int = Fetcher.DEFAULT_LIMIT): SubredditsFetcher {
-        return SubredditsFetcher(api, "moderator", limit, getHeaderMap)
+    fun moderatedSubreddits(limit: Int = Fetcher.DEFAULT_LIMIT, disableLegacyEncoding: Boolean = false): SubredditsFetcher {
+        return SubredditsFetcher(api, "moderator", limit, disableLegacyEncoding, getHeaderMap)
     }
 }

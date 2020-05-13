@@ -20,6 +20,8 @@ class RedditorSearchFetcher(
     private var sorting: RedditorSearchSorting = DEFAULT_SORTING,
     private var timePeriod: TimePeriod = DEFAULT_TIMEPERIOD,
 
+    private val disableLegacyEncoding: Boolean = false,
+
     private inline val getHeader: () -> HashMap<String, String>
 
 ) : Fetcher<Redditor, EnvelopedRedditor>(limit) {
@@ -41,6 +43,7 @@ class RedditorSearchFetcher(
             count = getCount(),
             after = if (forward) dirToken else null,
             before = if (!forward) dirToken else null,
+            rawJson = (if (disableLegacyEncoding) 1 else null),
             header = getHeader()
         )
 

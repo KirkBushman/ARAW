@@ -17,12 +17,16 @@ class RedditorsClient(
 
 ) : BaseRedditClient(api, getHeaderMap) {
 
-    fun redditor(username: String): Redditor? {
+    fun redditor(username: String, disableLegacyEncoding: Boolean = false): Redditor? {
 
         val authMap = getHeaderMap()
-        val req = api.redditor(username = username, header = authMap)
-        val res = req.execute()
+        val req = api.redditor(
+            username = username,
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }
@@ -36,7 +40,9 @@ class RedditorsClient(
         limit: Int = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
+
+        disableLegacyEncoding: Boolean = false
 
     ): ContributionsFetcher {
 
@@ -48,6 +54,7 @@ class RedditorsClient(
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,
+            disableLegacyEncoding = disableLegacyEncoding,
             getHeader = getHeaderMap
         )
     }
@@ -59,7 +66,9 @@ class RedditorsClient(
         limit: Int = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
+
+        disableLegacyEncoding: Boolean = false
 
     ): ContributionsFetcher {
 
@@ -71,6 +80,7 @@ class RedditorsClient(
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,
+            disableLegacyEncoding = disableLegacyEncoding,
             getHeader = getHeaderMap
         )
     }
@@ -82,7 +92,9 @@ class RedditorsClient(
         limit: Int = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
+
+        disableLegacyEncoding: Boolean = false
 
     ): ContributionsFetcher {
 
@@ -94,6 +106,7 @@ class RedditorsClient(
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,
+            disableLegacyEncoding = disableLegacyEncoding,
             getHeader = getHeaderMap
         )
     }
@@ -105,7 +118,9 @@ class RedditorsClient(
         limit: Int = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
+
+        disableLegacyEncoding: Boolean = false
 
     ): ContributionsFetcher {
 
@@ -117,6 +132,7 @@ class RedditorsClient(
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,
+            disableLegacyEncoding = disableLegacyEncoding,
             getHeader = getHeaderMap
         )
     }
@@ -127,18 +143,36 @@ class RedditorsClient(
         show: String? = null,
 
         limit: Int = Fetcher.DEFAULT_LIMIT,
-        sorting: RedditorSearchSorting = RedditorSearchFetcher.DEFAULT_SORTING
+
+        sorting: RedditorSearchSorting = RedditorSearchFetcher.DEFAULT_SORTING,
+        timePeriod: TimePeriod = RedditorSearchFetcher.DEFAULT_TIMEPERIOD,
+
+        disableLegacyEncoding: Boolean = false
 
     ): RedditorSearchFetcher {
-        return RedditorSearchFetcher(api, query, show, limit, sorting) { getHeaderMap() }
+
+        return RedditorSearchFetcher(
+            api = api,
+            query = query,
+            show = show,
+            limit = limit,
+            sorting = sorting,
+            timePeriod = timePeriod,
+            disableLegacyEncoding = disableLegacyEncoding,
+            getHeader = getHeaderMap
+        )
     }
 
-    fun trophies(username: String): List<Trophy>? {
+    fun trophies(username: String, disableLegacyEncoding: Boolean = false): List<Trophy>? {
 
         val authMap = getHeaderMap()
-        val req = api.redditorTrophies(username = username, header = authMap)
-        val res = req.execute()
+        val req = api.redditorTrophies(
+            username = username,
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }

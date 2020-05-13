@@ -111,12 +111,14 @@ interface RedditApi {
     @GET("/api/info/.json")
     fun comment(
         @Query("id") commentId: String,
+        @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedCommentListing>
 
     @GET("/api/info/.json")
     fun submission(
         @Query("id") submissionId: String,
+        @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedSubmissionListing>
 
@@ -135,6 +137,7 @@ interface RedditApi {
         @Query("depth") depth: Int? = null,
         @Query("id") id: String? = null,
         @Query("link_id") linkId: String,
+        @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<MoreChildrenResponse>
 
@@ -218,6 +221,7 @@ interface RedditApi {
         @Query("count") count: Int,
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
+        @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedSubmissionListing>
 
@@ -230,6 +234,7 @@ interface RedditApi {
         @Query("count") count: Int,
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
+        @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedSubmissionListing>
 
@@ -238,6 +243,7 @@ interface RedditApi {
         @Path("submissionId") submissionId: String,
         @Query("limit") limit: Int? = null,
         @Query("depth") depth: Int? = null,
+        @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<List<EnvelopedContributionListing>>
 
@@ -252,6 +258,7 @@ interface RedditApi {
         @Query("count") count: Int,
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
+        @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedMessageListing>
 
@@ -290,12 +297,14 @@ interface RedditApi {
     @GET("/r/{subreddit}/about/.json")
     fun subreddit(
         @Path("subreddit") subreddit: String,
+        @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedSubreddit>
 
     @GET("/api/info/.json")
     fun subreddits(
         @Query("id") subredditIds: String,
+        @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedSubredditListing>
 
@@ -303,12 +312,14 @@ interface RedditApi {
     fun subredditInfo(
         @Path("subreddit") subreddit: String,
         @Path("where") where: String,
+        @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<UserList>
 
     @GET("/r/{subreddit}/about/rules/.json")
     fun rules(
         @Path("subreddit") subreddit: String,
+        @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<SubredditRules>
 
@@ -329,6 +340,7 @@ interface RedditApi {
         @Query("count") count: Int,
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
+        @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedSubredditListing>
 
@@ -339,6 +351,7 @@ interface RedditApi {
         @Field("exact") exact: Boolean? = null,
         @Field("include_over_18") includeOver18: Boolean? = null,
         @Field("include_unadvertisable") includeUnadvertisable: Boolean? = null,
+        @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<SubredditSearchResult>
 
@@ -352,6 +365,7 @@ interface RedditApi {
         @Query("count") count: Int,
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
+        @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedSubmissionListing>
 
@@ -362,6 +376,7 @@ interface RedditApi {
     @GET("/user/{username}/about/.json")
     fun redditor(
         @Path("username") username: String,
+        @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedRedditor>
 
@@ -374,6 +389,7 @@ interface RedditApi {
         @Query("count") count: Int,
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
+        @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedContributionListing>
 
@@ -387,6 +403,7 @@ interface RedditApi {
         @Query("count") count: Int,
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
+        @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedContributionListing>
 
@@ -401,12 +418,14 @@ interface RedditApi {
         @Query("count") count: Int,
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
+        @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedRedditorListing>
 
     @GET("/api/v1/user/{username}/trophies/.json")
     fun redditorTrophies(
         @Path("username") username: String,
+        @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<TrophyList>
 
@@ -417,6 +436,7 @@ interface RedditApi {
     @GET("/r/{subreddit}/wiki/.json")
     fun wiki(
         @Path("subreddit") subreddit: String,
+        @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedWikiPage>
 
@@ -424,18 +444,21 @@ interface RedditApi {
     fun wikiPage(
         @Path("subreddit") subreddit: String,
         @Path("page") page: String,
+        @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedWikiPage>
 
     @GET("/r/{subreddit}/wiki/pages/.json")
     fun wikiPages(
         @Path("subreddit") subreddit: String,
+        @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<WikiPageList>
 
     @GET("/r/{subreddit}/wiki/revisions/.json")
     fun wikiRevisions(
         @Path("subreddit") subreddit: String,
+        @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<Any>
 
@@ -451,6 +474,7 @@ interface RedditApi {
         @Query("count") count: Int,
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
+        @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<List<Listing<EnvelopedData>>>
 
@@ -465,6 +489,7 @@ interface RedditApi {
         @Query("count") count: Int,
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
+        @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedSubredditListing>
 
@@ -479,6 +504,7 @@ interface RedditApi {
         @Query("count") count: Int,
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
+        @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedSubmissionListing>
 }

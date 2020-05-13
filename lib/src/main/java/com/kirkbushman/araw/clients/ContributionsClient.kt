@@ -26,12 +26,16 @@ class ContributionsClient(
 
 ) : BaseRedditClient(api, getHeaderMap) {
 
-    fun submission(submissionId: String): Submission? {
+    fun submission(submissionId: String, disableLegacyEncoding: Boolean = false): Submission? {
 
         val authMap = getHeaderMap()
-        val req = api.submission(submissionId = "t3_$submissionId", header = authMap)
-        val res = req.execute()
+        val req = api.submission(
+            submissionId = "t3_$submissionId",
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }
@@ -46,10 +50,12 @@ class ContributionsClient(
         limit: Int = Fetcher.DEFAULT_LIMIT,
 
         sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD
+        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD,
+
+        disableLegacyEncoding: Boolean = false
     ): SubmissionsFetcher {
 
-        return submissions(subreddit.displayName, limit, sorting, timePeriod)
+        return submissions(subreddit.displayName, limit, sorting, timePeriod, disableLegacyEncoding)
     }
 
     fun submissions(
@@ -58,7 +64,9 @@ class ContributionsClient(
         limit: Int = Fetcher.DEFAULT_LIMIT,
 
         sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD
+        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD,
+
+        disableLegacyEncoding: Boolean = false
 
     ): SubmissionsFetcher {
         return SubmissionsFetcher(
@@ -68,6 +76,7 @@ class ContributionsClient(
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,
+            disableLegacyEncoding = disableLegacyEncoding,
             getHeader = getHeaderMap
         )
     }
@@ -80,7 +89,9 @@ class ContributionsClient(
         limit: Int = Fetcher.DEFAULT_LIMIT,
 
         sorting: SearchSorting = SubmissionsSearchFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = SubmissionsSearchFetcher.DEFAULT_TIMEPERIOD
+        timePeriod: TimePeriod = SubmissionsSearchFetcher.DEFAULT_TIMEPERIOD,
+
+        disableLegacyEncoding: Boolean = false
 
     ): SubmissionsSearchFetcher {
         return SubmissionsSearchFetcher(
@@ -91,16 +102,21 @@ class ContributionsClient(
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,
+            disableLegacyEncoding = disableLegacyEncoding,
             getHeader = getHeaderMap
         )
     }
 
-    fun comment(commentId: String): Comment? {
+    fun comment(commentId: String, disableLegacyEncoding: Boolean = false): Comment? {
 
         val authMap = getHeaderMap()
-        val req = api.comment(commentId = "t1_$commentId", header = authMap)
-        val res = req.execute()
+        val req = api.comment(
+            commentId = "t1_$commentId",
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }
@@ -111,12 +127,22 @@ class ContributionsClient(
     fun comments(
 
         submissionId: String,
+
         limit: Int = Fetcher.DEFAULT_LIMIT,
-        depth: Int? = null
+
+        depth: Int? = null,
+        disableLegacyEncoding: Boolean = false
 
     ): CommentsFetcher {
 
-        return CommentsFetcher(api, submissionId, limit = limit, depth = depth, getHeader = getHeaderMap)
+        return CommentsFetcher(
+            api = api,
+            submissionId = submissionId,
+            limit = limit,
+            depth = depth,
+            disableLegacyEncoding = disableLegacyEncoding,
+            getHeader = getHeaderMap
+        )
     }
 
     fun moreChildren(
@@ -125,7 +151,10 @@ class ContributionsClient(
         submission: Submission,
 
         limitChildren: Boolean? = null,
-        depth: Int? = null
+        depth: Int? = null,
+
+        disableLegacyEncoding: Boolean = false
+
     ): List<CommentData>? {
 
         val authMap = getHeaderMap()
@@ -135,11 +164,11 @@ class ContributionsClient(
             depth = depth,
             id = moreComments.id,
             linkId = submission.fullname,
+            rawJson = (if (disableLegacyEncoding) 1 else null),
             header = authMap
         )
 
         val res = req.execute()
-
         if (!res.isSuccessful) {
             return null
         }

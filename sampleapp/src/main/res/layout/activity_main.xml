@@ -202,6 +202,13 @@
                     android:layout_margin="8dp"
                     android:text="@string/bttn_rules" />
 
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/bttn_settings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="@string/bttn_settings" />
+
         </LinearLayout>
     </ScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

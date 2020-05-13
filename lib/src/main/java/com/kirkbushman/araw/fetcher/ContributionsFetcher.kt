@@ -19,6 +19,8 @@ class ContributionsFetcher(
     private var sorting: ContributionsSorting = DEFAULT_SORTING,
     private var timePeriod: TimePeriod = DEFAULT_TIMEPERIOD,
 
+    private val disableLegacyEncoding: Boolean = false,
+
     private inline val getUsername: (() -> String)? = null,
     private inline val getHeader: () -> HashMap<String, String>
 
@@ -55,6 +57,7 @@ class ContributionsFetcher(
                 count = getCount(),
                 after = if (forward) dirToken else null,
                 before = if (!forward) dirToken else null,
+                rawJson = (if (disableLegacyEncoding) 1 else null),
                 header = getHeader()
             )
         } else {
@@ -68,6 +71,7 @@ class ContributionsFetcher(
                 count = getCount(),
                 after = if (forward) dirToken else null,
                 before = if (!forward) dirToken else null,
+                rawJson = (if (disableLegacyEncoding) 1 else null),
                 header = getHeader()
             )
         }

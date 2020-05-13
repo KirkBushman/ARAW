@@ -13,6 +13,8 @@ class SubredditsFetcher(
 
     limit: Int = DEFAULT_LIMIT,
 
+    private val disableLegacyEncoding: Boolean = false,
+
     private inline val getHeader: () -> HashMap<String, String>
 
 ) : Fetcher<Subreddit, EnvelopedSubreddit>(limit) {
@@ -25,6 +27,7 @@ class SubredditsFetcher(
             count = getCount(),
             after = if (forward) dirToken else null,
             before = if (!forward) dirToken else null,
+            rawJson = (if (disableLegacyEncoding) 1 else null),
             header = getHeader()
         )
 

@@ -14,6 +14,8 @@ class CommentsFetcher(
     private val depth: Int?,
     limit: Int = DEFAULT_LIMIT,
 
+    private val disableLegacyEncoding: Boolean = false,
+
     private inline val getHeader: () -> HashMap<String, String>
 
 ) : Fetcher<CommentData, EnvelopedCommentData>(limit) {
@@ -27,6 +29,7 @@ class CommentsFetcher(
             submissionId = submissionId,
             limit = getLimit(),
             depth = depth,
+            rawJson = (if (disableLegacyEncoding) 1 else null),
             header = getHeader())
         val res = req.execute()
 

@@ -12,32 +12,32 @@ class MessagesClient(
 
 ) : BaseRedditClient(api, getHeaderMap) {
 
-    fun inbox(limit: Int = Fetcher.DEFAULT_LIMIT): InboxFetcher {
-        return InboxFetcher(api, "inbox", limit) { getHeaderMap() }
+    fun inbox(limit: Int = Fetcher.DEFAULT_LIMIT, disableLegacyEncoding: Boolean = false): InboxFetcher {
+        return InboxFetcher(api, "inbox", limit, disableLegacyEncoding, getHeaderMap)
     }
 
-    fun unread(limit: Int = Fetcher.DEFAULT_LIMIT): InboxFetcher {
-        return InboxFetcher(api, "unread", limit) { getHeaderMap() }
+    fun unread(limit: Int = Fetcher.DEFAULT_LIMIT, disableLegacyEncoding: Boolean = false): InboxFetcher {
+        return InboxFetcher(api, "unread", limit, disableLegacyEncoding, getHeaderMap)
     }
 
-    fun messages(limit: Int = Fetcher.DEFAULT_LIMIT): InboxFetcher {
-        return InboxFetcher(api, "messages", limit) { getHeaderMap() }
+    fun messages(limit: Int = Fetcher.DEFAULT_LIMIT, disableLegacyEncoding: Boolean = false): InboxFetcher {
+        return InboxFetcher(api, "messages", limit, disableLegacyEncoding, getHeaderMap)
     }
 
-    fun sent(limit: Int = Fetcher.DEFAULT_LIMIT): InboxFetcher {
-        return InboxFetcher(api, "sent", limit) { getHeaderMap() }
+    fun sent(limit: Int = Fetcher.DEFAULT_LIMIT, disableLegacyEncoding: Boolean = false): InboxFetcher {
+        return InboxFetcher(api, "sent", limit, disableLegacyEncoding, getHeaderMap)
     }
 
-    fun commentsReplies(limit: Int = Fetcher.DEFAULT_LIMIT): InboxFetcher {
-        return InboxFetcher(api, "comments", limit) { getHeaderMap() }
+    fun commentsReplies(limit: Int = Fetcher.DEFAULT_LIMIT, disableLegacyEncoding: Boolean = false): InboxFetcher {
+        return InboxFetcher(api, "comments", limit, disableLegacyEncoding, getHeaderMap)
     }
 
-    fun selfReplies(limit: Int = Fetcher.DEFAULT_LIMIT): InboxFetcher {
-        return InboxFetcher(api, "selfreply", limit) { getHeaderMap() }
+    fun selfReplies(limit: Int = Fetcher.DEFAULT_LIMIT, disableLegacyEncoding: Boolean = false): InboxFetcher {
+        return InboxFetcher(api, "selfreply", limit, disableLegacyEncoding, getHeaderMap)
     }
 
-    fun mentions(limit: Int = Fetcher.DEFAULT_LIMIT): InboxFetcher {
-        return InboxFetcher(api, "mentions", limit) { getHeaderMap() }
+    fun mentions(limit: Int = Fetcher.DEFAULT_LIMIT, disableLegacyEncoding: Boolean = false): InboxFetcher {
+        return InboxFetcher(api, "mentions", limit, disableLegacyEncoding, getHeaderMap)
     }
 
     fun deleteMessage(message: Message): Any? {

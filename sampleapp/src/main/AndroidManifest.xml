@@ -47,6 +47,7 @@
         <activity android:name=".activities.SelfTrophiesActivity"/>
         <activity android:name=".activities.UserSearchActivity"/>
         <activity android:name=".activities.UserTrophiesActivity"/>
+        <activity android:name=".activities.SettingsActivity" />
     </application>
 
 </manifest>

@@ -131,5 +131,10 @@ class MainActivity : AppCompatActivity() {
 
             RulesActivity.start(this)
         }
+
+        bttn_settings.setOnClickListener {
+
+            SettingsActivity.start(this)
+        }
     }
 }

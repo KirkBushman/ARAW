@@ -13,17 +13,21 @@ class WikisClient(
 ) : BaseRedditClient(api, getHeaderMap) {
 
     @Throws(WikiDisabledException::class)
-    fun wiki(subreddit: Subreddit): WikiPage? {
-        return wiki(subreddit.displayName)
+    fun wiki(subreddit: Subreddit, disableLegacyEncoding: Boolean = false): WikiPage? {
+        return wiki(subreddit.displayName, disableLegacyEncoding)
     }
 
     @Throws(WikiDisabledException::class)
-    fun wiki(subreddit: String): WikiPage? {
+    fun wiki(subreddit: String, disableLegacyEncoding: Boolean = false): WikiPage? {
 
         val authMap = getHeaderMap()
-        val req = api.wiki(subreddit = subreddit, header = authMap)
-        val res = req.execute()
+        val req = api.wiki(
+            subreddit = subreddit,
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
 
             val errorBody = res.errorBody()
@@ -38,16 +42,21 @@ class WikisClient(
         return res.body()?.data
     }
 
-    fun wikiPage(subreddit: Subreddit, page: String): WikiPage? {
-        return wikiPage(subreddit.displayName, page)
+    fun wikiPage(subreddit: Subreddit, page: String, disableLegacyEncoding: Boolean = false): WikiPage? {
+        return wikiPage(subreddit.displayName, page, disableLegacyEncoding)
     }
 
-    fun wikiPage(subreddit: String, page: String): WikiPage? {
+    fun wikiPage(subreddit: String, page: String, disableLegacyEncoding: Boolean = false): WikiPage? {
 
         val authMap = getHeaderMap()
-        val req = api.wikiPage(subreddit = subreddit, page = page, header = authMap)
-        val res = req.execute()
+        val req = api.wikiPage(
+            subreddit = subreddit,
+            page = page,
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }
@@ -55,16 +64,20 @@ class WikisClient(
         return res.body()?.data
     }
 
-    fun wikiPages(subreddit: Subreddit): List<String>? {
-        return wikiPages(subreddit.displayName)
+    fun wikiPages(subreddit: Subreddit, disableLegacyEncoding: Boolean = false): List<String>? {
+        return wikiPages(subreddit.displayName, disableLegacyEncoding)
     }
 
-    fun wikiPages(subreddit: String): List<String>? {
+    fun wikiPages(subreddit: String, disableLegacyEncoding: Boolean = false): List<String>? {
 
         val authMap = getHeaderMap()
-        val req = api.wikiPages(subreddit = subreddit, header = authMap)
-        val res = req.execute()
+        val req = api.wikiPages(
+            subreddit = subreddit,
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }
@@ -72,16 +85,20 @@ class WikisClient(
         return res.body()?.data
     }
 
-    fun wikiRevisions(subreddit: Subreddit): Any? {
-        return wikiRevisions(subreddit.displayName)
+    fun wikiRevisions(subreddit: Subreddit, disableLegacyEncoding: Boolean = false): Any? {
+        return wikiRevisions(subreddit.displayName, disableLegacyEncoding)
     }
 
-    fun wikiRevisions(subreddit: String): Any? {
+    fun wikiRevisions(subreddit: String, disableLegacyEncoding: Boolean = false): Any? {
 
         val authMap = getHeaderMap()
-        val req = api.wikiRevisions(subreddit = subreddit, header = authMap)
-        val res = req.execute()
+        val req = api.wikiRevisions(
+            subreddit = subreddit,
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }

@@ -18,6 +18,8 @@ class SubmissionsFetcher(
     private var sorting: SubmissionsSorting = DEFAULT_SORTING,
     private var timePeriod: TimePeriod = DEFAULT_TIMEPERIOD,
 
+    private val disableLegacyEncoding: Boolean = false,
+
     private inline val getHeader: () -> HashMap<String, String>
 
 ) : Fetcher<Submission, EnvelopedSubmission>(limit) {
@@ -39,6 +41,7 @@ class SubmissionsFetcher(
                 count = getCount(),
                 after = if (forward) dirToken else null,
                 before = if (!forward) dirToken else null,
+                rawJson = (if (disableLegacyEncoding) 1 else null),
                 header = getHeader()
             )
         } else {
@@ -49,6 +52,7 @@ class SubmissionsFetcher(
                 count = getCount(),
                 after = if (forward) dirToken else null,
                 before = if (!forward) dirToken else null,
+                rawJson = (if (disableLegacyEncoding) 1 else null),
                 header = getHeader()
             )
         }

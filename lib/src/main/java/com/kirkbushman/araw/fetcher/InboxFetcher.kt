@@ -13,6 +13,8 @@ class InboxFetcher(
 
     limit: Int = DEFAULT_LIMIT,
 
+    private val disableLegacyEncoding: Boolean = false,
+
     private inline val getHeader: () -> HashMap<String, String>
 
 ) : Fetcher<Message, EnvelopedMessage>(limit) {
@@ -25,6 +27,7 @@ class InboxFetcher(
             count = getCount(),
             after = if (forward) dirToken else null,
             before = if (!forward) dirToken else null,
+            rawJson = (if (disableLegacyEncoding) 1 else null),
             header = getHeader()
         )
 

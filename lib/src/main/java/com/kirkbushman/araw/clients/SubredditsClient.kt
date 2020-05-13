@@ -20,12 +20,16 @@ class SubredditsClient(
 
 ) : BaseRedditClient(api, getHeaderMap) {
 
-    fun subreddit(subreddit: String): Subreddit? {
+    fun subreddit(subreddit: String, disableLegacyEncoding: Boolean = false): Subreddit? {
 
         val authMap = getHeaderMap()
-        val req = api.subreddit(subreddit = subreddit, header = authMap)
-        val res = req.execute()
+        val req = api.subreddit(
+            subreddit = subreddit,
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }
@@ -33,12 +37,16 @@ class SubredditsClient(
         return res.body()?.data
     }
 
-    fun subreddits(vararg ids: String): List<Subreddit>? {
+    fun subreddits(vararg ids: String, disableLegacyEncoding: Boolean = false): List<Subreddit>? {
 
         val authMap = getHeaderMap()
-        val req = api.subreddits(subredditIds = ids.joinToString { "t5_$it" }, header = authMap)
-        val res = req.execute()
+        val req = api.subreddits(
+            subredditIds = ids.joinToString { "t5_$it" },
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }
@@ -170,7 +178,9 @@ class SubredditsClient(
         limit: Int = Fetcher.DEFAULT_LIMIT,
 
         sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD
+        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD,
+
+        disableLegacyEncoding: Boolean = false
 
     ): SubmissionsFetcher {
 
@@ -181,6 +191,7 @@ class SubredditsClient(
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,
+            disableLegacyEncoding = disableLegacyEncoding,
             getHeader = getHeaderMap
         )
     }
@@ -190,7 +201,9 @@ class SubredditsClient(
         limit: Int = Fetcher.DEFAULT_LIMIT,
 
         sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD
+        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD,
+
+        disableLegacyEncoding: Boolean = false
 
     ): SubmissionsFetcher {
 
@@ -201,6 +214,7 @@ class SubredditsClient(
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,
+            disableLegacyEncoding = disableLegacyEncoding,
             getHeader = getHeaderMap
         )
     }
@@ -210,7 +224,9 @@ class SubredditsClient(
         limit: Int = Fetcher.DEFAULT_LIMIT,
 
         sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD
+        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD,
+
+        disableLegacyEncoding: Boolean = false
 
     ): SubmissionsFetcher {
 
@@ -221,6 +237,7 @@ class SubredditsClient(
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,
+            disableLegacyEncoding = disableLegacyEncoding,
             getHeader = getHeaderMap
         )
     }
@@ -230,7 +247,9 @@ class SubredditsClient(
         limit: Int = Fetcher.DEFAULT_LIMIT,
 
         sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD
+        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD,
+
+        disableLegacyEncoding: Boolean = false
 
     ): SubmissionsFetcher {
 
@@ -241,6 +260,7 @@ class SubredditsClient(
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,
+            disableLegacyEncoding = disableLegacyEncoding,
             getHeader = getHeaderMap
         )
     }
@@ -374,9 +394,19 @@ class SubredditsClient(
         query: String,
 
         limit: Int = Fetcher.DEFAULT_LIMIT,
-        sorting: SubredditSearchSorting = SubredditsSearchFetcher.DEFAULT_SORTING
+        sorting: SubredditSearchSorting = SubredditsSearchFetcher.DEFAULT_SORTING,
+
+        disableLegacyEncoding: Boolean = false
 
     ): SubredditsSearchFetcher {
-        return SubredditsSearchFetcher(api, query, limit, sorting, getHeader = getHeaderMap)
+
+        return SubredditsSearchFetcher(
+            api = api,
+            query = query,
+            limit = limit,
+            sorting = sorting,
+            disableLegacyEncoding = disableLegacyEncoding,
+            getHeader = getHeaderMap
+        )
     }
 }
