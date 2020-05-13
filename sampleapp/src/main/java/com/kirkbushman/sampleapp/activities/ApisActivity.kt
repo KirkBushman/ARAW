@@ -182,6 +182,10 @@ class ApisActivity : BaseActivity() {
             ApiDetailActivity.startApiWikiPages(this)
         }
 
+        bttn_wiki_revision.setOnClickListener {
+            ApiDetailActivity.startApiWikiRevision(this)
+        }
+
         bttn_wiki_revisions.setOnClickListener {
             ApiDetailActivity.startApiWikiRevisions(this)
         }

@@ -55,6 +55,7 @@ class ApiDetailActivity : BaseActivity() {
         private const val API_USER_TROPHIES = "param_user_call_trophies"
         private const val API_WIKI = "param_wiki_call_wiki"
         private const val API_WIKI_PAGES = "param_wiki_call_wiki_pages"
+        private const val API_WIKI_REVISION = "param_wiki_call_wiki_revision"
         private const val API_WIKI_REVISIONS = "param_wiki_call_wiki_revisions"
 
         fun startApiMe(context: Context) {
@@ -215,6 +216,10 @@ class ApiDetailActivity : BaseActivity() {
 
         fun startApiWikiPages(context: Context) {
             start(context, API_WIKI_PAGES)
+        }
+
+        fun startApiWikiRevision(context: Context) {
+            start(context, API_WIKI_REVISION)
         }
 
         fun startApiWikiRevisions(context: Context) {
@@ -530,6 +535,13 @@ class ApiDetailActivity : BaseActivity() {
                 val wikiPages = client?.wikisClient?.wikiPages(subredditName,
                         disableLegacyEncoding = disableLegacyEncoding)
                 return wikiPages.toString()
+            }
+
+            API_WIKI_REVISION -> {
+                val subredditName = getRandomSubredditName()
+                val wikiRevisions = client?.wikisClient?.wikiRevision(subredditName, "index",
+                    disableLegacyEncoding = disableLegacyEncoding)
+                return wikiRevisions.toString()
             }
 
             API_WIKI_REVISIONS -> {

@@ -73,6 +73,9 @@ data class Me(
     @Json(name = "is_gold")
     override val isGold: Boolean,
 
+    @Json(name = "hide_from_robots")
+    override val isHidingFromRobots: Boolean,
+
     @Json(name = "is_mod")
     override val isMod: Boolean,
 

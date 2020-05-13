@@ -63,6 +63,7 @@
     <string name="bttn_comments">Comments</string>
     <string name="bttn_wiki">Wiki</string>
     <string name="bttn_wiki_pages">Wiki Pages</string>
+    <string name="bttn_wiki_revision">Wiki Revision</string>
     <string name="bttn_wiki_revisions">Wiki Revisions</string>
     <string name="bttn_rules">Rules</string>
     <string name="edit_insert_user">Insert user:</string>

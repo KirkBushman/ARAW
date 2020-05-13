@@ -10,6 +10,7 @@ import com.kirkbushman.araw.http.EnvelopedSubmissionListing
 import com.kirkbushman.araw.http.EnvelopedSubreddit
 import com.kirkbushman.araw.http.EnvelopedSubredditListing
 import com.kirkbushman.araw.http.EnvelopedWikiPage
+import com.kirkbushman.araw.http.EnvelopedWikiRevisionListing
 import com.kirkbushman.araw.http.base.Listing
 import com.kirkbushman.araw.models.FriendList
 import com.kirkbushman.araw.models.KarmaList
@@ -455,12 +456,20 @@ interface RedditApi {
         @HeaderMap header: HashMap<String, String>
     ): Call<WikiPageList>
 
+    @GET("/r/{subreddit}/wiki/revisions/{page}/.json")
+    fun wikiRevision(
+        @Path("subreddit") subreddit: String,
+        @Path("page") page: String,
+        @Query("raw_json") rawJson: Int? = null,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<EnvelopedWikiRevisionListing>
+
     @GET("/r/{subreddit}/wiki/revisions/.json")
     fun wikiRevisions(
         @Path("subreddit") subreddit: String,
         @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
-    ): Call<Any>
+    ): Call<EnvelopedWikiRevisionListing>
 
     // --- Wiki section: END ---
 

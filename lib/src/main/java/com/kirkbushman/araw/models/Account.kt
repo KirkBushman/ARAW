@@ -47,6 +47,8 @@ interface Account : Thing, Created, Parcelable {
 
     val isGold: Boolean
 
+    val isHidingFromRobots: Boolean
+
     val isMod: Boolean
 
     val linkKarma: Int

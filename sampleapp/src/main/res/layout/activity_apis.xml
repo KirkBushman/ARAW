@@ -541,14 +541,25 @@
                 />
 
         <com.google.android.material.button.MaterialButton
+                android:id="@+id/bttn_wiki_revision"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/bttn_wiki_revision"
+                app:layout_constraintTop_toBottomOf="@id/bttn_wiki"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/bttn_wiki_pages"
+                />
+
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_wiki_revisions"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/bttn_wiki_revisions"
-                app:layout_constraintTop_toBottomOf="@id/bttn_wiki"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/bttn_wiki_pages"
+                app:layout_constraintTop_toBottomOf="@id/bttn_wiki_pages"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/bttn_wiki_revision"
                 />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

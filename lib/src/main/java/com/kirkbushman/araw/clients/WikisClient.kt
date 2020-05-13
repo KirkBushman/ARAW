@@ -4,6 +4,7 @@ import com.kirkbushman.araw.RedditApi
 import com.kirkbushman.araw.exceptions.WikiDisabledException
 import com.kirkbushman.araw.models.Subreddit
 import com.kirkbushman.araw.models.WikiPage
+import com.kirkbushman.araw.models.WikiRevision
 
 class WikisClient(
 
@@ -85,11 +86,33 @@ class WikisClient(
         return res.body()?.data
     }
 
-    fun wikiRevisions(subreddit: Subreddit, disableLegacyEncoding: Boolean = false): Any? {
+    fun wikiRevision(subreddit: Subreddit, page: String, disableLegacyEncoding: Boolean = false): List<WikiRevision>? {
+        return wikiRevision(subreddit.displayName, page, disableLegacyEncoding)
+    }
+
+    fun wikiRevision(subreddit: String, page: String, disableLegacyEncoding: Boolean = false): List<WikiRevision>? {
+
+        val authMap = getHeaderMap()
+        val req = api.wikiRevision(
+            subreddit = subreddit,
+            page = page,
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
+
+        val res = req.execute()
+        if (!res.isSuccessful) {
+            return null
+        }
+
+        return res.body()?.data?.children
+    }
+
+    fun wikiRevisions(subreddit: Subreddit, disableLegacyEncoding: Boolean = false): List<WikiRevision>? {
         return wikiRevisions(subreddit.displayName, disableLegacyEncoding)
     }
 
-    fun wikiRevisions(subreddit: String, disableLegacyEncoding: Boolean = false): Any? {
+    fun wikiRevisions(subreddit: String, disableLegacyEncoding: Boolean = false): List<WikiRevision>? {
 
         val authMap = getHeaderMap()
         val req = api.wikiRevisions(
@@ -103,6 +126,6 @@ class WikisClient(
             return null
         }
 
-        return res.body()
+        return res.body()?.data?.children
     }
 }
