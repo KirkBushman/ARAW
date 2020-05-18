@@ -6,7 +6,7 @@ import android.os.Bundle
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.activities.base.BaseActivity
-import com.kirkbushman.sampleapp.doAsync
+import com.kirkbushman.sampleapp.util.doAsync
 import kotlinx.android.synthetic.main.activity_api_detail.*
 
 class ApiDetailActivity : BaseActivity() {
@@ -249,7 +249,9 @@ class ApiDetailActivity : BaseActivity() {
         setContentView(R.layout.activity_api_detail)
 
         var result = ""
-        doAsync(doWork = { result = fetchCall() }, onPost = { api_detail.text = result })
+        doAsync(
+            doWork = { result = fetchCall() },
+            onPost = { api_detail.text = result })
     }
 
     private fun fetchCall(): String {

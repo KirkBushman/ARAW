@@ -132,6 +132,11 @@ class MainActivity : AppCompatActivity() {
             RulesActivity.start(this)
         }
 
+        bttn_upload_images.setOnClickListener {
+
+            UploadImagesActivity.start(this)
+        }
+
         bttn_settings.setOnClickListener {
 
             SettingsActivity.start(this)

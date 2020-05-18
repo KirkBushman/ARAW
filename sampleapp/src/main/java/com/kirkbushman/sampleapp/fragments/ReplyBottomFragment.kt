@@ -9,7 +9,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.kirkbushman.araw.models.Comment
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
-import com.kirkbushman.sampleapp.doAsync
+import com.kirkbushman.sampleapp.util.doAsync
 import kotlinx.android.synthetic.main.fragment_bottom_reply.*
 import kotlinx.android.synthetic.main.fragment_bottom_reply.view.*
 
@@ -46,7 +46,8 @@ class ReplyBottomFragment : BottomSheetDialogFragment() {
             doAsync(doWork = {
 
                 val replyText = edit_reply.text.toString().trim()
-                responseComment = client?.contributionsClient?.reply(comment?.fullname ?: "", replyText)
+                responseComment =
+                    client?.contributionsClient?.reply(comment?.fullname ?: "", replyText)
             }, onPost = {
 
                 val toastStr = "Response is: ${responseComment?.body}"

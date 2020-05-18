@@ -10,7 +10,7 @@ import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.activities.base.BaseActivity
 import com.kirkbushman.sampleapp.controllers.SubmissionController
-import com.kirkbushman.sampleapp.doAsync
+import com.kirkbushman.sampleapp.util.doAsync
 import kotlinx.android.synthetic.main.activity_submissions_search.*
 
 class SubmissionsSearchActivity : BaseActivity() {
@@ -103,7 +103,10 @@ class SubmissionsSearchActivity : BaseActivity() {
 
             doAsync(doWork = {
 
-                val fetcher = client?.contributionsClient?.submissionsSearch(if (allSubs) null else subreddit, query)
+                val fetcher = client?.contributionsClient?.submissionsSearch(
+                    if (allSubs) null else subreddit,
+                    query
+                )
 
                 submissions.clear()
                 submissions.addAll(fetcher?.fetchNext() ?: listOf())

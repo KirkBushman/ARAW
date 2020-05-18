@@ -399,4 +399,40 @@ class ContributionsClient(
 
         return res.body()
     }
+
+    fun uploadMedia(filename: String, mimeType: String? = null): Any? {
+
+        var currentMimeType = mimeType
+        if (currentMimeType == null) {
+
+            val extension = filename.substring(filename.lastIndexOf('.'))
+            currentMimeType = when (extension) {
+                "png" -> "image/png"
+                "mp4" -> "video/mp4"
+                "jpg" -> "image/jpeg"
+                "jpeg" -> "image/jpeg"
+                "gif" -> "image/gif"
+
+                else -> throw IllegalStateException("Media's mimetype not supported! check the file extension.")
+            }
+        }
+
+        val authMap = getHeaderMap()
+        val req = api.obtainUploadContract(
+            filepath = filename,
+            mimetype = currentMimeType,
+            header = authMap
+        )
+
+        val uploadContractRes = req.execute()
+        if (!uploadContractRes.isSuccessful) {
+            return null
+        }
+
+        val uploadContract = uploadContractRes.body() ?: return null
+
+        val req2 = api.uploadMedia(
+            uploadUrl = "https".plus(uploadContract.args.action)
+        )
+    }
 }

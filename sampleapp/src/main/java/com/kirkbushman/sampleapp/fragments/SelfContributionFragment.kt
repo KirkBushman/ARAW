@@ -15,7 +15,7 @@ import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.controllers.ContributionController
 import com.kirkbushman.sampleapp.controllers.SubmissionController
-import com.kirkbushman.sampleapp.doAsync
+import com.kirkbushman.sampleapp.util.doAsync
 import kotlinx.android.synthetic.main.fragment_inbox.*
 
 class SelfContributionFragment : Fragment(R.layout.fragment_contribution) {

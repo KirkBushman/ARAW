@@ -9,7 +9,7 @@ import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.controllers.BaseCallback
 import com.kirkbushman.sampleapp.controllers.BaseController
-import com.kirkbushman.sampleapp.doAsync
+import com.kirkbushman.sampleapp.util.doAsync
 
 abstract class BaseControllerFragment<T, C : BaseCallback>(@LayoutRes contentLayoutId: Int) : Fragment(contentLayoutId) {
 

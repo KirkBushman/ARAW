@@ -1,4 +1,4 @@
-package com.kirkbushman.sampleapp
+package com.kirkbushman.sampleapp.util
 
 import android.os.AsyncTask
 

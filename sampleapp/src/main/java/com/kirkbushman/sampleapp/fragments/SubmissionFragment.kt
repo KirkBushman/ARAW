@@ -10,7 +10,7 @@ import com.kirkbushman.araw.models.general.Vote
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.controllers.SubmissionController
-import com.kirkbushman.sampleapp.doAsync
+import com.kirkbushman.sampleapp.util.doAsync
 import kotlinx.android.synthetic.main.activity_submissions.*
 
 class SubmissionFragment : Fragment(R.layout.fragment_submission) {

@@ -93,6 +93,10 @@
     <string name="bttn_lock">Lock</string>
     <string name="bttn_subscribe">Subscribe</string>
     <string name="bttn_reply">Reply</string>
+    <string name="bttn_upload">Upload</string>
+    <string name="bttn_upload_images">Upload Images</string>
+    <string name="load_image">Load Image</string>
+    <string name="image_to_upload">image to upload</string>
     <string name="bttn_settings">Settings</string>
     <string name="no_items">No items to show.</string>
 
@@ -109,4 +113,5 @@
     <string name="timeperiod_month">Month</string>
     <string name="timeperiod_year">Year</string>
     <string name="timeperiod_all">All</string>
+
 </resources>

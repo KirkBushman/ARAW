@@ -13,7 +13,7 @@ import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.activities.base.BaseActivity
 import com.kirkbushman.sampleapp.controllers.CommentController
-import com.kirkbushman.sampleapp.doAsync
+import com.kirkbushman.sampleapp.util.doAsync
 import com.kirkbushman.sampleapp.fragments.ReplyBottomFragment
 import kotlinx.android.synthetic.main.activity_comments.*
 

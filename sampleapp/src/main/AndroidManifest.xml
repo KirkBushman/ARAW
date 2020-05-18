@@ -3,6 +3,7 @@
           xmlns:tools="http://schemas.android.com/tools" package="com.kirkbushman.sampleapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION"/>
 
     <application
             android:allowBackup="false"
@@ -47,6 +48,7 @@
         <activity android:name=".activities.SelfTrophiesActivity"/>
         <activity android:name=".activities.UserSearchActivity"/>
         <activity android:name=".activities.UserTrophiesActivity"/>
+        <activity android:name=".activities.UploadImagesActivity"/>
         <activity android:name=".activities.SettingsActivity" />
     </application>
 

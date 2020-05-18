@@ -7,7 +7,7 @@ import com.kirkbushman.araw.models.Message
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.controllers.BaseController
 import com.kirkbushman.sampleapp.controllers.InboxController
-import com.kirkbushman.sampleapp.doAsync
+import com.kirkbushman.sampleapp.util.doAsync
 import kotlinx.android.synthetic.main.fragment_inbox.*
 
 class InboxFragment : BaseControllerFragment<Message, InboxController.InboxCallback>(R.layout.fragment_inbox) {

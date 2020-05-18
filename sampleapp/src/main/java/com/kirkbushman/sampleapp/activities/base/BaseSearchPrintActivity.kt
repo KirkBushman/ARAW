@@ -8,7 +8,7 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.Toolbar
 import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.sampleapp.TestApplication
-import com.kirkbushman.sampleapp.doAsync
+import com.kirkbushman.sampleapp.util.doAsync
 
 abstract class BaseSearchPrintActivity<T>(@LayoutRes contentLayoutId: Int) : BaseActivity(contentLayoutId) {
 

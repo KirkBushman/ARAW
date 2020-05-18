@@ -22,13 +22,18 @@ import com.kirkbushman.araw.models.SubredditRules
 import com.kirkbushman.araw.models.SubredditSearchResult
 import com.kirkbushman.araw.models.TrendingSubreddits
 import com.kirkbushman.araw.models.TrophyList
+import com.kirkbushman.araw.models.UploadContract
+import com.kirkbushman.araw.models.UploadData
 import com.kirkbushman.araw.models.UserList
 import com.kirkbushman.araw.models.WikiPageList
+import okhttp3.ResponseBody
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.HeaderMap
+import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -213,6 +218,20 @@ interface RedditApi {
         @Field("dir") dir: Int,
         @HeaderMap header: HashMap<String, String>
     ): Call<Any?>
+
+    @FormUrlEncoded
+    @POST("/api/media/asset.json")
+    fun obtainUploadContract(
+        @Field("filepath") filepath: String,
+        @Field("mimetype") mimetype: String,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<UploadContract>
+
+    @POST
+    fun uploadMedia(
+        @Url uploadUrl: String,
+        @Body data: UploadData
+    ): Call<Any>
 
     @GET("/{sorting}/.json")
     fun fetchSubmissions(
