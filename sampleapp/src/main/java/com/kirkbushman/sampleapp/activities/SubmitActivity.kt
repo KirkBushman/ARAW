@@ -52,7 +52,7 @@ class SubmitActivity : BaseActivity() {
                     title = title,
                     kind = kind,
                     text = if (kind == SubmissionKind.self) textOrLink else "",
-                    url = if (kind == SubmissionKind.link) textOrLink else "",
+                    url = if (kind != SubmissionKind.self) textOrLink else "",
                     sendReplies = check_sendreplies.isChecked,
                     isNsfw = check_isnsfw.isChecked,
                     isSpoiler = check_isspoiler.isChecked

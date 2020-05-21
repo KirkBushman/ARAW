@@ -18,6 +18,9 @@ import com.kirkbushman.araw.models.mixins.CommentData
 import com.kirkbushman.araw.models.mixins.Contribution
 import com.kirkbushman.araw.models.mixins.Replyable
 import com.kirkbushman.araw.models.mixins.Votable
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.RequestBody.Companion.toRequestBody
+import okhttp3.MultipartBody
 
 class ContributionsClient(
 
@@ -400,7 +403,7 @@ class ContributionsClient(
         return res.body()
     }
 
-    fun uploadMedia(filename: String, mimeType: String? = null): Any? {
+    fun uploadMedia(filename: String, mimeType: String? = null, fileContent: ByteArray): String? {
 
         var currentMimeType = mimeType
         if (currentMimeType == null) {
@@ -408,10 +411,13 @@ class ContributionsClient(
             val extension = filename.substring(filename.lastIndexOf('.'))
             currentMimeType = when (extension) {
                 "png" -> "image/png"
-                "mp4" -> "video/mp4"
                 "jpg" -> "image/jpeg"
                 "jpeg" -> "image/jpeg"
                 "gif" -> "image/gif"
+                "webp" -> "image/webp"
+                "mp4" -> "video/mp4"
+                "mpeg" -> "video/mpeg"
+                "webm" -> "video/webm"
 
                 else -> throw IllegalStateException("Media's mimetype not supported! check the file extension.")
             }
@@ -430,9 +436,36 @@ class ContributionsClient(
         }
 
         val uploadContract = uploadContractRes.body() ?: return null
+        val uploadData = uploadContract.toUploadData()
 
+        val requestBody = fileContent.toRequestBody(currentMimeType.toMediaType())
+        val multipartBody = MultipartBody.Part.createFormData("file", filename, requestBody)
+
+        val uploadUrl = "https:".plus(uploadContract.args.action)
+
+        val multipartMediaType = "multipart/form-data".toMediaType()
         val req2 = api.uploadMedia(
-            uploadUrl = "https".plus(uploadContract.args.action)
+            uploadUrl = uploadUrl,
+            acl = uploadData.acl.toRequestBody(multipartMediaType),
+            key = uploadData.key.toRequestBody(multipartMediaType),
+            xAmzCredential = uploadData.xAmzCredential.toRequestBody(multipartMediaType),
+            xAmzAlgorithm = uploadData.xAmzAlgorithm.toRequestBody(multipartMediaType),
+            xAmzDate = uploadData.xAmzDate.toRequestBody(multipartMediaType),
+            successActionStatus = uploadData.successActionStatus.toRequestBody(multipartMediaType),
+            contentType = uploadData.contentType.toRequestBody(multipartMediaType),
+            xAmzStorageClass = uploadData.xAmzStorageClass.toRequestBody(multipartMediaType),
+            xAmzMetaExt = uploadData.xAmzMetaExt.toRequestBody(multipartMediaType),
+            policy = uploadData.policy.toRequestBody(multipartMediaType),
+            xAmzSignature = uploadData.xAmzSignature.toRequestBody(multipartMediaType),
+            xAmzSecurityToken = uploadData.xAmzSecurityToken.toRequestBody(multipartMediaType),
+            file = multipartBody
         )
+
+        val res2 = req2.execute()
+        if (!res2.isSuccessful) {
+            return null
+        }
+
+        return uploadUrl.plus('/').plus(uploadData.key)
     }
 }

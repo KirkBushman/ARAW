@@ -34,6 +34,15 @@ data class UploadData(
     val xAmzStorageClass: String,
 
     @Json(name = "x-amz-meta-ext")
-    val xAmzMetaExt: String
+    val xAmzMetaExt: String,
+
+    @Json(name = "policy")
+    val policy: String,
+
+    @Json(name = "X-Amz-Signature")
+    val xAmzSignature: String,
+
+    @Json(name = "x-amz-security-token")
+    val xAmzSecurityToken: String
 
 ) : Parcelable

@@ -102,6 +102,11 @@ class MainActivity : AppCompatActivity() {
             SubmitActivity.start(this)
         }
 
+        bttn_submit_media.setOnClickListener {
+
+            SubmitMediaActivity.start(this)
+        }
+
         bttn_submissions_commons.setOnClickListener {
 
             CommonSubmissionsActivity.start(this)

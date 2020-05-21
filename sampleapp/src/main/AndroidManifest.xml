@@ -37,6 +37,7 @@
         <activity android:name=".activities.SubmissionsSearchActivity"/>
         <activity android:name=".activities.SubredditsSearchActivity"/>
         <activity android:name=".activities.SubmitActivity"/>
+        <activity android:name=".activities.SubmitMediaActivity"/>
         <activity android:name=".activities.CommonSubmissionsActivity"/>
         <activity android:name=".activities.CommentActivity"/>
         <activity android:name=".activities.CommentsActivity"/>

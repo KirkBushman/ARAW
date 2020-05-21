@@ -2,7 +2,8 @@ package com.kirkbushman.sampleapp.util
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.drawable.Drawable
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.provider.OpenableColumns
 import java.io.InputStream
 
@@ -29,7 +30,7 @@ object StorageUtil {
 
         resultIntent: Intent?,
 
-        onResult: (filename: String?, mimetype: String?, drawable: Drawable?) -> Unit
+        onResult: (filename: String?, mimetype: String?, fileContent2: ByteArray?, drawable: Bitmap?) -> Unit
     ) {
 
         if (resultCode == Activity.RESULT_OK) {
@@ -41,7 +42,8 @@ object StorageUtil {
                     var inputStream: InputStream? = null
                     var filename: String? = null
                     var mimetype: String? = null
-                    var drawable: Drawable? = null
+                    var fileContent: ByteArray? = null
+                    var drawable: Bitmap? = null
 
                     try {
                         val resolver = activity.contentResolver
@@ -58,7 +60,10 @@ object StorageUtil {
                             filename = cursor.getString(nameIndex)
                         }
 
-                        drawable = Drawable.createFromStream(inputStream, "shsh")
+                        val byteArray = inputStream?.readBytes()
+
+                        fileContent = byteArray
+                        drawable = BitmapFactory.decodeByteArray(byteArray, 0, byteArray!!.size)
                     } catch (ex: Exception) {
                         ex.printStackTrace()
                     } finally {
@@ -72,7 +77,7 @@ object StorageUtil {
                             }
                         }
 
-                        onResult(filename, mimetype, drawable)
+                        onResult(filename, mimetype, fileContent, drawable)
                     }
                 }
             }

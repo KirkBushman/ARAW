@@ -4,22 +4,23 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.kirkbushman.araw.models.general.SubmissionKind
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.util.StorageUtil
 import com.kirkbushman.sampleapp.util.doAsync
-import kotlinx.android.synthetic.main.activity_upload_images.*
+import kotlinx.android.synthetic.main.activity_submit_media.*
 
-class UploadImagesActivity : AppCompatActivity() {
+class SubmitMediaActivity : AppCompatActivity() {
 
     companion object {
 
         fun start(context: Context) {
 
-            val intent = Intent(context, UploadImagesActivity::class.java)
+            val intent = Intent(context, SubmitMediaActivity::class.java)
             context.startActivity(intent)
         }
     }
@@ -33,34 +34,49 @@ class UploadImagesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_upload_images)
+        setContentView(R.layout.activity_submit_media)
 
-        bttn_upload.visibility = View.GONE
-        bttn_upload.setOnClickListener {
+        bttn_submit.visibility = View.GONE
+        bttn_submit.setOnClickListener {
 
             if (fileName != null &&
                 mimeType != null &&
-                fileContent != null &&
-                bitmap != null
+                fileContent != null
             ) {
 
-                var mediaUrl: String? = null
+                doAsync(doWork = {
 
-                doAsync(
-                    doWork = {
+                    val mediaUrl = client?.contributionsClient?.uploadMedia(fileName!!, mimeType!!, fileContent!!)
+                    if (mediaUrl != null) {
 
-                        mediaUrl = client?.contributionsClient?.uploadMedia(fileName!!, mimeType!!, fileContent!!)
-                    },
-                    onPost = {
+                        val subreddit = edit_subreddit.text.trim().toString()
+                        val title = edit_title.text.trim().toString()
 
-                        if (mediaUrl != null) {
+                        val kind = when {
+                            mimeType!!.contains("image") -> SubmissionKind.image
+                            mimeType!!.contains("video") -> SubmissionKind.video
 
-                            Toast.makeText(this, mediaUrl, Toast.LENGTH_SHORT).show()
-                        } else {
-                            Toast.makeText(this, "Error while uploading image!", Toast.LENGTH_SHORT).show()
+                            else -> SubmissionKind.link
                         }
+
+                        client?.subredditsClient?.submit(
+                            subredditName = subreddit,
+                            resubmit = true,
+                            sendReplies = true,
+                            kind = kind,
+                            url = mediaUrl,
+                            title = title,
+                            isNsfw = false,
+                            isSpoiler = false,
+                            submitType = "subreddit",
+                            isOriginalContent = false,
+                            validateOnSubmit = true,
+                            showErrorList = true
+                        )
+                    } else {
+                        Log.i("Submitting Media", "Could not upload media, returned null url!")
                     }
-                )
+                })
             }
         }
 
@@ -93,7 +109,7 @@ class UploadImagesActivity : AppCompatActivity() {
 
             image_to_upload.setImageBitmap(bitmap)
 
-            bttn_upload.visibility = View.VISIBLE
+            bttn_submit.visibility = View.VISIBLE
         }
     }
 }

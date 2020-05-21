@@ -18,23 +18,25 @@ import com.kirkbushman.araw.models.Me
 import com.kirkbushman.araw.models.MoreChildrenResponse
 import com.kirkbushman.araw.models.Prefs
 import com.kirkbushman.araw.models.Reply
+import com.kirkbushman.araw.models.SubmitResponse
 import com.kirkbushman.araw.models.SubredditRules
 import com.kirkbushman.araw.models.SubredditSearchResult
 import com.kirkbushman.araw.models.TrendingSubreddits
 import com.kirkbushman.araw.models.TrophyList
 import com.kirkbushman.araw.models.UploadContract
-import com.kirkbushman.araw.models.UploadData
 import com.kirkbushman.araw.models.UserList
 import com.kirkbushman.araw.models.WikiPageList
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Call
-import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.HeaderMap
 import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.Part
 import retrofit2.http.Path
 import retrofit2.http.Query
 import retrofit2.http.Url
@@ -157,19 +159,24 @@ interface RedditApi {
     @FormUrlEncoded
     @POST("/api/submit")
     fun submit(
+        @Query("resubmit") resubmit: Boolean? = null,
+        @Query("raw_json") rawJson: Int? = null,
         @Field("api_type") apiType: String = "json",
-        @Field("extension") extension: String = "json",
+        @Field("extension") extension: String? = null,
         @Field("sr") subreddit: String,
         @Field("title") title: String,
         @Field("kind") kind: String,
         @Field("text") text: String? = null,
         @Field("url") url: String? = null,
-        @Field("resubmit") resubmit: Boolean = false,
+        @Field("submit_type") submitType: String? = null,
         @Field("sendreplies") sendReplies: Boolean,
         @Field("nsfw") isNsfw: Boolean,
         @Field("spoiler") isSpoiler: Boolean,
+        @Field("original_content") isOriginalContent: Boolean,
+        @Field("validate_on_submit") validateOnSubmit: Boolean? = null,
+        @Field("show_error_list") showErrorList: Boolean? = null,
         @HeaderMap header: HashMap<String, String>
-    ): Call<Any?>
+    ): Call<SubmitResponse>
 
     @GET
     fun trendingSubreddits(
@@ -227,11 +234,24 @@ interface RedditApi {
         @HeaderMap header: HashMap<String, String>
     ): Call<UploadContract>
 
+    @Multipart
     @POST
     fun uploadMedia(
         @Url uploadUrl: String,
-        @Body data: UploadData
-    ): Call<Any>
+        @Part("acl") acl: RequestBody,
+        @Part("key") key: RequestBody,
+        @Part("X-Amz-Credential") xAmzCredential: RequestBody,
+        @Part("X-Amz-Algorithm") xAmzAlgorithm: RequestBody,
+        @Part("X-Amz-Date") xAmzDate: RequestBody,
+        @Part("success_action_status") successActionStatus: RequestBody,
+        @Part("content-type") contentType: RequestBody,
+        @Part("x-amz-storage-class") xAmzStorageClass: RequestBody,
+        @Part("x-amz-meta-ext") xAmzMetaExt: RequestBody,
+        @Part("policy") policy: RequestBody,
+        @Part("X-Amz-Signature") xAmzSignature: RequestBody,
+        @Part("x-amz-security-token") xAmzSecurityToken: RequestBody,
+        @Part file: MultipartBody.Part
+    ): Call<ResponseBody>
 
     @GET("/{sorting}/.json")
     fun fetchSubmissions(

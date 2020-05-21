@@ -9,7 +9,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
@@ -76,7 +76,7 @@
                 android:importantForAutofill="no"
                 />
 
-        <CheckBox
+        <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/check_sendreplies"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
                 android:text="@string/check_sendreplies"
                 />
 
-        <CheckBox
+        <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/check_isnsfw"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -92,12 +92,20 @@
                 android:text="@string/check_isnsfw"
                 />
 
-        <CheckBox
+        <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/check_isspoiler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/check_isspoiler"
+                />
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/check_isoc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/check_isoc"
                 />
 
         <com.google.android.material.button.MaterialButton

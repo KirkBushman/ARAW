@@ -4,6 +4,7 @@ import com.kirkbushman.araw.RedditApi
 import com.kirkbushman.araw.fetcher.Fetcher
 import com.kirkbushman.araw.fetcher.SubmissionsFetcher
 import com.kirkbushman.araw.fetcher.SubredditsSearchFetcher
+import com.kirkbushman.araw.models.SubmitResponse
 import com.kirkbushman.araw.models.Subreddit
 import com.kirkbushman.araw.models.SubredditRule
 import com.kirkbushman.araw.models.User
@@ -267,46 +268,6 @@ class SubredditsClient(
 
     fun submit(
 
-        subredditName: String,
-
-        title: String,
-        kind: SubmissionKind,
-
-        text: String = "",
-        url: String = "",
-
-        resubmit: Boolean = false,
-        sendReplies: Boolean = false,
-        isNsfw: Boolean = false,
-        isSpoiler: Boolean = false
-
-    ): Any? {
-
-        val authMap = getHeaderMap()
-        val req = api.submit(
-            subreddit = subredditName,
-            title = title,
-            kind = kind.toString(),
-            text = if (kind == SubmissionKind.self) text else null,
-            url = if (kind == SubmissionKind.link) url else null,
-            resubmit = resubmit,
-            sendReplies = sendReplies,
-            isNsfw = isNsfw,
-            isSpoiler = isSpoiler,
-            header = authMap
-        )
-
-        val res = req.execute()
-
-        if (!res.isSuccessful) {
-            return null
-        }
-
-        return res.body()
-    }
-
-    fun submit(
-
         subreddit: Subreddit,
 
         title: String,
@@ -315,29 +276,98 @@ class SubredditsClient(
         text: String = "",
         url: String = "",
 
-        resubmit: Boolean = false,
-        sendReplies: Boolean = false,
-        isNsfw: Boolean? = null,
-        isSpoiler: Boolean = false
+        resubmit: Boolean? = null,
+        extension: String? = null,
+        rawJson: Int? = null,
 
-    ): Any? {
+        sendReplies: Boolean = false,
+        submitType: String? = null,
+        isNsfw: Boolean = false,
+        isSpoiler: Boolean = false,
+        isOriginalContent: Boolean = false,
+
+        validateOnSubmit: Boolean? = null,
+        showErrorList: Boolean? = null
+
+    ): SubmitResponse? {
+
+        return submit(
+            subredditName = subreddit.displayName,
+
+            title = title,
+            kind = kind,
+
+            text = text,
+            url = url,
+
+            resubmit = resubmit,
+            extension = extension,
+            rawJson = rawJson,
+
+            sendReplies = sendReplies,
+            submitType = submitType,
+            isNsfw = isNsfw,
+            isSpoiler = isSpoiler,
+            isOriginalContent = isOriginalContent,
+
+            validateOnSubmit = validateOnSubmit,
+            showErrorList = showErrorList
+        )
+    }
+
+    fun submit(
+
+        subredditName: String,
+
+        title: String,
+        kind: SubmissionKind,
+
+        text: String = "",
+        url: String = "",
+
+        resubmit: Boolean? = null,
+        extension: String? = null,
+        rawJson: Int? = null,
+
+        sendReplies: Boolean = false,
+        submitType: String? = null,
+        isNsfw: Boolean = false,
+        isSpoiler: Boolean = false,
+        isOriginalContent: Boolean = false,
+
+        validateOnSubmit: Boolean? = null,
+        showErrorList: Boolean? = null
+
+    ): SubmitResponse? {
 
         val authMap = getHeaderMap()
         val req = api.submit(
-            subreddit = subreddit.displayName,
+            subreddit = subredditName,
+
             title = title,
             kind = kind.toString(),
-            text = if (kind == SubmissionKind.self) text else null,
-            url = if (kind == SubmissionKind.link) url else null,
+
+            text = (if (kind == SubmissionKind.self) text else null),
+            url = (if (kind != SubmissionKind.self) url else null),
+
             resubmit = resubmit,
+            extension = extension,
+            rawJson = rawJson,
+
             sendReplies = sendReplies,
-            isNsfw = isNsfw ?: subreddit.over18,
+            submitType = submitType,
+
+            isNsfw = isNsfw,
             isSpoiler = isSpoiler,
+            isOriginalContent = isOriginalContent,
+
+            validateOnSubmit = validateOnSubmit,
+            showErrorList = showErrorList,
+
             header = authMap
         )
 
         val res = req.execute()
-
         if (!res.isSuccessful) {
             return null
         }
