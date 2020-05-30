@@ -94,6 +94,10 @@ class ApisActivity : BaseActivity() {
             ApiDetailActivity.startApiSubComments(this)
         }
 
+        bttn_multireddit.setOnClickListener {
+            ApiDetailActivity.startApiSubMultireddit(this)
+        }
+
         bttn_trending.setOnClickListener {
             ApiDetailActivity.startApiTrending(this)
         }

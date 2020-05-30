@@ -84,6 +84,30 @@ class ContributionsClient(
         )
     }
 
+    fun multiredditSubmissions(
+
+        vararg subreddits: String,
+
+        limit: Int = Fetcher.DEFAULT_LIMIT,
+
+        sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
+        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD,
+
+        disableLegacyEncoding: Boolean = false
+
+    ): SubmissionsFetcher {
+        return SubmissionsFetcher(
+
+            api = api,
+            subreddit = subreddits.joinToString(separator = "+"),
+            limit = limit,
+            sorting = sorting,
+            timePeriod = timePeriod,
+            disableLegacyEncoding = disableLegacyEncoding,
+            getHeader = getHeaderMap
+        )
+    }
+
     fun submissionsSearch(
 
         subreddit: String?,

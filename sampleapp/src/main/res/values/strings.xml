@@ -54,6 +54,7 @@
     <string name="bttn_submissions">Submissions</string>
     <string name="bttn_submissions_commons">Common submissions</string>
     <string name="bttn_submissions_search">Submissions Search</string>
+    <string name="bttn_multireddit">Multireddit</string>
     <string name="bttn_trending">Trending</string>
     <string name="bttn_subreddit_search">Subreddit Search</string>
     <string name="bttn_submit">Submit</string>

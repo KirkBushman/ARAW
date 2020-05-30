@@ -13,6 +13,32 @@ class ApiDetailActivity : BaseActivity() {
 
     companion object {
 
+        private val subreddits = listOf(
+            "AskReddit",
+            "aww",
+            "creepy",
+            "pics",
+            "funny",
+            "science",
+            "videos",
+            "iama",
+            "news",
+            "television",
+            "nosleep",
+            "worldnews",
+            "gaming",
+            "diy",
+            "food",
+            "gifs",
+            "memes",
+            "tifu",
+            "space",
+            "movies",
+            "music",
+            "politics",
+            "dataisbeautiful"
+        )
+
         private const val PARAM_API_CALL = "param_intent_api_call"
 
         private const val API_ME = "param_api_call_me"
@@ -30,6 +56,7 @@ class ApiDetailActivity : BaseActivity() {
         private const val API_DOWNVOTED = "param_api_call_downvoted"
         private const val API_GILDED = "param_api_call_gilded"
         private const val API_SUB_SUBMISSION = "param_api_call_sub_submission"
+        private const val API_SUB_MULTIREDDIT = "param_api_call_sub_multireddit"
         private const val API_SUB_COMMENT = "param_api_call_sub_comment"
         private const val API_SUB_SUBMISSIONS = "param_api_call_sub_submissions"
         private const val API_SUB_COMMENTS = "param_api_call_sub_comments"
@@ -116,6 +143,10 @@ class ApiDetailActivity : BaseActivity() {
 
         fun startApiSubSubmission(context: Context) {
             start(context, API_SUB_SUBMISSION)
+        }
+
+        fun startApiSubMultireddit(context: Context) {
+            start(context, API_SUB_MULTIREDDIT)
         }
 
         fun startApiSubComment(context: Context) {
@@ -374,6 +405,13 @@ class ApiDetailActivity : BaseActivity() {
                 return comments.toString()
             }
 
+            API_SUB_MULTIREDDIT -> {
+                val subreddits = getRandomSubredditNames(4)
+                val fetcher = client?.contributionsClient?.multiredditSubmissions(*subreddits, limit = 100)
+                val submissions = fetcher?.fetchNext()
+                return submissions.toString()
+            }
+
             API_SUB_TRENDING -> {
                 val trending = client?.contributionsClient?.trendingSubreddits()
                 return trending.toString()
@@ -558,24 +596,11 @@ class ApiDetailActivity : BaseActivity() {
     }
 
     private fun getRandomSubredditName(): String {
+        return subreddits.random()
+    }
 
-        val list = listOf(
-            "AskReddit",
-            "pics",
-            "funny",
-            "science",
-            "videos",
-            "news",
-            "worldnews",
-            "memes",
-            "tifu",
-            "space",
-            "movies",
-            "politics",
-            "dataisbeautiful"
-        )
-
-        return list.random()
+    private fun getRandomSubredditNames(take: Int): Array<String> {
+        return subreddits.shuffled().take(take).toTypedArray()
     }
 
     private fun getRandomSubredditIds(): List<String> {

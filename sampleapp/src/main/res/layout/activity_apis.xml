@@ -235,14 +235,25 @@
                 />
 
         <com.google.android.material.button.MaterialButton
+                android:id="@+id/bttn_multireddit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/bttn_multireddit"
+                app:layout_constraintTop_toBottomOf="@id/bttn_sub_submissions"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/bttn_trending"
+                />
+
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_trending"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/bttn_trending"
                 app:layout_constraintTop_toBottomOf="@id/bttn_sub_submissions"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/bttn_sub_comments"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/bttn_multireddit"
                 />
 
         <com.google.android.material.textview.MaterialTextView
