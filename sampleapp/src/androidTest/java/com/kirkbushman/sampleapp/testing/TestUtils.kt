@@ -13,7 +13,7 @@ object TestUtils {
         val creds = loadCredentialsFromXml(context)
 
         return RedditAuth.Builder()
-            .setCredentials(creds.username, creds.password, creds.scriptClientId, creds.scriptClientSecret)
+            .setScriptAuthCredentials(creds.username, creds.password, creds.scriptClientId, creds.scriptClientSecret)
             .setScopes(creds.scopes.toTypedArray())
             .setStorageManager(SharedPrefsStorageManager(context))
             .build()
