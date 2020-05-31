@@ -37,7 +37,7 @@ data class SubredditRule(
     val description: String,
 
     @Json(name = "description_html")
-    val descriptionHtml: String,
+    val descriptionHtml: String?,
 
     @Json(name = "short_name")
     val shortName: String,
