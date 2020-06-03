@@ -88,32 +88,38 @@ class LoginActivity : AppCompatActivity() {
 
     private fun savedInstalledApp() {
 
-        doAsync(doWork = {
+        doAsync(
+            doWork = {
 
-            val client = appAuth.getSavedRedditClient()
-            if (client != null) {
-                app.setClient(client)
+                val client = appAuth.getSavedRedditClient()
+                if (client != null) {
+                    app.setClient(client)
+                }
+            },
+            onPost = {
+
+                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                startActivity(intent)
             }
-        }, onPost = {
-
-            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-            startActivity(intent)
-        })
+        )
     }
 
     private fun savedUserless() {
 
-        doAsync(doWork = {
+        doAsync(
+            doWork = {
 
-            val client = userlessAuth.getSavedRedditClient()
-            if (client != null) {
-                app.setClient(client)
+                val client = userlessAuth.getSavedRedditClient()
+                if (client != null) {
+                    app.setClient(client)
+                }
+            },
+            onPost = {
+
+                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                startActivity(intent)
             }
-        }, onPost = {
-
-            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-            startActivity(intent)
-        })
+        )
     }
 
     private fun fetchInstalledApp() {
@@ -122,24 +128,26 @@ class LoginActivity : AppCompatActivity() {
 
             browser.stopLoading()
 
-            doAsync(doWork = {
+            doAsync(
+                doWork = {
 
-                if (!userlessAuth.shouldLogin()) {
-                    userlessAuth.forceRevoke()
+                    if (!userlessAuth.shouldLogin()) {
+                        userlessAuth.forceRevoke()
+                    }
+
+                    appAuth.retrieveTokenBearerFromUrl(it)
+
+                    val client = appAuth.getRedditClient()
+                    if (client != null) {
+                        TestApplication.instance.setClient(client)
+                    }
+
+                    checkAuthStatus()
+
+                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                    startActivity(intent)
                 }
-
-                appAuth.retrieveTokenBearerFromUrl(it)
-
-                val client = appAuth.getRedditClient()
-                if (client != null) {
-                    TestApplication.instance.setClient(client)
-                }
-
-                checkAuthStatus()
-
-                val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                startActivity(intent)
-            })
+            )
         }
     }
 
@@ -147,24 +155,27 @@ class LoginActivity : AppCompatActivity() {
 
         var client: RedditClient? = null
 
-        doAsync(doWork = {
+        doAsync(
+            doWork = {
 
-            if (!appAuth.shouldLogin()) {
-                appAuth.forceRevoke()
+                if (!appAuth.shouldLogin()) {
+                    appAuth.forceRevoke()
+                }
+
+                client = userlessAuth.getRedditClient()
+            },
+            onPost = {
+
+                if (client != null) {
+                    TestApplication.instance.setClient(client!!)
+                }
+
+                checkAuthStatus()
+
+                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                startActivity(intent)
             }
-
-            client = userlessAuth.getRedditClient()
-        }, onPost = {
-
-            if (client != null) {
-                TestApplication.instance.setClient(client!!)
-            }
-
-            checkAuthStatus()
-
-            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-            startActivity(intent)
-        })
+        )
     }
 
     private fun checkAuthStatus() {

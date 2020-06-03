@@ -30,9 +30,10 @@ class CommentsFetcher(
             limit = getLimit(),
             depth = depth,
             rawJson = (if (disableLegacyEncoding) 1 else null),
-            header = getHeader())
-        val res = req.execute()
+            header = getHeader()
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }

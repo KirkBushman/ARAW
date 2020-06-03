@@ -15,9 +15,8 @@ abstract class AuthHelper(protected val logging: Boolean) {
     }
 
     fun hasSavedBearer(): Boolean {
-        return auth.hasSavedBearer() &&
-                // check the saved bearer is of the same type of the helper
-                auth.getSavedBearerType() == auth.getAuthType()
+        // check the saved bearer is of the same type of the helper
+        return auth.hasSavedBearer() && auth.getSavedBearerType() == auth.getAuthType()
     }
 
     fun getSavedBearer(): TokenBearer? {

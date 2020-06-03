@@ -56,21 +56,29 @@ class CommentDataTest {
 
         val linearList = comments.toLinearList()
 
-        assertTrue("comment data should not have replies, once tranformed into a linearList",
-            areRepliesBlank(linearList))
+        assertTrue(
+            "comment data should not have replies, once tranformed into a linearList",
+            areRepliesBlank(linearList)
+        )
 
-        assertTrue("unwrapped comment structure should be equal to list returned by .toLinearList()",
-            compareCommentList(comments, linearList))
+        assertTrue(
+            "unwrapped comment structure should be equal to list returned by .toLinearList()",
+            compareCommentList(comments, linearList)
+        )
 
         val wrappedComm = wrappedCommentModels(comments)
 
-        assertTrue("once the models get wrapped, walking the tree there should be the same number of models and wrappers",
-            compareModelNumber(wrappedComm, comments))
+        assertTrue(
+            "once the models get wrapped, walking the tree there should be the same number of models and wrappers",
+            compareModelNumber(wrappedComm, comments)
+        )
 
         val wrappedList = wrappedLinearCommentModels(comments)
 
-        assertTrue("once the models get wrapped, walking the list there should be the same number of models and wrappers",
-            compareModelLinearNumber(wrappedList, linearList))
+        assertTrue(
+            "once the models get wrapped, walking the list there should be the same number of models and wrappers",
+            compareModelLinearNumber(wrappedList, linearList)
+        )
     }
 
     private fun areRepliesBlank(list: List<CommentData>): Boolean {
@@ -181,8 +189,7 @@ class CommentDataTest {
             commentNames.add(it.fullname)
         }
 
-        return wrappedNum == commentsNum &&
-                wrappedNames.toTypedArray().contentEquals(commentNames.toTypedArray())
+        return wrappedNum == commentsNum && wrappedNames.toTypedArray().contentEquals(commentNames.toTypedArray())
     }
 
     /**

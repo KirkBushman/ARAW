@@ -54,41 +54,49 @@ class SelfContributionFragment : Fragment(R.layout.fragment_contribution) {
 
             override fun onUpvoteClick(index: Int) {
 
-                doAsync(doWork = {
-                    val votable = contributions[index] as Votable
-                    client?.contributionsClient?.vote(Vote.UPVOTE, votable)
-                })
+                doAsync(
+                    doWork = {
+                        val votable = contributions[index] as Votable
+                        client?.contributionsClient?.vote(Vote.UPVOTE, votable)
+                    }
+                )
             }
 
             override fun onNoneClick(index: Int) {
 
-                doAsync(doWork = {
-                    val votable = contributions[index] as Votable
-                    client?.contributionsClient?.vote(Vote.NONE, votable)
-                })
+                doAsync(
+                    doWork = {
+                        val votable = contributions[index] as Votable
+                        client?.contributionsClient?.vote(Vote.NONE, votable)
+                    }
+                )
             }
 
             override fun onDownClick(index: Int) {
 
-                doAsync(doWork = {
-                    val votable = contributions[index] as Votable
-                    client?.contributionsClient?.vote(Vote.DOWNVOTE, votable)
-                })
+                doAsync(
+                    doWork = {
+                        val votable = contributions[index] as Votable
+                        client?.contributionsClient?.vote(Vote.DOWNVOTE, votable)
+                    }
+                )
             }
 
             override fun onSaveClick(index: Int) {
 
-                doAsync(doWork = {
-                    val contribution = contributions[index]
-                    val saved = when (contribution) {
-                        is Submission -> (contribution).isSaved
-                        is Comment -> (contribution).isSaved
+                doAsync(
+                    doWork = {
+                        val contribution = contributions[index]
+                        val saved = when (contribution) {
+                            is Submission -> (contribution).isSaved
+                            is Comment -> (contribution).isSaved
 
-                        else -> false
+                            else -> false
+                        }
+
+                        client?.contributionsClient?.save(!saved, contribution)
                     }
-
-                    client?.contributionsClient?.save(!saved, contribution)
-                })
+                )
             }
 
             override fun onHideClick(index: Int) {}
@@ -105,44 +113,52 @@ class SelfContributionFragment : Fragment(R.layout.fragment_contribution) {
         list.setHasFixedSize(true)
         list.setController(controller)
 
-        doAsync(doWork = {
+        doAsync(
+            doWork = {
 
-            fetcher = getFetcher()
+                fetcher = getFetcher()
 
-            contributions.clear()
-            contributions.addAll(fetcher?.fetchNext() ?: listOf())
-        }, onPost = {
-
-            controller.setContributions(contributions)
-        })
+                contributions.clear()
+                contributions.addAll(fetcher?.fetchNext() ?: listOf())
+            },
+            onPost = {
+                controller.setContributions(contributions)
+            }
+        )
     }
 
     fun reload(sorting: ContributionsSorting? = null, timePeriod: TimePeriod? = null) {
 
         if (sorting != null) {
 
-            doAsync(doWork = {
+            doAsync(
+                doWork = {
 
-                fetcher!!.setSorting(sorting)
+                    fetcher!!.setSorting(sorting)
 
-                contributions.clear()
-                contributions.addAll(fetcher?.fetchNext() ?: listOf())
-            }, onPost = {
-                controller.setContributions(contributions)
-            })
+                    contributions.clear()
+                    contributions.addAll(fetcher?.fetchNext() ?: listOf())
+                },
+                onPost = {
+                    controller.setContributions(contributions)
+                }
+            )
         }
 
         if (timePeriod != null) {
 
-            doAsync(doWork = {
+            doAsync(
+                doWork = {
 
-                fetcher!!.setTimePeriod(timePeriod)
+                    fetcher!!.setTimePeriod(timePeriod)
 
-                contributions.clear()
-                contributions.addAll(fetcher?.fetchNext() ?: listOf())
-            }, onPost = {
-                controller.setContributions(contributions)
-            })
+                    contributions.clear()
+                    contributions.addAll(fetcher?.fetchNext() ?: listOf())
+                },
+                onPost = {
+                    controller.setContributions(contributions)
+                }
+            )
         }
     }
 

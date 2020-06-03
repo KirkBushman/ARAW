@@ -36,58 +36,61 @@ class CommentsActivity : BaseActivity() {
 
             override fun onUpvoteClick(submission: Submission) {
 
-                doAsync(doWork = {
-                    client?.contributionsClient?.vote(Vote.UPVOTE, submission)
-                })
+                doAsync(
+                    doWork = { client?.contributionsClient?.vote(Vote.UPVOTE, submission) }
+                )
             }
 
             override fun onNoneClick(submission: Submission) {
 
-                doAsync(doWork = {
-                    client?.contributionsClient?.vote(Vote.NONE, submission)
-                })
+                doAsync(
+                    doWork = { client?.contributionsClient?.vote(Vote.NONE, submission) }
+                )
             }
 
             override fun onDownClick(submission: Submission) {
 
-                doAsync(doWork = {
-                    client?.contributionsClient?.vote(Vote.DOWNVOTE, submission)
-                })
+                doAsync(
+                    doWork = { client?.contributionsClient?.vote(Vote.DOWNVOTE, submission) }
+                )
             }
 
             override fun onSaveClick(submission: Submission) {
 
-                doAsync(doWork = {
-                    client?.contributionsClient?.save(!submission.isSaved, submission)
-                })
+                doAsync(
+                    doWork = { client?.contributionsClient?.save(!submission.isSaved, submission) }
+                )
             }
 
             override fun onHideClick(submission: Submission) {
 
-                doAsync(doWork = {
-                    client?.contributionsClient?.hide(submission)
-                })
+                doAsync(
+                    doWork = { client?.contributionsClient?.hide(submission) }
+                )
             }
 
             override fun onLockClick(submission: Submission) {
 
-                doAsync(doWork = {
-                    client?.contributionsClient?.lock(submission)
-                })
+                doAsync(
+                    doWork = { client?.contributionsClient?.lock(submission) }
+                )
             }
 
             override fun onLoadMoreClick(moreComments: MoreComments, submission: Submission) {
 
                 val addendum = ArrayList<CommentData>()
 
-                doAsync(doWork = {
+                doAsync(
+                    doWork = {
 
-                    val more = client?.contributionsClient?.moreChildren(moreComments, submission)
-                    addendum.addAll(more ?: listOf())
-                }, onPost = {
+                        val more = client?.contributionsClient?.moreChildren(moreComments, submission)
+                        addendum.addAll(more ?: listOf())
+                    },
+                    onPost = {
 
-                    replaceMoreComments(moreComments, addendum)
-                })
+                        replaceMoreComments(moreComments, addendum)
+                    }
+                )
             }
 
             override fun onReplyClick(comment: Comment) {
@@ -115,21 +118,24 @@ class CommentsActivity : BaseActivity() {
 
             val submissionId = search.text.toString().trim()
 
-            doAsync(doWork = {
+            doAsync(
+                doWork = {
 
-                val fetcher = client?.contributionsClient?.comments(submissionId)
-                val temp = fetcher?.fetchNext() ?: listOf()
+                    val fetcher = client?.contributionsClient?.comments(submissionId)
+                    val temp = fetcher?.fetchNext() ?: listOf()
 
-                if (fetcher!!.getSubmission() != null) {
-                    controller.setSubmission(fetcher.getSubmission()!!)
+                    if (fetcher!!.getSubmission() != null) {
+                        controller.setSubmission(fetcher.getSubmission()!!)
+                    }
+
+                    comments.clear()
+                    comments.addAll(temp.toLinearList())
+                },
+                onPost = {
+
+                    controller.setComments(comments)
                 }
-
-                comments.clear()
-                comments.addAll(temp.toLinearList())
-            }, onPost = {
-
-                controller.setComments(comments)
-            })
+            )
         }
     }
 

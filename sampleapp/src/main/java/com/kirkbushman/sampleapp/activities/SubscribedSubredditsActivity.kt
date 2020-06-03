@@ -33,17 +33,20 @@ class SubscribedSubredditsActivity : BaseActivity() {
         override fun subscribeClick(index: Int) {
 
             val subreddit = subreddits[index]
-            doAsync(doWork = {
+            doAsync(
+                doWork = {
 
-                client?.subredditsClient?.subscribe(subreddit)
-            }, onPost = {
+                    client?.subredditsClient?.subscribe(subreddit)
+                },
+                onPost = {
 
-                if (subreddit.isSubscriber != null) {
+                    if (subreddit.isSubscriber != null) {
 
-                    subreddits[index] = subreddit.copy(isSubscriber = !subreddit.isSubscriber!!)
-                    refresh()
+                        subreddits[index] = subreddit.copy(isSubscriber = !subreddit.isSubscriber!!)
+                        refresh()
+                    }
                 }
-            })
+            )
         }
     }
 
@@ -60,16 +63,19 @@ class SubscribedSubredditsActivity : BaseActivity() {
         list.setHasFixedSize(true)
         list.setController(controller)
 
-        doAsync(doWork = {
+        doAsync(
+            doWork = {
 
-            val temp = fetcher?.fetchNext() ?: listOf()
+                val temp = fetcher?.fetchNext() ?: listOf()
 
-            subreddits.clear()
-            subreddits.addAll(temp)
-        }, onPost = {
+                subreddits.clear()
+                subreddits.addAll(temp)
+            },
+            onPost = {
 
-            refresh()
-        })
+                refresh()
+            }
+        )
     }
 
     private fun refresh() {

@@ -44,39 +44,41 @@ class SubmitMediaActivity : AppCompatActivity() {
                 fileContent != null
             ) {
 
-                doAsync(doWork = {
+                doAsync(
+                    doWork = {
 
-                    val mediaUrl = client?.contributionsClient?.uploadMedia(fileName!!, mimeType!!, fileContent!!)
-                    if (mediaUrl != null) {
+                        val mediaUrl = client?.contributionsClient?.uploadMedia(fileName!!, mimeType!!, fileContent!!)
+                        if (mediaUrl != null) {
 
-                        val subreddit = edit_subreddit.text.trim().toString()
-                        val title = edit_title.text.trim().toString()
+                            val subreddit = edit_subreddit.text.trim().toString()
+                            val title = edit_title.text.trim().toString()
 
-                        val kind = when {
-                            mimeType!!.contains("image") -> SubmissionKind.image
-                            mimeType!!.contains("video") -> SubmissionKind.video
+                            val kind = when {
+                                mimeType!!.contains("image") -> SubmissionKind.image
+                                mimeType!!.contains("video") -> SubmissionKind.video
 
-                            else -> SubmissionKind.link
+                                else -> SubmissionKind.link
+                            }
+
+                            client?.subredditsClient?.submit(
+                                subredditName = subreddit,
+                                resubmit = true,
+                                sendReplies = true,
+                                kind = kind,
+                                url = mediaUrl,
+                                title = title,
+                                isNsfw = false,
+                                isSpoiler = false,
+                                submitType = "subreddit",
+                                isOriginalContent = false,
+                                validateOnSubmit = true,
+                                showErrorList = true
+                            )
+                        } else {
+                            Log.i("Submitting Media", "Could not upload media, returned null url!")
                         }
-
-                        client?.subredditsClient?.submit(
-                            subredditName = subreddit,
-                            resubmit = true,
-                            sendReplies = true,
-                            kind = kind,
-                            url = mediaUrl,
-                            title = title,
-                            isNsfw = false,
-                            isSpoiler = false,
-                            submitType = "subreddit",
-                            isOriginalContent = false,
-                            validateOnSubmit = true,
-                            showErrorList = true
-                        )
-                    } else {
-                        Log.i("Submitting Media", "Could not upload media, returned null url!")
                     }
-                })
+                )
             }
         }
 

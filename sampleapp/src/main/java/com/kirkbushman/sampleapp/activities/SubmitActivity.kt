@@ -35,29 +35,31 @@ class SubmitActivity : BaseActivity() {
 
         bttn_submit.setOnClickListener {
 
-            doAsync(doWork = {
+            doAsync(
+                doWork = {
 
-                val subredditName = edit_subreddit.text.toString().trim()
-                val title = edit_title.text.toString().trim()
-                val textOrLink = edit_text.text.toString().trim()
-                val kind = when {
-                    bttn_radio_self.isChecked -> SubmissionKind.self
-                    bttn_radio_link.isChecked -> SubmissionKind.link
+                    val subredditName = edit_subreddit.text.toString().trim()
+                    val title = edit_title.text.toString().trim()
+                    val textOrLink = edit_text.text.toString().trim()
+                    val kind = when {
+                        bttn_radio_self.isChecked -> SubmissionKind.self
+                        bttn_radio_link.isChecked -> SubmissionKind.link
 
-                    else -> SubmissionKind.self
+                        else -> SubmissionKind.self
+                    }
+
+                    client?.subredditsClient?.submit(
+                        subredditName = subredditName,
+                        title = title,
+                        kind = kind,
+                        text = if (kind == SubmissionKind.self) textOrLink else "",
+                        url = if (kind != SubmissionKind.self) textOrLink else "",
+                        sendReplies = check_sendreplies.isChecked,
+                        isNsfw = check_isnsfw.isChecked,
+                        isSpoiler = check_isspoiler.isChecked
+                    )
                 }
-
-                client?.subredditsClient?.submit(
-                    subredditName = subredditName,
-                    title = title,
-                    kind = kind,
-                    text = if (kind == SubmissionKind.self) textOrLink else "",
-                    url = if (kind != SubmissionKind.self) textOrLink else "",
-                    sendReplies = check_sendreplies.isChecked,
-                    isNsfw = check_isnsfw.isChecked,
-                    isSpoiler = check_isspoiler.isChecked
-                )
-            })
+            )
         }
     }
 }

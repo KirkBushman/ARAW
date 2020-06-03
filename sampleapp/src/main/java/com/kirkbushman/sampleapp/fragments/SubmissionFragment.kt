@@ -58,50 +58,62 @@ class SubmissionFragment : Fragment(R.layout.fragment_submission) {
 
             override fun onUpvoteClick(index: Int) {
 
-                doAsync(doWork = {
-                    val submission = submissions[index]
-                    client?.contributionsClient?.vote(Vote.UPVOTE, submission)
-                })
+                doAsync(
+                    doWork = {
+                        val submission = submissions[index]
+                        client?.contributionsClient?.vote(Vote.UPVOTE, submission)
+                    }
+                )
             }
 
             override fun onNoneClick(index: Int) {
 
-                doAsync(doWork = {
-                    val submission = submissions[index]
-                    client?.contributionsClient?.vote(Vote.NONE, submission)
-                })
+                doAsync(
+                    doWork = {
+                        val submission = submissions[index]
+                        client?.contributionsClient?.vote(Vote.NONE, submission)
+                    }
+                )
             }
 
             override fun onDownClick(index: Int) {
 
-                doAsync(doWork = {
-                    val submission = submissions[index]
-                    client?.contributionsClient?.vote(Vote.DOWNVOTE, submission)
-                })
+                doAsync(
+                    doWork = {
+                        val submission = submissions[index]
+                        client?.contributionsClient?.vote(Vote.DOWNVOTE, submission)
+                    }
+                )
             }
 
             override fun onSaveClick(index: Int) {
 
-                doAsync(doWork = {
-                    val submission = submissions[index]
-                    client?.contributionsClient?.save(!submission.isSaved, submission)
-                })
+                doAsync(
+                    doWork = {
+                        val submission = submissions[index]
+                        client?.contributionsClient?.save(!submission.isSaved, submission)
+                    }
+                )
             }
 
             override fun onHideClick(index: Int) {
 
-                doAsync(doWork = {
-                    val submission = submissions[index]
-                    client?.contributionsClient?.hide(submission)
-                })
+                doAsync(
+                    doWork = {
+                        val submission = submissions[index]
+                        client?.contributionsClient?.hide(submission)
+                    }
+                )
             }
 
             override fun onLockClick(index: Int) {
 
-                doAsync(doWork = {
-                    val submission = submissions[index]
-                    client?.contributionsClient?.lock(submission)
-                })
+                doAsync(
+                    doWork = {
+                        val submission = submissions[index]
+                        client?.contributionsClient?.lock(submission)
+                    }
+                )
             }
 
             override fun onReplyClick(index: Int) {}
@@ -113,42 +125,51 @@ class SubmissionFragment : Fragment(R.layout.fragment_submission) {
         list.setHasFixedSize(true)
         list.setController(controller)
 
-        doAsync(doWork = {
+        doAsync(
+            doWork = {
 
-            submissions.clear()
-            submissions.addAll(fetcher?.fetchNext() ?: listOf())
-        }, onPost = {
+                submissions.clear()
+                submissions.addAll(fetcher?.fetchNext() ?: listOf())
+            },
+            onPost = {
 
-            controller.setSubmission(submissions)
-        })
+                controller.setSubmission(submissions)
+            }
+        )
     }
 
     fun reload(sorting: SubmissionsSorting? = null, timePeriod: TimePeriod? = null) {
 
         if (sorting != null) {
 
-            doAsync(doWork = {
+            doAsync(
+                doWork = {
 
-                fetcher!!.setSorting(sorting)
+                    fetcher!!.setSorting(sorting)
 
-                submissions.clear()
-                submissions.addAll(fetcher?.fetchNext() ?: listOf())
-            }, onPost = {
-                controller.setSubmission(submissions)
-            })
+                    submissions.clear()
+                    submissions.addAll(fetcher?.fetchNext() ?: listOf())
+                },
+                onPost = {
+                    controller.setSubmission(submissions)
+                }
+            )
         }
 
         if (timePeriod != null) {
 
-            doAsync(doWork = {
+            doAsync(
+                doWork = {
 
-                fetcher!!.setTimePeriod(timePeriod)
+                    fetcher!!.setTimePeriod(timePeriod)
 
-                submissions.clear()
-                submissions.addAll(fetcher?.fetchNext() ?: listOf())
-            }, onPost = {
-                controller.setSubmission(submissions)
-            })
+                    submissions.clear()
+                    submissions.addAll(fetcher?.fetchNext() ?: listOf())
+                },
+                onPost = {
+                    controller.setSubmission(submissions)
+                }
+            )
         }
     }
 }

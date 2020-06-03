@@ -50,16 +50,19 @@ abstract class BaseSearchControllerActivity<T, C : BaseCallback>(@LayoutRes cont
 
             val searchQuery = editSearch.text.toString().trim()
 
-            doAsync(doWork = {
+            doAsync(
+                doWork = {
 
-                val newItems = fetchItem(client, searchQuery)
+                    val newItems = fetchItem(client, searchQuery)
 
-                items.clear()
-                items.addAll(newItems ?: emptyList())
-            }, onPost = {
+                    items.clear()
+                    items.addAll(newItems ?: emptyList())
+                },
+                onPost = {
 
-                controller.setItems(items)
-            })
+                    controller.setItems(items)
+                }
+            )
         }
     }
 }

@@ -34,8 +34,6 @@ class Gildings(
 ) : Parcelable {
 
     fun hasGildings(): Boolean {
-        return silverCount != null ||
-                goldCount != null ||
-                platinumCount != null
+        return silverCount != null || goldCount != null || platinumCount != null
     }
 }

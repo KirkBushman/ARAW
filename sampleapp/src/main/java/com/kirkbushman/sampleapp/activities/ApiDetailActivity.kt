@@ -282,7 +282,8 @@ class ApiDetailActivity : BaseActivity() {
         var result = ""
         doAsync(
             doWork = { result = fetchCall() },
-            onPost = { api_detail.text = result })
+            onPost = { api_detail.text = result }
+        )
     }
 
     private fun fetchCall(): String {
@@ -320,87 +321,103 @@ class ApiDetailActivity : BaseActivity() {
 
             API_OVERVIEW -> {
                 val fetcher = client?.accountsClient?.overview(
-                    disableLegacyEncoding = disableLegacyEncoding)
+                    disableLegacyEncoding = disableLegacyEncoding
+                )
                 val overview = fetcher?.fetchNext()
                 return overview.toString()
             }
 
             API_SUBMITTED -> {
                 val fetcher = client?.accountsClient?.submitted(
-                    disableLegacyEncoding = disableLegacyEncoding)
+                    disableLegacyEncoding = disableLegacyEncoding
+                )
                 val submitted = fetcher?.fetchNext()
                 return submitted.toString()
             }
 
             API_COMMENTS -> {
                 val fetcher = client?.accountsClient?.comments(
-                    disableLegacyEncoding = disableLegacyEncoding)
+                    disableLegacyEncoding = disableLegacyEncoding
+                )
                 val comments = fetcher?.fetchNext()
                 return comments.toString()
             }
 
             API_SAVED -> {
                 val fetcher = client?.accountsClient?.saved(
-                    disableLegacyEncoding = disableLegacyEncoding)
+                    disableLegacyEncoding = disableLegacyEncoding
+                )
                 val saved = fetcher?.fetchNext()
                 return saved.toString()
             }
 
             API_HIDDEN -> {
                 val fetcher = client?.accountsClient?.hidden(
-                    disableLegacyEncoding = disableLegacyEncoding)
+                    disableLegacyEncoding = disableLegacyEncoding
+                )
                 val hidden = fetcher?.fetchNext()
                 return hidden.toString()
             }
 
             API_UPVOTED -> {
                 val fetcher = client?.accountsClient?.upvoted(
-                    disableLegacyEncoding = disableLegacyEncoding)
+                    disableLegacyEncoding = disableLegacyEncoding
+                )
                 val upvoted = fetcher?.fetchNext()
                 return upvoted.toString()
             }
 
             API_DOWNVOTED -> {
                 val fetcher = client?.accountsClient?.downvoted(
-                    disableLegacyEncoding = disableLegacyEncoding)
+                    disableLegacyEncoding = disableLegacyEncoding
+                )
                 val downvoted = fetcher?.fetchNext()
                 return downvoted.toString()
             }
 
             API_GILDED -> {
                 val fetcher = client?.accountsClient?.gilded(
-                    disableLegacyEncoding = disableLegacyEncoding)
+                    disableLegacyEncoding = disableLegacyEncoding
+                )
                 val gilded = fetcher?.fetchNext()
                 return gilded.toString()
             }
 
             API_SUB_SUBMISSION -> {
                 val submissionId = getRandomSubmissionIdFromRandomSubreddit()
-                val submission = client?.contributionsClient?.submission(submissionId,
-                    disableLegacyEncoding = disableLegacyEncoding)
+                val submission = client?.contributionsClient?.submission(
+                    submissionId,
+                    disableLegacyEncoding = disableLegacyEncoding
+                )
                 return submission.toString()
             }
 
             API_SUB_COMMENT -> {
                 val submissionId = getRandomSubmissionIdFromRandomSubreddit()
-                val fetcher = client?.contributionsClient?.comments(submissionId,
-                    disableLegacyEncoding = disableLegacyEncoding)
+                val fetcher = client?.contributionsClient?.comments(
+                    submissionId,
+                    disableLegacyEncoding = disableLegacyEncoding
+                )
                 val comments = fetcher?.fetchNext()
                 return comments?.random().toString()
             }
 
             API_SUB_SUBMISSIONS -> {
                 val subreddit = getRandomSubredditName()
-                val fetcher = client?.contributionsClient?.submissions(subreddit,
-                    disableLegacyEncoding = disableLegacyEncoding)
+                val fetcher = client?.contributionsClient?.submissions(
+                    subreddit,
+                    disableLegacyEncoding = disableLegacyEncoding
+                )
                 val submissions = fetcher?.fetchNext()
                 return submissions.toString()
             }
 
             API_SUB_COMMENTS -> {
                 val submissionId = getRandomSubmissionIdFromRandomSubreddit()
-                val fetcher = client?.contributionsClient?.comments(submissionId,
-                    disableLegacyEncoding = disableLegacyEncoding)
+                val fetcher = client?.contributionsClient?.comments(
+                    submissionId,
+                    disableLegacyEncoding = disableLegacyEncoding
+                )
                 val comments = fetcher?.fetchNext()
                 return comments.toString()
             }
@@ -421,7 +438,6 @@ class ApiDetailActivity : BaseActivity() {
                 val fetcher = client?.messagesClient?.inbox(
                     disableLegacyEncoding = disableLegacyEncoding
                 )
-
                 val inbox = fetcher?.fetchNext()
                 return inbox.toString()
             }
@@ -430,7 +446,6 @@ class ApiDetailActivity : BaseActivity() {
                 val fetcher = client?.messagesClient?.unread(
                     disableLegacyEncoding = disableLegacyEncoding
                 )
-
                 val unread = fetcher?.fetchNext()
                 return unread.toString()
             }
@@ -439,7 +454,6 @@ class ApiDetailActivity : BaseActivity() {
                 val fetcher = client?.messagesClient?.messages(
                     disableLegacyEncoding = disableLegacyEncoding
                 )
-
                 val messages = fetcher?.fetchNext()
                 return messages.toString()
             }
@@ -448,14 +462,14 @@ class ApiDetailActivity : BaseActivity() {
                 val fetcher = client?.messagesClient?.sent(
                     disableLegacyEncoding = disableLegacyEncoding
                 )
-
                 val sent = fetcher?.fetchNext()
                 return sent.toString()
             }
 
             API_MESSAGE_COMMENT_REPLIES -> {
                 val fetcher = client?.messagesClient?.commentsReplies(
-                    disableLegacyEncoding = disableLegacyEncoding)
+                    disableLegacyEncoding = disableLegacyEncoding
+                )
                 val replies = fetcher?.fetchNext()
                 return replies.toString()
             }
@@ -526,68 +540,86 @@ class ApiDetailActivity : BaseActivity() {
 
             API_USER_OVERVIEW -> {
                 val userName = getRandomUserFromRandomSubreddit()
-                val fetcher = client?.redditorsClient?.overview(userName,
-                    disableLegacyEncoding = disableLegacyEncoding)
+                val fetcher = client?.redditorsClient?.overview(
+                    userName,
+                    disableLegacyEncoding = disableLegacyEncoding
+                )
                 val overview = fetcher?.fetchNext()
                 return overview.toString()
             }
 
             API_USER_SUBMITTED -> {
                 val userName = getRandomUserFromRandomSubreddit()
-                val fetcher = client?.redditorsClient?.submitted(userName,
-                    disableLegacyEncoding = disableLegacyEncoding)
+                val fetcher = client?.redditorsClient?.submitted(
+                    userName,
+                    disableLegacyEncoding = disableLegacyEncoding
+                )
                 val submitted = fetcher?.fetchNext()
                 return submitted.toString()
             }
 
             API_USER_COMMENTS -> {
                 val userName = getRandomUserFromRandomSubreddit()
-                val fetcher = client?.redditorsClient?.comments(userName,
-                    disableLegacyEncoding = disableLegacyEncoding)
+                val fetcher = client?.redditorsClient?.comments(
+                    userName,
+                    disableLegacyEncoding = disableLegacyEncoding
+                )
                 val comments = fetcher?.fetchNext()
                 return comments.toString()
             }
 
             API_USER_GILDED -> {
                 val userName = getRandomUserFromRandomSubreddit()
-                val fetcher = client?.redditorsClient?.gilded(userName,
-                    disableLegacyEncoding = disableLegacyEncoding)
+                val fetcher = client?.redditorsClient?.gilded(
+                    userName,
+                    disableLegacyEncoding = disableLegacyEncoding
+                )
                 val gilded = fetcher?.fetchNext()
                 return gilded.toString()
             }
 
             API_USER_TROPHIES -> {
                 val userName = getRandomUserFromRandomSubreddit()
-                val trophies = client?.redditorsClient?.trophies(userName,
-                    disableLegacyEncoding = disableLegacyEncoding)
+                val trophies = client?.redditorsClient?.trophies(
+                    userName,
+                    disableLegacyEncoding = disableLegacyEncoding
+                )
                 return trophies.toString()
             }
 
             API_WIKI -> {
                 val subredditName = getRandomSubredditName()
-                val wiki = client?.wikisClient?.wiki(subredditName,
-                    disableLegacyEncoding = disableLegacyEncoding)
+                val wiki = client?.wikisClient?.wiki(
+                    subredditName,
+                    disableLegacyEncoding = disableLegacyEncoding
+                )
                 return wiki.toString()
             }
 
             API_WIKI_PAGES -> {
                 val subredditName = getRandomSubredditName()
-                val wikiPages = client?.wikisClient?.wikiPages(subredditName,
-                        disableLegacyEncoding = disableLegacyEncoding)
+                val wikiPages = client?.wikisClient?.wikiPages(
+                    subredditName,
+                    disableLegacyEncoding = disableLegacyEncoding
+                )
                 return wikiPages.toString()
             }
 
             API_WIKI_REVISION -> {
                 val subredditName = getRandomSubredditName()
-                val wikiRevisions = client?.wikisClient?.wikiRevision(subredditName, "index",
-                    disableLegacyEncoding = disableLegacyEncoding)
+                val wikiRevisions = client?.wikisClient?.wikiRevision(
+                    subredditName, "index",
+                    disableLegacyEncoding = disableLegacyEncoding
+                )
                 return wikiRevisions.toString()
             }
 
             API_WIKI_REVISIONS -> {
                 val subredditName = getRandomSubredditName()
-                val wikiRevisions = client?.wikisClient?.wikiRevisions(subredditName,
-                    disableLegacyEncoding = disableLegacyEncoding)
+                val wikiRevisions = client?.wikisClient?.wikiRevisions(
+                    subredditName,
+                    disableLegacyEncoding = disableLegacyEncoding
+                )
                 return wikiRevisions.toString()
             }
         }
@@ -624,8 +656,10 @@ class ApiDetailActivity : BaseActivity() {
 
     private fun getRandomSubmissionIdFromRandomSubreddit(): String {
         val subredditName = getRandomSubredditName()
-        val fetcher = client?.contributionsClient?.submissions(subredditName,
-            disableLegacyEncoding = disableLegacyEncoding)
+        val fetcher = client?.contributionsClient?.submissions(
+            subredditName,
+            disableLegacyEncoding = disableLegacyEncoding
+        )
         val submissions = fetcher?.fetchNext()
 
         return submissions?.map { it.id }?.random() ?: ""
@@ -633,8 +667,10 @@ class ApiDetailActivity : BaseActivity() {
 
     private fun getRandomUserFromRandomSubreddit(): String {
         val subredditName = getRandomSubredditName()
-        val fetcher = client?.contributionsClient?.submissions(subredditName,
-            disableLegacyEncoding = disableLegacyEncoding)
+        val fetcher = client?.contributionsClient?.submissions(
+            subredditName,
+            disableLegacyEncoding = disableLegacyEncoding
+        )
         val submissions = fetcher?.fetchNext()
 
         return submissions?.map { it.author }?.toList()?.random() ?: ""

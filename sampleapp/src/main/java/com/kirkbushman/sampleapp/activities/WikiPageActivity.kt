@@ -62,23 +62,26 @@ class WikiPageActivity : BaseActivity() {
 
                     var wiki: WikiPage? = null
                     var exception: Exception? = null
-                    doAsync(doWork = {
+                    doAsync(
+                        doWork = {
 
-                        try {
-                            wiki = client?.wikisClient?.wiki(subreddit)
-                        } catch (ex: Exception) {
-                            exception = ex
+                            try {
+                                wiki = client?.wikisClient?.wiki(subreddit)
+                            } catch (ex: Exception) {
+                                exception = ex
+                            }
+                        },
+                        onPost = {
+
+                            wiki_text.text = wiki.toString()
+
+                            if (exception != null) {
+                                exception!!.printStackTrace()
+
+                                wiki_text.text = exception!!.message
+                            }
                         }
-                    }, onPost = {
-
-                        wiki_text.text = wiki.toString()
-
-                        if (exception != null) {
-                            exception!!.printStackTrace()
-
-                            wiki_text.text = exception!!.message
-                        }
-                    })
+                    )
                 }
             }
         }
@@ -89,13 +92,16 @@ class WikiPageActivity : BaseActivity() {
             bttn_search.visibility = View.GONE
 
             var wikiPage: WikiPage? = null
-            doAsync(doWork = {
+            doAsync(
+                doWork = {
 
-                wikiPage = client?.wikisClient?.wikiPage(subreddit, page)
-            }, onPost = {
+                    wikiPage = client?.wikisClient?.wikiPage(subreddit, page)
+                },
+                onPost = {
 
-                wiki_text.text = wikiPage.toString()
-            })
+                    wiki_text.text = wikiPage.toString()
+                }
+            )
         }
     }
 }

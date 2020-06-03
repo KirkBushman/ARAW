@@ -43,16 +43,19 @@ class ReplyBottomFragment : BottomSheetDialogFragment() {
 
             var responseComment: Comment? = null
 
-            doAsync(doWork = {
+            doAsync(
+                doWork = {
 
-                val replyText = edit_reply.text.toString().trim()
-                responseComment =
-                    client?.contributionsClient?.reply(comment?.fullname ?: "", replyText)
-            }, onPost = {
+                    val replyText = edit_reply.text.toString().trim()
+                    responseComment =
+                        client?.contributionsClient?.reply(comment?.fullname ?: "", replyText)
+                },
+                onPost = {
 
-                val toastStr = "Response is: ${responseComment?.body}"
-                Toast.makeText(activity, toastStr, Toast.LENGTH_SHORT).show()
-            })
+                    val toastStr = "Response is: ${responseComment?.body}"
+                    Toast.makeText(activity, toastStr, Toast.LENGTH_SHORT).show()
+                }
+            )
         }
 
         return view

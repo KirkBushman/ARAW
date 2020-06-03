@@ -44,16 +44,18 @@ class UserTrophiesActivity : BaseActivity() {
 
             val username = search.text.toString().trim()
 
-            doAsync(doWork = {
+            doAsync(
+                doWork = {
 
-                val temp = client?.redditorsClient?.trophies(username)
+                    val temp = client?.redditorsClient?.trophies(username)
 
-                trophies.clear()
-                trophies.addAll(temp ?: listOf())
-            }, onPost = {
-
-                controller.setItems(trophies)
-            })
+                    trophies.clear()
+                    trophies.addAll(temp ?: listOf())
+                },
+                onPost = {
+                    controller.setItems(trophies)
+                }
+            )
         }
     }
 }

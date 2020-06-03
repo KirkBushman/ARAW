@@ -29,15 +29,17 @@ abstract class BaseControllerFragment<T, C : BaseCallback>(@LayoutRes contentLay
         recyclerView.setHasFixedSize(true)
         recyclerView.setController(controller)
 
-        doAsync(doWork = {
+        doAsync(
+            doWork = {
 
-            val newItems = fetchItem(client)
+                val newItems = fetchItem(client)
 
-            items.clear()
-            items.addAll(newItems ?: emptyList())
-        }, onPost = {
-
-            controller.setItems(items)
-        })
+                items.clear()
+                items.addAll(newItems ?: emptyList())
+            },
+            onPost = {
+                controller.setItems(items)
+            }
+        )
     }
 }

@@ -44,18 +44,22 @@ class InboxFragment : BaseControllerFragment<Message, InboxController.InboxCallb
 
             override fun readMessageClick(index: Int) {
 
-                doAsync(doWork = {
-                    val message = items[index]
-                    client?.messagesClient?.markAsRead(true, message)
-                })
+                doAsync(
+                    doWork = {
+                        val message = items[index]
+                        client?.messagesClient?.markAsRead(true, message)
+                    }
+                )
             }
 
             override fun unreadMessageClick(index: Int) {
 
-                doAsync(doWork = {
-                    val message = items[index]
-                    client?.messagesClient?.markAsRead(false, message)
-                })
+                doAsync(
+                    doWork = {
+                        val message = items[index]
+                        client?.messagesClient?.markAsRead(false, message)
+                    }
+                )
             }
         }
 
