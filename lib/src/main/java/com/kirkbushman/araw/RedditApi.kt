@@ -7,8 +7,8 @@ import com.kirkbushman.araw.http.EnvelopedMessageListing
 import com.kirkbushman.araw.http.EnvelopedRedditor
 import com.kirkbushman.araw.http.EnvelopedRedditorListing
 import com.kirkbushman.araw.http.EnvelopedSubmissionListing
-import com.kirkbushman.araw.http.EnvelopedSubreddit
-import com.kirkbushman.araw.http.EnvelopedSubredditListing
+import com.kirkbushman.araw.http.EnvelopedSubredditData
+import com.kirkbushman.araw.http.EnvelopedSubredditDataListing
 import com.kirkbushman.araw.http.EnvelopedWikiPage
 import com.kirkbushman.araw.http.EnvelopedWikiRevisionListing
 import com.kirkbushman.araw.http.base.Listing
@@ -339,14 +339,14 @@ interface RedditApi {
         @Path("subreddit") subreddit: String,
         @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
-    ): Call<EnvelopedSubreddit>
+    ): Call<EnvelopedSubredditData>
 
     @GET("/api/info/.json")
     fun subreddits(
         @Query("id") subredditIds: String,
         @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
-    ): Call<EnvelopedSubredditListing>
+    ): Call<EnvelopedSubredditDataListing>
 
     @GET("/r/{subreddit}/about/{where}/.json")
     fun subredditInfo(
@@ -382,7 +382,7 @@ interface RedditApi {
         @Query("before") before: String? = null,
         @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
-    ): Call<EnvelopedSubredditListing>
+    ): Call<EnvelopedSubredditDataListing>
 
     @FormUrlEncoded
     @POST("/api/search_subreddits")
@@ -539,7 +539,7 @@ interface RedditApi {
         @Query("before") before: String? = null,
         @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
-    ): Call<EnvelopedSubredditListing>
+    ): Call<EnvelopedSubredditDataListing>
 
     @GET("/search")
     fun fetchSubmissionsSearchGeneral(

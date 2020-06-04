@@ -7,12 +7,12 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import com.kirkbushman.araw.RedditClient
-import com.kirkbushman.araw.models.Subreddit
+import com.kirkbushman.araw.models.mixins.SubredditData
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.activities.base.BaseSearchPrintActivity
 import kotlinx.android.synthetic.main.activity_subreddit.*
 
-class SubredditActivity : BaseSearchPrintActivity<Subreddit>(R.layout.activity_subreddit) {
+class SubredditActivity : BaseSearchPrintActivity<SubredditData>(R.layout.activity_subreddit) {
 
     companion object {
 
@@ -35,7 +35,7 @@ class SubredditActivity : BaseSearchPrintActivity<Subreddit>(R.layout.activity_s
     override val textPrint: TextView
         get() = subreddit_text
 
-    override fun fetchItem(client: RedditClient?, query: String): Subreddit? {
+    override fun fetchItem(client: RedditClient?, query: String): SubredditData? {
         return client?.subredditsClient?.subreddit(query)
     }
 }

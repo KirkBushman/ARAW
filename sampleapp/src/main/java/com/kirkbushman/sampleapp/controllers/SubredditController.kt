@@ -2,8 +2,11 @@ package com.kirkbushman.sampleapp.controllers
 
 import android.view.View
 import com.airbnb.epoxy.EpoxyController
+import com.kirkbushman.araw.models.PrivateSubreddit
+import com.kirkbushman.araw.models.RestrictedSubreddit
 import com.kirkbushman.araw.models.Subreddit
 import com.kirkbushman.araw.models.SubredditSearchResult
+import com.kirkbushman.araw.models.mixins.SubredditData
 import com.kirkbushman.sampleapp.models.empty
 import com.kirkbushman.sampleapp.models.subreddit
 
@@ -14,12 +17,12 @@ class SubredditController(private val callback: SubredditCallback) : EpoxyContro
         fun subscribeClick(index: Int)
     }
 
-    private val subreddits = ArrayList<Subreddit>()
+    private val data = ArrayList<SubredditData>()
     private var searchResult: SubredditSearchResult? = null
 
-    fun setSubreddits(subreddits: List<Subreddit>) {
-        this.subreddits.clear()
-        this.subreddits.addAll(subreddits)
+    fun setSubreddits(subreddits: List<SubredditData>) {
+        this.data.clear()
+        this.data.addAll(subreddits)
         requestModelBuild()
     }
 
@@ -30,19 +33,39 @@ class SubredditController(private val callback: SubredditCallback) : EpoxyContro
 
     override fun buildModels() {
 
-        if (subreddits.isEmpty() && searchResult == null) {
+        if (data.isEmpty() && searchResult == null) {
             empty {
                 id("empty_model")
             }
         }
 
-        subreddits.forEachIndexed { index, it ->
+        data.forEachIndexed { index, it ->
 
-            subreddit {
-                id(it.id)
-                subreddit(it.displayNamePrefixed)
-                subscribed(it.isSubscriber ?: false)
-                subscribeClick(View.OnClickListener { callback.subscribeClick(index) })
+            when (it) {
+
+                is Subreddit ->
+                    subreddit {
+                        id(it.id)
+                        subreddit(it.displayNamePrefixed)
+                        subscribed(it.isSubscriber ?: false)
+                        subscribeClick(View.OnClickListener { callback.subscribeClick(index) })
+                    }
+
+                is RestrictedSubreddit ->
+                    subreddit {
+                        id(it.id)
+                        subreddit(it.displayNamePrefixed)
+                        subscribed(it.isSubscriber ?: false)
+                        subscribeClick(View.OnClickListener { callback.subscribeClick(index) })
+                    }
+
+                is PrivateSubreddit ->
+                    subreddit {
+                        id(it.id)
+                        subreddit(it.displayNamePrefixed)
+                        subscribed(false)
+                        subscribeClick(View.OnClickListener { callback.subscribeClick(index) })
+                    }
             }
         }
 

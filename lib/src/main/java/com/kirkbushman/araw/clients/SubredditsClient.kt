@@ -12,6 +12,7 @@ import com.kirkbushman.araw.models.general.SubmissionKind
 import com.kirkbushman.araw.models.general.SubmissionsSorting
 import com.kirkbushman.araw.models.general.SubredditSearchSorting
 import com.kirkbushman.araw.models.general.TimePeriod
+import com.kirkbushman.araw.models.mixins.SubredditData
 import java.lang.IllegalStateException
 
 class SubredditsClient(
@@ -21,7 +22,7 @@ class SubredditsClient(
 
 ) : BaseRedditClient(api, getHeaderMap) {
 
-    fun subreddit(subreddit: String, disableLegacyEncoding: Boolean = false): Subreddit? {
+    fun subreddit(subreddit: String, disableLegacyEncoding: Boolean = false): SubredditData? {
 
         val authMap = getHeaderMap()
         val req = api.subreddit(
@@ -38,7 +39,7 @@ class SubredditsClient(
         return res.body()?.data
     }
 
-    fun subreddits(vararg ids: String, disableLegacyEncoding: Boolean = false): List<Subreddit>? {
+    fun subreddits(vararg ids: String, disableLegacyEncoding: Boolean = false): List<SubredditData>? {
 
         val authMap = getHeaderMap()
         val req = api.subreddits(

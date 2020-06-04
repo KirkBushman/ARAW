@@ -1,10 +1,10 @@
 package com.kirkbushman.araw.fetcher
 
 import com.kirkbushman.araw.RedditApi
-import com.kirkbushman.araw.http.EnvelopedSubreddit
+import com.kirkbushman.araw.http.EnvelopedSubredditData
 import com.kirkbushman.araw.http.base.Listing
-import com.kirkbushman.araw.http.listings.SubredditListing
-import com.kirkbushman.araw.models.Subreddit
+import com.kirkbushman.araw.http.listings.SubredditDataListing
+import com.kirkbushman.araw.models.mixins.SubredditData
 
 class SubredditsFetcher(
 
@@ -17,9 +17,9 @@ class SubredditsFetcher(
 
     private inline val getHeader: () -> HashMap<String, String>
 
-) : Fetcher<Subreddit, EnvelopedSubreddit>(limit) {
+) : Fetcher<SubredditData, EnvelopedSubredditData>(limit) {
 
-    override fun onFetching(forward: Boolean, dirToken: String): Listing<EnvelopedSubreddit>? {
+    override fun onFetching(forward: Boolean, dirToken: String): Listing<EnvelopedSubredditData>? {
 
         val req = api.fetchRedditorSubreddits(
             where = where,
@@ -39,13 +39,13 @@ class SubredditsFetcher(
         return res.body()?.data
     }
 
-    override fun onMapResult(pagedData: Listing<EnvelopedSubreddit>?): List<Subreddit> {
+    override fun onMapResult(pagedData: Listing<EnvelopedSubredditData>?): List<SubredditData> {
 
         if (pagedData == null) {
             return listOf()
         }
 
-        return (pagedData as SubredditListing)
+        return (pagedData as SubredditDataListing)
             .children
             .map { it.data }
             .toList()

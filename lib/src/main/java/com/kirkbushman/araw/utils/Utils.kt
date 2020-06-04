@@ -10,6 +10,10 @@ import com.kirkbushman.araw.http.EnvelopedRedditor
 import com.kirkbushman.araw.http.EnvelopedSubmission
 import com.kirkbushman.araw.http.EnvelopedSubreddit
 import com.kirkbushman.araw.http.base.EnvelopeKind
+import com.kirkbushman.araw.models.PrivateSubreddit
+import com.kirkbushman.araw.models.RestrictedSubreddit
+import com.kirkbushman.araw.models.Subreddit
+import com.kirkbushman.araw.models.mixins.SubredditData
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.adapters.PolymorphicJsonAdapterFactory
 import okhttp3.OkHttpClient
@@ -43,6 +47,12 @@ object Utils {
                 PolymorphicJsonAdapterFactory.of(EnvelopedCommentData::class.java, "kind")
                     .withSubtype(EnvelopedComment::class.java, EnvelopeKind.Comment.value)
                     .withSubtype(EnvelopedMoreComment::class.java, EnvelopeKind.More.value)
+            )
+            .add(
+                PolymorphicJsonAdapterFactory.of(SubredditData::class.java, "subreddit_type")
+                    .withSubtype(Subreddit::class.java, "public")
+                    .withSubtype(PrivateSubreddit::class.java, "private")
+                    .withSubtype(RestrictedSubreddit::class.java, "restricted")
             )
             .build()
 

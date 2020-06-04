@@ -6,9 +6,12 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
 
+// this is identical to Subreddit
+// this should be removed eventually
+// a new moshi version is released
 @JsonClass(generateAdapter = true)
 @Parcelize
-data class Subreddit(
+data class RestrictedSubreddit(
 
     @Json(name = "id")
     override val id: String,

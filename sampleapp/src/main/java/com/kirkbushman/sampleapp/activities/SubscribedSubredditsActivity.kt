@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import com.kirkbushman.araw.models.Subreddit
+import com.kirkbushman.araw.models.mixins.SubredditData
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.activities.base.BaseActivity
@@ -25,24 +26,26 @@ class SubscribedSubredditsActivity : BaseActivity() {
     private val client by lazy { TestApplication.instance.getClient() }
     private val fetcher by lazy { client?.accountsClient?.subscribedSubreddits(limit = 100) }
 
-    private val subreddits = ArrayList<Subreddit>()
+    private val data = ArrayList<SubredditData>()
     private val controller by lazy { SubredditController(callback) }
 
     private val callback = object : SubredditController.SubredditCallback {
 
         override fun subscribeClick(index: Int) {
 
-            val subreddit = subreddits[index]
+            val subreddit = data[index]
             doAsync(
                 doWork = {
 
-                    client?.subredditsClient?.subscribe(subreddit)
+                    if (subreddit is Subreddit) {
+                        client?.subredditsClient?.subscribe(subreddit)
+                    }
                 },
                 onPost = {
 
-                    if (subreddit.isSubscriber != null) {
+                    if (subreddit is Subreddit && subreddit.isSubscriber != null) {
 
-                        subreddits[index] = subreddit.copy(isSubscriber = !subreddit.isSubscriber!!)
+                        data[index] = subreddit.copy(isSubscriber = !subreddit.isSubscriber!!)
                         refresh()
                     }
                 }
@@ -68,8 +71,8 @@ class SubscribedSubredditsActivity : BaseActivity() {
 
                 val temp = fetcher?.fetchNext() ?: listOf()
 
-                subreddits.clear()
-                subreddits.addAll(temp)
+                data.clear()
+                data.addAll(temp)
             },
             onPost = {
 
@@ -79,6 +82,6 @@ class SubscribedSubredditsActivity : BaseActivity() {
     }
 
     private fun refresh() {
-        controller.setSubreddits(subreddits)
+        controller.setSubreddits(data)
     }
 }

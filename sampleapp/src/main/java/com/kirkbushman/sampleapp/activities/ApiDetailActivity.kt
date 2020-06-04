@@ -638,20 +638,107 @@ class ApiDetailActivity : BaseActivity() {
     private fun getRandomSubredditIds(): List<String> {
 
         val list = listOf(
-            "2qizd",
+
+            // centuryclub
+            // testing private subreddit
+            "2u3fa",
+            // announcements
+            "2r0ij",
+            // art
+            "2qh7a",
+            // askReddit
             "2qh1i",
+            // askScience
+            "2qm4e",
+            // aww
+            "2qh1o",
+            // blog
+            "2qh49",
+            // books
+            "2qh4i",
+            // creepy
+            "2raed",
+            // dataIsBeautiful
+            "2tk95",
+            // diy
+            "2qh7d",
+            // documentaries
+            "2qhlh",
+            // earthPorn
+            "2sbq3",
+            // explainLikeImFive
+            "2sokd",
+            // food
+            "2qh55",
+            // funny
             "2qh33",
-            "2qlqh",
-            "2qh13",
-            "2qjpg",
+            // futurology
+            "2t7no",
+            // getMotivated
+            "2rmfx",
+            // gifs
+            "2qt55",
+            // history
+            "2qh53",
+            // iAma
+            "2qzb6",
+            // internetIsBeautiful
+            "2ul7u",
+            // jokes
+            "2qh72",
+            // lifeProTips
+            "2s5oq",
+            // listenToThis
+            "2qxzy",
+            // mildlyInteresting
+            "2ti4h",
+            // movies
+            "2qh3s",
+            // music
+            "2qh1u",
+            // news
+            "2qh3l",
+            // noSleep
+            "2rm4d",
+            // notTheOnion
+            "2qnts",
+            // oldSchoolCool
+            "2tycb",
+            // personalFinance
+            "2qstm",
+            // philosophy
+            "2qh5b",
+            // photoshopBattles
+            "2tecy",
+            // pics
+            "2qh0u",
+            // science
+            "mouw",
+            // showerThoughts
+            "2szyo",
+            // space
+            "2qh87",
+            // soccer
+            "2qi58",
+            // television
+            "2qh6e",
+            // tifu
             "2to41",
-            "2qh4j",
+            // todayILearned
+            "2qqjc",
+            // twoXChromosomes
+            "2r2jt",
+            // upliftingNews
+            "2u3ta",
+            // videos
             "2qh1e",
-            "2rab5",
-            "2k93si"
+            // worldnews
+            "2qh13",
+            // writingPrompts
+            "2s3nb"
         )
 
-        return list.shuffled().takeLast(5)
+        return list
     }
 
     private fun getRandomSubmissionIdFromRandomSubreddit(): String {

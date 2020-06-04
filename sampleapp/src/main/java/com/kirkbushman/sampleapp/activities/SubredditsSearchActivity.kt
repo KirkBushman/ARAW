@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.kirkbushman.araw.models.Subreddit
 import com.kirkbushman.araw.models.SubredditSearchResult
+import com.kirkbushman.araw.models.mixins.SubredditData
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.activities.base.BaseActivity
@@ -26,23 +27,25 @@ class SubredditsSearchActivity : BaseActivity() {
     private val client by lazy { TestApplication.instance.getClient() }
 
     private var searchResult: SubredditSearchResult? = null
-    private val subreddits = ArrayList<Subreddit>()
+    private val data = ArrayList<SubredditData>()
     private val controller by lazy {
         SubredditController(object : SubredditController.SubredditCallback {
 
             override fun subscribeClick(index: Int) {
 
-                val subreddit = subreddits[index]
+                val subreddit = data[index]
                 doAsync(
                     doWork = {
 
-                        client?.subredditsClient?.subscribe(subreddit)
+                        if (subreddit is Subreddit) {
+                            client?.subredditsClient?.subscribe(subreddit)
+                        }
                     },
                     onPost = {
 
-                        if (subreddit.isSubscriber != null) {
+                        if (subreddit is Subreddit && subreddit.isSubscriber != null) {
 
-                            subreddits[index] = subreddit.copy(isSubscriber = !subreddit.isSubscriber!!)
+                            data[index] = subreddit.copy(isSubscriber = !subreddit.isSubscriber!!)
                             refresh()
                         }
                     }
@@ -75,12 +78,12 @@ class SubredditsSearchActivity : BaseActivity() {
 
                         val fetcher = client?.subredditsClient?.fetchSubredditsSearch(query)
 
-                        subreddits.clear()
-                        subreddits.addAll(fetcher?.fetchNext() ?: listOf())
+                        data.clear()
+                        data.addAll(fetcher?.fetchNext() ?: listOf())
                     },
                     onPost = {
 
-                        controller.setSubreddits(subreddits)
+                        controller.setSubreddits(data)
                     }
                 )
             } else {
@@ -105,6 +108,6 @@ class SubredditsSearchActivity : BaseActivity() {
     }
 
     private fun refresh() {
-        controller.setSubreddits(subreddits)
+        controller.setSubreddits(data)
     }
 }
