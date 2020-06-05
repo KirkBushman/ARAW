@@ -23,7 +23,7 @@ data class SubmissionPreview(
             return null
         }
 
-        return images.first().id
+        return images.firstOrNull()?.id
     }
 
     fun source(): ImageDetail? {
@@ -32,7 +32,7 @@ data class SubmissionPreview(
             return null
         }
 
-        return images.first().source
+        return images.firstOrNull()?.source
     }
 
     fun lowerRes(): ImageDetail? {
@@ -41,7 +41,7 @@ data class SubmissionPreview(
             return null
         }
 
-        return images.first().resolutions.first()
+        return images.firstOrNull()?.resolutions?.firstOrNull()
     }
 
     fun higherRes(): ImageDetail? {
@@ -50,6 +50,6 @@ data class SubmissionPreview(
             return null
         }
 
-        return images.first().resolutions.last()
+        return images.firstOrNull()?.resolutions?.lastOrNull()
     }
 }

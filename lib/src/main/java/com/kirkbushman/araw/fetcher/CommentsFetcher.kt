@@ -40,7 +40,7 @@ class CommentsFetcher(
 
         val body = res.body()
 
-        submission = body?.first()?.data?.children?.first()?.data as Submission?
+        submission = body?.firstOrNull()?.data?.children?.firstOrNull()?.data as Submission?
 
         return body?.last()?.data as Listing<EnvelopedCommentData>?
     }

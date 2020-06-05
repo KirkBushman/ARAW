@@ -44,7 +44,7 @@ class ContributionsClient(
         }
 
         // take the first in the listing
-        return res.body()?.data?.children?.first()?.data
+        return res.body()?.data?.children?.firstOrNull()?.data
     }
 
     fun submissions(
@@ -148,7 +148,7 @@ class ContributionsClient(
             return null
         }
 
-        return res.body()?.data?.children?.first()?.data
+        return res.body()?.data?.children?.firstOrNull()?.data
     }
 
     fun comments(
@@ -311,7 +311,7 @@ class ContributionsClient(
             return null
         }
 
-        return res.body()?.json?.data?.things?.first()?.data
+        return res.body()?.json?.data?.things?.firstOrNull()?.data
     }
 
     fun save(save: Boolean, contribution: Contribution): Any? {

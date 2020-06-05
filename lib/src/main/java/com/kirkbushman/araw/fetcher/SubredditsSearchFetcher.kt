@@ -3,7 +3,7 @@ package com.kirkbushman.araw.fetcher
 import com.kirkbushman.araw.RedditApi
 import com.kirkbushman.araw.http.EnvelopedSubredditData
 import com.kirkbushman.araw.http.base.Listing
-import com.kirkbushman.araw.http.listings.SubredditListing
+import com.kirkbushman.araw.http.listings.SubredditDataListing
 import com.kirkbushman.araw.models.general.SubredditSearchSorting
 import com.kirkbushman.araw.models.general.TimePeriod
 import com.kirkbushman.araw.models.mixins.SubredditData
@@ -58,7 +58,7 @@ class SubredditsSearchFetcher(
             return listOf()
         }
 
-        return (pagedData as SubredditListing)
+        return (pagedData as SubredditDataListing)
             .children
             .map { it.data }
             .toList()

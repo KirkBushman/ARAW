@@ -21,7 +21,7 @@ class UserSearchActivity : BaseSearchControllerActivity2<Redditor>(R.layout.acti
 
         fun start(context: Context) {
 
-            val intent = Intent(context, SubmissionActivity::class.java)
+            val intent = Intent(context, UserSearchActivity::class.java)
             context.startActivity(intent)
         }
     }
