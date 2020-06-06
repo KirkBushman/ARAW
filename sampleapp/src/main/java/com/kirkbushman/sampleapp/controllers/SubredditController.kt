@@ -3,7 +3,6 @@ package com.kirkbushman.sampleapp.controllers
 import android.view.View
 import com.airbnb.epoxy.EpoxyController
 import com.kirkbushman.araw.models.PrivateSubreddit
-import com.kirkbushman.araw.models.RestrictedSubreddit
 import com.kirkbushman.araw.models.Subreddit
 import com.kirkbushman.araw.models.SubredditSearchResult
 import com.kirkbushman.araw.models.mixins.SubredditData
@@ -44,14 +43,6 @@ class SubredditController(private val callback: SubredditCallback) : EpoxyContro
             when (it) {
 
                 is Subreddit ->
-                    subreddit {
-                        id(it.id)
-                        subreddit(it.displayNamePrefixed)
-                        subscribed(it.isSubscriber ?: false)
-                        subscribeClick(View.OnClickListener { callback.subscribeClick(index) })
-                    }
-
-                is RestrictedSubreddit ->
                     subreddit {
                         id(it.id)
                         subreddit(it.displayNamePrefixed)
