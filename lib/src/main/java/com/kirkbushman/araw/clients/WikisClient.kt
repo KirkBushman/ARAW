@@ -2,9 +2,9 @@ package com.kirkbushman.araw.clients
 
 import com.kirkbushman.araw.RedditApi
 import com.kirkbushman.araw.exceptions.WikiDisabledException
-import com.kirkbushman.araw.models.Subreddit
 import com.kirkbushman.araw.models.WikiPage
 import com.kirkbushman.araw.models.WikiRevision
+import com.kirkbushman.araw.models.mixins.SubredditData
 
 class WikisClient(
 
@@ -14,7 +14,7 @@ class WikisClient(
 ) : BaseRedditClient(api, getHeaderMap) {
 
     @Throws(WikiDisabledException::class)
-    fun wiki(subreddit: Subreddit, disableLegacyEncoding: Boolean = false): WikiPage? {
+    fun wiki(subreddit: SubredditData, disableLegacyEncoding: Boolean = false): WikiPage? {
         return wiki(subreddit.displayName, disableLegacyEncoding)
     }
 
@@ -43,7 +43,7 @@ class WikisClient(
         return res.body()?.data
     }
 
-    fun wikiPage(subreddit: Subreddit, page: String, disableLegacyEncoding: Boolean = false): WikiPage? {
+    fun wikiPage(subreddit: SubredditData, page: String, disableLegacyEncoding: Boolean = false): WikiPage? {
         return wikiPage(subreddit.displayName, page, disableLegacyEncoding)
     }
 
@@ -65,7 +65,7 @@ class WikisClient(
         return res.body()?.data
     }
 
-    fun wikiPages(subreddit: Subreddit, disableLegacyEncoding: Boolean = false): List<String>? {
+    fun wikiPages(subreddit: SubredditData, disableLegacyEncoding: Boolean = false): List<String>? {
         return wikiPages(subreddit.displayName, disableLegacyEncoding)
     }
 
@@ -86,7 +86,7 @@ class WikisClient(
         return res.body()?.data
     }
 
-    fun wikiRevision(subreddit: Subreddit, page: String, disableLegacyEncoding: Boolean = false): List<WikiRevision>? {
+    fun wikiRevision(subreddit: SubredditData, page: String, disableLegacyEncoding: Boolean = false): List<WikiRevision>? {
         return wikiRevision(subreddit.displayName, page, disableLegacyEncoding)
     }
 
@@ -108,7 +108,7 @@ class WikisClient(
         return res.body()?.data?.children
     }
 
-    fun wikiRevisions(subreddit: Subreddit, disableLegacyEncoding: Boolean = false): List<WikiRevision>? {
+    fun wikiRevisions(subreddit: SubredditData, disableLegacyEncoding: Boolean = false): List<WikiRevision>? {
         return wikiRevisions(subreddit.displayName, disableLegacyEncoding)
     }
 

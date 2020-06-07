@@ -56,7 +56,7 @@ class SubredditsClient(
         return res.body()?.data?.children?.map { it.data }
     }
 
-    fun subredditBanned(subreddit: Subreddit): List<User>? {
+    fun subredditBanned(subreddit: SubredditData): List<User>? {
         return subredditBanned(subreddit.fullname)
     }
 
@@ -73,7 +73,7 @@ class SubredditsClient(
         return res.body()?.data?.children
     }
 
-    fun subredditMuted(subreddit: Subreddit): List<User>? {
+    fun subredditMuted(subreddit: SubredditData): List<User>? {
         return subredditMuted(subreddit.fullname)
     }
 
@@ -90,7 +90,7 @@ class SubredditsClient(
         return res.body()?.data?.children
     }
 
-    fun subredditWikiBanned(subreddit: Subreddit): List<User>? {
+    fun subredditWikiBanned(subreddit: SubredditData): List<User>? {
         return subredditWikiBanned(subreddit.fullname)
     }
 
@@ -107,7 +107,7 @@ class SubredditsClient(
         return res.body()?.data?.children
     }
 
-    fun subredditContributors(subreddit: Subreddit): List<User>? {
+    fun subredditContributors(subreddit: SubredditData): List<User>? {
         return subredditContributors(subreddit.fullname)
     }
 
@@ -124,7 +124,7 @@ class SubredditsClient(
         return res.body()?.data?.children
     }
 
-    fun subredditWikiContributors(subreddit: Subreddit): List<User>? {
+    fun subredditWikiContributors(subreddit: SubredditData): List<User>? {
         return subredditWikiContributors(subreddit.fullname)
     }
 
@@ -141,7 +141,7 @@ class SubredditsClient(
         return res.body()?.data?.children
     }
 
-    fun subredditModerators(subreddit: Subreddit): List<User>? {
+    fun subredditModerators(subreddit: SubredditData): List<User>? {
         return subredditModerators(subreddit.fullname)
     }
 
@@ -158,7 +158,7 @@ class SubredditsClient(
         return res.body()?.data?.children
     }
 
-    fun rules(subreddit: Subreddit): Array<SubredditRule>? {
+    fun rules(subreddit: SubredditData): Array<SubredditRule>? {
         return rules(subreddit.displayName)
     }
 
@@ -269,7 +269,7 @@ class SubredditsClient(
 
     fun submit(
 
-        subreddit: Subreddit,
+        subreddit: SubredditData,
 
         title: String,
         kind: SubmissionKind,

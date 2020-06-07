@@ -8,7 +8,6 @@ import com.kirkbushman.araw.fetcher.SubmissionsSearchFetcher
 import com.kirkbushman.araw.models.Comment
 import com.kirkbushman.araw.models.MoreComments
 import com.kirkbushman.araw.models.Submission
-import com.kirkbushman.araw.models.Subreddit
 import com.kirkbushman.araw.models.TrendingSubreddits
 import com.kirkbushman.araw.models.general.SearchSorting
 import com.kirkbushman.araw.models.general.SubmissionsSorting
@@ -17,6 +16,7 @@ import com.kirkbushman.araw.models.general.Vote
 import com.kirkbushman.araw.models.mixins.CommentData
 import com.kirkbushman.araw.models.mixins.Contribution
 import com.kirkbushman.araw.models.mixins.Replyable
+import com.kirkbushman.araw.models.mixins.SubredditData
 import com.kirkbushman.araw.models.mixins.Votable
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -49,7 +49,7 @@ class ContributionsClient(
 
     fun submissions(
 
-        subreddit: Subreddit,
+        subreddit: SubredditData,
         limit: Int = Fetcher.DEFAULT_LIMIT,
 
         sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
