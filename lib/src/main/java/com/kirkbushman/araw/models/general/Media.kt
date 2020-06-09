@@ -25,7 +25,7 @@ data class OEmbed(
     val title: String?,
 
     @Json(name = "type")
-    val type: String,
+    val type: String?,
 
     @Json(name = "html")
     val html: String?,
