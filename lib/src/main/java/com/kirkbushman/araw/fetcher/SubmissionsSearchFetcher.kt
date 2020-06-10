@@ -19,6 +19,7 @@ class SubmissionsSearchFetcher(
     private var sorting: SearchSorting = DEFAULT_SORTING,
     private var timePeriod: TimePeriod = DEFAULT_TIMEPERIOD,
 
+    private val restrictToSubreddit: Boolean = false,
     private val disableLegacyEncoding: Boolean = false,
 
     private inline val getHeader: () -> HashMap<String, String>
@@ -43,6 +44,7 @@ class SubmissionsSearchFetcher(
                 count = getCount(),
                 after = if (forward) dirToken else null,
                 before = if (!forward) dirToken else null,
+                restrictToSubreddit = restrictToSubreddit,
                 rawJson = (if (disableLegacyEncoding) 1 else null),
                 header = getHeader()
             )

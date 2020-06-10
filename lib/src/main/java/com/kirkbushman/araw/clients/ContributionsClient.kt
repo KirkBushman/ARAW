@@ -118,6 +118,7 @@ class ContributionsClient(
         sorting: SearchSorting = SubmissionsSearchFetcher.DEFAULT_SORTING,
         timePeriod: TimePeriod = SubmissionsSearchFetcher.DEFAULT_TIMEPERIOD,
 
+        restrictToSubreddit: Boolean = false,
         disableLegacyEncoding: Boolean = false
 
     ): SubmissionsSearchFetcher {
@@ -129,6 +130,7 @@ class ContributionsClient(
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,
+            restrictToSubreddit = restrictToSubreddit,
             disableLegacyEncoding = disableLegacyEncoding,
             getHeader = getHeaderMap
         )

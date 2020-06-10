@@ -405,6 +405,7 @@ interface RedditApi {
         @Query("count") count: Int,
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
+        @Query("restrict_sr") restrictToSubreddit: Boolean? = null,
         @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedSubmissionListing>
