@@ -16,9 +16,19 @@ class ModelsFetchTest {
     companion object {
 
         // very different subreddits
-        private val subreddits = arrayOf("pics", "tifu", "bestof", "videos", "wtf")
+        private val subreddits = arrayOf(
+            "soccer",
+            "askreddit",
+            "todayilearned",
+            "pics",
+            "tifu",
+            "bestof",
+            "videos",
+            "wtf",
+            "learnpython"
+        )
 
-        private const val LIMIT = 50
+        private const val LIMIT = 100
     }
 
     private val context by lazy { InstrumentationRegistry.getInstrumentation().targetContext.applicationContext }
@@ -34,39 +44,127 @@ class ModelsFetchTest {
 
     @Test
     fun modelMeTest() {
-        val me = client?.accountsClient?.me()
-        assertNotEquals("Assert that Me Object is not null", null, me)
+
+        var exception: Exception? = null
+
+        try {
+
+            val me = client?.accountsClient?.me()
+            assertNotEquals("Assert that Me Object is not null", null, me)
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+            exception = ex
+        } finally {
+            assertNull("Check there are no exceptions thrown", exception)
+        }
+    }
+
+    @Test
+    fun modelsFrontpageSubmissionsTest() {
+
+        var exception: Exception? = null
+
+        try {
+
+            val fetcher = client?.subredditsClient?.frontpage(limit = LIMIT)
+            val submissions = fetcher?.fetchNext()
+            assertNotEquals("Assert that submissions from /r/frontpage are not null", null, submissions)
+            assertTrue(
+                "Assert that submissions from /r/frontpage are not empty",
+                submissions?.isNotEmpty() ?: false
+            )
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+            exception = ex
+        } finally {
+            assertNull("Check there are no exceptions thrown", exception)
+        }
+    }
+
+    @Test
+    fun modelsAllSubmissionsTest() {
+
+        var exception: Exception? = null
+
+        try {
+
+            val fetcher = client?.subredditsClient?.all(limit = LIMIT)
+            val submissions = fetcher?.fetchNext()
+            assertNotEquals("Assert that submissions from /r/all are not null", null, submissions)
+            assertTrue(
+                "Assert that submissions from /r/all are not empty",
+                submissions?.isNotEmpty() ?: false
+            )
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+            exception = ex
+        } finally {
+            assertNull("Check there are no exceptions thrown", exception)
+        }
     }
 
     @Test
     fun modelsSubmissionsTest() {
 
-        subreddits.forEach {
+        var exception: Exception? = null
 
-            val fetcher = client?.contributionsClient?.submissions(it, limit = LIMIT)
-            val submissions = fetcher?.fetchNext()
-            assertNotEquals("Assert that submissions from /r/$it are not null", null, submissions)
-            assertTrue("Assert that submissions from /r/$it are not empty", submissions?.isNotEmpty() ?: false)
+        try {
+
+            subreddits.forEach {
+
+                val fetcher = client?.contributionsClient?.submissions(it, limit = LIMIT)
+                val submissions = fetcher?.fetchNext()
+                assertNotEquals("Assert that submissions from /r/$it are not null", null, submissions)
+                assertTrue(
+                    "Assert that submissions from /r/$it are not empty",
+                    submissions?.isNotEmpty() ?: false
+                )
+            }
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+            exception = ex
+        } finally {
+            assertNull("Check there are no exceptions thrown", exception)
         }
     }
 
     @Test
     fun modelsSubredditTest() {
 
-        subreddits.forEach {
+        var exception: Exception? = null
 
-            val subreddit = client?.subredditsClient?.subreddit(it)
-            assertNotEquals("Assert that subreddit models from /r/$it are not null", null, subreddit)
+        try {
+
+            subreddits.forEach {
+
+                val subreddit = client?.subredditsClient?.subreddit(it)
+                assertNotEquals("Assert that subreddit models from /r/$it are not null", null, subreddit)
+            }
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+            exception = ex
+        } finally {
+            assertNull("Check there are no exceptions thrown", exception)
         }
     }
 
     @Test
     fun modelsInboxTest() {
 
-        val fetcher = client?.messagesClient?.inbox(limit = LIMIT)
-        val messages = fetcher?.fetchNext()
-        assertNotEquals("Assert that messages in inbox are not null", null, messages)
-        assertTrue("Assert that messages in inbox are not empty", messages?.isNotEmpty() ?: false)
+        var exception: Exception? = null
+
+        try {
+
+            val fetcher = client?.messagesClient?.inbox(limit = LIMIT)
+            val messages = fetcher?.fetchNext()
+            assertNotEquals("Assert that messages in inbox are not null", null, messages)
+            assertTrue("Assert that messages in inbox are not empty", messages?.isNotEmpty() ?: false)
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+            exception = ex
+        } finally {
+            assertNull("Check there are no exceptions thrown", exception)
+        }
     }
 
     @Test
