@@ -52,4 +52,6 @@ interface Account : Thing, Created, Parcelable {
     val isMod: Boolean
 
     val linkKarma: Int
+
+    val subreddit: RedditorSubreddit?
 }

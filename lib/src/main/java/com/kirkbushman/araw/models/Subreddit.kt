@@ -73,6 +73,9 @@ data class Subreddit(
     @Json(name = "icon_img")
     val iconImg: String?,
 
+    @Json(name = "icon_size")
+    val iconImgSize: List<Int>?,
+
     @Json(name = "user_is_banned")
     val isBanned: Boolean?,
 

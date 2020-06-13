@@ -46,6 +46,9 @@ data class Me(
     @Json(name = "name")
     override val fullname: String,
 
+    @Json(name = "coins")
+    val coins: Int,
+
     @Json(name = "comment_karma")
     override val commentKarma: Int,
 
@@ -79,10 +82,25 @@ data class Me(
     @Json(name = "is_mod")
     override val isMod: Boolean,
 
+    @Json(name = "is_sponsor")
+    val isSponsor: Boolean,
+
+    @Json(name = "is_suspended")
+    val isSuspended: Boolean,
+
     @Json(name = "link_karma")
     override val linkKarma: Int,
 
+    @Json(name = "num_friends")
+    val numFriends: Int,
+
+    @Json(name = "subreddit")
+    override val subreddit: RedditorSubreddit?,
+
     @Json(name = "over_18")
-    val over18: Boolean
+    val over18: Boolean,
+
+    @Json(name = "verified")
+    val verified: Boolean
 
 ) : Account
