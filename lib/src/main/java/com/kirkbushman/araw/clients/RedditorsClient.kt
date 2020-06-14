@@ -4,6 +4,7 @@ import com.kirkbushman.araw.RedditApi
 import com.kirkbushman.araw.fetcher.ContributionsFetcher
 import com.kirkbushman.araw.fetcher.Fetcher
 import com.kirkbushman.araw.fetcher.RedditorSearchFetcher
+import com.kirkbushman.araw.models.ModeratedSub
 import com.kirkbushman.araw.models.Redditor
 import com.kirkbushman.araw.models.Trophy
 import com.kirkbushman.araw.models.general.ContributionsSorting
@@ -161,6 +162,19 @@ class RedditorsClient(
             disableLegacyEncoding = disableLegacyEncoding,
             getHeader = getHeaderMap
         )
+    }
+
+    fun moderatedSubreddits(username: String): List<ModeratedSub>? {
+
+        val authMap = getHeaderMap()
+        val req = api.redditorModeratedSubreddits(username, authMap)
+        val res = req.execute()
+
+        if (!res.isSuccessful) {
+            return null
+        }
+
+        return res.body()?.data
     }
 
     fun trophies(username: String, disableLegacyEncoding: Boolean = false): List<Trophy>? {

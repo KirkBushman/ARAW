@@ -31,6 +31,7 @@
         <activity android:name=".activities.InboxActivity"/>
         <activity android:name=".activities.RedditorActivity"/>
         <activity android:name=".activities.RedditorInfoActivity"/>
+        <activity android:name=".activities.RedditorModeratedSubs" />
         <activity android:name=".activities.SubredditActivity"/>
         <activity android:name=".activities.SubmissionActivity"/>
         <activity android:name=".activities.SubmissionsActivity"/>

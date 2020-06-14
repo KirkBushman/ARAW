@@ -112,6 +112,13 @@
                     android:text="@string/bttn_user_search" />
 
             <com.google.android.material.button.MaterialButton
+                    android:id="@+id/bttn_user_moderated_subs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="@string/bttn_user_moderated_subs" />
+
+            <com.google.android.material.button.MaterialButton
                     android:id="@+id/bttn_subreddit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

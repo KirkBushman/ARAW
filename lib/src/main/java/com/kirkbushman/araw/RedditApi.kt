@@ -15,6 +15,7 @@ import com.kirkbushman.araw.http.base.Listing
 import com.kirkbushman.araw.models.FriendList
 import com.kirkbushman.araw.models.KarmaList
 import com.kirkbushman.araw.models.Me
+import com.kirkbushman.araw.models.ModeratedList
 import com.kirkbushman.araw.models.MoreChildrenResponse
 import com.kirkbushman.araw.models.Prefs
 import com.kirkbushman.araw.models.Reply
@@ -462,6 +463,12 @@ interface RedditApi {
         @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedRedditorListing>
+
+    @GET("/user/{username}/moderated_subreddits/.json")
+    fun redditorModeratedSubreddits(
+        @Path("username") username: String,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<ModeratedList>
 
     @GET("/api/v1/user/{username}/trophies/.json")
     fun redditorTrophies(

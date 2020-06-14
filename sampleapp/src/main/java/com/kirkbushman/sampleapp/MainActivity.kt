@@ -66,6 +66,11 @@ class MainActivity : AppCompatActivity() {
             UserSearchActivity.start(this)
         }
 
+        bttn_user_moderated_subs.setOnClickListener {
+
+            RedditorModeratedSubs.start(this)
+        }
+
         bttn_subreddit.setOnClickListener {
 
             SubredditActivity.start(this)

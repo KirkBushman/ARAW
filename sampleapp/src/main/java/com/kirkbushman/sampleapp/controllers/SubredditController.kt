@@ -11,7 +11,7 @@ import com.kirkbushman.sampleapp.models.subreddit
 
 class SubredditController(private val callback: SubredditCallback) : EpoxyController() {
 
-    interface SubredditCallback {
+    interface SubredditCallback : BaseCallback {
 
         fun subscribeClick(index: Int)
     }
