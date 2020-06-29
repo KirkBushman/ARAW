@@ -25,7 +25,8 @@ class ModelsFetchTest {
             "bestof",
             "videos",
             "wtf",
-            "learnpython"
+            "learnpython",
+            "crosspost"
         )
 
         private const val LIMIT = 100

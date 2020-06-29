@@ -36,7 +36,8 @@ class ApiDetailActivity : BaseActivity() {
             "movies",
             "music",
             "politics",
-            "dataisbeautiful"
+            "dataisbeautiful",
+            "crosspost"
         )
 
         private const val PARAM_API_CALL = "param_intent_api_call"

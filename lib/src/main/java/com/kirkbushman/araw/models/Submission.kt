@@ -94,6 +94,9 @@ data class Submission(
     @Json(name = "created_utc")
     override val createdUtc: Long,
 
+    @Json(name = "crosspost_parent_list")
+    val crosspostParentList: List<Submission>?,
+
     @Json(name = "distinguished")
     override val distinguishedRaw: String?,
 
