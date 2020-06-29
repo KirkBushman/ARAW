@@ -193,6 +193,9 @@ data class Submission(
     @Json(name = "preview")
     val preview: SubmissionPreview?,
 
+    @Json(name = "removed_by_category")
+    val removedByCategory: String?,
+
     @Json(name = "score")
     override val score: Int,
 
