@@ -17,7 +17,7 @@ buildscript {
         retrofit_ver   = '2.9.0'
         moshi_ver      = '1.9.3' // '1.10.0-SNAPSHOT'
         okhttp_ver     = '4.7.2'
-        oauth2_ver     = '1.2.0'
+        oauth2_ver     = '1.2.1'
         mdc_ver        = '1.1.0'
         epoxy_ver      = '3.11.0'
 
