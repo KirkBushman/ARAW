@@ -54,6 +54,7 @@ object Utils {
                     .withSubtype(Subreddit::class.java, "archived")
                     .withSubtype(Subreddit::class.java, "public")
                     .withSubtype(Subreddit::class.java, "restricted")
+                    .withSubtype(Subreddit::class.java, "user")
                     .withSubtype(PrivateSubreddit::class.java, "private")
             )
             .build()

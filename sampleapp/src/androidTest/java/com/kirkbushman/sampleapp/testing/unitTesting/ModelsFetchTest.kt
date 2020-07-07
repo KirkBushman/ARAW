@@ -26,7 +26,13 @@ class ModelsFetchTest {
             "videos",
             "wtf",
             "learnpython",
-            "crosspost"
+            "crosspost",
+
+            "Gunners",
+            "PoliticalCompassMemes",
+            "privacy",
+            "europe",
+            "androidapps"
         )
 
         private const val LIMIT = 100
