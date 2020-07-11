@@ -143,6 +143,7 @@ interface RedditApi {
         @Query("api_type") apiType: String = "json",
         @Query("children") children: String,
         @Query("limit_children") limitChildren: Boolean? = null,
+        @Query("sort") sorting: String? = null,
         @Query("depth") depth: Int? = null,
         @Query("id") id: String? = null,
         @Query("link_id") linkId: String,
@@ -282,6 +283,7 @@ interface RedditApi {
     @GET("/comments/{submissionId}/.json")
     fun fetchComments(
         @Path("submissionId") submissionId: String,
+        @Query("sort") sorting: String,
         @Query("limit") limit: Int? = null,
         @Query("depth") depth: Int? = null,
         @Query("raw_json") rawJson: Int? = null,

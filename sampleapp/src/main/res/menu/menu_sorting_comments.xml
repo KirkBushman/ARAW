@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:id="@+id/group_sorting"
+            android:menuCategory="container">
+
+        <item android:id="@+id/item_sorting_best"
+                app:showAsAction="never"
+                android:title="@string/sorting_best"
+                />
+
+        <item android:id="@+id/item_sorting_confidence"
+                app:showAsAction="never"
+                android:title="@string/sorting_confidence"
+                />
+
+        <item android:id="@+id/item_sorting_top"
+                app:showAsAction="never"
+                android:title="@string/sorting_top"
+                />
+
+        <item android:id="@+id/item_sorting_new"
+                app:showAsAction="never"
+                android:title="@string/sorting_new"
+                />
+
+        <item android:id="@+id/item_sorting_controversial"
+                app:showAsAction="never"
+                android:title="@string/sorting_controversial"
+                />
+
+        <item android:id="@+id/item_sorting_old"
+                app:showAsAction="never"
+                android:title="@string/sorting_old"
+                />
+
+        <item android:id="@+id/item_sorting_random"
+                app:showAsAction="never"
+                android:title="@string/sorting_random"
+                />
+
+        <item android:id="@+id/item_sorting_qa"
+                app:showAsAction="never"
+                android:title="@string/sorting_qa"
+                />
+
+        <item android:id="@+id/item_sorting_live"
+                app:showAsAction="never"
+                android:title="@string/sorting_live"
+                />
+
+    </group>
+</menu>

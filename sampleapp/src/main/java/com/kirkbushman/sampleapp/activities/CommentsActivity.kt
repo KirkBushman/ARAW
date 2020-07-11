@@ -3,9 +3,13 @@ package com.kirkbushman.sampleapp.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import com.kirkbushman.araw.fetcher.CommentsFetcher
 import com.kirkbushman.araw.models.Comment
 import com.kirkbushman.araw.models.MoreComments
 import com.kirkbushman.araw.models.Submission
+import com.kirkbushman.araw.models.general.CommentsSorting
 import com.kirkbushman.araw.models.general.Vote
 import com.kirkbushman.araw.models.mixins.CommentData
 import com.kirkbushman.araw.utils.toLinearList
@@ -101,6 +105,8 @@ class CommentsActivity : BaseActivity() {
         })
     }
 
+    private var fetcher: CommentsFetcher? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_comments)
@@ -121,11 +127,11 @@ class CommentsActivity : BaseActivity() {
             doAsync(
                 doWork = {
 
-                    val fetcher = client?.contributionsClient?.comments(submissionId)
+                    fetcher = client?.contributionsClient?.comments(submissionId)
                     val temp = fetcher?.fetchNext() ?: listOf()
 
                     if (fetcher!!.getSubmission() != null) {
-                        controller.setSubmission(fetcher.getSubmission()!!)
+                        controller.setSubmission(fetcher!!.getSubmission()!!)
                     }
 
                     comments.clear()
@@ -139,6 +145,29 @@ class CommentsActivity : BaseActivity() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_sorting_comments, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        return when (item.itemId) {
+
+            R.id.item_sorting_best -> { reloadComments(sorting = CommentsSorting.BEST); true }
+            R.id.item_sorting_confidence -> { reloadComments(sorting = CommentsSorting.CONFIDENCE); true }
+            R.id.item_sorting_top -> { reloadComments(sorting = CommentsSorting.TOP); true }
+            R.id.item_sorting_new -> { reloadComments(sorting = CommentsSorting.NEW); true }
+            R.id.item_sorting_controversial -> { reloadComments(sorting = CommentsSorting.CONTROVERSIAL); true }
+            R.id.item_sorting_old -> { reloadComments(sorting = CommentsSorting.OLD); true }
+            R.id.item_sorting_random -> { reloadComments(sorting = CommentsSorting.RANDOM); true }
+            R.id.item_sorting_qa -> { reloadComments(sorting = CommentsSorting.QA); true }
+            R.id.item_sorting_live -> { reloadComments(sorting = CommentsSorting.LIVE); true }
+
+            else -> { false }
+        }
+    }
+
     private fun replaceMoreComments(moreComments: MoreComments, addendum: List<CommentData>) {
 
         val index = comments.indexOf(moreComments)
@@ -146,5 +175,24 @@ class CommentsActivity : BaseActivity() {
         comments.addAll(index, addendum)
 
         controller.setComments(comments)
+    }
+
+    private fun reloadComments(sorting: CommentsSorting? = null) {
+
+        if (sorting != null) {
+
+            doAsync(
+                doWork = {
+
+                    fetcher!!.setSorting(sorting)
+
+                    comments.clear()
+                    comments.addAll(fetcher?.fetchNext() ?: listOf())
+                },
+                onPost = {
+                    controller.setComments(comments)
+                }
+            )
+        }
     }
 }

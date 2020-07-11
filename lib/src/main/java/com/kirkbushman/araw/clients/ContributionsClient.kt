@@ -9,6 +9,7 @@ import com.kirkbushman.araw.models.Comment
 import com.kirkbushman.araw.models.MoreComments
 import com.kirkbushman.araw.models.Submission
 import com.kirkbushman.araw.models.TrendingSubreddits
+import com.kirkbushman.araw.models.general.CommentsSorting
 import com.kirkbushman.araw.models.general.SearchSorting
 import com.kirkbushman.araw.models.general.SubmissionsSorting
 import com.kirkbushman.araw.models.general.TimePeriod
@@ -157,6 +158,7 @@ class ContributionsClient(
 
         submissionId: String,
 
+        sorting: CommentsSorting = CommentsFetcher.DEFAULT_SORTING,
         limit: Int = Fetcher.DEFAULT_LIMIT,
 
         depth: Int? = null,
@@ -167,6 +169,7 @@ class ContributionsClient(
         return CommentsFetcher(
             api = api,
             submissionId = submissionId,
+            sorting = sorting,
             limit = limit,
             depth = depth,
             disableLegacyEncoding = disableLegacyEncoding,
@@ -179,6 +182,7 @@ class ContributionsClient(
         moreComments: MoreComments,
         submission: Submission,
 
+        sorting: CommentsSorting? = null,
         limitChildren: Boolean? = null,
         depth: Int? = null,
 
@@ -189,6 +193,7 @@ class ContributionsClient(
         val authMap = getHeaderMap()
         val req = api.moreChildren(
             children = moreComments.children.joinToString(separator = ","),
+            sorting = sorting?.sortingStr,
             limitChildren = limitChildren,
             depth = depth,
             id = moreComments.id,

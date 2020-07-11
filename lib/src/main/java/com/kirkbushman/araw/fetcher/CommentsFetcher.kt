@@ -4,12 +4,15 @@ import com.kirkbushman.araw.RedditApi
 import com.kirkbushman.araw.http.EnvelopedCommentData
 import com.kirkbushman.araw.http.base.Listing
 import com.kirkbushman.araw.models.Submission
+import com.kirkbushman.araw.models.general.CommentsSorting
 import com.kirkbushman.araw.models.mixins.CommentData
 
 class CommentsFetcher(
 
     private val api: RedditApi,
     private val submissionId: String,
+
+    private var sorting: CommentsSorting,
 
     private val depth: Int?,
     limit: Int = DEFAULT_LIMIT,
@@ -20,6 +23,11 @@ class CommentsFetcher(
 
 ) : Fetcher<CommentData, EnvelopedCommentData>(limit) {
 
+    companion object {
+
+        val DEFAULT_SORTING = CommentsSorting.BEST
+    }
+
     private var submission: Submission? = null
 
     @Suppress("UNCHECKED_CAST")
@@ -27,6 +35,7 @@ class CommentsFetcher(
 
         val req = api.fetchComments(
             submissionId = submissionId,
+            sorting = getSorting().sortingStr,
             limit = getLimit(),
             depth = depth,
             rawJson = (if (disableLegacyEncoding) 1 else null),
@@ -59,5 +68,12 @@ class CommentsFetcher(
 
     fun getSubmission(): Submission? {
         return submission
+    }
+
+    fun getSorting(): CommentsSorting = sorting
+    fun setSorting(newSorting: CommentsSorting) {
+        sorting = newSorting
+
+        reset()
     }
 }
