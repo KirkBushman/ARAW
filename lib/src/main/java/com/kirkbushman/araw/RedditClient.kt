@@ -46,7 +46,7 @@ class RedditClient @JvmOverloads constructor (private val bearer: TokenBearer, l
         }
     }
 
-    private val api = getApi(logging)
+    private val api by lazy { getApi(logging) }
 
     val accountsClient by lazy { AccountsClient(api, ::getHeaderMap) }
     val contributionsClient by lazy { ContributionsClient(api, ::getHeaderMap) }
