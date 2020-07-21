@@ -1,0 +1,187 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Fetcher - lib</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">lib</a>&nbsp;/&nbsp;<a href="../index.html">com.kirkbushman.araw.fetcher</a>&nbsp;/&nbsp;<a href="./index.html">Fetcher</a><br/>
+<br/>
+<h1>Fetcher</h1>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">Fetcher</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">, </span><span class="identifier">E</span><span class="symbol">&gt;</span></code>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<code><span class="identifier">Fetcher</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.fetcher.Fetcher$<init>(kotlin.Int)/limit">limit</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="fetch-next.html">fetchNext</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">fetchNext</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="fetch-previous.html">fetchPrevious</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">fetchPrevious</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-count.html">getCount</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getCount</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-limit.html">getLimit</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getLimit</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-page-num.html">getPageNum</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getPageNum</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="has-next.html">hasNext</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">hasNext</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="has-previous.html">hasPrevious</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">hasPrevious</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="has-started.html">hasStarted</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">hasStarted</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-fetching.html">onFetching</a></h4>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">onFetching</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.fetcher.Fetcher$onFetching(kotlin.Boolean, kotlin.String)/forward">forward</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;true<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.fetcher.Fetcher$onFetching(kotlin.Boolean, kotlin.String)/dirToken">dirToken</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.http.base/-listing/index.html"><span class="identifier">Listing</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-map-result.html">onMapResult</a></h4>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">onMapResult</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.fetcher.Fetcher$onMapResult(com.kirkbushman.araw.http.base.Listing((com.kirkbushman.araw.fetcher.Fetcher.E)))/pagedData">pagedData</span><span class="symbol">:</span>&nbsp;<a href="../../com.kirkbushman.araw.http.base/-listing/index.html"><span class="identifier">Listing</span></a><span class="symbol">&lt;</span><span class="identifier">E</span><span class="symbol">&gt;</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="reset.html">reset</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">reset</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="set-limit.html">setLimit</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setLimit</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.fetcher.Fetcher$setLimit(kotlin.Int)/newLimit">newLimit</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-d-e-f-a-u-l-t_-l-i-m-i-t.html">DEFAULT_LIMIT</a></h4>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">DEFAULT_LIMIT</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="../-comments-fetcher/index.html">CommentsFetcher</a></h4>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">CommentsFetcher</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Fetcher</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.models.mixins/-comment-data/index.html"><span class="identifier">CommentData</span></a><span class="symbol">,</span>&nbsp;<a href="../../com.kirkbushman.araw.http/-enveloped-comment-data/index.html"><span class="identifier">EnvelopedCommentData</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../-contributions-fetcher/index.html">ContributionsFetcher</a></h4>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">ContributionsFetcher</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Fetcher</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.models.mixins/-contribution/index.html"><span class="identifier">Contribution</span></a><span class="symbol">,</span>&nbsp;<a href="../../com.kirkbushman.araw.http/-enveloped-contribution/index.html"><span class="identifier">EnvelopedContribution</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../-inbox-fetcher/index.html">InboxFetcher</a></h4>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">InboxFetcher</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Fetcher</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.models/-message/index.html"><span class="identifier">Message</span></a><span class="symbol">,</span>&nbsp;<a href="../../com.kirkbushman.araw.http/-enveloped-message/index.html"><span class="identifier">EnvelopedMessage</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../-redditor-search-fetcher/index.html">RedditorSearchFetcher</a></h4>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">RedditorSearchFetcher</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Fetcher</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.models/-redditor/index.html"><span class="identifier">Redditor</span></a><span class="symbol">,</span>&nbsp;<a href="../../com.kirkbushman.araw.http/-enveloped-redditor/index.html"><span class="identifier">EnvelopedRedditor</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../-submissions-fetcher/index.html">SubmissionsFetcher</a></h4>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">SubmissionsFetcher</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Fetcher</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.models/-submission/index.html"><span class="identifier">Submission</span></a><span class="symbol">,</span>&nbsp;<a href="../../com.kirkbushman.araw.http/-enveloped-submission/index.html"><span class="identifier">EnvelopedSubmission</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../-submissions-search-fetcher/index.html">SubmissionsSearchFetcher</a></h4>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">SubmissionsSearchFetcher</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Fetcher</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.models/-submission/index.html"><span class="identifier">Submission</span></a><span class="symbol">,</span>&nbsp;<a href="../../com.kirkbushman.araw.http/-enveloped-submission/index.html"><span class="identifier">EnvelopedSubmission</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../-subreddits-fetcher/index.html">SubredditsFetcher</a></h4>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">SubredditsFetcher</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Fetcher</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.models.mixins/-subreddit-data/index.html"><span class="identifier">SubredditData</span></a><span class="symbol">,</span>&nbsp;<a href="../../com.kirkbushman.araw.http/-enveloped-subreddit-data/index.html"><span class="identifier">EnvelopedSubredditData</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../-subreddits-search-fetcher/index.html">SubredditsSearchFetcher</a></h4>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">SubredditsSearchFetcher</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Fetcher</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.models.mixins/-subreddit-data/index.html"><span class="identifier">SubredditData</span></a><span class="symbol">,</span>&nbsp;<a href="../../com.kirkbushman.araw.http/-enveloped-subreddit-data/index.html"><span class="identifier">EnvelopedSubredditData</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

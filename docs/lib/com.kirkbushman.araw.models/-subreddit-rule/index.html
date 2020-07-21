@@ -1,0 +1,98 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SubredditRule - lib</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">lib</a>&nbsp;/&nbsp;<a href="../index.html">com.kirkbushman.araw.models</a>&nbsp;/&nbsp;<a href="./index.html">SubredditRule</a><br/>
+<br/>
+<h1>SubredditRule</h1>
+<code><span class="identifier">@JsonClass</span><span class="symbol">(</span>true<span class="symbol">)</span> <span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">SubredditRule</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code>
+<p>This class is used to represent a rule element in a Subreddit,
+the rules are made by mods, and are expressing good/bad behaviour in the sub.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>This class is used to represent a rule element in a Subreddit,
+the rules are made by mods, and are expressing good/bad behaviour in the sub.</p>
+<code><span class="identifier">SubredditRule</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.models.SubredditRule$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.Long)/kind">kind</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.SubredditRule$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.Long)/description">description</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.SubredditRule$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.Long)/descriptionHtml">descriptionHtml</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.SubredditRule$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.Long)/shortName">shortName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.SubredditRule$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.Long)/violationReason">violationReason</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.SubredditRule$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.Long)/priority">priority</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.SubredditRule$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.Long)/createdUtc">createdUtc</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="created-date.html">createdDate</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">createdDate</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/6/docs/api/java/util/Date.html"><span class="identifier">Date</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="created-utc.html">createdUtc</a></h4>
+</td>
+<td>
+<p>Date of the creation of this rule, in UTC time.</p>
+<code><span class="keyword">val </span><span class="identifier">createdUtc</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="description.html">description</a></h4>
+</td>
+<td>
+<p>Description of the rule, formatted in Markdown.</p>
+<code><span class="keyword">val </span><span class="identifier">description</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="description-html.html">descriptionHtml</a></h4>
+</td>
+<td>
+<p>Description of the rule, formatted in Html.</p>
+<code><span class="keyword">val </span><span class="identifier">descriptionHtml</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="kind.html">kind</a></h4>
+</td>
+<td>
+<p>The scope of the rule.</p>
+<code><span class="keyword">val </span><span class="identifier">kind</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="priority.html">priority</a></h4>
+</td>
+<td>
+<p>The position of this rule in relation of other rules in the
+Subreddit list.</p>
+<code><span class="keyword">val </span><span class="identifier">priority</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="short-name.html">shortName</a></h4>
+</td>
+<td>
+<p>Short name of the rule to be used as a title or header.</p>
+<code><span class="keyword">val </span><span class="identifier">shortName</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="violation-reason.html">violationReason</a></h4>
+</td>
+<td>
+<p>Reasons of bad beaviour, breaking the rule.</p>
+<code><span class="keyword">val </span><span class="identifier">violationReason</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

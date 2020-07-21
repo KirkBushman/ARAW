@@ -1,0 +1,381 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>com.kirkbushman.araw.models - lib</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">lib</a>&nbsp;/&nbsp;<a href="./index.html">com.kirkbushman.araw.models</a><br/>
+<br/>
+<h2>Package com.kirkbushman.araw.models</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-account/index.html">Account</a></h4>
+</td>
+<td>
+<p>Base interface that groups the common fields between the class Redditor and Me,
+that has extra fields of the current logged in user.</p>
+<code><span class="keyword">interface </span><span class="identifier">Account</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../com.kirkbushman.araw.models.mixins/-thing/index.html"><span class="identifier">Thing</span></a><span class="symbol">, </span><a href="../com.kirkbushman.araw.models.mixins/-created/index.html"><span class="identifier">Created</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-awarding/index.html">Awarding</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Awarding</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../com.kirkbushman.araw.models.mixins/-thing/index.html"><span class="identifier">Thing</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-comment/index.html">Comment</a></h4>
+</td>
+<td>
+<p>This class can represent a comment on a Submission or a reply to another comment.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Comment</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../com.kirkbushman.araw.models.mixins/-comment-data/index.html"><span class="identifier">CommentData</span></a><span class="symbol">, </span><a href="../com.kirkbushman.araw.models.mixins/-votable/index.html"><span class="identifier">Votable</span></a><span class="symbol">, </span><a href="../com.kirkbushman.araw.models.mixins/-created/index.html"><span class="identifier">Created</span></a><span class="symbol">, </span><a href="../com.kirkbushman.araw.models.mixins/-editable/index.html"><span class="identifier">Editable</span></a><span class="symbol">, </span><a href="../com.kirkbushman.araw.models.mixins/-distinguishable/index.html"><span class="identifier">Distinguishable</span></a><span class="symbol">, </span><a href="../com.kirkbushman.araw.models.mixins/-gildable/index.html"><span class="identifier">Gildable</span></a><span class="symbol">, </span><a href="../com.kirkbushman.araw.models.mixins/-replyable/index.html"><span class="identifier">Replyable</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-flair/index.html">Flair</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Flair</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-friend/index.html">Friend</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Friend</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../com.kirkbushman.araw.models.mixins/-thing/index.html"><span class="identifier">Thing</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-friend-list/index.html">FriendList</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">FriendList</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-friend-list-data/index.html">FriendListData</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">FriendListData</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-karma/index.html">Karma</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Karma</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-karma-list/index.html">KarmaList</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">KarmaList</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-me/index.html">Me</a></h4>
+</td>
+<td>
+<p>This class represent the current logged in user.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Me</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-account/index.html"><span class="identifier">Account</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-message/index.html">Message</a></h4>
+</td>
+<td>
+<p>This class represents the message a user can send or receive.
+Messages are grouped in the user inbox.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Message</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../com.kirkbushman.araw.models.mixins/-thing/index.html"><span class="identifier">Thing</span></a><span class="symbol">, </span><a href="../com.kirkbushman.araw.models.mixins/-votable/index.html"><span class="identifier">Votable</span></a><span class="symbol">, </span><a href="../com.kirkbushman.araw.models.mixins/-created/index.html"><span class="identifier">Created</span></a><span class="symbol">, </span><a href="../com.kirkbushman.araw.models.mixins/-distinguishable/index.html"><span class="identifier">Distinguishable</span></a><span class="symbol">, </span><a href="../com.kirkbushman.araw.models.mixins/-replyable/index.html"><span class="identifier">Replyable</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-moderated-list/index.html">ModeratedList</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">ModeratedList</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-moderated-sub/index.html">ModeratedSub</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">ModeratedSub</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a><span class="symbol">, </span><a href="../com.kirkbushman.araw.models.mixins/-created/index.html"><span class="identifier">Created</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-more-children-response/index.html">MoreChildrenResponse</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">MoreChildrenResponse</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-more-children-response-j-s-o-n/index.html">MoreChildrenResponseJSON</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">MoreChildrenResponseJSON</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-more-children-response-things/index.html">MoreChildrenResponseThings</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">MoreChildrenResponseThings</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-more-comments/index.html">MoreComments</a></h4>
+</td>
+<td>
+<p>This class is used to load more comments in the tree,
+when a comment or a group of comment is too deep.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">MoreComments</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../com.kirkbushman.araw.models.mixins/-comment-data/index.html"><span class="identifier">CommentData</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-prefs/index.html">Prefs</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Prefs</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-private-subreddit/index.html">PrivateSubreddit</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">PrivateSubreddit</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../com.kirkbushman.araw.models.mixins/-subreddit-data/index.html"><span class="identifier">SubredditData</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-redditor/index.html">Redditor</a></h4>
+</td>
+<td>
+<p>This class represents a Redditor, that is not the current logged in one.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Redditor</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-account/index.html"><span class="identifier">Account</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-redditor-subreddit/index.html">RedditorSubreddit</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">RedditorSubreddit</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-reply/index.html">Reply</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Reply</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-reply-data/index.html">ReplyData</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">ReplyData</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-reply-json/index.html">ReplyJson</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">ReplyJson</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-submission/index.html">Submission</a></h4>
+</td>
+<td>
+<p>This class represents a user post in a specific Subreddit,
+this class can be replied to, in a form of a comment section.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Submission</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../com.kirkbushman.araw.models.mixins/-contribution/index.html"><span class="identifier">Contribution</span></a><span class="symbol">, </span><a href="../com.kirkbushman.araw.models.mixins/-votable/index.html"><span class="identifier">Votable</span></a><span class="symbol">, </span><a href="../com.kirkbushman.araw.models.mixins/-created/index.html"><span class="identifier">Created</span></a><span class="symbol">, </span><a href="../com.kirkbushman.araw.models.mixins/-editable/index.html"><span class="identifier">Editable</span></a><span class="symbol">, </span><a href="../com.kirkbushman.araw.models.mixins/-distinguishable/index.html"><span class="identifier">Distinguishable</span></a><span class="symbol">, </span><a href="../com.kirkbushman.araw.models.mixins/-gildable/index.html"><span class="identifier">Gildable</span></a><span class="symbol">, </span><a href="../com.kirkbushman.araw.models.mixins/-replyable/index.html"><span class="identifier">Replyable</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-submit-response/index.html">SubmitResponse</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">SubmitResponse</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-submit-response-data/index.html">SubmitResponseData</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">SubmitResponseData</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-submit-response-json/index.html">SubmitResponseJson</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">SubmitResponseJson</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-subreddit/index.html">Subreddit</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Subreddit</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../com.kirkbushman.araw.models.mixins/-subreddit-data/index.html"><span class="identifier">SubredditData</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-subreddit-rule/index.html">SubredditRule</a></h4>
+</td>
+<td>
+<p>This class is used to represent a rule element in a Subreddit,
+the rules are made by mods, and are expressing good/bad behaviour in the sub.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">SubredditRule</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-subreddit-rules/index.html">SubredditRules</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">SubredditRules</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-subreddit-search-item/index.html">SubredditSearchItem</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">SubredditSearchItem</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-subreddit-search-result/index.html">SubredditSearchResult</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">SubredditSearchResult</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-trending-subreddits/index.html">TrendingSubreddits</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">TrendingSubreddits</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-trophy/index.html">Trophy</a></h4>
+</td>
+<td>
+<p>This class represent a trophy given to a redditor.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Trophy</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-trophy-children/index.html">TrophyChildren</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">TrophyChildren</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-trophy-list/index.html">TrophyList</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">TrophyList</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-upload-contract/index.html">UploadContract</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">UploadContract</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-upload-contract-args/index.html">UploadContractArgs</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">UploadContractArgs</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-upload-contract-assets/index.html">UploadContractAssets</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">UploadContractAssets</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-upload-contract-fields/index.html">UploadContractFields</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">UploadContractFields</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-upload-contract-payload/index.html">UploadContractPayload</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">UploadContractPayload</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-upload-data/index.html">UploadData</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">UploadData</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-upload-file/index.html">UploadFile</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">UploadFile</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-user/index.html">User</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">User</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-user-children/index.html">UserChildren</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">UserChildren</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-user-list/index.html">UserList</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">UserList</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-wiki-page/index.html">WikiPage</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">WikiPage</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-wiki-page-list/index.html">WikiPageList</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">WikiPageList</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-wiki-revision/index.html">WikiRevision</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">WikiRevision</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

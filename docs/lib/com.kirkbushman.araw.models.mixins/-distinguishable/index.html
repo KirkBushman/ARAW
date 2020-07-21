@@ -1,0 +1,77 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Distinguishable - lib</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">lib</a>&nbsp;/&nbsp;<a href="../index.html">com.kirkbushman.araw.models.mixins</a>&nbsp;/&nbsp;<a href="./index.html">Distinguishable</a><br/>
+<br/>
+<h1>Distinguishable</h1>
+<code><span class="keyword">interface </span><span class="identifier">Distinguishable</span></code>
+<p>Base interface for all items that can be distingushed
+by moderators, admins or else.</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="distinguished-raw.html">distinguishedRaw</a></h4>
+</td>
+<td>
+<p>to allow determining whether they have been distinguished by moderators/admins.
+null = not distinguished.
+moderator = the green.
+admin = the red.
+special = various other special distinguishes.
+NOTE: use the extensions in Distinguishable to have an enum representation.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">distinguishedRaw</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.utils/distinguished.html">distinguished</a></h4>
+</td>
+<td>
+<p>Useful extension to map to an enum.</p>
+<code><span class="keyword">val </span><a href="./index.html"><span class="identifier">Distinguishable</span></a><span class="symbol">.</span><span class="identifier">distinguished</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.models.general/-distinguished/index.html"><span class="identifier">Distinguished</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.models/-comment/index.html">Comment</a></h4>
+</td>
+<td>
+<p>This class can represent a comment on a Submission or a reply to another comment.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Comment</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-comment-data/index.html"><span class="identifier">CommentData</span></a><span class="symbol">, </span><a href="../-votable/index.html"><span class="identifier">Votable</span></a><span class="symbol">, </span><a href="../-created/index.html"><span class="identifier">Created</span></a><span class="symbol">, </span><a href="../-editable/index.html"><span class="identifier">Editable</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">Distinguishable</span></a><span class="symbol">, </span><a href="../-gildable/index.html"><span class="identifier">Gildable</span></a><span class="symbol">, </span><a href="../-replyable/index.html"><span class="identifier">Replyable</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.models/-message/index.html">Message</a></h4>
+</td>
+<td>
+<p>This class represents the message a user can send or receive.
+Messages are grouped in the user inbox.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Message</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-thing/index.html"><span class="identifier">Thing</span></a><span class="symbol">, </span><a href="../-votable/index.html"><span class="identifier">Votable</span></a><span class="symbol">, </span><a href="../-created/index.html"><span class="identifier">Created</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">Distinguishable</span></a><span class="symbol">, </span><a href="../-replyable/index.html"><span class="identifier">Replyable</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.models/-submission/index.html">Submission</a></h4>
+</td>
+<td>
+<p>This class represents a user post in a specific Subreddit,
+this class can be replied to, in a form of a comment section.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Submission</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-contribution/index.html"><span class="identifier">Contribution</span></a><span class="symbol">, </span><a href="../-votable/index.html"><span class="identifier">Votable</span></a><span class="symbol">, </span><a href="../-created/index.html"><span class="identifier">Created</span></a><span class="symbol">, </span><a href="../-editable/index.html"><span class="identifier">Editable</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">Distinguishable</span></a><span class="symbol">, </span><a href="../-gildable/index.html"><span class="identifier">Gildable</span></a><span class="symbol">, </span><a href="../-replyable/index.html"><span class="identifier">Replyable</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

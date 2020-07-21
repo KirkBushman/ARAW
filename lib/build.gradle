@@ -42,7 +42,7 @@ kapt {
 
 dokka {
     outputFormat = 'html'
-    outputDirectory = "$buildDir/javadoc"
+    outputDirectory = "${project.rootDir}/docs"
 }
 
 dependencies {

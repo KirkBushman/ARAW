@@ -2,7 +2,7 @@
 
 buildscript {
     ext {
-        android_gradle_ver = '4.0.0'
+        android_gradle_ver = '4.0.1'
 
         compile_sdk_ver = 29
         build_tools_ver = '29.0.3'
@@ -67,6 +67,10 @@ subprojects {
         if (project.tasks.findByName('check')) {
             check.dependsOn('checkstyle')
             check.dependsOn('ktlint')
+        }
+
+        if (project.tasks.findByName('dokka')) {
+            check.dependsOn('dokka')
         }
     }
 }

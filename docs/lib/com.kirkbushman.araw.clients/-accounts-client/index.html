@@ -1,0 +1,156 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>AccountsClient - lib</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">lib</a>&nbsp;/&nbsp;<a href="../index.html">com.kirkbushman.araw.clients</a>&nbsp;/&nbsp;<a href="./index.html">AccountsClient</a><br/>
+<br/>
+<h1>AccountsClient</h1>
+<code><span class="keyword">class </span><span class="identifier">AccountsClient</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-base-reddit-client/index.html"><span class="identifier">BaseRedditClient</span></a></code>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<code><span class="identifier">AccountsClient</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$<init>(com.kirkbushman.araw.RedditApi, kotlin.Function0((java.util.HashMap((kotlin.String, )))))/api">api</span><span class="symbol">:</span>&nbsp;<a href="../../com.kirkbushman.araw/-reddit-api/index.html"><span class="identifier">RedditApi</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$<init>(com.kirkbushman.araw.RedditApi, kotlin.Function0((java.util.HashMap((kotlin.String, )))))/getHeaderMap">getHeaderMap</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="comments.html">comments</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">comments</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$comments(kotlin.Int, com.kirkbushman.araw.models.general.ContributionsSorting, com.kirkbushman.araw.models.general.TimePeriod, kotlin.Boolean)/limit">limit</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Fetcher.DEFAULT_LIMIT<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$comments(kotlin.Int, com.kirkbushman.araw.models.general.ContributionsSorting, com.kirkbushman.araw.models.general.TimePeriod, kotlin.Boolean)/sorting">sorting</span><span class="symbol">:</span>&nbsp;<a href="../../com.kirkbushman.araw.models.general/-contributions-sorting/index.html"><span class="identifier">ContributionsSorting</span></a>&nbsp;<span class="symbol">=</span>&nbsp;ContributionsFetcher.DEFAULT_SORTING<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$comments(kotlin.Int, com.kirkbushman.araw.models.general.ContributionsSorting, com.kirkbushman.araw.models.general.TimePeriod, kotlin.Boolean)/timePeriod">timePeriod</span><span class="symbol">:</span>&nbsp;<a href="../../com.kirkbushman.araw.models.general/-time-period/index.html"><span class="identifier">TimePeriod</span></a>&nbsp;<span class="symbol">=</span>&nbsp;ContributionsFetcher.DEFAULT_TIMEPERIOD<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$comments(kotlin.Int, com.kirkbushman.araw.models.general.ContributionsSorting, com.kirkbushman.araw.models.general.TimePeriod, kotlin.Boolean)/disableLegacyEncoding">disableLegacyEncoding</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.fetcher/-contributions-fetcher/index.html"><span class="identifier">ContributionsFetcher</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="contributed-subreddits.html">contributedSubreddits</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">contributedSubreddits</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$contributedSubreddits(kotlin.Int, kotlin.Boolean)/limit">limit</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Fetcher.DEFAULT_LIMIT<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$contributedSubreddits(kotlin.Int, kotlin.Boolean)/disableLegacyEncoding">disableLegacyEncoding</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.fetcher/-subreddits-fetcher/index.html"><span class="identifier">SubredditsFetcher</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="downvoted.html">downvoted</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">downvoted</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$downvoted(kotlin.Int, com.kirkbushman.araw.models.general.ContributionsSorting, com.kirkbushman.araw.models.general.TimePeriod, kotlin.Boolean)/limit">limit</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Fetcher.DEFAULT_LIMIT<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$downvoted(kotlin.Int, com.kirkbushman.araw.models.general.ContributionsSorting, com.kirkbushman.araw.models.general.TimePeriod, kotlin.Boolean)/sorting">sorting</span><span class="symbol">:</span>&nbsp;<a href="../../com.kirkbushman.araw.models.general/-contributions-sorting/index.html"><span class="identifier">ContributionsSorting</span></a>&nbsp;<span class="symbol">=</span>&nbsp;ContributionsFetcher.DEFAULT_SORTING<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$downvoted(kotlin.Int, com.kirkbushman.araw.models.general.ContributionsSorting, com.kirkbushman.araw.models.general.TimePeriod, kotlin.Boolean)/timePeriod">timePeriod</span><span class="symbol">:</span>&nbsp;<a href="../../com.kirkbushman.araw.models.general/-time-period/index.html"><span class="identifier">TimePeriod</span></a>&nbsp;<span class="symbol">=</span>&nbsp;ContributionsFetcher.DEFAULT_TIMEPERIOD<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$downvoted(kotlin.Int, com.kirkbushman.araw.models.general.ContributionsSorting, com.kirkbushman.araw.models.general.TimePeriod, kotlin.Boolean)/disableLegacyEncoding">disableLegacyEncoding</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.fetcher/-contributions-fetcher/index.html"><span class="identifier">ContributionsFetcher</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-current-user.html">getCurrentUser</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getCurrentUser</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.models/-me/index.html"><span class="identifier">Me</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="gilded.html">gilded</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">gilded</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$gilded(kotlin.Int, com.kirkbushman.araw.models.general.ContributionsSorting, com.kirkbushman.araw.models.general.TimePeriod, kotlin.Boolean)/limit">limit</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Fetcher.DEFAULT_LIMIT<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$gilded(kotlin.Int, com.kirkbushman.araw.models.general.ContributionsSorting, com.kirkbushman.araw.models.general.TimePeriod, kotlin.Boolean)/sorting">sorting</span><span class="symbol">:</span>&nbsp;<a href="../../com.kirkbushman.araw.models.general/-contributions-sorting/index.html"><span class="identifier">ContributionsSorting</span></a>&nbsp;<span class="symbol">=</span>&nbsp;ContributionsFetcher.DEFAULT_SORTING<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$gilded(kotlin.Int, com.kirkbushman.araw.models.general.ContributionsSorting, com.kirkbushman.araw.models.general.TimePeriod, kotlin.Boolean)/timePeriod">timePeriod</span><span class="symbol">:</span>&nbsp;<a href="../../com.kirkbushman.araw.models.general/-time-period/index.html"><span class="identifier">TimePeriod</span></a>&nbsp;<span class="symbol">=</span>&nbsp;ContributionsFetcher.DEFAULT_TIMEPERIOD<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$gilded(kotlin.Int, com.kirkbushman.araw.models.general.ContributionsSorting, com.kirkbushman.araw.models.general.TimePeriod, kotlin.Boolean)/disableLegacyEncoding">disableLegacyEncoding</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.fetcher/-contributions-fetcher/index.html"><span class="identifier">ContributionsFetcher</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="hidden.html">hidden</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">hidden</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$hidden(kotlin.Int, com.kirkbushman.araw.models.general.ContributionsSorting, com.kirkbushman.araw.models.general.TimePeriod, kotlin.Boolean)/limit">limit</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Fetcher.DEFAULT_LIMIT<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$hidden(kotlin.Int, com.kirkbushman.araw.models.general.ContributionsSorting, com.kirkbushman.araw.models.general.TimePeriod, kotlin.Boolean)/sorting">sorting</span><span class="symbol">:</span>&nbsp;<a href="../../com.kirkbushman.araw.models.general/-contributions-sorting/index.html"><span class="identifier">ContributionsSorting</span></a>&nbsp;<span class="symbol">=</span>&nbsp;ContributionsFetcher.DEFAULT_SORTING<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$hidden(kotlin.Int, com.kirkbushman.araw.models.general.ContributionsSorting, com.kirkbushman.araw.models.general.TimePeriod, kotlin.Boolean)/timePeriod">timePeriod</span><span class="symbol">:</span>&nbsp;<a href="../../com.kirkbushman.araw.models.general/-time-period/index.html"><span class="identifier">TimePeriod</span></a>&nbsp;<span class="symbol">=</span>&nbsp;ContributionsFetcher.DEFAULT_TIMEPERIOD<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$hidden(kotlin.Int, com.kirkbushman.araw.models.general.ContributionsSorting, com.kirkbushman.araw.models.general.TimePeriod, kotlin.Boolean)/disableLegacyEncoding">disableLegacyEncoding</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.fetcher/-contributions-fetcher/index.html"><span class="identifier">ContributionsFetcher</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="me.html">me</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">me</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.models/-me/index.html"><span class="identifier">Me</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="moderated-subreddits.html">moderatedSubreddits</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">moderatedSubreddits</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$moderatedSubreddits(kotlin.Int, kotlin.Boolean)/limit">limit</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Fetcher.DEFAULT_LIMIT<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$moderatedSubreddits(kotlin.Int, kotlin.Boolean)/disableLegacyEncoding">disableLegacyEncoding</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.fetcher/-subreddits-fetcher/index.html"><span class="identifier">SubredditsFetcher</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="my-blocked.html">myBlocked</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">myBlocked</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="my-friends.html">myFriends</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">myFriends</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.models/-friend/index.html"><span class="identifier">Friend</span></a><span class="symbol">&gt;</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="my-karma.html">myKarma</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">myKarma</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.models/-karma/index.html"><span class="identifier">Karma</span></a><span class="symbol">&gt;</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="my-prefs.html">myPrefs</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">myPrefs</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.models/-prefs/index.html"><span class="identifier">Prefs</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="my-trophies.html">myTrophies</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">myTrophies</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.models/-trophy/index.html"><span class="identifier">Trophy</span></a><span class="symbol">&gt;</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="overview.html">overview</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">overview</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$overview(kotlin.Int, com.kirkbushman.araw.models.general.ContributionsSorting, com.kirkbushman.araw.models.general.TimePeriod, kotlin.Boolean)/limit">limit</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Fetcher.DEFAULT_LIMIT<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$overview(kotlin.Int, com.kirkbushman.araw.models.general.ContributionsSorting, com.kirkbushman.araw.models.general.TimePeriod, kotlin.Boolean)/sorting">sorting</span><span class="symbol">:</span>&nbsp;<a href="../../com.kirkbushman.araw.models.general/-contributions-sorting/index.html"><span class="identifier">ContributionsSorting</span></a>&nbsp;<span class="symbol">=</span>&nbsp;ContributionsFetcher.DEFAULT_SORTING<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$overview(kotlin.Int, com.kirkbushman.araw.models.general.ContributionsSorting, com.kirkbushman.araw.models.general.TimePeriod, kotlin.Boolean)/timePeriod">timePeriod</span><span class="symbol">:</span>&nbsp;<a href="../../com.kirkbushman.araw.models.general/-time-period/index.html"><span class="identifier">TimePeriod</span></a>&nbsp;<span class="symbol">=</span>&nbsp;ContributionsFetcher.DEFAULT_TIMEPERIOD<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$overview(kotlin.Int, com.kirkbushman.araw.models.general.ContributionsSorting, com.kirkbushman.araw.models.general.TimePeriod, kotlin.Boolean)/disableLegacyEncoding">disableLegacyEncoding</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.fetcher/-contributions-fetcher/index.html"><span class="identifier">ContributionsFetcher</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="saved.html">saved</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">saved</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$saved(kotlin.Int, com.kirkbushman.araw.models.general.ContributionsSorting, com.kirkbushman.araw.models.general.TimePeriod, kotlin.Boolean)/limit">limit</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Fetcher.DEFAULT_LIMIT<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$saved(kotlin.Int, com.kirkbushman.araw.models.general.ContributionsSorting, com.kirkbushman.araw.models.general.TimePeriod, kotlin.Boolean)/sorting">sorting</span><span class="symbol">:</span>&nbsp;<a href="../../com.kirkbushman.araw.models.general/-contributions-sorting/index.html"><span class="identifier">ContributionsSorting</span></a>&nbsp;<span class="symbol">=</span>&nbsp;ContributionsFetcher.DEFAULT_SORTING<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$saved(kotlin.Int, com.kirkbushman.araw.models.general.ContributionsSorting, com.kirkbushman.araw.models.general.TimePeriod, kotlin.Boolean)/timePeriod">timePeriod</span><span class="symbol">:</span>&nbsp;<a href="../../com.kirkbushman.araw.models.general/-time-period/index.html"><span class="identifier">TimePeriod</span></a>&nbsp;<span class="symbol">=</span>&nbsp;ContributionsFetcher.DEFAULT_TIMEPERIOD<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$saved(kotlin.Int, com.kirkbushman.araw.models.general.ContributionsSorting, com.kirkbushman.araw.models.general.TimePeriod, kotlin.Boolean)/disableLegacyEncoding">disableLegacyEncoding</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.fetcher/-contributions-fetcher/index.html"><span class="identifier">ContributionsFetcher</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="submitted.html">submitted</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">submitted</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$submitted(kotlin.Int, com.kirkbushman.araw.models.general.ContributionsSorting, com.kirkbushman.araw.models.general.TimePeriod, kotlin.Boolean)/limit">limit</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Fetcher.DEFAULT_LIMIT<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$submitted(kotlin.Int, com.kirkbushman.araw.models.general.ContributionsSorting, com.kirkbushman.araw.models.general.TimePeriod, kotlin.Boolean)/sorting">sorting</span><span class="symbol">:</span>&nbsp;<a href="../../com.kirkbushman.araw.models.general/-contributions-sorting/index.html"><span class="identifier">ContributionsSorting</span></a>&nbsp;<span class="symbol">=</span>&nbsp;ContributionsFetcher.DEFAULT_SORTING<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$submitted(kotlin.Int, com.kirkbushman.araw.models.general.ContributionsSorting, com.kirkbushman.araw.models.general.TimePeriod, kotlin.Boolean)/timePeriod">timePeriod</span><span class="symbol">:</span>&nbsp;<a href="../../com.kirkbushman.araw.models.general/-time-period/index.html"><span class="identifier">TimePeriod</span></a>&nbsp;<span class="symbol">=</span>&nbsp;ContributionsFetcher.DEFAULT_TIMEPERIOD<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$submitted(kotlin.Int, com.kirkbushman.araw.models.general.ContributionsSorting, com.kirkbushman.araw.models.general.TimePeriod, kotlin.Boolean)/disableLegacyEncoding">disableLegacyEncoding</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.fetcher/-contributions-fetcher/index.html"><span class="identifier">ContributionsFetcher</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="subscribed-subreddits.html">subscribedSubreddits</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">subscribedSubreddits</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$subscribedSubreddits(kotlin.Int, kotlin.Boolean)/limit">limit</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Fetcher.DEFAULT_LIMIT<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$subscribedSubreddits(kotlin.Int, kotlin.Boolean)/disableLegacyEncoding">disableLegacyEncoding</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.fetcher/-subreddits-fetcher/index.html"><span class="identifier">SubredditsFetcher</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="upvoted.html">upvoted</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">upvoted</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$upvoted(kotlin.Int, com.kirkbushman.araw.models.general.ContributionsSorting, com.kirkbushman.araw.models.general.TimePeriod, kotlin.Boolean)/limit">limit</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Fetcher.DEFAULT_LIMIT<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$upvoted(kotlin.Int, com.kirkbushman.araw.models.general.ContributionsSorting, com.kirkbushman.araw.models.general.TimePeriod, kotlin.Boolean)/sorting">sorting</span><span class="symbol">:</span>&nbsp;<a href="../../com.kirkbushman.araw.models.general/-contributions-sorting/index.html"><span class="identifier">ContributionsSorting</span></a>&nbsp;<span class="symbol">=</span>&nbsp;ContributionsFetcher.DEFAULT_SORTING<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$upvoted(kotlin.Int, com.kirkbushman.araw.models.general.ContributionsSorting, com.kirkbushman.araw.models.general.TimePeriod, kotlin.Boolean)/timePeriod">timePeriod</span><span class="symbol">:</span>&nbsp;<a href="../../com.kirkbushman.araw.models.general/-time-period/index.html"><span class="identifier">TimePeriod</span></a>&nbsp;<span class="symbol">=</span>&nbsp;ContributionsFetcher.DEFAULT_TIMEPERIOD<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.AccountsClient$upvoted(kotlin.Int, com.kirkbushman.araw.models.general.ContributionsSorting, com.kirkbushman.araw.models.general.TimePeriod, kotlin.Boolean)/disableLegacyEncoding">disableLegacyEncoding</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.fetcher/-contributions-fetcher/index.html"><span class="identifier">ContributionsFetcher</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

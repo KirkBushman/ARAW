@@ -1,0 +1,157 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Redditor - lib</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">lib</a>&nbsp;/&nbsp;<a href="../index.html">com.kirkbushman.araw.models</a>&nbsp;/&nbsp;<a href="./index.html">Redditor</a><br/>
+<br/>
+<h1>Redditor</h1>
+<code><span class="identifier">@JsonClass</span><span class="symbol">(</span>true<span class="symbol">)</span> <span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Redditor</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-account/index.html"><span class="identifier">Account</span></a></code>
+<p>This class represents a Redditor, that is not the current logged in one.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>This class represents a Redditor, that is not the current logged in one.</p>
+<code><span class="identifier">Redditor</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.models.Redditor$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Long, kotlin.Long, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, com.kirkbushman.araw.models.RedditorSubreddit)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Redditor$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Long, kotlin.Long, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, com.kirkbushman.araw.models.RedditorSubreddit)/fullname">fullname</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Redditor$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Long, kotlin.Long, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, com.kirkbushman.araw.models.RedditorSubreddit)/commentKarma">commentKarma</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Redditor$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Long, kotlin.Long, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, com.kirkbushman.araw.models.RedditorSubreddit)/created">created</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Redditor$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Long, kotlin.Long, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, com.kirkbushman.araw.models.RedditorSubreddit)/createdUtc">createdUtc</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Redditor$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Long, kotlin.Long, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, com.kirkbushman.araw.models.RedditorSubreddit)/hasVerifiedEmail">hasVerifiedEmail</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Redditor$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Long, kotlin.Long, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, com.kirkbushman.araw.models.RedditorSubreddit)/isEmployee">isEmployee</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Redditor$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Long, kotlin.Long, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, com.kirkbushman.araw.models.RedditorSubreddit)/isFriend">isFriend</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Redditor$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Long, kotlin.Long, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, com.kirkbushman.araw.models.RedditorSubreddit)/isGold">isGold</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Redditor$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Long, kotlin.Long, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, com.kirkbushman.araw.models.RedditorSubreddit)/isHidingFromRobots">isHidingFromRobots</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Redditor$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Long, kotlin.Long, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, com.kirkbushman.araw.models.RedditorSubreddit)/isMod">isMod</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Redditor$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Long, kotlin.Long, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, com.kirkbushman.araw.models.RedditorSubreddit)/linkKarma">linkKarma</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Redditor$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Long, kotlin.Long, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, com.kirkbushman.araw.models.RedditorSubreddit)/subreddit">subreddit</span><span class="symbol">:</span>&nbsp;<a href="../-redditor-subreddit/index.html"><span class="identifier">RedditorSubreddit</span></a><span class="symbol">?</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="comment-karma.html">commentKarma</a></h4>
+</td>
+<td>
+<p>karma obtained through submitting a comment.</p>
+<code><span class="keyword">val </span><span class="identifier">commentKarma</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="created.html">created</a></h4>
+</td>
+<td>
+<p>The unix-time Long representing the creation date of the comment.</p>
+<code><span class="keyword">val </span><span class="identifier">created</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="created-utc.html">createdUtc</a></h4>
+</td>
+<td>
+<p>The unix-time Long representing the UTC creation date of the comment.</p>
+<code><span class="keyword">val </span><span class="identifier">createdUtc</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="fullname.html">fullname</a></h4>
+</td>
+<td>
+<p>fullname of this class.</p>
+<code><span class="keyword">val </span><span class="identifier">fullname</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="has-verified-email.html">hasVerifiedEmail</a></h4>
+</td>
+<td>
+<p>if the user has a verified email.</p>
+<code><span class="keyword">val </span><span class="identifier">hasVerifiedEmail</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="id.html">id</a></h4>
+</td>
+<td>
+<p>This item identifier, e.g. "8xwlg"</p>
+<code><span class="keyword">val </span><span class="identifier">id</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="is-employee.html">isEmployee</a></h4>
+</td>
+<td>
+<p>if the user is an employee of Reddit.</p>
+<code><span class="keyword">val </span><span class="identifier">isEmployee</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="is-friend.html">isFriend</a></h4>
+</td>
+<td>
+<p>if the user has been marked as friend by the current logged in user.</p>
+<code><span class="keyword">val </span><span class="identifier">isFriend</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="is-gold.html">isGold</a></h4>
+</td>
+<td>
+<p>if the user has a gold status.</p>
+<code><span class="keyword">val </span><span class="identifier">isGold</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="is-hiding-from-robots.html">isHidingFromRobots</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">isHidingFromRobots</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="is-mod.html">isMod</a></h4>
+</td>
+<td>
+<p>if the user is Mod.</p>
+<code><span class="keyword">val </span><span class="identifier">isMod</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="link-karma.html">linkKarma</a></h4>
+</td>
+<td>
+<p>karma obtained through submitting a post (Submission).</p>
+<code><span class="keyword">val </span><span class="identifier">linkKarma</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="subreddit.html">subreddit</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">subreddit</span><span class="symbol">: </span><a href="../-redditor-subreddit/index.html"><span class="identifier">RedditorSubreddit</span></a><span class="symbol">?</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.utils/created-date.html">createdDate</a></h4>
+</td>
+<td>
+<p>Useful extension to convert the creation date property,
+from the Long unixtime, to a more practical Date object.</p>
+<code><span class="keyword">val </span><a href="../../com.kirkbushman.araw.models.mixins/-created/index.html"><span class="identifier">Created</span></a><span class="symbol">.</span><span class="identifier">createdDate</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/6/docs/api/java/util/Date.html"><span class="identifier">Date</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.utils/created-utc-date.html">createdUtcDate</a></h4>
+</td>
+<td>
+<p>Useful extension to convert the utc creation date property,
+from the Long unixtime, to a more practical Date object.</p>
+<code><span class="keyword">val </span><a href="../../com.kirkbushman.araw.models.mixins/-created/index.html"><span class="identifier">Created</span></a><span class="symbol">.</span><span class="identifier">createdUtcDate</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/6/docs/api/java/util/Date.html"><span class="identifier">Date</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

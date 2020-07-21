@@ -1,0 +1,80 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>com.kirkbushman.araw.fetcher - lib</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">lib</a>&nbsp;/&nbsp;<a href="./index.html">com.kirkbushman.araw.fetcher</a><br/>
+<br/>
+<h2>Package com.kirkbushman.araw.fetcher</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-comments-fetcher/index.html">CommentsFetcher</a></h4>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">CommentsFetcher</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-fetcher/index.html"><span class="identifier">Fetcher</span></a><span class="symbol">&lt;</span><a href="../com.kirkbushman.araw.models.mixins/-comment-data/index.html"><span class="identifier">CommentData</span></a><span class="symbol">,</span>&nbsp;<a href="../com.kirkbushman.araw.http/-enveloped-comment-data/index.html"><span class="identifier">EnvelopedCommentData</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-contributions-fetcher/index.html">ContributionsFetcher</a></h4>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">ContributionsFetcher</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-fetcher/index.html"><span class="identifier">Fetcher</span></a><span class="symbol">&lt;</span><a href="../com.kirkbushman.araw.models.mixins/-contribution/index.html"><span class="identifier">Contribution</span></a><span class="symbol">,</span>&nbsp;<a href="../com.kirkbushman.araw.http/-enveloped-contribution/index.html"><span class="identifier">EnvelopedContribution</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-fetcher/index.html">Fetcher</a></h4>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">Fetcher</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">, </span><span class="identifier">E</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-inbox-fetcher/index.html">InboxFetcher</a></h4>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">InboxFetcher</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-fetcher/index.html"><span class="identifier">Fetcher</span></a><span class="symbol">&lt;</span><a href="../com.kirkbushman.araw.models/-message/index.html"><span class="identifier">Message</span></a><span class="symbol">,</span>&nbsp;<a href="../com.kirkbushman.araw.http/-enveloped-message/index.html"><span class="identifier">EnvelopedMessage</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-redditor-search-fetcher/index.html">RedditorSearchFetcher</a></h4>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">RedditorSearchFetcher</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-fetcher/index.html"><span class="identifier">Fetcher</span></a><span class="symbol">&lt;</span><a href="../com.kirkbushman.araw.models/-redditor/index.html"><span class="identifier">Redditor</span></a><span class="symbol">,</span>&nbsp;<a href="../com.kirkbushman.araw.http/-enveloped-redditor/index.html"><span class="identifier">EnvelopedRedditor</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-submissions-fetcher/index.html">SubmissionsFetcher</a></h4>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">SubmissionsFetcher</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-fetcher/index.html"><span class="identifier">Fetcher</span></a><span class="symbol">&lt;</span><a href="../com.kirkbushman.araw.models/-submission/index.html"><span class="identifier">Submission</span></a><span class="symbol">,</span>&nbsp;<a href="../com.kirkbushman.araw.http/-enveloped-submission/index.html"><span class="identifier">EnvelopedSubmission</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-submissions-search-fetcher/index.html">SubmissionsSearchFetcher</a></h4>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">SubmissionsSearchFetcher</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-fetcher/index.html"><span class="identifier">Fetcher</span></a><span class="symbol">&lt;</span><a href="../com.kirkbushman.araw.models/-submission/index.html"><span class="identifier">Submission</span></a><span class="symbol">,</span>&nbsp;<a href="../com.kirkbushman.araw.http/-enveloped-submission/index.html"><span class="identifier">EnvelopedSubmission</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-subreddits-fetcher/index.html">SubredditsFetcher</a></h4>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">SubredditsFetcher</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-fetcher/index.html"><span class="identifier">Fetcher</span></a><span class="symbol">&lt;</span><a href="../com.kirkbushman.araw.models.mixins/-subreddit-data/index.html"><span class="identifier">SubredditData</span></a><span class="symbol">,</span>&nbsp;<a href="../com.kirkbushman.araw.http/-enveloped-subreddit-data/index.html"><span class="identifier">EnvelopedSubredditData</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-subreddits-search-fetcher/index.html">SubredditsSearchFetcher</a></h4>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">SubredditsSearchFetcher</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-fetcher/index.html"><span class="identifier">Fetcher</span></a><span class="symbol">&lt;</span><a href="../com.kirkbushman.araw.models.mixins/-subreddit-data/index.html"><span class="identifier">SubredditData</span></a><span class="symbol">,</span>&nbsp;<a href="../com.kirkbushman.araw.http/-enveloped-subreddit-data/index.html"><span class="identifier">EnvelopedSubredditData</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

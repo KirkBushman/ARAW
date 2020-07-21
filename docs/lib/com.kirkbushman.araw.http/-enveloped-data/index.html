@@ -1,0 +1,84 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>EnvelopedData - lib</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">lib</a>&nbsp;/&nbsp;<a href="../index.html">com.kirkbushman.araw.http</a>&nbsp;/&nbsp;<a href="./index.html">EnvelopedData</a><br/>
+<br/>
+<h1>EnvelopedData</h1>
+<code><span class="identifier">@JsonClass</span><span class="symbol">(</span>true<span class="symbol">)</span> <span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">EnvelopedData</span></code>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<code><span class="identifier">EnvelopedData</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.http.EnvelopedData$<init>(com.kirkbushman.araw.http.base.EnvelopeKind, com.kirkbushman.araw.models.mixins.Thing)/kind">kind</span><span class="symbol">:</span>&nbsp;<a href="../../com.kirkbushman.araw.http.base/-envelope-kind/index.html"><span class="identifier">EnvelopeKind</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.http.EnvelopedData$<init>(com.kirkbushman.araw.http.base.EnvelopeKind, com.kirkbushman.araw.models.mixins.Thing)/data">data</span><span class="symbol">:</span>&nbsp;<a href="../../com.kirkbushman.araw.models.mixins/-thing/index.html"><span class="identifier">Thing</span></a><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="data.html">data</a></h4>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">data</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.models.mixins/-thing/index.html"><span class="identifier">Thing</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="kind.html">kind</a></h4>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">kind</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.http.base/-envelope-kind/index.html"><span class="identifier">EnvelopeKind</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="../-enveloped-contribution/index.html">EnvelopedContribution</a></h4>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">EnvelopedContribution</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">EnvelopedData</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../-enveloped-message/index.html">EnvelopedMessage</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">EnvelopedMessage</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../com.kirkbushman.araw.http.base/-envelope/index.html"><span class="identifier">Envelope</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.models/-message/index.html"><span class="identifier">Message</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="./index.html"><span class="identifier">EnvelopedData</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../-enveloped-redditor/index.html">EnvelopedRedditor</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">EnvelopedRedditor</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../com.kirkbushman.araw.http.base/-envelope/index.html"><span class="identifier">Envelope</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.models/-redditor/index.html"><span class="identifier">Redditor</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="./index.html"><span class="identifier">EnvelopedData</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../-enveloped-subreddit/index.html">EnvelopedSubreddit</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">EnvelopedSubreddit</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../com.kirkbushman.araw.http.base/-envelope/index.html"><span class="identifier">Envelope</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.models/-subreddit/index.html"><span class="identifier">Subreddit</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="./index.html"><span class="identifier">EnvelopedData</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../-enveloped-subreddit-data/index.html">EnvelopedSubredditData</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">EnvelopedSubredditData</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../com.kirkbushman.araw.http.base/-envelope/index.html"><span class="identifier">Envelope</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.models.mixins/-subreddit-data/index.html"><span class="identifier">SubredditData</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="./index.html"><span class="identifier">EnvelopedData</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

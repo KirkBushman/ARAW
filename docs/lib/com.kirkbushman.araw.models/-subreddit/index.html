@@ -1,0 +1,323 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Subreddit - lib</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">lib</a>&nbsp;/&nbsp;<a href="../index.html">com.kirkbushman.araw.models</a>&nbsp;/&nbsp;<a href="./index.html">Subreddit</a><br/>
+<br/>
+<h1>Subreddit</h1>
+<code><span class="identifier">@JsonClass</span><span class="symbol">(</span>true<span class="symbol">)</span> <span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Subreddit</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../com.kirkbushman.araw.models.mixins/-subreddit-data/index.html"><span class="identifier">SubredditData</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<code><span class="identifier">Subreddit</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/fullname">fullname</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/accountsActive">accountsActive</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/accountsActiveIsFuzzed">accountsActiveIsFuzzed</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/allowImages">allowImages</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/arePollsAllowed">arePollsAllowed</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/areVideoAllowed">areVideoAllowed</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/areVideogifsAllowed">areVideogifsAllowed</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/areEmojisEnabled">areEmojisEnabled</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/areSpoilersEnabled">areSpoilersEnabled</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/communityIcon">communityIcon</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/created">created</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/createdUtc">createdUtc</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/description">description</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/descriptionHtml">descriptionHtml</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/displayName">displayName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/displayNamePrefixed">displayNamePrefixed</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/headerImg">headerImg</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/headerImgSize">headerImgSize</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">&gt;</span><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/headerTitle">headerTitle</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/iconImg">iconImg</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/iconImgSize">iconImgSize</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">&gt;</span><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/isBanned">isBanned</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/isContributor">isContributor</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/isModerator">isModerator</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/isMuted">isMuted</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/isQuarantined">isQuarantined</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/isSubredditCrosspostable">isSubredditCrosspostable</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/isSubscriber">isSubscriber</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/isWikiEnabled">isWikiEnabled</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/lang">lang</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/over18">over18</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/publicDescription">publicDescription</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/publicDescriptionHtml">publicDescriptionHtml</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/subredditType">subredditType</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/subscribers">subscribers</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/title">title</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Subreddit$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.String, kotlin.String, kotlin.collections.List((kotlin.Int)), kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.String, kotlin.Boolean, kotlin.String, kotlin.String, kotlin.String, kotlin.Int, kotlin.String, kotlin.String)/url">url</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="accounts-active.html">accountsActive</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">accountsActive</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="accounts-active-is-fuzzed.html">accountsActiveIsFuzzed</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">accountsActiveIsFuzzed</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="allow-images.html">allowImages</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">allowImages</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="are-emojis-enabled.html">areEmojisEnabled</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">areEmojisEnabled</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="are-polls-allowed.html">arePollsAllowed</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">arePollsAllowed</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="are-spoilers-enabled.html">areSpoilersEnabled</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">areSpoilersEnabled</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="are-video-allowed.html">areVideoAllowed</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">areVideoAllowed</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="are-videogifs-allowed.html">areVideogifsAllowed</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">areVideogifsAllowed</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="community-icon.html">communityIcon</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">communityIcon</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="created.html">created</a></h4>
+</td>
+<td>
+<p>The unix-time Long representing the creation date of the item.</p>
+<code><span class="keyword">val </span><span class="identifier">created</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="created-utc.html">createdUtc</a></h4>
+</td>
+<td>
+<p>The unix-time Long representing the UTC creation date of the item.</p>
+<code><span class="keyword">val </span><span class="identifier">createdUtc</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="description.html">description</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">description</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="description-html.html">descriptionHtml</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">descriptionHtml</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="display-name.html">displayName</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">displayName</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="display-name-prefixed.html">displayNamePrefixed</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">displayNamePrefixed</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="fullname.html">fullname</a></h4>
+</td>
+<td>
+<p>Fullname of the item, e.g. "t1_c3v7f8u"</p>
+<code><span class="keyword">val </span><span class="identifier">fullname</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="header-img.html">headerImg</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">headerImg</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="header-img-size.html">headerImgSize</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">headerImgSize</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">&gt;</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="header-title.html">headerTitle</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">headerTitle</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="icon-img.html">iconImg</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">iconImg</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="icon-img-size.html">iconImgSize</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">iconImgSize</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">&gt;</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="id.html">id</a></h4>
+</td>
+<td>
+<p>this item identifier, e.g. "8xwlg"</p>
+<code><span class="keyword">val </span><span class="identifier">id</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="is-banned.html">isBanned</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">isBanned</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="is-contributor.html">isContributor</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">isContributor</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="is-moderator.html">isModerator</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">isModerator</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="is-muted.html">isMuted</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">isMuted</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="is-quarantined.html">isQuarantined</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">isQuarantined</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="is-subreddit-crosspostable.html">isSubredditCrosspostable</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">isSubredditCrosspostable</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="is-subscriber.html">isSubscriber</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">isSubscriber</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="is-wiki-enabled.html">isWikiEnabled</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">isWikiEnabled</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="lang.html">lang</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">lang</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="over18.html">over18</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">over18</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="public-description.html">publicDescription</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">publicDescription</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="public-description-html.html">publicDescriptionHtml</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">publicDescriptionHtml</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="subreddit-type.html">subredditType</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">subredditType</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="subscribers.html">subscribers</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">subscribers</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="title.html">title</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">title</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="url.html">url</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">url</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.utils/created-date.html">createdDate</a></h4>
+</td>
+<td>
+<p>Useful extension to convert the creation date property,
+from the Long unixtime, to a more practical Date object.</p>
+<code><span class="keyword">val </span><a href="../../com.kirkbushman.araw.models.mixins/-created/index.html"><span class="identifier">Created</span></a><span class="symbol">.</span><span class="identifier">createdDate</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/6/docs/api/java/util/Date.html"><span class="identifier">Date</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.utils/created-utc-date.html">createdUtcDate</a></h4>
+</td>
+<td>
+<p>Useful extension to convert the utc creation date property,
+from the Long unixtime, to a more practical Date object.</p>
+<code><span class="keyword">val </span><a href="../../com.kirkbushman.araw.models.mixins/-created/index.html"><span class="identifier">Created</span></a><span class="symbol">.</span><span class="identifier">createdUtcDate</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/6/docs/api/java/util/Date.html"><span class="identifier">Date</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

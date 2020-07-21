@@ -14,7 +14,7 @@ import kotlinx.android.parcel.Parcelize
  * This class represents the message a user can send or receive.
  * Messages are grouped in the user inbox.
  *
- * @property id This item identifier, e.g. "8xwlg"
+ * @property id This message identifier, e.g. "8xwlg"
  *
  * @property fullname Fullname of message, e.g. "t1_c3v7f8u"
  *
@@ -53,9 +53,8 @@ import kotlinx.android.parcel.Parcelize
  *
  * @property isUnread if the message is still unread.
  *
- * @property likes how the logged-in user has voted on the comment,
- * True = upvoted, False = downvoted, null = no vote
- * NOTE: use the extensions to have a practical enum class.
+ * @property numComments number of the comments in the submission,
+ * which is the context of this message.
  *
  * @property parentId null if no parent is attached.
  *
@@ -64,6 +63,8 @@ import kotlinx.android.parcel.Parcelize
  * @property subreddit null if not a comment.
  *
  * @property subredditNamePrefixed subreddit name with the /r/ prefix, null if not a comment.
+ *
+ * @property type can be "comment_type", "post_type", "unknown"
  *
  */
 @JsonClass(generateAdapter = true)
@@ -131,6 +132,9 @@ data class Message(
     val subreddit: String?,
 
     @Json(name = "subreddit_name_prefixed")
-    val subredditNamePrefixed: String?
+    val subredditNamePrefixed: String?,
+
+    @Json(name = "type")
+    val type: String
 
 ) : Thing, Votable, Created, Distinguishable, Replyable, Parcelable

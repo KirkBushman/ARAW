@@ -1,0 +1,163 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Envelope - lib</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">lib</a>&nbsp;/&nbsp;<a href="../index.html">com.kirkbushman.araw.http.base</a>&nbsp;/&nbsp;<a href="./index.html">Envelope</a><br/>
+<br/>
+<h1>Envelope</h1>
+<code><span class="keyword">interface </span><span class="identifier">Envelope</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="data.html">data</a></h4>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">data</span><span class="symbol">: </span><span class="identifier">T</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="kind.html">kind</a></h4>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">kind</span><span class="symbol">: </span><a href="../-envelope-kind/index.html"><span class="identifier">EnvelopeKind</span></a><span class="symbol">?</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.http/-enveloped-comment/index.html">EnvelopedComment</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">EnvelopedComment</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Envelope</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.models/-comment/index.html"><span class="identifier">Comment</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="../../com.kirkbushman.araw.http/-enveloped-comment-data/index.html"><span class="identifier">EnvelopedCommentData</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.http/-enveloped-comment-data-listing/index.html">EnvelopedCommentDataListing</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">EnvelopedCommentDataListing</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Envelope</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.http.listings/-comment-data-listing/index.html"><span class="identifier">CommentDataListing</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.http/-enveloped-comment-listing/index.html">EnvelopedCommentListing</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">EnvelopedCommentListing</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Envelope</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.http.listings/-comment-listing/index.html"><span class="identifier">CommentListing</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.http/-enveloped-contribution-listing/index.html">EnvelopedContributionListing</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">EnvelopedContributionListing</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Envelope</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.http.listings/-contribution-listing/index.html"><span class="identifier">ContributionListing</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.http/-enveloped-message/index.html">EnvelopedMessage</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">EnvelopedMessage</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Envelope</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.models/-message/index.html"><span class="identifier">Message</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="../../com.kirkbushman.araw.http/-enveloped-data/index.html"><span class="identifier">EnvelopedData</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.http/-enveloped-message-listing/index.html">EnvelopedMessageListing</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">EnvelopedMessageListing</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Envelope</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.http.listings/-message-listing/index.html"><span class="identifier">MessageListing</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.http/-enveloped-more-comment/index.html">EnvelopedMoreComment</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">EnvelopedMoreComment</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Envelope</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.models/-more-comments/index.html"><span class="identifier">MoreComments</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="../../com.kirkbushman.araw.http/-enveloped-comment-data/index.html"><span class="identifier">EnvelopedCommentData</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.http/-enveloped-redditor/index.html">EnvelopedRedditor</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">EnvelopedRedditor</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Envelope</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.models/-redditor/index.html"><span class="identifier">Redditor</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="../../com.kirkbushman.araw.http/-enveloped-data/index.html"><span class="identifier">EnvelopedData</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.http/-enveloped-redditor-listing/index.html">EnvelopedRedditorListing</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">EnvelopedRedditorListing</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Envelope</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.http.listings/-redditor-listing/index.html"><span class="identifier">RedditorListing</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.http/-enveloped-submission/index.html">EnvelopedSubmission</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">EnvelopedSubmission</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Envelope</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.models/-submission/index.html"><span class="identifier">Submission</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="../../com.kirkbushman.araw.http/-enveloped-contribution/index.html"><span class="identifier">EnvelopedContribution</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.http/-enveloped-submission-listing/index.html">EnvelopedSubmissionListing</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">EnvelopedSubmissionListing</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Envelope</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.http.listings/-submission-listing/index.html"><span class="identifier">SubmissionListing</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.http/-enveloped-subreddit/index.html">EnvelopedSubreddit</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">EnvelopedSubreddit</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Envelope</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.models/-subreddit/index.html"><span class="identifier">Subreddit</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="../../com.kirkbushman.araw.http/-enveloped-data/index.html"><span class="identifier">EnvelopedData</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.http/-enveloped-subreddit-data/index.html">EnvelopedSubredditData</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">EnvelopedSubredditData</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Envelope</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.models.mixins/-subreddit-data/index.html"><span class="identifier">SubredditData</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="../../com.kirkbushman.araw.http/-enveloped-data/index.html"><span class="identifier">EnvelopedData</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.http/-enveloped-subreddit-data-listing/index.html">EnvelopedSubredditDataListing</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">EnvelopedSubredditDataListing</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Envelope</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.http.listings/-subreddit-data-listing/index.html"><span class="identifier">SubredditDataListing</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.http/-enveloped-subreddit-listing/index.html">EnvelopedSubredditListing</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">EnvelopedSubredditListing</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Envelope</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.http.listings/-subreddit-listing/index.html"><span class="identifier">SubredditListing</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.http/-enveloped-trophy/index.html">EnvelopedTrophy</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">EnvelopedTrophy</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Envelope</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.models/-trophy/index.html"><span class="identifier">Trophy</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.http/-enveloped-wiki-page/index.html">EnvelopedWikiPage</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">EnvelopedWikiPage</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Envelope</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.models/-wiki-page/index.html"><span class="identifier">WikiPage</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.http/-enveloped-wiki-revision-listing/index.html">EnvelopedWikiRevisionListing</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">EnvelopedWikiRevisionListing</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Envelope</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.http.listings/-wiki-revision-listing/index.html"><span class="identifier">WikiRevisionListing</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

@@ -1,0 +1,103 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>MessagesClient - lib</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">lib</a>&nbsp;/&nbsp;<a href="../index.html">com.kirkbushman.araw.clients</a>&nbsp;/&nbsp;<a href="./index.html">MessagesClient</a><br/>
+<br/>
+<h1>MessagesClient</h1>
+<code><span class="keyword">class </span><span class="identifier">MessagesClient</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-base-reddit-client/index.html"><span class="identifier">BaseRedditClient</span></a></code>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<code><span class="identifier">MessagesClient</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.clients.MessagesClient$<init>(com.kirkbushman.araw.RedditApi, kotlin.Function0((java.util.HashMap((kotlin.String, )))))/api">api</span><span class="symbol">:</span>&nbsp;<a href="../../com.kirkbushman.araw/-reddit-api/index.html"><span class="identifier">RedditApi</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.MessagesClient$<init>(com.kirkbushman.araw.RedditApi, kotlin.Function0((java.util.HashMap((kotlin.String, )))))/getHeaderMap">getHeaderMap</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="comments-replies.html">commentsReplies</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">commentsReplies</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.clients.MessagesClient$commentsReplies(kotlin.Int, kotlin.Boolean)/limit">limit</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Fetcher.DEFAULT_LIMIT<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.MessagesClient$commentsReplies(kotlin.Int, kotlin.Boolean)/disableLegacyEncoding">disableLegacyEncoding</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.fetcher/-inbox-fetcher/index.html"><span class="identifier">InboxFetcher</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="delete-message.html">deleteMessage</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">deleteMessage</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.clients.MessagesClient$deleteMessage(com.kirkbushman.araw.models.Message)/message">message</span><span class="symbol">:</span>&nbsp;<a href="../../com.kirkbushman.araw.models/-message/index.html"><span class="identifier">Message</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">deleteMessage</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.clients.MessagesClient$deleteMessage(kotlin.String)/fullname">fullname</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="inbox.html">inbox</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">inbox</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.clients.MessagesClient$inbox(kotlin.Int, kotlin.Boolean)/limit">limit</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Fetcher.DEFAULT_LIMIT<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.MessagesClient$inbox(kotlin.Int, kotlin.Boolean)/disableLegacyEncoding">disableLegacyEncoding</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.fetcher/-inbox-fetcher/index.html"><span class="identifier">InboxFetcher</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="mark-all-as-read.html">markAllAsRead</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">markAllAsRead</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.clients.MessagesClient$markAllAsRead(kotlin.collections.List((com.kirkbushman.araw.models.Message)))/filters">filters</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.models/-message/index.html"><span class="identifier">Message</span></a><span class="symbol">&gt;</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">markAllAsRead</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.clients.MessagesClient$markAllAsRead(kotlin.String)/filters">filters</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="mark-as-read.html">markAsRead</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">markAsRead</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.clients.MessagesClient$markAsRead(kotlin.Boolean, com.kirkbushman.araw.models.Message)/read">read</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.MessagesClient$markAsRead(kotlin.Boolean, com.kirkbushman.araw.models.Message)/message">message</span><span class="symbol">:</span>&nbsp;<a href="../../com.kirkbushman.araw.models/-message/index.html"><span class="identifier">Message</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">markAsRead</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.clients.MessagesClient$markAsRead(kotlin.Boolean, kotlin.String)/read">read</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.MessagesClient$markAsRead(kotlin.Boolean, kotlin.String)/fullname">fullname</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="mentions.html">mentions</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">mentions</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.clients.MessagesClient$mentions(kotlin.Int, kotlin.Boolean)/limit">limit</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Fetcher.DEFAULT_LIMIT<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.MessagesClient$mentions(kotlin.Int, kotlin.Boolean)/disableLegacyEncoding">disableLegacyEncoding</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.fetcher/-inbox-fetcher/index.html"><span class="identifier">InboxFetcher</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="messages.html">messages</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">messages</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.clients.MessagesClient$messages(kotlin.Int, kotlin.Boolean)/limit">limit</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Fetcher.DEFAULT_LIMIT<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.MessagesClient$messages(kotlin.Int, kotlin.Boolean)/disableLegacyEncoding">disableLegacyEncoding</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.fetcher/-inbox-fetcher/index.html"><span class="identifier">InboxFetcher</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="self-replies.html">selfReplies</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">selfReplies</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.clients.MessagesClient$selfReplies(kotlin.Int, kotlin.Boolean)/limit">limit</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Fetcher.DEFAULT_LIMIT<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.MessagesClient$selfReplies(kotlin.Int, kotlin.Boolean)/disableLegacyEncoding">disableLegacyEncoding</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.fetcher/-inbox-fetcher/index.html"><span class="identifier">InboxFetcher</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="sent.html">sent</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">sent</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.clients.MessagesClient$sent(kotlin.Int, kotlin.Boolean)/limit">limit</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Fetcher.DEFAULT_LIMIT<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.MessagesClient$sent(kotlin.Int, kotlin.Boolean)/disableLegacyEncoding">disableLegacyEncoding</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.fetcher/-inbox-fetcher/index.html"><span class="identifier">InboxFetcher</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="unread.html">unread</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">unread</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.clients.MessagesClient$unread(kotlin.Int, kotlin.Boolean)/limit">limit</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Fetcher.DEFAULT_LIMIT<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.clients.MessagesClient$unread(kotlin.Int, kotlin.Boolean)/disableLegacyEncoding">disableLegacyEncoding</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.fetcher/-inbox-fetcher/index.html"><span class="identifier">InboxFetcher</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

@@ -1,0 +1,263 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Message - lib</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">lib</a>&nbsp;/&nbsp;<a href="../index.html">com.kirkbushman.araw.models</a>&nbsp;/&nbsp;<a href="./index.html">Message</a><br/>
+<br/>
+<h1>Message</h1>
+<code><span class="identifier">@JsonClass</span><span class="symbol">(</span>true<span class="symbol">)</span> <span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Message</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../com.kirkbushman.araw.models.mixins/-thing/index.html"><span class="identifier">Thing</span></a><span class="symbol">, </span><a href="../../com.kirkbushman.araw.models.mixins/-votable/index.html"><span class="identifier">Votable</span></a><span class="symbol">, </span><a href="../../com.kirkbushman.araw.models.mixins/-created/index.html"><span class="identifier">Created</span></a><span class="symbol">, </span><a href="../../com.kirkbushman.araw.models.mixins/-distinguishable/index.html"><span class="identifier">Distinguishable</span></a><span class="symbol">, </span><a href="../../com.kirkbushman.araw.models.mixins/-replyable/index.html"><span class="identifier">Replyable</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code>
+<p>This class represents the message a user can send or receive.
+Messages are grouped in the user inbox.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>This class represents the message a user can send or receive.
+Messages are grouped in the user inbox.</p>
+<code><span class="identifier">Message</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.models.Message$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.Long, kotlin.String, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, kotlin.String, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Message$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.Long, kotlin.String, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, kotlin.String, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/fullname">fullname</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Message$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.Long, kotlin.String, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, kotlin.String, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/author">author</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Message$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.Long, kotlin.String, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, kotlin.String, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/body">body</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Message$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.Long, kotlin.String, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, kotlin.String, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/bodyHtml">bodyHtml</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Message$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.Long, kotlin.String, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, kotlin.String, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/context">context</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Message$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.Long, kotlin.String, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, kotlin.String, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/created">created</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Message$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.Long, kotlin.String, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, kotlin.String, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/createdUtc">createdUtc</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Message$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.Long, kotlin.String, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, kotlin.String, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/dest">dest</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Message$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.Long, kotlin.String, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, kotlin.String, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/distinguishedRaw">distinguishedRaw</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Message$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.Long, kotlin.String, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, kotlin.String, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/firstMessage">firstMessage</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Message$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.Long, kotlin.String, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, kotlin.String, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/firstMessageName">firstMessageName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Message$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.Long, kotlin.String, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, kotlin.String, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/isComment">isComment</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Message$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.Long, kotlin.String, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, kotlin.String, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/isUnread">isUnread</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Message$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.Long, kotlin.String, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, kotlin.String, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/likes">likes</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Message$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.Long, kotlin.String, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, kotlin.String, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/numComments">numComments</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Message$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.Long, kotlin.String, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, kotlin.String, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/parentId">parentId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Message$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.Long, kotlin.String, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, kotlin.String, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/score">score</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Message$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.Long, kotlin.String, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, kotlin.String, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/subject">subject</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Message$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.Long, kotlin.String, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, kotlin.String, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/subreddit">subreddit</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Message$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.Long, kotlin.String, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, kotlin.String, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/subredditNamePrefixed">subredditNamePrefixed</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.Message$<init>(kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.String, kotlin.Long, kotlin.Long, kotlin.String, kotlin.String, kotlin.Long, kotlin.String, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean, kotlin.Int, kotlin.String, kotlin.Int, kotlin.String, kotlin.String, kotlin.String, kotlin.String)/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="author.html">author</a></h4>
+</td>
+<td>
+<p>Name of the message's author</p>
+<code><span class="keyword">val </span><span class="identifier">author</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="body.html">body</a></h4>
+</td>
+<td>
+<p>The raw text. this is the unformatted text which includes
+the raw markup characters such as ** for bold. &lt;, &gt;, and &amp; are escaped.</p>
+<code><span class="keyword">val </span><span class="identifier">body</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="body-html.html">bodyHtml</a></h4>
+</td>
+<td>
+<p>The formatted HTML text as displayed on reddit. For example,
+text that is emphasised by * will now have  tags wrapping it.
+Additionally, bullets and numbered lists will now be in HTML list format.
+NOTE: The HTML string will be escaped. You must unescape to get the raw HTML.</p>
+<code><span class="keyword">val </span><span class="identifier">bodyHtml</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="context.html">context</a></h4>
+</td>
+<td>
+<p>the message is a comment, then the permalink to the comment
+with ?context=3 appended to the end, otherwise an empty string</p>
+<code><span class="keyword">val </span><span class="identifier">context</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="created.html">created</a></h4>
+</td>
+<td>
+<p>The unix-time Long representing the creation date of the message.</p>
+<code><span class="keyword">val </span><span class="identifier">created</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="created-utc.html">createdUtc</a></h4>
+</td>
+<td>
+<p>The unix-time Long representing the UTC creation date of the message.</p>
+<code><span class="keyword">val </span><span class="identifier">createdUtc</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="dest.html">dest</a></h4>
+</td>
+<td>
+<p>The destination of this message.</p>
+<code><span class="keyword">val </span><span class="identifier">dest</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="distinguished-raw.html">distinguishedRaw</a></h4>
+</td>
+<td>
+<p>to allow determining whether they have been distinguished by moderators/admins.
+null = not distinguished.
+moderator = the green.
+admin = the red.
+special = various other special distinguishes.
+NOTE: use the extensions in Distinguishable to have an enum representation.</p>
+<code><span class="keyword">val </span><span class="identifier">distinguishedRaw</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="first-message.html">firstMessage</a></h4>
+</td>
+<td>
+<p>either null or the first message's ID represented as base 10 (wtf).</p>
+<code><span class="keyword">val </span><span class="identifier">firstMessage</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="first-message-name.html">firstMessageName</a></h4>
+</td>
+<td>
+<p>either null or the first message's fullname.</p>
+<code><span class="keyword">val </span><span class="identifier">firstMessageName</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="fullname.html">fullname</a></h4>
+</td>
+<td>
+<p>Fullname of message, e.g. "t1_c3v7f8u"</p>
+<code><span class="keyword">val </span><span class="identifier">fullname</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="id.html">id</a></h4>
+</td>
+<td>
+<p>This message identifier, e.g. "8xwlg"</p>
+<code><span class="keyword">val </span><span class="identifier">id</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="is-comment.html">isComment</a></h4>
+</td>
+<td>
+<p>if the message relates to a comment under
+your submission or a reply to the current logged in comment.</p>
+<code><span class="keyword">val </span><span class="identifier">isComment</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="is-unread.html">isUnread</a></h4>
+</td>
+<td>
+<p>if the message is still unread.</p>
+<code><span class="keyword">val </span><span class="identifier">isUnread</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="likes.html">likes</a></h4>
+</td>
+<td>
+<p>how the logged-in user has voted on the item,
+True = upvoted, False = downvoted, null = no vote
+NOTE: use the extensions to have a practical enum class.</p>
+<code><span class="keyword">val </span><span class="identifier">likes</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="num-comments.html">numComments</a></h4>
+</td>
+<td>
+<p>number of the comments in the submission,
+which is the context of this message.</p>
+<code><span class="keyword">val </span><span class="identifier">numComments</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="parent-id.html">parentId</a></h4>
+</td>
+<td>
+<p>null if no parent is attached.</p>
+<code><span class="keyword">val </span><span class="identifier">parentId</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="score.html">score</a></h4>
+</td>
+<td>
+<p>the net-score of the item.</p>
+<code><span class="keyword">val </span><span class="identifier">score</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="subject.html">subject</a></h4>
+</td>
+<td>
+<p>subject of the message.</p>
+<code><span class="keyword">val </span><span class="identifier">subject</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="subreddit.html">subreddit</a></h4>
+</td>
+<td>
+<p>null if not a comment.</p>
+<code><span class="keyword">val </span><span class="identifier">subreddit</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="subreddit-name-prefixed.html">subredditNamePrefixed</a></h4>
+</td>
+<td>
+<p>subreddit name with the /r/ prefix, null if not a comment.</p>
+<code><span class="keyword">val </span><span class="identifier">subredditNamePrefixed</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="type.html">type</a></h4>
+</td>
+<td>
+<p>can be "comment_type", "post_type", "unknown"</p>
+<code><span class="keyword">val </span><span class="identifier">type</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.utils/created-date.html">createdDate</a></h4>
+</td>
+<td>
+<p>Useful extension to convert the creation date property,
+from the Long unixtime, to a more practical Date object.</p>
+<code><span class="keyword">val </span><a href="../../com.kirkbushman.araw.models.mixins/-created/index.html"><span class="identifier">Created</span></a><span class="symbol">.</span><span class="identifier">createdDate</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/6/docs/api/java/util/Date.html"><span class="identifier">Date</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.utils/created-utc-date.html">createdUtcDate</a></h4>
+</td>
+<td>
+<p>Useful extension to convert the utc creation date property,
+from the Long unixtime, to a more practical Date object.</p>
+<code><span class="keyword">val </span><a href="../../com.kirkbushman.araw.models.mixins/-created/index.html"><span class="identifier">Created</span></a><span class="symbol">.</span><span class="identifier">createdUtcDate</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/6/docs/api/java/util/Date.html"><span class="identifier">Date</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.utils/distinguished.html">distinguished</a></h4>
+</td>
+<td>
+<p>Useful extension to map to an enum.</p>
+<code><span class="keyword">val </span><a href="../../com.kirkbushman.araw.models.mixins/-distinguishable/index.html"><span class="identifier">Distinguishable</span></a><span class="symbol">.</span><span class="identifier">distinguished</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.models.general/-distinguished/index.html"><span class="identifier">Distinguished</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.utils/vote.html">vote</a></h4>
+</td>
+<td>
+<p>Useful extension to map to an enum.</p>
+<code><span class="keyword">val </span><a href="../../com.kirkbushman.araw.models.mixins/-votable/index.html"><span class="identifier">Votable</span></a><span class="symbol">.</span><span class="identifier">vote</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.models.general/-vote/index.html"><span class="identifier">Vote</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

@@ -1,0 +1,110 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>RedditClient - lib</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">lib</a>&nbsp;/&nbsp;<a href="../index.html">com.kirkbushman.araw</a>&nbsp;/&nbsp;<a href="./index.html">RedditClient</a><br/>
+<br/>
+<h1>RedditClient</h1>
+<code><span class="keyword">class </span><span class="identifier">RedditClient</span></code>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<code><span class="identifier">RedditClient</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.RedditClient$<init>(com.kirkbushman.auth.models.TokenBearer, kotlin.Boolean)/bearer">bearer</span><span class="symbol">:</span>&nbsp;<span class="identifier">TokenBearer</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.RedditClient$<init>(com.kirkbushman.auth.models.TokenBearer, kotlin.Boolean)/logging">logging</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="accounts-client.html">accountsClient</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">accountsClient</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.clients/-accounts-client/index.html"><span class="identifier">AccountsClient</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="contributions-client.html">contributionsClient</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">contributionsClient</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.clients/-contributions-client/index.html"><span class="identifier">ContributionsClient</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="messages-client.html">messagesClient</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">messagesClient</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.clients/-messages-client/index.html"><span class="identifier">MessagesClient</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="redditors-client.html">redditorsClient</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">redditorsClient</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.clients/-redditors-client/index.html"><span class="identifier">RedditorsClient</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="subreddits-client.html">subredditsClient</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">subredditsClient</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.clients/-subreddits-client/index.html"><span class="identifier">SubredditsClient</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="wikis-client.html">wikisClient</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">wikisClient</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.clients/-wikis-client/index.html"><span class="identifier">WikisClient</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="get-current-user.html">getCurrentUser</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getCurrentUser</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.models/-me/index.html"><span class="identifier">Me</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="search-subreddits.html">searchSubreddits</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">searchSubreddits</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.RedditClient$searchSubreddits(kotlin.String, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean)/query">query</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.RedditClient$searchSubreddits(kotlin.String, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean)/exact">exact</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.RedditClient$searchSubreddits(kotlin.String, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean)/includeOver18">includeOver18</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.RedditClient$searchSubreddits(kotlin.String, kotlin.Boolean, kotlin.Boolean, kotlin.Boolean)/includeUnadvertisable">includeUnadvertisable</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.models/-subreddit-search-result/index.html"><span class="identifier">SubredditSearchResult</span></a><span class="symbol">?</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="get-api.html">getApi</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getApi</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.RedditClient.Companion$getApi(kotlin.Boolean)/logging">logging</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span><span class="symbol">: </span><a href="../-reddit-api/index.html"><span class="identifier">RedditApi</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-retrofit.html">getRetrofit</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getRetrofit</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.RedditClient.Companion$getRetrofit(kotlin.Boolean)/logging">logging</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Retrofit</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

@@ -1,0 +1,145 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>com.kirkbushman.araw.utils - lib</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">lib</a>&nbsp;/&nbsp;<a href="./index.html">com.kirkbushman.araw.utils</a><br/>
+<br/>
+<h2>Package com.kirkbushman.araw.utils</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-comment-data-iterable/index.html">CommentDataIterable</a></h4>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">CommentDataIterable</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html"><span class="identifier">Iterable</span></a><span class="symbol">&lt;</span><a href="../com.kirkbushman.araw.models.mixins/-comment-data/index.html"><span class="identifier">CommentData</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-comment-data-iterator/index.html">CommentDataIterator</a></h4>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">CommentDataIterator</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterator/index.html"><span class="identifier">Iterator</span></a><span class="symbol">&lt;</span><a href="../com.kirkbushman.araw.models.mixins/-comment-data/index.html"><span class="identifier">CommentData</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-null-replies-interceptor/index.html">NullRepliesInterceptor</a></h4>
+</td>
+<td>
+<code><span class="keyword">object </span><span class="identifier">NullRepliesInterceptor</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Interceptor</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-utils/index.html">Utils</a></h4>
+</td>
+<td>
+<code><span class="keyword">object </span><span class="identifier">Utils</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Extensions for External Classes</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="kotlin.-array/index.html">kotlin.Array</a></h4>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="kotlin.collections.-collection/index.html">kotlin.collections.Collection</a></h4>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<h4><a href="kotlin.collections.-list/index.html">kotlin.collections.List</a></h4>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="added-date.html">addedDate</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><a href="../com.kirkbushman.araw.models/-friend/index.html"><span class="identifier">Friend</span></a><span class="symbol">.</span><span class="identifier">addedDate</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/6/docs/api/java/util/Date.html"><span class="identifier">Date</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="created-date.html">createdDate</a></h4>
+</td>
+<td>
+<p>Useful extension to convert the creation date property,
+from the Long unixtime, to a more practical Date object.</p>
+<code><span class="keyword">val </span><a href="../com.kirkbushman.araw.models.mixins/-created/index.html"><span class="identifier">Created</span></a><span class="symbol">.</span><span class="identifier">createdDate</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/6/docs/api/java/util/Date.html"><span class="identifier">Date</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="created-utc-date.html">createdUtcDate</a></h4>
+</td>
+<td>
+<p>Useful extension to convert the utc creation date property,
+from the Long unixtime, to a more practical Date object.</p>
+<code><span class="keyword">val </span><a href="../com.kirkbushman.araw.models.mixins/-created/index.html"><span class="identifier">Created</span></a><span class="symbol">.</span><span class="identifier">createdUtcDate</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/6/docs/api/java/util/Date.html"><span class="identifier">Date</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="distinguished.html">distinguished</a></h4>
+</td>
+<td>
+<p>Useful extension to map to an enum.</p>
+<code><span class="keyword">val </span><a href="../com.kirkbushman.araw.models.mixins/-distinguishable/index.html"><span class="identifier">Distinguishable</span></a><span class="symbol">.</span><span class="identifier">distinguished</span><span class="symbol">: </span><a href="../com.kirkbushman.araw.models.general/-distinguished/index.html"><span class="identifier">Distinguished</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="edited.html">edited</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><a href="../com.kirkbushman.araw.models.mixins/-editable/index.html"><span class="identifier">Editable</span></a><span class="symbol">.</span><span class="identifier">edited</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/6/docs/api/java/util/Date.html"><span class="identifier">Date</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="has-edited.html">hasEdited</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><a href="../com.kirkbushman.araw.models.mixins/-editable/index.html"><span class="identifier">Editable</span></a><span class="symbol">.</span><span class="identifier">hasEdited</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="timestamp-date.html">timestampDate</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><a href="../com.kirkbushman.araw.models/-wiki-revision/index.html"><span class="identifier">WikiRevision</span></a><span class="symbol">.</span><span class="identifier">timestampDate</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/6/docs/api/java/util/Date.html"><span class="identifier">Date</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="user-date.html">userDate</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><a href="../com.kirkbushman.araw.models/-user/index.html"><span class="identifier">User</span></a><span class="symbol">.</span><span class="identifier">userDate</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/6/docs/api/java/util/Date.html"><span class="identifier">Date</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="vote.html">vote</a></h4>
+</td>
+<td>
+<p>Useful extension to map to an enum.</p>
+<code><span class="keyword">val </span><a href="../com.kirkbushman.araw.models.mixins/-votable/index.html"><span class="identifier">Votable</span></a><span class="symbol">.</span><span class="identifier">vote</span><span class="symbol">: </span><a href="../com.kirkbushman.araw.models.general/-vote/index.html"><span class="identifier">Vote</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

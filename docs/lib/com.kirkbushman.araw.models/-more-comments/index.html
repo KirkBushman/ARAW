@@ -1,0 +1,119 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>MoreComments - lib</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">lib</a>&nbsp;/&nbsp;<a href="../index.html">com.kirkbushman.araw.models</a>&nbsp;/&nbsp;<a href="./index.html">MoreComments</a><br/>
+<br/>
+<h1>MoreComments</h1>
+<code><span class="identifier">@JsonClass</span><span class="symbol">(</span>true<span class="symbol">)</span> <span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">MoreComments</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../com.kirkbushman.araw.models.mixins/-comment-data/index.html"><span class="identifier">CommentData</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code>
+<p>This class is used to load more comments in the tree,
+when a comment or a group of comment is too deep.</p>
+<p>Instances of this class along with the class MoreComments is organized
+in a tree structure, that composes a Submission comments section.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>This class is used to load more comments in the tree,
+when a comment or a group of comment is too deep.</p>
+<code><span class="identifier">MoreComments</span><span class="symbol">(</span><span class="identifier" id="com.kirkbushman.araw.models.MoreComments$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Int, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.String, kotlin.collections.List((com.kirkbushman.araw.models.mixins.CommentData)), kotlin.Boolean, kotlin.Int)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.MoreComments$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Int, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.String, kotlin.collections.List((com.kirkbushman.araw.models.mixins.CommentData)), kotlin.Boolean, kotlin.Int)/fullname">fullname</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.MoreComments$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Int, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.String, kotlin.collections.List((com.kirkbushman.araw.models.mixins.CommentData)), kotlin.Boolean, kotlin.Int)/count">count</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.MoreComments$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Int, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.String, kotlin.collections.List((com.kirkbushman.araw.models.mixins.CommentData)), kotlin.Boolean, kotlin.Int)/depth">depth</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.MoreComments$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Int, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.String, kotlin.collections.List((com.kirkbushman.araw.models.mixins.CommentData)), kotlin.Boolean, kotlin.Int)/parentId">parentId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.MoreComments$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Int, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.String, kotlin.collections.List((com.kirkbushman.araw.models.mixins.CommentData)), kotlin.Boolean, kotlin.Int)/children">children</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.MoreComments$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Int, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.String, kotlin.collections.List((com.kirkbushman.araw.models.mixins.CommentData)), kotlin.Boolean, kotlin.Int)/parentFullname">parentFullname</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a>&nbsp;<span class="symbol">=</span>&nbsp;parentId<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.MoreComments$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Int, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.String, kotlin.collections.List((com.kirkbushman.araw.models.mixins.CommentData)), kotlin.Boolean, kotlin.Int)/replies">replies</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.models.mixins/-comment-data/index.html"><span class="identifier">CommentData</span></a><span class="symbol">&gt;</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.MoreComments$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Int, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.String, kotlin.collections.List((com.kirkbushman.araw.models.mixins.CommentData)), kotlin.Boolean, kotlin.Int)/hasReplies">hasReplies</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="com.kirkbushman.araw.models.MoreComments$<init>(kotlin.String, kotlin.String, kotlin.Int, kotlin.Int, kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.String, kotlin.collections.List((com.kirkbushman.araw.models.mixins.CommentData)), kotlin.Boolean, kotlin.Int)/repliesSize">repliesSize</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;0<span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="children.html">children</a></h4>
+</td>
+<td>
+<p>A list of String ids that are the additional things that
+can be downloaded but are not because there are too many to list.</p>
+<code><span class="keyword">val </span><span class="identifier">children</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="count.html">count</a></h4>
+</td>
+<td>
+<p>number of comments to load.</p>
+<code><span class="keyword">val </span><span class="identifier">count</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="depth.html">depth</a></h4>
+</td>
+<td>
+<p>An integer representing the nested level of this node.</p>
+<code><span class="keyword">val </span><span class="identifier">depth</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="fullname.html">fullname</a></h4>
+</td>
+<td>
+<p>Fullname of comment, e.g. "t1_c3v7f8u"</p>
+<code><span class="keyword">val </span><span class="identifier">fullname</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="has-replies.html">hasReplies</a></h4>
+</td>
+<td>
+<p>always false</p>
+<code><span class="keyword">val </span><span class="identifier">hasReplies</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="id.html">id</a></h4>
+</td>
+<td>
+<p>This item identifier, e.g. "8xwlg"</p>
+<code><span class="keyword">val </span><span class="identifier">id</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="parent-fullname.html">parentFullname</a></h4>
+</td>
+<td>
+<p>fullname of the thing this comment is a reply to,
+either the link or a comment in it.</p>
+<code><span class="keyword">val </span><span class="identifier">parentFullname</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="parent-id.html">parentId</a></h4>
+</td>
+<td>
+<p>ID of the thing this comment is a reply to,
+either the link or a comment in it.</p>
+<code><span class="keyword">val </span><span class="identifier">parentId</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="replies.html">replies</a></h4>
+</td>
+<td>
+<p>always null</p>
+<code><span class="keyword">val </span><span class="identifier">replies</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../com.kirkbushman.araw.models.mixins/-comment-data/index.html"><span class="identifier">CommentData</span></a><span class="symbol">&gt;</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="replies-size.html">repliesSize</a></h4>
+</td>
+<td>
+<p>always 0</p>
+<code><span class="keyword">val </span><span class="identifier">repliesSize</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

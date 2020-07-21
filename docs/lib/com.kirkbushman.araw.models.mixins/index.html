@@ -1,0 +1,100 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>com.kirkbushman.araw.models.mixins - lib</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">lib</a>&nbsp;/&nbsp;<a href="./index.html">com.kirkbushman.araw.models.mixins</a><br/>
+<br/>
+<h2>Package com.kirkbushman.araw.models.mixins</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-comment-data/index.html">CommentData</a></h4>
+</td>
+<td>
+<p>Base interface for the elements in the comments section of a submission.</p>
+<code><span class="keyword">interface </span><span class="identifier">CommentData</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-contribution/index.html"><span class="identifier">Contribution</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-contribution/index.html">Contribution</a></h4>
+</td>
+<td>
+<p>Base interface for all the data submitted by a user.
+e.g. Submission, Comment, Message</p>
+<code><span class="keyword">interface </span><span class="identifier">Contribution</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-thing/index.html"><span class="identifier">Thing</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-created/index.html">Created</a></h4>
+</td>
+<td>
+<p>Base interface for keeping track of when a Thing was created.</p>
+<code><span class="keyword">interface </span><span class="identifier">Created</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-distinguishable/index.html">Distinguishable</a></h4>
+</td>
+<td>
+<p>Base interface for all items that can be distingushed
+by moderators, admins or else.</p>
+<code><span class="keyword">interface </span><span class="identifier">Distinguishable</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-editable/index.html">Editable</a></h4>
+</td>
+<td>
+<p>Base interface to keep track of when a Thing was edited.</p>
+<code><span class="keyword">interface </span><span class="identifier">Editable</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-gildable/index.html">Gildable</a></h4>
+</td>
+<td>
+<p>Base interface for all the item that can be given Gildings</p>
+<code><span class="keyword">interface </span><span class="identifier">Gildable</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-replyable/index.html">Replyable</a></h4>
+</td>
+<td>
+<p>Base interface for all items that be replied to,
+including Submission and Comment.</p>
+<code><span class="keyword">interface </span><span class="identifier">Replyable</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-subreddit-data/index.html">SubredditData</a></h4>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">SubredditData</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-thing/index.html"><span class="identifier">Thing</span></a><span class="symbol">, </span><a href="-created/index.html"><span class="identifier">Created</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-thing/index.html">Thing</a></h4>
+</td>
+<td>
+<p>Base class for every class of the Reddit API,</p>
+<code><span class="keyword">interface </span><span class="identifier">Thing</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-votable/index.html">Votable</a></h4>
+</td>
+<td>
+<p>Base interface for all the items that can be voted on,
+likes = True -&gt; Upvote, likes = False -&gt; Downvote, likes = null</p>
+<code><span class="keyword">interface </span><span class="identifier">Votable</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

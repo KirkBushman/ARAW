@@ -14,18 +14,32 @@ import com.kirkbushman.araw.models.mixins.Votable
 import java.util.*
 import kotlin.collections.ArrayList
 
+/**
+ * Useful extension to convert the creation date property,
+ * from the Long unixtime, to a more practical Date object.
+ * @return the Date format of the item creation date.
+ */
 val Created.createdDate: Date
     get() {
         val milliseconds = created * 1000L
         return Date(milliseconds)
     }
 
+/**
+ * Useful extension to convert the utc creation date property,
+ * from the Long unixtime, to a more practical Date object.
+ * @return the Date format of the item utc creation date.
+ */
 val Created.createdUtcDate: Date
     get() {
         val milliseconds = createdUtc * 1000L
         return Date(milliseconds)
     }
 
+/**
+ * Useful extension to map to an enum.
+ * @return the Distinguished status of the item.
+ */
 val Distinguishable.distinguished: Distinguished
     get() {
         return when (distinguishedRaw) {
@@ -36,6 +50,10 @@ val Distinguishable.distinguished: Distinguished
         }
     }
 
+/**
+ * Useful extension to map to an enum.
+ * @return the Vote status of the item.
+ */
 val Votable.vote: Vote
     get() {
         return when (likes) {
