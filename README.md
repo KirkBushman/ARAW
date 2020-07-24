@@ -19,7 +19,7 @@ You can find the Docs at: [https://kirkbushman.github.io/ARAW/](https://kirkbush
 
 ### How to install.
 
-```
+```groovy
 allprojects {
     repositories {
         ...
@@ -34,7 +34,7 @@ dependencies {
 
 ### Obtain a userless client
 
-```
+```kotlin
 // step 1 - create the helper
 val helper = AuthUserlessHelper(
     context = this,
@@ -57,7 +57,7 @@ val client = helper.getRedditClient()
 
 ### Obtain an installed app client
 
-```
+```kotlin
 // step 1 - crete the help
 val helper = AuthAppHelper(
     context = this,
@@ -80,7 +80,7 @@ val client = helper.getRedditClient()
 
 ### Use it to browse Reddit
 
-```
+```kotlin
 // get the authed account (not possible in the userless auth)
 val me = client.accoutsClient.me()
 println(me.toString())
