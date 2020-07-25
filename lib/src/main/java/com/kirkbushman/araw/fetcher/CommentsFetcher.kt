@@ -1,5 +1,7 @@
 package com.kirkbushman.araw.fetcher
 
+import androidx.annotation.IntRange
+import androidx.annotation.WorkerThread
 import com.kirkbushman.araw.RedditApi
 import com.kirkbushman.araw.http.EnvelopedCommentData
 import com.kirkbushman.araw.http.base.Listing
@@ -15,7 +17,9 @@ class CommentsFetcher(
     private var sorting: CommentsSorting,
 
     private val depth: Int?,
-    limit: Int = DEFAULT_LIMIT,
+
+    @IntRange(from = MIN_LIMIT, to = MAX_LIMIT)
+    limit: Long = DEFAULT_LIMIT,
 
     private val disableLegacyEncoding: Boolean = false,
 
@@ -31,6 +35,7 @@ class CommentsFetcher(
     private var submission: Submission? = null
 
     @Suppress("UNCHECKED_CAST")
+    @WorkerThread
     override fun onFetching(forward: Boolean, dirToken: String): Listing<EnvelopedCommentData>? {
 
         val req = api.fetchComments(

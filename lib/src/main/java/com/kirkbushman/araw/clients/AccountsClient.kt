@@ -1,5 +1,7 @@
 package com.kirkbushman.araw.clients
 
+import androidx.annotation.IntRange
+import androidx.annotation.WorkerThread
 import com.kirkbushman.araw.RedditApi
 import com.kirkbushman.araw.fetcher.ContributionsFetcher
 import com.kirkbushman.araw.fetcher.Fetcher
@@ -30,6 +32,7 @@ class AccountsClient(
         return currentUser
     }
 
+    @WorkerThread
     fun me(): Me? {
 
         val authMap = getHeaderMap()
@@ -46,6 +49,7 @@ class AccountsClient(
     }
 
     // todo check why it is not working
+    @WorkerThread
     fun myBlocked(): Any? {
 
         val authMap = getHeaderMap()
@@ -59,6 +63,7 @@ class AccountsClient(
         return res.body()
     }
 
+    @WorkerThread
     fun myFriends(): List<Friend>? {
 
         val authMap = getHeaderMap()
@@ -72,6 +77,7 @@ class AccountsClient(
         return res.body()?.data?.children
     }
 
+    @WorkerThread
     fun myKarma(): List<Karma>? {
 
         val authMap = getHeaderMap()
@@ -85,6 +91,7 @@ class AccountsClient(
         return res.body()?.data
     }
 
+    @WorkerThread
     fun myPrefs(): Prefs? {
 
         val authMap = getHeaderMap()
@@ -98,6 +105,7 @@ class AccountsClient(
         return res.body()
     }
 
+    @WorkerThread
     fun myTrophies(): List<Trophy>? {
 
         val authMap = getHeaderMap()
@@ -113,7 +121,8 @@ class AccountsClient(
 
     fun overview(
 
-        limit: Int = Fetcher.DEFAULT_LIMIT,
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
         timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
@@ -122,22 +131,20 @@ class AccountsClient(
 
     ): ContributionsFetcher {
 
-        return ContributionsFetcher(
+        return fetchContributions(
 
-            api = api,
-            getUsername = { getCurrentUser()!!.fullname },
             where = "",
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,
-            disableLegacyEncoding = disableLegacyEncoding,
-            getHeader = getHeaderMap
+            disableLegacyEncoding = disableLegacyEncoding
         )
     }
 
     fun submitted(
 
-        limit: Int = Fetcher.DEFAULT_LIMIT,
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
         timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
@@ -146,22 +153,20 @@ class AccountsClient(
 
     ): ContributionsFetcher {
 
-        return ContributionsFetcher(
+        return fetchContributions(
 
-            api = api,
-            getUsername = { getCurrentUser()!!.fullname },
             where = "submitted",
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,
-            disableLegacyEncoding = disableLegacyEncoding,
-            getHeader = getHeaderMap
+            disableLegacyEncoding = disableLegacyEncoding
         )
     }
 
     fun comments(
 
-        limit: Int = Fetcher.DEFAULT_LIMIT,
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
         timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
@@ -170,22 +175,20 @@ class AccountsClient(
 
     ): ContributionsFetcher {
 
-        return ContributionsFetcher(
+        return fetchContributions(
 
-            api = api,
-            getUsername = { getCurrentUser()!!.fullname },
             where = "comments",
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,
-            disableLegacyEncoding = disableLegacyEncoding,
-            getHeader = getHeaderMap
+            disableLegacyEncoding = disableLegacyEncoding
         )
     }
 
     fun saved(
 
-        limit: Int = Fetcher.DEFAULT_LIMIT,
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
         timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
@@ -194,22 +197,20 @@ class AccountsClient(
 
     ): ContributionsFetcher {
 
-        return ContributionsFetcher(
+        return fetchContributions(
 
-            api = api,
-            getUsername = { getCurrentUser()!!.fullname },
             where = "saved",
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,
-            disableLegacyEncoding = disableLegacyEncoding,
-            getHeader = getHeaderMap
+            disableLegacyEncoding = disableLegacyEncoding
         )
     }
 
     fun hidden(
 
-        limit: Int = Fetcher.DEFAULT_LIMIT,
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
         timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
@@ -218,22 +219,20 @@ class AccountsClient(
 
     ): ContributionsFetcher {
 
-        return ContributionsFetcher(
+        return fetchContributions(
 
-            api = api,
-            getUsername = { getCurrentUser()!!.fullname },
             where = "hidden",
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,
-            disableLegacyEncoding = disableLegacyEncoding,
-            getHeader = getHeaderMap
+            disableLegacyEncoding = disableLegacyEncoding
         )
     }
 
     fun upvoted(
 
-        limit: Int = Fetcher.DEFAULT_LIMIT,
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
         timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
@@ -242,22 +241,20 @@ class AccountsClient(
 
     ): ContributionsFetcher {
 
-        return ContributionsFetcher(
+        return fetchContributions(
 
-            api = api,
-            getUsername = { getCurrentUser()!!.fullname },
             where = "upvoted",
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,
-            disableLegacyEncoding = disableLegacyEncoding,
-            getHeader = getHeaderMap
+            disableLegacyEncoding = disableLegacyEncoding
         )
     }
 
     fun downvoted(
 
-        limit: Int = Fetcher.DEFAULT_LIMIT,
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
         timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
@@ -266,22 +263,44 @@ class AccountsClient(
 
     ): ContributionsFetcher {
 
-        return ContributionsFetcher(
+        return fetchContributions(
 
-            api = api,
-            getUsername = { getCurrentUser()!!.fullname },
             where = "downvoted",
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,
-            disableLegacyEncoding = disableLegacyEncoding,
-            getHeader = getHeaderMap
+            disableLegacyEncoding = disableLegacyEncoding
         )
     }
 
     fun gilded(
 
-        limit: Int = Fetcher.DEFAULT_LIMIT,
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
+
+        sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
+
+        disableLegacyEncoding: Boolean = false
+
+    ): ContributionsFetcher {
+
+        return fetchContributions(
+
+            where = "gilded",
+            limit = limit,
+            sorting = sorting,
+            timePeriod = timePeriod,
+            disableLegacyEncoding = disableLegacyEncoding
+        )
+    }
+
+    fun fetchContributions(
+
+        where: String,
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
         timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
@@ -294,7 +313,7 @@ class AccountsClient(
 
             api = api,
             getUsername = { getCurrentUser()!!.fullname },
-            where = "gilded",
+            where = where,
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,
@@ -303,15 +322,74 @@ class AccountsClient(
         )
     }
 
-    fun subscribedSubreddits(limit: Int = Fetcher.DEFAULT_LIMIT, disableLegacyEncoding: Boolean = false): SubredditsFetcher {
-        return SubredditsFetcher(api, "subscriber", limit, disableLegacyEncoding, getHeaderMap)
+    fun subscribedSubreddits(
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
+
+        disableLegacyEncoding: Boolean = false
+
+    ): SubredditsFetcher {
+
+        return fetchSubreddits(
+
+            where = "subscriber",
+            limit = limit,
+            disableLegacyEncoding = disableLegacyEncoding
+        )
     }
 
-    fun contributedSubreddits(limit: Int = Fetcher.DEFAULT_LIMIT, disableLegacyEncoding: Boolean = false): SubredditsFetcher {
-        return SubredditsFetcher(api, "contributor", limit, disableLegacyEncoding, getHeaderMap)
+    fun contributedSubreddits(
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
+
+        disableLegacyEncoding: Boolean = false
+
+    ): SubredditsFetcher {
+
+        return fetchSubreddits(
+
+            where = "contributor",
+            limit = limit,
+            disableLegacyEncoding = disableLegacyEncoding
+        )
     }
 
-    fun moderatedSubreddits(limit: Int = Fetcher.DEFAULT_LIMIT, disableLegacyEncoding: Boolean = false): SubredditsFetcher {
-        return SubredditsFetcher(api, "moderator", limit, disableLegacyEncoding, getHeaderMap)
+    fun moderatedSubreddits(
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
+
+        disableLegacyEncoding: Boolean = false
+
+    ): SubredditsFetcher {
+
+        return fetchSubreddits(
+
+            where = "moderator",
+            limit = limit,
+            disableLegacyEncoding = disableLegacyEncoding
+        )
+    }
+
+    fun fetchSubreddits(
+
+        where: String,
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
+
+        disableLegacyEncoding: Boolean = false
+
+    ): SubredditsFetcher {
+
+        return SubredditsFetcher(
+            api = api,
+            where = where,
+            limit = limit,
+            disableLegacyEncoding = disableLegacyEncoding,
+            getHeader = getHeaderMap
+        )
     }
 }

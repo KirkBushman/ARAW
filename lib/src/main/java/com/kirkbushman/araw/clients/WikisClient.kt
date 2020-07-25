@@ -1,5 +1,6 @@
 package com.kirkbushman.araw.clients
 
+import androidx.annotation.WorkerThread
 import com.kirkbushman.araw.RedditApi
 import com.kirkbushman.araw.exceptions.WikiDisabledException
 import com.kirkbushman.araw.models.WikiPage
@@ -13,11 +14,13 @@ class WikisClient(
 
 ) : BaseRedditClient(api, getHeaderMap) {
 
+    @WorkerThread
     @Throws(WikiDisabledException::class)
     fun wiki(subreddit: SubredditData, disableLegacyEncoding: Boolean = false): WikiPage? {
         return wiki(subreddit.displayName, disableLegacyEncoding)
     }
 
+    @WorkerThread
     @Throws(WikiDisabledException::class)
     fun wiki(subreddit: String, disableLegacyEncoding: Boolean = false): WikiPage? {
 
@@ -43,10 +46,12 @@ class WikisClient(
         return res.body()?.data
     }
 
+    @WorkerThread
     fun wikiPage(subreddit: SubredditData, page: String, disableLegacyEncoding: Boolean = false): WikiPage? {
         return wikiPage(subreddit.displayName, page, disableLegacyEncoding)
     }
 
+    @WorkerThread
     fun wikiPage(subreddit: String, page: String, disableLegacyEncoding: Boolean = false): WikiPage? {
 
         val authMap = getHeaderMap()
@@ -65,10 +70,12 @@ class WikisClient(
         return res.body()?.data
     }
 
+    @WorkerThread
     fun wikiPages(subreddit: SubredditData, disableLegacyEncoding: Boolean = false): List<String>? {
         return wikiPages(subreddit.displayName, disableLegacyEncoding)
     }
 
+    @WorkerThread
     fun wikiPages(subreddit: String, disableLegacyEncoding: Boolean = false): List<String>? {
 
         val authMap = getHeaderMap()
@@ -86,10 +93,12 @@ class WikisClient(
         return res.body()?.data
     }
 
+    @WorkerThread
     fun wikiRevision(subreddit: SubredditData, page: String, disableLegacyEncoding: Boolean = false): List<WikiRevision>? {
         return wikiRevision(subreddit.displayName, page, disableLegacyEncoding)
     }
 
+    @WorkerThread
     fun wikiRevision(subreddit: String, page: String, disableLegacyEncoding: Boolean = false): List<WikiRevision>? {
 
         val authMap = getHeaderMap()
@@ -108,10 +117,12 @@ class WikisClient(
         return res.body()?.data?.children
     }
 
+    @WorkerThread
     fun wikiRevisions(subreddit: SubredditData, disableLegacyEncoding: Boolean = false): List<WikiRevision>? {
         return wikiRevisions(subreddit.displayName, disableLegacyEncoding)
     }
 
+    @WorkerThread
     fun wikiRevisions(subreddit: String, disableLegacyEncoding: Boolean = false): List<WikiRevision>? {
 
         val authMap = getHeaderMap()

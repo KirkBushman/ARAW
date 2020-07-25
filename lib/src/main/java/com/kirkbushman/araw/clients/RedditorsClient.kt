@@ -1,5 +1,7 @@
 package com.kirkbushman.araw.clients
 
+import androidx.annotation.IntRange
+import androidx.annotation.WorkerThread
 import com.kirkbushman.araw.RedditApi
 import com.kirkbushman.araw.fetcher.ContributionsFetcher
 import com.kirkbushman.araw.fetcher.Fetcher
@@ -18,6 +20,7 @@ class RedditorsClient(
 
 ) : BaseRedditClient(api, getHeaderMap) {
 
+    @WorkerThread
     fun redditor(username: String, disableLegacyEncoding: Boolean = false): Redditor? {
 
         val authMap = getHeaderMap()
@@ -38,7 +41,9 @@ class RedditorsClient(
     fun overview(
 
         username: String,
-        limit: Int = Fetcher.DEFAULT_LIMIT,
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
         timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
@@ -47,16 +52,14 @@ class RedditorsClient(
 
     ): ContributionsFetcher {
 
-        return ContributionsFetcher(
+        return fetchContributions(
 
-            api = api,
             username = username,
             where = "",
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,
-            disableLegacyEncoding = disableLegacyEncoding,
-            getHeader = getHeaderMap
+            disableLegacyEncoding = disableLegacyEncoding
         )
     }
 
@@ -64,7 +67,8 @@ class RedditorsClient(
 
         username: String,
 
-        limit: Int = Fetcher.DEFAULT_LIMIT,
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
         timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
@@ -73,16 +77,14 @@ class RedditorsClient(
 
     ): ContributionsFetcher {
 
-        return ContributionsFetcher(
+        return fetchContributions(
 
-            api = api,
             username = username,
             where = "submitted",
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,
-            disableLegacyEncoding = disableLegacyEncoding,
-            getHeader = getHeaderMap
+            disableLegacyEncoding = disableLegacyEncoding
         )
     }
 
@@ -90,7 +92,8 @@ class RedditorsClient(
 
         username: String,
 
-        limit: Int = Fetcher.DEFAULT_LIMIT,
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
         timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
@@ -99,16 +102,14 @@ class RedditorsClient(
 
     ): ContributionsFetcher {
 
-        return ContributionsFetcher(
+        return fetchContributions(
 
-            api = api,
             username = username,
             where = "comments",
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,
-            disableLegacyEncoding = disableLegacyEncoding,
-            getHeader = getHeaderMap
+            disableLegacyEncoding = disableLegacyEncoding
         )
     }
 
@@ -116,7 +117,34 @@ class RedditorsClient(
 
         username: String,
 
-        limit: Int = Fetcher.DEFAULT_LIMIT,
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
+
+        sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
+
+        disableLegacyEncoding: Boolean = false
+
+    ): ContributionsFetcher {
+
+        return fetchContributions(
+
+            username = username,
+            where = "gilded",
+            limit = limit,
+            sorting = sorting,
+            timePeriod = timePeriod,
+            disableLegacyEncoding = disableLegacyEncoding
+        )
+    }
+
+    fun fetchContributions(
+
+        username: String,
+        where: String,
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
         timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
@@ -126,10 +154,9 @@ class RedditorsClient(
     ): ContributionsFetcher {
 
         return ContributionsFetcher(
-
             api = api,
             username = username,
-            where = "gilded",
+            where = where,
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,
@@ -143,7 +170,8 @@ class RedditorsClient(
         query: String,
         show: String? = null,
 
-        limit: Int = Fetcher.DEFAULT_LIMIT,
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: RedditorSearchSorting = RedditorSearchFetcher.DEFAULT_SORTING,
         timePeriod: TimePeriod = RedditorSearchFetcher.DEFAULT_TIMEPERIOD,
@@ -164,6 +192,7 @@ class RedditorsClient(
         )
     }
 
+    @WorkerThread
     fun moderatedSubreddits(username: String): List<ModeratedSub>? {
 
         val authMap = getHeaderMap()
@@ -177,6 +206,7 @@ class RedditorsClient(
         return res.body()?.data
     }
 
+    @WorkerThread
     fun trophies(username: String, disableLegacyEncoding: Boolean = false): List<Trophy>? {
 
         val authMap = getHeaderMap()

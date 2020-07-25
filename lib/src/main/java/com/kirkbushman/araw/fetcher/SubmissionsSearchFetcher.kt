@@ -1,5 +1,7 @@
 package com.kirkbushman.araw.fetcher
 
+import androidx.annotation.IntRange
+import androidx.annotation.WorkerThread
 import com.kirkbushman.araw.RedditApi
 import com.kirkbushman.araw.http.EnvelopedSubmission
 import com.kirkbushman.araw.http.base.Listing
@@ -14,7 +16,8 @@ class SubmissionsSearchFetcher(
     private val subreddit: String?,
     private val query: String,
 
-    limit: Int = DEFAULT_LIMIT,
+    @IntRange(from = MIN_LIMIT, to = MAX_LIMIT)
+    limit: Long = DEFAULT_LIMIT,
 
     private var sorting: SearchSorting = DEFAULT_SORTING,
     private var timePeriod: TimePeriod = DEFAULT_TIMEPERIOD,
@@ -32,6 +35,7 @@ class SubmissionsSearchFetcher(
         val DEFAULT_TIMEPERIOD = TimePeriod.ALL_TIME
     }
 
+    @WorkerThread
     override fun onFetching(forward: Boolean, dirToken: String): Listing<EnvelopedSubmission>? {
 
         val req = if (subreddit != null) {

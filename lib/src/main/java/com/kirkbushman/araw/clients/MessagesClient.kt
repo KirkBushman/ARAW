@@ -1,9 +1,12 @@
 package com.kirkbushman.araw.clients
 
+import androidx.annotation.IntRange
+import androidx.annotation.WorkerThread
 import com.kirkbushman.araw.RedditApi
 import com.kirkbushman.araw.fetcher.Fetcher
 import com.kirkbushman.araw.fetcher.InboxFetcher
 import com.kirkbushman.araw.models.Message
+import com.kirkbushman.araw.models.general.Vote
 
 class MessagesClient(
 
@@ -12,38 +15,144 @@ class MessagesClient(
 
 ) : BaseRedditClient(api, getHeaderMap) {
 
-    fun inbox(limit: Int = Fetcher.DEFAULT_LIMIT, disableLegacyEncoding: Boolean = false): InboxFetcher {
-        return InboxFetcher(api, "inbox", limit, disableLegacyEncoding, getHeaderMap)
+    fun inbox(
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
+
+        disableLegacyEncoding: Boolean = false
+
+    ): InboxFetcher {
+
+        return fetchMessages(
+            where = "inbox",
+            limit = limit,
+            disableLegacyEncoding = disableLegacyEncoding
+        )
     }
 
-    fun unread(limit: Int = Fetcher.DEFAULT_LIMIT, disableLegacyEncoding: Boolean = false): InboxFetcher {
-        return InboxFetcher(api, "unread", limit, disableLegacyEncoding, getHeaderMap)
+    fun unread(
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
+
+        disableLegacyEncoding: Boolean = false
+
+    ): InboxFetcher {
+
+        return fetchMessages(
+            where = "unread",
+            limit = limit,
+            disableLegacyEncoding = disableLegacyEncoding
+        )
     }
 
-    fun messages(limit: Int = Fetcher.DEFAULT_LIMIT, disableLegacyEncoding: Boolean = false): InboxFetcher {
-        return InboxFetcher(api, "messages", limit, disableLegacyEncoding, getHeaderMap)
+    fun messages(
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
+
+        disableLegacyEncoding: Boolean = false
+
+    ): InboxFetcher {
+
+        return fetchMessages(
+            where = "messages",
+            limit = limit,
+            disableLegacyEncoding = disableLegacyEncoding
+        )
     }
 
-    fun sent(limit: Int = Fetcher.DEFAULT_LIMIT, disableLegacyEncoding: Boolean = false): InboxFetcher {
-        return InboxFetcher(api, "sent", limit, disableLegacyEncoding, getHeaderMap)
+    fun sent(
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
+
+        disableLegacyEncoding: Boolean = false
+
+    ): InboxFetcher {
+
+        return fetchMessages(
+            where = "sent",
+            limit = limit,
+            disableLegacyEncoding = disableLegacyEncoding
+        )
     }
 
-    fun commentsReplies(limit: Int = Fetcher.DEFAULT_LIMIT, disableLegacyEncoding: Boolean = false): InboxFetcher {
-        return InboxFetcher(api, "comments", limit, disableLegacyEncoding, getHeaderMap)
+    fun commentsReplies(
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
+
+        disableLegacyEncoding: Boolean = false
+
+    ): InboxFetcher {
+
+        return fetchMessages(
+            where = "comments",
+            limit = limit,
+            disableLegacyEncoding = disableLegacyEncoding
+        )
     }
 
-    fun selfReplies(limit: Int = Fetcher.DEFAULT_LIMIT, disableLegacyEncoding: Boolean = false): InboxFetcher {
-        return InboxFetcher(api, "selfreply", limit, disableLegacyEncoding, getHeaderMap)
+    fun selfReplies(
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
+
+        disableLegacyEncoding: Boolean = false
+
+    ): InboxFetcher {
+
+        return fetchMessages(
+            where = "selfreply",
+            limit = limit,
+            disableLegacyEncoding = disableLegacyEncoding
+        )
     }
 
-    fun mentions(limit: Int = Fetcher.DEFAULT_LIMIT, disableLegacyEncoding: Boolean = false): InboxFetcher {
-        return InboxFetcher(api, "mentions", limit, disableLegacyEncoding, getHeaderMap)
+    fun mentions(
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
+
+        disableLegacyEncoding: Boolean = false
+
+    ): InboxFetcher {
+
+        return fetchMessages(
+            where = "mentions",
+            limit = limit,
+            disableLegacyEncoding = disableLegacyEncoding
+        )
     }
 
+    fun fetchMessages(
+
+        where: String,
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
+
+        disableLegacyEncoding: Boolean = false
+
+    ): InboxFetcher {
+
+        return InboxFetcher(
+            api = api,
+            where = where,
+            limit = limit,
+            disableLegacyEncoding = disableLegacyEncoding,
+            getHeader = getHeaderMap
+        )
+    }
+
+    @WorkerThread
     fun deleteMessage(message: Message): Any? {
         return deleteMessage(message.fullname)
     }
 
+    @WorkerThread
     fun deleteMessage(fullname: String): Any? {
 
         val authMap = getHeaderMap()
@@ -57,10 +166,12 @@ class MessagesClient(
         return res.body()
     }
 
+    @WorkerThread
     fun markAsRead(read: Boolean, message: Message): Any? {
         return markAsRead(read, message.fullname)
     }
 
+    @WorkerThread
     fun markAsRead(read: Boolean, fullname: String): Any? {
 
         val authMap = getHeaderMap()
@@ -78,11 +189,32 @@ class MessagesClient(
         return res.body()
     }
 
+    @WorkerThread
+    fun vote(vote: Vote, message: Message): Any? {
+        return vote(vote, message.fullname)
+    }
+
+    @WorkerThread
+    fun vote(vote: Vote, fullname: String): Any? {
+
+        val authMap = getHeaderMap()
+        val req = api.vote(id = fullname, dir = vote.dir, header = authMap)
+        val res = req.execute()
+
+        if (!res.isSuccessful) {
+            return null
+        }
+
+        return res.body()
+    }
+
+    @WorkerThread
     fun markAllAsRead(filters: List<Message>?): Any? {
 
         return markAllAsRead(filters?.joinToString(separator = ",") { it.fullname })
     }
 
+    @WorkerThread
     fun markAllAsRead(filters: String?): Any? {
 
         val authMap = getHeaderMap()

@@ -1,5 +1,7 @@
 package com.kirkbushman.araw.clients
 
+import androidx.annotation.IntRange
+import androidx.annotation.WorkerThread
 import com.kirkbushman.araw.RedditApi
 import com.kirkbushman.araw.fetcher.Fetcher
 import com.kirkbushman.araw.fetcher.SubmissionsFetcher
@@ -22,6 +24,7 @@ class SubredditsClient(
 
 ) : BaseRedditClient(api, getHeaderMap) {
 
+    @WorkerThread
     fun subreddit(subreddit: String, disableLegacyEncoding: Boolean = false): SubredditData? {
 
         val authMap = getHeaderMap()
@@ -39,6 +42,7 @@ class SubredditsClient(
         return res.body()?.data
     }
 
+    @WorkerThread
     fun subreddits(vararg ids: String, disableLegacyEncoding: Boolean = false): List<SubredditData>? {
 
         val authMap = getHeaderMap()
@@ -56,10 +60,12 @@ class SubredditsClient(
         return res.body()?.data?.children?.map { it.data }
     }
 
+    @WorkerThread
     fun subredditBanned(subreddit: SubredditData): List<User>? {
         return subredditBanned(subreddit.fullname)
     }
 
+    @WorkerThread
     fun subredditBanned(subredditName: String): List<User>? {
 
         val authMap = getHeaderMap()
@@ -73,10 +79,12 @@ class SubredditsClient(
         return res.body()?.data?.children
     }
 
+    @WorkerThread
     fun subredditMuted(subreddit: SubredditData): List<User>? {
         return subredditMuted(subreddit.fullname)
     }
 
+    @WorkerThread
     fun subredditMuted(subredditName: String): List<User>? {
 
         val authMap = getHeaderMap()
@@ -90,10 +98,12 @@ class SubredditsClient(
         return res.body()?.data?.children
     }
 
+    @WorkerThread
     fun subredditWikiBanned(subreddit: SubredditData): List<User>? {
         return subredditWikiBanned(subreddit.fullname)
     }
 
+    @WorkerThread
     fun subredditWikiBanned(subredditName: String): List<User>? {
 
         val authMap = getHeaderMap()
@@ -107,10 +117,12 @@ class SubredditsClient(
         return res.body()?.data?.children
     }
 
+    @WorkerThread
     fun subredditContributors(subreddit: SubredditData): List<User>? {
         return subredditContributors(subreddit.fullname)
     }
 
+    @WorkerThread
     fun subredditContributors(subredditName: String): List<User>? {
 
         val authMap = getHeaderMap()
@@ -124,10 +136,12 @@ class SubredditsClient(
         return res.body()?.data?.children
     }
 
+    @WorkerThread
     fun subredditWikiContributors(subreddit: SubredditData): List<User>? {
         return subredditWikiContributors(subreddit.fullname)
     }
 
+    @WorkerThread
     fun subredditWikiContributors(subredditName: String): List<User>? {
 
         val authMap = getHeaderMap()
@@ -141,10 +155,12 @@ class SubredditsClient(
         return res.body()?.data?.children
     }
 
+    @WorkerThread
     fun subredditModerators(subreddit: SubredditData): List<User>? {
         return subredditModerators(subreddit.fullname)
     }
 
+    @WorkerThread
     fun subredditModerators(subredditName: String): List<User>? {
 
         val authMap = getHeaderMap()
@@ -158,10 +174,12 @@ class SubredditsClient(
         return res.body()?.data?.children
     }
 
+    @WorkerThread
     fun rules(subreddit: SubredditData): Array<SubredditRule>? {
         return rules(subreddit.displayName)
     }
 
+    @WorkerThread
     fun rules(subreddit: String): Array<SubredditRule>? {
 
         val authMap = getHeaderMap()
@@ -177,7 +195,8 @@ class SubredditsClient(
 
     fun frontpage(
 
-        limit: Int = Fetcher.DEFAULT_LIMIT,
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
         timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD,
@@ -200,7 +219,8 @@ class SubredditsClient(
 
     fun all(
 
-        limit: Int = Fetcher.DEFAULT_LIMIT,
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
         timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD,
@@ -223,7 +243,8 @@ class SubredditsClient(
 
     fun popular(
 
-        limit: Int = Fetcher.DEFAULT_LIMIT,
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
         timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD,
@@ -246,7 +267,8 @@ class SubredditsClient(
 
     fun friends(
 
-        limit: Int = Fetcher.DEFAULT_LIMIT,
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
         timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD,
@@ -267,6 +289,7 @@ class SubredditsClient(
         )
     }
 
+    @WorkerThread
     fun submit(
 
         subreddit: SubredditData,
@@ -316,6 +339,7 @@ class SubredditsClient(
         )
     }
 
+    @WorkerThread
     fun submit(
 
         subredditName: String,
@@ -376,6 +400,7 @@ class SubredditsClient(
         return res.body()
     }
 
+    @WorkerThread
     fun subscribe(subreddit: Subreddit, skipInitialDefaults: Boolean = true): Any? {
 
         if (subreddit.isSubscriber == null) {
@@ -391,6 +416,7 @@ class SubredditsClient(
         )
     }
 
+    @WorkerThread
     fun subscribe(
 
         subredditIds: List<String>? = null,
@@ -424,7 +450,8 @@ class SubredditsClient(
 
         query: String,
 
-        limit: Int = Fetcher.DEFAULT_LIMIT,
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
         sorting: SubredditSearchSorting = SubredditsSearchFetcher.DEFAULT_SORTING,
 
         disableLegacyEncoding: Boolean = false

@@ -1,5 +1,7 @@
 package com.kirkbushman.araw.clients
 
+import androidx.annotation.IntRange
+import androidx.annotation.WorkerThread
 import com.kirkbushman.araw.RedditApi
 import com.kirkbushman.araw.fetcher.CommentsFetcher
 import com.kirkbushman.araw.fetcher.Fetcher
@@ -30,6 +32,7 @@ class ContributionsClient(
 
 ) : BaseRedditClient(api, getHeaderMap) {
 
+    @WorkerThread
     fun submission(submissionId: String, disableLegacyEncoding: Boolean = false): Submission? {
 
         val authMap = getHeaderMap()
@@ -51,7 +54,9 @@ class ContributionsClient(
     fun submissions(
 
         subreddit: SubredditData,
-        limit: Int = Fetcher.DEFAULT_LIMIT,
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
         timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD,
@@ -59,13 +64,21 @@ class ContributionsClient(
         disableLegacyEncoding: Boolean = false
     ): SubmissionsFetcher {
 
-        return submissions(subreddit.displayName, limit, sorting, timePeriod, disableLegacyEncoding)
+        return submissions(
+            subreddit = subreddit.displayName,
+            limit = limit,
+            sorting = sorting,
+            timePeriod = timePeriod,
+            disableLegacyEncoding = disableLegacyEncoding
+        )
     }
 
     fun submissions(
 
         subreddit: String,
-        limit: Int = Fetcher.DEFAULT_LIMIT,
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
         timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD,
@@ -73,8 +86,8 @@ class ContributionsClient(
         disableLegacyEncoding: Boolean = false
 
     ): SubmissionsFetcher {
-        return SubmissionsFetcher(
 
+        return SubmissionsFetcher(
             api = api,
             subreddit = subreddit,
             limit = limit,
@@ -89,7 +102,8 @@ class ContributionsClient(
 
         vararg subreddits: String,
 
-        limit: Int = Fetcher.DEFAULT_LIMIT,
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
         timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD,
@@ -97,8 +111,8 @@ class ContributionsClient(
         disableLegacyEncoding: Boolean = false
 
     ): SubmissionsFetcher {
-        return SubmissionsFetcher(
 
+        return SubmissionsFetcher(
             api = api,
             subreddit = subreddits.joinToString(separator = "+"),
             limit = limit,
@@ -114,7 +128,8 @@ class ContributionsClient(
         subreddit: String?,
         query: String,
 
-        limit: Int = Fetcher.DEFAULT_LIMIT,
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: SearchSorting = SubmissionsSearchFetcher.DEFAULT_SORTING,
         timePeriod: TimePeriod = SubmissionsSearchFetcher.DEFAULT_TIMEPERIOD,
@@ -123,8 +138,8 @@ class ContributionsClient(
         disableLegacyEncoding: Boolean = false
 
     ): SubmissionsSearchFetcher {
-        return SubmissionsSearchFetcher(
 
+        return SubmissionsSearchFetcher(
             api = api,
             subreddit = subreddit,
             query = query,
@@ -137,6 +152,7 @@ class ContributionsClient(
         )
     }
 
+    @WorkerThread
     fun comment(commentId: String, disableLegacyEncoding: Boolean = false): Comment? {
 
         val authMap = getHeaderMap()
@@ -159,7 +175,9 @@ class ContributionsClient(
         submissionId: String,
 
         sorting: CommentsSorting = CommentsFetcher.DEFAULT_SORTING,
-        limit: Int = Fetcher.DEFAULT_LIMIT,
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
 
         depth: Int? = null,
         disableLegacyEncoding: Boolean = false
@@ -177,6 +195,7 @@ class ContributionsClient(
         )
     }
 
+    @WorkerThread
     fun moreChildren(
 
         moreComments: MoreComments,
@@ -210,6 +229,7 @@ class ContributionsClient(
         return res.body()?.json?.data?.things?.map { it.data }?.toList()
     }
 
+    @WorkerThread
     fun trendingSubreddits(): TrendingSubreddits? {
 
         val req = api.trendingSubreddits()
@@ -222,14 +242,17 @@ class ContributionsClient(
         return res.body()
     }
 
+    @WorkerThread
     fun delete(comment: Comment): Any? {
         return delete(comment.fullname)
     }
 
+    @WorkerThread
     fun delete(submission: Submission): Any? {
         return delete(submission.fullname)
     }
 
+    @WorkerThread
     fun delete(fullname: String): Any? {
 
         val authMap = getHeaderMap()
@@ -243,14 +266,17 @@ class ContributionsClient(
         return res.body()
     }
 
+    @WorkerThread
     fun hide(submission: Submission): Any? {
         return hide(!submission.isHidden, submission.fullname)
     }
 
+    @WorkerThread
     fun hide(hide: Boolean, submission: Submission): Any? {
         return hide(hide, submission)
     }
 
+    @WorkerThread
     fun hide(hide: Boolean, fullname: String): Any? {
 
         val authMap = getHeaderMap()
@@ -267,22 +293,27 @@ class ContributionsClient(
         return res.body()
     }
 
+    @WorkerThread
     fun lock(comment: Comment): Any? {
         return lock(!comment.isLocked, comment.fullname)
     }
 
+    @WorkerThread
     fun lock(lock: Boolean, comment: Comment): Any? {
         return lock(lock, comment.fullname)
     }
 
+    @WorkerThread
     fun lock(submission: Submission): Any? {
         return lock(!submission.isLocked, submission.fullname)
     }
 
+    @WorkerThread
     fun lock(lock: Boolean, submission: Submission): Any? {
         return lock(lock, submission.fullname)
     }
 
+    @WorkerThread
     fun lock(lock: Boolean, fullname: String): Any? {
 
         val authMap = getHeaderMap()
@@ -299,10 +330,12 @@ class ContributionsClient(
         return res.body()
     }
 
+    @WorkerThread
     fun reply(replyable: Replyable, text: String): Comment? {
         return reply(replyable.fullname, text)
     }
 
+    @WorkerThread
     fun reply(fullname: String, text: String): Comment? {
 
         val authMap = getHeaderMap()
@@ -321,10 +354,12 @@ class ContributionsClient(
         return res.body()?.json?.data?.things?.firstOrNull()?.data
     }
 
+    @WorkerThread
     fun save(save: Boolean, contribution: Contribution): Any? {
         return save(save, contribution.fullname)
     }
 
+    @WorkerThread
     fun save(save: Boolean, fullname: String): Any? {
 
         val authMap = getHeaderMap()
@@ -341,10 +376,12 @@ class ContributionsClient(
         return res.body()
     }
 
+    @WorkerThread
     fun vote(vote: Vote, votable: Votable): Any? {
         return vote(vote, votable.fullname)
     }
 
+    @WorkerThread
     fun vote(vote: Vote, fullname: String): Any? {
 
         val authMap = getHeaderMap()
@@ -358,14 +395,17 @@ class ContributionsClient(
         return res.body()
     }
 
+    @WorkerThread
     fun markAsNsfw(comment: Comment): Any? {
         return markAsNsfw(comment.fullname)
     }
 
+    @WorkerThread
     fun markAsNsfw(submission: Submission): Any? {
         return markAsNsfw(submission.fullname)
     }
 
+    @WorkerThread
     fun markAsNsfw(fullname: String): Any? {
 
         val authMap = getHeaderMap()
@@ -379,10 +419,12 @@ class ContributionsClient(
         return res.body()
     }
 
+    @WorkerThread
     fun unmarkAsNsfw(submission: Submission): Any? {
         return unmarkAsNsfw(submission.fullname)
     }
 
+    @WorkerThread
     fun unmarkAsNsfw(fullname: String): Any? {
 
         val authMap = getHeaderMap()
@@ -396,14 +438,17 @@ class ContributionsClient(
         return res.body()
     }
 
+    @WorkerThread
     fun markAsSpoiler(comment: Comment): Any? {
         return markAsSpoiler(comment.fullname)
     }
 
+    @WorkerThread
     fun markAsSpoiler(submission: Submission): Any? {
         return markAsSpoiler(submission.fullname)
     }
 
+    @WorkerThread
     fun markAsSpoiler(fullname: String): Any? {
 
         val authMap = getHeaderMap()
@@ -417,10 +462,12 @@ class ContributionsClient(
         return res.body()
     }
 
+    @WorkerThread
     fun unspoiler(submission: Submission): Any? {
         return unspoiler(submission.fullname)
     }
 
+    @WorkerThread
     fun unspoiler(fullname: String): Any? {
 
         val authMap = getHeaderMap()
@@ -434,6 +481,7 @@ class ContributionsClient(
         return res.body()
     }
 
+    @WorkerThread
     fun uploadMedia(filename: String, mimeType: String? = null, fileContent: ByteArray): String? {
 
         var currentMimeType = mimeType

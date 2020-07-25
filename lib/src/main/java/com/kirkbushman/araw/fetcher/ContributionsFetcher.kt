@@ -1,5 +1,7 @@
 package com.kirkbushman.araw.fetcher
 
+import androidx.annotation.IntRange
+import androidx.annotation.WorkerThread
 import com.kirkbushman.araw.RedditApi
 import com.kirkbushman.araw.http.EnvelopedContribution
 import com.kirkbushman.araw.http.base.Listing
@@ -14,7 +16,8 @@ class ContributionsFetcher(
     private val username: String? = null,
     private val where: String,
 
-    limit: Int = DEFAULT_LIMIT,
+    @IntRange(from = MIN_LIMIT, to = MAX_LIMIT)
+    limit: Long = DEFAULT_LIMIT,
 
     private var sorting: ContributionsSorting = DEFAULT_SORTING,
     private var timePeriod: TimePeriod = DEFAULT_TIMEPERIOD,
@@ -33,6 +36,7 @@ class ContributionsFetcher(
 
     private var usernameToFetch: String? = null
 
+    @WorkerThread
     override fun onFetching(forward: Boolean, dirToken: String): Listing<EnvelopedContribution>? {
 
         if (username == null && getUsername == null) {
