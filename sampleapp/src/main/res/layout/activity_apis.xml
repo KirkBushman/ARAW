@@ -399,12 +399,34 @@
                 />
 
         <com.google.android.material.button.MaterialButton
+                android:id="@+id/bttn_subreddit_rules"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/bttn_subreddit_rules"
+                app:layout_constraintTop_toBottomOf="@id/bttn_subreddit_banned"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/bttn_subreddit_flairs"
+                />
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/bttn_subreddit_flairs"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/bttn_subreddit_flairs"
+                app:layout_constraintTop_toBottomOf="@id/bttn_subreddit_muted"
+                app:layout_constraintStart_toEndOf="@id/bttn_subreddit_rules"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/bttn_subreddit_wikibanned"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/bttn_subreddit_wikibanned"
-                app:layout_constraintTop_toBottomOf="@id/bttn_subreddit_banned"
+                app:layout_constraintTop_toBottomOf="@id/bttn_subreddit_rules"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/bttn_subreddit_contributors"
                 />
@@ -415,7 +437,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/bttn_subreddit_contributors"
-                app:layout_constraintTop_toBottomOf="@id/bttn_subreddit_muted"
+                app:layout_constraintTop_toBottomOf="@id/bttn_subreddit_flairs"
                 app:layout_constraintStart_toEndOf="@id/bttn_subreddit_wikibanned"
                 app:layout_constraintEnd_toEndOf="parent"
                 />

@@ -142,6 +142,14 @@ class ApisActivity : BaseActivity() {
             ApiDetailActivity.startApiSubMuted(this)
         }
 
+        bttn_subreddit_rules.setOnClickListener {
+            ApiDetailActivity.startApiSubRules(this)
+        }
+
+        bttn_subreddit_flairs.setOnClickListener {
+            ApiDetailActivity.startApiSubFlairs(this)
+        }
+
         bttn_subreddit_wikibanned.setOnClickListener {
             ApiDetailActivity.startApiSubWikiBanned(this)
         }

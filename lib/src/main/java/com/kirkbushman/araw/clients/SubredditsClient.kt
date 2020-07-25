@@ -6,6 +6,7 @@ import com.kirkbushman.araw.RedditApi
 import com.kirkbushman.araw.fetcher.Fetcher
 import com.kirkbushman.araw.fetcher.SubmissionsFetcher
 import com.kirkbushman.araw.fetcher.SubredditsSearchFetcher
+import com.kirkbushman.araw.models.Flair
 import com.kirkbushman.araw.models.SubmitResponse
 import com.kirkbushman.araw.models.Subreddit
 import com.kirkbushman.araw.models.SubredditRule
@@ -183,14 +184,41 @@ class SubredditsClient(
     fun rules(subreddit: String): Array<SubredditRule>? {
 
         val authMap = getHeaderMap()
-        val req = api.rules(subreddit = subreddit, header = authMap)
-        val res = req.execute()
+        val req = api.rules(
+            subreddit = subreddit,
+            header = authMap
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }
 
         return res.body()?.rules
+    }
+
+    @WorkerThread
+    fun subredditFlairs(subreddit: SubredditData): List<Flair>? {
+
+        return subredditFlairs(subreddit.displayName)
+    }
+
+    @WorkerThread
+    fun subredditFlairs(subreddit: String, disableLegacyEncoding: Boolean = false): List<Flair>? {
+
+        val authMap = getHeaderMap()
+        val req = api.subredditFlairs(
+            subreddit = subreddit,
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
+
+        val res = req.execute()
+        if (!res.isSuccessful) {
+            return null
+        }
+
+        return res.body()
     }
 
     fun frontpage(

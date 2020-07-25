@@ -12,6 +12,7 @@ import com.kirkbushman.araw.http.EnvelopedSubredditDataListing
 import com.kirkbushman.araw.http.EnvelopedWikiPage
 import com.kirkbushman.araw.http.EnvelopedWikiRevisionListing
 import com.kirkbushman.araw.http.base.Listing
+import com.kirkbushman.araw.models.Flair
 import com.kirkbushman.araw.models.FriendList
 import com.kirkbushman.araw.models.KarmaList
 import com.kirkbushman.araw.models.Me
@@ -365,6 +366,13 @@ interface RedditApi {
         @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<SubredditRules>
+
+    @GET("/r/{subreddit}/api/link_flair_v2/.json")
+    fun subredditFlairs(
+        @Path("subreddit") subreddit: String,
+        @Query("raw_json") rawJson: Int? = null,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<List<Flair>>
 
     @FormUrlEncoded
     @POST("/api/subscribe")

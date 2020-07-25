@@ -34,6 +34,8 @@
     <string name="bttn_gilded">Gilded</string>
     <string name="bttn_subreddit_banned">Banned</string>
     <string name="bttn_subreddit_muted">Muted</string>
+    <string name="bttn_subreddit_rules">Rules</string>
+    <string name="bttn_subreddit_flairs">Flairs</string>
     <string name="bttn_subreddit_wikibanned">Wiki Banned</string>
     <string name="bttn_subreddit_contributors">Contributors</string>
     <string name="bttn_subreddit_wikicontributors">Wiki Contributors</string>

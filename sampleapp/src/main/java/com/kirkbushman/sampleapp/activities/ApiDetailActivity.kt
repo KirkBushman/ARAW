@@ -35,6 +35,7 @@ class ApiDetailActivity : BaseActivity() {
             "space",
             "movies",
             "music",
+            "poll",
             "politics",
             "dataisbeautiful",
             "crosspost"
@@ -72,6 +73,8 @@ class ApiDetailActivity : BaseActivity() {
         private const val API_SUBREDDITS = "param_subreddits_call"
         private const val API_SUBREDDIT_BANNED = "param_subreddit_call_banned"
         private const val API_SUBREDDIT_MUTED = "param_subreddit_call_muted"
+        private const val API_SUBREDDIT_RULES = "param_subreddit_call_rules"
+        private const val API_SUBREDDIT_FLAIRS = "param_subreddit_call_flairs"
         private const val API_SUBREDDIT_WIKIBANNED = "param_subreddit_call_wikibanned"
         private const val API_SUBREDDIT_CONTRIBUTORS = "param_subreddit_call_contributors"
         private const val API_SUBREDDIT_WIKICONTRIBUTORS = "param_subreddit_call_wikicontributors"
@@ -204,6 +207,14 @@ class ApiDetailActivity : BaseActivity() {
 
         fun startApiSubMuted(context: Context) {
             start(context, API_SUBREDDIT_MUTED)
+        }
+
+        fun startApiSubRules(context: Context) {
+            start(context, API_SUBREDDIT_RULES)
+        }
+
+        fun startApiSubFlairs(context: Context) {
+            start(context, API_SUBREDDIT_FLAIRS)
         }
 
         fun startApiSubWikiBanned(context: Context) {
@@ -513,6 +524,18 @@ class ApiDetailActivity : BaseActivity() {
                 val subName = getRandomSubredditName()
                 val muted = client?.subredditsClient?.subredditMuted(subName)
                 return muted.toString()
+            }
+
+            API_SUBREDDIT_RULES -> {
+                val subName = getRandomSubredditName()
+                val rules = client?.subredditsClient?.rules(subName)
+                return rules?.contentToString() ?: "null"
+            }
+
+            API_SUBREDDIT_FLAIRS -> {
+                val subName = getRandomSubredditName()
+                val flairs = client?.subredditsClient?.subredditFlairs(subName)
+                return flairs.toString()
             }
 
             API_SUBREDDIT_WIKIBANNED -> {

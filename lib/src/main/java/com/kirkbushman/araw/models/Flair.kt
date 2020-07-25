@@ -10,12 +10,27 @@ import kotlinx.android.parcel.Parcelize
 data class Flair(
 
     @Json(name = "id")
-    val id: Int,
+    val id: String,
+
+    @Json(name = "allowable_content")
+    val allowableContent: String,
+
+    @Json(name = "background_color")
+    val backgroundColor: String,
 
     @Json(name = "css_class")
     val cssClass: String,
 
     @Json(name = "text")
-    val text: String
+    val text: String,
+
+    @Json(name = "text_color")
+    val textColor: String,
+
+    @Json(name = "text_editable")
+    val textEditable: Boolean,
+
+    @Json(name = "type")
+    val type: String
 
 ) : Parcelable
