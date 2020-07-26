@@ -16,7 +16,7 @@ class FetcherTest {
 
     companion object {
 
-        private const val LIMIT = 30
+        private const val LIMIT = 30L
     }
 
     private val context by lazy { InstrumentationRegistry.getInstrumentation().targetContext.applicationContext }

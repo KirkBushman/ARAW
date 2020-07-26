@@ -27,15 +27,15 @@ class ModelsFetchTest {
             "wtf",
             "learnpython",
             "crosspost",
-
             "Gunners",
             "PoliticalCompassMemes",
             "privacy",
             "europe",
-            "androidapps"
+            "androidapps",
+            "poll"
         )
 
-        private const val LIMIT = 100
+        private const val LIMIT = 100L
     }
 
     private val context by lazy { InstrumentationRegistry.getInstrumentation().targetContext.applicationContext }

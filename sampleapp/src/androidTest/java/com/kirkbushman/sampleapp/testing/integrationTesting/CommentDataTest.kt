@@ -24,7 +24,7 @@ class CommentDataTest {
 
         private val subreddits = arrayOf("relationships", "relationship_advice", "tifu", "worldnews")
 
-        private const val LIMIT = 50
+        private const val LIMIT = 250L
     }
 
     private val context by lazy { InstrumentationRegistry.getInstrumentation().targetContext.applicationContext }
@@ -39,7 +39,7 @@ class CommentDataTest {
         client = RedditClient(bearer, true)
 
         val randomSub = subreddits.random()
-        val fetcher = client!!.contributionsClient.submissions(randomSub, limit = LIMIT)
+        val fetcher = client!!.contributionsClient.submissions(subreddit = randomSub, limit = LIMIT)
         submissions.addAll(fetcher.fetchNext())
     }
 

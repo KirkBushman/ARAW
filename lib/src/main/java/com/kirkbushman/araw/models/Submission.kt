@@ -4,6 +4,7 @@ import android.os.Parcelable
 import com.kirkbushman.araw.models.general.Gildings
 import com.kirkbushman.araw.models.general.Media
 import com.kirkbushman.araw.models.general.MediaEmbed
+import com.kirkbushman.araw.models.general.PollData
 import com.kirkbushman.araw.models.general.RedditMedia
 import com.kirkbushman.araw.models.general.SubmissionPreview
 import com.kirkbushman.araw.models.mixins.Contribution
@@ -43,6 +44,14 @@ import kotlinx.android.parcel.RawValue
  * @property authorFlairTemplateId template id of the author's flair, used in the site UI.
  *
  * @property authorFlairType type of author flair
+ *
+ * @property thumbnailUrl the url of the thumbnail image, given there is one.
+ *
+ * @property thumbnailWidth the width of the thumbnail image, given there is one.
+ *
+ * @property thumbnailHeight the height of the thumbnail image, given there is one.
+ *
+ * @property title the title of this submission.
  *
  */
 @JsonClass(generateAdapter = true)
@@ -151,6 +160,9 @@ data class Submission(
     @Json(name = "pinned")
     val isPinned: Boolean,
 
+    @Json(name = "quarantine")
+    val isQuarantined: Boolean,
+
     @Json(name = "is_reddit_media_domain")
     val isRedditMediaDomain: Boolean,
 
@@ -198,6 +210,9 @@ data class Submission(
 
     @Json(name = "preview")
     val preview: SubmissionPreview?,
+
+    @Json(name = "poll_data")
+    val pollData: PollData?,
 
     @Json(name = "removed_by_category")
     val removedByCategory: String?,

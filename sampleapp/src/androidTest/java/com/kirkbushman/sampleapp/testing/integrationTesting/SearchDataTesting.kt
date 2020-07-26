@@ -17,7 +17,7 @@ class SearchDataTesting {
 
     companion object {
 
-        private const val LIMIT = 100
+        private const val LIMIT = 100L
     }
 
     private val context by lazy { InstrumentationRegistry.getInstrumentation().targetContext.applicationContext }
