@@ -229,6 +229,14 @@ interface RedditApi {
         @HeaderMap header: HashMap<String, String>
     ): Call<Any?>
 
+    /*@POST
+    fun pollVote(
+        @Url url: String,
+        @Query("request_timestamp") requestTimestamp: Long,
+        @Body pollVoteReq: PollVoteReq,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<PollVoteRes>*/
+
     @FormUrlEncoded
     @POST("/api/media/asset.json")
     fun obtainUploadContract(

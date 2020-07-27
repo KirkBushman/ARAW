@@ -22,8 +22,8 @@ import com.kirkbushman.araw.models.mixins.Replyable
 import com.kirkbushman.araw.models.mixins.SubredditData
 import com.kirkbushman.araw.models.mixins.Votable
 import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.toRequestBody
 
 class ContributionsClient(
 
@@ -480,6 +480,37 @@ class ContributionsClient(
 
         return res.body()
     }
+
+    // todo: consider making a separate module with an android GraphQL client,
+    // todo: to avoid this ugliness
+    /*@WorkerThread
+    fun pollVote(submissionFullname: String, optionId: String): List<PollVoteStateOption>? {
+
+        val authMap = getHeaderMap()
+        val req = api.pollVote(
+            // send to reddit's GraphQL url
+            url = "https://gql.reddit.com",
+            requestTimestamp = System.currentTimeMillis() / 1000L,
+            pollVoteReq = PollVoteReq(
+                // fixed id value
+                id = "a20cc8dd230d",
+                variables = PollVoteVariables(
+                    input = PollVoteInput(
+                        postId = submissionFullname,
+                        optionId = optionId
+                    )
+                )
+            ),
+            header = authMap
+        )
+
+        val res = req.execute()
+        if (!res.isSuccessful) {
+            return null
+        }
+
+        return res.body()?.data?.updatePostPollVoteState?.poll?.options
+    }*/
 
     @WorkerThread
     fun uploadMedia(filename: String, mimeType: String? = null, fileContent: ByteArray): String? {
