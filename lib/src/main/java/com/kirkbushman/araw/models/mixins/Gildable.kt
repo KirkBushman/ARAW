@@ -10,7 +10,11 @@ import com.kirkbushman.araw.models.general.Gildings
  * @property gildings the number of times this comment received reddit gold, silver, platinum.
  *
  */
-interface Gildable {
+interface Gildable : Thing {
+
+    override val id: String
+
+    override val fullname: String
 
     val canGild: Boolean
 

@@ -17,8 +17,8 @@ import com.kirkbushman.araw.models.general.SubmissionsSorting
 import com.kirkbushman.araw.models.general.TimePeriod
 import com.kirkbushman.araw.models.general.Vote
 import com.kirkbushman.araw.models.mixins.CommentData
-import com.kirkbushman.araw.models.mixins.Contribution
 import com.kirkbushman.araw.models.mixins.Replyable
+import com.kirkbushman.araw.models.mixins.Saveable
 import com.kirkbushman.araw.models.mixins.SubredditData
 import com.kirkbushman.araw.models.mixins.Votable
 import okhttp3.MediaType.Companion.toMediaType
@@ -355,8 +355,8 @@ class ContributionsClient(
     }
 
     @WorkerThread
-    fun save(save: Boolean, contribution: Contribution): Any? {
-        return save(save, contribution.fullname)
+    fun save(save: Boolean, saveable: Saveable): Any? {
+        return save(save, saveable.fullname)
     }
 
     @WorkerThread

@@ -59,7 +59,7 @@ by moderators, admins or else.</p>
 </td>
 <td>
 <p>Base interface for all the item that can be given Gildings</p>
-<code><span class="keyword">interface </span><span class="identifier">Gildable</span></code></td>
+<code><span class="keyword">interface </span><span class="identifier">Gildable</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-thing/index.html"><span class="identifier">Thing</span></a></code></td>
 </tr>
 <tr>
 <td>
@@ -69,6 +69,14 @@ by moderators, admins or else.</p>
 <p>Base interface for all items that be replied to,
 including Submission and Comment.</p>
 <code><span class="keyword">interface </span><span class="identifier">Replyable</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-saveable/index.html">Saveable</a></h4>
+</td>
+<td>
+<p>Base interface for all the items that can be saved,</p>
+<code><span class="keyword">interface </span><span class="identifier">Saveable</span></code></td>
 </tr>
 <tr>
 <td>
@@ -92,7 +100,7 @@ including Submission and Comment.</p>
 <td>
 <p>Base interface for all the items that can be voted on,
 likes = True -&gt; Upvote, likes = False -&gt; Downvote, likes = null</p>
-<code><span class="keyword">interface </span><span class="identifier">Votable</span></code></td>
+<code><span class="keyword">interface </span><span class="identifier">Votable</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-thing/index.html"><span class="identifier">Thing</span></a></code></td>
 </tr>
 </tbody>
 </table>

@@ -15,11 +15,11 @@ package com.kirkbushman.araw.models.mixins
  * @property score the net-score of the item.
  *
  */
-interface Votable {
+interface Votable : Thing {
 
-    val id: String
+    override val id: String
 
-    val fullname: String
+    override val fullname: String
 
     val likes: Boolean?
 

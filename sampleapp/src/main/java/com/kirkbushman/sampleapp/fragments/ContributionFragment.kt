@@ -85,15 +85,12 @@ class ContributionFragment : Fragment(R.layout.fragment_contribution) {
 
                 doAsync(
                     doWork = {
-                        val contribution = contributions[index]
-                        val saved = when (contribution) {
-                            is Submission -> (contribution).isSaved
-                            is Comment -> (contribution).isSaved
+                        when (val contribution = contributions[index]) {
+                            is Submission -> client?.contributionsClient?.save(!contribution.isSaved, contribution)
+                            is Comment -> client?.contributionsClient?.save(!contribution.isSaved, contribution)
 
-                            else -> false
+                            else -> {}
                         }
-
-                        client?.contributionsClient?.save(!saved, contribution)
                     }
                 )
             }

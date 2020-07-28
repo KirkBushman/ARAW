@@ -1,6 +1,8 @@
 package com.kirkbushman.araw.models
 
 import android.os.Parcelable
+import com.kirkbushman.araw.models.general.GalleryData
+import com.kirkbushman.araw.models.general.GalleryMedia
 import com.kirkbushman.araw.models.general.Gildings
 import com.kirkbushman.araw.models.general.Media
 import com.kirkbushman.araw.models.general.MediaEmbed
@@ -13,6 +15,7 @@ import com.kirkbushman.araw.models.mixins.Distinguishable
 import com.kirkbushman.araw.models.mixins.Editable
 import com.kirkbushman.araw.models.mixins.Gildable
 import com.kirkbushman.araw.models.mixins.Replyable
+import com.kirkbushman.araw.models.mixins.Saveable
 import com.kirkbushman.araw.models.mixins.Votable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -136,6 +139,9 @@ data class Submission(
     @Json(name = "link_flair_type")
     val linkFlairType: String?,
 
+    @Json(name = "gallery_data")
+    val galleryData: GalleryData?,
+
     @Json(name = "gildings")
     override val gildings: Gildings,
 
@@ -144,6 +150,9 @@ data class Submission(
 
     @Json(name = "is_crosspostable")
     val isCrosspostable: Boolean,
+
+    @Json(name = "is_gallery")
+    val isGallery: Boolean?,
 
     @Json(name = "hidden")
     val isHidden: Boolean,
@@ -170,7 +179,7 @@ data class Submission(
     val isRobotIndexable: Boolean,
 
     @Json(name = "saved")
-    val isSaved: Boolean,
+    override val isSaved: Boolean,
 
     @Json(name = "is_self")
     val isSelf: Boolean,
@@ -192,6 +201,9 @@ data class Submission(
 
     @Json(name = "secure_media_embed")
     val mediaEmbed: MediaEmbed,
+
+    @Json(name = "media_metadata")
+    val mediaMetadata: Map<String, GalleryMedia>?,
 
     @Json(name = "media")
     val redditMedia: RedditMedia?,
@@ -256,4 +268,4 @@ data class Submission(
     @Json(name = "url")
     val url: String
 
-) : Contribution, Votable, Created, Editable, Distinguishable, Gildable, Replyable, Parcelable
+) : Contribution, Votable, Saveable, Created, Editable, Distinguishable, Gildable, Replyable, Parcelable

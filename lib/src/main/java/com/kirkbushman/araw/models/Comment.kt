@@ -9,6 +9,7 @@ import com.kirkbushman.araw.models.mixins.Distinguishable
 import com.kirkbushman.araw.models.mixins.Editable
 import com.kirkbushman.araw.models.mixins.Gildable
 import com.kirkbushman.araw.models.mixins.Replyable
+import com.kirkbushman.araw.models.mixins.Saveable
 import com.kirkbushman.araw.models.mixins.Votable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -148,7 +149,7 @@ data class Comment(
     val isLocked: Boolean,
 
     @Json(name = "saved")
-    val isSaved: Boolean,
+    override val isSaved: Boolean,
 
     @Json(name = "score_hidden")
     val isScoreHidden: Boolean,
@@ -208,7 +209,7 @@ data class Comment(
     @Json(name = "subreddit_name_prefixed")
     val subredditNamePrefixed: String
 
-) : CommentData, Votable, Created, Editable, Distinguishable, Gildable, Replyable, Parcelable {
+) : CommentData, Votable, Saveable, Created, Editable, Distinguishable, Gildable, Replyable, Parcelable {
 
     override val hasReplies: Boolean
         get() {

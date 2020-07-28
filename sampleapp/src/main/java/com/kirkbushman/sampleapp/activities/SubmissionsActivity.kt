@@ -120,7 +120,7 @@ class SubmissionsActivity : BaseActivity() {
             doAsync(
                 doWork = {
 
-                    fetcher = client?.contributionsClient?.submissions(subredditName)
+                    fetcher = client?.contributionsClient?.submissions(subredditName, limit = 100L)
 
                     submissions.clear()
                     submissions.addAll(fetcher?.fetchNext() ?: listOf())

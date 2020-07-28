@@ -68,6 +68,14 @@ e.g. Submission, Comment, Message</p>
 </tr>
 <tr>
 <td>
+<h4><a href="../-gildable/index.html">Gildable</a></h4>
+</td>
+<td>
+<p>Base interface for all the item that can be given Gildings</p>
+<code><span class="keyword">interface </span><span class="identifier">Gildable</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Thing</span></a></code></td>
+</tr>
+<tr>
+<td>
 <h4><a href="../../com.kirkbushman.araw.models/-message/index.html">Message</a></h4>
 </td>
 <td>
@@ -81,6 +89,15 @@ Messages are grouped in the user inbox.</p>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">SubredditData</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Thing</span></a><span class="symbol">, </span><a href="../-created/index.html"><span class="identifier">Created</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../-votable/index.html">Votable</a></h4>
+</td>
+<td>
+<p>Base interface for all the items that can be voted on,
+likes = True -&gt; Upvote, likes = False -&gt; Downvote, likes = null</p>
+<code><span class="keyword">interface </span><span class="identifier">Votable</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Thing</span></a></code></td>
 </tr>
 </tbody>
 </table>
