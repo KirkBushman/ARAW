@@ -10,13 +10,16 @@ import kotlinx.android.parcel.Parcelize
 data class Images(
 
     @Json(name = "id")
-    val id: String,
+    val id: String?,
 
     @Json(name = "source")
     val source: ImageDetail,
 
     @Json(name = "resolutions")
-    val resolutions: Array<ImageDetail>
+    val resolutions: Array<ImageDetail>,
+
+    @Json(name = "variants")
+    val variants: ImageVariants?
 
 ) : Parcelable {
 
@@ -50,5 +53,17 @@ data class ImageDetail(
 
     @Json(name = "height")
     val height: Int
+
+) : Parcelable
+
+@JsonClass(generateAdapter = true)
+@Parcelize
+data class ImageVariants(
+
+    @Json(name = "gif")
+    val gif: Images?,
+
+    @Json(name = "mp4")
+    val mp4: Images?
 
 ) : Parcelable

@@ -52,4 +52,13 @@ data class SubmissionPreview(
 
         return images.firstOrNull()?.resolutions?.lastOrNull()
     }
+
+    fun variants(): ImageVariants? {
+
+        if (images.isEmpty()) {
+            return null
+        }
+
+        return images.firstOrNull()?.variants
+    }
 }
