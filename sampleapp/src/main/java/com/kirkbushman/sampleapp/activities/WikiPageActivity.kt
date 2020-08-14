@@ -95,7 +95,7 @@ class WikiPageActivity : BaseActivity() {
             doAsync(
                 doWork = {
 
-                    wikiPage = client?.wikisClient?.wikiPage(subreddit, page)
+                    wikiPage = client?.wikisClient?.wikiPage(subreddit!!, page!!)
                 },
                 onPost = {
 

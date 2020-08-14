@@ -4,20 +4,21 @@ buildscript {
     ext {
         android_gradle_ver = '4.0.1'
 
-        compile_sdk_ver = 29
-        build_tools_ver = '29.0.3'
+        compile_sdk_ver = 30
+        build_tools_ver = '30.0.2'
 
         min_sdk_ver     = 19
-        compile_sdk_ver = 29
+        compile_sdk_ver = 30
 
         kotlin_ver     = '1.3.72'
+        coroutines_ver = '1.3.8'
         ktx_core_ver   = '1.3.1'
         ktlint_ver     = '0.37.2'
         constr_ver     = '2.0.0-rc1'
         annot_ver      = '1.1.0'
         retrofit_ver   = '2.9.0'
         moshi_ver      = '1.9.3' // '1.10.0-SNAPSHOT'
-        okhttp_ver     = '4.8.0'
+        okhttp_ver     = '4.8.1'
         oauth2_ver     = '1.2.1'
         mdc_ver        = '1.2.0'
         epoxy_ver      = '3.11.0'
