@@ -199,7 +199,7 @@ class ModelsFetchTest {
         val fetcher = client?.subredditsClient?.all(limit = LIMIT)
         val submissions = fetcher?.fetchNext()
 
-        val randomSub = submissions?.random()
+        val randomSub = submissions?.randomOrNull()
 
         assertNotEquals("Assert that this random submission is not null", null, randomSub)
 
@@ -219,6 +219,7 @@ class ModelsFetchTest {
 
             val randomSub = subreddits.random()
             val pages = client?.wikisClient?.wikiPages(subreddit = randomSub)
+
             assertNotEquals("Assert that pages in the sub wiki are not null", null, pages)
             assertTrue("Assert that pages in the sub wiki are not empty", pages?.isNotEmpty() ?: false)
         } catch (ex: Exception) {

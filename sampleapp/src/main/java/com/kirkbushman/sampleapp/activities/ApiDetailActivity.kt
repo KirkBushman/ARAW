@@ -507,7 +507,7 @@ class ApiDetailActivity : BaseActivity() {
             API_SUBREDDITS -> {
                 val subIds = getRandomSubredditIds()
                 val subreddits = client?.subredditsClient?.subreddits(
-                    ids = *subIds.toTypedArray(),
+                    ids = subIds.toTypedArray(),
                     disableLegacyEncoding = disableLegacyEncoding
                 )
 
@@ -661,7 +661,7 @@ class ApiDetailActivity : BaseActivity() {
 
     private fun getRandomSubredditIds(): List<String> {
 
-        val list = listOf(
+        return listOf(
 
             // centuryclub
             // testing private subreddit
@@ -761,8 +761,6 @@ class ApiDetailActivity : BaseActivity() {
             // writingPrompts
             "2s3nb"
         )
-
-        return list
     }
 
     private fun getRandomSubmissionIdFromRandomSubreddit(): String {
