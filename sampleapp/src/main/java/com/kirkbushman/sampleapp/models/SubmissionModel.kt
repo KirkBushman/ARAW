@@ -7,7 +7,7 @@ import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.kirkbushman.sampleapp.R
 
-@EpoxyModelClass(layout = R.layout.item_submission)
+@EpoxyModelClass
 abstract class SubmissionModel : EpoxyModelWithHolder<SubmissionHolder>() {
 
     @EpoxyAttribute
@@ -26,6 +26,10 @@ abstract class SubmissionModel : EpoxyModelWithHolder<SubmissionHolder>() {
     @EpoxyAttribute lateinit var saveClick: View.OnClickListener
     @EpoxyAttribute lateinit var hideClick: View.OnClickListener
     @EpoxyAttribute lateinit var lockClick: View.OnClickListener
+
+    override fun getDefaultLayout(): Int {
+        return R.layout.item_submission
+    }
 
     override fun bind(holder: SubmissionHolder) {
 

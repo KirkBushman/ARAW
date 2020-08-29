@@ -6,7 +6,7 @@ import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.kirkbushman.sampleapp.R
 
-@EpoxyModelClass(layout = R.layout.item_redditor)
+@EpoxyModelClass
 abstract class RedditorModel : EpoxyModelWithHolder<RedditorHolder>() {
 
     @EpoxyAttribute
@@ -15,6 +15,10 @@ abstract class RedditorModel : EpoxyModelWithHolder<RedditorHolder>() {
     lateinit var redditorCreated: String
     @EpoxyAttribute
     lateinit var redditorKarma: String
+
+    override fun getDefaultLayout(): Int {
+        return R.layout.item_redditor
+    }
 
     override fun bind(holder: RedditorHolder) {
 

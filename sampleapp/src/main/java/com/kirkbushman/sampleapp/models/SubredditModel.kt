@@ -9,7 +9,7 @@ import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.kirkbushman.sampleapp.R
 
-@EpoxyModelClass(layout = R.layout.item_subreddit)
+@EpoxyModelClass
 abstract class SubredditModel : EpoxyModelWithHolder<SubredditHolder>() {
 
     @EpoxyAttribute
@@ -20,6 +20,10 @@ abstract class SubredditModel : EpoxyModelWithHolder<SubredditHolder>() {
 
     @EpoxyAttribute(DoNotHash)
     lateinit var subscribeClick: View.OnClickListener
+
+    override fun getDefaultLayout(): Int {
+        return R.layout.item_subreddit
+    }
 
     override fun bind(holder: SubredditHolder) {
 

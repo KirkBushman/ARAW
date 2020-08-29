@@ -6,11 +6,15 @@ import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.kirkbushman.sampleapp.R
 
-@EpoxyModelClass(layout = R.layout.item_trophy)
+@EpoxyModelClass
 abstract class TrophyModel : EpoxyModelWithHolder<TrophyHolder>() {
 
     @EpoxyAttribute
     lateinit var name: String
+
+    override fun getDefaultLayout(): Int {
+        return R.layout.item_trophy
+    }
 
     override fun bind(holder: TrophyHolder) {
 

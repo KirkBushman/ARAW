@@ -217,7 +217,8 @@ class ModelsFetchTest {
 
         try {
 
-            val randomSub = subreddits.random()
+            val wikiSubs = listOf("soccer", "pics")
+            val randomSub = wikiSubs.random()
             val pages = client?.wikisClient?.wikiPages(subreddit = randomSub)
 
             assertNotEquals("Assert that pages in the sub wiki are not null", null, pages)

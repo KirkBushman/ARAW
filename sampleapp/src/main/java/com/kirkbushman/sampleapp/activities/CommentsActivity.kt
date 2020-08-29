@@ -36,73 +36,77 @@ class CommentsActivity : BaseActivity() {
 
     private val comments = ArrayList<CommentData>()
     private val controller by lazy {
-        CommentController(object : CommentController.CommentCallback {
 
-            override fun onUpvoteClick(submission: Submission) {
+        CommentController(
 
-                doAsync(
-                    doWork = { client?.contributionsClient?.vote(Vote.UPVOTE, submission) }
-                )
+            object : CommentController.CommentCallback {
+
+                override fun onUpvoteClick(submission: Submission) {
+
+                    doAsync(
+                        doWork = { client?.contributionsClient?.vote(Vote.UPVOTE, submission) }
+                    )
+                }
+
+                override fun onNoneClick(submission: Submission) {
+
+                    doAsync(
+                        doWork = { client?.contributionsClient?.vote(Vote.NONE, submission) }
+                    )
+                }
+
+                override fun onDownClick(submission: Submission) {
+
+                    doAsync(
+                        doWork = { client?.contributionsClient?.vote(Vote.DOWNVOTE, submission) }
+                    )
+                }
+
+                override fun onSaveClick(submission: Submission) {
+
+                    doAsync(
+                        doWork = { client?.contributionsClient?.save(!submission.isSaved, submission) }
+                    )
+                }
+
+                override fun onHideClick(submission: Submission) {
+
+                    doAsync(
+                        doWork = { client?.contributionsClient?.hide(submission) }
+                    )
+                }
+
+                override fun onLockClick(submission: Submission) {
+
+                    doAsync(
+                        doWork = { client?.contributionsClient?.lock(submission) }
+                    )
+                }
+
+                override fun onLoadMoreClick(moreComments: MoreComments, submission: Submission) {
+
+                    val addendum = ArrayList<CommentData>()
+
+                    doAsync(
+                        doWork = {
+
+                            val more = client?.contributionsClient?.moreChildren(moreComments, submission)
+                            addendum.addAll(more ?: listOf())
+                        },
+                        onPost = {
+
+                            replaceMoreComments(moreComments, addendum)
+                        }
+                    )
+                }
+
+                override fun onReplyClick(comment: Comment) {
+
+                    val fr = ReplyBottomFragment.instance(comment)
+                    fr.show(supportFragmentManager, "Reply Bottom Fragment")
+                }
             }
-
-            override fun onNoneClick(submission: Submission) {
-
-                doAsync(
-                    doWork = { client?.contributionsClient?.vote(Vote.NONE, submission) }
-                )
-            }
-
-            override fun onDownClick(submission: Submission) {
-
-                doAsync(
-                    doWork = { client?.contributionsClient?.vote(Vote.DOWNVOTE, submission) }
-                )
-            }
-
-            override fun onSaveClick(submission: Submission) {
-
-                doAsync(
-                    doWork = { client?.contributionsClient?.save(!submission.isSaved, submission) }
-                )
-            }
-
-            override fun onHideClick(submission: Submission) {
-
-                doAsync(
-                    doWork = { client?.contributionsClient?.hide(submission) }
-                )
-            }
-
-            override fun onLockClick(submission: Submission) {
-
-                doAsync(
-                    doWork = { client?.contributionsClient?.lock(submission) }
-                )
-            }
-
-            override fun onLoadMoreClick(moreComments: MoreComments, submission: Submission) {
-
-                val addendum = ArrayList<CommentData>()
-
-                doAsync(
-                    doWork = {
-
-                        val more = client?.contributionsClient?.moreChildren(moreComments, submission)
-                        addendum.addAll(more ?: listOf())
-                    },
-                    onPost = {
-
-                        replaceMoreComments(moreComments, addendum)
-                    }
-                )
-            }
-
-            override fun onReplyClick(comment: Comment) {
-
-                val fr = ReplyBottomFragment.instance(comment)
-                fr.show(supportFragmentManager, "Reply Bottom Fragment")
-            }
-        })
+        )
     }
 
     private var fetcher: CommentsFetcher? = null

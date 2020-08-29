@@ -6,7 +6,7 @@ import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.kirkbushman.sampleapp.R
 
-@EpoxyModelClass(layout = R.layout.item_rule)
+@EpoxyModelClass
 abstract class RuleModel : EpoxyModelWithHolder<RuleHolder>() {
 
     @EpoxyAttribute
@@ -14,6 +14,10 @@ abstract class RuleModel : EpoxyModelWithHolder<RuleHolder>() {
 
     @EpoxyAttribute
     lateinit var shortName: String
+
+    override fun getDefaultLayout(): Int {
+        return R.layout.item_rule
+    }
 
     override fun bind(holder: RuleHolder) {
 

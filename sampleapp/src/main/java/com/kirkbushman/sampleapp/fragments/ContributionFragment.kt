@@ -49,56 +49,59 @@ class ContributionFragment : Fragment(R.layout.fragment_contribution) {
 
     private val contributions = ArrayList<Contribution>()
     private val controller by lazy {
-        ContributionController(object : SubmissionController.SubmissionCallback {
 
-            override fun onUpvoteClick(index: Int) {
+        ContributionController(
+            object : SubmissionController.SubmissionCallback {
 
-                doAsync(
-                    doWork = {
-                        val votable = contributions[index] as Votable
-                        client?.contributionsClient?.vote(Vote.UPVOTE, votable)
-                    }
-                )
-            }
+                override fun onUpvoteClick(index: Int) {
 
-            override fun onNoneClick(index: Int) {
-
-                doAsync(
-                    doWork = {
-                        val votable = contributions[index] as Votable
-                        client?.contributionsClient?.vote(Vote.NONE, votable)
-                    }
-                )
-            }
-
-            override fun onDownClick(index: Int) {
-
-                doAsync(
-                    doWork = {
-                        val votable = contributions[index] as Votable
-                        client?.contributionsClient?.vote(Vote.DOWNVOTE, votable)
-                    }
-                )
-            }
-
-            override fun onSaveClick(index: Int) {
-
-                doAsync(
-                    doWork = {
-                        when (val contribution = contributions[index]) {
-                            is Submission -> client?.contributionsClient?.save(!contribution.isSaved, contribution)
-                            is Comment -> client?.contributionsClient?.save(!contribution.isSaved, contribution)
-
-                            else -> {}
+                    doAsync(
+                        doWork = {
+                            val votable = contributions[index] as Votable
+                            client?.contributionsClient?.vote(Vote.UPVOTE, votable)
                         }
-                    }
-                )
-            }
+                    )
+                }
 
-            override fun onHideClick(index: Int) {}
-            override fun onLockClick(index: Int) {}
-            override fun onReplyClick(index: Int) {}
-        })
+                override fun onNoneClick(index: Int) {
+
+                    doAsync(
+                        doWork = {
+                            val votable = contributions[index] as Votable
+                            client?.contributionsClient?.vote(Vote.NONE, votable)
+                        }
+                    )
+                }
+
+                override fun onDownClick(index: Int) {
+
+                    doAsync(
+                        doWork = {
+                            val votable = contributions[index] as Votable
+                            client?.contributionsClient?.vote(Vote.DOWNVOTE, votable)
+                        }
+                    )
+                }
+
+                override fun onSaveClick(index: Int) {
+
+                    doAsync(
+                        doWork = {
+                            when (val contribution = contributions[index]) {
+                                is Submission -> client?.contributionsClient?.save(!contribution.isSaved, contribution)
+                                is Comment -> client?.contributionsClient?.save(!contribution.isSaved, contribution)
+
+                                else -> {}
+                            }
+                        }
+                    )
+                }
+
+                override fun onHideClick(index: Int) {}
+                override fun onLockClick(index: Int) {}
+                override fun onReplyClick(index: Int) {}
+            }
+        )
     }
 
     private var fetcher: ContributionsFetcher? = null

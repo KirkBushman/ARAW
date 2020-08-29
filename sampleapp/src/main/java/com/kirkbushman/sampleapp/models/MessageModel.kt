@@ -7,7 +7,7 @@ import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.kirkbushman.sampleapp.R
 
-@EpoxyModelClass(layout = R.layout.item_message)
+@EpoxyModelClass
 abstract class MessageModel : EpoxyModelWithHolder<MessageHolder>() {
 
     @EpoxyAttribute lateinit var subject: String
@@ -16,6 +16,10 @@ abstract class MessageModel : EpoxyModelWithHolder<MessageHolder>() {
 
     @EpoxyAttribute lateinit var readBttn: View.OnClickListener
     @EpoxyAttribute lateinit var unreadBttn: View.OnClickListener
+
+    override fun getDefaultLayout(): Int {
+        return R.layout.item_message
+    }
 
     override fun bind(holder: MessageHolder) {
 

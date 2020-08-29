@@ -29,29 +29,33 @@ class SubredditsSearchActivity : BaseActivity() {
     private var searchResult: SubredditSearchResult? = null
     private val data = ArrayList<SubredditData>()
     private val controller by lazy {
-        SubredditController(object : SubredditController.SubredditCallback {
 
-            override fun subscribeClick(index: Int) {
+        SubredditController(
 
-                val subreddit = data[index]
-                doAsync(
-                    doWork = {
+            object : SubredditController.SubredditCallback {
 
-                        if (subreddit is Subreddit) {
-                            client?.subredditsClient?.subscribe(subreddit)
+                override fun subscribeClick(index: Int) {
+
+                    val subreddit = data[index]
+                    doAsync(
+                        doWork = {
+
+                            if (subreddit is Subreddit) {
+                                client?.subredditsClient?.subscribe(subreddit)
+                            }
+                        },
+                        onPost = {
+
+                            if (subreddit is Subreddit && subreddit.isSubscriber != null) {
+
+                                data[index] = subreddit.copy(isSubscriber = !subreddit.isSubscriber!!)
+                                refresh()
+                            }
                         }
-                    },
-                    onPost = {
-
-                        if (subreddit is Subreddit && subreddit.isSubscriber != null) {
-
-                            data[index] = subreddit.copy(isSubscriber = !subreddit.isSubscriber!!)
-                            refresh()
-                        }
-                    }
-                )
+                    )
+                }
             }
-        })
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -614,7 +614,7 @@ class ApiDetailActivity : BaseActivity() {
             API_WIKI -> {
                 val subredditName = getRandomSubredditName()
                 val wiki = client?.wikisClient?.wiki(
-                    subredditName,
+                    subreddit = subredditName,
                     disableLegacyEncoding = disableLegacyEncoding
                 )
                 return wiki.toString()
@@ -623,7 +623,7 @@ class ApiDetailActivity : BaseActivity() {
             API_WIKI_PAGES -> {
                 val subredditName = getRandomSubredditName()
                 val wikiPages = client?.wikisClient?.wikiPages(
-                    subredditName,
+                    subreddit = subredditName,
                     disableLegacyEncoding = disableLegacyEncoding
                 )
                 return wikiPages.toString()
@@ -632,7 +632,8 @@ class ApiDetailActivity : BaseActivity() {
             API_WIKI_REVISION -> {
                 val subredditName = getRandomSubredditName()
                 val wikiRevisions = client?.wikisClient?.wikiRevision(
-                    subredditName, "index",
+                    subreddit = subredditName,
+                    page = "index",
                     disableLegacyEncoding = disableLegacyEncoding
                 )
                 return wikiRevisions.toString()
@@ -641,7 +642,7 @@ class ApiDetailActivity : BaseActivity() {
             API_WIKI_REVISIONS -> {
                 val subredditName = getRandomSubredditName()
                 val wikiRevisions = client?.wikisClient?.wikiRevisions(
-                    subredditName,
+                    subreddit = subredditName,
                     disableLegacyEncoding = disableLegacyEncoding
                 )
                 return wikiRevisions.toString()

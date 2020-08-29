@@ -8,7 +8,7 @@ import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.kirkbushman.sampleapp.R
 
-@EpoxyModelClass(layout = R.layout.item_trophy)
+@EpoxyModelClass
 abstract class WikiPageModel : EpoxyModelWithHolder<WikiPageHolder>() {
 
     @EpoxyAttribute
@@ -16,6 +16,10 @@ abstract class WikiPageModel : EpoxyModelWithHolder<WikiPageHolder>() {
 
     @EpoxyAttribute(DoNotHash)
     lateinit var listener: View.OnClickListener
+
+    override fun getDefaultLayout(): Int {
+        return R.layout.item_trophy
+    }
 
     override fun bind(holder: WikiPageHolder) {
 

@@ -28,70 +28,74 @@ class SubmissionsSearchActivity : BaseActivity() {
 
     private val submissions = ArrayList<Submission>()
     private val controller by lazy {
-        SubmissionController(object : SubmissionController.SubmissionCallback {
 
-            override fun onUpvoteClick(index: Int) {
+        SubmissionController(
 
-                doAsync(
-                    doWork = {
-                        val submission = submissions[index]
-                        client?.contributionsClient?.vote(Vote.UPVOTE, submission)
-                    }
-                )
+            object : SubmissionController.SubmissionCallback {
+
+                override fun onUpvoteClick(index: Int) {
+
+                    doAsync(
+                        doWork = {
+                            val submission = submissions[index]
+                            client?.contributionsClient?.vote(Vote.UPVOTE, submission)
+                        }
+                    )
+                }
+
+                override fun onNoneClick(index: Int) {
+
+                    doAsync(
+                        doWork = {
+                            val submission = submissions[index]
+                            client?.contributionsClient?.vote(Vote.NONE, submission)
+                        }
+                    )
+                }
+
+                override fun onDownClick(index: Int) {
+
+                    doAsync(
+                        doWork = {
+                            val submission = submissions[index]
+                            client?.contributionsClient?.vote(Vote.DOWNVOTE, submission)
+                        }
+                    )
+                }
+
+                override fun onSaveClick(index: Int) {
+
+                    doAsync(
+                        doWork = {
+                            val submission = submissions[index]
+                            client?.contributionsClient?.save(!submission.isSaved, submission)
+                        }
+                    )
+                }
+
+                override fun onHideClick(index: Int) {
+
+                    doAsync(
+                        doWork = {
+                            val submission = submissions[index]
+                            client?.contributionsClient?.hide(submission)
+                        }
+                    )
+                }
+
+                override fun onLockClick(index: Int) {
+
+                    doAsync(
+                        doWork = {
+                            val submission = submissions[index]
+                            client?.contributionsClient?.lock(submission)
+                        }
+                    )
+                }
+
+                override fun onReplyClick(index: Int) {}
             }
-
-            override fun onNoneClick(index: Int) {
-
-                doAsync(
-                    doWork = {
-                        val submission = submissions[index]
-                        client?.contributionsClient?.vote(Vote.NONE, submission)
-                    }
-                )
-            }
-
-            override fun onDownClick(index: Int) {
-
-                doAsync(
-                    doWork = {
-                        val submission = submissions[index]
-                        client?.contributionsClient?.vote(Vote.DOWNVOTE, submission)
-                    }
-                )
-            }
-
-            override fun onSaveClick(index: Int) {
-
-                doAsync(
-                    doWork = {
-                        val submission = submissions[index]
-                        client?.contributionsClient?.save(!submission.isSaved, submission)
-                    }
-                )
-            }
-
-            override fun onHideClick(index: Int) {
-
-                doAsync(
-                    doWork = {
-                        val submission = submissions[index]
-                        client?.contributionsClient?.hide(submission)
-                    }
-                )
-            }
-
-            override fun onLockClick(index: Int) {
-
-                doAsync(
-                    doWork = {
-                        val submission = submissions[index]
-                        client?.contributionsClient?.lock(submission)
-                    }
-                )
-            }
-
-            override fun onReplyClick(index: Int) {}
-        })
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

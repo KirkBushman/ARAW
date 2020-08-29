@@ -4,8 +4,12 @@ import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.kirkbushman.sampleapp.R
 
-@EpoxyModelClass(layout = R.layout.item_empty)
+@EpoxyModelClass
 abstract class EmptyModel : EpoxyModelWithHolder<EmptyHolder>() {
+
+    override fun getDefaultLayout(): Int {
+        return R.layout.item_empty
+    }
 
     override fun bind(holder: EmptyHolder) {}
 }
