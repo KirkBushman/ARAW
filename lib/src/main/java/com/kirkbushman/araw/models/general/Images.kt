@@ -64,6 +64,12 @@ data class ImageVariants(
     val gif: Images?,
 
     @Json(name = "mp4")
-    val mp4: Images?
+    val mp4: Images?,
+
+    @Json(name = "nsfw")
+    val nsfw: Images?,
+
+    @Json(name = "obfuscated")
+    val obfuscated: Images?
 
 ) : Parcelable
