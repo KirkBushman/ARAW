@@ -11,8 +11,8 @@ android {
     defaultConfig {
         minSdkVersion min_sdk_ver
         targetSdkVersion compile_sdk_ver
-        versionCode = 1
-        versionName = VERSION_NAME
+        versionCode = version_code
+        versionName = version_name
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -34,6 +34,11 @@ android {
     lintOptions {
         warningsAsErrors true
     }
+}
+
+kotlin {
+    explicitApi()
+    explicitApiWarning()
 }
 
 androidExtensions {
