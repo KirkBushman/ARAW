@@ -44,6 +44,10 @@ buildscript {
     }
 }
 
+plugins {
+    id "io.gitlab.arturbosch.detekt" version "1.12.0"
+}
+
 allprojects {
     repositories {
         google()
@@ -56,6 +60,7 @@ allprojects {
 
 subprojects {
 
+    // ktlint
     apply plugin: 'checkstyle'
     apply from: "${project.rootDir}/ktlint.gradle"
 
@@ -79,6 +84,20 @@ subprojects {
             check.dependsOn('dokka')
         }
     }
+
+    // detekt
+    detekt {
+        toolVersion = "1.12.0"
+        input = files("$projectDir")
+        config = files("${project.rootDir}/config/detekt/detekt.yml")
+        reports {
+            html {
+                enabled = true
+                destination = file("$project.projectDir/detekt-report.html")
+            }
+        }
+    }
+
 }
 
 task clean(type: Delete) {

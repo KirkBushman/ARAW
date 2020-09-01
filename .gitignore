@@ -9,7 +9,9 @@
 
 #credentials
 /lib/src/debug/res/xml/credentials.xml
+/lib/detekt-report.html
 /sampleapp/src/main/res/xml/credentials.xml
+/sampleapp/detekt-report.html
 
 /bin
 /gen
