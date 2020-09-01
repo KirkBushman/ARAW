@@ -38,8 +38,8 @@ dependencies {
 // step 1 - create the helper
 val helper = AuthUserlessHelper(
     context = this,
-    clientId = **CLIENT ID STRING**,
-    deviceId = **DEVICE ID**, // set as null to use the default android UUID
+    clientId = "**CLIENT ID STRING**",
+    deviceId = "**DEVICE ID**", // set as null to use the default android UUID
     scopes = creds.scopes.toTypedArray(), // array of scopes strings
     logging = true
 )
@@ -100,11 +100,34 @@ val submissions = fetcher.fetchNext()
 println(submissions.toString())
 
 // get inbox messages
-val fetcher = client?.messagesClient?.inbox()
+val fetcher = client.messagesClient.inbox()
 val messages = fetcher.fetchNext()
 
 println(messages.toString())
+
+// get redditor profile
+val redditor = client.redditorsClient.redditor("Kirk-Bushman")
+
+println(redditor.toString())
+
+// upvote a submission
+val submission: Submission = ...
+client.contributionsClient.vote(Vote.UPVOTE, submission)
+
+// get submissions from a multireddit
+val fetcher = client.contributionsClient.multiredditSubmissions(listOf("pics", "design", "architecture"))
+val submissions = fetcher.fetchNext()
+
+println(submissions.toString())
 ```
+
+
+### Apps that are using ARAW:
+
+[Redditoria](https://play.google.com/store/apps/details?id=com.kirkbushman.redditoria)
+
+Help improve this section, open an issue subitting your implementation.
+
 
 ### License
 This project is licensed under the MIT License
