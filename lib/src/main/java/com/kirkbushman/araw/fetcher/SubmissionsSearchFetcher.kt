@@ -39,19 +39,37 @@ class SubmissionsSearchFetcher(
     override fun onFetching(forward: Boolean, dirToken: String): Listing<EnvelopedSubmission>? {
 
         val req = if (subreddit != null) {
-            api.fetchSubmissionsSearch(
-                subreddit = subreddit,
-                query = query,
-                sorting = getSorting().sortingStr,
-                timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
-                limit = getLimit(),
-                count = getCount(),
-                after = if (forward) dirToken else null,
-                before = if (!forward) dirToken else null,
-                restrictToSubreddit = restrictToSubreddit,
-                rawJson = (if (disableLegacyEncoding) 1 else null),
-                header = getHeader()
-            )
+
+            if (subreddit != "") {
+
+                api.fetchSubmissionsSearch(
+                    subreddit = subreddit,
+                    query = query,
+                    sorting = getSorting().sortingStr,
+                    timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
+                    limit = getLimit(),
+                    count = getCount(),
+                    after = if (forward) dirToken else null,
+                    before = if (!forward) dirToken else null,
+                    restrictToSubreddit = restrictToSubreddit,
+                    rawJson = (if (disableLegacyEncoding) 1 else null),
+                    header = getHeader()
+                )
+            } else {
+
+                api.fetchFrontpageSubmissionsSearch(
+                    query = query,
+                    sorting = getSorting().sortingStr,
+                    timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
+                    limit = getLimit(),
+                    count = getCount(),
+                    after = if (forward) dirToken else null,
+                    before = if (!forward) dirToken else null,
+                    restrictToSubreddit = restrictToSubreddit,
+                    rawJson = (if (disableLegacyEncoding) 1 else null),
+                    header = getHeader()
+                )
+            }
         } else {
             api.fetchSubmissionsSearchGeneral(
                 query = query,
