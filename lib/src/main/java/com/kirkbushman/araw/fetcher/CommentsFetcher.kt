@@ -14,6 +14,7 @@ class CommentsFetcher(
     private val api: RedditApi,
     private val submissionId: String,
     private val focusedCommentId: String? = null,
+    private val focusedCommentParentsNum: Int? = null,
 
     private var sorting: CommentsSorting,
 
@@ -42,6 +43,7 @@ class CommentsFetcher(
         val req = api.fetchComments(
             submissionId = submissionId,
             focusedCommentId = focusedCommentId,
+            focusedCommentParentsNum = focusedCommentParentsNum,
             sorting = getSorting().sortingStr,
             limit = getLimit(),
             depth = depth,
