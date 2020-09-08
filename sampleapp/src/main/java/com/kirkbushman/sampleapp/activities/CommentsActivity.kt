@@ -127,11 +127,22 @@ class CommentsActivity : BaseActivity() {
         search_bttn.setOnClickListener {
 
             val submissionId = search.text.toString().trim()
+            val commentId = search2.text.toString().trim()
 
             doAsync(
                 doWork = {
 
-                    fetcher = client?.contributionsClient?.comments(submissionId)
+                    val sanitizedCommentId = if (commentId != "") {
+                        commentId
+                    } else {
+                        null
+                    }
+
+                    fetcher = client?.contributionsClient?.comments(
+                        submissionId = submissionId,
+                        focusedCommentId = sanitizedCommentId
+                    )
+
                     val temp = fetcher?.fetchNext() ?: listOf()
 
                     if (fetcher!!.getSubmission() != null) {

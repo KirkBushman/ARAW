@@ -292,6 +292,7 @@ interface RedditApi {
     @GET("/comments/{submissionId}/.json")
     fun fetchComments(
         @Path("submissionId") submissionId: String,
+        @Query("comment") focusedCommentId: String? = null,
         @Query("sort") sorting: String,
         @Query("limit") limit: Long? = null,
         @Query("depth") depth: Int? = null,

@@ -173,6 +173,7 @@ class ContributionsClient(
     fun comments(
 
         submissionId: String,
+        focusedCommentId: String? = null,
 
         sorting: CommentsSorting = CommentsFetcher.DEFAULT_SORTING,
 
@@ -187,6 +188,7 @@ class ContributionsClient(
         return CommentsFetcher(
             api = api,
             submissionId = submissionId,
+            focusedCommentId = focusedCommentId,
             sorting = sorting,
             limit = limit,
             depth = depth,

@@ -12,7 +12,7 @@
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?android:attr/actionBarSize"
+                android:layout_height="wrap_content"
                 app:layout_scrollFlags="scroll|enterAlways">
 
             <LinearLayout
@@ -20,15 +20,31 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                <EditText
-                        android:id="@+id/search"
+                <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:inputType="text"
-                        android:hint="@string/edit_insert_submission_id"
-                        android:importantForAutofill="no"
-                />
+                        android:orientation="vertical">
+
+                    <EditText
+                            android:id="@+id/search"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:hint="@string/edit_insert_submission_id"
+                            android:importantForAutofill="no"
+                            />
+
+                    <EditText
+                            android:id="@+id/search2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:hint="@string/edit_insert_comment_id"
+                            android:importantForAutofill="no"
+                            />
+
+                </LinearLayout>
 
                 <com.google.android.material.button.MaterialButton
                         android:id="@+id/search_bttn"

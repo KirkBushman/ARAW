@@ -23,7 +23,7 @@ buildscript {
         moshi_ver      = '1.10.0'
         okhttp_ver     = '4.8.1'
         oauth2_ver     = '1.2.2'
-        mdc_ver        = '1.2.0'
+        mdc_ver        = '1.2.1'
         epoxy_ver      = '3.11.0'
 
         test_ver       = '1.3.0'
