@@ -12,6 +12,9 @@ data class SubmissionPreview(
     @Json(name = "images")
     val images: Array<Images>,
 
+    @Json(name = "reddit_video_preview")
+    val redditVideoPreview: RedditVideo?,
+
     @Json(name = "enabled")
     val isEnabled: Boolean
 
