@@ -1,0 +1,24 @@
+language: android
+jdk: oraclejdk8
+dist: trusty
+
+android:
+  components:
+    - tools
+    - platform-tools-30.0.2
+    - android-30
+    - extra-google-google_play_services
+    - extra-google-m2repository
+    - extra-android-m2repository
+
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+    - $HOME/.android/build-cache
+
+before_script:
+  - chmod +x gradlew
+
+script:
+  - ./gradlew clean build

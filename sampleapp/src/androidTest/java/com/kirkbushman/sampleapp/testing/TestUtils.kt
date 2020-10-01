@@ -10,7 +10,7 @@ import org.xmlpull.v1.XmlPullParser
 object TestUtils {
 
     fun getAuthManager(context: Context): RedditAuth {
-        val creds = loadCredentialsFromXml(context)
+        val creds = loadCredentials(context)
 
         return RedditAuth.Builder()
             .setScriptAuthCredentials(creds.username, creds.password, creds.scriptClientId, creds.scriptClientSecret)
@@ -21,6 +21,43 @@ object TestUtils {
 
     fun getTokenBearer(auth: RedditAuth): TokenBearer {
         return auth.getTokenBearer() ?: throw IllegalStateException("Bearer is null!")
+    }
+
+    private fun loadCredentials(context: Context): TestCredentials {
+
+        val isTravis = System.getenv("TRAVIS") != null && System.getenv("TRAVIS")!!.toBoolean()
+        return if (isTravis) {
+            loadCredentialsFromTravis()
+        } else {
+            loadCredentialsFromXml(context)
+        }
+    }
+
+    private fun loadCredentialsFromTravis(): TestCredentials {
+
+        val clientId = System.getenv("clientId")
+        val redirectUrl = System.getenv("redirectUrl")
+
+        val scriptClientId = System.getenv("scriptClientId")
+        val scriptClientSecret = System.getenv("scriptClientSecret")
+
+        val username = System.getenv("username")
+        val password = System.getenv("password")
+
+        val scopes = ArrayList<String>()
+        scopes.addAll(System.getenv("scopes")?.split(',') ?: emptyList())
+
+        return TestCredentials(
+            clientId = clientId!!,
+            redirectUrl = redirectUrl!!,
+
+            scriptClientId = scriptClientId!!,
+            scriptClientSecret = scriptClientSecret!!,
+            username = username!!,
+            password = password!!,
+
+            scopes
+        )
     }
 
     private fun loadCredentialsFromXml(context: Context): TestCredentials {
