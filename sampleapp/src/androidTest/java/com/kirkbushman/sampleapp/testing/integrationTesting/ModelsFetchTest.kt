@@ -1,4 +1,4 @@
-package com.kirkbushman.sampleapp.testing.unitTesting
+package com.kirkbushman.sampleapp.testing.integrationTesting
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -32,7 +32,10 @@ class ModelsFetchTest {
             "privacy",
             "europe",
             "androidapps",
-            "poll"
+            "poll",
+            "TreesSuckingOnThings",
+            "fifthworldproblems",
+            "Ooer"
         )
 
         private const val LIMIT = 100L

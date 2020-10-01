@@ -50,7 +50,7 @@ data class Subreddit(
     override val createdUtc: Long,
 
     @Json(name = "description")
-    val description: String,
+    val description: String?,
 
     @Json(name = "description_html")
     val descriptionHtml: String?,
