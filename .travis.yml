@@ -5,11 +5,16 @@ dist: trusty
 android:
   components:
     - tools
+    - tools
     - platform-tools-30.0.2
     - android-30
     - extra-google-google_play_services
     - extra-google-m2repository
     - extra-android-m2repository
+    - extra
+
+before_install:
+  - echo yes | sdkmanager "build-tools;30.0.2"
 
 cache:
   directories:
