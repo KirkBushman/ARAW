@@ -18,7 +18,7 @@ class TestApplication : Application() {
 
     fun getAuthHelper(): AuthAppHelper {
 
-        val creds = loadCredsFromFile()
+        val creds = loadCredentials()
 
         return AuthAppHelper(
             context = this,
@@ -31,7 +31,7 @@ class TestApplication : Application() {
 
     fun getUserlessHelper(): AuthUserlessHelper {
 
-        val creds = loadCredsFromFile()
+        val creds = loadCredentials()
 
         return AuthUserlessHelper(
             context = this,
@@ -50,7 +50,44 @@ class TestApplication : Application() {
         this.client = client
     }
 
-    private fun loadCredsFromFile(): Credentials {
+    private fun loadCredentials(): Credentials {
+
+        val isTravis = System.getenv("TRAVIS") != null && System.getenv("TRAVIS")!!.toBoolean()
+        return if (isTravis) {
+            loadCredentialsFromTravis()
+        } else {
+            loadCredentialsFromXml()
+        }
+    }
+
+    private fun loadCredentialsFromTravis(): Credentials {
+
+        val clientId = System.getenv("clientId")
+        val redirectUrl = System.getenv("redirectUrl")
+
+        val scriptClientId = System.getenv("scriptClientId")
+        val scriptClientSecret = System.getenv("scriptClientSecret")
+
+        val username = System.getenv("username")
+        val password = System.getenv("password")
+
+        val scopes = ArrayList<String>()
+        scopes.addAll(System.getenv("scopes")?.split(',') ?: emptyList())
+
+        return Credentials(
+            clientId = clientId!!,
+            redirectUrl = redirectUrl!!,
+
+            scriptClientId = scriptClientId!!,
+            scriptClientSecret = scriptClientSecret!!,
+            username = username!!,
+            password = password!!,
+
+            scopes
+        )
+    }
+
+    private fun loadCredentialsFromXml(): Credentials {
         val xpp = resources.getXml(R.xml.credentials)
 
         var clientId = ""
