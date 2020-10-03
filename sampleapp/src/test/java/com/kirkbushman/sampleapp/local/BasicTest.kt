@@ -1,12 +1,8 @@
-package com.kirkbushman.sampleapp.testing
-
-import androidx.test.ext.junit.runners.AndroidJUnit4
+package com.kirkbushman.sampleapp.local
 
 import org.junit.Assert.*
 import org.junit.Test
-import org.junit.runner.RunWith
 
-@RunWith(AndroidJUnit4::class)
 class BasicTest {
 
     @Test

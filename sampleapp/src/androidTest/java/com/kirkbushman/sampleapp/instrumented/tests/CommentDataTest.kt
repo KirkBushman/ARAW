@@ -1,4 +1,4 @@
-package com.kirkbushman.sampleapp.testing.integrationTesting
+package com.kirkbushman.sampleapp.instrumented.tests
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -10,7 +10,7 @@ import com.kirkbushman.araw.models.mixins.CommentData
 import com.kirkbushman.araw.utils.toLinearList
 import com.kirkbushman.araw.utils.treeIterable
 import com.kirkbushman.araw.utils.treeIterator
-import com.kirkbushman.sampleapp.testing.TestUtils
+import com.kirkbushman.sampleapp.instrumented.TestUtils
 import kotlinx.android.parcel.Parcelize
 import org.junit.Assert.assertTrue
 import org.junit.Before

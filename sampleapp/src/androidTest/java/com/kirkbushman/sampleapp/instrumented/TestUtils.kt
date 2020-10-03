@@ -1,4 +1,4 @@
-package com.kirkbushman.sampleapp.testing
+package com.kirkbushman.sampleapp.instrumented
 
 import android.content.Context
 import com.kirkbushman.auth.RedditAuth

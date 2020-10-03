@@ -22,9 +22,14 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 object Utils {
 
-    private const val BASE_URL = "https://oauth.reddit.com"
+    const val BASE_URL = "https://oauth.reddit.com"
 
     fun buildRetrofit(logging: Boolean): Retrofit {
+
+        return buildRetrofit(BASE_URL, logging)
+    }
+
+    fun buildRetrofit(baseUrl: String, logging: Boolean): Retrofit {
 
         val moshi = Moshi.Builder()
             .add(
@@ -81,7 +86,7 @@ object Utils {
         }
 
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(baseUrl)
             .addConverterFactory(moshiFactory)
             .client(httpClient)
             .build()

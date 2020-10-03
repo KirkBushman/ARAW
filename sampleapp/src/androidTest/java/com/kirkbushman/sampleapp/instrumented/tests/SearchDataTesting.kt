@@ -1,9 +1,9 @@
-package com.kirkbushman.sampleapp.testing.integrationTesting
+package com.kirkbushman.sampleapp.instrumented.tests
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.kirkbushman.araw.RedditClient
-import com.kirkbushman.sampleapp.testing.TestUtils
+import com.kirkbushman.sampleapp.instrumented.TestUtils
 import org.junit.After
 import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertNull

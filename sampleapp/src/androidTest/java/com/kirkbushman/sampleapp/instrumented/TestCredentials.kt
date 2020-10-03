@@ -1,4 +1,4 @@
-package com.kirkbushman.sampleapp.testing
+package com.kirkbushman.sampleapp.instrumented
 
 data class TestCredentials(
 

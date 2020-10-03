@@ -28,6 +28,7 @@ import com.kirkbushman.araw.models.TrophyList
 import com.kirkbushman.araw.models.UploadContract
 import com.kirkbushman.araw.models.UserList
 import com.kirkbushman.araw.models.WikiPageList
+import com.kirkbushman.araw.utils.Endpoints
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
@@ -47,7 +48,7 @@ interface RedditApi {
 
     // --- Account section: BEGIN ---
 
-    @GET("/api/v1/me/.json")
+    @GET(Endpoints.URL_ME)
     fun me(
         @HeaderMap header: HashMap<String, String>
     ): Call<Me>
@@ -222,7 +223,7 @@ interface RedditApi {
     ): Call<Any?>
 
     @FormUrlEncoded
-    @POST("/api/vote")
+    @POST(Endpoints.URL_VOTE)
     fun vote(
         @Field("id") id: String,
         @Field("dir") dir: Int,
@@ -348,7 +349,7 @@ interface RedditApi {
 
     // --- Subreddits section: BEGIN ---
 
-    @GET("/r/{subreddit}/about/.json")
+    @GET(Endpoints.URL_SUBREDDIT)
     fun subreddit(
         @Path("subreddit") subreddit: String,
         @Query("raw_json") rawJson: Int? = null,
@@ -449,7 +450,7 @@ interface RedditApi {
 
     // --- Redditor sections: BEGIN ---
 
-    @GET("/user/{username}/about/.json")
+    @GET(Endpoints.URL_REDDITOR)
     fun redditor(
         @Path("username") username: String,
         @Query("raw_json") rawJson: Int? = null,
