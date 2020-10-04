@@ -23,7 +23,7 @@ class InboxFetcher(
 ) : Fetcher<Message, EnvelopedMessage>(limit) {
 
     @WorkerThread
-    override fun onFetching(forward: Boolean, dirToken: String): Listing<EnvelopedMessage>? {
+    override fun onFetching(forward: Boolean, dirToken: String?): Listing<EnvelopedMessage>? {
 
         val req = api.fetchMessages(
             where = where,

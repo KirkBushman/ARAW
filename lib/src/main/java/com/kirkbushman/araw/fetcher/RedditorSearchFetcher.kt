@@ -36,7 +36,7 @@ class RedditorSearchFetcher(
     }
 
     @WorkerThread
-    override fun onFetching(forward: Boolean, dirToken: String): Listing<EnvelopedRedditor>? {
+    override fun onFetching(forward: Boolean, dirToken: String?): Listing<EnvelopedRedditor>? {
 
         val req = api.fetchRedditorSearch(
             query = query,

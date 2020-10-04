@@ -34,7 +34,7 @@ class SubmissionsFetcher(
     }
 
     @WorkerThread
-    override fun onFetching(forward: Boolean, dirToken: String): Listing<EnvelopedSubmission>? {
+    override fun onFetching(forward: Boolean, dirToken: String?): Listing<EnvelopedSubmission>? {
 
         val req = if (subreddit != "") {
             api.fetchSubmissions(

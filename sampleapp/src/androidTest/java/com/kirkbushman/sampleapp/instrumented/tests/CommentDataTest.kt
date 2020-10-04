@@ -40,7 +40,11 @@ class CommentDataTest {
 
         val randomSub = subreddits.random()
         val fetcher = client!!.contributionsClient.submissions(subreddit = randomSub, limit = LIMIT)
-        submissions.addAll(fetcher.fetchNext())
+
+        val addendum = fetcher.fetchNext()
+        if (addendum != null) {
+            submissions.addAll(addendum)
+        }
     }
 
     @Test
@@ -48,17 +52,17 @@ class CommentDataTest {
 
         val selectedSubmission = submissions
             .filter { it.numComments > 0 }
-            .maxBy { it.numComments }
+            .maxByOrNull { it.numComments }
             ?: throw IllegalAccessError("No submission found!")
 
         val commentsFetcher = client!!.contributionsClient.comments(selectedSubmission.id)
         val comments = commentsFetcher.fetchNext()
 
-        val linearList = comments.toLinearList()
+        val linearList = comments?.toLinearList()
 
         assertTrue(
             "comment data should not have replies, once tranformed into a linearList",
-            areRepliesBlank(linearList)
+            areRepliesBlank(linearList!!)
         )
 
         assertTrue(

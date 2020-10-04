@@ -34,7 +34,7 @@ class SubredditsSearchFetcher(
     }
 
     @WorkerThread
-    override fun onFetching(forward: Boolean, dirToken: String): Listing<EnvelopedSubredditData>? {
+    override fun onFetching(forward: Boolean, dirToken: String?): Listing<EnvelopedSubredditData>? {
 
         val req = api.fetchSubredditsSearch(
             query = query,

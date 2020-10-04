@@ -37,7 +37,7 @@ class ContributionsFetcher(
     private var usernameToFetch: String? = null
 
     @WorkerThread
-    override fun onFetching(forward: Boolean, dirToken: String): Listing<EnvelopedContribution>? {
+    override fun onFetching(forward: Boolean, dirToken: String?): Listing<EnvelopedContribution>? {
 
         if (username == null && getUsername == null) {
             throw IllegalStateException("username and getUsername cannot both be null!")

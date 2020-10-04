@@ -38,7 +38,7 @@ class CommentsFetcher(
 
     @Suppress("UNCHECKED_CAST")
     @WorkerThread
-    override fun onFetching(forward: Boolean, dirToken: String): Listing<EnvelopedCommentData>? {
+    override fun onFetching(forward: Boolean, dirToken: String?): Listing<EnvelopedCommentData>? {
 
         val req = api.fetchComments(
             submissionId = submissionId,

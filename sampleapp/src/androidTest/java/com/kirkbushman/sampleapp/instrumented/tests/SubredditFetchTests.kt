@@ -18,8 +18,6 @@ class SubredditFetchTests {
         // very weird subreddits
         private val subreddits = arrayOf(
             "AquaticAsFuck",
-            "u_evangs",
-            "u_TakumiYamamoto",
             "bioinformatics",
             "biology",
             "mtg",
@@ -54,7 +52,6 @@ class SubredditFetchTests {
             "happycowgifs",
             "AnimalsBeingConfused",
             "CustomKeyboards",
-            "u_KeyLabsKeycaps",
             "FourSouls",
             "BiologicalSeas",
             "TreesSuckingOnThings",
@@ -85,7 +82,7 @@ class SubredditFetchTests {
     }
 
     @Test
-    fun submissionFetchingTest() {
+    fun subredditFetchingTest() {
 
         var exception: Exception? = null
 

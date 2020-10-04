@@ -78,7 +78,8 @@ dependencies {
     testImplementation "androidx.test:rules:$test_ver"
 
     testImplementation "androidx.test.ext:junit:$junit_ver"
-    testImplementation "org.mockito:mockito-android:$mockito_ver"
+    testImplementation "org.mockito:mockito-core:$mockito_ver"
+    // testImplementation "org.mockito:mockito-inline:$mockito_ver"
 
     testImplementation "com.squareup.retrofit2:retrofit:$retrofit_ver"
     testImplementation "com.squareup.retrofit2:converter-moshi:$retrofit_ver"

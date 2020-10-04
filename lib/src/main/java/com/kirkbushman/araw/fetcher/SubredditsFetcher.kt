@@ -23,7 +23,7 @@ class SubredditsFetcher(
 ) : Fetcher<SubredditData, EnvelopedSubredditData>(limit) {
 
     @WorkerThread
-    override fun onFetching(forward: Boolean, dirToken: String): Listing<EnvelopedSubredditData>? {
+    override fun onFetching(forward: Boolean, dirToken: String?): Listing<EnvelopedSubredditData>? {
 
         val req = api.fetchRedditorSubreddits(
             where = where,
