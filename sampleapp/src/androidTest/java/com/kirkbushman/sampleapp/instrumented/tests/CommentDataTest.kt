@@ -42,9 +42,7 @@ class CommentDataTest {
         val fetcher = client!!.contributionsClient.submissions(subreddit = randomSub, limit = LIMIT)
 
         val addendum = fetcher.fetchNext()
-        if (addendum != null) {
-            submissions.addAll(addendum)
-        }
+        submissions.addAll(addendum)
     }
 
     @Test
@@ -58,11 +56,11 @@ class CommentDataTest {
         val commentsFetcher = client!!.contributionsClient.comments(selectedSubmission.id)
         val comments = commentsFetcher.fetchNext()
 
-        val linearList = comments?.toLinearList()
+        val linearList = comments.toLinearList()
 
         assertTrue(
             "comment data should not have replies, once tranformed into a linearList",
-            areRepliesBlank(linearList!!)
+            areRepliesBlank(linearList)
         )
 
         assertTrue(

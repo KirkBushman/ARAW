@@ -12,8 +12,7 @@ class MessagesClient(
 
     private val api: RedditApi,
     private inline val getHeaderMap: () -> HashMap<String, String>
-
-) : BaseRedditClient(api, getHeaderMap) {
+) {
 
     fun inbox(
 

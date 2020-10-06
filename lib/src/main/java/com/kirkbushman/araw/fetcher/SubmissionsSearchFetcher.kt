@@ -22,6 +22,7 @@ class SubmissionsSearchFetcher(
     private var sorting: SearchSorting = DEFAULT_SORTING,
     private var timePeriod: TimePeriod = DEFAULT_TIMEPERIOD,
 
+    private val showAll: Boolean = false,
     private val restrictToSubreddit: Boolean = false,
     private val disableLegacyEncoding: Boolean = false,
 
@@ -45,6 +46,7 @@ class SubmissionsSearchFetcher(
                 api.fetchSubmissionsSearch(
                     subreddit = subreddit,
                     query = query,
+                    show = if (showAll) "all" else null,
                     sorting = getSorting().sortingStr,
                     timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
                     limit = getLimit(),
@@ -59,6 +61,7 @@ class SubmissionsSearchFetcher(
 
                 api.fetchFrontpageSubmissionsSearch(
                     query = query,
+                    show = if (showAll) "all" else null,
                     sorting = getSorting().sortingStr,
                     timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
                     limit = getLimit(),
@@ -73,6 +76,7 @@ class SubmissionsSearchFetcher(
         } else {
             api.fetchSubmissionsSearchGeneral(
                 query = query,
+                show = if (showAll) "all" else null,
                 sorting = getSorting().sortingStr,
                 timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
                 limit = if (forward) getLimit() else getLimit() + 1,

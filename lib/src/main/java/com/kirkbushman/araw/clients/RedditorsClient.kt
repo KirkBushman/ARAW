@@ -5,20 +5,17 @@ import androidx.annotation.WorkerThread
 import com.kirkbushman.araw.RedditApi
 import com.kirkbushman.araw.fetcher.ContributionsFetcher
 import com.kirkbushman.araw.fetcher.Fetcher
-import com.kirkbushman.araw.fetcher.RedditorSearchFetcher
 import com.kirkbushman.araw.models.ModeratedSub
 import com.kirkbushman.araw.models.Redditor
 import com.kirkbushman.araw.models.Trophy
 import com.kirkbushman.araw.models.general.ContributionsSorting
-import com.kirkbushman.araw.models.general.RedditorSearchSorting
 import com.kirkbushman.araw.models.general.TimePeriod
 
 class RedditorsClient(
 
     private val api: RedditApi,
     private inline val getHeaderMap: () -> HashMap<String, String>
-
-) : BaseRedditClient(api, getHeaderMap) {
+) {
 
     @WorkerThread
     fun redditor(username: String, disableLegacyEncoding: Boolean = false): Redditor? {
@@ -157,33 +154,6 @@ class RedditorsClient(
             api = api,
             username = username,
             where = where,
-            limit = limit,
-            sorting = sorting,
-            timePeriod = timePeriod,
-            disableLegacyEncoding = disableLegacyEncoding,
-            getHeader = getHeaderMap
-        )
-    }
-
-    fun fetchRedditorSearch(
-
-        query: String,
-        show: String? = null,
-
-        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
-        limit: Long = Fetcher.DEFAULT_LIMIT,
-
-        sorting: RedditorSearchSorting = RedditorSearchFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = RedditorSearchFetcher.DEFAULT_TIMEPERIOD,
-
-        disableLegacyEncoding: Boolean = false
-
-    ): RedditorSearchFetcher {
-
-        return RedditorSearchFetcher(
-            api = api,
-            query = query,
-            show = show,
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,

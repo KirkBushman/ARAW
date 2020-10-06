@@ -80,7 +80,7 @@ class SubredditsSearchActivity : BaseActivity() {
                 doAsync(
                     doWork = {
 
-                        val fetcher = client?.subredditsClient?.fetchSubredditsSearch(query)
+                        val fetcher = client?.searchClient?.fetchSubredditsSearch(query)
 
                         data.clear()
                         data.addAll(fetcher?.fetchNext() ?: listOf())
@@ -95,7 +95,7 @@ class SubredditsSearchActivity : BaseActivity() {
                 doAsync(
                     doWork = {
 
-                        searchResult = client?.searchSubreddits(
+                        searchResult = client?.searchClient?.searchSubreddits(
                             query = query,
                             includeOver18 = true
                         )

@@ -42,7 +42,7 @@ class UserSearchActivity : BaseSearchControllerActivity2<Redditor>(R.layout.acti
 
     override fun fetchItem(client: RedditClient?, query: String): Collection<Redditor>? {
 
-        val fetcher = client?.redditorsClient?.fetchRedditorSearch(query, show = "all")
+        val fetcher = client?.searchClient?.fetchRedditorSearch(query, showAll = true)
         return fetcher?.fetchNext()
     }
 }

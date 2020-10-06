@@ -15,14 +15,13 @@ class RedditorSearchFetcher(
     private val api: RedditApi,
     private val query: String,
 
-    private val show: String? = null,
-
     @IntRange(from = MIN_LIMIT, to = MAX_LIMIT)
     limit: Long = DEFAULT_LIMIT,
 
     private var sorting: RedditorSearchSorting = DEFAULT_SORTING,
     private var timePeriod: TimePeriod = DEFAULT_TIMEPERIOD,
 
+    private val showAll: Boolean = false,
     private val disableLegacyEncoding: Boolean = false,
 
     private inline val getHeader: () -> HashMap<String, String>
@@ -40,7 +39,7 @@ class RedditorSearchFetcher(
 
         val req = api.fetchRedditorSearch(
             query = query,
-            show = show,
+            show = if (showAll) "all" else null,
             sorting = getSorting().sortingStr,
             timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
             limit = getLimit(),

@@ -21,6 +21,7 @@ class SubredditsSearchFetcher(
     private var sorting: SubredditSearchSorting = DEFAULT_SORTING,
     private var timePeriod: TimePeriod = DEFAULT_TIMEPERIOD,
 
+    private val showAll: Boolean = false,
     private val disableLegacyEncoding: Boolean = false,
 
     private inline val getHeader: () -> HashMap<String, String>
@@ -38,6 +39,7 @@ class SubredditsSearchFetcher(
 
         val req = api.fetchSubredditsSearch(
             query = query,
+            show = if (showAll) "all" else null,
             sorting = getSorting().sortingStr,
             timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
             limit = getLimit(),

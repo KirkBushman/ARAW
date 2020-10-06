@@ -18,8 +18,7 @@ class AccountsClient(
 
     private val api: RedditApi,
     private inline val getHeaderMap: () -> HashMap<String, String>
-
-) : BaseRedditClient(api, getHeaderMap) {
+) {
 
     private var currentUser: Me? = null
 

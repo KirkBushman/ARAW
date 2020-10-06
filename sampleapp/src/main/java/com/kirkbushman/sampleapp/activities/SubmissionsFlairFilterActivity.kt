@@ -43,7 +43,7 @@ class SubmissionsFlairFilterActivity : BaseSearchPrint2Activity<List<Submission>
     override fun fetchItem(client: RedditClient?, query: String, query2: String): List<Submission>? {
 
         val fetcher = client
-            ?.contributionsClient
+            ?.searchClient
             ?.submissionsSearch(
                 subreddit = query,
                 query = "flair_name:\"$query2\"",
