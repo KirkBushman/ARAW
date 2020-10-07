@@ -29,12 +29,21 @@ object Endpoints {
     const val URL_COMMENT = "/api/info/.json"
     const val URL_SUBMISSION = "/api/info/.json"
     const val URL_MORECHILDREN = "/api/morechildren"
+    const val URL_UPLOAD_ASSET = "/api/media/asset.json"
+
+    const val URL_SUBMISSIONS_FRONTPAGE = "/{sorting}/.json"
+    const val URL_SUBMISSIONS = "/r/{subreddit}/{sorting}/.json"
+    const val URL_COMMENTS = "/comments/{submissionId}/.json"
 
     const val URL_FETCH_MESSAGES = "/message/{where}/.json"
     const val URL_DEL_MESSAGE = "/api/del_msg"
     const val URL_READ_ALL_MESSAGES = "/api/read_all_messages"
     const val URL_READ_MESSAGE = "/api/read_message"
     const val URL_UNREAD_MESSAGE = "/api/unread_message"
+
+    const val URL_MULTI = "/user/{username}/m/{multiname}/{sorting}"
+    const val URL_MULTIS_MINE = "/api/multi/mine.json"
+    const val URL_MULTIS_REDDITOR = "/api/multi/user/{username}/.json"
 
     const val URL_SUBREDDIT = "/r/{subreddit}/about/.json"
     const val URL_SUBREDDITS = "/api/info/.json"

@@ -9,6 +9,7 @@
     <string name="header_api_account">Account:</string>
     <string name="header_api_contributions">Contributions:</string>
     <string name="header_api_message">Message:</string>
+    <string name="header_api_multis">Multis:</string>
     <string name="header_api_subreddit">Subreddit:</string>
     <string name="header_api_users">Users:</string>
     <string name="header_api_wiki">Wiki:</string>
@@ -46,6 +47,8 @@
     <string name="bttn_load_more">Load More</string>
     <string name="bttn_self_replies">Self Replies</string>
     <string name="bttn_sent">Sent</string>
+    <string name="bttn_my_multis">My Multis</string>
+    <string name="bttn_redditor_multis">Redditor Multis</string>
     <string name="bttn_user">User</string>
     <string name="bttn_user_info">User Info</string>
     <string name="bttn_user_trophies">User Trophies</string>
@@ -57,6 +60,7 @@
     <string name="bttn_submissions_commons">Common submissions</string>
     <string name="bttn_submissions_search">Submissions Search</string>
     <string name="bttn_submissions_filter">Submissions Filter</string>
+    <string name="bttn_multi_submissions">Multi Submissions</string>
     <string name="bttn_multireddit">Multireddit</string>
     <string name="bttn_trending">Trending</string>
     <string name="bttn_subreddit_search">Subreddit Search</string>

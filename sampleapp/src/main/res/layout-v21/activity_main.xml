@@ -161,6 +161,13 @@
                     android:text="@string/bttn_submissions_filter" />
 
             <com.google.android.material.button.MaterialButton
+                    android:id="@+id/bttn_multi_submissions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="@string/bttn_multi_submissions" />
+
+            <com.google.android.material.button.MaterialButton
                     android:id="@+id/bttn_subreddit_search"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

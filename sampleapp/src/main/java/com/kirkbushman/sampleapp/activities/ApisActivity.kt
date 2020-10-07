@@ -126,6 +126,14 @@ class ApisActivity : BaseActivity() {
             ApiDetailActivity.startApiSelfReplies(this)
         }
 
+        bttn_my_multis.setOnClickListener {
+            ApiDetailActivity.startApiMyMultis(this)
+        }
+
+        bttn_redditor_multis.setOnClickListener {
+            ApiDetailActivity.startApiRedditorMultis(this)
+        }
+
         bttn_subreddit.setOnClickListener {
             ApiDetailActivity.startApiSubreddit(this)
         }

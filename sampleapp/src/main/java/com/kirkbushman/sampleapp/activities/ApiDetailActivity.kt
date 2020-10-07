@@ -69,6 +69,8 @@ class ApiDetailActivity : BaseActivity() {
         private const val API_MESSAGE_MESSAGES = "param_api_call_messages"
         private const val API_MESSAGE_COMMENT_REPLIES = "param_api_call_comment_replies"
         private const val API_MESSAGE_SELF_REPLIES = "param_api_call_self_replies"
+        private const val API_MULTIS_MINE = "param_api_call_my_multis"
+        private const val API_MULTIS_REDDITOR = "param_api_call_redditor_multis"
         private const val API_SUBREDDIT = "param_subreddit_call"
         private const val API_SUBREDDITS = "param_subreddits_call"
         private const val API_SUBREDDIT_BANNED = "param_subreddit_call_banned"
@@ -191,6 +193,14 @@ class ApiDetailActivity : BaseActivity() {
 
         fun startApiSelfReplies(context: Context) {
             start(context, API_MESSAGE_SELF_REPLIES)
+        }
+
+        fun startApiMyMultis(context: Context) {
+            start(context, API_MULTIS_MINE)
+        }
+
+        fun startApiRedditorMultis(context: Context) {
+            start(context, API_MULTIS_REDDITOR)
         }
 
         fun startApiSubreddit(context: Context) {
@@ -492,6 +502,22 @@ class ApiDetailActivity : BaseActivity() {
                 )
                 val replies = fetcher?.fetchNext()
                 return replies.toString()
+            }
+
+            API_MULTIS_MINE -> {
+                val multis = client?.multisClient?.myMultis(
+                    disableLegacyEncoding = disableLegacyEncoding
+                )
+                return multis.toString()
+            }
+
+            API_MULTIS_REDDITOR -> {
+                val userName = "myell0w" // getRandomUserFromRandomSubreddit()
+                val multis = client?.multisClient?.redditorMultis(
+                    username = userName,
+                    disableLegacyEncoding = disableLegacyEncoding
+                )
+                return multis.toString()
             }
 
             API_SUBREDDIT -> {

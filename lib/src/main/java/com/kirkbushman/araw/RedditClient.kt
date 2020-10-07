@@ -3,6 +3,7 @@ package com.kirkbushman.araw
 import com.kirkbushman.araw.clients.AccountsClient
 import com.kirkbushman.araw.clients.ContributionsClient
 import com.kirkbushman.araw.clients.MessagesClient
+import com.kirkbushman.araw.clients.MultisClient
 import com.kirkbushman.araw.clients.SubredditsClient
 import com.kirkbushman.araw.clients.RedditorsClient
 import com.kirkbushman.araw.clients.SearchClient
@@ -51,6 +52,7 @@ class RedditClient @JvmOverloads constructor (private val bearer: TokenBearer, l
     val accountsClient by lazy { AccountsClient(api, ::getHeaderMap) }
     val contributionsClient by lazy { ContributionsClient(api, ::getHeaderMap) }
     val messagesClient by lazy { MessagesClient(api, ::getHeaderMap) }
+    val multisClient by lazy { MultisClient(api, ::getHeaderMap) }
     val subredditsClient by lazy { SubredditsClient(api, ::getHeaderMap) }
     val searchClient by lazy { SearchClient(api, ::getHeaderMap) }
     val redditorsClient by lazy { RedditorsClient(api, ::getHeaderMap) }

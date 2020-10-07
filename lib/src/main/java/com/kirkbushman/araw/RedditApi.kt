@@ -4,6 +4,7 @@ import com.kirkbushman.araw.http.EnvelopedCommentListing
 import com.kirkbushman.araw.http.EnvelopedContributionListing
 import com.kirkbushman.araw.http.EnvelopedData
 import com.kirkbushman.araw.http.EnvelopedMessageListing
+import com.kirkbushman.araw.http.EnvelopedMulti
 import com.kirkbushman.araw.http.EnvelopedRedditor
 import com.kirkbushman.araw.http.EnvelopedRedditorListing
 import com.kirkbushman.araw.http.EnvelopedSubmissionListing
@@ -255,7 +256,7 @@ interface RedditApi {
     ): Call<TrendingSubreddits>
 
     @FormUrlEncoded
-    @POST("/api/media/asset.json")
+    @POST(Endpoints.URL_UPLOAD_ASSET)
     fun obtainUploadContract(
         @Field("filepath") filepath: String,
         @Field("mimetype") mimetype: String,
@@ -281,7 +282,7 @@ interface RedditApi {
         @Part file: MultipartBody.Part
     ): Call<ResponseBody>
 
-    @GET("/{sorting}/.json")
+    @GET(Endpoints.URL_SUBMISSIONS_FRONTPAGE)
     fun fetchSubmissions(
         @Path("sorting") sorting: String,
         @Query("t") timePeriod: String?,
@@ -293,7 +294,7 @@ interface RedditApi {
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedSubmissionListing>
 
-    @GET("/r/{subreddit}/{sorting}/.json")
+    @GET(Endpoints.URL_SUBMISSIONS)
     fun fetchSubmissions(
         @Path("subreddit") subreddit: String,
         @Path("sorting") sorting: String,
@@ -306,7 +307,7 @@ interface RedditApi {
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedSubmissionListing>
 
-    @GET("/comments/{submissionId}/.json")
+    @GET(Endpoints.URL_COMMENTS)
     fun fetchComments(
         @Path("submissionId") submissionId: String,
         @Query("comment") focusedCommentId: String? = null,
@@ -362,6 +363,37 @@ interface RedditApi {
     ): Call<Any?>
 
     // --- Messages section: END ---
+
+    // --- Multis section: START ---
+
+    @GET(Endpoints.URL_MULTI)
+    fun fetchMultiSubmissions(
+        @Path("username") username: String,
+        @Path("multiname") multiname: String,
+        @Path("sorting") sorting: String,
+        @Query("t") timePeriod: String?,
+        @Query("limit") limit: Long,
+        @Query("count") count: Int,
+        @Query("after") after: String? = null,
+        @Query("before") before: String? = null,
+        @Query("raw_json") rawJson: Int? = null,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<EnvelopedSubmissionListing>
+
+    @GET(Endpoints.URL_MULTIS_MINE)
+    fun myMultis(
+        @Query("raw_json") rawJson: Int? = null,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<List<EnvelopedMulti>>
+
+    @GET(Endpoints.URL_MULTIS_REDDITOR)
+    fun redditorMultis(
+        @Path("username") username: String,
+        @Query("raw_json") rawJson: Int? = null,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<List<EnvelopedMulti>>
+
+    // --- Multis section: END ---
 
     // --- Subreddits section: BEGIN ---
 
