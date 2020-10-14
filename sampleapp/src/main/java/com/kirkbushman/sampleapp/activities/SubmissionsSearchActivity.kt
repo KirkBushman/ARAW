@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.kirkbushman.araw.models.Submission
-import com.kirkbushman.araw.models.general.Vote
+import com.kirkbushman.araw.models.enums.Vote
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.activities.base.BaseActivity

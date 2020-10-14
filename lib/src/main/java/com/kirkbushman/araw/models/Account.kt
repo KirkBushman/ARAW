@@ -1,8 +1,8 @@
 package com.kirkbushman.araw.models
 
 import android.os.Parcelable
-import com.kirkbushman.araw.models.mixins.Created
-import com.kirkbushman.araw.models.mixins.Thing
+import com.kirkbushman.araw.models.base.Created
+import com.kirkbushman.araw.models.base.Thing
 
 /**
  * Base interface that groups the common fields between the class Redditor and Me,

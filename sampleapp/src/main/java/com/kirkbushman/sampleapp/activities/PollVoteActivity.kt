@@ -7,7 +7,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import com.kirkbushman.araw.RedditClient
-import com.kirkbushman.araw.models.PollVoteStateOption
+import com.kirkbushman.araw.models.responses.PollVoteStateOption
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.activities.base.BaseSearchPrint2Activity
 import kotlinx.android.synthetic.main.activity_submissions_search_flair.*

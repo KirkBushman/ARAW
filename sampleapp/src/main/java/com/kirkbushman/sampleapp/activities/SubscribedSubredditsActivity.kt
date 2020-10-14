@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import com.kirkbushman.araw.models.Subreddit
-import com.kirkbushman.araw.models.mixins.SubredditData
+import com.kirkbushman.araw.models.base.SubredditData
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.activities.base.BaseActivity

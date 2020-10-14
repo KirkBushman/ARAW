@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.kirkbushman.araw.models.general.SubmissionKind
+import com.kirkbushman.araw.models.commons.SubmissionKind
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.util.StorageUtil

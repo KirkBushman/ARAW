@@ -41,7 +41,9 @@ object Endpoints {
     const val URL_READ_MESSAGE = "/api/read_message"
     const val URL_UNREAD_MESSAGE = "/api/unread_message"
 
-    const val URL_MULTI = "/user/{username}/m/{multiname}/{sorting}"
+    const val URL_MULTI = "/user/{username}/m/{multiname}/{sorting}/.json"
+    const val URL_MULTI_SUB = "/api/multi/user/{username}/m/{multiname}/r/{subname}"
+    const val URL_MULTI_DESC = "/api/multi/user/{username}/m/{multiname}/description/.json"
     const val URL_MULTIS_MINE = "/api/multi/mine.json"
     const val URL_MULTIS_REDDITOR = "/api/multi/user/{username}/.json"
 

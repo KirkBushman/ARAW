@@ -6,9 +6,9 @@ import com.kirkbushman.araw.RedditApi
 import com.kirkbushman.araw.http.EnvelopedContribution
 import com.kirkbushman.araw.http.base.Listing
 import com.kirkbushman.araw.http.listings.ContributionListing
-import com.kirkbushman.araw.models.general.ContributionsSorting
-import com.kirkbushman.araw.models.general.TimePeriod
-import com.kirkbushman.araw.models.mixins.Contribution
+import com.kirkbushman.araw.models.enums.ContributionsSorting
+import com.kirkbushman.araw.models.enums.TimePeriod
+import com.kirkbushman.araw.models.base.Contribution
 
 class ContributionsFetcher(
 

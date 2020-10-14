@@ -5,6 +5,7 @@ import com.kirkbushman.araw.http.EnvelopedContributionListing
 import com.kirkbushman.araw.http.EnvelopedData
 import com.kirkbushman.araw.http.EnvelopedMessageListing
 import com.kirkbushman.araw.http.EnvelopedMulti
+import com.kirkbushman.araw.http.EnvelopedMultiDescription
 import com.kirkbushman.araw.http.EnvelopedRedditor
 import com.kirkbushman.araw.http.EnvelopedRedditorListing
 import com.kirkbushman.araw.http.EnvelopedSubmissionListing
@@ -18,10 +19,11 @@ import com.kirkbushman.araw.models.FriendList
 import com.kirkbushman.araw.models.KarmaList
 import com.kirkbushman.araw.models.Me
 import com.kirkbushman.araw.models.ModeratedList
-import com.kirkbushman.araw.models.MoreChildrenResponse
+import com.kirkbushman.araw.models.responses.MoreChildrenResponse
+import com.kirkbushman.araw.models.MultiSub
 import com.kirkbushman.araw.models.Prefs
 import com.kirkbushman.araw.models.Reply
-import com.kirkbushman.araw.models.SubmitResponse
+import com.kirkbushman.araw.models.responses.SubmitResponse
 import com.kirkbushman.araw.models.SubredditRules
 import com.kirkbushman.araw.models.SubredditSearchResult
 import com.kirkbushman.araw.models.TrendingSubreddits
@@ -29,17 +31,21 @@ import com.kirkbushman.araw.models.TrophyList
 import com.kirkbushman.araw.models.UploadContract
 import com.kirkbushman.araw.models.UserList
 import com.kirkbushman.araw.models.WikiPageList
+import com.kirkbushman.araw.models.requests.AddMultiSubReq
 import com.kirkbushman.araw.utils.Endpoints
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Call
+import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.HeaderMap
 import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Part
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -392,6 +398,45 @@ interface RedditApi {
         @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<List<EnvelopedMulti>>
+
+    @GET(Endpoints.URL_MULTI_DESC)
+    fun getMultiDescription(
+        @Path("username") username: String,
+        @Path("multiname") multiname: String,
+        @Query("raw_json") rawJson: Int? = null,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<EnvelopedMultiDescription>
+
+    @PUT(Endpoints.URL_MULTI_DESC)
+    fun setMultiDescription(
+
+    ): Call<Any?>
+
+    @GET(Endpoints.URL_MULTI_SUB)
+    fun getMultiSubreddit(
+        @Path("username") username: String,
+        @Path("multiname") multiname: String,
+        @Path("subname") subname: String,
+        @Query("raw_json") rawJson: Int? = null,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<MultiSub>
+
+    @PUT(Endpoints.URL_MULTI_SUB)
+    fun addSubredditToMulti(
+        @Path("username") username: String,
+        @Path("multiname") multiname: String,
+        @Path("subname") subname: String,
+        @Body model: AddMultiSubReq,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<Any?>
+
+    @DELETE(Endpoints.URL_MULTI_SUB)
+    fun deleteSubredditToMulti(
+        @Path("username") username: String,
+        @Path("multiname") multiname: String,
+        @Path("subname") subname: String,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<Any?>
 
     // --- Multis section: END ---
 

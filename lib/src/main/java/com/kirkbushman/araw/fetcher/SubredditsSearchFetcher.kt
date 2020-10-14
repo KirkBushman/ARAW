@@ -6,9 +6,9 @@ import com.kirkbushman.araw.RedditApi
 import com.kirkbushman.araw.http.EnvelopedSubredditData
 import com.kirkbushman.araw.http.base.Listing
 import com.kirkbushman.araw.http.listings.SubredditDataListing
-import com.kirkbushman.araw.models.general.SubredditSearchSorting
-import com.kirkbushman.araw.models.general.TimePeriod
-import com.kirkbushman.araw.models.mixins.SubredditData
+import com.kirkbushman.araw.models.enums.SubredditSearchSorting
+import com.kirkbushman.araw.models.enums.TimePeriod
+import com.kirkbushman.araw.models.base.SubredditData
 
 class SubredditsSearchFetcher(
 

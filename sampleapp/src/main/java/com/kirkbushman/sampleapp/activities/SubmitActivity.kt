@@ -3,7 +3,7 @@ package com.kirkbushman.sampleapp.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import com.kirkbushman.araw.models.general.SubmissionKind
+import com.kirkbushman.araw.models.commons.SubmissionKind
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.activities.base.BaseActivity

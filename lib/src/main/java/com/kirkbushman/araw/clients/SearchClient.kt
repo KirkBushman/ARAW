@@ -7,10 +7,10 @@ import com.kirkbushman.araw.fetcher.RedditorSearchFetcher
 import com.kirkbushman.araw.fetcher.SubmissionsSearchFetcher
 import com.kirkbushman.araw.fetcher.SubredditsSearchFetcher
 import com.kirkbushman.araw.models.SubredditSearchResult
-import com.kirkbushman.araw.models.general.RedditorSearchSorting
-import com.kirkbushman.araw.models.general.SearchSorting
-import com.kirkbushman.araw.models.general.SubredditSearchSorting
-import com.kirkbushman.araw.models.general.TimePeriod
+import com.kirkbushman.araw.models.enums.RedditorSearchSorting
+import com.kirkbushman.araw.models.enums.SearchSorting
+import com.kirkbushman.araw.models.enums.SubredditSearchSorting
+import com.kirkbushman.araw.models.enums.TimePeriod
 
 class SearchClient(
 

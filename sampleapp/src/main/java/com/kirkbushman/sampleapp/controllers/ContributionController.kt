@@ -4,7 +4,7 @@ import android.view.View
 import com.airbnb.epoxy.EpoxyController
 import com.kirkbushman.araw.models.Comment
 import com.kirkbushman.araw.models.Submission
-import com.kirkbushman.araw.models.mixins.Contribution
+import com.kirkbushman.araw.models.base.Contribution
 import com.kirkbushman.sampleapp.models.comment
 import com.kirkbushman.sampleapp.models.empty
 import com.kirkbushman.sampleapp.models.submission

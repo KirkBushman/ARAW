@@ -376,6 +376,72 @@
                 app:layout_constraintStart_toEndOf="@id/bttn_my_multis"
                 />
 
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/bttn_multi_submissions"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/bttn_multi_submissions"
+                app:layout_constraintTop_toBottomOf="@id/bttn_my_multis"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/bttn_multi_get_desc"
+                />
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/bttn_multi_get_desc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/bttn_multi_get_desc"
+                app:layout_constraintTop_toBottomOf="@id/bttn_redditor_multis"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/bttn_multi_submissions"
+                />
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/bttn_multi_set_desc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/bttn_multi_set_desc"
+                app:layout_constraintTop_toBottomOf="@id/bttn_multi_submissions"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/bttn_multi_get_sub"
+                />
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/bttn_multi_get_sub"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/bttn_multi_get_sub"
+                app:layout_constraintTop_toBottomOf="@id/bttn_multi_get_desc"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/bttn_multi_set_desc"
+                />
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/bttn_multi_add_sub"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/bttn_multi_add_sub"
+                app:layout_constraintTop_toBottomOf="@id/bttn_multi_set_desc"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/bttn_multi_del_sub"
+                />
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/bttn_multi_del_sub"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/bttn_multi_del_sub"
+                app:layout_constraintTop_toBottomOf="@id/bttn_multi_get_sub"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/bttn_multi_add_sub"
+                />
+
         <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/header_api_subreddit"
                 android:layout_width="0dp"
@@ -387,7 +453,7 @@
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:text="@string/header_api_subreddit"
-                app:layout_constraintTop_toBottomOf="@id/bttn_my_multis"
+                app:layout_constraintTop_toBottomOf="@id/bttn_multi_add_sub"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 />

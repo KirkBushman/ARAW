@@ -8,8 +8,8 @@ import com.kirkbushman.araw.fetcher.Fetcher
 import com.kirkbushman.araw.models.ModeratedSub
 import com.kirkbushman.araw.models.Redditor
 import com.kirkbushman.araw.models.Trophy
-import com.kirkbushman.araw.models.general.ContributionsSorting
-import com.kirkbushman.araw.models.general.TimePeriod
+import com.kirkbushman.araw.models.enums.ContributionsSorting
+import com.kirkbushman.araw.models.enums.TimePeriod
 
 class RedditorsClient(
 

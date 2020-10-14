@@ -5,7 +5,7 @@ import com.kirkbushman.araw.RedditApi
 import com.kirkbushman.araw.exceptions.WikiDisabledException
 import com.kirkbushman.araw.models.WikiPage
 import com.kirkbushman.araw.models.WikiRevision
-import com.kirkbushman.araw.models.mixins.SubredditData
+import com.kirkbushman.araw.models.base.SubredditData
 
 class WikisClient(
 

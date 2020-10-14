@@ -134,6 +134,30 @@ class ApisActivity : BaseActivity() {
             ApiDetailActivity.startApiRedditorMultis(this)
         }
 
+        bttn_multi_submissions.setOnClickListener {
+            ApiDetailActivity.startApiMultiSubs(this)
+        }
+
+        bttn_multi_get_desc.setOnClickListener {
+            ApiDetailActivity.startApiMultiGetDesc(this)
+        }
+
+        bttn_multi_set_desc.setOnClickListener {
+            ApiDetailActivity.startApiMultiSetDesc(this)
+        }
+
+        bttn_multi_get_sub.setOnClickListener {
+            ApiDetailActivity.startApiMultiGetSub(this)
+        }
+
+        bttn_multi_add_sub.setOnClickListener {
+            ApiDetailActivity.startApiMultiAddSub(this)
+        }
+
+        bttn_multi_del_sub.setOnClickListener {
+            ApiDetailActivity.startApiMultiDelSub(this)
+        }
+
         bttn_subreddit.setOnClickListener {
             ApiDetailActivity.startApiSubreddit(this)
         }

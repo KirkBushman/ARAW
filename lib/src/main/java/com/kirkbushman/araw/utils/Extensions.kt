@@ -4,13 +4,13 @@ import com.kirkbushman.araw.models.Comment
 import com.kirkbushman.araw.models.Friend
 import com.kirkbushman.araw.models.User
 import com.kirkbushman.araw.models.WikiRevision
-import com.kirkbushman.araw.models.general.Distinguished
-import com.kirkbushman.araw.models.general.Vote
-import com.kirkbushman.araw.models.mixins.CommentData
-import com.kirkbushman.araw.models.mixins.Created
-import com.kirkbushman.araw.models.mixins.Distinguishable
-import com.kirkbushman.araw.models.mixins.Editable
-import com.kirkbushman.araw.models.mixins.Votable
+import com.kirkbushman.araw.models.enums.Distinguished
+import com.kirkbushman.araw.models.enums.Vote
+import com.kirkbushman.araw.models.base.CommentData
+import com.kirkbushman.araw.models.base.Created
+import com.kirkbushman.araw.models.base.Distinguishable
+import com.kirkbushman.araw.models.base.Editable
+import com.kirkbushman.araw.models.base.Votable
 import java.util.*
 import kotlin.collections.ArrayList
 

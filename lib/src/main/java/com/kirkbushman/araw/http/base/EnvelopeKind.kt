@@ -19,5 +19,6 @@ enum class EnvelopeKind(val value: String) {
     @Json(name = "UserList") UserList("UserList"),
     @Json(name = "KarmaList") KarmaList("KarmaList"),
     @Json(name = "ModeratedList") ModeratedList("ModeratedList"),
-    @Json(name = "LabeledMulti") LabeledMulti("LabeledMulti")
+    @Json(name = "LabeledMulti") LabeledMulti("LabeledMulti"),
+    @Json(name = "LabeledMultiDescription") LabeledMultiDescription("LabeledMultiDescription")
 }

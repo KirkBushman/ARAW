@@ -6,14 +6,14 @@ import com.kirkbushman.araw.RedditApi
 import com.kirkbushman.araw.fetcher.Fetcher
 import com.kirkbushman.araw.fetcher.SubmissionsFetcher
 import com.kirkbushman.araw.models.Flair
-import com.kirkbushman.araw.models.SubmitResponse
+import com.kirkbushman.araw.models.responses.SubmitResponse
 import com.kirkbushman.araw.models.Subreddit
 import com.kirkbushman.araw.models.SubredditRule
 import com.kirkbushman.araw.models.User
-import com.kirkbushman.araw.models.general.SubmissionKind
-import com.kirkbushman.araw.models.general.SubmissionsSorting
-import com.kirkbushman.araw.models.general.TimePeriod
-import com.kirkbushman.araw.models.mixins.SubredditData
+import com.kirkbushman.araw.models.commons.SubmissionKind
+import com.kirkbushman.araw.models.enums.SubmissionsSorting
+import com.kirkbushman.araw.models.enums.TimePeriod
+import com.kirkbushman.araw.models.base.SubredditData
 import java.lang.IllegalStateException
 
 class SubredditsClient(

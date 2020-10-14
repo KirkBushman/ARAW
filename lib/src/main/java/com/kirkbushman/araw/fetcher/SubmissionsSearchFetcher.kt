@@ -7,8 +7,8 @@ import com.kirkbushman.araw.http.EnvelopedSubmission
 import com.kirkbushman.araw.http.base.Listing
 import com.kirkbushman.araw.http.listings.SubmissionListing
 import com.kirkbushman.araw.models.Submission
-import com.kirkbushman.araw.models.general.SearchSorting
-import com.kirkbushman.araw.models.general.TimePeriod
+import com.kirkbushman.araw.models.enums.SearchSorting
+import com.kirkbushman.araw.models.enums.TimePeriod
 
 class SubmissionsSearchFetcher(
 

@@ -6,8 +6,8 @@ import com.kirkbushman.araw.RedditApi
 import com.kirkbushman.araw.http.EnvelopedCommentData
 import com.kirkbushman.araw.http.base.Listing
 import com.kirkbushman.araw.models.Submission
-import com.kirkbushman.araw.models.general.CommentsSorting
-import com.kirkbushman.araw.models.mixins.CommentData
+import com.kirkbushman.araw.models.enums.CommentsSorting
+import com.kirkbushman.araw.models.base.CommentData
 
 class CommentsFetcher(
 

@@ -6,7 +6,7 @@ import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.models.Comment
 import com.kirkbushman.araw.models.MoreComments
 import com.kirkbushman.araw.models.Submission
-import com.kirkbushman.araw.models.mixins.CommentData
+import com.kirkbushman.araw.models.base.CommentData
 import com.kirkbushman.araw.utils.toLinearList
 import com.kirkbushman.araw.utils.treeIterable
 import com.kirkbushman.araw.utils.treeIterator

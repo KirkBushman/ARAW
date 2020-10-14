@@ -1,7 +1,7 @@
 package com.kirkbushman.araw.models
 
 import android.os.Parcelable
-import com.kirkbushman.araw.models.mixins.Created
+import com.kirkbushman.araw.models.base.Created
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
@@ -72,5 +72,17 @@ data class MultiSub(
 
     @Json(name = "name")
     val name: String
+
+) : Parcelable
+
+@JsonClass(generateAdapter = true)
+@Parcelize
+data class MultiDescription(
+
+    @Json(name = "body_md")
+    val bodyMkdn: String,
+
+    @Json(name = "body_html")
+    val bodyHtml: String
 
 ) : Parcelable

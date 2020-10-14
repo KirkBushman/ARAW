@@ -21,7 +21,7 @@ buildscript {
         constr_ver     = '2.0.2'
         annot_ver      = '1.1.0'
         retrofit_ver   = '2.9.0'
-        moshi_ver      = '1.10.0'
+        moshi_ver      = '1.11.0'
         okhttp_ver     = '4.9.0'
         oauth2_ver     = '1.2.2'
         mdc_ver        = '1.2.1'

@@ -2,7 +2,7 @@ package com.kirkbushman.araw.models
 
 import android.os.Parcelable
 import com.kirkbushman.araw.http.base.EnvelopeKind
-import com.kirkbushman.araw.models.mixins.Created
+import com.kirkbushman.araw.models.base.Created
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize

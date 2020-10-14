@@ -7,8 +7,8 @@ import com.kirkbushman.araw.http.EnvelopedRedditor
 import com.kirkbushman.araw.http.base.Listing
 import com.kirkbushman.araw.http.listings.RedditorListing
 import com.kirkbushman.araw.models.Redditor
-import com.kirkbushman.araw.models.general.RedditorSearchSorting
-import com.kirkbushman.araw.models.general.TimePeriod
+import com.kirkbushman.araw.models.enums.RedditorSearchSorting
+import com.kirkbushman.araw.models.enums.TimePeriod
 
 class RedditorSearchFetcher(
 
