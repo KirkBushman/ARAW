@@ -31,13 +31,13 @@ data class GalleryMediaItem(
 data class GalleryMedia(
 
     @Json(name = "id")
-    val id: String,
+    val id: String?,
 
     @Json(name = "status")
-    val status: String,
+    val status: String?,
 
     @Json(name = "e")
-    val e: String,
+    val e: String?,
 
     @Json(name = "m")
     val m: String?,
@@ -70,9 +70,9 @@ data class GalleryImageData(
     val mp4: String?,
 
     @Json(name = "x")
-    val x: Int,
+    val x: Int?,
 
     @Json(name = "y")
-    val y: Int
+    val y: Int?
 
 ) : Parcelable
