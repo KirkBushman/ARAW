@@ -443,6 +443,22 @@ class SubredditsClient(
 
     @WorkerThread
     fun subscribe(
+        subredditName: String,
+        action: Boolean,
+        skipInitialDefaults: Boolean = true
+    ): Any? {
+
+        return subscribe(
+
+            subredditNames = listOf(subredditName),
+
+            action = action,
+            skipInitialDefaults = skipInitialDefaults
+        )
+    }
+
+    @WorkerThread
+    fun subscribe(
 
         subredditIds: List<String>? = null,
         subredditNames: List<String>? = null,
