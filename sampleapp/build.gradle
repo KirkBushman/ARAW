@@ -55,31 +55,44 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_ver"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_ver"
-    implementation "androidx.constraintlayout:constraintlayout:$constr_ver"
 
     implementation project(":lib")
+
+    implementation "androidx.core:core-ktx:$ax_core_ver"
+    implementation "androidx.appcompat:appcompat:$ax_appcompat_ver"
+    implementation "androidx.appcompat:appcompat-resources:$ax_appcompat_ver"
+    implementation "androidx.activity:activity-ktx:$ax_activity_ver"
 
     implementation "com.airbnb.android:epoxy:$epoxy_ver"
     kapt "com.airbnb.android:epoxy-processor:$epoxy_ver"
 
+    implementation "androidx.constraintlayout:constraintlayout:$constr_ver"
     implementation "com.google.android.material:material:$mdc_ver"
 
-    implementation "androidx.core:core-ktx:$ktx_core_ver"
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
     implementation 'androidx.browser:browser:1.2.0'
 
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanary_ver"
 
-    androidTestImplementation "androidx.test:core:$test_ver"
+    testImplementation "androidx.test:core-ktx:$test_ver"
+    testImplementation "androidx.test:runner:$test_ver"
+    testImplementation "androidx.test:rules:$test_ver"
+    testImplementation "androidx.arch.core:core-testing:$arch_core_ver"
+
+    testImplementation "androidx.test.ext:junit:$junit_ver"
+    testImplementation "org.mockito:mockito-core:$mockito_ver"
+    testImplementation "org.mockito:mockito-inline:$mockito_ver"
+
+    androidTestImplementation "androidx.test:core-ktx:$test_ver"
     androidTestImplementation "androidx.test:runner:$test_ver"
     androidTestImplementation "androidx.test:rules:$test_ver"
+    androidTestImplementation "androidx.arch.core:core-testing:$arch_core_ver"
 
     androidTestImplementation "androidx.test.ext:junit:$junit_ver"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_ver"
-
-    androidTestImplementation "androidx.core:core-ktx:$ktx_core_ver"
-    androidTestImplementation "androidx.appcompat:appcompat:1.2.0"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espresso_ver"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$espresso_ver"
 
     androidTestImplementation "com.github.KirkBushman:Android-Reddit-OAuth2:$oauth2_ver"
+
+    androidTestUtil 'androidx.test:orchestrator:1.3.0'
 }
