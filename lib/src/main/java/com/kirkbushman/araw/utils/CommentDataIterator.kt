@@ -1,6 +1,6 @@
 package com.kirkbushman.araw.utils
 
-import com.kirkbushman.araw.models.mixins.CommentData
+import com.kirkbushman.araw.models.base.CommentData
 import java.util.*
 
 class CommentDataIterator : Iterator<CommentData> {

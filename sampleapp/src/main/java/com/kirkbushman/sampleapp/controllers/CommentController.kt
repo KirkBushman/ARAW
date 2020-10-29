@@ -5,7 +5,7 @@ import com.airbnb.epoxy.EpoxyController
 import com.kirkbushman.araw.models.Comment
 import com.kirkbushman.araw.models.MoreComments
 import com.kirkbushman.araw.models.Submission
-import com.kirkbushman.araw.models.mixins.CommentData
+import com.kirkbushman.araw.models.base.CommentData
 import com.kirkbushman.araw.utils.treeIterator
 import com.kirkbushman.sampleapp.models.comment
 import com.kirkbushman.sampleapp.models.empty

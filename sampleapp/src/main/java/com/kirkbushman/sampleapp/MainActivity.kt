@@ -96,6 +96,11 @@ class MainActivity : AppCompatActivity() {
             SubmissionsFlairFilterActivity.start(this)
         }
 
+        bttn_multi_submissions.setOnClickListener {
+
+            MultiSubmissionsActivity.start(this)
+        }
+
         bttn_subreddit_search.setOnClickListener {
 
             SubredditsSearchActivity.start(this)

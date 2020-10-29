@@ -7,7 +7,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import com.kirkbushman.araw.RedditClient
-import com.kirkbushman.araw.models.mixins.SubredditData
+import com.kirkbushman.araw.models.base.SubredditData
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.activities.base.BaseSearchPrintActivity
 import kotlinx.android.synthetic.main.activity_subreddit.*

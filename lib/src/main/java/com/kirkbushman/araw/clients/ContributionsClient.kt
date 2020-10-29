@@ -6,21 +6,19 @@ import com.kirkbushman.araw.RedditApi
 import com.kirkbushman.araw.fetcher.CommentsFetcher
 import com.kirkbushman.araw.fetcher.Fetcher
 import com.kirkbushman.araw.fetcher.SubmissionsFetcher
-import com.kirkbushman.araw.fetcher.SubmissionsSearchFetcher
 import com.kirkbushman.araw.models.Comment
 import com.kirkbushman.araw.models.MoreComments
 import com.kirkbushman.araw.models.Submission
 import com.kirkbushman.araw.models.TrendingSubreddits
-import com.kirkbushman.araw.models.general.CommentsSorting
-import com.kirkbushman.araw.models.general.SearchSorting
-import com.kirkbushman.araw.models.general.SubmissionsSorting
-import com.kirkbushman.araw.models.general.TimePeriod
-import com.kirkbushman.araw.models.general.Vote
-import com.kirkbushman.araw.models.mixins.CommentData
-import com.kirkbushman.araw.models.mixins.Replyable
-import com.kirkbushman.araw.models.mixins.Saveable
-import com.kirkbushman.araw.models.mixins.SubredditData
-import com.kirkbushman.araw.models.mixins.Votable
+import com.kirkbushman.araw.models.enums.CommentsSorting
+import com.kirkbushman.araw.models.enums.SubmissionsSorting
+import com.kirkbushman.araw.models.enums.TimePeriod
+import com.kirkbushman.araw.models.enums.Vote
+import com.kirkbushman.araw.models.base.CommentData
+import com.kirkbushman.araw.models.base.Replyable
+import com.kirkbushman.araw.models.base.Saveable
+import com.kirkbushman.araw.models.base.SubredditData
+import com.kirkbushman.araw.models.base.Votable
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -29,8 +27,7 @@ class ContributionsClient(
 
     private val api: RedditApi,
     private inline val getHeaderMap: () -> HashMap<String, String>
-
-) : BaseRedditClient(api, getHeaderMap) {
+) {
 
     @WorkerThread
     fun submission(submissionId: String, disableLegacyEncoding: Boolean = false): Submission? {
@@ -118,35 +115,6 @@ class ContributionsClient(
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,
-            disableLegacyEncoding = disableLegacyEncoding,
-            getHeader = getHeaderMap
-        )
-    }
-
-    fun submissionsSearch(
-
-        subreddit: String?,
-        query: String,
-
-        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
-        limit: Long = Fetcher.DEFAULT_LIMIT,
-
-        sorting: SearchSorting = SubmissionsSearchFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = SubmissionsSearchFetcher.DEFAULT_TIMEPERIOD,
-
-        restrictToSubreddit: Boolean = false,
-        disableLegacyEncoding: Boolean = false
-
-    ): SubmissionsSearchFetcher {
-
-        return SubmissionsSearchFetcher(
-            api = api,
-            subreddit = subreddit,
-            query = query,
-            limit = limit,
-            sorting = sorting,
-            timePeriod = timePeriod,
-            restrictToSubreddit = restrictToSubreddit,
             disableLegacyEncoding = disableLegacyEncoding,
             getHeader = getHeaderMap
         )
@@ -484,37 +452,6 @@ class ContributionsClient(
 
         return res.body()
     }
-
-    // todo: consider making a separate module with an android GraphQL client,
-    // todo: to avoid this ugliness
-    /*@WorkerThread
-    fun pollVote(submissionFullname: String, optionId: String): List<PollVoteStateOption>? {
-
-        val authMap = getHeaderMap()
-        val req = api.pollVote(
-            // send to reddit's GraphQL url
-            url = "https://gql.reddit.com",
-            requestTimestamp = System.currentTimeMillis() / 1000L,
-            pollVoteReq = PollVoteReq(
-                // fixed id value
-                id = "a20cc8dd230d",
-                variables = PollVoteVariables(
-                    input = PollVoteInput(
-                        postId = submissionFullname,
-                        optionId = optionId
-                    )
-                )
-            ),
-            header = authMap
-        )
-
-        val res = req.execute()
-        if (!res.isSuccessful) {
-            return null
-        }
-
-        return res.body()?.data?.updatePostPollVoteState?.poll?.options
-    }*/
 
     @WorkerThread
     fun uploadMedia(filename: String, mimeType: String? = null, fileContent: ByteArray): String? {

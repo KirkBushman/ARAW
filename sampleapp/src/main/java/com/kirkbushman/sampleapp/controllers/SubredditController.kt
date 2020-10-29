@@ -5,7 +5,7 @@ import com.airbnb.epoxy.EpoxyController
 import com.kirkbushman.araw.models.PrivateSubreddit
 import com.kirkbushman.araw.models.Subreddit
 import com.kirkbushman.araw.models.SubredditSearchResult
-import com.kirkbushman.araw.models.mixins.SubredditData
+import com.kirkbushman.araw.models.base.SubredditData
 import com.kirkbushman.sampleapp.models.empty
 import com.kirkbushman.sampleapp.models.subreddit
 

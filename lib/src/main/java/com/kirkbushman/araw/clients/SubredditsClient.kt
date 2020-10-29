@@ -5,25 +5,22 @@ import androidx.annotation.WorkerThread
 import com.kirkbushman.araw.RedditApi
 import com.kirkbushman.araw.fetcher.Fetcher
 import com.kirkbushman.araw.fetcher.SubmissionsFetcher
-import com.kirkbushman.araw.fetcher.SubredditsSearchFetcher
 import com.kirkbushman.araw.models.Flair
-import com.kirkbushman.araw.models.SubmitResponse
+import com.kirkbushman.araw.models.responses.SubmitResponse
 import com.kirkbushman.araw.models.Subreddit
 import com.kirkbushman.araw.models.SubredditRule
 import com.kirkbushman.araw.models.User
-import com.kirkbushman.araw.models.general.SubmissionKind
-import com.kirkbushman.araw.models.general.SubmissionsSorting
-import com.kirkbushman.araw.models.general.SubredditSearchSorting
-import com.kirkbushman.araw.models.general.TimePeriod
-import com.kirkbushman.araw.models.mixins.SubredditData
+import com.kirkbushman.araw.models.commons.SubmissionKind
+import com.kirkbushman.araw.models.enums.SubmissionsSorting
+import com.kirkbushman.araw.models.enums.TimePeriod
+import com.kirkbushman.araw.models.base.SubredditData
 import java.lang.IllegalStateException
 
 class SubredditsClient(
 
     private val api: RedditApi,
     private inline val getHeaderMap: () -> HashMap<String, String>
-
-) : BaseRedditClient(api, getHeaderMap) {
+) {
 
     @WorkerThread
     fun subreddit(subreddit: String, disableLegacyEncoding: Boolean = false): SubredditData? {
@@ -446,6 +443,22 @@ class SubredditsClient(
 
     @WorkerThread
     fun subscribe(
+        subredditName: String,
+        action: Boolean,
+        skipInitialDefaults: Boolean = true
+    ): Any? {
+
+        return subscribe(
+
+            subredditNames = listOf(subredditName),
+
+            action = action,
+            skipInitialDefaults = skipInitialDefaults
+        )
+    }
+
+    @WorkerThread
+    fun subscribe(
 
         subredditIds: List<String>? = null,
         subredditNames: List<String>? = null,
@@ -472,27 +485,5 @@ class SubredditsClient(
         }
 
         return res.body()
-    }
-
-    fun fetchSubredditsSearch(
-
-        query: String,
-
-        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
-        limit: Long = Fetcher.DEFAULT_LIMIT,
-        sorting: SubredditSearchSorting = SubredditsSearchFetcher.DEFAULT_SORTING,
-
-        disableLegacyEncoding: Boolean = false
-
-    ): SubredditsSearchFetcher {
-
-        return SubredditsSearchFetcher(
-            api = api,
-            query = query,
-            limit = limit,
-            sorting = sorting,
-            disableLegacyEncoding = disableLegacyEncoding,
-            getHeader = getHeaderMap
-        )
     }
 }

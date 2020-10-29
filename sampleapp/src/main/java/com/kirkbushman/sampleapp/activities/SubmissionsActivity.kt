@@ -7,9 +7,9 @@ import android.view.Menu
 import android.view.MenuItem
 import com.kirkbushman.araw.fetcher.SubmissionsFetcher
 import com.kirkbushman.araw.models.Submission
-import com.kirkbushman.araw.models.general.SubmissionsSorting
-import com.kirkbushman.araw.models.general.TimePeriod
-import com.kirkbushman.araw.models.general.Vote
+import com.kirkbushman.araw.models.enums.SubmissionsSorting
+import com.kirkbushman.araw.models.enums.TimePeriod
+import com.kirkbushman.araw.models.enums.Vote
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.activities.base.BaseActivity

@@ -1,6 +1,6 @@
 package com.kirkbushman.araw.utils
 
-import com.kirkbushman.araw.models.mixins.CommentData
+import com.kirkbushman.araw.models.base.CommentData
 
 class CommentDataIterable : Iterable<CommentData> {
 

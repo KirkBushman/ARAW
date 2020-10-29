@@ -11,15 +11,14 @@ import com.kirkbushman.araw.models.Karma
 import com.kirkbushman.araw.models.Me
 import com.kirkbushman.araw.models.Prefs
 import com.kirkbushman.araw.models.Trophy
-import com.kirkbushman.araw.models.general.ContributionsSorting
-import com.kirkbushman.araw.models.general.TimePeriod
+import com.kirkbushman.araw.models.enums.ContributionsSorting
+import com.kirkbushman.araw.models.enums.TimePeriod
 
 class AccountsClient(
 
     private val api: RedditApi,
     private inline val getHeaderMap: () -> HashMap<String, String>
-
-) : BaseRedditClient(api, getHeaderMap) {
+) {
 
     private var currentUser: Me? = null
 

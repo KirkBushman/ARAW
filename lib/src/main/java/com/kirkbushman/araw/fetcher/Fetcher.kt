@@ -25,14 +25,14 @@ abstract class Fetcher<T, E>(
         const val MAX_LIMIT = 100L
     }
 
-    private var currentPage = 0
+    private var currentPage: Int? = null
     private var itemsCount = 0
 
-    private var currentAfter = ""
-    private var currentBefore = ""
+    private var currentAfter: String? = null
+    private var currentBefore: String? = null
 
     @WorkerThread
-    abstract fun onFetching(forward: Boolean = true, dirToken: String): Listing<E>?
+    abstract fun onFetching(forward: Boolean = true, dirToken: String?): Listing<E>?
     abstract fun onMapResult(pagedData: Listing<E>?): List<T>
 
     /**
@@ -41,13 +41,14 @@ abstract class Fetcher<T, E>(
      */
     @WorkerThread
     fun fetchNext(): List<T> {
-        val pagedData = onFetching(true, currentAfter)
 
-        currentPage++
-        itemsCount = limit.toInt() * currentPage
+        val pagedData = onFetching(true, getNextToken() ?: "")
 
-        currentAfter = pagedData?.after ?: ""
-        currentBefore = pagedData?.before ?: ""
+        currentPage = (currentPage ?: 0) + 1
+        itemsCount = limit.toInt() * (currentPage ?: 0)
+
+        currentAfter = pagedData?.after
+        currentBefore = pagedData?.before
 
         return onMapResult(pagedData)
     }
@@ -57,43 +58,46 @@ abstract class Fetcher<T, E>(
      * @return a list of T items.
      */
     @WorkerThread
-    fun fetchPrevious(): List<T> {
+    fun fetchPrevious(): List<T>? {
 
         if (!hasStarted() || !hasPrevious()) {
-            return listOf()
+            return null
         }
 
-        val pagedData = onFetching(false, currentBefore)
+        val pagedData = onFetching(false, getPreviousToken())
 
-        currentPage--
-        itemsCount = limit.toInt() * currentPage
+        currentPage = if (currentPage != null) {
+            currentPage!! - 1
+        } else {
+            null
+        }
 
-        currentAfter = pagedData?.after ?: ""
-        currentBefore = pagedData?.before ?: ""
+        itemsCount = limit.toInt() * (currentPage ?: 0)
+
+        currentAfter = pagedData?.after
+        currentBefore = pagedData?.before
 
         return onMapResult(pagedData)
     }
 
     fun hasStarted(): Boolean {
-        return currentPage > 0
+        return currentPage != null && currentPage!! > 0
     }
 
-    fun hasNext(): Boolean {
-
-        if (!hasStarted()) {
-            return false
-        }
-
-        return currentAfter != ""
+    open fun getPreviousToken(): String? {
+        return currentBefore
     }
 
-    fun hasPrevious(): Boolean {
+    open fun getNextToken(): String? {
+        return currentAfter
+    }
 
-        if (!hasStarted()) {
-            return false
-        }
+    open fun hasNext(): Boolean {
+        return currentAfter != null
+    }
 
-        return currentBefore != ""
+    open fun hasPrevious(): Boolean {
+        return getPreviousToken() != null
     }
 
     /**
@@ -118,7 +122,7 @@ abstract class Fetcher<T, E>(
     /**
      * Returns the current page number.
      */
-    fun getPageNum(): Int {
+    fun getPageNum(): Int? {
         return currentPage
     }
 
@@ -135,10 +139,10 @@ abstract class Fetcher<T, E>(
      * back from the first page of content.
      */
     fun reset() {
-        currentPage = 0
+        currentPage = null
         itemsCount = 0
 
-        currentAfter = ""
-        currentBefore = ""
+        currentAfter = null
+        currentBefore = null
     }
 }

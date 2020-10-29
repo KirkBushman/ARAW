@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.kirkbushman.araw.models.Submission
-import com.kirkbushman.araw.models.general.Vote
+import com.kirkbushman.araw.models.enums.Vote
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.activities.base.BaseActivity
@@ -120,7 +120,7 @@ class SubmissionsSearchActivity : BaseActivity() {
             doAsync(
                 doWork = {
 
-                    val fetcher = client?.contributionsClient?.submissionsSearch(
+                    val fetcher = client?.searchClient?.submissionsSearch(
                         subreddit = if (allSubs) null else subreddit,
                         query = query,
                         restrictToSubreddit = true

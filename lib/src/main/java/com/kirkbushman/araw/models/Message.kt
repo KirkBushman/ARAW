@@ -1,11 +1,11 @@
 package com.kirkbushman.araw.models
 
 import android.os.Parcelable
-import com.kirkbushman.araw.models.mixins.Created
-import com.kirkbushman.araw.models.mixins.Distinguishable
-import com.kirkbushman.araw.models.mixins.Replyable
-import com.kirkbushman.araw.models.mixins.Thing
-import com.kirkbushman.araw.models.mixins.Votable
+import com.kirkbushman.araw.models.base.Created
+import com.kirkbushman.araw.models.base.Distinguishable
+import com.kirkbushman.araw.models.base.Replyable
+import com.kirkbushman.araw.models.base.Thing
+import com.kirkbushman.araw.models.base.Votable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize

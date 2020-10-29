@@ -8,8 +8,8 @@ import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import com.kirkbushman.araw.models.general.SubmissionsSorting
-import com.kirkbushman.araw.models.general.TimePeriod
+import com.kirkbushman.araw.models.enums.SubmissionsSorting
+import com.kirkbushman.araw.models.enums.TimePeriod
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.activities.base.BaseActivity
 import com.kirkbushman.sampleapp.fragments.SubmissionFragment

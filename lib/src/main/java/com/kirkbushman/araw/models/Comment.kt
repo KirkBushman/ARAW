@@ -2,15 +2,15 @@ package com.kirkbushman.araw.models
 
 import android.os.Parcelable
 import com.kirkbushman.araw.http.EnvelopedCommentDataListing
-import com.kirkbushman.araw.models.general.Gildings
-import com.kirkbushman.araw.models.mixins.CommentData
-import com.kirkbushman.araw.models.mixins.Created
-import com.kirkbushman.araw.models.mixins.Distinguishable
-import com.kirkbushman.araw.models.mixins.Editable
-import com.kirkbushman.araw.models.mixins.Gildable
-import com.kirkbushman.araw.models.mixins.Replyable
-import com.kirkbushman.araw.models.mixins.Saveable
-import com.kirkbushman.araw.models.mixins.Votable
+import com.kirkbushman.araw.models.commons.Gildings
+import com.kirkbushman.araw.models.base.CommentData
+import com.kirkbushman.araw.models.base.Created
+import com.kirkbushman.araw.models.base.Distinguishable
+import com.kirkbushman.araw.models.base.Editable
+import com.kirkbushman.araw.models.base.Gildable
+import com.kirkbushman.araw.models.base.Replyable
+import com.kirkbushman.araw.models.base.Saveable
+import com.kirkbushman.araw.models.base.Votable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize

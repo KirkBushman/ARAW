@@ -7,15 +7,13 @@ import com.kirkbushman.araw.http.EnvelopedRedditor
 import com.kirkbushman.araw.http.base.Listing
 import com.kirkbushman.araw.http.listings.RedditorListing
 import com.kirkbushman.araw.models.Redditor
-import com.kirkbushman.araw.models.general.RedditorSearchSorting
-import com.kirkbushman.araw.models.general.TimePeriod
+import com.kirkbushman.araw.models.enums.RedditorSearchSorting
+import com.kirkbushman.araw.models.enums.TimePeriod
 
 class RedditorSearchFetcher(
 
     private val api: RedditApi,
     private val query: String,
-
-    private val show: String? = null,
 
     @IntRange(from = MIN_LIMIT, to = MAX_LIMIT)
     limit: Long = DEFAULT_LIMIT,
@@ -23,6 +21,7 @@ class RedditorSearchFetcher(
     private var sorting: RedditorSearchSorting = DEFAULT_SORTING,
     private var timePeriod: TimePeriod = DEFAULT_TIMEPERIOD,
 
+    private val showAll: Boolean = false,
     private val disableLegacyEncoding: Boolean = false,
 
     private inline val getHeader: () -> HashMap<String, String>
@@ -36,11 +35,11 @@ class RedditorSearchFetcher(
     }
 
     @WorkerThread
-    override fun onFetching(forward: Boolean, dirToken: String): Listing<EnvelopedRedditor>? {
+    override fun onFetching(forward: Boolean, dirToken: String?): Listing<EnvelopedRedditor>? {
 
         val req = api.fetchRedditorSearch(
             query = query,
-            show = show,
+            show = if (showAll) "all" else null,
             sorting = getSorting().sortingStr,
             timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
             limit = getLimit(),

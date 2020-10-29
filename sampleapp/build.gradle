@@ -55,6 +55,7 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_ver"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_ver"
+    implementation "androidx.constraintlayout:constraintlayout:$constr_ver"
 
     implementation project(":lib")
 
@@ -81,6 +82,18 @@ dependencies {
     testImplementation "androidx.test.ext:junit:$junit_ver"
     testImplementation "org.mockito:mockito-core:$mockito_ver"
     testImplementation "org.mockito:mockito-inline:$mockito_ver"
+
+    testImplementation "com.squareup.retrofit2:retrofit:$retrofit_ver"
+    testImplementation "com.squareup.retrofit2:converter-moshi:$retrofit_ver"
+
+    testImplementation "com.squareup.okhttp3:okhttp:$okhttp_ver"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$okhttp_ver"
+    testImplementation "com.squareup.okhttp3:logging-interceptor:$okhttp_ver"
+
+    testImplementation "com.squareup.moshi:moshi:$moshi_ver"
+    testImplementation "com.squareup.moshi:moshi-adapters:$moshi_ver"
+    kaptTest           "com.squareup.moshi:moshi-kotlin-codegen:$moshi_ver"
+
 
     androidTestImplementation "androidx.test:core-ktx:$test_ver"
     androidTestImplementation "androidx.test:runner:$test_ver"

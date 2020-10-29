@@ -3,7 +3,7 @@ package com.kirkbushman.sampleapp.controllers
 import android.view.View
 import com.airbnb.epoxy.EpoxyController
 import com.kirkbushman.araw.models.Submission
-import com.kirkbushman.araw.models.general.Vote
+import com.kirkbushman.araw.models.enums.Vote
 import com.kirkbushman.araw.utils.vote
 import com.kirkbushman.sampleapp.models.empty
 import com.kirkbushman.sampleapp.models.submission

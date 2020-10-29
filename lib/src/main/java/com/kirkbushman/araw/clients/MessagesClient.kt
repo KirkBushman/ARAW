@@ -6,14 +6,13 @@ import com.kirkbushman.araw.RedditApi
 import com.kirkbushman.araw.fetcher.Fetcher
 import com.kirkbushman.araw.fetcher.InboxFetcher
 import com.kirkbushman.araw.models.Message
-import com.kirkbushman.araw.models.general.Vote
+import com.kirkbushman.araw.models.enums.Vote
 
 class MessagesClient(
 
     private val api: RedditApi,
     private inline val getHeaderMap: () -> HashMap<String, String>
-
-) : BaseRedditClient(api, getHeaderMap) {
+) {
 
     fun inbox(
 

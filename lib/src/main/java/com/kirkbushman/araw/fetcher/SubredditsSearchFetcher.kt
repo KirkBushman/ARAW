@@ -6,9 +6,9 @@ import com.kirkbushman.araw.RedditApi
 import com.kirkbushman.araw.http.EnvelopedSubredditData
 import com.kirkbushman.araw.http.base.Listing
 import com.kirkbushman.araw.http.listings.SubredditDataListing
-import com.kirkbushman.araw.models.general.SubredditSearchSorting
-import com.kirkbushman.araw.models.general.TimePeriod
-import com.kirkbushman.araw.models.mixins.SubredditData
+import com.kirkbushman.araw.models.enums.SubredditSearchSorting
+import com.kirkbushman.araw.models.enums.TimePeriod
+import com.kirkbushman.araw.models.base.SubredditData
 
 class SubredditsSearchFetcher(
 
@@ -21,6 +21,7 @@ class SubredditsSearchFetcher(
     private var sorting: SubredditSearchSorting = DEFAULT_SORTING,
     private var timePeriod: TimePeriod = DEFAULT_TIMEPERIOD,
 
+    private val showAll: Boolean = false,
     private val disableLegacyEncoding: Boolean = false,
 
     private inline val getHeader: () -> HashMap<String, String>
@@ -34,10 +35,11 @@ class SubredditsSearchFetcher(
     }
 
     @WorkerThread
-    override fun onFetching(forward: Boolean, dirToken: String): Listing<EnvelopedSubredditData>? {
+    override fun onFetching(forward: Boolean, dirToken: String?): Listing<EnvelopedSubredditData>? {
 
         val req = api.fetchSubredditsSearch(
             query = query,
+            show = if (showAll) "all" else null,
             sorting = getSorting().sortingStr,
             timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
             limit = getLimit(),

@@ -69,6 +69,14 @@ class ApiDetailActivity : BaseActivity() {
         private const val API_MESSAGE_MESSAGES = "param_api_call_messages"
         private const val API_MESSAGE_COMMENT_REPLIES = "param_api_call_comment_replies"
         private const val API_MESSAGE_SELF_REPLIES = "param_api_call_self_replies"
+        private const val API_MULTIS_MINE = "param_api_call_my_multis"
+        private const val API_MULTIS_REDDITOR = "param_api_call_redditor_multis"
+        private const val API_MULTI_SUBMISSIONS = "param_api_call_multi_submissions"
+        private const val API_MULTI_GET_DESC = "param_api_call_multi_get_description"
+        private const val API_MULTI_SET_DESC = "param_api_call_multi_set_description"
+        private const val API_MULTI_GET_SUB = "param_api_call_multi_get_subreddit"
+        private const val API_MULTI_ADD_SUB = "param_api_call_multi_add_subreddit"
+        private const val API_MULTI_DEL_SUB = "param_api_call_multi_del_subreddit"
         private const val API_SUBREDDIT = "param_subreddit_call"
         private const val API_SUBREDDITS = "param_subreddits_call"
         private const val API_SUBREDDIT_BANNED = "param_subreddit_call_banned"
@@ -191,6 +199,38 @@ class ApiDetailActivity : BaseActivity() {
 
         fun startApiSelfReplies(context: Context) {
             start(context, API_MESSAGE_SELF_REPLIES)
+        }
+
+        fun startApiMyMultis(context: Context) {
+            start(context, API_MULTIS_MINE)
+        }
+
+        fun startApiRedditorMultis(context: Context) {
+            start(context, API_MULTIS_REDDITOR)
+        }
+
+        fun startApiMultiSubs(context: Context) {
+            start(context, API_MULTI_SUBMISSIONS)
+        }
+
+        fun startApiMultiGetDesc(context: Context) {
+            start(context, API_MULTI_GET_DESC)
+        }
+
+        fun startApiMultiSetDesc(context: Context) {
+            start(context, API_MULTI_SET_DESC)
+        }
+
+        fun startApiMultiGetSub(context: Context) {
+            start(context, API_MULTI_GET_SUB)
+        }
+
+        fun startApiMultiAddSub(context: Context) {
+            start(context, API_MULTI_ADD_SUB)
+        }
+
+        fun startApiMultiDelSub(context: Context) {
+            start(context, API_MULTI_DEL_SUB)
         }
 
         fun startApiSubreddit(context: Context) {
@@ -492,6 +532,66 @@ class ApiDetailActivity : BaseActivity() {
                 )
                 val replies = fetcher?.fetchNext()
                 return replies.toString()
+            }
+
+            API_MULTIS_MINE -> {
+                val multis = client?.multisClient?.myMultis(
+                    disableLegacyEncoding = disableLegacyEncoding
+                )
+                return multis.toString()
+            }
+
+            API_MULTIS_REDDITOR -> {
+                val userName = "Kirk-Bushman" // getRandomUserFromRandomSubreddit()
+                val multis = client?.multisClient?.redditorMultis(
+                    username = userName,
+                    disableLegacyEncoding = disableLegacyEncoding
+                )
+                return multis.toString()
+            }
+
+            API_MULTI_SUBMISSIONS -> {
+                val fetcher = client
+                    ?.multisClient
+                    ?.multiSubmissions("Kirk-Bushman", "karmafarming")
+
+                val submissions = fetcher?.fetchNext()
+                return submissions.toString()
+            }
+
+            API_MULTI_GET_DESC -> {
+
+                val desc = client
+                    ?.multisClient
+                    ?.getMultiDescription("Kirk-Bushman", "karmafarming")
+
+                return desc.toString()
+            }
+
+            API_MULTI_SET_DESC -> {
+
+            }
+
+            API_MULTI_GET_SUB -> {
+
+                val subreddit = client
+                    ?.multisClient
+                    ?.getMultiSubreddit("Kirk-Bushman", "karmafarming", "Karma_Exchange")
+
+                return subreddit.toString()
+            }
+
+            API_MULTI_ADD_SUB -> {
+
+                val response = client
+                    ?.multisClient
+                    ?.addSubredditToMulti("Kirk-Bushman", "shush", "pics")
+
+                return response.toString()
+            }
+
+            API_MULTI_DEL_SUB -> {
+
             }
 
             API_SUBREDDIT -> {

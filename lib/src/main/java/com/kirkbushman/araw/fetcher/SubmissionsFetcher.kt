@@ -7,8 +7,8 @@ import com.kirkbushman.araw.http.EnvelopedSubmission
 import com.kirkbushman.araw.http.base.Listing
 import com.kirkbushman.araw.http.listings.SubmissionListing
 import com.kirkbushman.araw.models.Submission
-import com.kirkbushman.araw.models.general.SubmissionsSorting
-import com.kirkbushman.araw.models.general.TimePeriod
+import com.kirkbushman.araw.models.enums.SubmissionsSorting
+import com.kirkbushman.araw.models.enums.TimePeriod
 
 class SubmissionsFetcher(
 
@@ -34,7 +34,7 @@ class SubmissionsFetcher(
     }
 
     @WorkerThread
-    override fun onFetching(forward: Boolean, dirToken: String): Listing<EnvelopedSubmission>? {
+    override fun onFetching(forward: Boolean, dirToken: String?): Listing<EnvelopedSubmission>? {
 
         val req = if (subreddit != "") {
             api.fetchSubmissions(

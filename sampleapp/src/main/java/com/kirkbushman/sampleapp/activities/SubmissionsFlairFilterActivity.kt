@@ -8,8 +8,8 @@ import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.models.Submission
-import com.kirkbushman.araw.models.general.SearchSorting
-import com.kirkbushman.araw.models.general.TimePeriod
+import com.kirkbushman.araw.models.enums.SearchSorting
+import com.kirkbushman.araw.models.enums.TimePeriod
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.activities.base.BaseSearchPrint2Activity
 import kotlinx.android.synthetic.main.activity_submissions_search_flair.*
@@ -43,7 +43,7 @@ class SubmissionsFlairFilterActivity : BaseSearchPrint2Activity<List<Submission>
     override fun fetchItem(client: RedditClient?, query: String, query2: String): List<Submission>? {
 
         val fetcher = client
-            ?.contributionsClient
+            ?.searchClient
             ?.submissionsSearch(
                 subreddit = query,
                 query = "flair_name:\"$query2\"",

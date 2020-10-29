@@ -6,11 +6,11 @@ import androidx.fragment.app.Fragment
 import com.kirkbushman.araw.fetcher.ContributionsFetcher
 import com.kirkbushman.araw.models.Comment
 import com.kirkbushman.araw.models.Submission
-import com.kirkbushman.araw.models.general.ContributionsSorting
-import com.kirkbushman.araw.models.general.TimePeriod
-import com.kirkbushman.araw.models.general.Vote
-import com.kirkbushman.araw.models.mixins.Contribution
-import com.kirkbushman.araw.models.mixins.Votable
+import com.kirkbushman.araw.models.enums.ContributionsSorting
+import com.kirkbushman.araw.models.enums.TimePeriod
+import com.kirkbushman.araw.models.enums.Vote
+import com.kirkbushman.araw.models.base.Contribution
+import com.kirkbushman.araw.models.base.Votable
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.controllers.ContributionController

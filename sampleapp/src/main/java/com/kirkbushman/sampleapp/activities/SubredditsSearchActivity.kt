@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.kirkbushman.araw.models.Subreddit
 import com.kirkbushman.araw.models.SubredditSearchResult
-import com.kirkbushman.araw.models.mixins.SubredditData
+import com.kirkbushman.araw.models.base.SubredditData
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.activities.base.BaseActivity
@@ -80,7 +80,7 @@ class SubredditsSearchActivity : BaseActivity() {
                 doAsync(
                     doWork = {
 
-                        val fetcher = client?.subredditsClient?.fetchSubredditsSearch(query)
+                        val fetcher = client?.searchClient?.fetchSubredditsSearch(query)
 
                         data.clear()
                         data.addAll(fetcher?.fetchNext() ?: listOf())
@@ -95,7 +95,7 @@ class SubredditsSearchActivity : BaseActivity() {
                 doAsync(
                     doWork = {
 
-                        searchResult = client?.searchSubreddits(
+                        searchResult = client?.searchClient?.searchSubreddits(
                             query = query,
                             includeOver18 = true
                         )
