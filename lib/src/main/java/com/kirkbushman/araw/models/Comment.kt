@@ -115,6 +115,9 @@ data class Comment(
     @Json(name = "name")
     override val fullname: String,
 
+    @Json(name = "all_awardings")
+    val allAwarding: List<Awarding>?,
+
     @Json(name = "author")
     val author: String,
 
