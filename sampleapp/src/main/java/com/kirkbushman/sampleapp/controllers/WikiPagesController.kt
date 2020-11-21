@@ -2,7 +2,9 @@ package com.kirkbushman.sampleapp.controllers
 
 import com.kirkbushman.sampleapp.models.wikiPage
 
-class WikiPagesController(callback: WikiPageCallback) : BaseController<String, WikiPagesController.WikiPageCallback>(callback) {
+class WikiPagesController(
+    callback: WikiPageCallback
+) : BaseController<String, WikiPagesController.WikiPageCallback>(callback) {
 
     interface WikiPageCallback : BaseCallback {
 

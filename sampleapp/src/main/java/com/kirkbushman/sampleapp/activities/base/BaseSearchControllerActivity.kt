@@ -10,15 +10,23 @@ import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.controllers.BaseCallback
 import com.kirkbushman.sampleapp.controllers.BaseController
-import com.kirkbushman.sampleapp.util.doAsync
+import com.kirkbushman.sampleapp.util.DoAsync
 
-abstract class BaseSearchControllerActivity2<T>(@LayoutRes contentLayoutId: Int) : BaseSearchControllerActivity<T, BaseCallback>(contentLayoutId) {
+abstract class BaseSearchControllerActivity2<T>(
+    @LayoutRes contentLayoutId: Int
+) : BaseSearchControllerActivity<T, BaseCallback>(
+    contentLayoutId
+) {
 
     override val callback: BaseCallback?
         get() = null
 }
 
-abstract class BaseSearchControllerActivity<T, C : BaseCallback>(@LayoutRes contentLayoutId: Int) : BaseActivity(contentLayoutId) {
+abstract class BaseSearchControllerActivity<T, C : BaseCallback>(
+    @LayoutRes contentLayoutId: Int
+) : BaseActivity(
+    contentLayoutId
+) {
 
     private val client by lazy { TestApplication.instance.getClient() }
 
@@ -50,7 +58,7 @@ abstract class BaseSearchControllerActivity<T, C : BaseCallback>(@LayoutRes cont
 
             val searchQuery = editSearch.text.toString().trim()
 
-            doAsync(
+            DoAsync(
                 doWork = {
 
                     val newItems = fetchItem(client, searchQuery)

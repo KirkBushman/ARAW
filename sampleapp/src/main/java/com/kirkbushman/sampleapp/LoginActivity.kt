@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.kirkbushman.araw.RedditClient
-import com.kirkbushman.sampleapp.util.doAsync
+import com.kirkbushman.sampleapp.util.DoAsync
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -88,7 +88,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun savedInstalledApp() {
 
-        doAsync(
+        DoAsync(
             doWork = {
 
                 val client = appAuth.getSavedRedditClient()
@@ -106,7 +106,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun savedUserless() {
 
-        doAsync(
+        DoAsync(
             doWork = {
 
                 val client = userlessAuth.getSavedRedditClient()
@@ -128,7 +128,7 @@ class LoginActivity : AppCompatActivity() {
 
             browser.stopLoading()
 
-            doAsync(
+            DoAsync(
                 doWork = {
 
                     if (!userlessAuth.shouldLogin()) {
@@ -155,7 +155,7 @@ class LoginActivity : AppCompatActivity() {
 
         var client: RedditClient? = null
 
-        doAsync(
+        DoAsync(
             doWork = {
 
                 if (!appAuth.shouldLogin()) {

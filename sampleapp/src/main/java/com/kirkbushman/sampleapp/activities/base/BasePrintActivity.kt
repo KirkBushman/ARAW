@@ -6,7 +6,7 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.Toolbar
 import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.sampleapp.TestApplication
-import com.kirkbushman.sampleapp.util.doAsync
+import com.kirkbushman.sampleapp.util.DoAsync
 
 abstract class BasePrintActivity<T>(@LayoutRes contentLayoutId: Int) : BaseActivity(contentLayoutId) {
 
@@ -27,7 +27,7 @@ abstract class BasePrintActivity<T>(@LayoutRes contentLayoutId: Int) : BaseActiv
         }
 
         var item: T? = null
-        doAsync(
+        DoAsync(
             doWork = { item = fetchItem(client) },
             onPost = { textPrint.text = item.toString() }
         )

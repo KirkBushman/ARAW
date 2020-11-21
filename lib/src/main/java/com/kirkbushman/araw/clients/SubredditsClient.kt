@@ -397,8 +397,8 @@ class SubredditsClient(
             title = title,
             kind = kind.toString(),
 
-            text = (if (kind == SubmissionKind.self) text else null),
-            url = (if (kind != SubmissionKind.self) url else null),
+            text = (if (kind == SubmissionKind.SELF) text else null),
+            url = (if (kind != SubmissionKind.SELF) url else null),
 
             resubmit = resubmit,
             extension = extension,

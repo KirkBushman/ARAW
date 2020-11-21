@@ -60,20 +60,11 @@ class AuthAppHelper(
 
     override fun getRedditClient(): RedditClient? {
 
-        if (bearer != null) {
+        return when {
+            bearer != null -> RedditClient(bearer!!, logging)
+            hasSavedBearer() -> getSavedRedditClient()
 
-            return RedditClient(bearer!!, logging)
+            else -> null
         }
-
-        if (hasSavedBearer()) {
-
-            val client = getSavedRedditClient()
-            if (client != null) {
-
-                return client
-            }
-        }
-
-        return null
     }
 }

@@ -8,7 +8,7 @@ import com.kirkbushman.araw.models.WikiPage
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.activities.base.BaseActivity
-import com.kirkbushman.sampleapp.util.doAsync
+import com.kirkbushman.sampleapp.util.DoAsync
 import kotlinx.android.synthetic.main.activity_wiki.*
 import kotlin.Exception
 
@@ -62,7 +62,7 @@ class WikiPageActivity : BaseActivity() {
 
                     var wiki: WikiPage? = null
                     var exception: Exception? = null
-                    doAsync(
+                    DoAsync(
                         doWork = {
 
                             try {
@@ -92,7 +92,7 @@ class WikiPageActivity : BaseActivity() {
             bttn_search.visibility = View.GONE
 
             var wikiPage: WikiPage? = null
-            doAsync(
+            DoAsync(
                 doWork = {
 
                     wikiPage = client?.wikisClient?.wikiPage(subreddit!!, page!!)

@@ -14,6 +14,8 @@ import com.kirkbushman.araw.models.base.Votable
 import java.util.*
 import kotlin.collections.ArrayList
 
+private const val MILLIS = 1000L
+
 /**
  * Useful extension to convert the creation date property,
  * from the Long unixtime, to a more practical Date object.
@@ -21,7 +23,7 @@ import kotlin.collections.ArrayList
  */
 val Created.createdDate: Date
     get() {
-        val milliseconds = created * 1000L
+        val milliseconds = created * MILLIS
         return Date(milliseconds)
     }
 
@@ -32,7 +34,7 @@ val Created.createdDate: Date
  */
 val Created.createdUtcDate: Date
     get() {
-        val milliseconds = createdUtc * 1000L
+        val milliseconds = createdUtc * MILLIS
         return Date(milliseconds)
     }
 
@@ -81,7 +83,7 @@ val Editable.edited: Date
     get() {
 
         if (editedRaw is Long) {
-            val milliseconds = (editedRaw as Long) / 1000L
+            val milliseconds = (editedRaw as Long) / MILLIS
             return Date(milliseconds)
         }
 
@@ -90,19 +92,19 @@ val Editable.edited: Date
 
 val Friend.addedDate: Date
     get() {
-        val milliseconds = added * 1000L
+        val milliseconds = added * MILLIS
         return Date(milliseconds)
     }
 
 val User.userDate: Date
     get() {
-        val milliseconds = date * 1000L
+        val milliseconds = date * MILLIS
         return Date(milliseconds)
     }
 
 val WikiRevision.timestampDate: Date
     get() {
-        val milliseconds = timestamp * 1000L
+        val milliseconds = timestamp * MILLIS
         return Date(milliseconds)
     }
 

@@ -7,7 +7,7 @@ import com.kirkbushman.araw.models.commons.SubmissionKind
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.activities.base.BaseActivity
-import com.kirkbushman.sampleapp.util.doAsync
+import com.kirkbushman.sampleapp.util.DoAsync
 import kotlinx.android.synthetic.main.activity_submit.*
 
 class SubmitActivity : BaseActivity() {
@@ -35,25 +35,25 @@ class SubmitActivity : BaseActivity() {
 
         bttn_submit.setOnClickListener {
 
-            doAsync(
+            DoAsync(
                 doWork = {
 
                     val subredditName = edit_subreddit.text.toString().trim()
                     val title = edit_title.text.toString().trim()
                     val textOrLink = edit_text.text.toString().trim()
                     val kind = when {
-                        bttn_radio_self.isChecked -> SubmissionKind.self
-                        bttn_radio_link.isChecked -> SubmissionKind.link
+                        bttn_radio_self.isChecked -> SubmissionKind.SELF
+                        bttn_radio_link.isChecked -> SubmissionKind.LINK
 
-                        else -> SubmissionKind.self
+                        else -> SubmissionKind.SELF
                     }
 
                     client?.subredditsClient?.submit(
                         subredditName = subredditName,
                         title = title,
                         kind = kind,
-                        text = if (kind == SubmissionKind.self) textOrLink else "",
-                        url = if (kind != SubmissionKind.self) textOrLink else "",
+                        text = if (kind == SubmissionKind.SELF) textOrLink else "",
+                        url = if (kind != SubmissionKind.SELF) textOrLink else "",
                         sendReplies = check_sendreplies.isChecked,
                         isNsfw = check_isnsfw.isChecked,
                         isSpoiler = check_isspoiler.isChecked

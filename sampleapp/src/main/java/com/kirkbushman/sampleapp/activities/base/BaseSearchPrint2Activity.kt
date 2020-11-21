@@ -8,7 +8,7 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.Toolbar
 import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.sampleapp.TestApplication
-import com.kirkbushman.sampleapp.util.doAsync
+import com.kirkbushman.sampleapp.util.DoAsync
 
 abstract class BaseSearchPrint2Activity<T>(@LayoutRes contentLayoutId: Int) : BaseActivity(contentLayoutId) {
 
@@ -38,7 +38,7 @@ abstract class BaseSearchPrint2Activity<T>(@LayoutRes contentLayoutId: Int) : Ba
             if (searchQuery.isNotEmpty() && searchQuery2.isNotEmpty()) {
 
                 var item: T? = null
-                doAsync(
+                DoAsync(
                     doWork = { item = fetchItem(client, searchQuery, searchQuery2) },
                     onPost = { textPrint.text = item.toString() }
                 )

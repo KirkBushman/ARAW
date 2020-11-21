@@ -9,7 +9,7 @@ import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.activities.base.BaseActivity
 import com.kirkbushman.sampleapp.controllers.SubredditController
-import com.kirkbushman.sampleapp.util.doAsync
+import com.kirkbushman.sampleapp.util.DoAsync
 import kotlinx.android.synthetic.main.activity_mine_subreddits.*
 
 class SubscribedSubredditsActivity : BaseActivity() {
@@ -34,7 +34,7 @@ class SubscribedSubredditsActivity : BaseActivity() {
         override fun subscribeClick(index: Int) {
 
             val subreddit = data[index]
-            doAsync(
+            DoAsync(
                 doWork = {
 
                     if (subreddit is Subreddit) {
@@ -66,7 +66,7 @@ class SubscribedSubredditsActivity : BaseActivity() {
         list.setHasFixedSize(true)
         list.setController(controller)
 
-        doAsync(
+        DoAsync(
             doWork = {
 
                 val temp = fetcher?.fetchNext() ?: listOf()

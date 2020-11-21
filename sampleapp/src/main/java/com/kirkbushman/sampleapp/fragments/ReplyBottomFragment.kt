@@ -9,7 +9,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.kirkbushman.araw.models.Comment
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
-import com.kirkbushman.sampleapp.util.doAsync
+import com.kirkbushman.sampleapp.util.DoAsync
 import kotlinx.android.synthetic.main.fragment_bottom_reply.*
 import kotlinx.android.synthetic.main.fragment_bottom_reply.view.*
 
@@ -43,7 +43,7 @@ class ReplyBottomFragment : BottomSheetDialogFragment() {
 
             var responseComment: Comment? = null
 
-            doAsync(
+            DoAsync(
                 doWork = {
 
                     val replyText = edit_reply.text.toString().trim()

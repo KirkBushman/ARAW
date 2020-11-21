@@ -93,12 +93,20 @@ class WikisClient(
     }
 
     @WorkerThread
-    fun wikiRevision(subreddit: SubredditData, page: String, disableLegacyEncoding: Boolean = false): List<WikiRevision>? {
+    fun wikiRevision(
+        subreddit: SubredditData,
+        page: String,
+        disableLegacyEncoding: Boolean = false
+    ): List<WikiRevision>? {
         return wikiRevision(subreddit.displayName, page, disableLegacyEncoding)
     }
 
     @WorkerThread
-    fun wikiRevision(subreddit: String, page: String, disableLegacyEncoding: Boolean = false): List<WikiRevision>? {
+    fun wikiRevision(
+        subreddit: String,
+        page: String,
+        disableLegacyEncoding: Boolean = false
+    ): List<WikiRevision>? {
 
         val authMap = getHeaderMap()
         val req = api.wikiRevision(
@@ -117,12 +125,18 @@ class WikisClient(
     }
 
     @WorkerThread
-    fun wikiRevisions(subreddit: SubredditData, disableLegacyEncoding: Boolean = false): List<WikiRevision>? {
+    fun wikiRevisions(
+        subreddit: SubredditData,
+        disableLegacyEncoding: Boolean = false
+    ): List<WikiRevision>? {
         return wikiRevisions(subreddit.displayName, disableLegacyEncoding)
     }
 
     @WorkerThread
-    fun wikiRevisions(subreddit: String, disableLegacyEncoding: Boolean = false): List<WikiRevision>? {
+    fun wikiRevisions(
+        subreddit: String,
+        disableLegacyEncoding: Boolean = false
+    ): List<WikiRevision>? {
 
         val authMap = getHeaderMap()
         val req = api.wikiRevisions(

@@ -10,7 +10,7 @@ import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.activities.base.BaseActivity
 import com.kirkbushman.sampleapp.controllers.SubredditController
-import com.kirkbushman.sampleapp.util.doAsync
+import com.kirkbushman.sampleapp.util.DoAsync
 import kotlinx.android.synthetic.main.activity_subreddits_search.*
 
 class SubredditsSearchActivity : BaseActivity() {
@@ -37,7 +37,7 @@ class SubredditsSearchActivity : BaseActivity() {
                 override fun subscribeClick(index: Int) {
 
                     val subreddit = data[index]
-                    doAsync(
+                    DoAsync(
                         doWork = {
 
                             if (subreddit is Subreddit) {
@@ -77,7 +77,7 @@ class SubredditsSearchActivity : BaseActivity() {
 
             if (!starts_with.isChecked) {
 
-                doAsync(
+                DoAsync(
                     doWork = {
 
                         val fetcher = client?.searchClient?.fetchSubredditsSearch(query)
@@ -92,7 +92,7 @@ class SubredditsSearchActivity : BaseActivity() {
                 )
             } else {
 
-                doAsync(
+                DoAsync(
                     doWork = {
 
                         searchResult = client?.searchClient?.searchSubreddits(

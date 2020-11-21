@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.util.StorageUtil
-import com.kirkbushman.sampleapp.util.doAsync
+import com.kirkbushman.sampleapp.util.DoAsync
 import kotlinx.android.synthetic.main.activity_upload_images.*
 
 class UploadImagesActivity : AppCompatActivity() {
@@ -46,7 +46,7 @@ class UploadImagesActivity : AppCompatActivity() {
 
                 var mediaUrl: String? = null
 
-                doAsync(
+                DoAsync(
                     doWork = {
 
                         mediaUrl = client?.contributionsClient?.uploadMedia(fileName!!, mimeType!!, fileContent!!)
@@ -78,7 +78,13 @@ class UploadImagesActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        StorageUtil.handleOpenMediaChooserResult(this, requestCode, resultCode, data) { fileName, mimeType, fileContent, bitmap ->
+        StorageUtil.handleOpenMediaChooserResult(
+
+            activity = this,
+            requestCode = requestCode,
+            resultCode = resultCode,
+            resultIntent = data
+        ) { fileName, mimeType, fileContent, bitmap ->
 
             this.fileName = fileName
             this.mimeType = mimeType

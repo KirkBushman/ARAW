@@ -39,7 +39,6 @@ class SelfAccountInfoActivity : BaseActivity() {
         }
 
         pager.adapter = adapter
-        pager.offscreenPageLimit = 5
 
         tab_layout.setupWithViewPager(pager)
 
@@ -85,11 +84,18 @@ class SelfAccountInfoActivity : BaseActivity() {
         (adapter.getItem(pager.currentItem) as SelfContributionFragment).reload(sorting, timePeriod)
     }
 
-    private class ContributionPagerAdapter(manager: FragmentManager) : FragmentStatePagerAdapter(manager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+    private class ContributionPagerAdapter(
+        manager: FragmentManager
+    ) : FragmentStatePagerAdapter(
+        manager,
+        BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
+    ) {
 
         val fragments = ArrayList<Fragment>()
 
-        override fun getPageTitle(position: Int): CharSequence? = (fragments[position] as SelfContributionFragment).passedTag
+        override fun getPageTitle(position: Int): CharSequence? {
+            return (fragments[position] as SelfContributionFragment).passedTag
+        }
         override fun getCount(): Int = fragments.size
         override fun getItem(position: Int): Fragment {
             return fragments[position]

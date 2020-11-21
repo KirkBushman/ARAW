@@ -11,7 +11,7 @@ abstract class EmptyModel : EpoxyModelWithHolder<EmptyHolder>() {
         return R.layout.item_empty
     }
 
-    override fun bind(holder: EmptyHolder) {}
+    override fun bind(holder: EmptyHolder) = Unit
 }
 
 class EmptyHolder : KotlinHolder()

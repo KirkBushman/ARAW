@@ -7,7 +7,7 @@ import com.kirkbushman.araw.models.Message
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.controllers.BaseController
 import com.kirkbushman.sampleapp.controllers.InboxController
-import com.kirkbushman.sampleapp.util.doAsync
+import com.kirkbushman.sampleapp.util.DoAsync
 import kotlinx.android.synthetic.main.fragment_inbox.*
 
 class InboxFragment : BaseControllerFragment<Message, InboxController.InboxCallback>(R.layout.fragment_inbox) {
@@ -44,7 +44,7 @@ class InboxFragment : BaseControllerFragment<Message, InboxController.InboxCallb
 
             override fun readMessageClick(index: Int) {
 
-                doAsync(
+                DoAsync(
                     doWork = {
                         val message = items[index]
                         client?.messagesClient?.markAsRead(true, message)
@@ -54,7 +54,7 @@ class InboxFragment : BaseControllerFragment<Message, InboxController.InboxCallb
 
             override fun unreadMessageClick(index: Int) {
 
-                doAsync(
+                DoAsync(
                     doWork = {
                         val message = items[index]
                         client?.messagesClient?.markAsRead(false, message)

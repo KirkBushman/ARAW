@@ -39,7 +39,6 @@ class RedditorInfoActivity : BaseActivity() {
         }
 
         pager.adapter = adapter
-        pager.offscreenPageLimit = 4
 
         tab_layout.setupWithViewPager(pager)
 
@@ -94,7 +93,12 @@ class RedditorInfoActivity : BaseActivity() {
         (adapter.getItem(pager.currentItem) as ContributionFragment).reload(sorting, timePeriod)
     }
 
-    private class ContributionPagerAdapter(manager: FragmentManager) : FragmentStatePagerAdapter(manager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+    private class ContributionPagerAdapter(
+        manager: FragmentManager
+    ) : FragmentStatePagerAdapter(
+        manager,
+        BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
+    ) {
 
         val fragments = ArrayList<Fragment>()
 

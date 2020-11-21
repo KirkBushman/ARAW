@@ -40,7 +40,6 @@ class InboxActivity : BaseActivity() {
         }
 
         pager.adapter = adapter
-        pager.offscreenPageLimit = 5
 
         tab_layout.setupWithViewPager(pager)
 
@@ -54,7 +53,12 @@ class InboxActivity : BaseActivity() {
         }
     }
 
-    private class InboxPagerAdapter(manager: FragmentManager) : FragmentStatePagerAdapter(manager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+    private class InboxPagerAdapter(
+        manager: FragmentManager
+    ) : FragmentStatePagerAdapter(
+        manager,
+        BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
+    ) {
 
         private val fragments = ArrayList<Fragment>()
 

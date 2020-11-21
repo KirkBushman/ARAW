@@ -17,7 +17,7 @@ import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.activities.base.BaseActivity
 import com.kirkbushman.sampleapp.controllers.CommentController
-import com.kirkbushman.sampleapp.util.doAsync
+import com.kirkbushman.sampleapp.util.DoAsync
 import com.kirkbushman.sampleapp.fragments.ReplyBottomFragment
 import kotlinx.android.synthetic.main.activity_comments.*
 
@@ -43,42 +43,42 @@ class CommentsActivity : BaseActivity() {
 
                 override fun onUpvoteClick(submission: Submission) {
 
-                    doAsync(
+                    DoAsync(
                         doWork = { client?.contributionsClient?.vote(Vote.UPVOTE, submission) }
                     )
                 }
 
                 override fun onNoneClick(submission: Submission) {
 
-                    doAsync(
+                    DoAsync(
                         doWork = { client?.contributionsClient?.vote(Vote.NONE, submission) }
                     )
                 }
 
                 override fun onDownClick(submission: Submission) {
 
-                    doAsync(
+                    DoAsync(
                         doWork = { client?.contributionsClient?.vote(Vote.DOWNVOTE, submission) }
                     )
                 }
 
                 override fun onSaveClick(submission: Submission) {
 
-                    doAsync(
+                    DoAsync(
                         doWork = { client?.contributionsClient?.save(!submission.isSaved, submission) }
                     )
                 }
 
                 override fun onHideClick(submission: Submission) {
 
-                    doAsync(
+                    DoAsync(
                         doWork = { client?.contributionsClient?.hide(submission) }
                     )
                 }
 
                 override fun onLockClick(submission: Submission) {
 
-                    doAsync(
+                    DoAsync(
                         doWork = { client?.contributionsClient?.lock(submission) }
                     )
                 }
@@ -87,7 +87,7 @@ class CommentsActivity : BaseActivity() {
 
                     val addendum = ArrayList<CommentData>()
 
-                    doAsync(
+                    DoAsync(
                         doWork = {
 
                             val more = client?.contributionsClient?.moreChildren(moreComments, submission)
@@ -129,7 +129,7 @@ class CommentsActivity : BaseActivity() {
             val submissionId = search.text.toString().trim()
             val commentId = search2.text.toString().trim()
 
-            doAsync(
+            DoAsync(
                 doWork = {
 
                     val sanitizedCommentId = if (commentId != "") {
@@ -196,7 +196,7 @@ class CommentsActivity : BaseActivity() {
 
         if (sorting != null) {
 
-            doAsync(
+            DoAsync(
                 doWork = {
 
                     fetcher!!.setSorting(sorting)

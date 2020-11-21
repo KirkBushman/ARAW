@@ -11,11 +11,11 @@ package com.kirkbushman.araw.models.commons
  * link, which bears a link to media, images, websites
  * self, which is only a text post.
  */
-enum class SubmissionKind {
+enum class SubmissionKind(val kindStr: String) {
 
-    videogif,
-    video,
-    image,
-    link,
-    self
+    VIDEOGIF("videogif"),
+    VIDEO("video"),
+    IMAGE("image"),
+    LINK("link"),
+    SELF("self")
 }

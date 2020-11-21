@@ -4,9 +4,17 @@ import android.view.View
 import com.kirkbushman.araw.models.ModeratedSub
 import com.kirkbushman.sampleapp.models.subreddit
 
-class ModeratedSubsController(callback: SubredditController.SubredditCallback) : BaseController<ModeratedSub, SubredditController.SubredditCallback>(callback) {
+class ModeratedSubsController(
+    callback: SubredditController.SubredditCallback
+) : BaseController<ModeratedSub, SubredditController.SubredditCallback>(
+    callback
+) {
 
-    override fun itemModel(index: Int, it: ModeratedSub, callback: SubredditController.SubredditCallback?) {
+    override fun itemModel(
+        index: Int,
+        it: ModeratedSub,
+        callback: SubredditController.SubredditCallback?
+    ) {
 
         subreddit {
             id(it.fullname)

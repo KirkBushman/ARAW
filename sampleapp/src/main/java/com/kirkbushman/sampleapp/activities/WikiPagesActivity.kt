@@ -13,7 +13,10 @@ import com.kirkbushman.sampleapp.controllers.BaseController
 import com.kirkbushman.sampleapp.controllers.WikiPagesController
 import kotlinx.android.synthetic.main.activity_wiki_pages.*
 
-class WikiPagesActivity : BaseSearchControllerActivity<String, WikiPagesController.WikiPageCallback>(R.layout.activity_wiki_pages) {
+class WikiPagesActivity :
+    BaseSearchControllerActivity<String, WikiPagesController.WikiPageCallback>(
+        R.layout.activity_wiki_pages
+    ) {
 
     companion object {
 
@@ -47,7 +50,8 @@ class WikiPagesActivity : BaseSearchControllerActivity<String, WikiPagesControll
             }
         }
 
-    override val controller: BaseController<String, WikiPagesController.WikiPageCallback> = WikiPagesController(callback!!)
+    override val controller: BaseController<String, WikiPagesController.WikiPageCallback>
+        get() = WikiPagesController(callback!!)
 
     override fun fetchItem(client: RedditClient?, query: String): Collection<String>? {
 

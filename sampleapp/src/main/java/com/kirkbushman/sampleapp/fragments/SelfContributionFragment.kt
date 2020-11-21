@@ -15,7 +15,7 @@ import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.controllers.ContributionController
 import com.kirkbushman.sampleapp.controllers.SubmissionController
-import com.kirkbushman.sampleapp.util.doAsync
+import com.kirkbushman.sampleapp.util.DoAsync
 import kotlinx.android.synthetic.main.fragment_inbox.*
 
 class SelfContributionFragment : Fragment(R.layout.fragment_contribution) {
@@ -57,7 +57,7 @@ class SelfContributionFragment : Fragment(R.layout.fragment_contribution) {
 
                 override fun onUpvoteClick(index: Int) {
 
-                    doAsync(
+                    DoAsync(
                         doWork = {
                             val votable = contributions[index] as Votable
                             client?.contributionsClient?.vote(Vote.UPVOTE, votable)
@@ -67,7 +67,7 @@ class SelfContributionFragment : Fragment(R.layout.fragment_contribution) {
 
                 override fun onNoneClick(index: Int) {
 
-                    doAsync(
+                    DoAsync(
                         doWork = {
                             val votable = contributions[index] as Votable
                             client?.contributionsClient?.vote(Vote.NONE, votable)
@@ -77,7 +77,7 @@ class SelfContributionFragment : Fragment(R.layout.fragment_contribution) {
 
                 override fun onDownClick(index: Int) {
 
-                    doAsync(
+                    DoAsync(
                         doWork = {
                             val votable = contributions[index] as Votable
                             client?.contributionsClient?.vote(Vote.DOWNVOTE, votable)
@@ -87,7 +87,7 @@ class SelfContributionFragment : Fragment(R.layout.fragment_contribution) {
 
                 override fun onSaveClick(index: Int) {
 
-                    doAsync(
+                    DoAsync(
                         doWork = {
                             when (val contribution = contributions[index]) {
                                 is Submission -> client?.contributionsClient?.save(!contribution.isSaved, contribution)
@@ -99,9 +99,9 @@ class SelfContributionFragment : Fragment(R.layout.fragment_contribution) {
                     )
                 }
 
-                override fun onHideClick(index: Int) {}
-                override fun onLockClick(index: Int) {}
-                override fun onReplyClick(index: Int) {}
+                override fun onHideClick(index: Int) = Unit
+                override fun onLockClick(index: Int) = Unit
+                override fun onReplyClick(index: Int) = Unit
             }
         )
     }
@@ -114,7 +114,7 @@ class SelfContributionFragment : Fragment(R.layout.fragment_contribution) {
         list.setHasFixedSize(true)
         list.setController(controller)
 
-        doAsync(
+        DoAsync(
             doWork = {
 
                 fetcher = getFetcher()
@@ -132,7 +132,7 @@ class SelfContributionFragment : Fragment(R.layout.fragment_contribution) {
 
         if (sorting != null) {
 
-            doAsync(
+            DoAsync(
                 doWork = {
 
                     fetcher!!.setSorting(sorting)
@@ -148,7 +148,7 @@ class SelfContributionFragment : Fragment(R.layout.fragment_contribution) {
 
         if (timePeriod != null) {
 
-            doAsync(
+            DoAsync(
                 doWork = {
 
                     fetcher!!.setTimePeriod(timePeriod)

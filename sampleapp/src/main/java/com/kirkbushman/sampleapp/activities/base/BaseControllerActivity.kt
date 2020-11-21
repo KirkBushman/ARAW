@@ -8,15 +8,23 @@ import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.controllers.BaseCallback
 import com.kirkbushman.sampleapp.controllers.BaseController
-import com.kirkbushman.sampleapp.util.doAsync
+import com.kirkbushman.sampleapp.util.DoAsync
 
-abstract class BaseControllerActivity2<T>(@LayoutRes contentLayoutId: Int) : BaseControllerActivity<T, BaseCallback>(contentLayoutId) {
+abstract class BaseControllerActivity2<T>(
+    @LayoutRes contentLayoutId: Int
+) : BaseControllerActivity<T, BaseCallback>(
+    contentLayoutId
+) {
 
     override val callback: BaseCallback?
         get() = null
 }
 
-abstract class BaseControllerActivity<T, C : BaseCallback>(@LayoutRes contentLayoutId: Int) : BaseActivity(contentLayoutId) {
+abstract class BaseControllerActivity<T, C : BaseCallback>(
+    @LayoutRes contentLayoutId: Int
+) : BaseActivity(
+    contentLayoutId
+) {
 
     private val client by lazy { TestApplication.instance.getClient() }
 
@@ -42,7 +50,7 @@ abstract class BaseControllerActivity<T, C : BaseCallback>(@LayoutRes contentLay
         recyclerView.setHasFixedSize(true)
         recyclerView.setController(controller)
 
-        doAsync(
+        DoAsync(
             doWork = {
 
                 val newItems = fetchItem(client)

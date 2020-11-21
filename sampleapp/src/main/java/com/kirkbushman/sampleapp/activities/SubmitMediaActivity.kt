@@ -11,7 +11,7 @@ import com.kirkbushman.araw.models.commons.SubmissionKind
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.util.StorageUtil
-import com.kirkbushman.sampleapp.util.doAsync
+import com.kirkbushman.sampleapp.util.DoAsync
 import kotlinx.android.synthetic.main.activity_submit_media.*
 
 class SubmitMediaActivity : AppCompatActivity() {
@@ -44,7 +44,7 @@ class SubmitMediaActivity : AppCompatActivity() {
                 fileContent != null
             ) {
 
-                doAsync(
+                DoAsync(
                     doWork = {
 
                         val mediaUrl = client?.contributionsClient?.uploadMedia(fileName!!, mimeType!!, fileContent!!)
@@ -54,10 +54,10 @@ class SubmitMediaActivity : AppCompatActivity() {
                             val title = edit_title.text.trim().toString()
 
                             val kind = when {
-                                mimeType!!.contains("image") -> SubmissionKind.image
-                                mimeType!!.contains("video") -> SubmissionKind.video
+                                mimeType!!.contains("image") -> SubmissionKind.IMAGE
+                                mimeType!!.contains("video") -> SubmissionKind.VIDEO
 
-                                else -> SubmissionKind.link
+                                else -> SubmissionKind.LINK
                             }
 
                             client?.subredditsClient?.submit(
@@ -96,7 +96,13 @@ class SubmitMediaActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        StorageUtil.handleOpenMediaChooserResult(this, requestCode, resultCode, data) { fileName, mimeType, fileContent, bitmap ->
+        StorageUtil.handleOpenMediaChooserResult(
+
+            activity = this,
+            requestCode = requestCode,
+            resultCode = resultCode,
+            resultIntent = data
+        ) { fileName, mimeType, fileContent, bitmap ->
 
             this.fileName = fileName
             this.mimeType = mimeType

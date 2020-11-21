@@ -10,7 +10,7 @@ import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.activities.base.BaseActivity
 import com.kirkbushman.sampleapp.controllers.SubmissionController
-import com.kirkbushman.sampleapp.util.doAsync
+import com.kirkbushman.sampleapp.util.DoAsync
 import kotlinx.android.synthetic.main.activity_submissions_search.*
 
 class SubmissionsSearchActivity : BaseActivity() {
@@ -35,7 +35,7 @@ class SubmissionsSearchActivity : BaseActivity() {
 
                 override fun onUpvoteClick(index: Int) {
 
-                    doAsync(
+                    DoAsync(
                         doWork = {
                             val submission = submissions[index]
                             client?.contributionsClient?.vote(Vote.UPVOTE, submission)
@@ -45,7 +45,7 @@ class SubmissionsSearchActivity : BaseActivity() {
 
                 override fun onNoneClick(index: Int) {
 
-                    doAsync(
+                    DoAsync(
                         doWork = {
                             val submission = submissions[index]
                             client?.contributionsClient?.vote(Vote.NONE, submission)
@@ -55,7 +55,7 @@ class SubmissionsSearchActivity : BaseActivity() {
 
                 override fun onDownClick(index: Int) {
 
-                    doAsync(
+                    DoAsync(
                         doWork = {
                             val submission = submissions[index]
                             client?.contributionsClient?.vote(Vote.DOWNVOTE, submission)
@@ -65,7 +65,7 @@ class SubmissionsSearchActivity : BaseActivity() {
 
                 override fun onSaveClick(index: Int) {
 
-                    doAsync(
+                    DoAsync(
                         doWork = {
                             val submission = submissions[index]
                             client?.contributionsClient?.save(!submission.isSaved, submission)
@@ -75,7 +75,7 @@ class SubmissionsSearchActivity : BaseActivity() {
 
                 override fun onHideClick(index: Int) {
 
-                    doAsync(
+                    DoAsync(
                         doWork = {
                             val submission = submissions[index]
                             client?.contributionsClient?.hide(submission)
@@ -85,7 +85,7 @@ class SubmissionsSearchActivity : BaseActivity() {
 
                 override fun onLockClick(index: Int) {
 
-                    doAsync(
+                    DoAsync(
                         doWork = {
                             val submission = submissions[index]
                             client?.contributionsClient?.lock(submission)
@@ -93,7 +93,7 @@ class SubmissionsSearchActivity : BaseActivity() {
                     )
                 }
 
-                override fun onReplyClick(index: Int) {}
+                override fun onReplyClick(index: Int) = Unit
             }
         )
     }
@@ -117,7 +117,7 @@ class SubmissionsSearchActivity : BaseActivity() {
             val query = query.text.toString().trim()
             val allSubs = all_subs.isChecked
 
-            doAsync(
+            DoAsync(
                 doWork = {
 
                     val fetcher = client?.searchClient?.submissionsSearch(

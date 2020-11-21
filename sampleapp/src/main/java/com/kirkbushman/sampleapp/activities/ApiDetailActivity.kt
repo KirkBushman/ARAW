@@ -6,7 +6,7 @@ import android.os.Bundle
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.activities.base.BaseActivity
-import com.kirkbushman.sampleapp.util.doAsync
+import com.kirkbushman.sampleapp.util.DoAsync
 import kotlinx.android.synthetic.main.activity_api_detail.*
 
 class ApiDetailActivity : BaseActivity() {
@@ -332,7 +332,7 @@ class ApiDetailActivity : BaseActivity() {
         setContentView(R.layout.activity_api_detail)
 
         var result = ""
-        doAsync(
+        DoAsync(
             doWork = { result = fetchCall() },
             onPost = { api_detail.text = result }
         )
@@ -475,7 +475,8 @@ class ApiDetailActivity : BaseActivity() {
             }
 
             API_SUB_MULTIREDDIT -> {
-                val subreddits = getRandomSubredditNames(4)
+                val subredditsNum = 4
+                val subreddits = getRandomSubredditNames(subredditsNum)
                 val fetcher = client?.contributionsClient?.multiredditSubmissions(*subreddits, limit = 100)
                 val submissions = fetcher?.fetchNext()
                 return submissions.toString()

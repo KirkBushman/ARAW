@@ -15,7 +15,10 @@ import com.kirkbushman.sampleapp.controllers.ModeratedSubsController
 import com.kirkbushman.sampleapp.controllers.SubredditController
 import kotlinx.android.synthetic.main.activity_wiki_pages.*
 
-class RedditorModeratedSubs : BaseSearchControllerActivity<ModeratedSub, SubredditController.SubredditCallback>(R.layout.activity_moderated_subs) {
+class RedditorModeratedSubs :
+    BaseSearchControllerActivity<ModeratedSub, SubredditController.SubredditCallback>(
+        R.layout.activity_moderated_subs
+    ) {
 
     companion object {
 
@@ -41,10 +44,13 @@ class RedditorModeratedSubs : BaseSearchControllerActivity<ModeratedSub, Subredd
     override val callback: SubredditController.SubredditCallback?
         get() = object : SubredditController.SubredditCallback {
 
-            override fun subscribeClick(index: Int) {}
+            override fun subscribeClick(index: Int) = Unit
         }
 
-    override val controller: BaseController<ModeratedSub, SubredditController.SubredditCallback> = ModeratedSubsController(callback!!)
+    override val controller: BaseController<ModeratedSub, SubredditController.SubredditCallback>
+        get() {
+            return ModeratedSubsController(callback!!)
+        }
 
     override fun fetchItem(client: RedditClient?, query: String): Collection<ModeratedSub>? {
 

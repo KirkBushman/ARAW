@@ -39,7 +39,6 @@ class CommonSubmissionsActivity : BaseActivity() {
         }
 
         pager.adapter = adapter
-        pager.offscreenPageLimit = 4
 
         tab_layout.setupWithViewPager(pager)
 
@@ -84,7 +83,12 @@ class CommonSubmissionsActivity : BaseActivity() {
         (adapter.getItem(pager.currentItem) as SubmissionFragment).reload(sorting, timePeriod)
     }
 
-    private class SubmissionsPagerAdapter(manager: FragmentManager) : FragmentStatePagerAdapter(manager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+    private class SubmissionsPagerAdapter(
+        manager: FragmentManager
+    ) : FragmentStatePagerAdapter(
+        manager,
+        BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
+    ) {
 
         private val fragments = ArrayList<Fragment>()
 

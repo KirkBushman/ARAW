@@ -10,7 +10,7 @@ import com.kirkbushman.araw.models.enums.Vote
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.controllers.SubmissionController
-import com.kirkbushman.sampleapp.util.doAsync
+import com.kirkbushman.sampleapp.util.DoAsync
 import kotlinx.android.synthetic.main.activity_submissions.*
 
 class SubmissionFragment : Fragment(R.layout.fragment_submission) {
@@ -60,7 +60,7 @@ class SubmissionFragment : Fragment(R.layout.fragment_submission) {
 
                 override fun onUpvoteClick(index: Int) {
 
-                    doAsync(
+                    DoAsync(
                         doWork = {
                             val submission = submissions[index]
                             client?.contributionsClient?.vote(Vote.UPVOTE, submission)
@@ -70,7 +70,7 @@ class SubmissionFragment : Fragment(R.layout.fragment_submission) {
 
                 override fun onNoneClick(index: Int) {
 
-                    doAsync(
+                    DoAsync(
                         doWork = {
                             val submission = submissions[index]
                             client?.contributionsClient?.vote(Vote.NONE, submission)
@@ -80,7 +80,7 @@ class SubmissionFragment : Fragment(R.layout.fragment_submission) {
 
                 override fun onDownClick(index: Int) {
 
-                    doAsync(
+                    DoAsync(
                         doWork = {
                             val submission = submissions[index]
                             client?.contributionsClient?.vote(Vote.DOWNVOTE, submission)
@@ -90,7 +90,7 @@ class SubmissionFragment : Fragment(R.layout.fragment_submission) {
 
                 override fun onSaveClick(index: Int) {
 
-                    doAsync(
+                    DoAsync(
                         doWork = {
                             val submission = submissions[index]
                             client?.contributionsClient?.save(!submission.isSaved, submission)
@@ -100,7 +100,7 @@ class SubmissionFragment : Fragment(R.layout.fragment_submission) {
 
                 override fun onHideClick(index: Int) {
 
-                    doAsync(
+                    DoAsync(
                         doWork = {
                             val submission = submissions[index]
                             client?.contributionsClient?.hide(submission)
@@ -110,7 +110,7 @@ class SubmissionFragment : Fragment(R.layout.fragment_submission) {
 
                 override fun onLockClick(index: Int) {
 
-                    doAsync(
+                    DoAsync(
                         doWork = {
                             val submission = submissions[index]
                             client?.contributionsClient?.lock(submission)
@@ -118,7 +118,7 @@ class SubmissionFragment : Fragment(R.layout.fragment_submission) {
                     )
                 }
 
-                override fun onReplyClick(index: Int) {}
+                override fun onReplyClick(index: Int) = Unit
             }
         )
     }
@@ -128,7 +128,7 @@ class SubmissionFragment : Fragment(R.layout.fragment_submission) {
         list.setHasFixedSize(true)
         list.setController(controller)
 
-        doAsync(
+        DoAsync(
             doWork = {
 
                 submissions.clear()
@@ -145,7 +145,7 @@ class SubmissionFragment : Fragment(R.layout.fragment_submission) {
 
         if (sorting != null) {
 
-            doAsync(
+            DoAsync(
                 doWork = {
 
                     fetcher!!.setSorting(sorting)
@@ -161,7 +161,7 @@ class SubmissionFragment : Fragment(R.layout.fragment_submission) {
 
         if (timePeriod != null) {
 
-            doAsync(
+            DoAsync(
                 doWork = {
 
                     fetcher!!.setTimePeriod(timePeriod)

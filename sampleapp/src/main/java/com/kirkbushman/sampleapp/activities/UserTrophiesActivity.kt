@@ -8,7 +8,7 @@ import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.activities.base.BaseActivity
 import com.kirkbushman.sampleapp.controllers.TrophiesController
-import com.kirkbushman.sampleapp.util.doAsync
+import com.kirkbushman.sampleapp.util.DoAsync
 import kotlinx.android.synthetic.main.activity_user_trophies.*
 
 class UserTrophiesActivity : BaseActivity() {
@@ -44,7 +44,7 @@ class UserTrophiesActivity : BaseActivity() {
 
             val username = search.text.toString().trim()
 
-            doAsync(
+            DoAsync(
                 doWork = {
 
                     val temp = client?.redditorsClient?.trophies(username)
