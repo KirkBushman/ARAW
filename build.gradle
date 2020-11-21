@@ -30,9 +30,10 @@ buildscript {
         mdc_ver = '1.2.1'
         epoxy_ver = '4.1.0'
 
-        oauth2_ver = '3122502460' // '1.2.2'
+        oauth2_ver = '1.2.2'
 
         ktlint_ver = '0.39.0'
+        detekt_ver = '1.14.2'
 
         test_ver = '1.3.0'
         espresso_ver = '3.3.0'
@@ -54,12 +55,9 @@ buildscript {
         classpath "com.android.tools.build:gradle:${android_gradle_ver}"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_ver"
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokka_ver"
+        classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$detekt_ver"
     }
 }
-
-/*plugins {
-    id "io.gitlab.arturbosch.detekt" version "1.12.0"
-}*/
 
 allprojects {
     repositories {
@@ -75,6 +73,7 @@ subprojects {
 
     // ktlint
     apply plugin: 'checkstyle'
+    apply plugin: 'io.gitlab.arturbosch.detekt'
     apply from: "${project.rootDir}/ktlint.gradle"
 
     task checkstyle(type: Checkstyle) {
@@ -97,19 +96,6 @@ subprojects {
             check.dependsOn('dokka')
         }
     }
-
-    // detekt
-    /*detekt {
-        toolVersion = "1.12.0"
-        input = files("$projectDir")
-        config = files("${project.rootDir}/config/detekt/detekt.yml")
-        reports {
-            html {
-                enabled = true
-                destination = file("$project.projectDir/detekt-report.html")
-            }
-        }
-    }*/
 }
 
 task clean(type: Delete) {

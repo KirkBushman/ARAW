@@ -1,8 +1,11 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'org.jetbrains.dokka'
+plugins {
+    id "com.android.library"
+    id "org.jetbrains.kotlin.android"
+    id "org.jetbrains.kotlin.android.extensions"
+    id "org.jetbrains.kotlin.kapt"
+    id "org.jetbrains.dokka"
+    id "io.gitlab.arturbosch.detekt"
+}
 
 android {
     compileSdkVersion compile_sdk_ver
