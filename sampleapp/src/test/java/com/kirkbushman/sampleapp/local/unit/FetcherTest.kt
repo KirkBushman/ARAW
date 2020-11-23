@@ -1,4 +1,4 @@
-package com.kirkbushman.sampleapp.local.tests
+package com.kirkbushman.sampleapp.local.unit
 
 import com.kirkbushman.araw.fetcher.Fetcher
 import org.junit.Assert.assertEquals

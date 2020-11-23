@@ -8,6 +8,7 @@ import com.kirkbushman.araw.fetcher.Fetcher
 import com.kirkbushman.araw.models.ModeratedSub
 import com.kirkbushman.araw.models.Redditor
 import com.kirkbushman.araw.models.Trophy
+import com.kirkbushman.araw.models.base.RedditorData
 import com.kirkbushman.araw.models.enums.ContributionsSorting
 import com.kirkbushman.araw.models.enums.TimePeriod
 
@@ -18,7 +19,7 @@ class RedditorsClient(
 ) {
 
     @WorkerThread
-    fun redditor(username: String, disableLegacyEncoding: Boolean = false): Redditor? {
+    fun redditor(username: String, disableLegacyEncoding: Boolean = false): RedditorData? {
 
         val authMap = getHeaderMap()
         val req = api.redditor(

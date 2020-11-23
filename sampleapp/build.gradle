@@ -3,7 +3,7 @@ plugins {
     id "org.jetbrains.kotlin.android"
     id "org.jetbrains.kotlin.android.extensions"
     id "org.jetbrains.kotlin.kapt"
-    id "io.gitlab.arturbosch.detekt"
+    // id "io.gitlab.arturbosch.detekt"
 }
 
 android {
@@ -16,6 +16,7 @@ android {
         targetSdkVersion compile_sdk_ver
         versionCode version_code
         versionName version_name
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -61,6 +62,8 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$constr_ver"
 
     implementation project(":lib")
+
+    implementation "androidx.multidex:multidex:2.0.1"
 
     implementation "androidx.core:core-ktx:$ax_core_ver"
     implementation "androidx.appcompat:appcompat:$ax_appcompat_ver"

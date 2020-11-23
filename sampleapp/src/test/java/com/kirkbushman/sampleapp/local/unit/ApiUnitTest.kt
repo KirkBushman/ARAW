@@ -1,6 +1,6 @@
-package com.kirkbushman.sampleapp.local.tests
+package com.kirkbushman.sampleapp.local.unit
 
-import com.kirkbushman.araw.RedditApi
+/*import com.kirkbushman.araw.RedditApi
 import com.kirkbushman.araw.utils.Endpoints
 import com.kirkbushman.araw.utils.Utils
 import com.kirkbushman.sampleapp.local.TestDataUtil
@@ -92,3 +92,4 @@ class ApiUnitTest {
         return hashMapOf("Authorization" to "bearer TOKEN")
     }
 }
+*/

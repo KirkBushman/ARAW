@@ -8,11 +8,12 @@ import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.models.Redditor
+import com.kirkbushman.araw.models.base.RedditorData
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.activities.base.BaseSearchPrintActivity
 import kotlinx.android.synthetic.main.activity_redditor.*
 
-class RedditorActivity : BaseSearchPrintActivity<Redditor>(R.layout.activity_redditor) {
+class RedditorActivity : BaseSearchPrintActivity<RedditorData>(R.layout.activity_redditor) {
 
     companion object {
 
@@ -35,7 +36,7 @@ class RedditorActivity : BaseSearchPrintActivity<Redditor>(R.layout.activity_red
     override val textPrint: TextView
         get() = redditor_text
 
-    override fun fetchItem(client: RedditClient?, query: String): Redditor? {
+    override fun fetchItem(client: RedditClient?, query: String): RedditorData? {
 
         return client?.redditorsClient?.redditor(query)
     }

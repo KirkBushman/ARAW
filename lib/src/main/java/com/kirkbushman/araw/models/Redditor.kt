@@ -1,5 +1,6 @@
 package com.kirkbushman.araw.models
 
+import com.kirkbushman.araw.models.base.RedditorData
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
@@ -40,6 +41,12 @@ data class Redditor(
     @Json(name = "name")
     override val fullname: String,
 
+    @Json(name = "awarder_karma")
+    val awarderKarma: Int?,
+
+    @Json(name = "awardee_karma")
+    val awardeeKarma: Int?,
+
     @Json(name = "comment_karma")
     override val commentKarma: Int,
 
@@ -73,4 +80,4 @@ data class Redditor(
     @Json(name = "subreddit")
     override val subreddit: RedditorSubreddit?
 
-) : Account
+) : RedditorData, Account

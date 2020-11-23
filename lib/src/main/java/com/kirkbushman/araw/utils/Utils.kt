@@ -1,5 +1,6 @@
 package com.kirkbushman.araw.utils
 
+import com.kirkbushman.araw.adapters.PolyJsonAdapterFactory
 import com.kirkbushman.araw.http.EnvelopedComment
 import com.kirkbushman.araw.http.EnvelopedCommentData
 import com.kirkbushman.araw.http.EnvelopedContribution
@@ -11,7 +12,10 @@ import com.kirkbushman.araw.http.EnvelopedSubmission
 import com.kirkbushman.araw.http.EnvelopedSubreddit
 import com.kirkbushman.araw.http.base.EnvelopeKind
 import com.kirkbushman.araw.models.PrivateSubreddit
+import com.kirkbushman.araw.models.Redditor
 import com.kirkbushman.araw.models.Subreddit
+import com.kirkbushman.araw.models.SuspendedRedditor
+import com.kirkbushman.araw.models.base.RedditorData
 import com.kirkbushman.araw.models.base.SubredditData
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.adapters.PolymorphicJsonAdapterFactory
@@ -61,6 +65,20 @@ object Utils {
                     .withSubtype(Subreddit::class.java, "restricted")
                     .withSubtype(Subreddit::class.java, "user")
                     .withSubtype(PrivateSubreddit::class.java, "private")
+            )
+            .add(
+                PolyJsonAdapterFactory(
+                    baseType = RedditorData::class.java,
+                    possibleTypes = arrayOf(Redditor::class.java, SuspendedRedditor::class.java),
+                    selectType = { label, value ->
+
+                        when {
+                            label == "is_suspended" && value == true -> SuspendedRedditor::class.java
+                            label == "has_verified_email" -> Redditor::class.java
+                            else -> null
+                        }
+                    }
+                )
             )
             .build()
 

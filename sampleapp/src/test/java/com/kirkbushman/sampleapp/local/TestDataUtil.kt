@@ -4,7 +4,6 @@ import com.kirkbushman.araw.http.EnvelopedRedditor
 import com.kirkbushman.araw.http.EnvelopedSubreddit
 import com.kirkbushman.araw.http.base.EnvelopeKind
 import com.kirkbushman.araw.models.Me
-import com.kirkbushman.araw.models.Redditor
 import com.kirkbushman.araw.models.RedditorSubreddit
 import com.kirkbushman.araw.models.Subreddit
 import com.kirkbushman.sampleapp.local.RandomUtil.randomBool
@@ -142,28 +141,6 @@ object TestDataUtil {
                 subscribers = randomInt(),
                 title = randomString(),
                 url = randomString()
-            )
-        )
-    }
-
-    fun getRedditorTestData(): EnvelopedRedditor {
-
-        return EnvelopedRedditor(
-            kind = EnvelopeKind.Account,
-            data = Redditor(
-                id = randomString(),
-                fullname = randomString(),
-                commentKarma = randomInt(),
-                created = randomLong(),
-                createdUtc = randomLong(),
-                hasVerifiedEmail = randomBool(),
-                isEmployee = randomBool(),
-                isFriend = randomBool(),
-                isGold = randomBool(),
-                isHidingFromRobots = randomBool(),
-                isMod = randomBool(),
-                linkKarma = randomInt(),
-                subreddit = getRedditorSubredditTestData()
             )
         )
     }

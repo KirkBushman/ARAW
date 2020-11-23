@@ -7,6 +7,7 @@ import com.kirkbushman.araw.http.EnvelopedMessageListing
 import com.kirkbushman.araw.http.EnvelopedMulti
 import com.kirkbushman.araw.http.EnvelopedMultiDescription
 import com.kirkbushman.araw.http.EnvelopedRedditor
+import com.kirkbushman.araw.http.EnvelopedRedditorData
 import com.kirkbushman.araw.http.EnvelopedRedditorListing
 import com.kirkbushman.araw.http.EnvelopedSubmissionListing
 import com.kirkbushman.araw.http.EnvelopedSubredditData
@@ -509,7 +510,7 @@ interface RedditApi {
         @Path("username") username: String,
         @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
-    ): Call<EnvelopedRedditor>
+    ): Call<EnvelopedRedditorData>
 
     @GET(Endpoints.URL_REDDITOR_OVERVIEW)
     fun fetchRedditorOverview(
