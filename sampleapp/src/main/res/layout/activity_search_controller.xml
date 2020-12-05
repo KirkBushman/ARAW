@@ -21,7 +21,7 @@
                     android:orientation="horizontal">
 
                 <EditText
-                        android:id="@+id/query"
+                        android:id="@+id/edit_search"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
@@ -35,7 +35,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="5"
-                        android:text="@string/bttn_ok"
+                        android:text="@string/bttn_search"
                         />
 
             </LinearLayout>

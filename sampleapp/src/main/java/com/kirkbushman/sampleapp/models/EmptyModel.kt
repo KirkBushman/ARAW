@@ -1,5 +1,7 @@
 package com.kirkbushman.sampleapp.models
 
+import android.view.View
+import com.airbnb.epoxy.EpoxyHolder
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.kirkbushman.sampleapp.R
@@ -14,4 +16,6 @@ abstract class EmptyModel : EpoxyModelWithHolder<EmptyHolder>() {
     override fun bind(holder: EmptyHolder) = Unit
 }
 
-class EmptyHolder : KotlinHolder()
+class EmptyHolder : EpoxyHolder() {
+    override fun bindView(itemView: View) {}
+}

@@ -1,46 +1,49 @@
 package com.kirkbushman.sampleapp.activities.base
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import androidx.annotation.LayoutRes
-import androidx.appcompat.widget.Toolbar
+import androidx.annotation.StringRes
 import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.sampleapp.TestApplication
+import com.kirkbushman.sampleapp.databinding.ActivitySearchPrint2Binding
 import com.kirkbushman.sampleapp.util.DoAsync
 
-abstract class BaseSearchPrint2Activity<T>(@LayoutRes contentLayoutId: Int) : BaseActivity(contentLayoutId) {
+abstract class BaseSearchPrint2Activity<T> : BaseActivity() {
 
     private val client by lazy { TestApplication.instance.getClient() }
 
-    abstract val actionBar: Toolbar
-    abstract val bttnSearch: Button
-    abstract val editSearch: EditText
-    abstract val editSearch2: EditText
-    abstract val textPrint: TextView
+    private lateinit var binding: ActivitySearchPrint2Binding
 
+    @StringRes
+    abstract fun hintTextRes(): Int
+    @StringRes
+    abstract fun hintTextRes2(): Int
     abstract fun fetchItem(client: RedditClient?, query: String, query2: String): T?
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setSupportActionBar(actionBar)
+        binding = ActivitySearchPrint2Binding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        setSupportActionBar(binding.toolbar)
         supportActionBar?.let {
             it.setDisplayHomeAsUpEnabled(true)
             it.setDisplayShowHomeEnabled(true)
         }
 
-        bttnSearch.setOnClickListener {
+        binding.editSearch.hint = getString(hintTextRes())
+        binding.editSearch2.hint = getString(hintTextRes2())
 
-            val searchQuery = editSearch.text.toString().trim()
-            val searchQuery2 = editSearch2.text.toString().trim()
+        binding.bttnSearch.setOnClickListener {
+
+            val searchQuery = binding.editSearch.text.toString().trim()
+            val searchQuery2 = binding.editSearch2.text.toString().trim()
             if (searchQuery.isNotEmpty() && searchQuery2.isNotEmpty()) {
 
                 var item: T? = null
                 DoAsync(
                     doWork = { item = fetchItem(client, searchQuery, searchQuery2) },
-                    onPost = { textPrint.text = item.toString() }
+                    onPost = { binding.printText.text = item.toString() }
                 )
             }
         }

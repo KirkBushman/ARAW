@@ -1,62 +1,60 @@
 package com.kirkbushman.sampleapp.activities.base
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import androidx.annotation.LayoutRes
-import androidx.appcompat.widget.Toolbar
-import com.airbnb.epoxy.EpoxyRecyclerView
+import androidx.annotation.StringRes
 import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.sampleapp.TestApplication
-import com.kirkbushman.sampleapp.controllers.BaseCallback
-import com.kirkbushman.sampleapp.controllers.BaseController
+import com.kirkbushman.sampleapp.controllers.base.BaseCallback
+import com.kirkbushman.sampleapp.controllers.base.BaseController
+import com.kirkbushman.sampleapp.databinding.ActivitySearchControllerBinding
 import com.kirkbushman.sampleapp.util.DoAsync
 
-abstract class BaseSearchControllerActivity2<T>(
-    @LayoutRes contentLayoutId: Int
-) : BaseSearchControllerActivity<T, BaseCallback>(
-    contentLayoutId
-) {
+abstract class BaseSearchControllerActivity2<T> : BaseSearchControllerActivity<T, BaseCallback>() {
 
     override val callback: BaseCallback?
         get() = null
 }
 
-abstract class BaseSearchControllerActivity<T, C : BaseCallback>(
-    @LayoutRes contentLayoutId: Int
-) : BaseActivity(
-    contentLayoutId
-) {
+abstract class BaseSearchControllerActivity<T, C : BaseCallback> : BaseActivity() {
 
-    private val client by lazy { TestApplication.instance.getClient() }
+    protected val client by lazy { TestApplication.instance.getClient() }
 
-    private val items = ArrayList<T>()
+    protected val items = ArrayList<T>()
 
     abstract val callback: C?
     abstract val controller: BaseController<T, C>
 
-    abstract val actionBar: Toolbar
-    abstract val bttnSearch: Button
-    abstract val editSearch: EditText
-    abstract val recyclerView: EpoxyRecyclerView
+    @StringRes
+    open fun hintTextRes(): Int? {
+        return null
+    }
+
+    private lateinit var binding: ActivitySearchControllerBinding
 
     abstract fun fetchItem(client: RedditClient?, query: String): Collection<T>?
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setSupportActionBar(actionBar)
+        binding = ActivitySearchControllerBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        setSupportActionBar(binding.toolbar)
         supportActionBar?.let {
             it.setDisplayHomeAsUpEnabled(true)
             it.setDisplayShowHomeEnabled(true)
         }
 
-        recyclerView.setHasFixedSize(true)
-        recyclerView.setController(controller)
+        if (hintTextRes() != null) {
+            binding.editSearch.hint = getString(hintTextRes()!!)
+        }
 
-        bttnSearch.setOnClickListener {
+        binding.list.setHasFixedSize(true)
+        binding.list.setController(controller)
 
-            val searchQuery = editSearch.text.toString().trim()
+        binding.searchBttn.setOnClickListener {
+
+            val searchQuery = binding.editSearch.text.toString().trim()
 
             DoAsync(
                 doWork = {

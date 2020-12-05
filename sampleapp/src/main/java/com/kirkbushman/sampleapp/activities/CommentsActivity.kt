@@ -17,9 +17,9 @@ import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.activities.base.BaseActivity
 import com.kirkbushman.sampleapp.controllers.CommentController
+import com.kirkbushman.sampleapp.databinding.ActivityCommentsBinding
 import com.kirkbushman.sampleapp.util.DoAsync
 import com.kirkbushman.sampleapp.fragments.ReplyBottomFragment
-import kotlinx.android.synthetic.main.activity_comments.*
 
 class CommentsActivity : BaseActivity() {
 
@@ -33,6 +33,8 @@ class CommentsActivity : BaseActivity() {
     }
 
     private val client by lazy { TestApplication.instance.getClient() }
+
+    private lateinit var binding: ActivityCommentsBinding
 
     private val comments = ArrayList<CommentData>()
     private val controller by lazy {
@@ -113,21 +115,23 @@ class CommentsActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_comments)
 
-        setSupportActionBar(toolbar)
+        binding = ActivityCommentsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        setSupportActionBar(binding.toolbar)
         supportActionBar?.let {
             it.setDisplayHomeAsUpEnabled(true)
             it.setDisplayShowHomeEnabled(true)
         }
 
-        list.setHasFixedSize(true)
-        list.setController(controller)
+        binding.list.setHasFixedSize(true)
+        binding.list.setController(controller)
 
-        search_bttn.setOnClickListener {
+        binding.searchBttn.setOnClickListener {
 
-            val submissionId = search.text.toString().trim()
-            val commentId = search2.text.toString().trim()
+            val submissionId = binding.search.text.toString().trim()
+            val commentId = binding.search2.text.toString().trim()
 
             DoAsync(
                 doWork = {

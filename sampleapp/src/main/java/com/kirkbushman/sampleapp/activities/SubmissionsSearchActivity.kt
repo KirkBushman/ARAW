@@ -6,12 +6,11 @@ import android.os.Bundle
 import android.view.View
 import com.kirkbushman.araw.models.Submission
 import com.kirkbushman.araw.models.enums.Vote
-import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.activities.base.BaseActivity
 import com.kirkbushman.sampleapp.controllers.SubmissionController
+import com.kirkbushman.sampleapp.databinding.ActivitySubmissionsSearchBinding
 import com.kirkbushman.sampleapp.util.DoAsync
-import kotlinx.android.synthetic.main.activity_submissions_search.*
 
 class SubmissionsSearchActivity : BaseActivity() {
 
@@ -98,24 +97,28 @@ class SubmissionsSearchActivity : BaseActivity() {
         )
     }
 
+    private lateinit var binding: ActivitySubmissionsSearchBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_submissions_search)
 
-        setSupportActionBar(toolbar)
+        binding = ActivitySubmissionsSearchBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        setSupportActionBar(binding.toolbar)
         supportActionBar?.let {
             it.setDisplayHomeAsUpEnabled(true)
             it.setDisplayShowHomeEnabled(true)
         }
 
-        list.setHasFixedSize(true)
-        list.setController(controller)
+        binding.list.setHasFixedSize(true)
+        binding.list.setController(controller)
 
-        search_bttn.setOnClickListener {
+        binding.searchBttn.setOnClickListener {
 
-            val subreddit = subreddit.text.toString().trim()
-            val query = query.text.toString().trim()
-            val allSubs = all_subs.isChecked
+            val subreddit = binding.subreddit.text.toString().trim()
+            val query = binding.query.text.toString().trim()
+            val allSubs = binding.allSubs.isChecked
 
             DoAsync(
                 doWork = {
@@ -130,17 +133,17 @@ class SubmissionsSearchActivity : BaseActivity() {
                     submissions.addAll(fetcher?.fetchNext() ?: listOf())
                 },
                 onPost = {
-                    controller.setSubmission(submissions)
+                    controller.setItems(submissions)
                 }
             )
         }
 
-        all_subs.setOnCheckedChangeListener { _, checked ->
+        binding.allSubs.setOnCheckedChangeListener { _, checked ->
 
             if (checked) {
-                subreddit.visibility = View.INVISIBLE
+                binding.subreddit.visibility = View.INVISIBLE
             } else {
-                subreddit.visibility = View.VISIBLE
+                binding.subreddit.visibility = View.VISIBLE
             }
         }
     }

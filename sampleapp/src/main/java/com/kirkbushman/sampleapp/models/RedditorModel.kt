@@ -1,36 +1,36 @@
 package com.kirkbushman.sampleapp.models
 
-import android.widget.TextView
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyModelClass
-import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.kirkbushman.sampleapp.R
+import com.kirkbushman.sampleapp.databinding.ItemRedditorBinding
+import com.kirkbushman.sampleapp.models.base.ViewBindingEpoxyModelWithHolder
 
 @EpoxyModelClass
-abstract class RedditorModel : EpoxyModelWithHolder<RedditorHolder>() {
+abstract class RedditorModel : ViewBindingEpoxyModelWithHolder<ItemRedditorBinding>() {
 
     @EpoxyAttribute
-    lateinit var redditorName: String
+    lateinit var redditorNameText: String
     @EpoxyAttribute
-    lateinit var redditorCreated: String
+    lateinit var redditorCreatedText: String
     @EpoxyAttribute
-    lateinit var redditorKarma: String
+    lateinit var redditorKarmaText: String
 
     override fun getDefaultLayout(): Int {
         return R.layout.item_redditor
     }
 
-    override fun bind(holder: RedditorHolder) {
+    override fun ItemRedditorBinding.bind() {
 
-        holder.redditorName.text = redditorName
-        holder.redditorCreated.text = redditorCreated
-        holder.redditorKarma.text = redditorKarma
+        redditorName.text = redditorNameText
+        redditCreated.text = redditorCreatedText
+        redditKarma.text = redditorKarmaText
     }
-}
 
-class RedditorHolder : KotlinHolder() {
+    override fun ItemRedditorBinding.unbind() {
 
-    val redditorName by bind<TextView>(R.id.redditor_name)
-    val redditorCreated by bind<TextView>(R.id.reddit_created)
-    val redditorKarma by bind<TextView>(R.id.reddit_karma)
+        redditorName.text = null
+        redditCreated.text = null
+        redditKarma.text = null
+    }
 }

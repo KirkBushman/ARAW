@@ -1,28 +1,28 @@
 package com.kirkbushman.sampleapp.models
 
-import android.widget.TextView
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyModelClass
-import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.kirkbushman.sampleapp.R
+import com.kirkbushman.sampleapp.databinding.ItemTrophyBinding
+import com.kirkbushman.sampleapp.models.base.ViewBindingEpoxyModelWithHolder
 
 @EpoxyModelClass
-abstract class TrophyModel : EpoxyModelWithHolder<TrophyHolder>() {
+abstract class TrophyModel : ViewBindingEpoxyModelWithHolder<ItemTrophyBinding>() {
 
     @EpoxyAttribute
-    lateinit var name: String
+    lateinit var nameText: String
 
     override fun getDefaultLayout(): Int {
         return R.layout.item_trophy
     }
 
-    override fun bind(holder: TrophyHolder) {
+    override fun ItemTrophyBinding.bind() {
 
-        holder.name.text = name
+        name.text = nameText
     }
-}
 
-class TrophyHolder : KotlinHolder() {
+    override fun ItemTrophyBinding.unbind() {
 
-    val name by bind<TextView>(R.id.name)
+        name.text = null
+    }
 }

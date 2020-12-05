@@ -1,5 +1,7 @@
 package com.kirkbushman.sampleapp.controllers
 
+import com.kirkbushman.sampleapp.controllers.base.BaseCallback
+import com.kirkbushman.sampleapp.controllers.base.BaseController
 import com.kirkbushman.sampleapp.models.wikiPage
 
 class WikiPagesController(
@@ -15,7 +17,7 @@ class WikiPagesController(
 
         wikiPage {
             id(it)
-            name(it)
+            nameText(it)
             listener { _ -> callback?.onPageClick(items, index) }
         }
     }

@@ -2,20 +2,16 @@ package com.kirkbushman.sampleapp.activities
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter
+import com.google.android.material.tabs.TabLayout
 import com.kirkbushman.araw.models.enums.ContributionsSorting
 import com.kirkbushman.araw.models.enums.TimePeriod
 import com.kirkbushman.sampleapp.R
-import com.kirkbushman.sampleapp.activities.base.BaseActivity
-import com.kirkbushman.sampleapp.fragments.ContributionFragment
-import kotlinx.android.synthetic.main.activity_redditor_info.*
+import com.kirkbushman.sampleapp.activities.base.BaseSearchAdapterActivity
+import com.kirkbushman.sampleapp.adapters.ContributionsAdapter
 
-class RedditorInfoActivity : BaseActivity() {
+class RedditorInfoActivity : BaseSearchAdapterActivity<ContributionsAdapter>() {
 
     companion object {
 
@@ -26,36 +22,25 @@ class RedditorInfoActivity : BaseActivity() {
         }
     }
 
-    private val adapter by lazy { ContributionPagerAdapter(supportFragmentManager) }
+    override val adapter by lazy {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_redditor_info)
+        ContributionsAdapter(supportFragmentManager, lifecycle)
+    }
 
-        setSupportActionBar(toolbar)
-        supportActionBar?.let {
-            it.setDisplayHomeAsUpEnabled(true)
-            it.setDisplayShowHomeEnabled(true)
-        }
+    override fun hintTextRes(): Int {
+        return R.string.edit_insert_username
+    }
 
-        pager.adapter = adapter
+    override fun getTitleAtPos(tab: TabLayout.Tab, position: Int) {
 
-        tab_layout.setupWithViewPager(pager)
+        tab.text = adapter.getTitleAtPos(position)
+    }
 
-        with(adapter) {
-            addFragment(ContributionFragment.newInstance(ContributionFragment.TAG_OVERVIEW))
-            addFragment(ContributionFragment.newInstance(ContributionFragment.TAG_SUBMITTED))
-            addFragment(ContributionFragment.newInstance(ContributionFragment.TAG_COMMENTS))
-            addFragment(ContributionFragment.newInstance(ContributionFragment.TAG_GILDED))
-            notifyDataSetChanged()
-        }
+    override fun reloadAllFragments() {
 
-        search_bttn.setOnClickListener {
+        adapter.doForEachFragment {
 
-            adapter.fragments.forEach {
-
-                (it as ContributionFragment).refresh()
-            }
+            it?.refresh()
         }
     }
 
@@ -85,31 +70,12 @@ class RedditorInfoActivity : BaseActivity() {
     }
 
     fun getUsername(): String {
-        return search.text.toString().trim()
+
+        return binding.search.text.toString().trim()
     }
 
     private fun reloadFragment(sorting: ContributionsSorting? = null, timePeriod: TimePeriod? = null) {
 
-        (adapter.getItem(pager.currentItem) as ContributionFragment).reload(sorting, timePeriod)
-    }
-
-    private class ContributionPagerAdapter(
-        manager: FragmentManager
-    ) : FragmentStatePagerAdapter(
-        manager,
-        BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
-    ) {
-
-        val fragments = ArrayList<Fragment>()
-
-        override fun getPageTitle(position: Int): CharSequence? = (fragments[position] as ContributionFragment).passedTag
-        override fun getCount(): Int = fragments.size
-        override fun getItem(position: Int): Fragment {
-            return fragments[position]
-        }
-
-        fun addFragment(fragment: Fragment) {
-            fragments.add(fragment)
-        }
+        adapter.getFragmentAtPos(binding.pager.currentItem)?.reload(sorting, timePeriod)
     }
 }

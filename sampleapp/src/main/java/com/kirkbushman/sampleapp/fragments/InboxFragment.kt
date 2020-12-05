@@ -1,16 +1,13 @@
 package com.kirkbushman.sampleapp.fragments
 
 import android.os.Bundle
-import com.airbnb.epoxy.EpoxyRecyclerView
 import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.models.Message
-import com.kirkbushman.sampleapp.R
-import com.kirkbushman.sampleapp.controllers.BaseController
 import com.kirkbushman.sampleapp.controllers.InboxController
+import com.kirkbushman.sampleapp.fragments.base.BaseControllerFragment
 import com.kirkbushman.sampleapp.util.DoAsync
-import kotlinx.android.synthetic.main.fragment_inbox.*
 
-class InboxFragment : BaseControllerFragment<Message, InboxController.InboxCallback>(R.layout.fragment_inbox) {
+class InboxFragment : BaseControllerFragment<Message, InboxController.InboxCallback>() {
 
     companion object {
 
@@ -34,13 +31,9 @@ class InboxFragment : BaseControllerFragment<Message, InboxController.InboxCallb
         }
     }
 
-    val passedTag by lazy { arguments?.getString(PASSED_TAG) ?: "" }
+    private val passedTag by lazy { arguments?.getString(PASSED_TAG) ?: "" }
 
-    override val recyclerView: EpoxyRecyclerView
-        get() = list
-
-    override val callback: InboxController.InboxCallback?
-        get() = object : InboxController.InboxCallback {
+    override val callback = object : InboxController.InboxCallback {
 
             override fun readMessageClick(index: Int) {
 
@@ -63,7 +56,10 @@ class InboxFragment : BaseControllerFragment<Message, InboxController.InboxCallb
             }
         }
 
-    override val controller: BaseController<Message, InboxController.InboxCallback> = InboxController(callback!!)
+    override val controller by lazy {
+
+        InboxController(callback)
+    }
 
     override fun fetchItem(client: RedditClient?): Collection<Message>? {
 

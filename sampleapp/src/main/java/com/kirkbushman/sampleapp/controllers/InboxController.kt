@@ -2,6 +2,8 @@ package com.kirkbushman.sampleapp.controllers
 
 import android.view.View
 import com.kirkbushman.araw.models.Message
+import com.kirkbushman.sampleapp.controllers.base.BaseCallback
+import com.kirkbushman.sampleapp.controllers.base.BaseController
 import com.kirkbushman.sampleapp.models.message
 
 class InboxController(callback: InboxCallback) : BaseController<Message, InboxController.InboxCallback>(callback) {
@@ -16,11 +18,11 @@ class InboxController(callback: InboxCallback) : BaseController<Message, InboxCo
 
         message {
             id(it.id)
-            subject(it.subject)
-            author(it.author ?: "")
-            body(it.body)
-            readBttn(View.OnClickListener { callback?.readMessageClick(index) })
-            unreadBttn(View.OnClickListener { callback?.unreadMessageClick(index) })
+            subjectText(it.subject)
+            authorText(it.author ?: "")
+            bodyText(it.body)
+            readClick(View.OnClickListener { callback?.readMessageClick(index) })
+            unreadClick(View.OnClickListener { callback?.unreadMessageClick(index) })
         }
     }
 }

@@ -8,11 +8,10 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.kirkbushman.araw.models.commons.SubmissionKind
-import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
+import com.kirkbushman.sampleapp.databinding.ActivitySubmitMediaBinding
 import com.kirkbushman.sampleapp.util.StorageUtil
 import com.kirkbushman.sampleapp.util.DoAsync
-import kotlinx.android.synthetic.main.activity_submit_media.*
 
 class SubmitMediaActivity : AppCompatActivity() {
 
@@ -27,6 +26,8 @@ class SubmitMediaActivity : AppCompatActivity() {
 
     private val client by lazy { TestApplication.instance.getClient() }
 
+    private lateinit var binding: ActivitySubmitMediaBinding
+
     private var fileName: String? = null
     private var mimeType: String? = null
     private var fileContent: ByteArray? = null
@@ -34,10 +35,12 @@ class SubmitMediaActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_submit_media)
 
-        bttn_submit.visibility = View.GONE
-        bttn_submit.setOnClickListener {
+        binding = ActivitySubmitMediaBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.bttnSubmit.visibility = View.GONE
+        binding.bttnSubmit.setOnClickListener {
 
             if (fileName != null &&
                 mimeType != null &&
@@ -50,8 +53,8 @@ class SubmitMediaActivity : AppCompatActivity() {
                         val mediaUrl = client?.contributionsClient?.uploadMedia(fileName!!, mimeType!!, fileContent!!)
                         if (mediaUrl != null) {
 
-                            val subreddit = edit_subreddit.text.trim().toString()
-                            val title = edit_title.text.trim().toString()
+                            val subreddit = binding.editSubreddit.text.trim().toString()
+                            val title = binding.editTitle.text.trim().toString()
 
                             val kind = when {
                                 mimeType!!.contains("image") -> SubmissionKind.IMAGE
@@ -82,15 +85,15 @@ class SubmitMediaActivity : AppCompatActivity() {
             }
         }
 
-        bttn_load_image.setOnClickListener {
+        binding.bttnLoadImage.setOnClickListener {
 
             StorageUtil.openMediaChooser(this)
         }
 
-        image_filename.visibility = View.GONE
-        image_to_upload.visibility = View.GONE
+        binding.imageFilename.visibility = View.GONE
+        binding.imageToUpload.visibility = View.GONE
 
-        image_to_upload.setImageDrawable(null)
+        binding.imageToUpload.setImageDrawable(null)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -109,15 +112,15 @@ class SubmitMediaActivity : AppCompatActivity() {
             this.fileContent = fileContent
             this.bitmap = bitmap
 
-            image_filename.visibility = View.VISIBLE
-            image_to_upload.visibility = View.VISIBLE
+            binding.imageFilename.visibility = View.VISIBLE
+            binding.imageToUpload.visibility = View.VISIBLE
 
             val imageNameText = "name: $fileName, mime-type: $mimeType"
-            image_filename.text = imageNameText
+            binding.imageFilename.text = imageNameText
 
-            image_to_upload.setImageBitmap(bitmap)
+            binding.imageToUpload.setImageBitmap(bitmap)
 
-            bttn_submit.visibility = View.VISIBLE
+            binding.bttnSubmit.visibility = View.VISIBLE
         }
     }
 }

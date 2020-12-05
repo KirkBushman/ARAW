@@ -1,6 +1,8 @@
 package com.kirkbushman.sampleapp.controllers
 
 import com.kirkbushman.araw.models.Trophy
+import com.kirkbushman.sampleapp.controllers.base.BaseCallback
+import com.kirkbushman.sampleapp.controllers.base.BaseController2
 import com.kirkbushman.sampleapp.models.trophy
 
 class TrophiesController : BaseController2<Trophy>() {
@@ -9,7 +11,7 @@ class TrophiesController : BaseController2<Trophy>() {
 
         trophy {
             id(it.id)
-            name(it.fullname ?: "")
+            nameText(it.fullname ?: "")
         }
     }
 }

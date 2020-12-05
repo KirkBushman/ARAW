@@ -15,17 +15,17 @@
                 android:layout_height="?android:attr/actionBarSize"
                 app:layout_scrollFlags="scroll|enterAlways" />
 
+        <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.airbnb.epoxy.EpoxyRecyclerView
-            android:id="@+id/list"
+    <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipToPadding="true"
-            android:scrollbars="vertical"
-            android:fadeScrollbars="true"
-            app:itemSpacing="16dp"
-            app:layoutManager="@string/linear_layout"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

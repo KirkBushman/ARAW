@@ -1,42 +1,33 @@
 package com.kirkbushman.sampleapp.models
 
 import android.view.View
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.TextView
 import com.airbnb.epoxy.EpoxyAttribute
+import com.airbnb.epoxy.EpoxyAttribute.Option.DoNotHash
 import com.airbnb.epoxy.EpoxyModelClass
-import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.kirkbushman.sampleapp.R
+import com.kirkbushman.sampleapp.databinding.ItemMoreCommentsBinding
+import com.kirkbushman.sampleapp.models.base.ViewBindingEpoxyModelWithHolder
 
 @EpoxyModelClass
-abstract class MoreCommentModel : EpoxyModelWithHolder<MoreCommentHolder>() {
+abstract class MoreCommentModel : ViewBindingEpoxyModelWithHolder<ItemMoreCommentsBinding>() {
 
     @EpoxyAttribute
-    lateinit var more: String
-
-    @EpoxyAttribute
+    lateinit var moreText: String
+    @EpoxyAttribute(DoNotHash)
     lateinit var moreListener: View.OnClickListener
 
     override fun getDefaultLayout(): Int {
         return R.layout.item_more_comments
     }
 
-    override fun bind(holder: MoreCommentHolder) {
+    override fun ItemMoreCommentsBinding.bind() {
 
-        holder.more.text = more
-        holder.loadMore.setOnClickListener(moreListener)
+        more.text = moreText
+        loadMoreButton.setOnClickListener(moreListener)
     }
 
-    override fun unbind(holder: MoreCommentHolder) {
+    override fun ItemMoreCommentsBinding.unbind() {
 
-        holder.loadMore.setOnClickListener(null)
+        loadMoreButton.setOnClickListener(null)
     }
-}
-
-class MoreCommentHolder : KotlinHolder() {
-
-    val container by bind<LinearLayout>(R.id.container)
-    val more by bind<TextView>(R.id.more)
-    val loadMore by bind<Button>(R.id.load_more_button)
 }

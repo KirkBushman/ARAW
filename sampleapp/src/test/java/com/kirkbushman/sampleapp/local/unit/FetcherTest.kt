@@ -26,7 +26,7 @@ class FetcherTest {
         assertTrue("Assert that initially returns true", fetcher.hasStarted())
     }
 
-    @Test
+    /*@Test
     fun testFetcher_PageNumUpDown() {
 
         val fetcher = Mockito.mock(Fetcher::class.java)
@@ -55,9 +55,9 @@ class FetcherTest {
         fetcher.fetchPrevious()
 
         assertEquals("Assert that counter stays the same", 1, fetcher.getPageNum())
-    }
+    }*/
 
-    @Test
+    /*@Test
     fun testFetcher_PageNumReset() {
 
         val fetcher = Mockito.mock(Fetcher::class.java)
@@ -71,7 +71,7 @@ class FetcherTest {
         fetcher.reset()
 
         assertNull("Assert that the counter is null", fetcher.getPageNum())
-    }
+    }*/
 
     @Test
     fun testFetcher_TokensReset() {

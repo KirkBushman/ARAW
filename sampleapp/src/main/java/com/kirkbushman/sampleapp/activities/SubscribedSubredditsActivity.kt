@@ -2,17 +2,14 @@ package com.kirkbushman.sampleapp.activities
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
+import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.models.Subreddit
 import com.kirkbushman.araw.models.base.SubredditData
-import com.kirkbushman.sampleapp.R
-import com.kirkbushman.sampleapp.TestApplication
-import com.kirkbushman.sampleapp.activities.base.BaseActivity
+import com.kirkbushman.sampleapp.activities.base.BaseControllerActivity
 import com.kirkbushman.sampleapp.controllers.SubredditController
 import com.kirkbushman.sampleapp.util.DoAsync
-import kotlinx.android.synthetic.main.activity_mine_subreddits.*
 
-class SubscribedSubredditsActivity : BaseActivity() {
+class SubscribedSubredditsActivity : BaseControllerActivity<SubredditData, SubredditController.SubredditCallback>() {
 
     companion object {
 
@@ -23,17 +20,11 @@ class SubscribedSubredditsActivity : BaseActivity() {
         }
     }
 
-    private val client by lazy { TestApplication.instance.getClient() }
-    private val fetcher by lazy { client?.accountsClient?.subscribedSubreddits(limit = 100) }
-
-    private val data = ArrayList<SubredditData>()
-    private val controller by lazy { SubredditController(callback) }
-
-    private val callback = object : SubredditController.SubredditCallback {
+    override val callback = object : SubredditController.SubredditCallback {
 
         override fun subscribeClick(index: Int) {
 
-            val subreddit = data[index]
+            val subreddit = items[index]
             DoAsync(
                 doWork = {
 
@@ -45,43 +36,19 @@ class SubscribedSubredditsActivity : BaseActivity() {
 
                     if (subreddit is Subreddit && subreddit.isSubscriber != null) {
 
-                        data[index] = subreddit.copy(isSubscriber = !subreddit.isSubscriber!!)
-                        refresh()
+                        items[index] = subreddit.copy(isSubscriber = !subreddit.isSubscriber!!)
+                        controller.setItems(items)
                     }
                 }
             )
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_mine_subreddits)
+    override val controller: SubredditController by lazy { SubredditController(callback) }
 
-        setSupportActionBar(toolbar)
-        supportActionBar?.let {
-            it.setDisplayHomeAsUpEnabled(true)
-            it.setDisplayShowHomeEnabled(true)
-        }
+    override fun fetchItem(client: RedditClient?): Collection<SubredditData>? {
 
-        list.setHasFixedSize(true)
-        list.setController(controller)
-
-        DoAsync(
-            doWork = {
-
-                val temp = fetcher?.fetchNext() ?: listOf()
-
-                data.clear()
-                data.addAll(temp)
-            },
-            onPost = {
-
-                refresh()
-            }
-        )
-    }
-
-    private fun refresh() {
-        controller.setSubreddits(data)
+        val fetcher = client?.accountsClient?.subscribedSubreddits(limit = 100)
+        return fetcher?.fetchNext()
     }
 }

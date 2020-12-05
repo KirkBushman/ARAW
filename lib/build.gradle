@@ -1,10 +1,10 @@
 plugins {
     id "com.android.library"
     id "org.jetbrains.kotlin.android"
-    id "org.jetbrains.kotlin.android.extensions"
+    id "org.jetbrains.kotlin.plugin.parcelize"
     id "org.jetbrains.kotlin.kapt"
     id "org.jetbrains.dokka"
-    id "io.gitlab.arturbosch.detekt"
+    // id "io.gitlab.arturbosch.detekt"
 }
 
 android {
@@ -42,10 +42,6 @@ android {
 kotlin {
     explicitApi()
     explicitApiWarning()
-}
-
-androidExtensions {
-    experimental = true
 }
 
 kapt {

@@ -3,105 +3,109 @@ package com.kirkbushman.sampleapp
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.kirkbushman.sampleapp.activities.*
-import kotlinx.android.synthetic.main.activity_main.*
+import com.kirkbushman.sampleapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        bttn_back_to_login.setOnClickListener {
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.bttnBackToLogin.setOnClickListener {
 
             LoginActivity.start(this, stopAutoLogin = true)
         }
 
-        bttn_apis.setOnClickListener {
+        binding.bttnApis.setOnClickListener {
 
             ApisActivity.start(this)
         }
 
-        bttn_me.setOnClickListener {
+        binding.bttnMe.setOnClickListener {
 
             SelfAccountActivity.start(this)
         }
 
-        bttn_self_info.setOnClickListener {
+        binding.bttnSelfInfo.setOnClickListener {
 
             SelfAccountInfoActivity.start(this)
         }
 
-        bttn_inbox.setOnClickListener {
+        binding.bttnInbox.setOnClickListener {
 
             InboxActivity.start(this)
         }
 
-        bttn_my_subreddits.setOnClickListener {
+        binding.bttnMySubreddits.setOnClickListener {
 
             SubscribedSubredditsActivity.start(this)
         }
 
-        bttn_my_trophies.setOnClickListener {
+        binding.bttnMyTrophies.setOnClickListener {
 
             SelfTrophiesActivity.start(this)
         }
 
-        bttn_user.setOnClickListener {
+        binding.bttnUser.setOnClickListener {
 
             RedditorActivity.start(this)
         }
 
-        bttn_user_info.setOnClickListener {
+        binding.bttnUserInfo.setOnClickListener {
 
             RedditorInfoActivity.start(this)
         }
 
-        bttn_user_trophies.setOnClickListener {
+        binding.bttnUserTrophies.setOnClickListener {
 
             UserTrophiesActivity.start(this)
         }
 
-        bttn_user_search.setOnClickListener {
+        binding.bttnUserSearch.setOnClickListener {
 
             UserSearchActivity.start(this)
         }
 
-        bttn_user_moderated_subs.setOnClickListener {
+        binding.bttnUserModeratedSubs.setOnClickListener {
 
             RedditorModeratedSubs.start(this)
         }
 
-        bttn_subreddit.setOnClickListener {
+        binding.bttnSubreddit.setOnClickListener {
 
             SubredditActivity.start(this)
         }
 
-        bttn_submission.setOnClickListener {
+        binding.bttnSubmission.setOnClickListener {
 
             SubmissionActivity.start(this)
         }
 
-        bttn_submissions.setOnClickListener {
+        binding.bttnSubmissions.setOnClickListener {
 
             SubmissionsActivity.start(this)
         }
 
-        bttn_submissions_search.setOnClickListener {
+        binding.bttnSubmissionsSearch.setOnClickListener {
 
             SubmissionsSearchActivity.start(this)
         }
 
-        bttn_submissions_filter.setOnClickListener {
+        binding.bttnSubmissionsFilter.setOnClickListener {
 
             SubmissionsFlairFilterActivity.start(this)
         }
 
-        bttn_multi_submissions.setOnClickListener {
+        binding.bttnMultiSubmissions.setOnClickListener {
 
             MultiSubmissionsActivity.start(this)
         }
 
-        bttn_subreddit_search.setOnClickListener {
+        binding.bttnSubredditSearch.setOnClickListener {
 
             SubredditsSearchActivity.start(this)
         }
@@ -112,27 +116,27 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }*/
 
-        bttn_submit.setOnClickListener {
+        binding.bttnSubmit.setOnClickListener {
 
             SubmitActivity.start(this)
         }
 
-        bttn_submit_media.setOnClickListener {
+        binding.bttnSubmitMedia.setOnClickListener {
 
             SubmitMediaActivity.start(this)
         }
 
-        bttn_submissions_commons.setOnClickListener {
+        binding.bttnSubmissionsCommons.setOnClickListener {
 
             CommonSubmissionsActivity.start(this)
         }
 
-        bttn_comment.setOnClickListener {
+        binding.bttnComment.setOnClickListener {
 
             CommentActivity.start(this)
         }
 
-        bttn_comments.setOnClickListener {
+        binding.bttnComments.setOnClickListener {
 
             CommentsActivity.start(this)
         }
@@ -142,27 +146,27 @@ class MainActivity : AppCompatActivity() {
             PollVoteActivity.start(this)
         }*/
 
-        bttn_wiki.setOnClickListener {
+        binding.bttnWiki.setOnClickListener {
 
             WikiPageActivity.start(this)
         }
 
-        bttn_wiki_pages.setOnClickListener {
+        binding.bttnWikiPages.setOnClickListener {
 
             WikiPagesActivity.start(this)
         }
 
-        bttn_rules.setOnClickListener {
+        binding.bttnRules.setOnClickListener {
 
             RulesActivity.start(this)
         }
 
-        bttn_upload_images.setOnClickListener {
+        binding.bttnUploadImages.setOnClickListener {
 
             UploadImagesActivity.start(this)
         }
 
-        bttn_settings.setOnClickListener {
+        binding.bttnSettings.setOnClickListener {
 
             SettingsActivity.start(this)
         }

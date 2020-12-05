@@ -25,7 +25,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:hint="@string/edit_insert_subreddit"
+                        android:hint="@string/edit_insert_query"
                         android:inputType="text"
                         android:importantForAutofill="no"
                         />
@@ -35,23 +35,26 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="5"
-                        android:text="@string/bttn_ok"
+                        android:text="@string/bttn_search"
                         />
 
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
 
+        <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabMode="scrollable"
+                />
+
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.airbnb.epoxy.EpoxyRecyclerView
-            android:id="@+id/list"
+    <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipToPadding="true"
-            android:scrollbars="vertical"
-            android:fadeScrollbars="true"
-            app:itemSpacing="16dp"
-            app:layoutManager="@string/linear_layout"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

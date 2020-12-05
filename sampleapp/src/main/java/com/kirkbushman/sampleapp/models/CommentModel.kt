@@ -1,44 +1,38 @@
 package com.kirkbushman.sampleapp.models
 
 import android.view.View
-import android.widget.Button
-import android.widget.TextView
 import com.airbnb.epoxy.EpoxyAttribute
+import com.airbnb.epoxy.EpoxyAttribute.Option.DoNotHash
 import com.airbnb.epoxy.EpoxyModelClass
-import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.kirkbushman.sampleapp.R
+import com.kirkbushman.sampleapp.databinding.ItemCommentBinding
+import com.kirkbushman.sampleapp.models.base.ViewBindingEpoxyModelWithHolder
 
 @EpoxyModelClass
-abstract class CommentModel : EpoxyModelWithHolder<CommentHolder>() {
+abstract class CommentModel : ViewBindingEpoxyModelWithHolder<ItemCommentBinding>() {
 
     @EpoxyAttribute
-    lateinit var author: String
+    lateinit var authorText: String
     @EpoxyAttribute
-    lateinit var body: String
+    lateinit var bodyText: String
 
-    @EpoxyAttribute
+    @EpoxyAttribute(DoNotHash)
     lateinit var replyClick: View.OnClickListener
 
     override fun getDefaultLayout(): Int {
         return R.layout.item_comment
     }
 
-    override fun bind(holder: CommentHolder) {
+    override fun ItemCommentBinding.bind() {
 
-        holder.author.text = author
-        holder.body.text = body
+        author.text = authorText
+        body.text = bodyText
 
-        holder.reply.setOnClickListener(replyClick)
+        replyButton.setOnClickListener(replyClick)
     }
 
-    override fun unbind(holder: CommentHolder) {
-        holder.reply.setOnClickListener(null)
+    override fun ItemCommentBinding.unbind() {
+
+        replyButton.setOnClickListener(null)
     }
-}
-
-class CommentHolder : KotlinHolder() {
-
-    val author by bind<TextView>(R.id.author)
-    val body by bind<TextView>(R.id.body)
-    val reply by bind<Button>(R.id.reply_button)
 }

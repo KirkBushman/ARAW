@@ -13,8 +13,8 @@ import com.kirkbushman.araw.models.base.Saveable
 import com.kirkbushman.araw.models.base.Votable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import kotlinx.android.parcel.Parcelize
-import kotlinx.android.parcel.RawValue
+import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.RawValue
 
 /**
  * This class can represent a comment on a Submission or a reply to another comment.

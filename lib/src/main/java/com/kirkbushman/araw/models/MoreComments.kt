@@ -4,7 +4,7 @@ import android.os.Parcelable
 import com.kirkbushman.araw.models.base.CommentData
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 /**
  * This class is used to load more comments in the tree,

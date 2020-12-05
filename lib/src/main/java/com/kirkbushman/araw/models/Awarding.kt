@@ -5,7 +5,7 @@ import com.kirkbushman.araw.models.base.Thing
 import com.kirkbushman.araw.models.commons.ImageDetail
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @JsonClass(generateAdapter = true)
 @Parcelize

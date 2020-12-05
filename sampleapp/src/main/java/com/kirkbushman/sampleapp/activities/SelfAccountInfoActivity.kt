@@ -2,20 +2,16 @@ package com.kirkbushman.sampleapp.activities
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter
+import com.google.android.material.tabs.TabLayout
 import com.kirkbushman.araw.models.enums.ContributionsSorting
 import com.kirkbushman.araw.models.enums.TimePeriod
 import com.kirkbushman.sampleapp.R
-import com.kirkbushman.sampleapp.activities.base.BaseActivity
-import com.kirkbushman.sampleapp.fragments.SelfContributionFragment
-import kotlinx.android.synthetic.main.activity_selfaccount_info.*
+import com.kirkbushman.sampleapp.activities.base.BaseAdapterActivity
+import com.kirkbushman.sampleapp.adapters.SelfContributionsAdapter
 
-class SelfAccountInfoActivity : BaseActivity() {
+class SelfAccountInfoActivity : BaseAdapterActivity<SelfContributionsAdapter>() {
 
     companion object {
 
@@ -26,32 +22,14 @@ class SelfAccountInfoActivity : BaseActivity() {
         }
     }
 
-    private val adapter by lazy { ContributionPagerAdapter(supportFragmentManager) }
+    override val adapter by lazy {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_selfaccount_info)
+        SelfContributionsAdapter(supportFragmentManager, lifecycle)
+    }
 
-        setSupportActionBar(toolbar)
-        supportActionBar?.let {
-            it.setDisplayHomeAsUpEnabled(true)
-            it.setDisplayShowHomeEnabled(true)
-        }
+    override fun getTitleAtPos(tab: TabLayout.Tab, position: Int) {
 
-        pager.adapter = adapter
-
-        tab_layout.setupWithViewPager(pager)
-
-        with(adapter) {
-            addFragment(SelfContributionFragment.newInstance(SelfContributionFragment.TAG_OVERVIEW))
-            addFragment(SelfContributionFragment.newInstance(SelfContributionFragment.TAG_SUBMITTED))
-            addFragment(SelfContributionFragment.newInstance(SelfContributionFragment.TAG_COMMENTS))
-            addFragment(SelfContributionFragment.newInstance(SelfContributionFragment.TAG_SAVED))
-            addFragment(SelfContributionFragment.newInstance(SelfContributionFragment.TAG_UPVOTED))
-            addFragment(SelfContributionFragment.newInstance(SelfContributionFragment.TAG_DOWNVOTED))
-            addFragment(SelfContributionFragment.newInstance(SelfContributionFragment.TAG_GILDED))
-            notifyDataSetChanged()
-        }
+        tab.text = adapter.getTitleAtPos(position)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -81,28 +59,6 @@ class SelfAccountInfoActivity : BaseActivity() {
 
     private fun reloadFragment(sorting: ContributionsSorting? = null, timePeriod: TimePeriod? = null) {
 
-        (adapter.getItem(pager.currentItem) as SelfContributionFragment).reload(sorting, timePeriod)
-    }
-
-    private class ContributionPagerAdapter(
-        manager: FragmentManager
-    ) : FragmentStatePagerAdapter(
-        manager,
-        BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
-    ) {
-
-        val fragments = ArrayList<Fragment>()
-
-        override fun getPageTitle(position: Int): CharSequence? {
-            return (fragments[position] as SelfContributionFragment).passedTag
-        }
-        override fun getCount(): Int = fragments.size
-        override fun getItem(position: Int): Fragment {
-            return fragments[position]
-        }
-
-        fun addFragment(fragment: Fragment) {
-            fragments.add(fragment)
-        }
+        adapter.getFragmentAtPos(binding.pager.currentItem)?.reload(sorting, timePeriod)
     }
 }

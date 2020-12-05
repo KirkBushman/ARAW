@@ -5,7 +5,7 @@ import com.kirkbushman.araw.http.base.Listing
 import com.kirkbushman.araw.models.WikiRevision
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @JsonClass(generateAdapter = true)
 @Parcelize

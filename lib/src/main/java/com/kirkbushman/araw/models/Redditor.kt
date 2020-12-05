@@ -3,7 +3,7 @@ package com.kirkbushman.araw.models
 import com.kirkbushman.araw.models.base.RedditorData
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 /**
  * This class represents a Redditor, that is not the current logged in one.

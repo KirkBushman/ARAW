@@ -1,7 +1,7 @@
 plugins {
     id "com.android.application"
     id "org.jetbrains.kotlin.android"
-    id "org.jetbrains.kotlin.android.extensions"
+    id "org.jetbrains.kotlin.plugin.parcelize"
     id "org.jetbrains.kotlin.kapt"
     // id "io.gitlab.arturbosch.detekt"
 }
@@ -38,9 +38,6 @@ android {
         noReflect = true
     }
 
-    testOptions {
-        unitTests.includeAndroidResources = true
-    }
     lintOptions {
         warningsAsErrors true
     }
@@ -51,6 +48,14 @@ android {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'
+    }
+
+    testOptions {
+        unitTests.includeAndroidResources = true
+    }
+
+    buildFeatures {
+        viewBinding true
     }
 }
 

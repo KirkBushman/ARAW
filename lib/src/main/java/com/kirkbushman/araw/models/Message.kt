@@ -8,7 +8,7 @@ import com.kirkbushman.araw.models.base.Thing
 import com.kirkbushman.araw.models.base.Votable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 /**
  * This class represents the message a user can send or receive.

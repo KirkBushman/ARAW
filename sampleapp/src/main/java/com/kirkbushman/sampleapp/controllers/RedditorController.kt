@@ -2,6 +2,8 @@ package com.kirkbushman.sampleapp.controllers
 
 import com.kirkbushman.araw.models.Redditor
 import com.kirkbushman.araw.utils.createdDate
+import com.kirkbushman.sampleapp.controllers.base.BaseCallback
+import com.kirkbushman.sampleapp.controllers.base.BaseController2
 import com.kirkbushman.sampleapp.models.redditor
 
 class RedditorController : BaseController2<Redditor>() {
@@ -10,9 +12,9 @@ class RedditorController : BaseController2<Redditor>() {
 
         redditor {
             id(it.id)
-            redditorName(it.fullname)
-            redditorCreated(it.createdDate.toString())
-            redditorKarma((it.commentKarma + it.linkKarma).toString())
+            redditorNameText(it.fullname)
+            redditorCreatedText(it.createdDate.toString())
+            redditorKarmaText((it.commentKarma + it.linkKarma).toString())
         }
     }
 }

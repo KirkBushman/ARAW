@@ -135,5 +135,6 @@
     <string name="timeperiod_year">Year</string>
     <string name="timeperiod_all">All</string>
     <string name="bttn_user_moderated_subs">User Moderated Subs</string>
+    <string name="bttn_search">Search</string>
 
 </resources>

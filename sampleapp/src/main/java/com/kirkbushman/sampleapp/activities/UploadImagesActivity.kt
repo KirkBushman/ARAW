@@ -9,9 +9,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
+import com.kirkbushman.sampleapp.databinding.ActivityUploadImagesBinding
 import com.kirkbushman.sampleapp.util.StorageUtil
 import com.kirkbushman.sampleapp.util.DoAsync
-import kotlinx.android.synthetic.main.activity_upload_images.*
 
 class UploadImagesActivity : AppCompatActivity() {
 
@@ -26,6 +26,8 @@ class UploadImagesActivity : AppCompatActivity() {
 
     private val client by lazy { TestApplication.instance.getClient() }
 
+    private lateinit var binding: ActivityUploadImagesBinding
+
     private var fileName: String? = null
     private var mimeType: String? = null
     private var fileContent: ByteArray? = null
@@ -33,10 +35,12 @@ class UploadImagesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        binding = ActivityUploadImagesBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_upload_images)
 
-        bttn_upload.visibility = View.GONE
-        bttn_upload.setOnClickListener {
+        binding.bttnUpload.visibility = View.GONE
+        binding.bttnUpload.setOnClickListener {
 
             if (fileName != null &&
                 mimeType != null &&
@@ -64,15 +68,15 @@ class UploadImagesActivity : AppCompatActivity() {
             }
         }
 
-        bttn_load_image.setOnClickListener {
+        binding.bttnLoadImage.setOnClickListener {
 
             StorageUtil.openMediaChooser(this)
         }
 
-        image_filename.visibility = View.GONE
-        image_to_upload.visibility = View.GONE
+        binding.imageFilename.visibility = View.GONE
+        binding.imageToUpload.visibility = View.GONE
 
-        image_to_upload.setImageDrawable(null)
+        binding.imageToUpload.setImageDrawable(null)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -91,15 +95,15 @@ class UploadImagesActivity : AppCompatActivity() {
             this.fileContent = fileContent
             this.bitmap = bitmap
 
-            image_filename.visibility = View.VISIBLE
-            image_to_upload.visibility = View.VISIBLE
+            binding.imageFilename.visibility = View.VISIBLE
+            binding.imageToUpload.visibility = View.VISIBLE
 
             val imageNameText = "name: $fileName, mime-type: $mimeType"
-            image_filename.text = imageNameText
+            binding.imageFilename.text = imageNameText
 
-            image_to_upload.setImageBitmap(bitmap)
+            binding.imageToUpload.setImageBitmap(bitmap)
 
-            bttn_upload.visibility = View.VISIBLE
+            binding.bttnUpload.visibility = View.VISIBLE
         }
     }
 }

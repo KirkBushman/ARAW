@@ -1,17 +1,16 @@
 package com.kirkbushman.sampleapp.models
 
-import android.widget.TextView
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyModelClass
-import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.kirkbushman.sampleapp.R
+import com.kirkbushman.sampleapp.databinding.ItemRuleBinding
+import com.kirkbushman.sampleapp.models.base.ViewBindingEpoxyModelWithHolder
 
 @EpoxyModelClass
-abstract class RuleModel : EpoxyModelWithHolder<RuleHolder>() {
+abstract class RuleModel : ViewBindingEpoxyModelWithHolder<ItemRuleBinding>() {
 
     @EpoxyAttribute
     var priority: Int = 0
-
     @EpoxyAttribute
     lateinit var shortName: String
 
@@ -19,14 +18,14 @@ abstract class RuleModel : EpoxyModelWithHolder<RuleHolder>() {
         return R.layout.item_rule
     }
 
-    override fun bind(holder: RuleHolder) {
+    override fun ItemRuleBinding.bind() {
 
         val text = "Rule $priority - $shortName"
-        holder.rule.text = text
+        rule.text = text
     }
-}
 
-class RuleHolder : KotlinHolder() {
+    override fun ItemRuleBinding.unbind() {
 
-    val rule by bind<TextView>(R.id.rule)
+        rule.text = null
+    }
 }

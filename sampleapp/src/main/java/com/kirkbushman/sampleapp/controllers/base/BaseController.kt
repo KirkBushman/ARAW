@@ -1,4 +1,4 @@
-package com.kirkbushman.sampleapp.controllers
+package com.kirkbushman.sampleapp.controllers.base
 
 import com.airbnb.epoxy.EpoxyController
 import com.kirkbushman.sampleapp.models.empty

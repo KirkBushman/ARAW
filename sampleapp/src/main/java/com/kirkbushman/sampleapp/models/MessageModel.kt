@@ -1,49 +1,42 @@
 package com.kirkbushman.sampleapp.models
 
 import android.view.View
-import android.widget.TextView
 import com.airbnb.epoxy.EpoxyAttribute
+import com.airbnb.epoxy.EpoxyAttribute.Option.DoNotHash
 import com.airbnb.epoxy.EpoxyModelClass
-import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.kirkbushman.sampleapp.R
+import com.kirkbushman.sampleapp.databinding.ItemMessageBinding
+import com.kirkbushman.sampleapp.models.base.ViewBindingEpoxyModelWithHolder
 
 @EpoxyModelClass
-abstract class MessageModel : EpoxyModelWithHolder<MessageHolder>() {
+abstract class MessageModel : ViewBindingEpoxyModelWithHolder<ItemMessageBinding>() {
 
-    @EpoxyAttribute lateinit var subject: String
-    @EpoxyAttribute lateinit var author: String
-    @EpoxyAttribute lateinit var body: String
+    @EpoxyAttribute lateinit var subjectText: String
+    @EpoxyAttribute lateinit var authorText: String
+    @EpoxyAttribute lateinit var bodyText: String
 
-    @EpoxyAttribute lateinit var readBttn: View.OnClickListener
-    @EpoxyAttribute lateinit var unreadBttn: View.OnClickListener
+    @EpoxyAttribute(DoNotHash)
+    lateinit var readClick: View.OnClickListener
+    @EpoxyAttribute(DoNotHash)
+    lateinit var unreadClick: View.OnClickListener
 
     override fun getDefaultLayout(): Int {
         return R.layout.item_message
     }
 
-    override fun bind(holder: MessageHolder) {
+    override fun ItemMessageBinding.bind() {
 
-        holder.subject.text = subject
-        holder.author.text = author
-        holder.body.text = body
+        subject.text = subjectText
+        author.text = authorText
+        body.text = bodyText
 
-        holder.readBttn.setOnClickListener(readBttn)
-        holder.unreadBttn.setOnClickListener(unreadBttn)
+        readButton.setOnClickListener(readClick)
+        unreadButton.setOnClickListener(unreadClick)
     }
 
-    override fun unbind(holder: MessageHolder) {
+    override fun ItemMessageBinding.unbind() {
 
-        holder.readBttn.setOnClickListener(null)
-        holder.unreadBttn.setOnClickListener(null)
+        readButton.setOnClickListener(null)
+        unreadButton.setOnClickListener(null)
     }
-}
-
-class MessageHolder : KotlinHolder() {
-
-    val subject by bind<TextView>(R.id.subject)
-    val author by bind<TextView>(R.id.author)
-    val body by bind<TextView>(R.id.body)
-
-    val readBttn by bind<TextView>(R.id.read_button)
-    val unreadBttn by bind<TextView>(R.id.unread_button)
 }

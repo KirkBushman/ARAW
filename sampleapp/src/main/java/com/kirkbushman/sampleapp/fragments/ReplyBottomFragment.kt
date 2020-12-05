@@ -7,11 +7,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.kirkbushman.araw.models.Comment
-import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
+import com.kirkbushman.sampleapp.databinding.FragmentBottomReplyBinding
 import com.kirkbushman.sampleapp.util.DoAsync
-import kotlinx.android.synthetic.main.fragment_bottom_reply.*
-import kotlinx.android.synthetic.main.fragment_bottom_reply.view.*
 
 class ReplyBottomFragment : BottomSheetDialogFragment() {
 
@@ -33,31 +31,41 @@ class ReplyBottomFragment : BottomSheetDialogFragment() {
     private val client by lazy { TestApplication.instance.getClient() }
     private val comment by lazy { arguments?.getParcelable(PASSED_COMMENT) as Comment? }
 
+    private var binding: FragmentBottomReplyBinding? = null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_bottom_reply, container, false)
+        binding = FragmentBottomReplyBinding.inflate(layoutInflater, container, false)
 
-        val titleStr = "Reply for comment ${comment?.id}"
-        view.title.text = titleStr
+        binding?.let { b ->
 
-        view.bttn_reply.setOnClickListener {
+            val titleStr = "Reply for comment ${comment?.id}"
+            b.title.text = titleStr
 
-            var responseComment: Comment? = null
+            b.bttnReply.setOnClickListener {
 
-            DoAsync(
-                doWork = {
+                var responseComment: Comment? = null
 
-                    val replyText = edit_reply.text.toString().trim()
-                    responseComment =
-                        client?.contributionsClient?.reply(comment?.fullname ?: "", replyText)
-                },
-                onPost = {
+                DoAsync(
+                    doWork = {
 
-                    val toastStr = "Response is: ${responseComment?.body}"
-                    Toast.makeText(activity, toastStr, Toast.LENGTH_SHORT).show()
-                }
-            )
+                        val replyText = b.editReply.text.toString().trim()
+                        responseComment =
+                            client?.contributionsClient?.reply(comment?.fullname ?: "", replyText)
+                    },
+                    onPost = {
+
+                        val toastStr = "Response is: ${responseComment?.body}"
+                        Toast.makeText(activity, toastStr, Toast.LENGTH_SHORT).show()
+                    }
+                )
+            }
         }
 
-        return view
+        return binding?.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 }

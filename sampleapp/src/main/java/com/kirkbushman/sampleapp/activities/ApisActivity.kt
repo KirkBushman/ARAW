@@ -3,9 +3,8 @@ package com.kirkbushman.sampleapp.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.activities.base.BaseActivity
-import kotlinx.android.synthetic.main.activity_apis.*
+import com.kirkbushman.sampleapp.databinding.ActivityApisBinding
 
 class ApisActivity : BaseActivity() {
 
@@ -18,219 +17,223 @@ class ApisActivity : BaseActivity() {
         }
     }
 
+    private lateinit var binding: ActivityApisBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_apis)
 
-        bttn_me.setOnClickListener {
+        binding = ActivityApisBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.bttnMe.setOnClickListener {
             ApiDetailActivity.startApiMe(this)
         }
 
-        bttn_my_blocked.setOnClickListener {
+        binding.bttnMyBlocked.setOnClickListener {
             ApiDetailActivity.startApiMyBlocked(this)
         }
 
-        bttn_my_friends.setOnClickListener {
+        binding.bttnMyFriends.setOnClickListener {
             ApiDetailActivity.startApiMyFriends(this)
         }
 
-        bttn_my_karma.setOnClickListener {
+        binding.bttnMyKarma.setOnClickListener {
             ApiDetailActivity.startApiMyKarma(this)
         }
 
-        bttn_my_prefs.setOnClickListener {
+        binding.bttnMyPrefs.setOnClickListener {
             ApiDetailActivity.startApiMyPrefs(this)
         }
 
-        bttn_my_trophies.setOnClickListener {
+        binding.bttnMyTrophies.setOnClickListener {
             ApiDetailActivity.startApiMyTrophies(this)
         }
 
-        bttn_overview.setOnClickListener {
+        binding.bttnOverview.setOnClickListener {
             ApiDetailActivity.startApiOverview(this)
         }
 
-        bttn_submitted.setOnClickListener {
+        binding.bttnSubmitted.setOnClickListener {
             ApiDetailActivity.startApiSubmitted(this)
         }
 
-        bttn_comments.setOnClickListener {
+        binding.bttnComments.setOnClickListener {
             ApiDetailActivity.startApiComments(this)
         }
 
-        bttn_saved.setOnClickListener {
+        binding.bttnSaved.setOnClickListener {
             ApiDetailActivity.startApiSaved(this)
         }
 
-        bttn_hidden.setOnClickListener {
+        binding.bttnHidden.setOnClickListener {
             ApiDetailActivity.startApiHidden(this)
         }
 
-        bttn_upvoted.setOnClickListener {
+        binding.bttnUpvoted.setOnClickListener {
             ApiDetailActivity.startApiUpvoted(this)
         }
 
-        bttn_downvoted.setOnClickListener {
+        binding.bttnDownvoted.setOnClickListener {
             ApiDetailActivity.startApiDownvoted(this)
         }
 
-        bttn_gilded.setOnClickListener {
+        binding.bttnGilded.setOnClickListener {
             ApiDetailActivity.startApiGilded(this)
         }
 
-        bttn_sub_submission.setOnClickListener {
+        binding.bttnSubSubmission.setOnClickListener {
             ApiDetailActivity.startApiSubSubmission(this)
         }
 
-        bttn_sub_comment.setOnClickListener {
+        binding.bttnSubComment.setOnClickListener {
             ApiDetailActivity.startApiSubComment(this)
         }
 
-        bttn_sub_submissions.setOnClickListener {
+        binding.bttnSubSubmissions.setOnClickListener {
             ApiDetailActivity.startApiSubSubmissions(this)
         }
 
-        bttn_sub_comments.setOnClickListener {
+        binding.bttnSubComments.setOnClickListener {
             ApiDetailActivity.startApiSubComments(this)
         }
 
-        bttn_multireddit.setOnClickListener {
+        binding.bttnMultireddit.setOnClickListener {
             ApiDetailActivity.startApiSubMultireddit(this)
         }
 
-        bttn_trending.setOnClickListener {
+        binding.bttnTrending.setOnClickListener {
             ApiDetailActivity.startApiTrending(this)
         }
 
-        bttn_inbox.setOnClickListener {
+        binding.bttnInbox.setOnClickListener {
             ApiDetailActivity.startApiInbox(this)
         }
 
-        bttn_unread.setOnClickListener {
+        binding.bttnUnread.setOnClickListener {
             ApiDetailActivity.startApiUnread(this)
         }
 
-        bttn_messages.setOnClickListener {
+        binding.bttnMessages.setOnClickListener {
             ApiDetailActivity.startApiMessages(this)
         }
 
-        bttn_sent.setOnClickListener {
+        binding.bttnSent.setOnClickListener {
             ApiDetailActivity.startApiSent(this)
         }
 
-        bttn_comment_replies.setOnClickListener {
+        binding.bttnCommentReplies.setOnClickListener {
             ApiDetailActivity.startApiCommentReplies(this)
         }
 
-        bttn_self_replies.setOnClickListener {
+        binding.bttnSelfReplies.setOnClickListener {
             ApiDetailActivity.startApiSelfReplies(this)
         }
 
-        bttn_my_multis.setOnClickListener {
+        binding.bttnMyMultis.setOnClickListener {
             ApiDetailActivity.startApiMyMultis(this)
         }
 
-        bttn_redditor_multis.setOnClickListener {
+        binding.bttnRedditorMultis.setOnClickListener {
             ApiDetailActivity.startApiRedditorMultis(this)
         }
 
-        bttn_multi_submissions.setOnClickListener {
+        binding.bttnMultiSubmissions.setOnClickListener {
             ApiDetailActivity.startApiMultiSubs(this)
         }
 
-        bttn_multi_get_desc.setOnClickListener {
+        binding.bttnMultiGetDesc.setOnClickListener {
             ApiDetailActivity.startApiMultiGetDesc(this)
         }
 
-        bttn_multi_set_desc.setOnClickListener {
+        binding.bttnMultiSetDesc.setOnClickListener {
             ApiDetailActivity.startApiMultiSetDesc(this)
         }
 
-        bttn_multi_get_sub.setOnClickListener {
+        binding.bttnMultiGetSub.setOnClickListener {
             ApiDetailActivity.startApiMultiGetSub(this)
         }
 
-        bttn_multi_add_sub.setOnClickListener {
+        binding.bttnMultiAddSub.setOnClickListener {
             ApiDetailActivity.startApiMultiAddSub(this)
         }
 
-        bttn_multi_del_sub.setOnClickListener {
+        binding.bttnMultiDelSub.setOnClickListener {
             ApiDetailActivity.startApiMultiDelSub(this)
         }
 
-        bttn_subreddit.setOnClickListener {
+        binding.bttnSubreddit.setOnClickListener {
             ApiDetailActivity.startApiSubreddit(this)
         }
 
-        bttn_subreddits.setOnClickListener {
+        binding.bttnSubreddits.setOnClickListener {
             ApiDetailActivity.startApiSubreddits(this)
         }
 
-        bttn_subreddit_banned.setOnClickListener {
+        binding.bttnSubredditBanned.setOnClickListener {
             ApiDetailActivity.startApiSubBanned(this)
         }
 
-        bttn_subreddit_muted.setOnClickListener {
+        binding.bttnSubredditMuted.setOnClickListener {
             ApiDetailActivity.startApiSubMuted(this)
         }
 
-        bttn_subreddit_rules.setOnClickListener {
+        binding.bttnSubredditRules.setOnClickListener {
             ApiDetailActivity.startApiSubRules(this)
         }
 
-        bttn_subreddit_flairs.setOnClickListener {
+        binding.bttnSubredditFlairs.setOnClickListener {
             ApiDetailActivity.startApiSubFlairs(this)
         }
 
-        bttn_subreddit_wikibanned.setOnClickListener {
+        binding.bttnSubredditWikibanned.setOnClickListener {
             ApiDetailActivity.startApiSubWikiBanned(this)
         }
 
-        bttn_subreddit_contributors.setOnClickListener {
+        binding.bttnSubredditContributors.setOnClickListener {
             ApiDetailActivity.startApiSubContributors(this)
         }
 
-        bttn_subreddit_wikicontributors.setOnClickListener {
+        binding.bttnSubredditWikicontributors.setOnClickListener {
             ApiDetailActivity.startApiSubWikiContributors(this)
         }
 
-        bttn_subreddit_moderators.setOnClickListener {
+        binding.bttnSubredditModerators.setOnClickListener {
             ApiDetailActivity.startApiSubModerators(this)
         }
 
-        bttn_user_overview.setOnClickListener {
+        binding.bttnUserOverview.setOnClickListener {
             ApiDetailActivity.startApiUserOverview(this)
         }
 
-        bttn_user_submitted.setOnClickListener {
+        binding.bttnUserSubmitted.setOnClickListener {
             ApiDetailActivity.startApiUserSubmitted(this)
         }
 
-        bttn_user_comments.setOnClickListener {
+        binding.bttnUserComments.setOnClickListener {
             ApiDetailActivity.startApiUserComments(this)
         }
 
-        bttn_user_gilded.setOnClickListener {
+        binding.bttnUserGilded.setOnClickListener {
             ApiDetailActivity.startApiUserGilded(this)
         }
 
-        bttn_user_trophies.setOnClickListener {
+        binding.bttnUserTrophies.setOnClickListener {
             ApiDetailActivity.startApiUserTrophies(this)
         }
 
-        bttn_wiki.setOnClickListener {
+        binding.bttnWiki.setOnClickListener {
             ApiDetailActivity.startApiWiki(this)
         }
 
-        bttn_wiki_pages.setOnClickListener {
+        binding.bttnWikiPages.setOnClickListener {
             ApiDetailActivity.startApiWikiPages(this)
         }
 
-        bttn_wiki_revision.setOnClickListener {
+        binding.bttnWikiRevision.setOnClickListener {
             ApiDetailActivity.startApiWikiRevision(this)
         }
 
-        bttn_wiki_revisions.setOnClickListener {
+        binding.bttnWikiRevisions.setOnClickListener {
             ApiDetailActivity.startApiWikiRevisions(this)
         }
     }

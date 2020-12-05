@@ -3,7 +3,7 @@ package com.kirkbushman.araw.models.commons
 import android.os.Parcelable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 /**
  * This class represents the amount of silver, gold and platinum that a contribution has,

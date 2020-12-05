@@ -21,40 +21,47 @@
                     android:orientation="horizontal">
 
                 <EditText
-                        android:id="@+id/search"
-                        android:layout_width="match_parent"
+                        android:id="@+id/edit_search"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
                         android:layout_weight="2"
-                        android:hint="@string/edit_insert_username"
+                        android:layout_gravity="center"
                         android:inputType="text"
-                        android:importantForAutofill="no"
-                        />
+                        android:hint="@string/edit_insert_query"
+                        android:importantForAutofill="no" />
 
                 <com.google.android.material.button.MaterialButton
-                        android:id="@+id/search_bttn"
-                        android:layout_width="match_parent"
+                        android:id="@+id/bttn_search"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="5"
-                        android:text="@string/bttn_ok"
-                        />
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:text="@string/bttn_search" />
 
             </LinearLayout>
-        </androidx.appcompat.widget.Toolbar>
 
-        <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tab_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:tabMode="scrollable"
-                />
+        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.viewpager.widget.ViewPager
-            android:id="@+id/pager"
+    <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            />
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/print_text"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:textSize="16sp" />
+
+    </ScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+

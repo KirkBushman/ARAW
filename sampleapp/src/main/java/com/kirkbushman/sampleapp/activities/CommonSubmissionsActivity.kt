@@ -2,20 +2,16 @@ package com.kirkbushman.sampleapp.activities
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter
+import com.google.android.material.tabs.TabLayout
 import com.kirkbushman.araw.models.enums.SubmissionsSorting
 import com.kirkbushman.araw.models.enums.TimePeriod
 import com.kirkbushman.sampleapp.R
-import com.kirkbushman.sampleapp.activities.base.BaseActivity
-import com.kirkbushman.sampleapp.fragments.SubmissionFragment
-import kotlinx.android.synthetic.main.activity_inbox.*
+import com.kirkbushman.sampleapp.activities.base.BaseAdapterActivity
+import com.kirkbushman.sampleapp.adapters.SubmissionsAdapter
 
-class CommonSubmissionsActivity : BaseActivity() {
+class CommonSubmissionsActivity : BaseAdapterActivity<SubmissionsAdapter>() {
 
     companion object {
 
@@ -26,29 +22,14 @@ class CommonSubmissionsActivity : BaseActivity() {
         }
     }
 
-    private val adapter by lazy { SubmissionsPagerAdapter(supportFragmentManager) }
+    override val adapter by lazy {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_submissions_common)
+        SubmissionsAdapter(supportFragmentManager, lifecycle)
+    }
 
-        setSupportActionBar(toolbar)
-        supportActionBar?.let {
-            it.setDisplayHomeAsUpEnabled(true)
-            it.setDisplayShowHomeEnabled(true)
-        }
+    override fun getTitleAtPos(tab: TabLayout.Tab, position: Int) {
 
-        pager.adapter = adapter
-
-        tab_layout.setupWithViewPager(pager)
-
-        with(adapter) {
-            addFragment(SubmissionFragment.newInstance(SubmissionFragment.TAG_FRONTPAGE))
-            addFragment(SubmissionFragment.newInstance(SubmissionFragment.TAG_ALL))
-            addFragment(SubmissionFragment.newInstance(SubmissionFragment.TAG_POPULAR))
-            addFragment(SubmissionFragment.newInstance(SubmissionFragment.TAG_FRIENDS))
-            notifyDataSetChanged()
-        }
+        tab.text = adapter.getTitleAtPos(position)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -78,28 +59,10 @@ class CommonSubmissionsActivity : BaseActivity() {
         }
     }
 
-    private fun reloadFragment(sorting: SubmissionsSorting? = null, timePeriod: TimePeriod? = null) {
-
-        (adapter.getItem(pager.currentItem) as SubmissionFragment).reload(sorting, timePeriod)
-    }
-
-    private class SubmissionsPagerAdapter(
-        manager: FragmentManager
-    ) : FragmentStatePagerAdapter(
-        manager,
-        BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
+    private fun reloadFragment(
+        sorting: SubmissionsSorting? = null,
+        timePeriod: TimePeriod? = null
     ) {
-
-        private val fragments = ArrayList<Fragment>()
-
-        override fun getPageTitle(position: Int): CharSequence? = (fragments[position] as SubmissionFragment).passedTag
-        override fun getCount(): Int = fragments.size
-        override fun getItem(position: Int): Fragment {
-            return fragments[position]
-        }
-
-        fun addFragment(fragment: Fragment) {
-            fragments.add(fragment)
-        }
+        adapter.getFragmentAtPos(binding.pager.currentItem)?.reload(sorting, timePeriod)
     }
 }

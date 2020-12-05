@@ -1,19 +1,17 @@
 package com.kirkbushman.sampleapp.fragments
 
 import android.os.Bundle
-import android.view.View
-import androidx.fragment.app.Fragment
+import com.kirkbushman.araw.RedditClient
+import com.kirkbushman.araw.fetcher.SubmissionsFetcher
 import com.kirkbushman.araw.models.Submission
 import com.kirkbushman.araw.models.enums.SubmissionsSorting
 import com.kirkbushman.araw.models.enums.TimePeriod
 import com.kirkbushman.araw.models.enums.Vote
-import com.kirkbushman.sampleapp.R
-import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.controllers.SubmissionController
+import com.kirkbushman.sampleapp.fragments.base.BaseControllerFragment
 import com.kirkbushman.sampleapp.util.DoAsync
-import kotlinx.android.synthetic.main.activity_submissions.*
 
-class SubmissionFragment : Fragment(R.layout.fragment_submission) {
+class SubmissionFragment : BaseControllerFragment<Submission, SubmissionController.SubmissionCallback>() {
 
     companion object {
 
@@ -38,10 +36,81 @@ class SubmissionFragment : Fragment(R.layout.fragment_submission) {
 
     val passedTag by lazy { arguments?.getString(PASSED_TAG) ?: "" }
 
-    private val client by lazy { TestApplication.instance.getClient() }
-    private val fetcher by lazy {
+    override val callback = object : SubmissionController.SubmissionCallback {
 
-        when (passedTag) {
+        override fun onUpvoteClick(index: Int) {
+
+            DoAsync(
+                doWork = {
+                    val submission = items[index]
+                    client?.contributionsClient?.vote(Vote.UPVOTE, submission)
+                }
+            )
+        }
+
+        override fun onNoneClick(index: Int) {
+
+            DoAsync(
+                doWork = {
+                    val submission = items[index]
+                    client?.contributionsClient?.vote(Vote.NONE, submission)
+                }
+            )
+        }
+
+        override fun onDownClick(index: Int) {
+
+            DoAsync(
+                doWork = {
+                    val submission = items[index]
+                    client?.contributionsClient?.vote(Vote.DOWNVOTE, submission)
+                }
+            )
+        }
+
+        override fun onSaveClick(index: Int) {
+
+            DoAsync(
+                doWork = {
+                    val submission = items[index]
+                    client?.contributionsClient?.save(!submission.isSaved, submission)
+                }
+            )
+        }
+
+        override fun onHideClick(index: Int) {
+
+            DoAsync(
+                doWork = {
+                    val submission = items[index]
+                    client?.contributionsClient?.hide(submission)
+                }
+            )
+        }
+
+        override fun onLockClick(index: Int) {
+
+            DoAsync(
+                doWork = {
+                    val submission = items[index]
+                    client?.contributionsClient?.lock(submission)
+                }
+            )
+        }
+
+        override fun onReplyClick(index: Int) = Unit
+    }
+
+    override val controller by lazy {
+
+        SubmissionController(callback)
+    }
+
+    private var fetcher: SubmissionsFetcher? = null
+
+    override fun fetchItem(client: RedditClient?): Collection<Submission>? {
+
+        fetcher = when (passedTag) {
             TAG_FRONTPAGE -> client?.subredditsClient?.frontpage()
             TAG_ALL -> client?.subredditsClient?.all()
             TAG_POPULAR -> client?.subredditsClient?.popular()
@@ -49,96 +118,8 @@ class SubmissionFragment : Fragment(R.layout.fragment_submission) {
 
             else -> null
         }
-    }
 
-    private val submissions = ArrayList<Submission>()
-    private val controller by lazy {
-
-        SubmissionController(
-
-            object : SubmissionController.SubmissionCallback {
-
-                override fun onUpvoteClick(index: Int) {
-
-                    DoAsync(
-                        doWork = {
-                            val submission = submissions[index]
-                            client?.contributionsClient?.vote(Vote.UPVOTE, submission)
-                        }
-                    )
-                }
-
-                override fun onNoneClick(index: Int) {
-
-                    DoAsync(
-                        doWork = {
-                            val submission = submissions[index]
-                            client?.contributionsClient?.vote(Vote.NONE, submission)
-                        }
-                    )
-                }
-
-                override fun onDownClick(index: Int) {
-
-                    DoAsync(
-                        doWork = {
-                            val submission = submissions[index]
-                            client?.contributionsClient?.vote(Vote.DOWNVOTE, submission)
-                        }
-                    )
-                }
-
-                override fun onSaveClick(index: Int) {
-
-                    DoAsync(
-                        doWork = {
-                            val submission = submissions[index]
-                            client?.contributionsClient?.save(!submission.isSaved, submission)
-                        }
-                    )
-                }
-
-                override fun onHideClick(index: Int) {
-
-                    DoAsync(
-                        doWork = {
-                            val submission = submissions[index]
-                            client?.contributionsClient?.hide(submission)
-                        }
-                    )
-                }
-
-                override fun onLockClick(index: Int) {
-
-                    DoAsync(
-                        doWork = {
-                            val submission = submissions[index]
-                            client?.contributionsClient?.lock(submission)
-                        }
-                    )
-                }
-
-                override fun onReplyClick(index: Int) = Unit
-            }
-        )
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-        list.setHasFixedSize(true)
-        list.setController(controller)
-
-        DoAsync(
-            doWork = {
-
-                submissions.clear()
-                submissions.addAll(fetcher?.fetchNext() ?: listOf())
-            },
-            onPost = {
-
-                controller.setSubmission(submissions)
-            }
-        )
+        return fetcher?.fetchNext()
     }
 
     fun reload(sorting: SubmissionsSorting? = null, timePeriod: TimePeriod? = null) {
@@ -150,11 +131,11 @@ class SubmissionFragment : Fragment(R.layout.fragment_submission) {
 
                     fetcher!!.setSorting(sorting)
 
-                    submissions.clear()
-                    submissions.addAll(fetcher?.fetchNext() ?: listOf())
+                    items.clear()
+                    items.addAll(fetcher?.fetchNext() ?: listOf())
                 },
                 onPost = {
-                    controller.setSubmission(submissions)
+                    controller.setItems(items)
                 }
             )
         }
@@ -166,11 +147,11 @@ class SubmissionFragment : Fragment(R.layout.fragment_submission) {
 
                     fetcher!!.setTimePeriod(timePeriod)
 
-                    submissions.clear()
-                    submissions.addAll(fetcher?.fetchNext() ?: listOf())
+                    items.clear()
+                    items.addAll(fetcher?.fetchNext() ?: listOf())
                 },
                 onPost = {
-                    controller.setSubmission(submissions)
+                    controller.setItems(items)
                 }
             )
         }

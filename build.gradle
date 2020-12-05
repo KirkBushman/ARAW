@@ -14,8 +14,8 @@ buildscript {
         version_code = 2
         version_name = "1.0.0"
 
-        kotlin_ver = '1.4.10'
-        coroutines_ver = '1.4.1'
+        kotlin_ver = '1.4.20'
+        coroutines_ver = '1.4.2'
 
         ax_core_ver = '1.3.2'
         ax_appcompat_ver = '1.2.0'
@@ -28,7 +28,7 @@ buildscript {
         moshi_ver = '1.11.0'
         okhttp_ver = '4.9.0'
         mdc_ver = '1.2.1'
-        epoxy_ver = '4.1.0'
+        epoxy_ver = '4.2.0'
 
         oauth2_ver = '3122502' // '1.2.2'
 
@@ -39,7 +39,7 @@ buildscript {
         espresso_ver = '3.3.0'
         junit_ver = '1.1.2'
         leakcanary_ver = '2.5'
-        mockito_ver = '3.6.0'
+        mockito_ver = '3.6.28'
         arch_core_ver = '2.1.0'
         orchestrator_ver = '1.3.0'
 
@@ -72,9 +72,9 @@ allprojects {
 subprojects {
 
     // ktlint
-    apply plugin: 'checkstyle'
-    apply plugin: 'io.gitlab.arturbosch.detekt'
-    apply from: "${project.rootDir}/ktlint.gradle"
+    // apply plugin: 'checkstyle'
+    // apply plugin: 'io.gitlab.arturbosch.detekt'
+    // apply from: "${project.rootDir}/ktlint.gradle"
 
     task checkstyle(type: Checkstyle) {
         configFile rootProject.file('checkstyle.xml')
@@ -86,7 +86,7 @@ subprojects {
         classpath = files()
     }
 
-    afterEvaluate {
+    /*afterEvaluate {
         if (project.tasks.findByName('check')) {
             check.dependsOn('checkstyle')
             check.dependsOn('ktlint')
@@ -95,7 +95,7 @@ subprojects {
         if (project.tasks.findByName('dokka')) {
             check.dependsOn('dokka')
         }
-    }
+    }*/
 }
 
 task clean(type: Delete) {

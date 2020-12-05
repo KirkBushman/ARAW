@@ -13,21 +13,18 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
-                app:layout_scrollFlags="scroll|enterAlways"
-                />
-
-        <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tab_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
+                app:layout_scrollFlags="scroll|enterAlways">
+        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.viewpager.widget.ViewPager
-            android:id="@+id/pager"
+    <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/print_text"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:textSize="16sp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             />
 

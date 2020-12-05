@@ -1,8 +1,7 @@
 package com.kirkbushman.sampleapp.fragments
 
 import android.os.Bundle
-import android.view.View
-import androidx.fragment.app.Fragment
+import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.fetcher.ContributionsFetcher
 import com.kirkbushman.araw.models.Comment
 import com.kirkbushman.araw.models.Submission
@@ -11,15 +10,13 @@ import com.kirkbushman.araw.models.enums.TimePeriod
 import com.kirkbushman.araw.models.enums.Vote
 import com.kirkbushman.araw.models.base.Contribution
 import com.kirkbushman.araw.models.base.Votable
-import com.kirkbushman.sampleapp.R
-import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.activities.RedditorInfoActivity
 import com.kirkbushman.sampleapp.controllers.ContributionController
 import com.kirkbushman.sampleapp.controllers.SubmissionController
+import com.kirkbushman.sampleapp.fragments.base.BaseControllerFragment
 import com.kirkbushman.sampleapp.util.DoAsync
-import kotlinx.android.synthetic.main.fragment_inbox.*
 
-class ContributionFragment : Fragment(R.layout.fragment_contribution) {
+class ContributionFragment : BaseControllerFragment<Contribution, SubmissionController.SubmissionCallback>() {
 
     companion object {
 
@@ -52,72 +49,76 @@ class ContributionFragment : Fragment(R.layout.fragment_contribution) {
                 ""
         }
 
-    private val client by lazy { TestApplication.instance.getClient() }
+    override val callback = object : SubmissionController.SubmissionCallback {
 
-    private val contributions = ArrayList<Contribution>()
-    private val controller by lazy {
+            override fun onUpvoteClick(index: Int) {
 
-        ContributionController(
-            object : SubmissionController.SubmissionCallback {
-
-                override fun onUpvoteClick(index: Int) {
-
-                    DoAsync(
-                        doWork = {
-                            val votable = contributions[index] as Votable
-                            client?.contributionsClient?.vote(Vote.UPVOTE, votable)
-                        }
-                    )
-                }
-
-                override fun onNoneClick(index: Int) {
-
-                    DoAsync(
-                        doWork = {
-                            val votable = contributions[index] as Votable
-                            client?.contributionsClient?.vote(Vote.NONE, votable)
-                        }
-                    )
-                }
-
-                override fun onDownClick(index: Int) {
-
-                    DoAsync(
-                        doWork = {
-                            val votable = contributions[index] as Votable
-                            client?.contributionsClient?.vote(Vote.DOWNVOTE, votable)
-                        }
-                    )
-                }
-
-                override fun onSaveClick(index: Int) {
-
-                    DoAsync(
-                        doWork = {
-                            when (val contribution = contributions[index]) {
-                                is Submission -> client?.contributionsClient?.save(!contribution.isSaved, contribution)
-                                is Comment -> client?.contributionsClient?.save(!contribution.isSaved, contribution)
-
-                                else -> {}
-                            }
-                        }
-                    )
-                }
-
-                override fun onHideClick(index: Int) = Unit
-                override fun onLockClick(index: Int) = Unit
-                override fun onReplyClick(index: Int) = Unit
+                DoAsync(
+                    doWork = {
+                        val votable = items[index] as Votable
+                        client?.contributionsClient?.vote(Vote.UPVOTE, votable)
+                    }
+                )
             }
-        )
+
+            override fun onNoneClick(index: Int) {
+
+                DoAsync(
+                    doWork = {
+                        val votable = items[index] as Votable
+                        client?.contributionsClient?.vote(Vote.NONE, votable)
+                    }
+                )
+            }
+
+            override fun onDownClick(index: Int) {
+
+                DoAsync(
+                    doWork = {
+                        val votable = items[index] as Votable
+                        client?.contributionsClient?.vote(Vote.DOWNVOTE, votable)
+                    }
+                )
+            }
+
+            override fun onSaveClick(index: Int) {
+
+                DoAsync(
+                    doWork = {
+                        when (val contribution = items[index]) {
+                            is Submission -> client?.contributionsClient?.save(!contribution.isSaved, contribution)
+                            is Comment -> client?.contributionsClient?.save(!contribution.isSaved, contribution)
+
+                            else -> {}
+                        }
+                    }
+                )
+            }
+
+            override fun onHideClick(index: Int) = Unit
+            override fun onLockClick(index: Int) = Unit
+            override fun onReplyClick(index: Int) = Unit
+        }
+
+    override val controller by lazy {
+
+        ContributionController(callback)
     }
 
     private var fetcher: ContributionsFetcher? = null
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun fetchItem(client: RedditClient?): Collection<Contribution>? {
 
-        list.setHasFixedSize(true)
-        list.setController(controller)
+        fetcher = when (passedTag) {
+            TAG_OVERVIEW -> client?.redditorsClient?.overview(username)
+            TAG_SUBMITTED -> client?.redditorsClient?.submitted(username)
+            TAG_COMMENTS -> client?.redditorsClient?.comments(username)
+            TAG_GILDED -> client?.redditorsClient?.gilded(username)
+
+            else -> null
+        }
+
+        return fetcher?.fetchNext()
     }
 
     fun refresh() {
@@ -125,12 +126,12 @@ class ContributionFragment : Fragment(R.layout.fragment_contribution) {
         DoAsync(
             doWork = {
 
-                fetcher = getFetcher()
-                contributions.addAll(fetcher?.fetchNext() ?: listOf())
+                items.clear()
+                items.addAll(fetcher?.fetchNext() ?: listOf())
             },
             onPost = {
 
-                controller.setContributions(contributions)
+                controller.setItems(items)
             }
         )
     }
@@ -144,12 +145,12 @@ class ContributionFragment : Fragment(R.layout.fragment_contribution) {
 
                     fetcher!!.setSorting(sorting)
 
-                    contributions.clear()
-                    contributions.addAll(fetcher?.fetchNext() ?: listOf())
+                    items.clear()
+                    items.addAll(fetcher?.fetchNext() ?: listOf())
                 },
                 onPost = {
 
-                    controller.setContributions(contributions)
+                    controller.setItems(items)
                 }
             )
         }
@@ -161,26 +162,14 @@ class ContributionFragment : Fragment(R.layout.fragment_contribution) {
 
                     fetcher!!.setTimePeriod(timePeriod)
 
-                    contributions.clear()
-                    contributions.addAll(fetcher?.fetchNext() ?: listOf())
+                    items.clear()
+                    items.addAll(fetcher?.fetchNext() ?: listOf())
                 },
                 onPost = {
 
-                    controller.setContributions(contributions)
+                    controller.setItems(items)
                 }
             )
-        }
-    }
-
-    private fun getFetcher(): ContributionsFetcher? {
-
-        return when (passedTag) {
-            TAG_OVERVIEW -> client?.redditorsClient?.overview(username)
-            TAG_SUBMITTED -> client?.redditorsClient?.submitted(username)
-            TAG_COMMENTS -> client?.redditorsClient?.comments(username)
-            TAG_GILDED -> client?.redditorsClient?.gilded(username)
-
-            else -> null
         }
     }
 }

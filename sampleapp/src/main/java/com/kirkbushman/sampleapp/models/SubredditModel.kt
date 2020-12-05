@@ -1,20 +1,18 @@
 package com.kirkbushman.sampleapp.models
 
 import android.view.View
-import android.widget.Button
-import android.widget.TextView
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyAttribute.Option.DoNotHash
 import com.airbnb.epoxy.EpoxyModelClass
-import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.kirkbushman.sampleapp.R
+import com.kirkbushman.sampleapp.databinding.ItemSubredditBinding
+import com.kirkbushman.sampleapp.models.base.ViewBindingEpoxyModelWithHolder
 
 @EpoxyModelClass
-abstract class SubredditModel : EpoxyModelWithHolder<SubredditHolder>() {
+abstract class SubredditModel : ViewBindingEpoxyModelWithHolder<ItemSubredditBinding>() {
 
     @EpoxyAttribute
     lateinit var subreddit: String
-
     @EpoxyAttribute
     var subscribed: Boolean = false
 
@@ -25,21 +23,16 @@ abstract class SubredditModel : EpoxyModelWithHolder<SubredditHolder>() {
         return R.layout.item_subreddit
     }
 
-    override fun bind(holder: SubredditHolder) {
+    override fun ItemSubredditBinding.bind() {
 
-        holder.title.text = subreddit
+        title.text = subreddit
 
-        holder.subscribe.text = if (subscribed) "Subscribe" else "Unsubscribe"
-        holder.subscribe.setOnClickListener(subscribeClick)
+        subscribeButton.text = if (subscribed) "Subscribe" else "Unsubscribe"
+        subscribeButton.setOnClickListener(subscribeClick)
     }
 
-    override fun unbind(holder: SubredditHolder) {
-        holder.subscribe.setOnClickListener(null)
+    override fun ItemSubredditBinding.unbind() {
+
+        subscribeButton.setOnClickListener(null)
     }
-}
-
-class SubredditHolder : KotlinHolder() {
-
-    val title by bind<TextView>(R.id.title)
-    val subscribe by bind<Button>(R.id.subscribe_button)
 }

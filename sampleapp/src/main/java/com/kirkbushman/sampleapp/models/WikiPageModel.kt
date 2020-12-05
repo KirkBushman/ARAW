@@ -1,19 +1,18 @@
 package com.kirkbushman.sampleapp.models
 
 import android.view.View
-import android.widget.TextView
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyAttribute.Option.DoNotHash
 import com.airbnb.epoxy.EpoxyModelClass
-import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.kirkbushman.sampleapp.R
+import com.kirkbushman.sampleapp.databinding.ItemTrophyBinding
+import com.kirkbushman.sampleapp.models.base.ViewBindingEpoxyModelWithHolder
 
 @EpoxyModelClass
-abstract class WikiPageModel : EpoxyModelWithHolder<WikiPageHolder>() {
+abstract class WikiPageModel : ViewBindingEpoxyModelWithHolder<ItemTrophyBinding>() {
 
     @EpoxyAttribute
-    lateinit var name: String
-
+    lateinit var nameText: String
     @EpoxyAttribute(DoNotHash)
     lateinit var listener: View.OnClickListener
 
@@ -21,14 +20,15 @@ abstract class WikiPageModel : EpoxyModelWithHolder<WikiPageHolder>() {
         return R.layout.item_trophy
     }
 
-    override fun bind(holder: WikiPageHolder) {
+    override fun ItemTrophyBinding.bind() {
 
-        holder.name.text = name
-        holder.name.setOnClickListener(listener)
+        name.text = nameText
+        name.setOnClickListener(listener)
     }
-}
 
-class WikiPageHolder : KotlinHolder() {
+    override fun ItemTrophyBinding.unbind() {
 
-    val name by bind<TextView>(R.id.name)
+        name.text = null
+        name.setOnClickListener(null)
+    }
 }

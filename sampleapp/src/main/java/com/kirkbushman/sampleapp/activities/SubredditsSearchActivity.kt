@@ -6,12 +6,11 @@ import android.os.Bundle
 import com.kirkbushman.araw.models.Subreddit
 import com.kirkbushman.araw.models.SubredditSearchResult
 import com.kirkbushman.araw.models.base.SubredditData
-import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.activities.base.BaseActivity
-import com.kirkbushman.sampleapp.controllers.SubredditController
+import com.kirkbushman.sampleapp.controllers.SubredditSearchController
+import com.kirkbushman.sampleapp.databinding.ActivitySubredditsSearchBinding
 import com.kirkbushman.sampleapp.util.DoAsync
-import kotlinx.android.synthetic.main.activity_subreddits_search.*
 
 class SubredditsSearchActivity : BaseActivity() {
 
@@ -30,9 +29,9 @@ class SubredditsSearchActivity : BaseActivity() {
     private val data = ArrayList<SubredditData>()
     private val controller by lazy {
 
-        SubredditController(
+        SubredditSearchController(
 
-            object : SubredditController.SubredditCallback {
+            object : SubredditSearchController.SubredditCallback {
 
                 override fun subscribeClick(index: Int) {
 
@@ -58,24 +57,28 @@ class SubredditsSearchActivity : BaseActivity() {
         )
     }
 
+    private lateinit var binding: ActivitySubredditsSearchBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_subreddits_search)
 
-        setSupportActionBar(toolbar)
+        binding = ActivitySubredditsSearchBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        setSupportActionBar(binding.toolbar)
         supportActionBar?.let {
             it.setDisplayHomeAsUpEnabled(true)
             it.setDisplayShowHomeEnabled(true)
         }
 
-        list.setHasFixedSize(true)
-        list.setController(controller)
+        binding.list.setHasFixedSize(true)
+        binding.list.setController(controller)
 
-        search_bttn.setOnClickListener {
+        binding.searchBttn.setOnClickListener {
 
-            val query = query.text.toString().trim()
+            val query = binding.query.text.toString().trim()
 
-            if (!starts_with.isChecked) {
+            if (!binding.startsWith.isChecked) {
 
                 DoAsync(
                     doWork = {

@@ -12,7 +12,7 @@
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?android:attr/actionBarSize"
+                android:layout_height="wrap_content"
                 app:layout_scrollFlags="scroll|enterAlways">
 
             <LinearLayout
@@ -20,17 +20,33 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                <EditText
-                        android:id="@+id/edit_subreddit"
+                <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:layout_weight="2"
-                        android:layout_gravity="center"
-                        android:hint="@string/edit_insert_subreddit"
-                        android:inputType="text"
-                        android:importantForAutofill="no"
-                        />
+                        android:orientation="vertical"
+                        android:layout_weight="2">
+
+                    <EditText
+                            android:id="@+id/edit_search"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:layout_gravity="center"
+                            android:inputType="text"
+                            android:hint="@string/edit_insert_query"
+                            android:importantForAutofill="no" />
+
+                    <EditText
+                            android:id="@+id/edit_search_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:layout_gravity="center"
+                            android:inputType="text"
+                            android:hint="@string/edit_insert_text_or_link"
+                            android:importantForAutofill="no" />
+
+                </LinearLayout>
 
                 <com.google.android.material.button.MaterialButton
                         android:id="@+id/bttn_search"
@@ -53,7 +69,7 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/subreddit_text"
+                android:id="@+id/print_text"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

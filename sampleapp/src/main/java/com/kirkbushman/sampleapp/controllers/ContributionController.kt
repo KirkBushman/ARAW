@@ -1,61 +1,50 @@
 package com.kirkbushman.sampleapp.controllers
 
 import android.view.View
-import com.airbnb.epoxy.EpoxyController
 import com.kirkbushman.araw.models.Comment
 import com.kirkbushman.araw.models.Submission
 import com.kirkbushman.araw.models.base.Contribution
+import com.kirkbushman.sampleapp.controllers.base.BaseController
 import com.kirkbushman.sampleapp.models.comment
-import com.kirkbushman.sampleapp.models.empty
 import com.kirkbushman.sampleapp.models.submission
 
-class ContributionController(private val callback: SubmissionController.SubmissionCallback) : EpoxyController() {
+class ContributionController(
 
-    private val contributions = ArrayList<Contribution>()
+    callback: SubmissionController.SubmissionCallback
+) : BaseController<Contribution, SubmissionController.SubmissionCallback>(callback) {
 
-    fun setContributions(contributions: List<Contribution>) {
-        this.contributions.clear()
-        this.contributions.addAll(contributions)
-        requestModelBuild()
-    }
+    override fun itemModel(
+        index: Int,
+        it: Contribution,
+        callback: SubmissionController.SubmissionCallback?
+    ) {
 
-    override fun buildModels() {
+        if (it is Comment) {
 
-        if (contributions.isEmpty()) {
-            empty {
-                id("empty_model")
+            comment {
+                id(it.id)
+                authorText(it.author)
+                bodyText(it.body)
+                replyClick { _ -> callback?.onReplyClick(index) }
             }
         }
 
-        contributions.forEachIndexed { index, it ->
+        if (it is Submission) {
 
-            if (it is Comment) {
+            submission {
+                id(it.id)
+                subredditText(it.subreddit)
+                authorText(it.author)
+                titleText(getTaggedTitle(it))
+                bodyText(it.selfText ?: "")
 
-                comment {
-                    id(it.id)
-                    author(it.author)
-                    body(it.body)
-                    replyClick { _ -> callback.onReplyClick(index) }
-                }
-            }
+                upvoteClick(View.OnClickListener { callback?.onUpvoteClick(index) })
+                noneClick(View.OnClickListener { callback?.onNoneClick(index) })
+                downvoteClick(View.OnClickListener { callback?.onDownClick(index) })
 
-            if (it is Submission) {
-
-                submission {
-                    id(it.id)
-                    subreddit(it.subreddit)
-                    author(it.author)
-                    title(getTaggedTitle(it))
-                    body(it.selfText ?: "")
-
-                    upvoteClick(View.OnClickListener { callback.onUpvoteClick(index) })
-                    noneClick(View.OnClickListener { callback.onNoneClick(index) })
-                    downvoteClick(View.OnClickListener { callback.onDownClick(index) })
-
-                    saveClick(View.OnClickListener { callback.onSaveClick(index) })
-                    hideClick(View.OnClickListener { callback.onHideClick(index) })
-                    lockClick(View.OnClickListener { callback.onLockClick(index) })
-                }
+                saveClick(View.OnClickListener { callback?.onSaveClick(index) })
+                hideClick(View.OnClickListener { callback?.onHideClick(index) })
+                lockClick(View.OnClickListener { callback?.onLockClick(index) })
             }
         }
     }

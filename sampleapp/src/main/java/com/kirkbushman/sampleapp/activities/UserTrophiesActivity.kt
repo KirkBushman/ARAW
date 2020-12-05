@@ -2,16 +2,13 @@ package com.kirkbushman.sampleapp.activities
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
+import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.models.Trophy
 import com.kirkbushman.sampleapp.R
-import com.kirkbushman.sampleapp.TestApplication
-import com.kirkbushman.sampleapp.activities.base.BaseActivity
+import com.kirkbushman.sampleapp.activities.base.BaseSearchControllerActivity2
 import com.kirkbushman.sampleapp.controllers.TrophiesController
-import com.kirkbushman.sampleapp.util.DoAsync
-import kotlinx.android.synthetic.main.activity_user_trophies.*
 
-class UserTrophiesActivity : BaseActivity() {
+class UserTrophiesActivity : BaseSearchControllerActivity2<Trophy>() {
 
     companion object {
 
@@ -22,40 +19,14 @@ class UserTrophiesActivity : BaseActivity() {
         }
     }
 
-    private val client by lazy { TestApplication.instance.getClient() }
+    override fun hintTextRes(): Int {
+        return R.string.edit_insert_username
+    }
 
-    private val trophies = ArrayList<Trophy>()
-    private val controller by lazy { TrophiesController() }
+    override val controller by lazy { TrophiesController() }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_user_trophies)
+    override fun fetchItem(client: RedditClient?, query: String): Collection<Trophy>? {
 
-        setSupportActionBar(toolbar)
-        supportActionBar?.let {
-            it.setDisplayHomeAsUpEnabled(true)
-            it.setDisplayShowHomeEnabled(true)
-        }
-
-        list.setHasFixedSize(true)
-        list.setController(controller)
-
-        search_bttn.setOnClickListener {
-
-            val username = search.text.toString().trim()
-
-            DoAsync(
-                doWork = {
-
-                    val temp = client?.redditorsClient?.trophies(username)
-
-                    trophies.clear()
-                    trophies.addAll(temp ?: listOf())
-                },
-                onPost = {
-                    controller.setItems(trophies)
-                }
-            )
-        }
+        return client?.redditorsClient?.trophies(query)
     }
 }

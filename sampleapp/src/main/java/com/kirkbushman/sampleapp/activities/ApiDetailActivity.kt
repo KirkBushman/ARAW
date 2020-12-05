@@ -3,11 +3,10 @@ package com.kirkbushman.sampleapp.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.activities.base.BaseActivity
+import com.kirkbushman.sampleapp.databinding.ActivityApiDetailBinding
 import com.kirkbushman.sampleapp.util.DoAsync
-import kotlinx.android.synthetic.main.activity_api_detail.*
 
 class ApiDetailActivity : BaseActivity() {
 
@@ -321,6 +320,8 @@ class ApiDetailActivity : BaseActivity() {
     private val client by lazy { TestApplication.instance.getClient() }
     private val apiParam by lazy { intent.getStringExtra(PARAM_API_CALL) }
 
+    private lateinit var binding: ActivityApiDetailBinding
+
     private val disableLegacyEncoding by lazy {
 
         val prefs = SettingsActivity.getPrefs(this)
@@ -329,12 +330,14 @@ class ApiDetailActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_api_detail)
+
+        binding = ActivityApiDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         var result = ""
         DoAsync(
             doWork = { result = fetchCall() },
-            onPost = { api_detail.text = result }
+            onPost = { binding.apiDetail.text = result }
         )
     }
 
@@ -475,8 +478,7 @@ class ApiDetailActivity : BaseActivity() {
             }
 
             API_SUB_MULTIREDDIT -> {
-                val subredditsNum = 4
-                val subreddits = getRandomSubredditNames(subredditsNum)
+                val subreddits = getRandomSubredditNames()
                 val fetcher = client?.contributionsClient?.multiredditSubmissions(*subreddits, limit = 100)
                 val submissions = fetcher?.fetchNext()
                 return submissions.toString()
@@ -608,8 +610,8 @@ class ApiDetailActivity : BaseActivity() {
             API_SUBREDDITS -> {
                 val subIds = getRandomSubredditIds()
                 val subreddits = client?.subredditsClient?.subreddits(
-                    ids = subIds.toTypedArray(),
-                    disableLegacyEncoding = disableLegacyEncoding
+                    disableLegacyEncoding = disableLegacyEncoding,
+                    ids = subIds.toTypedArray()
                 )
 
                 return subreddits.toString()
@@ -757,8 +759,8 @@ class ApiDetailActivity : BaseActivity() {
         return subreddits.random()
     }
 
-    private fun getRandomSubredditNames(take: Int): Array<String> {
-        return subreddits.shuffled().take(take).toTypedArray()
+    private fun getRandomSubredditNames(): Array<String> {
+        return subreddits.shuffled().take(4).toTypedArray()
     }
 
     private fun getRandomSubredditIds(): List<String> {

@@ -5,7 +5,7 @@ import com.kirkbushman.araw.http.EnvelopedTrophy
 import com.kirkbushman.araw.http.base.EnvelopeKind
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 /**
  * This class represent a trophy given to a redditor.

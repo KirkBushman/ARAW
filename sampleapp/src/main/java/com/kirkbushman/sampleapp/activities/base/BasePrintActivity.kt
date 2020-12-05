@@ -6,21 +6,24 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.Toolbar
 import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.sampleapp.TestApplication
+import com.kirkbushman.sampleapp.databinding.ActivityPrintBinding
 import com.kirkbushman.sampleapp.util.DoAsync
 
-abstract class BasePrintActivity<T>(@LayoutRes contentLayoutId: Int) : BaseActivity(contentLayoutId) {
+abstract class BasePrintActivity<T> : BaseActivity() {
 
     private val client by lazy { TestApplication.instance.getClient() }
 
-    abstract val actionBar: Toolbar
-    abstract val textPrint: TextView
+    private lateinit var binding: ActivityPrintBinding
 
     abstract fun fetchItem(client: RedditClient?): T?
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setSupportActionBar(actionBar)
+        binding = ActivityPrintBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        setSupportActionBar(binding.toolbar)
         supportActionBar?.let {
             it.setDisplayHomeAsUpEnabled(true)
             it.setDisplayShowHomeEnabled(true)
@@ -29,7 +32,7 @@ abstract class BasePrintActivity<T>(@LayoutRes contentLayoutId: Int) : BaseActiv
         var item: T? = null
         DoAsync(
             doWork = { item = fetchItem(client) },
-            onPost = { textPrint.text = item.toString() }
+            onPost = { binding.printText.text = item.toString() }
         )
     }
 }

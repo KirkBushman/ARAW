@@ -12,7 +12,10 @@ import com.kirkbushman.sampleapp.models.empty
 import com.kirkbushman.sampleapp.models.moreComment
 import com.kirkbushman.sampleapp.models.submission
 
-class CommentController(private val callback: CommentCallback) : EpoxyController() {
+class CommentController(
+
+    private val callback: CommentCallback
+) : EpoxyController() {
 
     interface CommentCallback {
 
@@ -56,10 +59,10 @@ class CommentController(private val callback: CommentCallback) : EpoxyController
 
             submission {
                 id(submission!!.id)
-                subreddit(submission!!.subreddit)
-                author(submission!!.author)
-                title(submission!!.title)
-                body(submission!!.selfText ?: "")
+                subredditText(submission!!.subreddit)
+                authorText(submission!!.author)
+                titleText(submission!!.title)
+                bodyText(submission!!.selfText ?: "")
 
                 upvoteClick(View.OnClickListener { callback.onUpvoteClick(submission!!) })
                 noneClick(View.OnClickListener { callback.onNoneClick(submission!!) })
@@ -77,8 +80,8 @@ class CommentController(private val callback: CommentCallback) : EpoxyController
 
                 comment {
                     id(it.id)
-                    author(it.author)
-                    body(it.body)
+                    authorText(it.author)
+                    bodyText(it.body)
                     replyClick { _ -> callback.onReplyClick(it) }
                 }
             }
@@ -87,7 +90,7 @@ class CommentController(private val callback: CommentCallback) : EpoxyController
 
                 moreComment {
                     id(it.fullname)
-                    more("${it.count} more children")
+                    moreText("${it.count} more children")
                     moreListener { _ -> callback.onLoadMoreClick(it, submission!!) }
                 }
             }

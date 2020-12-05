@@ -6,49 +6,44 @@ import androidx.appcompat.widget.Toolbar
 import com.airbnb.epoxy.EpoxyRecyclerView
 import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.sampleapp.TestApplication
-import com.kirkbushman.sampleapp.controllers.BaseCallback
-import com.kirkbushman.sampleapp.controllers.BaseController
+import com.kirkbushman.sampleapp.controllers.base.BaseCallback
+import com.kirkbushman.sampleapp.controllers.base.BaseController
+import com.kirkbushman.sampleapp.databinding.ActivityControllerBinding
 import com.kirkbushman.sampleapp.util.DoAsync
 
-abstract class BaseControllerActivity2<T>(
-    @LayoutRes contentLayoutId: Int
-) : BaseControllerActivity<T, BaseCallback>(
-    contentLayoutId
-) {
+abstract class BaseControllerActivity2<T> : BaseControllerActivity<T, BaseCallback>() {
 
     override val callback: BaseCallback?
         get() = null
 }
 
-abstract class BaseControllerActivity<T, C : BaseCallback>(
-    @LayoutRes contentLayoutId: Int
-) : BaseActivity(
-    contentLayoutId
-) {
+abstract class BaseControllerActivity<T, C : BaseCallback> : BaseActivity() {
 
-    private val client by lazy { TestApplication.instance.getClient() }
+    protected val client by lazy { TestApplication.instance.getClient() }
 
-    private val items = ArrayList<T>()
+    protected val items = ArrayList<T>()
 
     abstract val callback: C?
     abstract val controller: BaseController<T, C>
 
-    abstract val actionBar: Toolbar
-    abstract val recyclerView: EpoxyRecyclerView
+    private lateinit var binding: ActivityControllerBinding
 
     abstract fun fetchItem(client: RedditClient?): Collection<T>?
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setSupportActionBar(actionBar)
+        binding = ActivityControllerBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        setSupportActionBar(binding.toolbar)
         supportActionBar?.let {
             it.setDisplayHomeAsUpEnabled(true)
             it.setDisplayShowHomeEnabled(true)
         }
 
-        recyclerView.setHasFixedSize(true)
-        recyclerView.setController(controller)
+        binding.list.setHasFixedSize(true)
+        binding.list.setController(controller)
 
         DoAsync(
             doWork = {

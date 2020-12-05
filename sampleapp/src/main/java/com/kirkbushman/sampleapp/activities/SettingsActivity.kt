@@ -6,15 +6,13 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
-import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.activities.Settings.FLAG_DISABLE_LEGACY_ENC
 import com.kirkbushman.sampleapp.activities.Settings.PREFS_NAME
-import kotlinx.android.synthetic.main.activity_settings.*
+import com.kirkbushman.sampleapp.databinding.ActivitySettingsBinding
 
 object Settings {
 
     const val PREFS_NAME = "araw_sampleapp_shared_prefs"
-
     const val FLAG_DISABLE_LEGACY_ENC = "flag_disable_legacy_encoding"
 }
 
@@ -41,13 +39,16 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private val prefs by lazy { getPrefs(this) }
+    private lateinit var binding: ActivitySettingsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings)
 
-        disable_legacy_encoding.isChecked = prefs.getDisableLegacyEncoding()
-        disable_legacy_encoding.setOnCheckedChangeListener { _, isChecked ->
+        binding = ActivitySettingsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.disableLegacyEncoding.isChecked = prefs.getDisableLegacyEncoding()
+        binding.disableLegacyEncoding.setOnCheckedChangeListener { _, isChecked ->
 
             prefs.setDisabledLegacyEncoding(isChecked)
         }

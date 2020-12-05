@@ -5,11 +5,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.kirkbushman.araw.models.WikiPage
-import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.activities.base.BaseActivity
+import com.kirkbushman.sampleapp.databinding.ActivityWikiBinding
 import com.kirkbushman.sampleapp.util.DoAsync
-import kotlinx.android.synthetic.main.activity_wiki.*
 import kotlin.Exception
 
 class WikiPageActivity : BaseActivity() {
@@ -40,11 +39,15 @@ class WikiPageActivity : BaseActivity() {
     private val subreddit by lazy { intent.getStringExtra(PARAM_SUBREDDIT_NAME) }
     private val page by lazy { intent.getStringExtra(PARAM_PAGE_NAME) }
 
+    private lateinit var binding: ActivityWikiBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_wiki)
 
-        setSupportActionBar(toolbar)
+        binding = ActivityWikiBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        setSupportActionBar(binding.toolbar)
         supportActionBar?.let {
             it.setDisplayHomeAsUpEnabled(true)
             it.setDisplayShowHomeEnabled(true)
@@ -52,12 +55,12 @@ class WikiPageActivity : BaseActivity() {
 
         if (subreddit == null || page == null) {
 
-            edit_subreddit.visibility = View.VISIBLE
-            bttn_search.visibility = View.VISIBLE
+            binding.editSubreddit.visibility = View.VISIBLE
+            binding.bttnSearch.visibility = View.VISIBLE
 
-            bttn_search.setOnClickListener {
+            binding.bttnSearch.setOnClickListener {
 
-                val subreddit = edit_subreddit.text.toString().trim()
+                val subreddit = binding.editSubreddit.text.toString().trim()
                 if (subreddit.isNotEmpty()) {
 
                     var wiki: WikiPage? = null
@@ -73,12 +76,12 @@ class WikiPageActivity : BaseActivity() {
                         },
                         onPost = {
 
-                            wiki_text.text = wiki.toString()
+                            binding.wikiText.text = wiki.toString()
 
                             if (exception != null) {
                                 exception!!.printStackTrace()
 
-                                wiki_text.text = exception!!.message
+                                binding.wikiText.text = exception!!.message
                             }
                         }
                     )
@@ -88,8 +91,8 @@ class WikiPageActivity : BaseActivity() {
 
         if (subreddit != null && page != null) {
 
-            edit_subreddit.visibility = View.GONE
-            bttn_search.visibility = View.GONE
+            binding.editSubreddit.visibility = View.GONE
+            binding.bttnSearch.visibility = View.GONE
 
             var wikiPage: WikiPage? = null
             DoAsync(
@@ -99,7 +102,7 @@ class WikiPageActivity : BaseActivity() {
                 },
                 onPost = {
 
-                    wiki_text.text = wikiPage.toString()
+                    binding.wikiText.text = wikiPage.toString()
                 }
             )
         }

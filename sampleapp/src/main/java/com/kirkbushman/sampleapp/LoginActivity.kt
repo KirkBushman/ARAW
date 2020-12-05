@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.kirkbushman.araw.RedditClient
+import com.kirkbushman.sampleapp.databinding.ActivityLoginBinding
 import com.kirkbushman.sampleapp.util.DoAsync
-import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
@@ -30,11 +30,15 @@ class LoginActivity : AppCompatActivity() {
     private val appAuth = app.getAuthHelper()
     private val userlessAuth = app.getUserlessHelper()
 
+    private lateinit var binding: ActivityLoginBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
 
-        setSupportActionBar(toolbar)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        setSupportActionBar(binding.toolbar)
         supportActionBar?.let {
             it.setDisplayHomeAsUpEnabled(true)
             it.setDisplayShowHomeEnabled(true)
@@ -58,12 +62,12 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        bttn_app_login.setOnClickListener {
+        binding.bttnAppLogin.setOnClickListener {
 
-            browser.visibility = View.VISIBLE
-            text_current_login.visibility = View.GONE
-            bttn_app_login.visibility = View.GONE
-            bttn_userless_login.visibility = View.GONE
+            binding.browser.visibility = View.VISIBLE
+            binding.textCurrentLogin.visibility = View.GONE
+            binding.bttnAppLogin.visibility = View.GONE
+            binding.bttnUserlessLogin.visibility = View.GONE
 
             if (!appAuth.shouldLogin()) {
 
@@ -74,7 +78,7 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        bttn_userless_login.setOnClickListener {
+        binding.bttnUserlessLogin.setOnClickListener {
 
             if (!userlessAuth.shouldLogin()) {
 
@@ -124,9 +128,9 @@ class LoginActivity : AppCompatActivity() {
 
     private fun fetchInstalledApp() {
 
-        appAuth.startWebViewAuthentication(browser) {
+        appAuth.startWebViewAuthentication(binding.browser) {
 
-            browser.stopLoading()
+            binding.browser.stopLoading()
 
             DoAsync(
                 doWork = {
@@ -182,21 +186,19 @@ class LoginActivity : AppCompatActivity() {
 
         if (!appAuth.shouldLogin()) {
 
-            text_current_login.text = getString(R.string.header_login_type, "INSTALLED_APP")
+            binding.textCurrentLogin.text = getString(R.string.header_login_type, "INSTALLED_APP")
         } else if (!userlessAuth.shouldLogin()) {
 
-            text_current_login.text = getString(R.string.header_login_type, "USERLESS")
+            binding.textCurrentLogin.text = getString(R.string.header_login_type, "USERLESS")
         } else {
-            text_current_login.text = getString(R.string.header_login_no_logged_in)
+            binding.textCurrentLogin.text = getString(R.string.header_login_no_logged_in)
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
 
-        if (browser != null) {
-            browser.removeAllViews()
-            browser.destroy()
-        }
+        binding.browser.removeAllViews()
+        binding.browser.destroy()
     }
 }

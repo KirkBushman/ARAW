@@ -1,16 +1,19 @@
 package com.kirkbushman.sampleapp.controllers
 
 import android.view.View
-import com.airbnb.epoxy.EpoxyController
 import com.kirkbushman.araw.models.Submission
 import com.kirkbushman.araw.models.enums.Vote
 import com.kirkbushman.araw.utils.vote
-import com.kirkbushman.sampleapp.models.empty
+import com.kirkbushman.sampleapp.controllers.base.BaseCallback
+import com.kirkbushman.sampleapp.controllers.base.BaseController
 import com.kirkbushman.sampleapp.models.submission
 
-class SubmissionController(private val callback: SubmissionCallback) : EpoxyController() {
+class SubmissionController(
 
-    interface SubmissionCallback {
+    callback: SubmissionCallback
+) : BaseController<Submission, SubmissionController.SubmissionCallback>(callback) {
+
+    interface SubmissionCallback : BaseCallback {
 
         fun onUpvoteClick(index: Int)
         fun onNoneClick(index: Int)
@@ -22,39 +25,22 @@ class SubmissionController(private val callback: SubmissionCallback) : EpoxyCont
         fun onReplyClick(index: Int)
     }
 
-    private val submissions = ArrayList<Submission>()
+    override fun itemModel(index: Int, it: Submission, callback: SubmissionCallback?) {
 
-    fun setSubmission(submissions: List<Submission>) {
-        this.submissions.clear()
-        this.submissions.addAll(submissions)
-        requestModelBuild()
-    }
+        submission {
+            id(it.id)
+            subredditText(it.subreddit)
+            authorText(it.author)
+            titleText(getTaggedTitle(it))
+            bodyText(it.selfText ?: "")
 
-    override fun buildModels() {
+            upvoteClick(View.OnClickListener { callback?.onUpvoteClick(index) })
+            noneClick(View.OnClickListener { callback?.onNoneClick(index) })
+            downvoteClick(View.OnClickListener { callback?.onDownClick(index) })
 
-        if (submissions.isEmpty()) {
-            empty {
-                id("empty_model")
-            }
-        }
-
-        submissions.forEachIndexed { index, it ->
-
-            submission {
-                id(it.id)
-                subreddit(it.subreddit)
-                author(it.author)
-                title(getTaggedTitle(it))
-                body(it.selfText ?: "")
-
-                upvoteClick(View.OnClickListener { callback.onUpvoteClick(index) })
-                noneClick(View.OnClickListener { callback.onNoneClick(index) })
-                downvoteClick(View.OnClickListener { callback.onDownClick(index) })
-
-                saveClick(View.OnClickListener { callback.onSaveClick(index) })
-                hideClick(View.OnClickListener { callback.onHideClick(index) })
-                lockClick(View.OnClickListener { callback.onLockClick(index) })
-            }
+            saveClick(View.OnClickListener { callback?.onSaveClick(index) })
+            hideClick(View.OnClickListener { callback?.onHideClick(index) })
+            lockClick(View.OnClickListener { callback?.onLockClick(index) })
         }
     }
 }

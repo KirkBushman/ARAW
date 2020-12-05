@@ -2,6 +2,7 @@ package com.kirkbushman.sampleapp.controllers
 
 import android.view.View
 import com.kirkbushman.araw.models.ModeratedSub
+import com.kirkbushman.sampleapp.controllers.base.BaseController
 import com.kirkbushman.sampleapp.models.subreddit
 
 class ModeratedSubsController(
