@@ -20,12 +20,17 @@ class CommentDataIterator : Iterator<CommentData> {
     }
 
     override fun next(): CommentData {
-        val item = stack.pop()
 
+        if (!hasNext()) {
+            throw NoSuchElementException()
+        }
+
+        val item = stack.pop()
         if (item.hasReplies) {
-            item.replies!!
-                .asReversed()
-                .forEach { stack.push(it) }
+
+            item.replies
+                ?.asReversed()
+                ?.forEach { stack.push(it) }
         }
 
         return item

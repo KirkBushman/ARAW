@@ -1,14 +1,11 @@
 package com.kirkbushman.sampleapp.controllers
 
 import android.view.View
-import com.airbnb.epoxy.EpoxyController
 import com.kirkbushman.araw.models.PrivateSubreddit
 import com.kirkbushman.araw.models.Subreddit
-import com.kirkbushman.araw.models.SubredditSearchResult
 import com.kirkbushman.araw.models.base.SubredditData
 import com.kirkbushman.sampleapp.controllers.base.BaseCallback
 import com.kirkbushman.sampleapp.controllers.base.BaseController
-import com.kirkbushman.sampleapp.models.empty
 import com.kirkbushman.sampleapp.models.subreddit
 
 class SubredditController(

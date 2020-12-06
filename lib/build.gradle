@@ -4,7 +4,7 @@ plugins {
     id "org.jetbrains.kotlin.plugin.parcelize"
     id "org.jetbrains.kotlin.kapt"
     id "org.jetbrains.dokka"
-    // id "io.gitlab.arturbosch.detekt"
+    id "io.gitlab.arturbosch.detekt"
 }
 
 android {
@@ -48,9 +48,15 @@ kapt {
     useBuildCache = true
 }
 
-dokka {
-    outputFormat = 'html'
-    outputDirectory = "${project.rootDir}/docs"
+dokkaHtml {
+    configure {
+        dokkaSourceSets {
+
+            named("main") {
+                noAndroidSdkLink.set(false)
+            }
+        }
+    }
 }
 
 dependencies {

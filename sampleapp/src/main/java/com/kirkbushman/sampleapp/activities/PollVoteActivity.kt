@@ -12,7 +12,8 @@ import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.activities.base.BaseSearchPrint2Activity
 import kotlinx.android.synthetic.main.activity_submissions_search_flair.*
 
-class PollVoteActivity : BaseSearchPrint2Activity<List<PollVoteStateOption>>(R.layout.activity_submissions_search_flair) {
+class PollVoteActivity :
+    BaseSearchPrint2Activity<List<PollVoteStateOption>>(R.layout.activity_submissions_search_flair) {
 
     companion object {
 
@@ -38,7 +39,11 @@ class PollVoteActivity : BaseSearchPrint2Activity<List<PollVoteStateOption>>(R.l
     override val textPrint: TextView
         get() = comment_text
 
-    override fun fetchItem(client: RedditClient?, query: String, query2: String): List<PollVoteStateOption>? {
+    override fun fetchItem(
+        client: RedditClient?,
+        query: String,
+        query2: String
+    ): List<PollVoteStateOption>? {
 
         return client
             ?.contributionsClient

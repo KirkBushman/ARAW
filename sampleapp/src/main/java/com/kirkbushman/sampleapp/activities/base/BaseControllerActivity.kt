@@ -1,9 +1,6 @@
 package com.kirkbushman.sampleapp.activities.base
 
 import android.os.Bundle
-import androidx.annotation.LayoutRes
-import androidx.appcompat.widget.Toolbar
-import com.airbnb.epoxy.EpoxyRecyclerView
 import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.controllers.base.BaseCallback

@@ -53,7 +53,7 @@ class PolyJsonAdapterTests {
                     possibleTypes = arrayOf(Cat::class.java, Dolphin::class.java),
                     selectType = { label, _ ->
 
-                        when(label) {
+                        when (label) {
                             TAG_IS_HAIRY -> Cat::class.java
                             TAG_IS_SWIMMER -> Dolphin::class.java
                             else -> null
@@ -84,7 +84,7 @@ class PolyJsonAdapterTests {
                     possibleTypes = arrayOf(Cat::class.java, Dolphin::class.java),
                     selectType = { label, _ ->
 
-                        when(label) {
+                        when (label) {
                             TAG_IS_HAIRY -> Cat::class.java
                             TAG_IS_SWIMMER -> Dolphin::class.java
                             else -> null

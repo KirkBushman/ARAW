@@ -12,10 +12,8 @@ abstract class EmptyModel : EpoxyModelWithHolder<EmptyHolder>() {
     override fun getDefaultLayout(): Int {
         return R.layout.item_empty
     }
-
-    override fun bind(holder: EmptyHolder) = Unit
 }
 
 class EmptyHolder : EpoxyHolder() {
-    override fun bindView(itemView: View) {}
+    override fun bindView(itemView: View) = Unit
 }

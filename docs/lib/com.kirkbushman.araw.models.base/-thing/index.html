@@ -1,0 +1,105 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Thing - lib</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">lib</a>&nbsp;/&nbsp;<a href="../index.html">com.kirkbushman.araw.models.base</a>&nbsp;/&nbsp;<a href="./index.html">Thing</a><br/>
+<br/>
+<h1>Thing</h1>
+<code><span class="keyword">interface </span><span class="identifier">Thing</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code>
+<p>Base class for every class of the Reddit API,</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="fullname.html">fullname</a></h4>
+</td>
+<td>
+<p>Fullname of the item, e.g. "t1_c3v7f8u"</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">fullname</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="id.html">id</a></h4>
+</td>
+<td>
+<p>this item identifier, e.g. "8xwlg"</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">id</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.models/-account/index.html">Account</a></h4>
+</td>
+<td>
+<p>Base interface that groups the common fields between the class Redditor and Me,
+that has extra fields of the current logged in user.</p>
+<code><span class="keyword">interface </span><span class="identifier">Account</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Thing</span></a><span class="symbol">, </span><a href="../-created/index.html"><span class="identifier">Created</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.models/-awarding/index.html">Awarding</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Awarding</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Thing</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../-contribution/index.html">Contribution</a></h4>
+</td>
+<td>
+<p>Base interface for all the data submitted by a user.
+e.g. Submission, Comment, Message</p>
+<code><span class="keyword">interface </span><span class="identifier">Contribution</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Thing</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.models/-friend/index.html">Friend</a></h4>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Friend</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Thing</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../-gildable/index.html">Gildable</a></h4>
+</td>
+<td>
+<p>Base interface for all the item that can be given Gildings</p>
+<code><span class="keyword">interface </span><span class="identifier">Gildable</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Thing</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.models/-message/index.html">Message</a></h4>
+</td>
+<td>
+<p>This class represents the message a user can send or receive.
+Messages are grouped in the user inbox.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Message</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Thing</span></a><span class="symbol">, </span><a href="../-votable/index.html"><span class="identifier">Votable</span></a><span class="symbol">, </span><a href="../-created/index.html"><span class="identifier">Created</span></a><span class="symbol">, </span><a href="../-distinguishable/index.html"><span class="identifier">Distinguishable</span></a><span class="symbol">, </span><a href="../-replyable/index.html"><span class="identifier">Replyable</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../-subreddit-data/index.html">SubredditData</a></h4>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">SubredditData</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Thing</span></a><span class="symbol">, </span><a href="../-created/index.html"><span class="identifier">Created</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../-votable/index.html">Votable</a></h4>
+</td>
+<td>
+<p>Base interface for all the items that can be voted on,
+likes = True -&gt; Upvote, likes = False -&gt; Downvote, likes = null</p>
+<code><span class="keyword">interface </span><span class="identifier">Votable</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Thing</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

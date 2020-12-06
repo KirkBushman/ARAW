@@ -2,6 +2,7 @@ package com.kirkbushman.araw.models
 
 import android.os.Parcelable
 import com.kirkbushman.araw.http.base.EnvelopeKind
+import com.kirkbushman.araw.utils.MILLIS
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.parcelize.Parcelize
@@ -26,7 +27,7 @@ data class WikiPage(
         get() {
 
             if (revisionRaw != null) {
-                val milliseconds = revisionRaw / 1000L
+                val milliseconds = revisionRaw / MILLIS
                 return Date(milliseconds)
             }
 

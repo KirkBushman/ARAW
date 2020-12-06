@@ -1,9 +1,6 @@
 package com.kirkbushman.sampleapp.activities.base
 
 import android.os.Bundle
-import android.widget.TextView
-import androidx.annotation.LayoutRes
-import androidx.appcompat.widget.Toolbar
 import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.databinding.ActivityPrintBinding

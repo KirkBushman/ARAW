@@ -35,26 +35,26 @@ class InboxFragment : BaseControllerFragment<Message, InboxController.InboxCallb
 
     override val callback = object : InboxController.InboxCallback {
 
-            override fun readMessageClick(index: Int) {
+        override fun readMessageClick(index: Int) {
 
-                DoAsync(
-                    doWork = {
-                        val message = items[index]
-                        client?.messagesClient?.markAsRead(true, message)
-                    }
-                )
-            }
-
-            override fun unreadMessageClick(index: Int) {
-
-                DoAsync(
-                    doWork = {
-                        val message = items[index]
-                        client?.messagesClient?.markAsRead(false, message)
-                    }
-                )
-            }
+            DoAsync(
+                doWork = {
+                    val message = items[index]
+                    client?.messagesClient?.markAsRead(true, message)
+                }
+            )
         }
+
+        override fun unreadMessageClick(index: Int) {
+
+            DoAsync(
+                doWork = {
+                    val message = items[index]
+                    client?.messagesClient?.markAsRead(false, message)
+                }
+            )
+        }
+    }
 
     override val controller by lazy {
 

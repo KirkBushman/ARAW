@@ -141,11 +141,6 @@ class MainActivity : AppCompatActivity() {
             CommentsActivity.start(this)
         }
 
-        /*bttn_poll_vote.setOnClickListener {
-
-            PollVoteActivity.start(this)
-        }*/
-
         binding.bttnWiki.setOnClickListener {
 
             WikiPageActivity.start(this)

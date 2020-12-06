@@ -1,0 +1,84 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Sorting - lib</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">lib</a>&nbsp;/&nbsp;<a href="../index.html">com.kirkbushman.araw.models.base</a>&nbsp;/&nbsp;<a href="./index.html">Sorting</a><br/>
+<br/>
+<h1>Sorting</h1>
+<code><span class="keyword">interface </span><span class="identifier">Sorting</span></code>
+<p>Base interface to group all sorting options in the Reddit Api</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="requires-time-period.html">requiresTimePeriod</a></h4>
+</td>
+<td>
+<p>If this sorting option needs
+to be combined also with a TimePeriod, to be sent to the Api.
+e.g. Top / Last Month</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">requiresTimePeriod</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="sorting-str.html">sortingStr</a></h4>
+</td>
+<td>
+<p>raw string as seen by the Api.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">sortingStr</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.models.enums/-comments-sorting/index.html">CommentsSorting</a></h4>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">CommentsSorting</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Sorting</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.models.enums/-contributions-sorting/index.html">ContributionsSorting</a></h4>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">ContributionsSorting</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Sorting</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.models.enums/-redditor-search-sorting/index.html">RedditorSearchSorting</a></h4>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">RedditorSearchSorting</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Sorting</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.models.enums/-search-sorting/index.html">SearchSorting</a></h4>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">SearchSorting</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Sorting</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.models.enums/-submissions-sorting/index.html">SubmissionsSorting</a></h4>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">SubmissionsSorting</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Sorting</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.models.enums/-subreddit-search-sorting/index.html">SubredditSearchSorting</a></h4>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">SubredditSearchSorting</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Sorting</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

@@ -1,6 +1,7 @@
 package com.kirkbushman.araw.models
 
 import android.os.Parcelable
+import com.kirkbushman.araw.utils.MILLIS
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.parcelize.Parcelize
@@ -55,7 +56,7 @@ data class SubredditRule(
 
     val createdDate: Date
         get() {
-            val milliseconds = createdUtc / 1000L
+            val milliseconds = createdUtc / MILLIS
             return Date(milliseconds)
         }
 }

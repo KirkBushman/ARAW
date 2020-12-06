@@ -3,7 +3,7 @@ plugins {
     id "org.jetbrains.kotlin.android"
     id "org.jetbrains.kotlin.plugin.parcelize"
     id "org.jetbrains.kotlin.kapt"
-    // id "io.gitlab.arturbosch.detekt"
+    id "io.gitlab.arturbosch.detekt"
 }
 
 android {
@@ -81,7 +81,7 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$constr_ver"
     implementation "com.google.android.material:material:$mdc_ver"
 
-    implementation 'androidx.browser:browser:1.2.0'
+    implementation "androidx.browser:browser:$ax_browser_ver"
 
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanary_ver"
 

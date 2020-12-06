@@ -14,7 +14,7 @@ import com.kirkbushman.araw.models.base.Votable
 import java.util.*
 import kotlin.collections.ArrayList
 
-private const val MILLIS = 1000L
+const val MILLIS = 1000L
 
 /**
  * Useful extension to convert the creation date property,

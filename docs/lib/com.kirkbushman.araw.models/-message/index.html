@@ -8,7 +8,7 @@
 <a href="../../index.html">lib</a>&nbsp;/&nbsp;<a href="../index.html">com.kirkbushman.araw.models</a>&nbsp;/&nbsp;<a href="./index.html">Message</a><br/>
 <br/>
 <h1>Message</h1>
-<code><span class="identifier">@JsonClass</span><span class="symbol">(</span>true<span class="symbol">)</span> <span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Message</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../com.kirkbushman.araw.models.mixins/-thing/index.html"><span class="identifier">Thing</span></a><span class="symbol">, </span><a href="../../com.kirkbushman.araw.models.mixins/-votable/index.html"><span class="identifier">Votable</span></a><span class="symbol">, </span><a href="../../com.kirkbushman.araw.models.mixins/-created/index.html"><span class="identifier">Created</span></a><span class="symbol">, </span><a href="../../com.kirkbushman.araw.models.mixins/-distinguishable/index.html"><span class="identifier">Distinguishable</span></a><span class="symbol">, </span><a href="../../com.kirkbushman.araw.models.mixins/-replyable/index.html"><span class="identifier">Replyable</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code>
+<code><span class="identifier">@JsonClass</span><span class="symbol">(</span>true<span class="symbol">)</span> <span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Message</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../com.kirkbushman.araw.models.base/-thing/index.html"><span class="identifier">Thing</span></a><span class="symbol">, </span><a href="../../com.kirkbushman.araw.models.base/-votable/index.html"><span class="identifier">Votable</span></a><span class="symbol">, </span><a href="../../com.kirkbushman.araw.models.base/-created/index.html"><span class="identifier">Created</span></a><span class="symbol">, </span><a href="../../com.kirkbushman.araw.models.base/-distinguishable/index.html"><span class="identifier">Distinguishable</span></a><span class="symbol">, </span><a href="../../com.kirkbushman.araw.models.base/-replyable/index.html"><span class="identifier">Replyable</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code>
 <p>This class represents the message a user can send or receive.
 Messages are grouped in the user inbox.</p>
 <h3>Constructors</h3>
@@ -230,7 +230,7 @@ which is the context of this message.</p>
 <td>
 <p>Useful extension to convert the creation date property,
 from the Long unixtime, to a more practical Date object.</p>
-<code><span class="keyword">val </span><a href="../../com.kirkbushman.araw.models.mixins/-created/index.html"><span class="identifier">Created</span></a><span class="symbol">.</span><span class="identifier">createdDate</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/6/docs/api/java/util/Date.html"><span class="identifier">Date</span></a></code></td>
+<code><span class="keyword">val </span><a href="../../com.kirkbushman.araw.models.base/-created/index.html"><span class="identifier">Created</span></a><span class="symbol">.</span><span class="identifier">createdDate</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/6/docs/api/java/util/Date.html"><span class="identifier">Date</span></a></code></td>
 </tr>
 <tr>
 <td>
@@ -239,7 +239,7 @@ from the Long unixtime, to a more practical Date object.</p>
 <td>
 <p>Useful extension to convert the utc creation date property,
 from the Long unixtime, to a more practical Date object.</p>
-<code><span class="keyword">val </span><a href="../../com.kirkbushman.araw.models.mixins/-created/index.html"><span class="identifier">Created</span></a><span class="symbol">.</span><span class="identifier">createdUtcDate</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/6/docs/api/java/util/Date.html"><span class="identifier">Date</span></a></code></td>
+<code><span class="keyword">val </span><a href="../../com.kirkbushman.araw.models.base/-created/index.html"><span class="identifier">Created</span></a><span class="symbol">.</span><span class="identifier">createdUtcDate</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/6/docs/api/java/util/Date.html"><span class="identifier">Date</span></a></code></td>
 </tr>
 <tr>
 <td>
@@ -247,7 +247,7 @@ from the Long unixtime, to a more practical Date object.</p>
 </td>
 <td>
 <p>Useful extension to map to an enum.</p>
-<code><span class="keyword">val </span><a href="../../com.kirkbushman.araw.models.mixins/-distinguishable/index.html"><span class="identifier">Distinguishable</span></a><span class="symbol">.</span><span class="identifier">distinguished</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.models.general/-distinguished/index.html"><span class="identifier">Distinguished</span></a></code></td>
+<code><span class="keyword">val </span><a href="../../com.kirkbushman.araw.models.base/-distinguishable/index.html"><span class="identifier">Distinguishable</span></a><span class="symbol">.</span><span class="identifier">distinguished</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.models.enums/-distinguished/index.html"><span class="identifier">Distinguished</span></a></code></td>
 </tr>
 <tr>
 <td>
@@ -255,7 +255,7 @@ from the Long unixtime, to a more practical Date object.</p>
 </td>
 <td>
 <p>Useful extension to map to an enum.</p>
-<code><span class="keyword">val </span><a href="../../com.kirkbushman.araw.models.mixins/-votable/index.html"><span class="identifier">Votable</span></a><span class="symbol">.</span><span class="identifier">vote</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.models.general/-vote/index.html"><span class="identifier">Vote</span></a></code></td>
+<code><span class="keyword">val </span><a href="../../com.kirkbushman.araw.models.base/-votable/index.html"><span class="identifier">Votable</span></a><span class="symbol">.</span><span class="identifier">vote</span><span class="symbol">: </span><a href="../../com.kirkbushman.araw.models.enums/-vote/index.html"><span class="identifier">Vote</span></a></code></td>
 </tr>
 </tbody>
 </table>

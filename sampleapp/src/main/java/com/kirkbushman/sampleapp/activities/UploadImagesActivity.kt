@@ -42,11 +42,12 @@ class UploadImagesActivity : AppCompatActivity() {
         binding.bttnUpload.visibility = View.GONE
         binding.bttnUpload.setOnClickListener {
 
-            if (fileName != null &&
+            val hasFile = fileName != null &&
                 mimeType != null &&
                 fileContent != null &&
                 bitmap != null
-            ) {
+
+            if (hasFile) {
 
                 var mediaUrl: String? = null
 

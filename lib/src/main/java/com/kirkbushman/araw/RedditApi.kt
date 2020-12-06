@@ -6,7 +6,6 @@ import com.kirkbushman.araw.http.EnvelopedData
 import com.kirkbushman.araw.http.EnvelopedMessageListing
 import com.kirkbushman.araw.http.EnvelopedMulti
 import com.kirkbushman.araw.http.EnvelopedMultiDescription
-import com.kirkbushman.araw.http.EnvelopedRedditor
 import com.kirkbushman.araw.http.EnvelopedRedditorData
 import com.kirkbushman.araw.http.EnvelopedRedditorListing
 import com.kirkbushman.araw.http.EnvelopedSubmissionListing
@@ -408,10 +407,11 @@ interface RedditApi {
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedMultiDescription>
 
-    @PUT(Endpoints.URL_MULTI_DESC)
+    // todo go back to this
+    /*@PUT(Endpoints.URL_MULTI_DESC)
     fun setMultiDescription(
 
-    ): Call<Any?>
+    ): Call<Any?>*/
 
     @GET(Endpoints.URL_MULTI_SUB)
     fun getMultiSubreddit(

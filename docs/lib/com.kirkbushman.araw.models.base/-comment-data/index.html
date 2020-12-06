@@ -1,0 +1,82 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>CommentData - lib</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">lib</a>&nbsp;/&nbsp;<a href="../index.html">com.kirkbushman.araw.models.base</a>&nbsp;/&nbsp;<a href="./index.html">CommentData</a><br/>
+<br/>
+<h1>CommentData</h1>
+<code><span class="keyword">interface </span><span class="identifier">CommentData</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-contribution/index.html"><span class="identifier">Contribution</span></a></code>
+<p>Base interface for the elements in the comments section of a submission.</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="depth.html">depth</a></h4>
+</td>
+<td>
+<p>An integer representing the nested level of this comment.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">depth</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="has-replies.html">hasReplies</a></h4>
+</td>
+<td>
+<p>If the node has children nodes.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">hasReplies</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="parent-fullname.html">parentFullname</a></h4>
+</td>
+<td>
+<p>Fullname of the thing this comment is a reply to,
+either the link or a comment in it.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">parentFullname</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="replies.html">replies</a></h4>
+</td>
+<td>
+<p>The list of children nodes.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">replies</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="./index.html"><span class="identifier">CommentData</span></a><span class="symbol">&gt;</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="replies-size.html">repliesSize</a></h4>
+</td>
+<td>
+<p>The number of children nodes.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">repliesSize</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.models/-comment/index.html">Comment</a></h4>
+</td>
+<td>
+<p>This class can represent a comment on a Submission or a reply to another comment.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Comment</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">CommentData</span></a><span class="symbol">, </span><a href="../-votable/index.html"><span class="identifier">Votable</span></a><span class="symbol">, </span><a href="../-saveable/index.html"><span class="identifier">Saveable</span></a><span class="symbol">, </span><a href="../-created/index.html"><span class="identifier">Created</span></a><span class="symbol">, </span><a href="../-editable/index.html"><span class="identifier">Editable</span></a><span class="symbol">, </span><a href="../-distinguishable/index.html"><span class="identifier">Distinguishable</span></a><span class="symbol">, </span><a href="../-gildable/index.html"><span class="identifier">Gildable</span></a><span class="symbol">, </span><a href="../-replyable/index.html"><span class="identifier">Replyable</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.kirkbushman.araw.models/-more-comments/index.html">MoreComments</a></h4>
+</td>
+<td>
+<p>This class is used to load more comments in the tree,
+when a comment or a group of comment is too deep.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">MoreComments</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">CommentData</span></a><span class="symbol">, </span><a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

@@ -12,6 +12,8 @@ class ApiDetailActivity : BaseActivity() {
 
     companion object {
 
+        private const val TAKE_SUB_NUM = 4
+
         private val subreddits = listOf(
             "AskReddit",
             "aww",
@@ -343,35 +345,35 @@ class ApiDetailActivity : BaseActivity() {
 
     private fun fetchCall(): String {
 
-        when (apiParam) {
+        return when (apiParam) {
             API_ME -> {
                 val me = client?.accountsClient?.me()
-                return me.toString()
+                me.toString()
             }
 
             API_MY_BLOCKED -> {
                 val blocked = client?.accountsClient?.myBlocked()
-                return blocked.toString()
+                blocked.toString()
             }
 
             API_MY_FRIENDS -> {
                 val friends = client?.accountsClient?.myFriends()
-                return friends.toString()
+                friends.toString()
             }
 
             API_MY_KARMA -> {
                 val karma = client?.accountsClient?.myKarma()
-                return karma.toString()
+                karma.toString()
             }
 
             API_MY_PREFS -> {
                 val prefs = client?.accountsClient?.myPrefs()
-                return prefs.toString()
+                prefs.toString()
             }
 
             API_MY_TROPHIES -> {
                 val trophies = client?.accountsClient?.myTrophies()
-                return trophies.toString()
+                trophies.toString()
             }
 
             API_OVERVIEW -> {
@@ -379,7 +381,7 @@ class ApiDetailActivity : BaseActivity() {
                     disableLegacyEncoding = disableLegacyEncoding
                 )
                 val overview = fetcher?.fetchNext()
-                return overview.toString()
+                overview.toString()
             }
 
             API_SUBMITTED -> {
@@ -387,7 +389,7 @@ class ApiDetailActivity : BaseActivity() {
                     disableLegacyEncoding = disableLegacyEncoding
                 )
                 val submitted = fetcher?.fetchNext()
-                return submitted.toString()
+                submitted.toString()
             }
 
             API_COMMENTS -> {
@@ -395,7 +397,7 @@ class ApiDetailActivity : BaseActivity() {
                     disableLegacyEncoding = disableLegacyEncoding
                 )
                 val comments = fetcher?.fetchNext()
-                return comments.toString()
+                comments.toString()
             }
 
             API_SAVED -> {
@@ -403,7 +405,7 @@ class ApiDetailActivity : BaseActivity() {
                     disableLegacyEncoding = disableLegacyEncoding
                 )
                 val saved = fetcher?.fetchNext()
-                return saved.toString()
+                saved.toString()
             }
 
             API_HIDDEN -> {
@@ -411,7 +413,7 @@ class ApiDetailActivity : BaseActivity() {
                     disableLegacyEncoding = disableLegacyEncoding
                 )
                 val hidden = fetcher?.fetchNext()
-                return hidden.toString()
+                hidden.toString()
             }
 
             API_UPVOTED -> {
@@ -419,7 +421,7 @@ class ApiDetailActivity : BaseActivity() {
                     disableLegacyEncoding = disableLegacyEncoding
                 )
                 val upvoted = fetcher?.fetchNext()
-                return upvoted.toString()
+                upvoted.toString()
             }
 
             API_DOWNVOTED -> {
@@ -427,7 +429,7 @@ class ApiDetailActivity : BaseActivity() {
                     disableLegacyEncoding = disableLegacyEncoding
                 )
                 val downvoted = fetcher?.fetchNext()
-                return downvoted.toString()
+                downvoted.toString()
             }
 
             API_GILDED -> {
@@ -435,7 +437,7 @@ class ApiDetailActivity : BaseActivity() {
                     disableLegacyEncoding = disableLegacyEncoding
                 )
                 val gilded = fetcher?.fetchNext()
-                return gilded.toString()
+                gilded.toString()
             }
 
             API_SUB_SUBMISSION -> {
@@ -444,7 +446,7 @@ class ApiDetailActivity : BaseActivity() {
                     submissionId,
                     disableLegacyEncoding = disableLegacyEncoding
                 )
-                return submission.toString()
+                submission.toString()
             }
 
             API_SUB_COMMENT -> {
@@ -454,7 +456,7 @@ class ApiDetailActivity : BaseActivity() {
                     disableLegacyEncoding = disableLegacyEncoding
                 )
                 val comments = fetcher?.fetchNext()
-                return comments?.random().toString()
+                comments?.random().toString()
             }
 
             API_SUB_SUBMISSIONS -> {
@@ -464,7 +466,7 @@ class ApiDetailActivity : BaseActivity() {
                     disableLegacyEncoding = disableLegacyEncoding
                 )
                 val submissions = fetcher?.fetchNext()
-                return submissions.toString()
+                submissions.toString()
             }
 
             API_SUB_COMMENTS -> {
@@ -474,19 +476,22 @@ class ApiDetailActivity : BaseActivity() {
                     disableLegacyEncoding = disableLegacyEncoding
                 )
                 val comments = fetcher?.fetchNext()
-                return comments.toString()
+                comments.toString()
             }
 
             API_SUB_MULTIREDDIT -> {
                 val subreddits = getRandomSubredditNames()
-                val fetcher = client?.contributionsClient?.multiredditSubmissions(*subreddits, limit = 100)
+                val fetcher = client
+                    ?.contributionsClient
+                    ?.multiredditSubmissions(*subreddits, limit = 100)
+
                 val submissions = fetcher?.fetchNext()
-                return submissions.toString()
+                submissions.toString()
             }
 
             API_SUB_TRENDING -> {
                 val trending = client?.contributionsClient?.trendingSubreddits()
-                return trending.toString()
+                trending.toString()
             }
 
             API_MESSAGE_INBOX -> {
@@ -494,7 +499,7 @@ class ApiDetailActivity : BaseActivity() {
                     disableLegacyEncoding = disableLegacyEncoding
                 )
                 val inbox = fetcher?.fetchNext()
-                return inbox.toString()
+                inbox.toString()
             }
 
             API_MESSAGE_UNREAD -> {
@@ -502,7 +507,7 @@ class ApiDetailActivity : BaseActivity() {
                     disableLegacyEncoding = disableLegacyEncoding
                 )
                 val unread = fetcher?.fetchNext()
-                return unread.toString()
+                unread.toString()
             }
 
             API_MESSAGE_MESSAGES -> {
@@ -510,7 +515,7 @@ class ApiDetailActivity : BaseActivity() {
                     disableLegacyEncoding = disableLegacyEncoding
                 )
                 val messages = fetcher?.fetchNext()
-                return messages.toString()
+                messages.toString()
             }
 
             API_MESSAGE_SENT -> {
@@ -518,7 +523,7 @@ class ApiDetailActivity : BaseActivity() {
                     disableLegacyEncoding = disableLegacyEncoding
                 )
                 val sent = fetcher?.fetchNext()
-                return sent.toString()
+                sent.toString()
             }
 
             API_MESSAGE_COMMENT_REPLIES -> {
@@ -526,7 +531,7 @@ class ApiDetailActivity : BaseActivity() {
                     disableLegacyEncoding = disableLegacyEncoding
                 )
                 val replies = fetcher?.fetchNext()
-                return replies.toString()
+                replies.toString()
             }
 
             API_MESSAGE_SELF_REPLIES -> {
@@ -534,14 +539,14 @@ class ApiDetailActivity : BaseActivity() {
                     disableLegacyEncoding = disableLegacyEncoding
                 )
                 val replies = fetcher?.fetchNext()
-                return replies.toString()
+                replies.toString()
             }
 
             API_MULTIS_MINE -> {
                 val multis = client?.multisClient?.myMultis(
                     disableLegacyEncoding = disableLegacyEncoding
                 )
-                return multis.toString()
+                multis.toString()
             }
 
             API_MULTIS_REDDITOR -> {
@@ -550,7 +555,7 @@ class ApiDetailActivity : BaseActivity() {
                     username = userName,
                     disableLegacyEncoding = disableLegacyEncoding
                 )
-                return multis.toString()
+                multis.toString()
             }
 
             API_MULTI_SUBMISSIONS -> {
@@ -559,7 +564,7 @@ class ApiDetailActivity : BaseActivity() {
                     ?.multiSubmissions("Kirk-Bushman", "karmafarming")
 
                 val submissions = fetcher?.fetchNext()
-                return submissions.toString()
+                submissions.toString()
             }
 
             API_MULTI_GET_DESC -> {
@@ -568,12 +573,13 @@ class ApiDetailActivity : BaseActivity() {
                     ?.multisClient
                     ?.getMultiDescription("Kirk-Bushman", "karmafarming")
 
-                return desc.toString()
+                desc.toString()
             }
 
-            API_MULTI_SET_DESC -> {
+            // todo go back to this
+            /*API_MULTI_SET_DESC -> {
 
-            }
+            }*/
 
             API_MULTI_GET_SUB -> {
 
@@ -581,7 +587,7 @@ class ApiDetailActivity : BaseActivity() {
                     ?.multisClient
                     ?.getMultiSubreddit("Kirk-Bushman", "karmafarming", "Karma_Exchange")
 
-                return subreddit.toString()
+                subreddit.toString()
             }
 
             API_MULTI_ADD_SUB -> {
@@ -590,12 +596,13 @@ class ApiDetailActivity : BaseActivity() {
                     ?.multisClient
                     ?.addSubredditToMulti("Kirk-Bushman", "shush", "pics")
 
-                return response.toString()
+                response.toString()
             }
 
-            API_MULTI_DEL_SUB -> {
+            // todo go back to this
+            /*API_MULTI_DEL_SUB -> {
 
-            }
+            }*/
 
             API_SUBREDDIT -> {
                 val subName = getRandomSubredditName()
@@ -604,7 +611,7 @@ class ApiDetailActivity : BaseActivity() {
                     disableLegacyEncoding = disableLegacyEncoding
                 )
 
-                return subreddit.toString()
+                subreddit.toString()
             }
 
             API_SUBREDDITS -> {
@@ -614,55 +621,55 @@ class ApiDetailActivity : BaseActivity() {
                     ids = subIds.toTypedArray()
                 )
 
-                return subreddits.toString()
+                subreddits.toString()
             }
 
             API_SUBREDDIT_BANNED -> {
                 val subName = getRandomSubredditName()
                 val banned = client?.subredditsClient?.subredditBanned(subName)
-                return banned.toString()
+                banned.toString()
             }
 
             API_SUBREDDIT_MUTED -> {
                 val subName = getRandomSubredditName()
                 val muted = client?.subredditsClient?.subredditMuted(subName)
-                return muted.toString()
+                muted.toString()
             }
 
             API_SUBREDDIT_RULES -> {
                 val subName = getRandomSubredditName()
                 val rules = client?.subredditsClient?.rules(subName)
-                return rules?.contentToString() ?: "null"
+                rules?.contentToString() ?: "null"
             }
 
             API_SUBREDDIT_FLAIRS -> {
                 val subName = getRandomSubredditName()
                 val flairs = client?.subredditsClient?.subredditFlairs(subName)
-                return flairs.toString()
+                flairs.toString()
             }
 
             API_SUBREDDIT_WIKIBANNED -> {
                 val subName = getRandomSubredditName()
                 val wikibanned = client?.subredditsClient?.subredditWikiBanned(subName)
-                return wikibanned.toString()
+                wikibanned.toString()
             }
 
             API_SUBREDDIT_CONTRIBUTORS -> {
                 val subName = getRandomSubredditName()
                 val contributors = client?.subredditsClient?.subredditContributors(subName)
-                return contributors.toString()
+                contributors.toString()
             }
 
             API_SUBREDDIT_WIKICONTRIBUTORS -> {
                 val subName = getRandomSubredditName()
                 val wikicontributors = client?.subredditsClient?.subredditWikiContributors(subName)
-                return wikicontributors.toString()
+                wikicontributors.toString()
             }
 
             API_SUBREDDIT_MODERATORS -> {
                 val subName = getRandomSubredditName()
                 val moderators = client?.subredditsClient?.subredditModerators(subName)
-                return moderators.toString()
+                moderators.toString()
             }
 
             API_USER_OVERVIEW -> {
@@ -672,7 +679,7 @@ class ApiDetailActivity : BaseActivity() {
                     disableLegacyEncoding = disableLegacyEncoding
                 )
                 val overview = fetcher?.fetchNext()
-                return overview.toString()
+                overview.toString()
             }
 
             API_USER_SUBMITTED -> {
@@ -682,7 +689,7 @@ class ApiDetailActivity : BaseActivity() {
                     disableLegacyEncoding = disableLegacyEncoding
                 )
                 val submitted = fetcher?.fetchNext()
-                return submitted.toString()
+                submitted.toString()
             }
 
             API_USER_COMMENTS -> {
@@ -692,7 +699,7 @@ class ApiDetailActivity : BaseActivity() {
                     disableLegacyEncoding = disableLegacyEncoding
                 )
                 val comments = fetcher?.fetchNext()
-                return comments.toString()
+                comments.toString()
             }
 
             API_USER_GILDED -> {
@@ -702,7 +709,7 @@ class ApiDetailActivity : BaseActivity() {
                     disableLegacyEncoding = disableLegacyEncoding
                 )
                 val gilded = fetcher?.fetchNext()
-                return gilded.toString()
+                gilded.toString()
             }
 
             API_USER_TROPHIES -> {
@@ -711,7 +718,7 @@ class ApiDetailActivity : BaseActivity() {
                     userName,
                     disableLegacyEncoding = disableLegacyEncoding
                 )
-                return trophies.toString()
+                trophies.toString()
             }
 
             API_WIKI -> {
@@ -720,7 +727,7 @@ class ApiDetailActivity : BaseActivity() {
                     subreddit = subredditName,
                     disableLegacyEncoding = disableLegacyEncoding
                 )
-                return wiki.toString()
+                wiki.toString()
             }
 
             API_WIKI_PAGES -> {
@@ -729,7 +736,7 @@ class ApiDetailActivity : BaseActivity() {
                     subreddit = subredditName,
                     disableLegacyEncoding = disableLegacyEncoding
                 )
-                return wikiPages.toString()
+                wikiPages.toString()
             }
 
             API_WIKI_REVISION -> {
@@ -739,7 +746,7 @@ class ApiDetailActivity : BaseActivity() {
                     page = "index",
                     disableLegacyEncoding = disableLegacyEncoding
                 )
-                return wikiRevisions.toString()
+                wikiRevisions.toString()
             }
 
             API_WIKI_REVISIONS -> {
@@ -748,11 +755,11 @@ class ApiDetailActivity : BaseActivity() {
                     subreddit = subredditName,
                     disableLegacyEncoding = disableLegacyEncoding
                 )
-                return wikiRevisions.toString()
+                wikiRevisions.toString()
             }
-        }
 
-        return "Api call not registered!"
+            else -> "Api call not registered!"
+        }
     }
 
     private fun getRandomSubredditName(): String {
@@ -760,7 +767,11 @@ class ApiDetailActivity : BaseActivity() {
     }
 
     private fun getRandomSubredditNames(): Array<String> {
-        return subreddits.shuffled().take(4).toTypedArray()
+
+        return subreddits
+            .shuffled()
+            .take(TAKE_SUB_NUM)
+            .toTypedArray()
     }
 
     private fun getRandomSubredditIds(): List<String> {

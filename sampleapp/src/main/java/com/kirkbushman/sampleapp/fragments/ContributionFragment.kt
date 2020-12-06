@@ -51,54 +51,54 @@ class ContributionFragment : BaseControllerFragment<Contribution, SubmissionCont
 
     override val callback = object : SubmissionController.SubmissionCallback {
 
-            override fun onUpvoteClick(index: Int) {
+        override fun onUpvoteClick(index: Int) {
 
-                DoAsync(
-                    doWork = {
-                        val votable = items[index] as Votable
-                        client?.contributionsClient?.vote(Vote.UPVOTE, votable)
-                    }
-                )
-            }
-
-            override fun onNoneClick(index: Int) {
-
-                DoAsync(
-                    doWork = {
-                        val votable = items[index] as Votable
-                        client?.contributionsClient?.vote(Vote.NONE, votable)
-                    }
-                )
-            }
-
-            override fun onDownClick(index: Int) {
-
-                DoAsync(
-                    doWork = {
-                        val votable = items[index] as Votable
-                        client?.contributionsClient?.vote(Vote.DOWNVOTE, votable)
-                    }
-                )
-            }
-
-            override fun onSaveClick(index: Int) {
-
-                DoAsync(
-                    doWork = {
-                        when (val contribution = items[index]) {
-                            is Submission -> client?.contributionsClient?.save(!contribution.isSaved, contribution)
-                            is Comment -> client?.contributionsClient?.save(!contribution.isSaved, contribution)
-
-                            else -> {}
-                        }
-                    }
-                )
-            }
-
-            override fun onHideClick(index: Int) = Unit
-            override fun onLockClick(index: Int) = Unit
-            override fun onReplyClick(index: Int) = Unit
+            DoAsync(
+                doWork = {
+                    val votable = items[index] as Votable
+                    client?.contributionsClient?.vote(Vote.UPVOTE, votable)
+                }
+            )
         }
+
+        override fun onNoneClick(index: Int) {
+
+            DoAsync(
+                doWork = {
+                    val votable = items[index] as Votable
+                    client?.contributionsClient?.vote(Vote.NONE, votable)
+                }
+            )
+        }
+
+        override fun onDownClick(index: Int) {
+
+            DoAsync(
+                doWork = {
+                    val votable = items[index] as Votable
+                    client?.contributionsClient?.vote(Vote.DOWNVOTE, votable)
+                }
+            )
+        }
+
+        override fun onSaveClick(index: Int) {
+
+            DoAsync(
+                doWork = {
+                    when (val contribution = items[index]) {
+                        is Submission -> client?.contributionsClient?.save(!contribution.isSaved, contribution)
+                        is Comment -> client?.contributionsClient?.save(!contribution.isSaved, contribution)
+
+                        else -> {}
+                    }
+                }
+            )
+        }
+
+        override fun onHideClick(index: Int) = Unit
+        override fun onLockClick(index: Int) = Unit
+        override fun onReplyClick(index: Int) = Unit
+    }
 
     override val controller by lazy {
 

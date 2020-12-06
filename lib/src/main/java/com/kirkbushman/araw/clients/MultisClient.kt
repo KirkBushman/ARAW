@@ -134,10 +134,11 @@ class MultisClient(
         return res.body()?.data
     }
 
-    @WorkerThread
+    // todo go back to this
+    /*@WorkerThread
     fun setMultiDescription() {
 
-    }
+    }*/
 
     @WorkerThread
     fun getMultiSubreddit(

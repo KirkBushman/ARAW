@@ -6,7 +6,6 @@ import com.kirkbushman.araw.RedditApi
 import com.kirkbushman.araw.fetcher.ContributionsFetcher
 import com.kirkbushman.araw.fetcher.Fetcher
 import com.kirkbushman.araw.models.ModeratedSub
-import com.kirkbushman.araw.models.Redditor
 import com.kirkbushman.araw.models.Trophy
 import com.kirkbushman.araw.models.base.RedditorData
 import com.kirkbushman.araw.models.enums.ContributionsSorting

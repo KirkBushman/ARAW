@@ -1,7 +1,6 @@
 package com.kirkbushman.sampleapp.local.unit
 
 import com.kirkbushman.araw.fetcher.Fetcher
-import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
