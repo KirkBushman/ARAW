@@ -5,7 +5,9 @@ import android.content.Intent
 import com.google.android.material.tabs.TabLayout
 import com.kirkbushman.sampleapp.activities.base.BaseAdapterActivity
 import com.kirkbushman.sampleapp.adapters.InboxAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class InboxActivity : BaseAdapterActivity<InboxAdapter>() {
 
     companion object {

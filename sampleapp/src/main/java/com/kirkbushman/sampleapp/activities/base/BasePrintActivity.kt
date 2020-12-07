@@ -2,17 +2,18 @@ package com.kirkbushman.sampleapp.activities.base
 
 import android.os.Bundle
 import com.kirkbushman.araw.RedditClient
-import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.databinding.ActivityPrintBinding
-import com.kirkbushman.sampleapp.util.DoAsync
+import com.kirkbushman.sampleapp.utils.DoAsync
+import javax.inject.Inject
 
 abstract class BasePrintActivity<T> : BaseActivity() {
 
-    private val client by lazy { TestApplication.instance.getClient() }
+    @Inject
+    protected lateinit var client: RedditClient
 
     private lateinit var binding: ActivityPrintBinding
 
-    abstract fun fetchItem(client: RedditClient?): T?
+    abstract fun fetchItem(client: RedditClient): T?
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

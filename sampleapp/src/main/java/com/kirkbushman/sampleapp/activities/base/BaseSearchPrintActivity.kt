@@ -3,19 +3,20 @@ package com.kirkbushman.sampleapp.activities.base
 import android.os.Bundle
 import androidx.annotation.StringRes
 import com.kirkbushman.araw.RedditClient
-import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.databinding.ActivitySearchPrintBinding
-import com.kirkbushman.sampleapp.util.DoAsync
+import com.kirkbushman.sampleapp.utils.DoAsync
+import javax.inject.Inject
 
 abstract class BaseSearchPrintActivity<T> : BaseActivity() {
 
-    private val client by lazy { TestApplication.instance.getClient() }
+    @Inject
+    protected lateinit var client: RedditClient
 
     private lateinit var binding: ActivitySearchPrintBinding
 
     @StringRes
     abstract fun hintTextRes(): Int
-    abstract fun fetchItem(client: RedditClient?, query: String): T?
+    abstract fun fetchItem(client: RedditClient, query: String): T?
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

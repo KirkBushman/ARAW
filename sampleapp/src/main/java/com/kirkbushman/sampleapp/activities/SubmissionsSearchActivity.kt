@@ -4,14 +4,17 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.models.Submission
 import com.kirkbushman.araw.models.enums.Vote
-import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.activities.base.BaseActivity
 import com.kirkbushman.sampleapp.controllers.SubmissionController
 import com.kirkbushman.sampleapp.databinding.ActivitySubmissionsSearchBinding
-import com.kirkbushman.sampleapp.util.DoAsync
+import com.kirkbushman.sampleapp.utils.DoAsync
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class SubmissionsSearchActivity : BaseActivity() {
 
     companion object {
@@ -23,7 +26,8 @@ class SubmissionsSearchActivity : BaseActivity() {
         }
     }
 
-    private val client by lazy { TestApplication.instance.getClient() }
+    @Inject
+    lateinit var client: RedditClient
 
     private val submissions = ArrayList<Submission>()
     private val controller by lazy {
@@ -37,7 +41,7 @@ class SubmissionsSearchActivity : BaseActivity() {
                     DoAsync(
                         doWork = {
                             val submission = submissions[index]
-                            client?.contributionsClient?.vote(Vote.UPVOTE, submission)
+                            client.contributionsClient.vote(Vote.UPVOTE, submission)
                         }
                     )
                 }
@@ -47,7 +51,7 @@ class SubmissionsSearchActivity : BaseActivity() {
                     DoAsync(
                         doWork = {
                             val submission = submissions[index]
-                            client?.contributionsClient?.vote(Vote.NONE, submission)
+                            client.contributionsClient.vote(Vote.NONE, submission)
                         }
                     )
                 }
@@ -57,7 +61,7 @@ class SubmissionsSearchActivity : BaseActivity() {
                     DoAsync(
                         doWork = {
                             val submission = submissions[index]
-                            client?.contributionsClient?.vote(Vote.DOWNVOTE, submission)
+                            client.contributionsClient.vote(Vote.DOWNVOTE, submission)
                         }
                     )
                 }
@@ -67,7 +71,7 @@ class SubmissionsSearchActivity : BaseActivity() {
                     DoAsync(
                         doWork = {
                             val submission = submissions[index]
-                            client?.contributionsClient?.save(!submission.isSaved, submission)
+                            client.contributionsClient.save(!submission.isSaved, submission)
                         }
                     )
                 }
@@ -77,7 +81,7 @@ class SubmissionsSearchActivity : BaseActivity() {
                     DoAsync(
                         doWork = {
                             val submission = submissions[index]
-                            client?.contributionsClient?.hide(submission)
+                            client.contributionsClient.hide(submission)
                         }
                     )
                 }
@@ -87,7 +91,7 @@ class SubmissionsSearchActivity : BaseActivity() {
                     DoAsync(
                         doWork = {
                             val submission = submissions[index]
-                            client?.contributionsClient?.lock(submission)
+                            client.contributionsClient.lock(submission)
                         }
                     )
                 }
@@ -123,14 +127,14 @@ class SubmissionsSearchActivity : BaseActivity() {
             DoAsync(
                 doWork = {
 
-                    val fetcher = client?.searchClient?.submissionsSearch(
+                    val fetcher = client.searchClient.submissionsSearch(
                         subreddit = if (allSubs) null else subreddit,
                         query = query,
                         restrictToSubreddit = true
                     )
 
                     submissions.clear()
-                    submissions.addAll(fetcher?.fetchNext() ?: listOf())
+                    submissions.addAll(fetcher.fetchNext())
                 },
                 onPost = {
                     controller.setItems(submissions)

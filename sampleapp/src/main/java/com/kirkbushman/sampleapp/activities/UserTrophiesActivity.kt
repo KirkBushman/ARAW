@@ -7,7 +7,9 @@ import com.kirkbushman.araw.models.Trophy
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.activities.base.BaseSearchControllerActivity2
 import com.kirkbushman.sampleapp.controllers.TrophiesController
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class UserTrophiesActivity : BaseSearchControllerActivity2<Trophy>() {
 
     companion object {
@@ -25,8 +27,8 @@ class UserTrophiesActivity : BaseSearchControllerActivity2<Trophy>() {
 
     override val controller by lazy { TrophiesController() }
 
-    override fun fetchItem(client: RedditClient?, query: String): Collection<Trophy>? {
+    override fun fetchItem(client: RedditClient, query: String): Collection<Trophy>? {
 
-        return client?.redditorsClient?.trophies(query)
+        return client.redditorsClient.trophies(query)
     }
 }

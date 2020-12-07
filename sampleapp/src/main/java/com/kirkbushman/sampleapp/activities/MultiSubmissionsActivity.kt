@@ -6,7 +6,9 @@ import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.models.Submission
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.activities.base.BaseSearchPrint2Activity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MultiSubmissionsActivity : BaseSearchPrint2Activity<List<Submission>>() {
 
     companion object {
@@ -25,9 +27,9 @@ class MultiSubmissionsActivity : BaseSearchPrint2Activity<List<Submission>>() {
         return R.string.edit_insert_text_or_link
     }
 
-    override fun fetchItem(client: RedditClient?, query: String, query2: String): List<Submission>? {
+    override fun fetchItem(client: RedditClient, query: String, query2: String): List<Submission> {
 
-        val fetcher = client?.multisClient?.multiSubmissions(query, query2)
-        return fetcher?.fetchNext()
+        val fetcher = client.multisClient.multiSubmissions(query, query2)
+        return fetcher.fetchNext()
     }
 }

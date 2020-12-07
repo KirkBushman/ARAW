@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.fetcher.CommentsFetcher
 import com.kirkbushman.araw.models.Comment
 import com.kirkbushman.araw.models.MoreComments
@@ -14,13 +15,15 @@ import com.kirkbushman.araw.models.enums.Vote
 import com.kirkbushman.araw.models.base.CommentData
 import com.kirkbushman.araw.utils.toLinearList
 import com.kirkbushman.sampleapp.R
-import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.activities.base.BaseActivity
 import com.kirkbushman.sampleapp.controllers.CommentController
 import com.kirkbushman.sampleapp.databinding.ActivityCommentsBinding
-import com.kirkbushman.sampleapp.util.DoAsync
+import com.kirkbushman.sampleapp.utils.DoAsync
 import com.kirkbushman.sampleapp.fragments.ReplyBottomFragment
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class CommentsActivity : BaseActivity() {
 
     companion object {
@@ -32,7 +35,8 @@ class CommentsActivity : BaseActivity() {
         }
     }
 
-    private val client by lazy { TestApplication.instance.getClient() }
+    @Inject
+    lateinit var client: RedditClient
 
     private lateinit var binding: ActivityCommentsBinding
 
@@ -46,42 +50,42 @@ class CommentsActivity : BaseActivity() {
                 override fun onUpvoteClick(submission: Submission) {
 
                     DoAsync(
-                        doWork = { client?.contributionsClient?.vote(Vote.UPVOTE, submission) }
+                        doWork = { client.contributionsClient.vote(Vote.UPVOTE, submission) }
                     )
                 }
 
                 override fun onNoneClick(submission: Submission) {
 
                     DoAsync(
-                        doWork = { client?.contributionsClient?.vote(Vote.NONE, submission) }
+                        doWork = { client.contributionsClient.vote(Vote.NONE, submission) }
                     )
                 }
 
                 override fun onDownClick(submission: Submission) {
 
                     DoAsync(
-                        doWork = { client?.contributionsClient?.vote(Vote.DOWNVOTE, submission) }
+                        doWork = { client.contributionsClient.vote(Vote.DOWNVOTE, submission) }
                     )
                 }
 
                 override fun onSaveClick(submission: Submission) {
 
                     DoAsync(
-                        doWork = { client?.contributionsClient?.save(!submission.isSaved, submission) }
+                        doWork = { client.contributionsClient.save(!submission.isSaved, submission) }
                     )
                 }
 
                 override fun onHideClick(submission: Submission) {
 
                     DoAsync(
-                        doWork = { client?.contributionsClient?.hide(submission) }
+                        doWork = { client.contributionsClient.hide(submission) }
                     )
                 }
 
                 override fun onLockClick(submission: Submission) {
 
                     DoAsync(
-                        doWork = { client?.contributionsClient?.lock(submission) }
+                        doWork = { client.contributionsClient.lock(submission) }
                     )
                 }
 
@@ -92,7 +96,7 @@ class CommentsActivity : BaseActivity() {
                     DoAsync(
                         doWork = {
 
-                            val more = client?.contributionsClient?.moreChildren(moreComments, submission)
+                            val more = client.contributionsClient.moreChildren(moreComments, submission)
                             addendum.addAll(more ?: listOf())
                         },
                         onPost = {
@@ -142,7 +146,7 @@ class CommentsActivity : BaseActivity() {
                         null
                     }
 
-                    fetcher = client?.contributionsClient?.comments(
+                    fetcher = client.contributionsClient.comments(
                         submissionId = submissionId,
                         focusedCommentId = sanitizedCommentId
                     )

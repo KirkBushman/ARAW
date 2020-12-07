@@ -5,8 +5,10 @@ import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.models.Message
 import com.kirkbushman.sampleapp.controllers.InboxController
 import com.kirkbushman.sampleapp.fragments.base.BaseControllerFragment
-import com.kirkbushman.sampleapp.util.DoAsync
+import com.kirkbushman.sampleapp.utils.DoAsync
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class InboxFragment : BaseControllerFragment<Message, InboxController.InboxCallback>() {
 
     companion object {
@@ -40,7 +42,7 @@ class InboxFragment : BaseControllerFragment<Message, InboxController.InboxCallb
             DoAsync(
                 doWork = {
                     val message = items[index]
-                    client?.messagesClient?.markAsRead(true, message)
+                    client.messagesClient.markAsRead(true, message)
                 }
             )
         }
@@ -50,7 +52,7 @@ class InboxFragment : BaseControllerFragment<Message, InboxController.InboxCallb
             DoAsync(
                 doWork = {
                     val message = items[index]
-                    client?.messagesClient?.markAsRead(false, message)
+                    client.messagesClient.markAsRead(false, message)
                 }
             )
         }

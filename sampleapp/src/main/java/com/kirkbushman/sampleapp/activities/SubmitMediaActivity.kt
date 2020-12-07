@@ -7,12 +7,15 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.models.commons.SubmissionKind
-import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.databinding.ActivitySubmitMediaBinding
-import com.kirkbushman.sampleapp.util.StorageUtil
-import com.kirkbushman.sampleapp.util.DoAsync
+import com.kirkbushman.sampleapp.utils.StorageUtil
+import com.kirkbushman.sampleapp.utils.DoAsync
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class SubmitMediaActivity : AppCompatActivity() {
 
     companion object {
@@ -24,7 +27,8 @@ class SubmitMediaActivity : AppCompatActivity() {
         }
     }
 
-    private val client by lazy { TestApplication.instance.getClient() }
+    @Inject
+    lateinit var client: RedditClient
 
     private lateinit var binding: ActivitySubmitMediaBinding
 
@@ -50,7 +54,7 @@ class SubmitMediaActivity : AppCompatActivity() {
                 DoAsync(
                     doWork = {
 
-                        val mediaUrl = client?.contributionsClient?.uploadMedia(fileName!!, mimeType!!, fileContent!!)
+                        val mediaUrl = client.contributionsClient.uploadMedia(fileName!!, mimeType!!, fileContent!!)
                         if (mediaUrl != null) {
 
                             val subreddit = binding.editSubreddit.text.trim().toString()
@@ -63,7 +67,7 @@ class SubmitMediaActivity : AppCompatActivity() {
                                 else -> SubmissionKind.LINK
                             }
 
-                            client?.subredditsClient?.submit(
+                            client.subredditsClient.submit(
                                 subredditName = subreddit,
                                 resubmit = true,
                                 sendReplies = true,

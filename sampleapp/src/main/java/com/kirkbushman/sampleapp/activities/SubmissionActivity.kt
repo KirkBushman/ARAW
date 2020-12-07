@@ -6,7 +6,9 @@ import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.models.Submission
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.activities.base.BaseSearchPrintActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SubmissionActivity : BaseSearchPrintActivity<Submission>() {
 
     companion object {
@@ -22,7 +24,7 @@ class SubmissionActivity : BaseSearchPrintActivity<Submission>() {
         return R.string.edit_insert_submission_id
     }
 
-    override fun fetchItem(client: RedditClient?, query: String): Submission? {
-        return client?.contributionsClient?.submission(query)
+    override fun fetchItem(client: RedditClient, query: String): Submission? {
+        return client.contributionsClient.submission(query)
     }
 }

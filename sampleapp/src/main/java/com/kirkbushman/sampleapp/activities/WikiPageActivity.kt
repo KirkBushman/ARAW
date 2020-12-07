@@ -4,13 +4,16 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.models.WikiPage
-import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.activities.base.BaseActivity
 import com.kirkbushman.sampleapp.databinding.ActivityWikiBinding
-import com.kirkbushman.sampleapp.util.DoAsync
+import com.kirkbushman.sampleapp.utils.DoAsync
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 import kotlin.Exception
 
+@AndroidEntryPoint
 class WikiPageActivity : BaseActivity() {
 
     companion object {
@@ -34,7 +37,8 @@ class WikiPageActivity : BaseActivity() {
         }
     }
 
-    private val client by lazy { TestApplication.instance.getClient() }
+    @Inject
+    lateinit var client: RedditClient
 
     private val subreddit by lazy { intent.getStringExtra(PARAM_SUBREDDIT_NAME) }
     private val page by lazy { intent.getStringExtra(PARAM_PAGE_NAME) }
@@ -69,7 +73,7 @@ class WikiPageActivity : BaseActivity() {
                         doWork = {
 
                             try {
-                                wiki = client?.wikisClient?.wiki(subreddit)
+                                wiki = client.wikisClient.wiki(subreddit)
                             } catch (ex: Exception) {
                                 exception = ex
                             }
@@ -98,7 +102,7 @@ class WikiPageActivity : BaseActivity() {
             DoAsync(
                 doWork = {
 
-                    wikiPage = client?.wikisClient?.wikiPage(subreddit!!, page!!)
+                    wikiPage = client.wikisClient.wikiPage(subreddit!!, page!!)
                 },
                 onPost = {
 

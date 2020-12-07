@@ -5,7 +5,9 @@ import android.content.Intent
 import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.models.Me
 import com.kirkbushman.sampleapp.activities.base.BasePrintActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SelfAccountActivity : BasePrintActivity<Me>() {
 
     companion object {
@@ -17,8 +19,8 @@ class SelfAccountActivity : BasePrintActivity<Me>() {
         }
     }
 
-    override fun fetchItem(client: RedditClient?): Me? {
+    override fun fetchItem(client: RedditClient): Me? {
 
-        return client?.accountsClient?.me()
+        return client.accountsClient.me()
     }
 }

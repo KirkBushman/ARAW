@@ -3,12 +3,15 @@ package com.kirkbushman.sampleapp.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.models.commons.SubmissionKind
-import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.activities.base.BaseActivity
 import com.kirkbushman.sampleapp.databinding.ActivitySubmitBinding
-import com.kirkbushman.sampleapp.util.DoAsync
+import com.kirkbushman.sampleapp.utils.DoAsync
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class SubmitActivity : BaseActivity() {
 
     companion object {
@@ -20,7 +23,8 @@ class SubmitActivity : BaseActivity() {
         }
     }
 
-    private val client by lazy { TestApplication.instance.getClient() }
+    @Inject
+    lateinit var client: RedditClient
 
     private lateinit var binding: ActivitySubmitBinding
 
@@ -51,7 +55,7 @@ class SubmitActivity : BaseActivity() {
                         else -> SubmissionKind.SELF
                     }
 
-                    client?.subredditsClient?.submit(
+                    client.subredditsClient.submit(
                         subredditName = subredditName,
                         title = title,
                         kind = kind,

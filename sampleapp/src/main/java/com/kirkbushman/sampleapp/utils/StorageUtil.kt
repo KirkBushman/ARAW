@@ -1,4 +1,4 @@
-package com.kirkbushman.sampleapp.util
+package com.kirkbushman.sampleapp.utils
 
 import android.app.Activity
 import android.content.Intent

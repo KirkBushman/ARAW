@@ -6,9 +6,15 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.kirkbushman.araw.RedditClient
+import com.kirkbushman.araw.helpers.AuthAppHelper
+import com.kirkbushman.araw.helpers.AuthUserlessHelper
 import com.kirkbushman.sampleapp.databinding.ActivityLoginBinding
-import com.kirkbushman.sampleapp.util.DoAsync
+import com.kirkbushman.sampleapp.di.Provider
+import com.kirkbushman.sampleapp.utils.DoAsync
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
     companion object {
@@ -26,9 +32,10 @@ class LoginActivity : AppCompatActivity() {
 
     private val stopAutoLogin by lazy { intent.getBooleanExtra(PARAM_AUTO_LOGIN, false) }
 
-    private val app = TestApplication.instance
-    private val appAuth = app.getAuthHelper()
-    private val userlessAuth = app.getUserlessHelper()
+    @Inject
+    lateinit var appAuth: AuthAppHelper
+    @Inject
+    lateinit var userlessAuth: AuthUserlessHelper
 
     private lateinit var binding: ActivityLoginBinding
 
@@ -97,7 +104,7 @@ class LoginActivity : AppCompatActivity() {
 
                 val client = appAuth.getSavedRedditClient()
                 if (client != null) {
-                    app.setClient(client)
+                    Provider.setRedditClient(client)
                 }
             },
             onPost = {
@@ -115,7 +122,7 @@ class LoginActivity : AppCompatActivity() {
 
                 val client = userlessAuth.getSavedRedditClient()
                 if (client != null) {
-                    app.setClient(client)
+                    Provider.setRedditClient(client)
                 }
             },
             onPost = {
@@ -141,7 +148,7 @@ class LoginActivity : AppCompatActivity() {
 
                     val client = appAuth.getRedditClient(it)
                     if (client != null) {
-                        TestApplication.instance.setClient(client)
+                        Provider.setRedditClient(client)
                     }
 
                     checkAuthStatus()
@@ -169,7 +176,7 @@ class LoginActivity : AppCompatActivity() {
             onPost = {
 
                 if (client != null) {
-                    TestApplication.instance.setClient(client!!)
+                    Provider.setRedditClient(client!!)
                 }
 
                 checkAuthStatus()

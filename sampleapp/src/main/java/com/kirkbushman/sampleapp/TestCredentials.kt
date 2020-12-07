@@ -1,6 +1,6 @@
 package com.kirkbushman.sampleapp
 
-data class Credentials(
+data class TestCredentials(
 
     val clientId: String,
     val redirectUrl: String,

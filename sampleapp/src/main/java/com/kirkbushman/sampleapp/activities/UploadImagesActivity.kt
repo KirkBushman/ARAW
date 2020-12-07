@@ -7,12 +7,15 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.sampleapp.R
-import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.databinding.ActivityUploadImagesBinding
-import com.kirkbushman.sampleapp.util.StorageUtil
-import com.kirkbushman.sampleapp.util.DoAsync
+import com.kirkbushman.sampleapp.utils.StorageUtil
+import com.kirkbushman.sampleapp.utils.DoAsync
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class UploadImagesActivity : AppCompatActivity() {
 
     companion object {
@@ -24,7 +27,8 @@ class UploadImagesActivity : AppCompatActivity() {
         }
     }
 
-    private val client by lazy { TestApplication.instance.getClient() }
+    @Inject
+    lateinit var client: RedditClient
 
     private lateinit var binding: ActivityUploadImagesBinding
 
@@ -54,7 +58,7 @@ class UploadImagesActivity : AppCompatActivity() {
                 DoAsync(
                     doWork = {
 
-                        mediaUrl = client?.contributionsClient?.uploadMedia(fileName!!, mimeType!!, fileContent!!)
+                        mediaUrl = client.contributionsClient.uploadMedia(fileName!!, mimeType!!, fileContent!!)
                     },
                     onPost = {
 

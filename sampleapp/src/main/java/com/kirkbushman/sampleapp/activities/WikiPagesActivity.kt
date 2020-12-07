@@ -5,7 +5,9 @@ import android.content.Intent
 import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.sampleapp.activities.base.BaseSearchControllerActivity
 import com.kirkbushman.sampleapp.controllers.WikiPagesController
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class WikiPagesActivity :
     BaseSearchControllerActivity<String, WikiPagesController.WikiPageCallback>() {
 
@@ -33,10 +35,10 @@ class WikiPagesActivity :
         WikiPagesController(callback)
     }
 
-    override fun fetchItem(client: RedditClient?, query: String): Collection<String>? {
+    override fun fetchItem(client: RedditClient, query: String): Collection<String>? {
 
         subreddit = query
 
-        return client?.wikisClient?.wikiPages(query)
+        return client.wikisClient.wikiPages(query)
     }
 }

@@ -10,7 +10,9 @@ import com.kirkbushman.araw.models.enums.TimePeriod
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.activities.base.BaseAdapterActivity
 import com.kirkbushman.sampleapp.adapters.SubmissionsAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CommonSubmissionsActivity : BaseAdapterActivity<SubmissionsAdapter>() {
 
     companion object {

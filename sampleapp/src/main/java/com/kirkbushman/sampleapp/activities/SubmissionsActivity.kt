@@ -13,8 +13,10 @@ import com.kirkbushman.araw.models.enums.Vote
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.activities.base.BaseSearchControllerActivity
 import com.kirkbushman.sampleapp.controllers.SubmissionController
-import com.kirkbushman.sampleapp.util.DoAsync
+import com.kirkbushman.sampleapp.utils.DoAsync
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SubmissionsActivity : BaseSearchControllerActivity<Submission, SubmissionController.SubmissionCallback>() {
 
     companion object {
@@ -33,7 +35,7 @@ class SubmissionsActivity : BaseSearchControllerActivity<Submission, SubmissionC
             DoAsync(
                 doWork = {
                     val submission = items[index]
-                    client?.contributionsClient?.vote(Vote.UPVOTE, submission)
+                    client.contributionsClient.vote(Vote.UPVOTE, submission)
                 }
             )
         }
@@ -43,7 +45,7 @@ class SubmissionsActivity : BaseSearchControllerActivity<Submission, SubmissionC
             DoAsync(
                 doWork = {
                     val submission = items[index]
-                    client?.contributionsClient?.vote(Vote.NONE, submission)
+                    client.contributionsClient.vote(Vote.NONE, submission)
                 }
             )
         }
@@ -53,7 +55,7 @@ class SubmissionsActivity : BaseSearchControllerActivity<Submission, SubmissionC
             DoAsync(
                 doWork = {
                     val submission = items[index]
-                    client?.contributionsClient?.vote(Vote.DOWNVOTE, submission)
+                    client.contributionsClient.vote(Vote.DOWNVOTE, submission)
                 }
             )
         }
@@ -63,7 +65,7 @@ class SubmissionsActivity : BaseSearchControllerActivity<Submission, SubmissionC
             DoAsync(
                 doWork = {
                     val submission = items[index]
-                    client?.contributionsClient?.save(!submission.isSaved, submission)
+                    client.contributionsClient.save(!submission.isSaved, submission)
                 }
             )
         }
@@ -73,7 +75,7 @@ class SubmissionsActivity : BaseSearchControllerActivity<Submission, SubmissionC
             DoAsync(
                 doWork = {
                     val submission = items[index]
-                    client?.contributionsClient?.hide(submission)
+                    client.contributionsClient.hide(submission)
                 }
             )
         }
@@ -83,7 +85,7 @@ class SubmissionsActivity : BaseSearchControllerActivity<Submission, SubmissionC
             DoAsync(
                 doWork = {
                     val submission = items[index]
-                    client?.contributionsClient?.lock(submission)
+                    client.contributionsClient.lock(submission)
                 }
             )
         }
@@ -95,9 +97,9 @@ class SubmissionsActivity : BaseSearchControllerActivity<Submission, SubmissionC
 
     private var fetcher: SubmissionsFetcher? = null
 
-    override fun fetchItem(client: RedditClient?, query: String): Collection<Submission>? {
+    override fun fetchItem(client: RedditClient, query: String): Collection<Submission>? {
 
-        fetcher = client?.contributionsClient?.submissions(query, limit = 100L)
+        fetcher = client.contributionsClient.submissions(query, limit = 100L)
         return fetcher?.fetchNext()
     }
 

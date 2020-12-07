@@ -8,7 +8,9 @@ import com.kirkbushman.araw.models.enums.SearchSorting
 import com.kirkbushman.araw.models.enums.TimePeriod
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.activities.base.BaseSearchPrint2Activity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SubmissionsFlairFilterActivity : BaseSearchPrint2Activity<List<Submission>>() {
 
     companion object {
@@ -28,11 +30,11 @@ class SubmissionsFlairFilterActivity : BaseSearchPrint2Activity<List<Submission>
         return R.string.edit_insert_text_or_link
     }
 
-    override fun fetchItem(client: RedditClient?, query: String, query2: String): List<Submission>? {
+    override fun fetchItem(client: RedditClient, query: String, query2: String): List<Submission> {
 
         val fetcher = client
-            ?.searchClient
-            ?.submissionsSearch(
+            .searchClient
+            .submissionsSearch(
                 subreddit = query,
                 query = "flair_name:\"$query2\"",
                 sorting = SearchSorting.NEW,
@@ -40,6 +42,6 @@ class SubmissionsFlairFilterActivity : BaseSearchPrint2Activity<List<Submission>
                 restrictToSubreddit = true
             )
 
-        return fetcher?.fetchNext()
+        return fetcher.fetchNext()
     }
 }

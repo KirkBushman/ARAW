@@ -6,11 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.models.Comment
-import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.databinding.FragmentBottomReplyBinding
-import com.kirkbushman.sampleapp.util.DoAsync
+import com.kirkbushman.sampleapp.utils.DoAsync
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class ReplyBottomFragment : BottomSheetDialogFragment() {
 
     companion object {
@@ -28,7 +31,9 @@ class ReplyBottomFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private val client by lazy { TestApplication.instance.getClient() }
+    @Inject
+    lateinit var client: RedditClient
+
     private val comment by lazy { arguments?.getParcelable(PASSED_COMMENT) as Comment? }
 
     private var binding: FragmentBottomReplyBinding? = null
@@ -50,7 +55,7 @@ class ReplyBottomFragment : BottomSheetDialogFragment() {
 
                         val replyText = b.editReply.text.toString().trim()
                         responseComment =
-                            client?.contributionsClient?.reply(comment?.fullname ?: "", replyText)
+                            client.contributionsClient.reply(comment?.fullname ?: "", replyText)
                     },
                     onPost = {
 

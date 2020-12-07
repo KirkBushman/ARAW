@@ -6,7 +6,9 @@ import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.models.Comment
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.activities.base.BaseSearchPrintActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CommentActivity : BaseSearchPrintActivity<Comment>() {
 
     companion object {
@@ -22,7 +24,7 @@ class CommentActivity : BaseSearchPrintActivity<Comment>() {
         return R.string.edit_insert_comment_id
     }
 
-    override fun fetchItem(client: RedditClient?, query: String): Comment? {
-        return client?.contributionsClient?.comment(query)
+    override fun fetchItem(client: RedditClient, query: String): Comment? {
+        return client.contributionsClient.comment(query)
     }
 }

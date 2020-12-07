@@ -13,8 +13,10 @@ import com.kirkbushman.araw.models.base.Votable
 import com.kirkbushman.sampleapp.controllers.ContributionController
 import com.kirkbushman.sampleapp.controllers.SubmissionController
 import com.kirkbushman.sampleapp.fragments.base.BaseControllerFragment
-import com.kirkbushman.sampleapp.util.DoAsync
+import com.kirkbushman.sampleapp.utils.DoAsync
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SelfContributionFragment : BaseControllerFragment<Contribution, SubmissionController.SubmissionCallback>() {
 
     companion object {
@@ -41,7 +43,7 @@ class SelfContributionFragment : BaseControllerFragment<Contribution, Submission
         }
     }
 
-    val passedTag by lazy { arguments?.getString(PASSED_TAG) ?: "" }
+    private val passedTag by lazy { arguments?.getString(PASSED_TAG) ?: "" }
 
     override val callback = object : SubmissionController.SubmissionCallback {
 
@@ -50,7 +52,7 @@ class SelfContributionFragment : BaseControllerFragment<Contribution, Submission
             DoAsync(
                 doWork = {
                     val votable = items[index] as Votable
-                    client?.contributionsClient?.vote(Vote.UPVOTE, votable)
+                    client.contributionsClient.vote(Vote.UPVOTE, votable)
                 }
             )
         }
@@ -60,7 +62,7 @@ class SelfContributionFragment : BaseControllerFragment<Contribution, Submission
             DoAsync(
                 doWork = {
                     val votable = items[index] as Votable
-                    client?.contributionsClient?.vote(Vote.NONE, votable)
+                    client.contributionsClient.vote(Vote.NONE, votable)
                 }
             )
         }
@@ -70,7 +72,7 @@ class SelfContributionFragment : BaseControllerFragment<Contribution, Submission
             DoAsync(
                 doWork = {
                     val votable = items[index] as Votable
-                    client?.contributionsClient?.vote(Vote.DOWNVOTE, votable)
+                    client.contributionsClient.vote(Vote.DOWNVOTE, votable)
                 }
             )
         }
@@ -80,8 +82,8 @@ class SelfContributionFragment : BaseControllerFragment<Contribution, Submission
             DoAsync(
                 doWork = {
                     when (val contribution = items[index]) {
-                        is Submission -> client?.contributionsClient?.save(!contribution.isSaved, contribution)
-                        is Comment -> client?.contributionsClient?.save(!contribution.isSaved, contribution)
+                        is Submission -> client.contributionsClient.save(!contribution.isSaved, contribution)
+                        is Comment -> client.contributionsClient.save(!contribution.isSaved, contribution)
 
                         else -> {}
                     }

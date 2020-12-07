@@ -14,8 +14,10 @@ import com.kirkbushman.sampleapp.activities.RedditorInfoActivity
 import com.kirkbushman.sampleapp.controllers.ContributionController
 import com.kirkbushman.sampleapp.controllers.SubmissionController
 import com.kirkbushman.sampleapp.fragments.base.BaseControllerFragment
-import com.kirkbushman.sampleapp.util.DoAsync
+import com.kirkbushman.sampleapp.utils.DoAsync
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ContributionFragment : BaseControllerFragment<Contribution, SubmissionController.SubmissionCallback>() {
 
     companion object {
@@ -39,7 +41,7 @@ class ContributionFragment : BaseControllerFragment<Contribution, SubmissionCont
         }
     }
 
-    val passedTag by lazy { arguments?.getString(PASSED_TAG) ?: "" }
+    private val passedTag by lazy { arguments?.getString(PASSED_TAG) ?: "" }
 
     private val username: String
         get() {
@@ -56,7 +58,7 @@ class ContributionFragment : BaseControllerFragment<Contribution, SubmissionCont
             DoAsync(
                 doWork = {
                     val votable = items[index] as Votable
-                    client?.contributionsClient?.vote(Vote.UPVOTE, votable)
+                    client.contributionsClient.vote(Vote.UPVOTE, votable)
                 }
             )
         }
@@ -66,7 +68,7 @@ class ContributionFragment : BaseControllerFragment<Contribution, SubmissionCont
             DoAsync(
                 doWork = {
                     val votable = items[index] as Votable
-                    client?.contributionsClient?.vote(Vote.NONE, votable)
+                    client.contributionsClient.vote(Vote.NONE, votable)
                 }
             )
         }
@@ -76,7 +78,7 @@ class ContributionFragment : BaseControllerFragment<Contribution, SubmissionCont
             DoAsync(
                 doWork = {
                     val votable = items[index] as Votable
-                    client?.contributionsClient?.vote(Vote.DOWNVOTE, votable)
+                    client.contributionsClient.vote(Vote.DOWNVOTE, votable)
                 }
             )
         }
@@ -86,8 +88,8 @@ class ContributionFragment : BaseControllerFragment<Contribution, SubmissionCont
             DoAsync(
                 doWork = {
                     when (val contribution = items[index]) {
-                        is Submission -> client?.contributionsClient?.save(!contribution.isSaved, contribution)
-                        is Comment -> client?.contributionsClient?.save(!contribution.isSaved, contribution)
+                        is Submission -> client.contributionsClient.save(!contribution.isSaved, contribution)
+                        is Comment -> client.contributionsClient.save(!contribution.isSaved, contribution)
 
                         else -> {}
                     }

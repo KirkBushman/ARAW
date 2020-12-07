@@ -7,8 +7,10 @@ import com.kirkbushman.araw.models.Subreddit
 import com.kirkbushman.araw.models.base.SubredditData
 import com.kirkbushman.sampleapp.activities.base.BaseControllerActivity
 import com.kirkbushman.sampleapp.controllers.SubredditController
-import com.kirkbushman.sampleapp.util.DoAsync
+import com.kirkbushman.sampleapp.utils.DoAsync
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SubscribedSubredditsActivity : BaseControllerActivity<SubredditData, SubredditController.SubredditCallback>() {
 
     companion object {
@@ -29,7 +31,7 @@ class SubscribedSubredditsActivity : BaseControllerActivity<SubredditData, Subre
                 doWork = {
 
                     if (subreddit is Subreddit) {
-                        client?.subredditsClient?.subscribe(subreddit)
+                        client.subredditsClient.subscribe(subreddit)
                     }
                 },
                 onPost = {
@@ -46,9 +48,9 @@ class SubscribedSubredditsActivity : BaseControllerActivity<SubredditData, Subre
 
     override val controller: SubredditController by lazy { SubredditController(callback) }
 
-    override fun fetchItem(client: RedditClient?): Collection<SubredditData>? {
+    override fun fetchItem(client: RedditClient): Collection<SubredditData> {
 
-        val fetcher = client?.accountsClient?.subscribedSubreddits(limit = 100)
-        return fetcher?.fetchNext()
+        val fetcher = client.accountsClient.subscribedSubreddits(limit = 100)
+        return fetcher.fetchNext()
     }
 }

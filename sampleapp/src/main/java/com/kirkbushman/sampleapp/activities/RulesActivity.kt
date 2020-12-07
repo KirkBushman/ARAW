@@ -9,7 +9,9 @@ import com.kirkbushman.sampleapp.activities.base.BaseSearchControllerActivity2
 import com.kirkbushman.sampleapp.controllers.base.BaseCallback
 import com.kirkbushman.sampleapp.controllers.base.BaseController
 import com.kirkbushman.sampleapp.controllers.RulesController
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RulesActivity : BaseSearchControllerActivity2<SubredditRule>() {
 
     companion object {
@@ -27,8 +29,8 @@ class RulesActivity : BaseSearchControllerActivity2<SubredditRule>() {
 
     override val controller: BaseController<SubredditRule, BaseCallback> = RulesController()
 
-    override fun fetchItem(client: RedditClient?, query: String): Collection<SubredditRule>? {
+    override fun fetchItem(client: RedditClient, query: String): Collection<SubredditRule>? {
 
-        return client?.subredditsClient?.rules(query)?.toList()
+        return client.subredditsClient.rules(query)?.toList()
     }
 }

@@ -10,11 +10,13 @@ import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.controllers.base.BaseCallback
 import com.kirkbushman.sampleapp.controllers.base.BaseController
 import com.kirkbushman.sampleapp.databinding.FragmentEpoxyBinding
-import com.kirkbushman.sampleapp.util.DoAsync
+import com.kirkbushman.sampleapp.utils.DoAsync
+import javax.inject.Inject
 
 abstract class BaseControllerFragment<T, C : BaseCallback> : Fragment() {
 
-    protected val client by lazy { TestApplication.instance.getClient() }
+    @Inject
+    protected lateinit var client: RedditClient
 
     protected val items = ArrayList<T>()
 

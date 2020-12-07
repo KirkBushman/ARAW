@@ -3,15 +3,18 @@ package com.kirkbushman.sampleapp.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.models.Subreddit
 import com.kirkbushman.araw.models.SubredditSearchResult
 import com.kirkbushman.araw.models.base.SubredditData
-import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.activities.base.BaseActivity
 import com.kirkbushman.sampleapp.controllers.SubredditSearchController
 import com.kirkbushman.sampleapp.databinding.ActivitySubredditsSearchBinding
-import com.kirkbushman.sampleapp.util.DoAsync
+import com.kirkbushman.sampleapp.utils.DoAsync
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class SubredditsSearchActivity : BaseActivity() {
 
     companion object {
@@ -23,7 +26,8 @@ class SubredditsSearchActivity : BaseActivity() {
         }
     }
 
-    private val client by lazy { TestApplication.instance.getClient() }
+    @Inject
+    lateinit var client: RedditClient
 
     private var searchResult: SubredditSearchResult? = null
     private val data = ArrayList<SubredditData>()
@@ -40,7 +44,7 @@ class SubredditsSearchActivity : BaseActivity() {
                         doWork = {
 
                             if (subreddit is Subreddit) {
-                                client?.subredditsClient?.subscribe(subreddit)
+                                client.subredditsClient.subscribe(subreddit)
                             }
                         },
                         onPost = {
@@ -83,10 +87,10 @@ class SubredditsSearchActivity : BaseActivity() {
                 DoAsync(
                     doWork = {
 
-                        val fetcher = client?.searchClient?.fetchSubredditsSearch(query)
+                        val fetcher = client.searchClient.fetchSubredditsSearch(query)
 
                         data.clear()
-                        data.addAll(fetcher?.fetchNext() ?: listOf())
+                        data.addAll(fetcher.fetchNext())
                     },
                     onPost = {
 
@@ -98,7 +102,7 @@ class SubredditsSearchActivity : BaseActivity() {
                 DoAsync(
                     doWork = {
 
-                        searchResult = client?.searchClient?.searchSubreddits(
+                        searchResult = client.searchClient.searchSubreddits(
                             query = query,
                             includeOver18 = true
                         )

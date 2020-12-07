@@ -10,7 +10,9 @@ import com.kirkbushman.araw.models.enums.TimePeriod
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.activities.base.BaseSearchAdapterActivity
 import com.kirkbushman.sampleapp.adapters.ContributionsAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RedditorInfoActivity : BaseSearchAdapterActivity<ContributionsAdapter>() {
 
     companion object {

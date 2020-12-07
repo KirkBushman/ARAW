@@ -7,7 +7,9 @@ import com.kirkbushman.araw.models.ModeratedSub
 import com.kirkbushman.sampleapp.activities.base.BaseSearchControllerActivity
 import com.kirkbushman.sampleapp.controllers.ModeratedSubsController
 import com.kirkbushman.sampleapp.controllers.SubredditController
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RedditorModeratedSubs :
     BaseSearchControllerActivity<ModeratedSub, SubredditController.SubredditCallback>() {
 
@@ -30,8 +32,8 @@ class RedditorModeratedSubs :
         ModeratedSubsController(callback)
     }
 
-    override fun fetchItem(client: RedditClient?, query: String): Collection<ModeratedSub>? {
+    override fun fetchItem(client: RedditClient, query: String): Collection<ModeratedSub>? {
 
-        return client?.redditorsClient?.moderatedSubreddits(query)
+        return client.redditorsClient.moderatedSubreddits(query)
     }
 }

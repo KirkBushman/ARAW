@@ -2,11 +2,11 @@ package com.kirkbushman.sampleapp.activities.base
 
 import android.os.Bundle
 import com.kirkbushman.araw.RedditClient
-import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.controllers.base.BaseCallback
 import com.kirkbushman.sampleapp.controllers.base.BaseController
 import com.kirkbushman.sampleapp.databinding.ActivityControllerBinding
-import com.kirkbushman.sampleapp.util.DoAsync
+import com.kirkbushman.sampleapp.utils.DoAsync
+import javax.inject.Inject
 
 abstract class BaseControllerActivity2<T> : BaseControllerActivity<T, BaseCallback>() {
 
@@ -16,7 +16,8 @@ abstract class BaseControllerActivity2<T> : BaseControllerActivity<T, BaseCallba
 
 abstract class BaseControllerActivity<T, C : BaseCallback> : BaseActivity() {
 
-    protected val client by lazy { TestApplication.instance.getClient() }
+    @Inject
+    protected lateinit var client: RedditClient
 
     protected val items = ArrayList<T>()
 
@@ -25,7 +26,7 @@ abstract class BaseControllerActivity<T, C : BaseCallback> : BaseActivity() {
 
     private lateinit var binding: ActivityControllerBinding
 
-    abstract fun fetchItem(client: RedditClient?): Collection<T>?
+    abstract fun fetchItem(client: RedditClient): Collection<T>?
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

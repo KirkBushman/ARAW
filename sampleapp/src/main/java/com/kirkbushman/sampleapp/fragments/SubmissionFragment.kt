@@ -9,8 +9,10 @@ import com.kirkbushman.araw.models.enums.TimePeriod
 import com.kirkbushman.araw.models.enums.Vote
 import com.kirkbushman.sampleapp.controllers.SubmissionController
 import com.kirkbushman.sampleapp.fragments.base.BaseControllerFragment
-import com.kirkbushman.sampleapp.util.DoAsync
+import com.kirkbushman.sampleapp.utils.DoAsync
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SubmissionFragment : BaseControllerFragment<Submission, SubmissionController.SubmissionCallback>() {
 
     companion object {
@@ -34,7 +36,7 @@ class SubmissionFragment : BaseControllerFragment<Submission, SubmissionControll
         }
     }
 
-    val passedTag by lazy { arguments?.getString(PASSED_TAG) ?: "" }
+    private val passedTag by lazy { arguments?.getString(PASSED_TAG) ?: "" }
 
     override val callback = object : SubmissionController.SubmissionCallback {
 
@@ -43,7 +45,7 @@ class SubmissionFragment : BaseControllerFragment<Submission, SubmissionControll
             DoAsync(
                 doWork = {
                     val submission = items[index]
-                    client?.contributionsClient?.vote(Vote.UPVOTE, submission)
+                    client.contributionsClient.vote(Vote.UPVOTE, submission)
                 }
             )
         }
@@ -53,7 +55,7 @@ class SubmissionFragment : BaseControllerFragment<Submission, SubmissionControll
             DoAsync(
                 doWork = {
                     val submission = items[index]
-                    client?.contributionsClient?.vote(Vote.NONE, submission)
+                    client.contributionsClient.vote(Vote.NONE, submission)
                 }
             )
         }
@@ -63,7 +65,7 @@ class SubmissionFragment : BaseControllerFragment<Submission, SubmissionControll
             DoAsync(
                 doWork = {
                     val submission = items[index]
-                    client?.contributionsClient?.vote(Vote.DOWNVOTE, submission)
+                    client.contributionsClient.vote(Vote.DOWNVOTE, submission)
                 }
             )
         }
@@ -73,7 +75,7 @@ class SubmissionFragment : BaseControllerFragment<Submission, SubmissionControll
             DoAsync(
                 doWork = {
                     val submission = items[index]
-                    client?.contributionsClient?.save(!submission.isSaved, submission)
+                    client.contributionsClient.save(!submission.isSaved, submission)
                 }
             )
         }
@@ -83,7 +85,7 @@ class SubmissionFragment : BaseControllerFragment<Submission, SubmissionControll
             DoAsync(
                 doWork = {
                     val submission = items[index]
-                    client?.contributionsClient?.hide(submission)
+                    client.contributionsClient.hide(submission)
                 }
             )
         }
@@ -93,7 +95,7 @@ class SubmissionFragment : BaseControllerFragment<Submission, SubmissionControll
             DoAsync(
                 doWork = {
                     val submission = items[index]
-                    client?.contributionsClient?.lock(submission)
+                    client.contributionsClient.lock(submission)
                 }
             )
         }

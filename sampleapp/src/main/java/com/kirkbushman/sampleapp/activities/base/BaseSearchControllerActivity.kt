@@ -3,11 +3,11 @@ package com.kirkbushman.sampleapp.activities.base
 import android.os.Bundle
 import androidx.annotation.StringRes
 import com.kirkbushman.araw.RedditClient
-import com.kirkbushman.sampleapp.TestApplication
 import com.kirkbushman.sampleapp.controllers.base.BaseCallback
 import com.kirkbushman.sampleapp.controllers.base.BaseController
 import com.kirkbushman.sampleapp.databinding.ActivitySearchControllerBinding
-import com.kirkbushman.sampleapp.util.DoAsync
+import com.kirkbushman.sampleapp.utils.DoAsync
+import javax.inject.Inject
 
 abstract class BaseSearchControllerActivity2<T> : BaseSearchControllerActivity<T, BaseCallback>() {
 
@@ -17,7 +17,8 @@ abstract class BaseSearchControllerActivity2<T> : BaseSearchControllerActivity<T
 
 abstract class BaseSearchControllerActivity<T, C : BaseCallback> : BaseActivity() {
 
-    protected val client by lazy { TestApplication.instance.getClient() }
+    @Inject
+    protected lateinit var client: RedditClient
 
     protected val items = ArrayList<T>()
 
@@ -31,7 +32,7 @@ abstract class BaseSearchControllerActivity<T, C : BaseCallback> : BaseActivity(
 
     private lateinit var binding: ActivitySearchControllerBinding
 
-    abstract fun fetchItem(client: RedditClient?, query: String): Collection<T>?
+    abstract fun fetchItem(client: RedditClient, query: String): Collection<T>?
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

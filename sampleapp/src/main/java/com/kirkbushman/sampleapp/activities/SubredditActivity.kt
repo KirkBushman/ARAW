@@ -6,7 +6,9 @@ import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.models.base.SubredditData
 import com.kirkbushman.sampleapp.R
 import com.kirkbushman.sampleapp.activities.base.BaseSearchPrintActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SubredditActivity : BaseSearchPrintActivity<SubredditData>() {
 
     companion object {
@@ -22,7 +24,7 @@ class SubredditActivity : BaseSearchPrintActivity<SubredditData>() {
         return R.string.edit_insert_subreddit
     }
 
-    override fun fetchItem(client: RedditClient?, query: String): SubredditData? {
-        return client?.subredditsClient?.subreddit(query)
+    override fun fetchItem(client: RedditClient, query: String): SubredditData? {
+        return client.subredditsClient.subreddit(query)
     }
 }
