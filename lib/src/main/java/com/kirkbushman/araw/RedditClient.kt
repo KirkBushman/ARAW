@@ -10,7 +10,7 @@ import com.kirkbushman.araw.clients.SearchClient
 import com.kirkbushman.araw.clients.WikisClient
 import com.kirkbushman.araw.models.Me
 import com.kirkbushman.araw.utils.Utils.buildRetrofit
-import com.kirkbushman.auth.models.TokenBearer
+import com.kirkbushman.auth.models.bearers.TokenBearer
 import retrofit2.Retrofit
 
 class RedditClient @JvmOverloads constructor (private val bearer: TokenBearer, logging: Boolean = false) {

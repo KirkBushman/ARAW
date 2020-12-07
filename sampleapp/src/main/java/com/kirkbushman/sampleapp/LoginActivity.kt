@@ -139,9 +139,7 @@ class LoginActivity : AppCompatActivity() {
                         userlessAuth.forceRevoke()
                     }
 
-                    appAuth.retrieveTokenBearerFromUrl(it)
-
-                    val client = appAuth.getRedditClient()
+                    val client = appAuth.getRedditClient(it)
                     if (client != null) {
                         TestApplication.instance.setClient(client)
                     }

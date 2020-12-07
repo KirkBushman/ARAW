@@ -17,6 +17,9 @@ buildscript {
         kotlin_ver = '1.4.20'
         coroutines_ver = '1.4.2'
 
+        hilt_ver = "2.30.1-alpha"
+        ax_hilt_ver = "1.0.0-alpha02"
+
         ax_core_ver = '1.3.2'
         ax_appcompat_ver = '1.2.0'
         ax_activity_ver = '1.1.0'
@@ -31,7 +34,7 @@ buildscript {
         mdc_ver = '1.2.1'
         epoxy_ver = '4.3.1'
 
-        oauth2_ver = '3122502' // '1.2.2'
+        oauth2_ver = '6e667d76dd' // '1.2.2'
 
         ktlint_ver = '0.40.0'
         detekt_ver = '1.14.2'
@@ -53,6 +56,7 @@ buildscript {
     }
 
     dependencies {
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_ver"
         classpath "com.android.tools.build:gradle:${android_gradle_ver}"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_ver"
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokka_ver"

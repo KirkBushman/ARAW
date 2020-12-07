@@ -64,11 +64,17 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_ver"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_ver"
-    implementation "androidx.constraintlayout:constraintlayout:$constr_ver"
 
     implementation project(":lib")
 
     implementation "androidx.multidex:multidex:2.0.1"
+
+    implementation "com.google.dagger:hilt-android:$hilt_ver"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$ax_hilt_ver"
+    kapt "androidx.hilt:hilt-compiler:$ax_hilt_ver"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_ver"
+
+    implementation "androidx.constraintlayout:constraintlayout:$constr_ver"
 
     implementation "androidx.core:core-ktx:$ax_core_ver"
     implementation "androidx.appcompat:appcompat:$ax_appcompat_ver"

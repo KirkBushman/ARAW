@@ -5,12 +5,14 @@ import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.auth.RedditAuth
 import com.kirkbushman.auth.managers.SharedPrefsStorageManager
 
-class AuthUserlessHelper(
+class AuthScriptHelper(
 
     context: Context,
 
     clientId: String,
-    deviceId: String? = null,
+    clientSecret: String,
+    username: String,
+    password: String,
 
     logging: Boolean = false
 ) : AuthHelper(logging) {
@@ -20,9 +22,11 @@ class AuthUserlessHelper(
         RedditAuth.Builder()
             .setRetrofit(RedditClient.getRetrofit(logging))
             .setStorageManager(SharedPrefsStorageManager(context))
-            .setUserlessCredentials(
+            .setScriptAuthCredentials(
                 clientId = clientId,
-                deviceId = deviceId
+                clientSecret = clientSecret,
+                username = username,
+                password = password
             )
             .setLogging(logging)
             .build()

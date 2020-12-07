@@ -2,27 +2,24 @@ package com.kirkbushman.araw.helpers
 
 import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.auth.RedditAuth
-import com.kirkbushman.auth.models.TokenBearer
+import com.kirkbushman.auth.models.bearers.TokenBearer
 
 abstract class AuthHelper(protected val logging: Boolean) {
 
     protected abstract val auth: RedditAuth
 
-    protected var bearer: TokenBearer? = null
-
     fun shouldLogin(): Boolean {
-        return !hasSavedBearer()
+        return !auth.hasSavedBearer()
     }
 
     fun hasSavedBearer(): Boolean {
-        // check the saved bearer is of the same type of the helper
-        return auth.hasSavedBearer() && auth.getSavedBearerType() == auth.getAuthType()
+        return auth.hasSavedBearer()
     }
 
     fun getSavedBearer(): TokenBearer? {
 
-        if (hasSavedBearer()) {
-            return auth.getSavedBearer()
+        if (auth.hasSavedBearer()) {
+            return auth.retrieveSavedBearer()
         }
 
         return null

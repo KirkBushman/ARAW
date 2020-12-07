@@ -11,6 +11,7 @@ import com.kirkbushman.auth.managers.SharedPrefsStorageManager
 class AuthAppHelper(
 
     context: Context,
+
     clientId: String,
     redirectUrl: String,
     scopes: Array<String>,
@@ -22,12 +23,17 @@ class AuthAppHelper(
 
         RedditAuth.Builder()
             .setRetrofit(RedditClient.getRetrofit(logging))
-            .setApplicationCredentials(clientId, redirectUrl)
-            .setScopes(scopes)
             .setStorageManager(SharedPrefsStorageManager(context))
+            .setApplicationCredentials(
+                clientId = clientId,
+                redirectUrl = redirectUrl
+            )
+            .setScopes(scopes)
             .setLogging(logging)
             .build()
     }
+
+    private var returnUrl: String? = null
 
     fun startWebViewAuthentication(webView: WebView, onBearerFetched: (String) -> Unit) {
 
@@ -54,17 +60,29 @@ class AuthAppHelper(
         return auth.isRedirectedUrl(url)
     }
 
-    fun retrieveTokenBearerFromUrl(url: String) {
-        bearer = auth.getTokenBearer(url)
+    fun getRedditClient(url: String): RedditClient? {
+
+        returnUrl = url
+
+        return getRedditClient()
     }
 
     override fun getRedditClient(): RedditClient? {
 
-        return when {
-            bearer != null -> RedditClient(bearer!!, logging)
-            hasSavedBearer() -> getSavedRedditClient()
-
-            else -> null
+        val savedClient = getSavedRedditClient()
+        if (savedClient != null) {
+            return savedClient
         }
+
+        if (returnUrl == null) {
+            throw IllegalStateException("Redirected url is not been set! Have you called")
+        }
+
+        val bearer = auth.authenticate(returnUrl)
+        if (bearer != null) {
+            return RedditClient(bearer, logging)
+        }
+
+        return null
     }
 }

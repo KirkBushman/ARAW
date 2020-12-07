@@ -37,7 +37,6 @@ class TestApplication : Application() {
             context = this,
             clientId = creds.clientId,
             deviceId = null,
-            scopes = creds.scopes.toTypedArray(),
             logging = true
         )
     }
