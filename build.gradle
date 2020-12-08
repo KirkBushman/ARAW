@@ -14,7 +14,7 @@ buildscript {
         version_code = 2
         version_name = "1.0.0"
 
-        kotlin_ver = '1.4.20'
+        kotlin_ver = '1.4.21'
         coroutines_ver = '1.4.2'
 
         hilt_ver = "2.30.1-alpha"
@@ -34,7 +34,7 @@ buildscript {
         mdc_ver = '1.2.1'
         epoxy_ver = '4.3.1'
 
-        oauth2_ver = '6e667d76dd' // '1.2.2'
+        oauth2_ver = 'd739749df0' // '1.2.2'
 
         ktlint_ver = '0.40.0'
         detekt_ver = '1.14.2'

@@ -29,6 +29,13 @@ android {
         }
     }
 
+    sourceSets {
+        main.java.srcDirs += 'src/main/java'
+        main.resources.srcDirs += 'src/main/res'
+        test.java.srcDirs += 'src/test/java'
+        test.resources.srcDirs += 'src/test/res'
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -122,8 +129,6 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_ver"
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$espresso_ver"
     androidTestImplementation "androidx.test.espresso:espresso-intents:$espresso_ver"
-
-    androidTestImplementation "com.github.KirkBushman:Android-Reddit-OAuth2:$oauth2_ver"
 
     androidTestUtil 'androidx.test:orchestrator:1.3.0'
 }
