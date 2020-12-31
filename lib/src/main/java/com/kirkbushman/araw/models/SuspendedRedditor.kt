@@ -23,6 +23,6 @@ data class SuspendedRedditor(
     val isSuspended: Boolean,
 
     @Json(name = "total_karma")
-    val totalKarma: Int
+    val totalKarma: Int?
 
 ) : RedditorData, Parcelable

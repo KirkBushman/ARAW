@@ -2,25 +2,30 @@ package com.kirkbushman.sampleapp.instrumented
 
 import android.content.Context
 import com.kirkbushman.auth.RedditAuth
+import com.kirkbushman.auth.ScriptAuth
 import com.kirkbushman.auth.managers.SharedPrefsStorageManager
-import com.kirkbushman.auth.models.TokenBearer
+import com.kirkbushman.auth.models.bearers.TokenBearer
 import com.kirkbushman.sampleapp.R
 import org.xmlpull.v1.XmlPullParser
 
 object TestUtils {
 
-    fun getAuthManager(context: Context): RedditAuth {
+    fun getAuthManager(context: Context): ScriptAuth {
         val creds = loadCredentials(context)
 
         return RedditAuth.Builder()
             .setScriptAuthCredentials(creds.username, creds.password, creds.scriptClientId, creds.scriptClientSecret)
-            .setScopes(creds.scopes.toTypedArray())
             .setStorageManager(SharedPrefsStorageManager(context))
             .build()
     }
 
-    fun getTokenBearer(auth: RedditAuth): TokenBearer {
-        return auth.getTokenBearer() ?: throw IllegalStateException("Bearer is null!")
+    fun getTokenBearer(auth: ScriptAuth): TokenBearer {
+        return (
+            if (auth.hasSavedBearer())
+                auth.retrieveSavedBearer()
+            else
+                auth.authenticate()
+            ) ?: throw IllegalStateException("Bearer cannot be null!")
     }
 
     private fun loadCredentials(context: Context): TestCredentials {

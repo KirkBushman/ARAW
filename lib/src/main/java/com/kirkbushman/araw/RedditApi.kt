@@ -7,7 +7,7 @@ import com.kirkbushman.araw.http.EnvelopedMessageListing
 import com.kirkbushman.araw.http.EnvelopedMulti
 import com.kirkbushman.araw.http.EnvelopedMultiDescription
 import com.kirkbushman.araw.http.EnvelopedRedditorData
-import com.kirkbushman.araw.http.EnvelopedRedditorListing
+import com.kirkbushman.araw.http.EnvelopedRedditorDataListing
 import com.kirkbushman.araw.http.EnvelopedSubmissionListing
 import com.kirkbushman.araw.http.EnvelopedSubredditData
 import com.kirkbushman.araw.http.EnvelopedSubredditDataListing
@@ -685,7 +685,7 @@ interface RedditApi {
         @Query("before") before: String? = null,
         @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
-    ): Call<EnvelopedRedditorListing>
+    ): Call<EnvelopedRedditorDataListing>
 
     // --- Search section: END ---
 }

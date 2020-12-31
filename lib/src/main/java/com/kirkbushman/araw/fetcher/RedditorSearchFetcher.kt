@@ -3,10 +3,10 @@ package com.kirkbushman.araw.fetcher
 import androidx.annotation.IntRange
 import androidx.annotation.WorkerThread
 import com.kirkbushman.araw.RedditApi
-import com.kirkbushman.araw.http.EnvelopedRedditor
+import com.kirkbushman.araw.http.EnvelopedRedditorData
 import com.kirkbushman.araw.http.base.Listing
-import com.kirkbushman.araw.http.listings.RedditorListing
-import com.kirkbushman.araw.models.Redditor
+import com.kirkbushman.araw.http.listings.RedditorDataListing
+import com.kirkbushman.araw.models.base.RedditorData
 import com.kirkbushman.araw.models.enums.RedditorSearchSorting
 import com.kirkbushman.araw.models.enums.TimePeriod
 
@@ -26,7 +26,7 @@ class RedditorSearchFetcher(
 
     private inline val getHeader: () -> HashMap<String, String>
 
-) : Fetcher<Redditor, EnvelopedRedditor>(limit) {
+) : Fetcher<RedditorData, EnvelopedRedditorData>(limit) {
 
     companion object {
 
@@ -35,7 +35,7 @@ class RedditorSearchFetcher(
     }
 
     @WorkerThread
-    override fun onFetching(forward: Boolean, dirToken: String?): Listing<EnvelopedRedditor>? {
+    override fun onFetching(forward: Boolean, dirToken: String?): Listing<EnvelopedRedditorData>? {
 
         val req = api.fetchRedditorSearch(
             query = query,
@@ -58,13 +58,13 @@ class RedditorSearchFetcher(
         return res.body()?.data
     }
 
-    override fun onMapResult(pagedData: Listing<EnvelopedRedditor>?): List<Redditor> {
+    override fun onMapResult(pagedData: Listing<EnvelopedRedditorData>?): List<RedditorData> {
 
         if (pagedData == null) {
             return listOf()
         }
 
-        return (pagedData as RedditorListing)
+        return (pagedData as RedditorDataListing)
             .children
             .map { it.data }
             .toList()
