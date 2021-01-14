@@ -22,43 +22,43 @@ data class SrDetail(
     val defaultSet: Boolean,
 
     @Json(name = "banner_img")
-    val bannerImg: String,
+    val bannerImg: String?,
 
     @Json(name = "community_icon")
-    val communityIcon: String,
+    val communityIcon: String?,
 
     @Json(name = "description")
-    val description: String,
+    val description: String?,
 
     @Json(name = "user_is_muted")
-    val userIsMuted: Boolean,
+    val userIsMuted: Boolean?,
 
     @Json(name = "display_name")
     val displayName: String,
 
     @Json(name = "header_img")
-    val headerImg: String,
+    val headerImg: String?,
 
     @Json(name = "title")
-    val title: String,
+    val title: String?,
 
     @Json(name = "user_is_moderator")
-    val userIsModerator: Boolean,
+    val userIsModerator: Boolean?,
 
     @Json(name = "over_18")
     val over18: Boolean,
 
     @Json(name = "icon_size")
-    val iconSize: List<Long>,
+    val iconSize: List<Long>?,
 
     @Json(name = "primary_color")
-    val primaryColor: String,
+    val primaryColor: String?,
 
     @Json(name = "icon_img")
-    val iconImg: String,
+    val iconImg: String?,
 
     @Json(name = "icon_color")
-    val iconColor: String,
+    val iconColor: String?,
 
     @Json(name = "subscribers")
     val subscribers: Long,
@@ -67,18 +67,18 @@ data class SrDetail(
     val displayNamePrefixed: String,
 
     @Json(name = "key_color")
-    val keyColor: String,
+    val keyColor: String?,
 
     @Json(name = "created_utc")
     val createdUTC: Long,
 
     @Json(name = "banner_size")
-    val bannerSize: List<Long>,
+    val bannerSize: List<Long>?,
 
     @Json(name = "public_description")
-    val publicDescription: String,
+    val publicDescription: String?,
 
     @Json(name = "user_is_subscriber")
-    val userIsSubscriber: Boolean
+    val userIsSubscriber: Boolean?
 
 ) : Thing, Parcelable
