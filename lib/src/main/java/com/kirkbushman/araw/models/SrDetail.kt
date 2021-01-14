@@ -6,17 +6,17 @@ import com.kirkbushman.araw.models.commons.ImageDetail
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.parcelize.Parcelize
+import java.util.*
 
 @JsonClass(generateAdapter = true)
 @Parcelize
 data class SrDetail(
 
-    //sr_detail doesn't have an ID field
-    @Json(name = "name")
-    override val id: String,
-
     @Json(name = "name")
     override val fullname: String,
+
+    //sr_detail doesn't have an ID field, split the fullname
+    override val id: String = fullname.split("_").last(),
 
     @Json(name = "default_set")
     val defaultSet: Boolean,
