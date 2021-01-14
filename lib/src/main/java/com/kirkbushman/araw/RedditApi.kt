@@ -240,6 +240,7 @@ interface RedditApi {
     fun submission(
         @Query("id") submissionId: String,
         @Query("raw_json") rawJson: Int? = null,
+        @Query("sr_detail") srDetail: Int = 1,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedSubmissionListing>
 
@@ -297,6 +298,7 @@ interface RedditApi {
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
         @Query("raw_json") rawJson: Int? = null,
+        @Query("sr_detail") srDetail: Int = 1,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedSubmissionListing>
 
@@ -310,6 +312,7 @@ interface RedditApi {
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
         @Query("raw_json") rawJson: Int? = null,
+        @Query("sr_detail") srDetail: Int = 1,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedSubmissionListing>
 
@@ -322,6 +325,7 @@ interface RedditApi {
         @Query("limit") limit: Long? = null,
         @Query("depth") depth: Int? = null,
         @Query("raw_json") rawJson: Int? = null,
+        @Query("sr_detail") srDetail: Int = 1,
         @HeaderMap header: HashMap<String, String>
     ): Call<List<EnvelopedContributionListing>>
 
@@ -337,6 +341,7 @@ interface RedditApi {
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
         @Query("raw_json") rawJson: Int? = null,
+        @Query("sr_detail") srDetail: Int = 1,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedMessageListing>
 
@@ -383,6 +388,7 @@ interface RedditApi {
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
         @Query("raw_json") rawJson: Int? = null,
+        @Query("sr_detail") srDetail: Int = 1,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedSubmissionListing>
 
@@ -522,6 +528,7 @@ interface RedditApi {
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
         @Query("raw_json") rawJson: Int? = null,
+        @Query("sr_detail") srDetail: Int = 1,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedContributionListing>
 
@@ -536,6 +543,7 @@ interface RedditApi {
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
         @Query("raw_json") rawJson: Int? = null,
+        @Query("sr_detail") srDetail: Int = 1,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedContributionListing>
 
@@ -608,6 +616,7 @@ interface RedditApi {
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
         @Query("raw_json") rawJson: Int? = null,
+        @Query("sr_detail") srDetail: Int = 1,
         @HeaderMap header: HashMap<String, String>
     ): Call<List<Listing<EnvelopedData>>>
 
@@ -623,6 +632,7 @@ interface RedditApi {
         @Query("before") before: String? = null,
         @Query("restrict_sr") restrictToSubreddit: Boolean? = null,
         @Query("raw_json") rawJson: Int? = null,
+        @Query("sr_detail") srDetail: Int = 1,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedSubmissionListing>
 
@@ -639,6 +649,7 @@ interface RedditApi {
         @Query("before") before: String? = null,
         @Query("restrict_sr") restrictToSubreddit: Boolean? = null,
         @Query("raw_json") rawJson: Int? = null,
+        @Query("sr_detail") srDetail: Int = 1,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedSubmissionListing>
 
@@ -654,6 +665,7 @@ interface RedditApi {
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
         @Query("raw_json") rawJson: Int? = null,
+        @Query("sr_detail") srDetail: Int = 1,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedSubredditDataListing>
 
@@ -669,6 +681,7 @@ interface RedditApi {
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
         @Query("raw_json") rawJson: Int? = null,
+        @Query("sr_detail") srDetail: Int = 1,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedSubmissionListing>
 
@@ -684,6 +697,7 @@ interface RedditApi {
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
         @Query("raw_json") rawJson: Int? = null,
+        @Query("sr_detail") srDetail: Int = 1,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedRedditorDataListing>
 

@@ -142,6 +142,9 @@ data class Submission(
     @Json(name = "gildings")
     override val gildings: Gildings,
 
+    @Json(name = "sr_detail")
+    val sr_detail: SrDetail?,
+
     @Json(name = "archived")
     val isArchived: Boolean,
 
