@@ -2,7 +2,8 @@ package com.kirkbushman.araw.models
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import kotlinx.parcelize.Parcelize
+import kotlinx.android.parcel.Parcelize
+import kotlinx.android.parcel.RawValue
 
 /**
  * This class represent the current logged in user.
@@ -101,6 +102,9 @@ data class Me(
     val over18: Boolean,
 
     @Json(name = "verified")
-    val verified: Boolean
+    val verified: Boolean,
+
+    @Json(name = "features")
+    val features: @RawValue Map<String, Any>
 
 ) : Account

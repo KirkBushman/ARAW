@@ -1,6 +1,6 @@
 package com.kirkbushman.sampleapp.local
 
-import com.kirkbushman.araw.http.EnvelopedRedditor
+/*import com.kirkbushman.araw.http.EnvelopedRedditor
 import com.kirkbushman.araw.http.EnvelopedSubreddit
 import com.kirkbushman.araw.http.base.EnvelopeKind
 import com.kirkbushman.araw.models.Me
@@ -444,3 +444,4 @@ object TestJsonDataUtil {
             "}"
     }
 }
+*/

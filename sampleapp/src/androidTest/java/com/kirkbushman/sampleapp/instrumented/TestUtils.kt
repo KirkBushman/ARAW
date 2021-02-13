@@ -3,6 +3,7 @@ package com.kirkbushman.sampleapp.instrumented
 import android.content.Context
 import com.kirkbushman.auth.RedditAuth
 import com.kirkbushman.auth.ScriptAuth
+import com.kirkbushman.auth.UserlessAuth
 import com.kirkbushman.auth.managers.SharedPrefsStorageManager
 import com.kirkbushman.auth.models.bearers.TokenBearer
 import com.kirkbushman.sampleapp.R
@@ -19,6 +20,15 @@ object TestUtils {
             .build()
     }
 
+    fun getUserlessManager(context: Context): UserlessAuth {
+        val creds = loadCredentials(context)
+
+        return RedditAuth.Builder()
+            .setUserlessCredentials(creds.clientId, null)
+            .setStorageManager(SharedPrefsStorageManager(context))
+            .build()
+    }
+
     fun getTokenBearer(auth: ScriptAuth): TokenBearer {
         return (
             if (auth.hasSavedBearer())
@@ -26,6 +36,15 @@ object TestUtils {
             else
                 auth.authenticate()
             ) ?: throw IllegalStateException("Bearer cannot be null!")
+    }
+
+    fun getTokenBearer(auth: UserlessAuth): TokenBearer {
+        return (
+                if (auth.hasSavedBearer())
+                    auth.retrieveSavedBearer()
+                else
+                    auth.authenticate()
+                ) ?: throw IllegalStateException("Bearer cannot be null!")
     }
 
     private fun loadCredentials(context: Context): TestCredentials {

@@ -167,6 +167,7 @@ class MultisClient(
         return res.body()
     }
 
+    // todo add
     @WorkerThread
     fun addSubredditToMulti(
 
