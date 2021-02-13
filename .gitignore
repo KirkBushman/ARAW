@@ -26,6 +26,7 @@
 /local.properties
 
 /.idea
+/.settings
 .DS_Store
 /captures
 .externalNativeBuild
