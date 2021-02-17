@@ -163,12 +163,16 @@ class RedditorsClient(
     }
 
     @WorkerThread
-    fun moderatedSubreddits(username: String): List<ModeratedSub>? {
+    fun moderatedSubreddits(username: String, disableLegacyEncoding: Boolean = false): List<ModeratedSub>? {
 
         val authMap = getHeaderMap()
-        val req = api.redditorModeratedSubreddits(username, authMap)
-        val res = req.execute()
+        val req = api.redditorModeratedSubreddits(
+            username = username,
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }

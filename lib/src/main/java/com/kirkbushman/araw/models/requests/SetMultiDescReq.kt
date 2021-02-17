@@ -1,12 +1,11 @@
 package com.kirkbushman.araw.models.requests
 
-import com.kirkbushman.araw.models.MultiSub
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class AddMultiSubReq(
+data class SetMultiDescReq(
 
-    @Json(name = "model")
-    val model: MultiSub
+    @Json(name = "body_md")
+    val bodyMd: String
 )

@@ -11,6 +11,7 @@ import com.kirkbushman.araw.models.MultiSub
 import com.kirkbushman.araw.models.enums.SubmissionsSorting
 import com.kirkbushman.araw.models.enums.TimePeriod
 import com.kirkbushman.araw.models.requests.AddMultiSubReq
+import com.kirkbushman.araw.models.requests.SetMultiDescReq
 
 class MultisClient(
 
@@ -110,7 +111,7 @@ class MultisClient(
     }
 
     @WorkerThread
-    fun getMultiDescription(
+    fun multiDescription(
 
         username: String,
         multiname: String,
@@ -119,7 +120,7 @@ class MultisClient(
     ): MultiDescription? {
 
         val authMap = getHeaderMap()
-        val req = api.getMultiDescription(
+        val req = api.multiDescription(
             username = username,
             multiname = multiname,
             rawJson = (if (disableLegacyEncoding) 1 else null),
@@ -134,14 +135,32 @@ class MultisClient(
         return res.body()?.data
     }
 
-    // todo go back to this
-    /*@WorkerThread
-    fun setMultiDescription() {
+    @WorkerThread
+    fun setMultiDescription(
 
-    }*/
+        username: String,
+        multiname: String,
+        description: String
+    ): Any? {
+
+        val authMap = getHeaderMap()
+        val req = api.setMultiDescription(
+            username = username,
+            multiname = multiname,
+            model = SetMultiDescReq(description),
+            header = authMap
+        )
+
+        val res = req.execute()
+        if (!res.isSuccessful) {
+            return null
+        }
+
+        return res.body()
+    }
 
     @WorkerThread
-    fun getMultiSubreddit(
+    fun multiSubreddit(
 
         username: String,
         multiname: String,
@@ -151,7 +170,7 @@ class MultisClient(
     ): MultiSub? {
 
         val authMap = getHeaderMap()
-        val req = api.getMultiSubreddit(
+        val req = api.multiSubreddit(
             username = username,
             multiname = multiname,
             subname = subname,
@@ -167,7 +186,6 @@ class MultisClient(
         return res.body()
     }
 
-    // todo add
     @WorkerThread
     fun addSubredditToMulti(
 
@@ -178,10 +196,10 @@ class MultisClient(
 
         val authMap = getHeaderMap()
         val req = api.addSubredditToMulti(
-            model = AddMultiSubReq(MultiSub(subname)),
             username = username,
             multiname = multiname,
             subname = subname,
+            model = AddMultiSubReq(MultiSub(subname)),
             header = authMap
         )
 
@@ -194,7 +212,7 @@ class MultisClient(
     }
 
     @WorkerThread
-    fun deleteSubredditToMulti(
+    fun removeSubredditFromMulti(
 
         username: String,
         multiname: String,
@@ -202,7 +220,7 @@ class MultisClient(
     ): Any? {
 
         val authMap = getHeaderMap()
-        val req = api.deleteSubredditToMulti(
+        val req = api.removeSubredditToMulti(
             username = username,
             multiname = multiname,
             subname = subname,

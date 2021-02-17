@@ -44,7 +44,7 @@ object Endpoints {
     const val URL_MULTI = "/user/{username}/m/{multiname}/{sorting}/.json"
     const val URL_MULTI_SUB = "/api/multi/user/{username}/m/{multiname}/r/{subname}"
     const val URL_MULTI_DESC = "/api/multi/user/{username}/m/{multiname}/description/.json"
-    const val URL_MULTIS_MINE = "/api/multi/mine.json"
+    const val URL_MULTIS_MINE = "/api/multi/mine/.json"
     const val URL_MULTIS_REDDITOR = "/api/multi/user/{username}/.json"
 
     const val URL_SUBREDDIT = "/r/{subreddit}/about/.json"

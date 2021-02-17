@@ -32,6 +32,7 @@ import com.kirkbushman.araw.models.UploadContract
 import com.kirkbushman.araw.models.UserList
 import com.kirkbushman.araw.models.WikiPageList
 import com.kirkbushman.araw.models.requests.AddMultiSubReq
+import com.kirkbushman.araw.models.requests.SetMultiDescReq
 import com.kirkbushman.araw.utils.Endpoints
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -400,21 +401,23 @@ interface RedditApi {
     ): Call<List<EnvelopedMulti>>
 
     @GET(Endpoints.URL_MULTI_DESC)
-    fun getMultiDescription(
+    fun multiDescription(
         @Path("username") username: String,
         @Path("multiname") multiname: String,
         @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedMultiDescription>
 
-    // todo go back to this
-    /*@PUT(Endpoints.URL_MULTI_DESC)
+    @PUT(Endpoints.URL_MULTI_DESC)
     fun setMultiDescription(
-
-    ): Call<Any?>*/
+        @Path("username") username: String,
+        @Path("multiname") multiname: String,
+        @Body model: SetMultiDescReq,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<Any?>
 
     @GET(Endpoints.URL_MULTI_SUB)
-    fun getMultiSubreddit(
+    fun multiSubreddit(
         @Path("username") username: String,
         @Path("multiname") multiname: String,
         @Path("subname") subname: String,
@@ -432,7 +435,7 @@ interface RedditApi {
     ): Call<Any?>
 
     @DELETE(Endpoints.URL_MULTI_SUB)
-    fun deleteSubredditToMulti(
+    fun removeSubredditToMulti(
         @Path("username") username: String,
         @Path("multiname") multiname: String,
         @Path("subname") subname: String,
@@ -542,6 +545,7 @@ interface RedditApi {
     @GET(Endpoints.URL_REDDITOR_MODERATED)
     fun redditorModeratedSubreddits(
         @Path("username") username: String,
+        @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<ModeratedList>
 

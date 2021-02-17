@@ -576,21 +576,25 @@ class ApiDetailActivity : BaseActivity() {
 
                 val desc = client
                     .multisClient
-                    .getMultiDescription("Kirk-Bushman", "karmafarming")
+                    .multiDescription("Kirk-Bushman", "karmafarming")
 
                 desc.toString()
             }
 
-            // todo go back to this
-            /*API_MULTI_SET_DESC -> {
+            API_MULTI_SET_DESC -> {
 
-            }*/
+                val response = client
+                    .multisClient
+                    .setMultiDescription("Kirk-Bushman", "karmafarming", "test description 1")
+
+                response.toString()
+            }
 
             API_MULTI_GET_SUB -> {
 
                 val subreddit = client
                     .multisClient
-                    .getMultiSubreddit("Kirk-Bushman", "karmafarming", "Karma_Exchange")
+                    .multiSubreddit("Kirk-Bushman", "karmafarming", "Karma_Exchange")
 
                 subreddit.toString()
             }
@@ -604,10 +608,14 @@ class ApiDetailActivity : BaseActivity() {
                 response.toString()
             }
 
-            // todo go back to this
-            /*API_MULTI_DEL_SUB -> {
+            API_MULTI_DEL_SUB -> {
 
-            }*/
+                val response = client
+                    .multisClient
+                    .removeSubredditFromMulti("Kirk-Bushman", "shush", "pics")
+
+                response.toString()
+            }
 
             API_SUBREDDIT -> {
                 val subName = getRandomSubredditName()
