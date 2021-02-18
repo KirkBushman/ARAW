@@ -37,7 +37,7 @@ buildscript {
         oauth2_ver = 'fcfeb72b1c' // '1.2.2'
 
         ktlint_ver = '0.40.0'
-        detekt_ver = '1.14.2'
+        detekt_ver = '1.15.0'
 
         test_ver = '1.3.0'
         espresso_ver = '3.3.0'
@@ -78,7 +78,6 @@ subprojects {
 
     // ktlint
     apply plugin: 'checkstyle'
-    // apply plugin: 'io.gitlab.arturbosch.detekt'
     apply from: "${project.rootDir}/ktlint.gradle"
 
     task checkstyle(type: Checkstyle) {
@@ -92,6 +91,7 @@ subprojects {
     }
 
     afterEvaluate {
+
         if (project.tasks.findByName('check')) {
             check.dependsOn('checkstyle')
             check.dependsOn('ktlint')
