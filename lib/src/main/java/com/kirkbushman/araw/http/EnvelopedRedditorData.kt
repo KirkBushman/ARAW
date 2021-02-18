@@ -1,15 +1,12 @@
 package com.kirkbushman.araw.http
 
-import android.os.Parcelable
 import com.kirkbushman.araw.http.base.Envelope
 import com.kirkbushman.araw.http.base.EnvelopeKind
 import com.kirkbushman.araw.models.base.RedditorData
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import kotlinx.parcelize.Parcelize
 
 @JsonClass(generateAdapter = true)
-@Parcelize
 data class EnvelopedRedditorData(
 
     @Json(name = "kind")
@@ -18,4 +15,4 @@ data class EnvelopedRedditorData(
     @Json(name = "data")
     override val data: RedditorData
 
-) : Envelope<RedditorData>, Parcelable
+) : Envelope<RedditorData>

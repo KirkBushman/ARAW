@@ -1,11 +1,9 @@
 package com.kirkbushman.araw.models
 
-import android.os.Parcelable
 import com.kirkbushman.araw.http.EnvelopedTrophy
 import com.kirkbushman.araw.http.base.EnvelopeKind
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import kotlinx.parcelize.Parcelize
 
 /**
  * This class represent a trophy given to a redditor.
@@ -24,7 +22,6 @@ import kotlinx.parcelize.Parcelize
  *
  */
 @JsonClass(generateAdapter = true)
-@Parcelize
 data class Trophy(
 
     @Json(name = "id")
@@ -45,10 +42,9 @@ data class Trophy(
     @Json(name = "url")
     val url: String?
 
-) : Parcelable
+)
 
 @JsonClass(generateAdapter = true)
-@Parcelize
 data class TrophyList(
 
     @Json(name = "kind")
@@ -57,13 +53,12 @@ data class TrophyList(
     @Json(name = "data")
     val data: TrophyChildren
 
-) : Parcelable
+)
 
 @JsonClass(generateAdapter = true)
-@Parcelize
 data class TrophyChildren(
 
     @Json(name = "trophies")
     val trophies: List<EnvelopedTrophy>
 
-) : Parcelable
+)

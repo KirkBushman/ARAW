@@ -1,14 +1,11 @@
 package com.kirkbushman.araw.http.listings
 
-import android.os.Parcelable
 import com.kirkbushman.araw.http.EnvelopedRedditorData
 import com.kirkbushman.araw.http.base.Listing
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import kotlinx.parcelize.Parcelize
 
 @JsonClass(generateAdapter = true)
-@Parcelize
 data class RedditorDataListing(
 
     @Json(name = "modhash")
@@ -24,4 +21,4 @@ data class RedditorDataListing(
     @Json(name = "before")
     override val before: String?
 
-) : Listing<EnvelopedRedditorData>, Parcelable
+) : Listing<EnvelopedRedditorData>

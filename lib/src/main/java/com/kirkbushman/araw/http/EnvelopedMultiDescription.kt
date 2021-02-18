@@ -1,15 +1,12 @@
 package com.kirkbushman.araw.http
 
-import android.os.Parcelable
 import com.kirkbushman.araw.http.base.Envelope
 import com.kirkbushman.araw.http.base.EnvelopeKind
 import com.kirkbushman.araw.models.MultiDescription
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import kotlinx.parcelize.Parcelize
 
 @JsonClass(generateAdapter = true)
-@Parcelize
 data class EnvelopedMultiDescription(
 
     @Json(name = "kind")
@@ -18,4 +15,4 @@ data class EnvelopedMultiDescription(
     @Json(name = "data")
     override val data: MultiDescription
 
-) : Envelope<MultiDescription>, Parcelable
+) : Envelope<MultiDescription>

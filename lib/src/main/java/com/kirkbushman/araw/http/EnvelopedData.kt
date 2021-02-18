@@ -13,5 +13,4 @@ open class EnvelopedData(
 
     @Json(name = "data")
     open val data: Thing
-
 )

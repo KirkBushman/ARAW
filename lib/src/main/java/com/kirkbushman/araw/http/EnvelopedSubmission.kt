@@ -1,6 +1,5 @@
 package com.kirkbushman.araw.http
 
-import android.os.Parcelable
 import com.kirkbushman.araw.http.base.Envelope
 import com.kirkbushman.araw.http.base.EnvelopeKind
 import com.kirkbushman.araw.models.Submission
@@ -18,4 +17,4 @@ data class EnvelopedSubmission(
     @Json(name = "data")
     override val data: Submission
 
-) : Envelope<Submission>, EnvelopedContribution(kind, data), Parcelable
+) : Envelope<Submission>, EnvelopedContribution(kind, data)
