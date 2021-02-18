@@ -11,7 +11,7 @@ import com.kirkbushman.araw.utils.toLinearList
 import com.kirkbushman.araw.utils.treeIterable
 import com.kirkbushman.araw.utils.treeIterator
 import com.kirkbushman.sampleapp.instrumented.TestUtils
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
