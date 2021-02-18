@@ -3,9 +3,6 @@ package com.kirkbushman.araw.fetcher
 import androidx.annotation.IntRange
 import androidx.annotation.WorkerThread
 import com.kirkbushman.araw.RedditApi
-import com.kirkbushman.araw.http.EnvelopedContribution
-import com.kirkbushman.araw.http.base.Listing
-import com.kirkbushman.araw.http.listings.ContributionListing
 import com.kirkbushman.araw.models.enums.ContributionsSorting
 import com.kirkbushman.araw.models.enums.TimePeriod
 import com.kirkbushman.araw.models.base.Contribution
@@ -16,20 +13,21 @@ class ContributionsFetcher(
     private val username: String? = null,
     private val where: String,
 
-    @IntRange(from = MIN_LIMIT, to = MAX_LIMIT)
-    limit: Long = DEFAULT_LIMIT,
-
     private var sorting: ContributionsSorting = DEFAULT_SORTING,
     private var timePeriod: TimePeriod = DEFAULT_TIMEPERIOD,
+
+    @IntRange(from = MIN_LIMIT, to = MAX_LIMIT)
+    limit: Long = DEFAULT_LIMIT,
 
     private val disableLegacyEncoding: Boolean = false,
 
     private inline val getUsername: (() -> String)? = null,
     private inline val getHeader: () -> HashMap<String, String>
 
-) : Fetcher<Contribution, EnvelopedContribution>(limit) {
+) : Fetcher<Contribution>(limit) {
 
     companion object {
+
         val DEFAULT_SORTING = ContributionsSorting.NEW
         val DEFAULT_TIMEPERIOD = TimePeriod.ALL_TIME
     }
@@ -37,7 +35,11 @@ class ContributionsFetcher(
     private var usernameToFetch: String? = null
 
     @WorkerThread
-    override fun onFetching(forward: Boolean, dirToken: String?): Listing<EnvelopedContribution>? {
+    override fun onFetching(
+        previousToken: String?,
+        nextToken: String?,
+        setTokens: (next: String?, previous: String?) -> Unit
+    ): List<Contribution>? {
 
         if (username == null && getUsername == null) {
             throw IllegalStateException("username and getUsername cannot both be null!")
@@ -59,8 +61,8 @@ class ContributionsFetcher(
                 timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
                 limit = getLimit(),
                 count = getCount(),
-                after = if (forward) dirToken else null,
-                before = if (!forward) dirToken else null,
+                before = previousToken,
+                after = nextToken,
                 rawJson = (if (disableLegacyEncoding) 1 else null),
                 header = getHeader()
             )
@@ -73,8 +75,8 @@ class ContributionsFetcher(
                 timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
                 limit = getLimit(),
                 count = getCount(),
-                after = if (forward) dirToken else null,
-                before = if (!forward) dirToken else null,
+                before = previousToken,
+                after = nextToken,
                 rawJson = (if (disableLegacyEncoding) 1 else null),
                 header = getHeader()
             )
@@ -85,35 +87,24 @@ class ContributionsFetcher(
             return null
         }
 
-        return res.body()?.data
+        val resultBody = res.body()
+        setTokens(resultBody?.data?.after, resultBody?.data?.before)
+
+        return resultBody
+            ?.data
+            ?.children
+            ?.map { it.data }
+            ?.toList()
     }
 
-    override fun onMapResult(pagedData: Listing<EnvelopedContribution>?): List<Contribution> {
-
-        if (pagedData == null) {
-            return listOf()
-        }
-
-        return (pagedData as ContributionListing)
-            .children
-            .map { it.data }
-            .toList()
-    }
-
-    fun getSorting(): ContributionsSorting {
-        return sorting
-    }
-
+    fun getSorting(): ContributionsSorting = sorting
     fun setSorting(newSorting: ContributionsSorting) {
         sorting = newSorting
 
         reset()
     }
 
-    fun getTimePeriod(): TimePeriod {
-        return timePeriod
-    }
-
+    fun getTimePeriod(): TimePeriod = timePeriod
     fun setTimePeriod(newTimePeriod: TimePeriod) {
         timePeriod = newTimePeriod
 

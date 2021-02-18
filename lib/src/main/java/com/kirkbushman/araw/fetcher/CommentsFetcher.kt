@@ -27,7 +27,7 @@ class CommentsFetcher(
 
     private inline val getHeader: () -> HashMap<String, String>
 
-) : Fetcher<CommentData, EnvelopedCommentData>(limit) {
+) : Fetcher<CommentData>(limit) {
 
     companion object {
 
@@ -38,7 +38,11 @@ class CommentsFetcher(
 
     @Suppress("UNCHECKED_CAST")
     @WorkerThread
-    override fun onFetching(forward: Boolean, dirToken: String?): Listing<EnvelopedCommentData>? {
+    override fun onFetching(
+        previousToken: String?,
+        nextToken: String?,
+        setTokens: (next: String?, previous: String?) -> Unit
+    ): List<CommentData>? {
 
         val req = api.fetchComments(
             submissionId = submissionId,
@@ -56,23 +60,24 @@ class CommentsFetcher(
             return null
         }
 
-        val body = res.body()
+        val resultBody = res.body()
+        setTokens(null, null)
 
-        submission = body?.firstOrNull()?.data?.children?.firstOrNull()?.data as Submission?
+        submission = resultBody
+            ?.firstOrNull()
+            ?.data
+            ?.children
+            ?.firstOrNull()
+            ?.data as Submission?
 
-        return body?.last()?.data as Listing<EnvelopedCommentData>?
-    }
-
-    override fun onMapResult(pagedData: Listing<EnvelopedCommentData>?): List<CommentData> {
-
-        if (pagedData == null) {
-            return listOf()
-        }
-
-        return pagedData
-            .children
-            .map { it.data }
-            .toList()
+        return (
+            resultBody
+                ?.lastOrNull()
+                ?.data as Listing<EnvelopedCommentData>?
+            )
+            ?.children
+            ?.map { it.data }
+            ?.toList()
     }
 
     fun getSubmission(): Submission? {

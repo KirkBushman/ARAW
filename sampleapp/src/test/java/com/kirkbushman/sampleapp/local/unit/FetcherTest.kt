@@ -1,10 +1,8 @@
 package com.kirkbushman.sampleapp.local.unit
 
 import com.kirkbushman.araw.fetcher.Fetcher
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertNotNull
-import org.junit.Assert.assertNull
-import org.junit.Assert.assertTrue
+import org.junit.Assert.*
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito
@@ -13,16 +11,35 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner.Silent::class)
 class FetcherTest {
 
+    private lateinit var fetcher: Fetcher<*>
+
+    @Before
+    fun onPre() {
+
+        val settings = Mockito
+            .withSettings()
+            .useConstructor(25L)
+            .defaultAnswer(Mockito.CALLS_REAL_METHODS)
+
+        fetcher = Mockito.mock(Fetcher::class.java, settings)
+    }
+
     @Test
     fun testFetcher_hasStarted() {
 
-        val fetcher = Mockito.mock(Fetcher::class.java, Mockito.CALLS_REAL_METHODS)
-
-        assertFalse("Assert that initially returns false", fetcher.hasStarted())
+        assertFalse(fetcher.hasStarted())
 
         fetcher.fetchNext()
 
-        assertTrue("Assert that initially returns true", fetcher.hasStarted())
+        assertTrue(fetcher.hasStarted())
+
+        fetcher.fetchNext()
+
+        assertTrue(fetcher.hasStarted())
+
+        fetcher.reset()
+
+        assertFalse(fetcher.hasStarted())
     }
 
     /*@Test
@@ -56,37 +73,40 @@ class FetcherTest {
         assertEquals("Assert that counter stays the same", 1, fetcher.getPageNum())
     }*/
 
-    /*@Test
+    @Test
     fun testFetcher_PageNumReset() {
 
-        val fetcher = Mockito.mock(Fetcher::class.java)
-
-        assertNull("Assert that initially the counter is null", fetcher.getPageNum())
+        assertEquals(-1, fetcher.getPageNum())
 
         fetcher.fetchNext()
 
-        assertNotNull("Assert that the counter is not null", fetcher.getPageNum())
+        assertEquals(1, fetcher.getPageNum())
+
+        fetcher.fetchNext()
+
+        assertEquals(2, fetcher.getPageNum())
 
         fetcher.reset()
 
-        assertNull("Assert that the counter is null", fetcher.getPageNum())
-    }*/
+        assertEquals(-1, fetcher.getPageNum())
+    }
 
     @Test
     fun testFetcher_TokensReset() {
-
-        val fetcher = Mockito.mock(Fetcher::class.java)
 
         assertNull("Assert that initially the token is null", fetcher.getNextToken())
         assertNull("Assert that initially the token is null", fetcher.getPreviousToken())
 
         fetcher.fetchNext()
 
-        Mockito.doReturn("FAKE_TOKEN").`when`(fetcher).getNextToken()
-        Mockito.doReturn("FAKE_TOKEN").`when`(fetcher).getPreviousToken()
+        Mockito.doReturn("FAKE_TOKEN_NEXT").`when`(fetcher).getNextToken()
+        Mockito.doReturn("FAKE_TOKEN_PREV").`when`(fetcher).getPreviousToken()
 
         assertNotNull("Assert that the token is not null", fetcher.getNextToken())
         assertNotNull("Assert that the token is not null", fetcher.getPreviousToken())
+
+        assertEquals("FAKE_TOKEN_NEXT", fetcher.getNextToken())
+        assertEquals("FAKE_TOKEN_PREV", fetcher.getPreviousToken())
 
         Mockito.reset(fetcher)
         fetcher.reset()

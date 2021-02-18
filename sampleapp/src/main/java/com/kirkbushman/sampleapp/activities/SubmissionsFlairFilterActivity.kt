@@ -42,6 +42,6 @@ class SubmissionsFlairFilterActivity : BaseSearchPrint2Activity<List<Submission>
                 restrictToSubreddit = true
             )
 
-        return fetcher.fetchNext()
+        return fetcher.fetchNext() ?: emptyList()
     }
 }

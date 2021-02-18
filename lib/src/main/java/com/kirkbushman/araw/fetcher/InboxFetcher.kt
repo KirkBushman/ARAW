@@ -3,9 +3,6 @@ package com.kirkbushman.araw.fetcher
 import androidx.annotation.IntRange
 import androidx.annotation.WorkerThread
 import com.kirkbushman.araw.RedditApi
-import com.kirkbushman.araw.http.EnvelopedMessage
-import com.kirkbushman.araw.http.base.Listing
-import com.kirkbushman.araw.http.listings.MessageListing
 import com.kirkbushman.araw.models.Message
 
 class InboxFetcher(
@@ -20,17 +17,21 @@ class InboxFetcher(
 
     private inline val getHeader: () -> HashMap<String, String>
 
-) : Fetcher<Message, EnvelopedMessage>(limit) {
+) : Fetcher<Message>(limit) {
 
     @WorkerThread
-    override fun onFetching(forward: Boolean, dirToken: String?): Listing<EnvelopedMessage>? {
+    override fun onFetching(
+        previousToken: String?,
+        nextToken: String?,
+        setTokens: (next: String?, previous: String?) -> Unit
+    ): List<Message>? {
 
         val req = api.fetchMessages(
             where = where,
             limit = getLimit(),
             count = getCount(),
-            after = if (forward) dirToken else null,
-            before = if (!forward) dirToken else null,
+            before = previousToken,
+            after = nextToken,
             rawJson = (if (disableLegacyEncoding) 1 else null),
             header = getHeader()
         )
@@ -40,18 +41,13 @@ class InboxFetcher(
             return null
         }
 
-        return res.body()?.data
-    }
+        val resultBody = res.body()
+        setTokens(resultBody?.data?.after, resultBody?.data?.before)
 
-    override fun onMapResult(pagedData: Listing<EnvelopedMessage>?): List<Message> {
-
-        if (pagedData == null) {
-            return listOf()
-        }
-
-        return (pagedData as MessageListing)
-            .children
-            .map { it.data }
-            .toList()
+        return resultBody
+            ?.data
+            ?.children
+            ?.map { it.data }
+            ?.toList()
     }
 }

@@ -90,7 +90,7 @@ class SubredditsSearchActivity : BaseActivity() {
                         val fetcher = client.searchClient.fetchSubredditsSearch(query)
 
                         data.clear()
-                        data.addAll(fetcher.fetchNext())
+                        data.addAll(fetcher.fetchNext() ?: emptyList())
                     },
                     onPost = {
 

@@ -2,7 +2,6 @@ package com.kirkbushman.araw.fetcher
 
 import androidx.annotation.IntRange
 import androidx.annotation.WorkerThread
-import com.kirkbushman.araw.http.base.Listing
 
 /**
  * The base class for fetching pages of items
@@ -11,7 +10,7 @@ import com.kirkbushman.araw.http.base.Listing
  * @param limit the number of items to return per page.
  * The default is 25, and you can change this to a number from 0 to 100.
  */
-abstract class Fetcher<T, E>(
+abstract class Fetcher<T>(
 
     @IntRange(from = MIN_LIMIT, to = MAX_LIMIT)
     private var limit: Long = DEFAULT_LIMIT
@@ -25,32 +24,45 @@ abstract class Fetcher<T, E>(
         const val MAX_LIMIT = 100L
     }
 
-    private var currentPage: Int? = null
-    private var itemsCount = 0
+    private var currentPage: Int = -1
+    private var itemsCount: Int = 0
 
-    private var currentAfter: String? = null
-    private var currentBefore: String? = null
+    private var nextToken: String? = null
+    private var previousToken: String? = null
 
     @WorkerThread
-    abstract fun onFetching(forward: Boolean = true, dirToken: String?): Listing<E>?
-    abstract fun onMapResult(pagedData: Listing<E>?): List<T>
+    abstract fun onFetching(
+        previousToken: String?,
+        nextToken: String?,
+        setTokens: (next: String?, previous: String?) -> Unit
+    ): List<T>?
 
     /**
      * Fetch the next page of content.
      * @return a list of T items.
      */
     @WorkerThread
-    fun fetchNext(): List<T> {
+    fun fetchNext(): List<T>? {
 
-        val pagedData = onFetching(true, getNextToken() ?: "")
+        val pagedData = onFetching(
+            previousToken = null,
+            nextToken = nextToken,
+            setTokens = { previous, next ->
 
-        currentPage = (currentPage ?: 0) + 1
-        itemsCount = limit.toInt() * (currentPage ?: 0)
+                previousToken = previous
+                nextToken = next
+            }
+        )
 
-        currentAfter = pagedData?.after
-        currentBefore = pagedData?.before
+        currentPage = if (currentPage == -1) {
+            1
+        } else {
+            currentPage + 1
+        }
 
-        return onMapResult(pagedData)
+        itemsCount = limit.toInt() * currentPage
+
+        return pagedData
     }
 
     /**
@@ -64,40 +76,44 @@ abstract class Fetcher<T, E>(
             return null
         }
 
-        val pagedData = onFetching(false, getPreviousToken())
+        val pagedData = onFetching(
+            previousToken = previousToken,
+            nextToken = null,
+            setTokens = { previous, next ->
 
-        currentPage = if (currentPage != null) {
-            currentPage!! - 1
-        } else {
-            null
+                previousToken = previous
+                nextToken = next
+            }
+        )
+
+        currentPage = when {
+            currentPage < 1 -> -1
+            else -> currentPage - 1
         }
 
-        itemsCount = limit.toInt() * (currentPage ?: 0)
+        itemsCount = limit.toInt() * currentPage
 
-        currentAfter = pagedData?.after
-        currentBefore = pagedData?.before
-
-        return onMapResult(pagedData)
+        return pagedData
     }
 
     fun hasStarted(): Boolean {
-        return currentPage != null && currentPage!! > 0
+        return currentPage > 0
     }
 
-    open fun getPreviousToken(): String? {
-        return currentBefore
+    fun hasNext(): Boolean {
+        return nextToken != null
     }
 
-    open fun getNextToken(): String? {
-        return currentAfter
+    fun hasPrevious(): Boolean {
+        return previousToken != null
     }
 
-    open fun hasNext(): Boolean {
-        return currentAfter != null
+    fun getPreviousToken(): String? {
+        return previousToken
     }
 
-    open fun hasPrevious(): Boolean {
-        return getPreviousToken() != null
+    fun getNextToken(): String? {
+        return nextToken
     }
 
     /**
@@ -122,7 +138,7 @@ abstract class Fetcher<T, E>(
     /**
      * Returns the current page number.
      */
-    fun getPageNum(): Int? {
+    fun getPageNum(): Int {
         return currentPage
     }
 
@@ -139,10 +155,10 @@ abstract class Fetcher<T, E>(
      * back from the first page of content.
      */
     fun reset() {
-        currentPage = null
+        currentPage = -1
         itemsCount = 0
 
-        currentAfter = null
-        currentBefore = null
+        nextToken = null
+        previousToken = null
     }
 }

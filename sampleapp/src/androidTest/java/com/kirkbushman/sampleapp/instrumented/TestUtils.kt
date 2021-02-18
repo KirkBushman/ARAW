@@ -40,11 +40,11 @@ object TestUtils {
 
     fun getTokenBearer(auth: UserlessAuth): TokenBearer {
         return (
-                if (auth.hasSavedBearer())
-                    auth.retrieveSavedBearer()
-                else
-                    auth.authenticate()
-                ) ?: throw IllegalStateException("Bearer cannot be null!")
+            if (auth.hasSavedBearer())
+                auth.retrieveSavedBearer()
+            else
+                auth.authenticate()
+            ) ?: throw IllegalStateException("Bearer cannot be null!")
     }
 
     private fun loadCredentials(context: Context): TestCredentials {

@@ -30,6 +30,6 @@ class MultiSubmissionsActivity : BaseSearchPrint2Activity<List<Submission>>() {
     override fun fetchItem(client: RedditClient, query: String, query2: String): List<Submission> {
 
         val fetcher = client.multisClient.multiSubmissions(query, query2)
-        return fetcher.fetchNext()
+        return fetcher.fetchNext() ?: emptyList()
     }
 }

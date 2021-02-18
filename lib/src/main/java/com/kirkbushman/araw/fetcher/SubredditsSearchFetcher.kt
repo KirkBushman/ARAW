@@ -3,9 +3,6 @@ package com.kirkbushman.araw.fetcher
 import androidx.annotation.IntRange
 import androidx.annotation.WorkerThread
 import com.kirkbushman.araw.RedditApi
-import com.kirkbushman.araw.http.EnvelopedSubredditData
-import com.kirkbushman.araw.http.base.Listing
-import com.kirkbushman.araw.http.listings.SubredditDataListing
 import com.kirkbushman.araw.models.enums.SubredditSearchSorting
 import com.kirkbushman.araw.models.enums.TimePeriod
 import com.kirkbushman.araw.models.base.SubredditData
@@ -15,18 +12,18 @@ class SubredditsSearchFetcher(
     private val api: RedditApi,
     private val query: String,
 
-    @IntRange(from = MIN_LIMIT, to = MAX_LIMIT)
-    limit: Long = DEFAULT_LIMIT,
-
     private var sorting: SubredditSearchSorting = DEFAULT_SORTING,
     private var timePeriod: TimePeriod = DEFAULT_TIMEPERIOD,
+
+    @IntRange(from = MIN_LIMIT, to = MAX_LIMIT)
+    limit: Long = DEFAULT_LIMIT,
 
     private val showAll: Boolean = false,
     private val disableLegacyEncoding: Boolean = false,
 
     private inline val getHeader: () -> HashMap<String, String>
 
-) : Fetcher<SubredditData, EnvelopedSubredditData>(limit) {
+) : Fetcher<SubredditData>(limit) {
 
     companion object {
 
@@ -35,7 +32,11 @@ class SubredditsSearchFetcher(
     }
 
     @WorkerThread
-    override fun onFetching(forward: Boolean, dirToken: String?): Listing<EnvelopedSubredditData>? {
+    override fun onFetching(
+        previousToken: String?,
+        nextToken: String?,
+        setTokens: (next: String?, previous: String?) -> Unit
+    ): List<SubredditData>? {
 
         val req = api.fetchSubredditsSearch(
             query = query,
@@ -44,8 +45,8 @@ class SubredditsSearchFetcher(
             timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
             limit = getLimit(),
             count = getCount(),
-            after = if (forward) dirToken else null,
-            before = if (!forward) dirToken else null,
+            before = previousToken,
+            after = nextToken,
             rawJson = (if (disableLegacyEncoding) 1 else null),
             header = getHeader()
         )
@@ -55,19 +56,14 @@ class SubredditsSearchFetcher(
             return null
         }
 
-        return res.body()?.data
-    }
+        val resultBody = res.body()
+        setTokens(resultBody?.data?.after, resultBody?.data?.before)
 
-    override fun onMapResult(pagedData: Listing<EnvelopedSubredditData>?): List<SubredditData> {
-
-        if (pagedData == null) {
-            return listOf()
-        }
-
-        return (pagedData as SubredditDataListing)
-            .children
-            .map { it.data }
-            .toList()
+        return resultBody
+            ?.data
+            ?.children
+            ?.map { it.data }
+            ?.toList()
     }
 
     fun getSorting(): SubredditSearchSorting = sorting

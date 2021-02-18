@@ -3,9 +3,6 @@ package com.kirkbushman.araw.fetcher
 import androidx.annotation.IntRange
 import androidx.annotation.WorkerThread
 import com.kirkbushman.araw.RedditApi
-import com.kirkbushman.araw.http.EnvelopedSubmission
-import com.kirkbushman.araw.http.base.Listing
-import com.kirkbushman.araw.http.listings.SubmissionListing
 import com.kirkbushman.araw.models.Submission
 import com.kirkbushman.araw.models.enums.SubmissionsSorting
 import com.kirkbushman.araw.models.enums.TimePeriod
@@ -16,17 +13,17 @@ class MultiSubmissionsFetcher(
     private val username: String,
     private val multiname: String,
 
-    @IntRange(from = MIN_LIMIT, to = MAX_LIMIT)
-    limit: Long = DEFAULT_LIMIT,
-
     private var sorting: SubmissionsSorting = DEFAULT_SORTING,
     private var timePeriod: TimePeriod = DEFAULT_TIMEPERIOD,
+
+    @IntRange(from = MIN_LIMIT, to = MAX_LIMIT)
+    limit: Long = DEFAULT_LIMIT,
 
     private val disableLegacyEncoding: Boolean = false,
 
     private inline val getHeader: () -> HashMap<String, String>
 
-) : Fetcher<Submission, EnvelopedSubmission>(limit) {
+) : Fetcher<Submission>(limit) {
 
     companion object {
 
@@ -35,7 +32,11 @@ class MultiSubmissionsFetcher(
     }
 
     @WorkerThread
-    override fun onFetching(forward: Boolean, dirToken: String?): Listing<EnvelopedSubmission>? {
+    override fun onFetching(
+        previousToken: String?,
+        nextToken: String?,
+        setTokens: (next: String?, previous: String?) -> Unit
+    ): List<Submission>? {
 
         val req = api.fetchMultiSubmissions(
             username = username,
@@ -44,8 +45,8 @@ class MultiSubmissionsFetcher(
             timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
             limit = getLimit(),
             count = getCount(),
-            after = if (forward) dirToken else null,
-            before = if (!forward) dirToken else null,
+            before = previousToken,
+            after = nextToken,
             rawJson = (if (disableLegacyEncoding) 1 else null),
             header = getHeader()
         )
@@ -55,19 +56,14 @@ class MultiSubmissionsFetcher(
             return null
         }
 
-        return res.body()?.data
-    }
+        val resultBody = res.body()
+        setTokens(resultBody?.data?.after, resultBody?.data?.before)
 
-    override fun onMapResult(pagedData: Listing<EnvelopedSubmission>?): List<Submission> {
-
-        if (pagedData == null) {
-            return listOf()
-        }
-
-        return (pagedData as SubmissionListing)
-            .children
-            .map { it.data }
-            .toList()
+        return resultBody
+            ?.data
+            ?.children
+            ?.map { it.data }
+            ?.toList()
     }
 
     fun getSorting(): SubmissionsSorting = sorting

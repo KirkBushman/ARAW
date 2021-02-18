@@ -51,6 +51,6 @@ class SubscribedSubredditsActivity : BaseControllerActivity<SubredditData, Subre
     override fun fetchItem(client: RedditClient): Collection<SubredditData> {
 
         val fetcher = client.accountsClient.subscribedSubreddits(limit = 100)
-        return fetcher.fetchNext()
+        return fetcher.fetchNext() ?: emptyList()
     }
 }

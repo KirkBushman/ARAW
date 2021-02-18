@@ -3,9 +3,6 @@ package com.kirkbushman.araw.fetcher
 import androidx.annotation.IntRange
 import androidx.annotation.WorkerThread
 import com.kirkbushman.araw.RedditApi
-import com.kirkbushman.araw.http.EnvelopedSubmission
-import com.kirkbushman.araw.http.base.Listing
-import com.kirkbushman.araw.http.listings.SubmissionListing
 import com.kirkbushman.araw.models.Submission
 import com.kirkbushman.araw.models.enums.SearchSorting
 import com.kirkbushman.araw.models.enums.TimePeriod
@@ -16,11 +13,11 @@ class SubmissionsSearchFetcher(
     private val subreddit: String?,
     private val query: String,
 
-    @IntRange(from = MIN_LIMIT, to = MAX_LIMIT)
-    limit: Long = DEFAULT_LIMIT,
-
     private var sorting: SearchSorting = DEFAULT_SORTING,
     private var timePeriod: TimePeriod = DEFAULT_TIMEPERIOD,
+
+    @IntRange(from = MIN_LIMIT, to = MAX_LIMIT)
+    limit: Long = DEFAULT_LIMIT,
 
     private val showAll: Boolean = false,
     private val restrictToSubreddit: Boolean = false,
@@ -28,7 +25,7 @@ class SubmissionsSearchFetcher(
 
     private inline val getHeader: () -> HashMap<String, String>
 
-) : Fetcher<Submission, EnvelopedSubmission>(limit) {
+) : Fetcher<Submission>(limit) {
 
     companion object {
 
@@ -37,7 +34,11 @@ class SubmissionsSearchFetcher(
     }
 
     @WorkerThread
-    override fun onFetching(forward: Boolean, dirToken: String?): Listing<EnvelopedSubmission>? {
+    override fun onFetching(
+        previousToken: String?,
+        nextToken: String?,
+        setTokens: (next: String?, previous: String?) -> Unit
+    ): List<Submission>? {
 
         val req = if (subreddit != null) {
 
@@ -51,8 +52,8 @@ class SubmissionsSearchFetcher(
                     timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
                     limit = getLimit(),
                     count = getCount(),
-                    after = if (forward) dirToken else null,
-                    before = if (!forward) dirToken else null,
+                    before = previousToken,
+                    after = nextToken,
                     restrictToSubreddit = restrictToSubreddit,
                     rawJson = (if (disableLegacyEncoding) 1 else null),
                     header = getHeader()
@@ -66,8 +67,8 @@ class SubmissionsSearchFetcher(
                     timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
                     limit = getLimit(),
                     count = getCount(),
-                    after = if (forward) dirToken else null,
-                    before = if (!forward) dirToken else null,
+                    before = previousToken,
+                    after = nextToken,
                     restrictToSubreddit = restrictToSubreddit,
                     rawJson = (if (disableLegacyEncoding) 1 else null),
                     header = getHeader()
@@ -79,10 +80,10 @@ class SubmissionsSearchFetcher(
                 show = if (showAll) "all" else null,
                 sorting = getSorting().sortingStr,
                 timePeriod = if (getSorting().requiresTimePeriod) getTimePeriod().timePeriodStr else null,
-                limit = if (forward) getLimit() else getLimit() + 1,
+                limit = if (nextToken != null) getLimit() else getLimit() + 1,
                 count = getCount(),
-                after = if (forward) dirToken else null,
-                before = if (!forward) dirToken else null,
+                before = previousToken,
+                after = nextToken,
                 rawJson = (if (disableLegacyEncoding) 1 else null),
                 header = getHeader()
             )
@@ -93,19 +94,14 @@ class SubmissionsSearchFetcher(
             return null
         }
 
-        return res.body()?.data
-    }
+        val resultBody = res.body()
+        setTokens(resultBody?.data?.after, resultBody?.data?.before)
 
-    override fun onMapResult(pagedData: Listing<EnvelopedSubmission>?): List<Submission> {
-
-        if (pagedData == null) {
-            return listOf()
-        }
-
-        return (pagedData as SubmissionListing)
-            .children
-            .map { it.data }
-            .toList()
+        return resultBody
+            ?.data
+            ?.children
+            ?.map { it.data }
+            ?.toList()
     }
 
     fun getSorting(): SearchSorting = sorting

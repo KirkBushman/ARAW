@@ -134,7 +134,7 @@ class SubmissionsSearchActivity : BaseActivity() {
                     )
 
                     submissions.clear()
-                    submissions.addAll(fetcher.fetchNext())
+                    submissions.addAll(fetcher.fetchNext() ?: emptyList())
                 },
                 onPost = {
                     controller.setItems(submissions)

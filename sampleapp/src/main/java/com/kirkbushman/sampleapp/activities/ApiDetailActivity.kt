@@ -461,7 +461,7 @@ class ApiDetailActivity : BaseActivity() {
                     disableLegacyEncoding = disableLegacyEncoding
                 )
                 val comments = fetcher.fetchNext()
-                comments.random().toString()
+                comments?.random().toString()
             }
 
             API_SUB_SUBMISSIONS -> {
@@ -899,7 +899,10 @@ class ApiDetailActivity : BaseActivity() {
         )
         val submissions = fetcher.fetchNext()
 
-        return submissions.map { it.id }.random()
+        return submissions
+            ?.map { it.id }
+            ?.randomOrNull()
+            ?: ""
     }
 
     private fun getRandomUserFromRandomSubreddit(): String {
@@ -910,6 +913,10 @@ class ApiDetailActivity : BaseActivity() {
         )
         val submissions = fetcher.fetchNext()
 
-        return submissions.map { it.author }.toList().random()
+        return submissions
+            ?.map { it.author }
+            ?.toList()
+            ?.randomOrNull()
+            ?: ""
     }
 }
