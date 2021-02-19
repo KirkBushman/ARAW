@@ -10,8 +10,6 @@ import com.kirkbushman.araw.models.MultiDescription
 import com.kirkbushman.araw.models.MultiSub
 import com.kirkbushman.araw.models.enums.SubmissionsSorting
 import com.kirkbushman.araw.models.enums.TimePeriod
-import com.kirkbushman.araw.models.requests.AddMultiSubReq
-import com.kirkbushman.araw.models.requests.SetMultiDescReq
 
 class MultisClient(
 
@@ -147,7 +145,7 @@ class MultisClient(
         val req = api.setMultiDescription(
             username = username,
             multiname = multiname,
-            model = SetMultiDescReq(description),
+            model = "{\"body_md\":\"$description\"}",
             header = authMap
         )
 
@@ -192,14 +190,14 @@ class MultisClient(
         username: String,
         multiname: String,
         subname: String
-    ): Any? {
+    ): MultiSub? {
 
         val authMap = getHeaderMap()
         val req = api.addSubredditToMulti(
             username = username,
             multiname = multiname,
             subname = subname,
-            model = AddMultiSubReq(MultiSub(subname)),
+            model = "{\"name\":\"$subname\"}",
             header = authMap
         )
 
@@ -217,7 +215,7 @@ class MultisClient(
         username: String,
         multiname: String,
         subname: String
-    ): Any? {
+    ): Boolean {
 
         val authMap = getHeaderMap()
         val req = api.removeSubredditToMulti(
@@ -228,10 +226,6 @@ class MultisClient(
         )
 
         val res = req.execute()
-        if (!res.isSuccessful) {
-            return null
-        }
-
-        return res.body()
+        return res.isSuccessful
     }
 }

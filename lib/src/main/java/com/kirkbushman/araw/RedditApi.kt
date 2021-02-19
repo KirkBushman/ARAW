@@ -31,14 +31,11 @@ import com.kirkbushman.araw.models.TrophyList
 import com.kirkbushman.araw.models.UploadContract
 import com.kirkbushman.araw.models.UserList
 import com.kirkbushman.araw.models.WikiPageList
-import com.kirkbushman.araw.models.requests.AddMultiSubReq
-import com.kirkbushman.araw.models.requests.SetMultiDescReq
 import com.kirkbushman.araw.utils.Endpoints
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Call
-import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -408,13 +405,14 @@ interface RedditApi {
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedMultiDescription>
 
+    @FormUrlEncoded
     @PUT(Endpoints.URL_MULTI_DESC)
     fun setMultiDescription(
         @Path("username") username: String,
         @Path("multiname") multiname: String,
-        @Body model: SetMultiDescReq,
+        @Field("model") model: String,
         @HeaderMap header: HashMap<String, String>
-    ): Call<Any?>
+    ): Call<EnvelopedMultiDescription>
 
     @GET(Endpoints.URL_MULTI_SUB)
     fun multiSubreddit(
@@ -425,14 +423,15 @@ interface RedditApi {
         @HeaderMap header: HashMap<String, String>
     ): Call<MultiSub>
 
+    @FormUrlEncoded
     @PUT(Endpoints.URL_MULTI_SUB)
     fun addSubredditToMulti(
         @Path("username") username: String,
         @Path("multiname") multiname: String,
         @Path("subname") subname: String,
-        @Body model: AddMultiSubReq,
+        @Field("model") model: String,
         @HeaderMap header: HashMap<String, String>
-    ): Call<Any?>
+    ): Call<MultiSub>
 
     @DELETE(Endpoints.URL_MULTI_SUB)
     fun removeSubredditToMulti(
@@ -440,7 +439,7 @@ interface RedditApi {
         @Path("multiname") multiname: String,
         @Path("subname") subname: String,
         @HeaderMap header: HashMap<String, String>
-    ): Call<Any?>
+    ): Call<ResponseBody>
 
     // --- Multis section: END ---
 
