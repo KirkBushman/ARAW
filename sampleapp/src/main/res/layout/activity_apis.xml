@@ -442,6 +442,17 @@
                 app:layout_constraintStart_toEndOf="@id/bttn_multi_add_sub"
                 />
 
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/bttn_multi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/bttn_multi"
+                app:layout_constraintTop_toBottomOf="@id/bttn_multi_add_sub"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/bttn_multi_del_sub"
+                />
+
         <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/header_api_subreddit"
                 android:layout_width="0dp"
@@ -453,7 +464,7 @@
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:text="@string/header_api_subreddit"
-                app:layout_constraintTop_toBottomOf="@id/bttn_multi_add_sub"
+                app:layout_constraintTop_toBottomOf="@id/bttn_multi"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 />

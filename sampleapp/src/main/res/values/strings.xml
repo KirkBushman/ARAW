@@ -67,6 +67,7 @@
     <string name="bttn_multi_get_sub">Get Sub</string>
     <string name="bttn_multi_add_sub">Add Sub</string>
     <string name="bttn_multi_del_sub">Del Sub</string>
+    <string name="bttn_multi">Multi</string>
     <string name="bttn_multireddit">Multireddit</string>
     <string name="bttn_trending">Trending</string>
     <string name="bttn_subreddit_search">Subreddit Search</string>

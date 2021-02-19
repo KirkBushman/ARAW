@@ -370,7 +370,7 @@ interface RedditApi {
 
     // --- Multis section: START ---
 
-    @GET(Endpoints.URL_MULTI)
+    @GET(Endpoints.URL_MULTI_SUBS)
     fun fetchMultiSubmissions(
         @Path("username") username: String,
         @Path("multiname") multiname: String,
@@ -383,6 +383,14 @@ interface RedditApi {
         @Query("raw_json") rawJson: Int? = null,
         @HeaderMap header: HashMap<String, String>
     ): Call<EnvelopedSubmissionListing>
+
+    @GET(Endpoints.URL_MULTI)
+    fun multi(
+        @Path("username") username: String,
+        @Path("multiname") multiname: String,
+        @Query("raw_json") rawJson: Int? = null,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<EnvelopedMulti>
 
     @GET(Endpoints.URL_MULTIS_MINE)
     fun myMultis(

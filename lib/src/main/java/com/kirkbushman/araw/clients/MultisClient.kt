@@ -69,6 +69,31 @@ class MultisClient(
     }
 
     @WorkerThread
+    fun multi(
+
+        username: String,
+        multiname: String,
+
+        disableLegacyEncoding: Boolean = false
+    ): Multi? {
+
+        val authMap = getHeaderMap()
+        val req = api.multi(
+            username = username,
+            multiname = multiname,
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
+
+        val res = req.execute()
+        if (!res.isSuccessful) {
+            return null
+        }
+
+        return res.body()?.data
+    }
+
+    @WorkerThread
     fun myMultis(
         disableLegacyEncoding: Boolean = false
     ): List<Multi>? {

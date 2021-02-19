@@ -73,6 +73,7 @@ class ApiDetailActivity : BaseActivity() {
         private const val API_MESSAGE_MESSAGES = "param_api_call_messages"
         private const val API_MESSAGE_COMMENT_REPLIES = "param_api_call_comment_replies"
         private const val API_MESSAGE_SELF_REPLIES = "param_api_call_self_replies"
+        private const val API_MULTI = "param_api_call_multi"
         private const val API_MULTIS_MINE = "param_api_call_my_multis"
         private const val API_MULTIS_REDDITOR = "param_api_call_redditor_multis"
         private const val API_MULTI_SUBMISSIONS = "param_api_call_multi_submissions"
@@ -203,6 +204,10 @@ class ApiDetailActivity : BaseActivity() {
 
         fun startApiSelfReplies(context: Context) {
             start(context, API_MESSAGE_SELF_REPLIES)
+        }
+
+        fun startApiMulti(context: Context) {
+            start(context, API_MULTI)
         }
 
         fun startApiMyMultis(context: Context) {
@@ -545,6 +550,16 @@ class ApiDetailActivity : BaseActivity() {
                 )
                 val replies = fetcher.fetchNext()
                 replies.toString()
+            }
+
+            API_MULTI -> {
+                val multi = client.multisClient.multi(
+                    username = "Kirk-Bushman",
+                    multiname = "karmafarming",
+                    disableLegacyEncoding = disableLegacyEncoding
+                )
+
+                multi.toString()
             }
 
             API_MULTIS_MINE -> {
