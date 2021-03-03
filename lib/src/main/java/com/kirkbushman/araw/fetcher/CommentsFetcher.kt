@@ -41,7 +41,7 @@ class CommentsFetcher(
     override fun onFetching(
         previousToken: String?,
         nextToken: String?,
-        setTokens: (next: String?, previous: String?) -> Unit
+        setTokens: (previous: String?, next: String?) -> Unit
     ): List<CommentData>? {
 
         val req = api.fetchComments(

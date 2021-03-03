@@ -34,7 +34,7 @@ abstract class Fetcher<T>(
     abstract fun onFetching(
         previousToken: String?,
         nextToken: String?,
-        setTokens: (next: String?, previous: String?) -> Unit
+        setTokens: (previous: String?, next: String?) -> Unit
     ): List<T>?
 
     /**

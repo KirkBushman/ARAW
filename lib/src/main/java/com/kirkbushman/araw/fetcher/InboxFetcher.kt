@@ -23,7 +23,7 @@ class InboxFetcher(
     override fun onFetching(
         previousToken: String?,
         nextToken: String?,
-        setTokens: (next: String?, previous: String?) -> Unit
+        setTokens: (previous: String?, next: String?) -> Unit
     ): List<Message>? {
 
         val req = api.fetchMessages(
@@ -42,7 +42,7 @@ class InboxFetcher(
         }
 
         val resultBody = res.body()
-        setTokens(resultBody?.data?.after, resultBody?.data?.before)
+        setTokens(resultBody?.data?.before, resultBody?.data?.after)
 
         return resultBody
             ?.data

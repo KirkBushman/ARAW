@@ -38,7 +38,7 @@ class ContributionsFetcher(
     override fun onFetching(
         previousToken: String?,
         nextToken: String?,
-        setTokens: (next: String?, previous: String?) -> Unit
+        setTokens: (previous: String?, next: String?) -> Unit
     ): List<Contribution>? {
 
         if (username == null && getUsername == null) {
@@ -88,7 +88,7 @@ class ContributionsFetcher(
         }
 
         val resultBody = res.body()
-        setTokens(resultBody?.data?.after, resultBody?.data?.before)
+        setTokens(resultBody?.data?.before, resultBody?.data?.after)
 
         return resultBody
             ?.data
