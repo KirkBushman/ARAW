@@ -165,6 +165,10 @@ class ApisActivity : BaseActivity() {
             ApiDetailActivity.startApiMulti(this)
         }
 
+        binding.bttnDelMulti.setOnClickListener {
+            ApiDetailActivity.startApiDelMulti(this)
+        }
+
         binding.bttnSubreddit.setOnClickListener {
             ApiDetailActivity.startApiSubreddit(this)
         }

@@ -405,6 +405,14 @@ interface RedditApi {
         @HeaderMap header: HashMap<String, String>
     ): Call<List<EnvelopedMulti>>
 
+    @DELETE(Endpoints.URL_MULTI)
+    fun deleteMulti(
+        @Path("username") username: String,
+        @Path("multiname") multiname: String,
+        @Query("raw_json") rawJson: Int? = null,
+        @HeaderMap header: HashMap<String, String>
+    ): Call<ResponseBody>
+
     @GET(Endpoints.URL_MULTI_DESC)
     fun multiDescription(
         @Path("username") username: String,

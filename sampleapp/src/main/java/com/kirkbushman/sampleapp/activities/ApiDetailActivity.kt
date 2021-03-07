@@ -77,6 +77,7 @@ class ApiDetailActivity : BaseActivity() {
         private const val API_MULTIS_MINE = "param_api_call_my_multis"
         private const val API_MULTIS_REDDITOR = "param_api_call_redditor_multis"
         private const val API_MULTI_SUBMISSIONS = "param_api_call_multi_submissions"
+        private const val API_MULTI_DEL = "param_api_call_del_multi"
         private const val API_MULTI_GET_DESC = "param_api_call_multi_get_description"
         private const val API_MULTI_SET_DESC = "param_api_call_multi_set_description"
         private const val API_MULTI_GET_SUB = "param_api_call_multi_get_subreddit"
@@ -220,6 +221,10 @@ class ApiDetailActivity : BaseActivity() {
 
         fun startApiMultiSubs(context: Context) {
             start(context, API_MULTI_SUBMISSIONS)
+        }
+
+        fun startApiDelMulti(context: Context) {
+            start(context, API_MULTI_DEL)
         }
 
         fun startApiMultiGetDesc(context: Context) {
@@ -585,6 +590,15 @@ class ApiDetailActivity : BaseActivity() {
 
                 val submissions = fetcher.fetchNext()
                 submissions.toString()
+            }
+
+            API_MULTI_DEL -> {
+
+                val response = client
+                    .multisClient
+                    .deleteMulti("Kirk-Bushman", "shush")
+
+                response.toString()
             }
 
             API_MULTI_GET_DESC -> {

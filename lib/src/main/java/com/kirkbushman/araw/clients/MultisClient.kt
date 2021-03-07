@@ -134,6 +134,27 @@ class MultisClient(
     }
 
     @WorkerThread
+    fun deleteMulti(
+
+        username: String,
+        multiname: String,
+
+        disableLegacyEncoding: Boolean = false
+    ): Boolean {
+
+        val authMap = getHeaderMap()
+        val req = api.deleteMulti(
+            username = username,
+            multiname = multiname,
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
+
+        val res = req.execute()
+        return res.isSuccessful
+    }
+
+    @WorkerThread
     fun multiDescription(
 
         username: String,

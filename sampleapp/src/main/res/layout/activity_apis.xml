@@ -453,6 +453,17 @@
                 app:layout_constraintEnd_toStartOf="@id/bttn_multi_del_sub"
                 />
 
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/bttn_del_multi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/bttn_del_multi"
+                app:layout_constraintTop_toBottomOf="@id/bttn_multi_del_sub"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/bttn_multi"
+                />
+
         <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/header_api_subreddit"
                 android:layout_width="0dp"
