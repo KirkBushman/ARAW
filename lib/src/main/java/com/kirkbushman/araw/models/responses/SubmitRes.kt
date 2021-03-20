@@ -19,10 +19,10 @@ data class SubmitResponse(
 data class SubmitResponseJson(
 
     @Json(name = "errors")
-    val errors: List<String>?,
+    val errors: List<List<String>>?,
 
     @Json(name = "data")
-    val data: SubmitResponseData
+    val data: SubmitResponseData?
 
 ) : Parcelable
 

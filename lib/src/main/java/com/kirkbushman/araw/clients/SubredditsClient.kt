@@ -15,6 +15,8 @@ import com.kirkbushman.araw.models.enums.SubmissionsSorting
 import com.kirkbushman.araw.models.enums.TimePeriod
 import com.kirkbushman.araw.models.base.SubredditData
 import java.lang.IllegalStateException
+import java.util.*
+import kotlin.collections.HashMap
 
 class SubredditsClient(
 
@@ -327,16 +329,17 @@ class SubredditsClient(
 
         resubmit: Boolean? = null,
         extension: String? = null,
-        rawJson: Int? = null,
 
         sendReplies: Boolean = false,
         submitType: String? = null,
-        isNsfw: Boolean = false,
-        isSpoiler: Boolean = false,
-        isOriginalContent: Boolean = false,
+        isNsfw: Boolean? = null,
+        isSpoiler: Boolean? = null,
+        isOriginalContent: Boolean? = null,
 
         validateOnSubmit: Boolean? = null,
-        showErrorList: Boolean? = null
+        showErrorList: Boolean? = null,
+
+        disableLegacyEncoding: Boolean = false
 
     ): SubmitResponse? {
 
@@ -351,7 +354,6 @@ class SubredditsClient(
 
             resubmit = resubmit,
             extension = extension,
-            rawJson = rawJson,
 
             sendReplies = sendReplies,
             submitType = submitType,
@@ -360,7 +362,9 @@ class SubredditsClient(
             isOriginalContent = isOriginalContent,
 
             validateOnSubmit = validateOnSubmit,
-            showErrorList = showErrorList
+            showErrorList = showErrorList,
+
+            disableLegacyEncoding = disableLegacyEncoding
         )
     }
 
@@ -377,16 +381,17 @@ class SubredditsClient(
 
         resubmit: Boolean? = null,
         extension: String? = null,
-        rawJson: Int? = null,
 
         sendReplies: Boolean = false,
         submitType: String? = null,
-        isNsfw: Boolean = false,
-        isSpoiler: Boolean = false,
-        isOriginalContent: Boolean = false,
+        isNsfw: Boolean? = null,
+        isSpoiler: Boolean? = null,
+        isOriginalContent: Boolean? = null,
 
         validateOnSubmit: Boolean? = null,
-        showErrorList: Boolean? = null
+        showErrorList: Boolean? = null,
+
+        disableLegacyEncoding: Boolean = false
 
     ): SubmitResponse? {
 
@@ -395,14 +400,14 @@ class SubredditsClient(
             subreddit = subredditName,
 
             title = title,
-            kind = kind.toString(),
+            kind = kind.toString().toLowerCase(Locale.getDefault()),
 
             text = (if (kind == SubmissionKind.SELF) text else null),
             url = (if (kind != SubmissionKind.SELF) url else null),
 
             resubmit = resubmit,
             extension = extension,
-            rawJson = rawJson,
+            rawJson = (if (disableLegacyEncoding) 1 else null),
 
             sendReplies = sendReplies,
             submitType = submitType,

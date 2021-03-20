@@ -63,7 +63,10 @@ class SubmitActivity : BaseActivity() {
                         url = if (kind != SubmissionKind.SELF) textOrLink else "",
                         sendReplies = binding.checkSendreplies.isChecked,
                         isNsfw = binding.checkIsnsfw.isChecked,
-                        isSpoiler = binding.checkIsspoiler.isChecked
+                        isSpoiler = binding.checkIsspoiler.isChecked,
+                        submitType = "subreddit",
+                        validateOnSubmit = true,
+                        disableLegacyEncoding = true
                     )
                 }
             )
