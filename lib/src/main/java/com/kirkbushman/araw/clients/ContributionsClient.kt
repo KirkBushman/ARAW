@@ -181,14 +181,40 @@ class ContributionsClient(
 
     ): List<CommentData>? {
 
+        return moreChildren(
+            moreCommentId = moreComments.id,
+            commentsIds = moreComments.children,
+            submissionFullname = submission.fullname,
+            sorting = sorting,
+            limitChildren = limitChildren,
+            depth = depth,
+            disableLegacyEncoding = disableLegacyEncoding
+        )
+    }
+
+    @WorkerThread
+    fun moreChildren(
+
+        moreCommentId: String,
+        commentsIds: List<String>,
+        submissionFullname: String,
+
+        sorting: CommentsSorting? = null,
+        limitChildren: Boolean? = null,
+        depth: Int? = null,
+
+        disableLegacyEncoding: Boolean = false
+
+    ): List<CommentData>? {
+
         val authMap = getHeaderMap()
         val req = api.moreChildren(
-            children = moreComments.children.joinToString(separator = ","),
+            children = commentsIds.joinToString(separator = ","),
             sorting = sorting?.sortingStr,
             limitChildren = limitChildren,
             depth = depth,
-            id = moreComments.id,
-            linkId = submission.fullname,
+            id = moreCommentId,
+            linkId = submissionFullname,
             rawJson = (if (disableLegacyEncoding) 1 else null),
             header = authMap
         )
