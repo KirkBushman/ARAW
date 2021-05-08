@@ -400,7 +400,7 @@ class SubredditsClient(
             subreddit = subredditName,
 
             title = title,
-            kind = kind.toString().toLowerCase(Locale.getDefault()),
+            kind = kind.toString().lowercase(),
 
             text = (if (kind == SubmissionKind.SELF) text else null),
             url = (if (kind != SubmissionKind.SELF) url else null),

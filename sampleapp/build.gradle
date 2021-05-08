@@ -68,12 +68,10 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(":lib")
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_ver"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_ver"
-
-    implementation project(":lib")
 
     implementation "androidx.multidex:multidex:2.0.1"
 
