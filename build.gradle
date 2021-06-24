@@ -14,7 +14,7 @@ buildscript {
         version_code = 2
         version_name = "1.0.0"
 
-        kotlin_ver = '1.5.10'
+        kotlin_ver = '1.5.20'
         coroutines_ver = '1.4.3'
 
         hilt_ver = "2.36"
