@@ -42,7 +42,7 @@ buildscript {
 
         test_ver = '1.4.0'
         espresso_ver = '3.3.0'
-        junit_ver = '1.1.2'
+        junit_ver = '1.1.3'
         leakcanary_ver = '2.7'
         mockito_ver = '3.11.1'
         arch_core_ver = '2.1.0'
