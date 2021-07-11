@@ -5,7 +5,9 @@ import com.kirkbushman.sampleapp.controllers.base.BaseController
 import com.kirkbushman.sampleapp.models.wikiPage
 
 class WikiPagesController(
+
     callback: WikiPageCallback
+
 ) : BaseController<String, WikiPagesController.WikiPageCallback>(callback) {
 
     interface WikiPageCallback : BaseCallback {
@@ -18,7 +20,7 @@ class WikiPagesController(
         wikiPage {
             id(it)
             nameText(it)
-            listener { _ -> callback?.onPageClick(items, index) }
+            listener { _ -> callback?.onPageClick(this@WikiPagesController.items, index) }
         }
     }
 }

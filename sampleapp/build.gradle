@@ -76,7 +76,6 @@ dependencies {
     implementation "androidx.multidex:multidex:2.0.1"
 
     implementation "com.google.dagger:hilt-android:$hilt_ver"
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$ax_hilt_vm_ver"
     kapt "androidx.hilt:hilt-compiler:$ax_hilt_ver"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_ver"
 

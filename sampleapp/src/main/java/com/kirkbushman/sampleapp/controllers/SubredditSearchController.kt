@@ -13,6 +13,7 @@ import com.kirkbushman.sampleapp.models.subreddit
 class SubredditSearchController(
 
     private val callback: SubredditCallback
+
 ) : EpoxyController() {
 
     interface SubredditCallback : BaseCallback {
@@ -51,7 +52,11 @@ class SubredditSearchController(
                         id(it.id)
                         subreddit(it.displayNamePrefixed)
                         subscribed(it.isSubscriber ?: false)
-                        subscribeClick(View.OnClickListener { callback.subscribeClick(index) })
+                        subscribeClick(
+                            View.OnClickListener {
+                                this@SubredditSearchController.callback.subscribeClick(index)
+                            }
+                        )
                     }
 
                 is PrivateSubreddit ->
@@ -59,7 +64,11 @@ class SubredditSearchController(
                         id(it.id)
                         subreddit(it.displayNamePrefixed)
                         subscribed(false)
-                        subscribeClick(View.OnClickListener { callback.subscribeClick(index) })
+                        subscribeClick(
+                            View.OnClickListener {
+                                this@SubredditSearchController.callback.subscribeClick(index)
+                            }
+                        )
                     }
             }
         }

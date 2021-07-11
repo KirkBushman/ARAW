@@ -3,7 +3,7 @@
 buildscript {
 
     ext {
-        android_gradle_ver = '4.2.1'
+        android_gradle_ver = '4.2.2'
 
         compile_sdk_ver = 30
         build_tools_ver = '30.0.3'
@@ -19,7 +19,6 @@ buildscript {
 
         hilt_ver = "2.37"
         ax_hilt_ver = "1.0.0"
-        ax_hilt_vm_ver = "1.0.0-alpha03"
 
         ax_core_ver = '1.6.0'
         ax_appcompat_ver = '1.3.0'
@@ -32,7 +31,7 @@ buildscript {
         retrofit_ver = '2.9.0'
         moshi_ver = '1.12.0'
         okhttp_ver = '4.9.1'
-        mdc_ver = '1.3.0'
+        mdc_ver = '1.4.0'
         epoxy_ver = '4.6.2'
 
         oauth2_ver = '40230d4acf' // '1.2.2'
@@ -41,14 +40,14 @@ buildscript {
         detekt_ver = '1.17.1'
 
         test_ver = '1.4.0'
-        espresso_ver = '3.3.0'
+        espresso_ver = '3.4.0'
         junit_ver = '1.1.3'
         leakcanary_ver = '2.7'
         mockito_ver = '3.11.1'
         arch_core_ver = '2.1.0'
         orchestrator_ver = '1.3.0'
 
-        dokka_ver = '1.4.32'
+        dokka_ver = '1.5.0'
     }
 
     repositories {
