@@ -15,45 +15,173 @@
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true">
 
+            <intent-filter>
+
+                <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+
         </activity>
 
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".activities.ApisActivity"/>
-        <activity android:name=".activities.ApiDetailActivity"/>
-        <activity android:name=".activities.SelfAccountActivity"/>
-        <activity android:name=".activities.SelfAccountInfoActivity"/>
-        <activity android:name=".activities.InboxActivity"/>
-        <activity android:name=".activities.RedditorActivity"/>
-        <activity android:name=".activities.RedditorInfoActivity"/>
-        <activity android:name=".activities.RedditorModeratedSubs" />
-        <activity android:name=".activities.SubredditActivity"/>
-        <activity android:name=".activities.SubmissionActivity"/>
-        <activity android:name=".activities.SubmissionsActivity"/>
-        <activity android:name=".activities.SubmissionsSearchActivity"/>
-        <activity android:name=".activities.SubmissionsFlairFilterActivity"/>
-        <activity android:name=".activities.MultiSubmissionsActivity" />
-        <activity android:name=".activities.SubredditsSearchActivity"/>
-        <activity android:name=".activities.SubmitActivity"/>
-        <activity android:name=".activities.SubmitMediaActivity"/>
-        <activity android:name=".activities.CommonSubmissionsActivity"/>
-        <activity android:name=".activities.CommentActivity"/>
-        <activity android:name=".activities.CommentsActivity"/>
-        <activity android:name=".activities.MultiSearchActivity"/>
-        <activity android:name=".activities.WikiPageActivity"/>
-        <activity android:name=".activities.WikiPagesActivity" />
-        <activity android:name=".activities.RulesActivity"/>
-        <activity android:name=".activities.SubscribedSubredditsActivity"/>
-        <activity android:name=".activities.SelfTrophiesActivity"/>
-        <activity android:name=".activities.UserSearchActivity"/>
-        <activity android:name=".activities.UserTrophiesActivity"/>
-        <activity android:name=".activities.UploadImagesActivity"/>
-        <activity android:name=".activities.SettingsActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.ApisActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.ApiDetailActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.SelfAccountActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.SelfAccountInfoActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.InboxActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.RedditorActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.RedditorInfoActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.RedditorModeratedSubs"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.SubredditActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.SubmissionActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.SubmissionsActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.SubmissionsSearchActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.SubmissionsFlairFilterActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.MultiSubmissionsActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.SubredditsSearchActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.SubmitActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.SubmitMediaActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.CommonSubmissionsActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.CommentActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.CommentsActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.MultiSearchActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.WikiPageActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.WikiPagesActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.RulesActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.SubscribedSubredditsActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.SelfTrophiesActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.UserSearchActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.UserTrophiesActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.UploadImagesActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".activities.SettingsActivity"
+            android:exported="false"
+            />
+
     </application>
 
 </manifest>
