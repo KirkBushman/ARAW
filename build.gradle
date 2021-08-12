@@ -37,7 +37,7 @@ buildscript {
         oauth2_ver = '40230d4acf' // '1.2.2'
 
         ktlint_ver = '0.42.1'
-        detekt_ver = '1.17.1'
+        detekt_ver = '1.18.0'
 
         test_ver = '1.4.0'
         espresso_ver = '3.4.0'
