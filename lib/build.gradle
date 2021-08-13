@@ -5,6 +5,7 @@ plugins {
     id "org.jetbrains.kotlin.kapt"
     id "org.jetbrains.dokka"
     id "io.gitlab.arturbosch.detekt"
+    id "maven-publish"
 }
 
 android {
@@ -46,6 +47,16 @@ dokkaHtml {
 
             named("main") {
                 noAndroidSdkLink.set(false)
+            }
+        }
+    }
+}
+
+project.afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
             }
         }
     }
