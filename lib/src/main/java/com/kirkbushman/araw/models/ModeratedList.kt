@@ -45,7 +45,7 @@ data class ModeratedSub(
     val iconImgSize: List<Int>?,
 
     @Json(name = "user_is_subscriber")
-    val isSubscriber: Boolean,
+    val isSubscriber: Boolean?,
 
     @Json(name = "sr")
     val displayName: String,
