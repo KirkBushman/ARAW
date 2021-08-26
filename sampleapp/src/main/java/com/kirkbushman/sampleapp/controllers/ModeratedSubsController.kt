@@ -20,7 +20,7 @@ class ModeratedSubsController(
         subreddit {
             id(it.fullname)
             subreddit(it.displayNamePrefixed)
-            subscribed(it.isSubscriber)
+            subscribed(it.isSubscriber ?: false)
             subscribeClick(View.OnClickListener { callback?.subscribeClick(index) })
         }
     }

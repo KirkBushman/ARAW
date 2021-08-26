@@ -16,6 +16,24 @@ ARAW it's hosted on Jitpack
 
 You can find the Docs at: [https://kirkbushman.github.io/ARAW/](https://kirkbushman.github.io/ARAW/)
 
+### Requirements
+
+ARAW requires Java 11, you can upgrade your project like this:
+```groovy
+android {
+
+    /* ... */
+    
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = '11'
+    }
+}
+```
 
 ### How to install.
 
@@ -61,8 +79,8 @@ val client = helper.getRedditClient()
 // step 1 - crete the help
 val helper = AuthAppHelper(
     context = this,
-    clientId = **CLIENT ID STRING**,
-    redirectUrl = **REDIRECT URL**,
+    clientId = "**CLIENT ID STRING**",
+    redirectUrl = "**REDIRECT URL**",
     scopes = creds.scopes.toTypedArray(), // array of scopes strings
     logging = true
 )
@@ -126,7 +144,7 @@ println(submissions.toString())
 
 [Redditoria](https://play.google.com/store/apps/details?id=com.kirkbushman.redditoria)
 
-Help improve this section, open an issue subitting your implementation.
+Help improve this section, open an issue submitting your implementation.
 
 
 ### License
