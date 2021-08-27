@@ -22,7 +22,7 @@ class ContributionsFetcher(
     private val disableLegacyEncoding: Boolean = false,
 
     private inline val getUsername: (() -> String)? = null,
-    private inline val getHeader: () -> HashMap<String, String>
+    private inline val getHeader: () -> Map<String, String>
 
 ) : Fetcher<Contribution>(limit) {
 

@@ -56,37 +56,37 @@ interface RedditApi {
     @GET(Endpoints.URL_ME)
     fun me(
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<Me>
 
     @GET(Endpoints.URL_MY_BLOCKED)
     fun myBlocked(
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<Any>
 
     @GET(Endpoints.URL_MY_FRIENDS)
     fun myFriends(
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<FriendList>
 
     @GET(Endpoints.URL_MY_KARMA)
     fun myKarma(
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<KarmaList>
 
     @GET(Endpoints.URL_MY_PREFS)
     fun myPrefs(
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<Prefs>
 
     @GET(Endpoints.URL_MY_TROPHIES)
     fun myTrophies(
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<TrophyList>
 
     // --- Account section: END ---
@@ -101,7 +101,7 @@ interface RedditApi {
         @Field("sr_name") subredditNames: String? = null,
         @Field("skip_initial_defaults") skipInitialDefaults: Boolean? = null,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<Any?>
 
     @FormUrlEncoded
@@ -124,7 +124,7 @@ interface RedditApi {
         @Field("original_content") isOriginalContent: Boolean? = null,
         @Field("validate_on_submit") validateOnSubmit: Boolean? = null,
         @Field("show_error_list") showErrorList: Boolean? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<SubmitResponse>
 
     @FormUrlEncoded
@@ -133,7 +133,7 @@ interface RedditApi {
         @Query("raw_json") rawJson: Int? = null,
         @Field("id") id: String,
         @Field("dir") dir: Int,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<Any?>
 
     @FormUrlEncoded
@@ -143,7 +143,7 @@ interface RedditApi {
         @Field("api_type") apiType: String = "json",
         @Field("thing_id") fullname: String,
         @Field("text") text: String,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<Reply>
 
     @FormUrlEncoded
@@ -151,7 +151,7 @@ interface RedditApi {
     fun delete(
         @Query("raw_json") rawJson: Int? = null,
         @Field("id") id: String,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<Any>
 
     @FormUrlEncoded
@@ -159,7 +159,7 @@ interface RedditApi {
     fun markAsNsfw(
         @Query("raw_json") rawJson: Int? = null,
         @Field("id") id: String,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<Any?>
 
     @FormUrlEncoded
@@ -167,7 +167,7 @@ interface RedditApi {
     fun unmarknsfw(
         @Query("raw_json") rawJson: Int? = null,
         @Field("id") id: String,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<Any?>
 
     @FormUrlEncoded
@@ -175,7 +175,7 @@ interface RedditApi {
     fun markAsSpoiler(
         @Query("raw_json") rawJson: Int? = null,
         @Field("id") id: String,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<Any?>
 
     @FormUrlEncoded
@@ -183,7 +183,7 @@ interface RedditApi {
     fun unspoiler(
         @Query("raw_json") rawJson: Int? = null,
         @Field("id") id: String,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<Any?>
 
     @FormUrlEncoded
@@ -191,7 +191,7 @@ interface RedditApi {
     fun save(
         @Query("raw_json") rawJson: Int? = null,
         @Field("id") id: String,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<Any?>
 
     @FormUrlEncoded
@@ -199,7 +199,7 @@ interface RedditApi {
     fun unsave(
         @Query("raw_json") rawJson: Int? = null,
         @Field("id") id: String,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<Any?>
 
     @FormUrlEncoded
@@ -207,7 +207,7 @@ interface RedditApi {
     fun hide(
         @Query("raw_json") rawJson: Int? = null,
         @Field("id") id: String,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<Any?>
 
     @FormUrlEncoded
@@ -215,7 +215,7 @@ interface RedditApi {
     fun unhide(
         @Query("raw_json") rawJson: Int? = null,
         @Field("id") id: String,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<Any?>
 
     @FormUrlEncoded
@@ -223,7 +223,7 @@ interface RedditApi {
     fun lock(
         @Query("raw_json") rawJson: Int? = null,
         @Field("id") id: String,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<Any?>
 
     @FormUrlEncoded
@@ -231,7 +231,7 @@ interface RedditApi {
     fun unlock(
         @Query("raw_json") rawJson: Int? = null,
         @Field("id") id: String,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<Any?>
 
     @FormUrlEncoded
@@ -239,7 +239,7 @@ interface RedditApi {
     fun friend(
         @Query("raw_json") rawJson: Int? = null,
         @Field("id") id: String,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<Any?>
 
     @FormUrlEncoded
@@ -247,21 +247,21 @@ interface RedditApi {
     fun unfriend(
         @Query("raw_json") rawJson: Int? = null,
         @Field("id") id: String,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<Any?>
 
     @GET(Endpoints.URL_COMMENT)
     fun comment(
         @Query("id") commentId: String,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<EnvelopedCommentListing>
 
     @GET(Endpoints.URL_SUBMISSION)
     fun submission(
         @Query("id") submissionId: String,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<EnvelopedSubmissionListing>
 
     @GET(Endpoints.URL_MORECHILDREN)
@@ -274,7 +274,7 @@ interface RedditApi {
         @Query("id") id: String? = null,
         @Query("link_id") linkId: String,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<MoreChildrenResponse>
 
     @GET
@@ -288,7 +288,7 @@ interface RedditApi {
     fun obtainUploadContract(
         @Field("filepath") filepath: String,
         @Field("mimetype") mimetype: String,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<UploadContract>
 
     @Multipart
@@ -319,7 +319,7 @@ interface RedditApi {
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<EnvelopedSubmissionListing>
 
     @GET(Endpoints.URL_SUBMISSIONS)
@@ -332,7 +332,7 @@ interface RedditApi {
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<EnvelopedSubmissionListing>
 
     @GET(Endpoints.URL_COMMENTS)
@@ -344,7 +344,7 @@ interface RedditApi {
         @Query("limit") limit: Long? = null,
         @Query("depth") depth: Int? = null,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<List<EnvelopedContributionListing>>
 
     // --- Links and Comments section: END ---
@@ -359,7 +359,7 @@ interface RedditApi {
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<EnvelopedMessageListing>
 
     @FormUrlEncoded
@@ -367,7 +367,7 @@ interface RedditApi {
     fun deleteMessage(
         @Query("raw_json") rawJson: Int? = null,
         @Field("id") id: String,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<Any>
 
     @FormUrlEncoded
@@ -375,7 +375,7 @@ interface RedditApi {
     fun readAllMessages(
         @Query("raw_json") rawJson: Int? = null,
         @Field("filter_types") filters: String,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<Any>
 
     @FormUrlEncoded
@@ -383,7 +383,7 @@ interface RedditApi {
     fun readMessage(
         @Query("raw_json") rawJson: Int? = null,
         @Field("id") id: String,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<Any?>
 
     @FormUrlEncoded
@@ -391,7 +391,7 @@ interface RedditApi {
     fun unreadMessage(
         @Query("raw_json") rawJson: Int? = null,
         @Field("id") id: String,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<Any?>
 
     // --- Messages section: END ---
@@ -409,7 +409,7 @@ interface RedditApi {
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<EnvelopedSubmissionListing>
 
     @GET(Endpoints.URL_MULTI)
@@ -417,20 +417,20 @@ interface RedditApi {
         @Path("username") username: String,
         @Path("multiname") multiname: String,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<EnvelopedMulti>
 
     @GET(Endpoints.URL_MULTIS_MINE)
     fun myMultis(
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<List<EnvelopedMulti>>
 
     @GET(Endpoints.URL_MULTIS_REDDITOR)
     fun redditorMultis(
         @Path("username") username: String,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<List<EnvelopedMulti>>
 
     @DELETE(Endpoints.URL_MULTI)
@@ -438,7 +438,7 @@ interface RedditApi {
         @Path("username") username: String,
         @Path("multiname") multiname: String,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<ResponseBody>
 
     @GET(Endpoints.URL_MULTI_DESC)
@@ -446,7 +446,7 @@ interface RedditApi {
         @Path("username") username: String,
         @Path("multiname") multiname: String,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<EnvelopedMultiDescription>
 
     @FormUrlEncoded
@@ -455,7 +455,7 @@ interface RedditApi {
         @Path("username") username: String,
         @Path("multiname") multiname: String,
         @Field("model") model: String,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<EnvelopedMultiDescription>
 
     @GET(Endpoints.URL_MULTI_SUB)
@@ -464,7 +464,7 @@ interface RedditApi {
         @Path("multiname") multiname: String,
         @Path("subname") subname: String,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<MultiSub>
 
     @FormUrlEncoded
@@ -475,7 +475,7 @@ interface RedditApi {
         @Path("subname") subname: String,
         @Query("raw_json") rawJson: Int? = null,
         @Field("model") model: String,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<MultiSub>
 
     @DELETE(Endpoints.URL_MULTI_SUB)
@@ -484,7 +484,7 @@ interface RedditApi {
         @Path("multiname") multiname: String,
         @Path("subname") subname: String,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<ResponseBody>
 
     // --- Multis section: END ---
@@ -495,14 +495,14 @@ interface RedditApi {
     fun subreddit(
         @Path("subreddit") subreddit: String,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<EnvelopedSubredditData>
 
     @GET(Endpoints.URL_SUBREDDITS)
     fun subreddits(
         @Query("id") subredditIds: String,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<EnvelopedSubredditDataListing>
 
     @GET(Endpoints.URL_SUBREDDIT_INFO)
@@ -510,21 +510,21 @@ interface RedditApi {
         @Path("subreddit") subreddit: String,
         @Path("where") where: String,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<UserList>
 
     @GET(Endpoints.URL_SUBREDDIT_RULES)
     fun rules(
         @Path("subreddit") subreddit: String,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<SubredditRules>
 
     @GET(Endpoints.URL_SUBREDDIT_FLAIRS)
     fun subredditFlairs(
         @Path("subreddit") subreddit: String,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<List<Flair>>
 
     @GET(Endpoints.URL_REDDITOR_SUBREDDITS)
@@ -535,7 +535,7 @@ interface RedditApi {
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<EnvelopedSubredditDataListing>
 
     @FormUrlEncoded
@@ -546,7 +546,7 @@ interface RedditApi {
         @Field("include_over_18") includeOver18: Boolean? = null,
         @Field("include_unadvertisable") includeUnadvertisable: Boolean? = null,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<SubredditSearchResult>
 
     // --- Subreddits section: END ---
@@ -557,7 +557,7 @@ interface RedditApi {
     fun redditor(
         @Path("username") username: String,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<EnvelopedRedditorData>
 
     @GET(Endpoints.URL_REDDITOR_OVERVIEW)
@@ -570,7 +570,7 @@ interface RedditApi {
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<EnvelopedContributionListing>
 
     @GET(Endpoints.URL_REDDITOR_WHERE)
@@ -584,21 +584,21 @@ interface RedditApi {
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<EnvelopedContributionListing>
 
     @GET(Endpoints.URL_REDDITOR_MODERATED)
     fun redditorModeratedSubreddits(
         @Path("username") username: String,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<ModeratedList>
 
     @GET(Endpoints.URL_REDDITOR_TROPHIES)
     fun redditorTrophies(
         @Path("username") username: String,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<TrophyList>
 
     // --- Redditor sections: END ---
@@ -609,7 +609,7 @@ interface RedditApi {
     fun wiki(
         @Path("subreddit") subreddit: String,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<EnvelopedWikiPage>
 
     @GET(Endpoints.URL_WIKI_PAGE)
@@ -617,14 +617,14 @@ interface RedditApi {
         @Path("subreddit") subreddit: String,
         @Path("page") page: String,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<EnvelopedWikiPage>
 
     @GET(Endpoints.URL_WIKI_PAGES)
     fun wikiPages(
         @Path("subreddit") subreddit: String,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<WikiPageList>
 
     @GET(Endpoints.URL_WIKI_REVISION)
@@ -632,14 +632,14 @@ interface RedditApi {
         @Path("subreddit") subreddit: String,
         @Path("page") page: String,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<EnvelopedWikiRevisionListing>
 
     @GET(Endpoints.URL_WIKI_REVISIONS)
     fun wikiRevisions(
         @Path("subreddit") subreddit: String,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<EnvelopedWikiRevisionListing>
 
     // --- Wiki section: END ---
@@ -657,7 +657,7 @@ interface RedditApi {
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<List<Listing<EnvelopedData>>>
 
     @GET(Endpoints.URL_SEARCH)
@@ -672,7 +672,7 @@ interface RedditApi {
         @Query("before") before: String? = null,
         @Query("restrict_sr") restrictToSubreddit: Boolean? = null,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<EnvelopedSubmissionListing>
 
     @GET(Endpoints.URL_SEARCH_SUBREDDIT)
@@ -688,7 +688,7 @@ interface RedditApi {
         @Query("before") before: String? = null,
         @Query("restrict_sr") restrictToSubreddit: Boolean? = null,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<EnvelopedSubmissionListing>
 
     @GET(Endpoints.URL_SEARCH)
@@ -703,7 +703,7 @@ interface RedditApi {
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<EnvelopedSubredditDataListing>
 
     @GET(Endpoints.URL_SEARCH)
@@ -718,7 +718,7 @@ interface RedditApi {
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<EnvelopedSubmissionListing>
 
     @GET(Endpoints.URL_SEARCH)
@@ -733,7 +733,7 @@ interface RedditApi {
         @Query("after") after: String? = null,
         @Query("before") before: String? = null,
         @Query("raw_json") rawJson: Int? = null,
-        @HeaderMap header: HashMap<String, String>
+        @HeaderMap header: Map<String, String>
     ): Call<EnvelopedRedditorDataListing>
 
     // --- Search section: END ---

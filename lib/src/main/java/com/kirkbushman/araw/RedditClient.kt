@@ -68,7 +68,7 @@ class RedditClient @JvmOverloads constructor (
         return accountsClient.getCurrentUser()
     }
 
-    private fun getHeaderMap(): HashMap<String, String> {
-        return hashMapOf("Authorization" to "bearer ".plus(bearer.getAccessToken()))
+    private fun getHeaderMap(): Map<String, String> {
+        return mapOf("Authorization" to "bearer ".plus(bearer.getAccessToken()))
     }
 }

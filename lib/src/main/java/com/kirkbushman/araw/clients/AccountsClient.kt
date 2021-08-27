@@ -18,7 +18,7 @@ class AccountsClient(
 
     private val api: RedditApi,
     private val disableLegacyEncoding: Boolean,
-    private inline val getHeaderMap: () -> HashMap<String, String>
+    private inline val getHeaderMap: () -> Map<String, String>
 
 ) {
 

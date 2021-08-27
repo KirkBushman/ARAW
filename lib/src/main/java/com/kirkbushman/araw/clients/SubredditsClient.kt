@@ -15,14 +15,12 @@ import com.kirkbushman.araw.models.enums.SubmissionsSorting
 import com.kirkbushman.araw.models.enums.TimePeriod
 import com.kirkbushman.araw.models.base.SubredditData
 import java.lang.IllegalStateException
-import java.util.*
-import kotlin.collections.HashMap
 
 class SubredditsClient(
 
     private val api: RedditApi,
     private val disableLegacyEncoding: Boolean,
-    private inline val getHeaderMap: () -> HashMap<String, String>
+    private inline val getHeaderMap: () -> Map<String, String>
 
 ) {
 

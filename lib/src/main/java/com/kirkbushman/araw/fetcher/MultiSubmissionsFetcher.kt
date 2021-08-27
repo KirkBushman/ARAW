@@ -21,7 +21,7 @@ class MultiSubmissionsFetcher(
 
     private val disableLegacyEncoding: Boolean = false,
 
-    private inline val getHeader: () -> HashMap<String, String>
+    private inline val getHeader: () -> Map<String, String>
 
 ) : Fetcher<Submission>(limit) {
 
