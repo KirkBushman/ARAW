@@ -5,6 +5,8 @@ import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.araw.helpers.AuthAppHelper
 import com.kirkbushman.araw.helpers.AuthUserlessHelper
 import com.kirkbushman.sampleapp.TestCredentials
+import com.kirkbushman.sampleapp.activities.SettingsActivity
+import com.kirkbushman.sampleapp.activities.getDisableLegacyEncoding
 import com.kirkbushman.sampleapp.utils.Utils
 import dagger.Module
 import dagger.Provides
@@ -30,14 +32,19 @@ object Provider {
 
         @ApplicationContext context: Context,
         creds: TestCredentials
+
     ): AuthAppHelper {
+
+        val prefs = SettingsActivity.getPrefs(context)
+        val disableLegacyEncoding = prefs.getDisableLegacyEncoding()
 
         return AuthAppHelper(
             context = context,
             clientId = creds.clientId,
             redirectUrl = creds.redirectUrl,
             scopes = creds.scopes.toTypedArray(),
-            logging = true
+            logging = true,
+            disableLegacyEncoding = disableLegacyEncoding
         )
     }
 
@@ -47,12 +54,17 @@ object Provider {
 
         @ApplicationContext context: Context,
         creds: TestCredentials
+
     ): AuthUserlessHelper {
+
+        val prefs = SettingsActivity.getPrefs(context)
+        val disableLegacyEncoding = prefs.getDisableLegacyEncoding()
 
         return AuthUserlessHelper(
             context = context,
             clientId = creds.clientId,
-            logging = true
+            logging = true,
+            disableLegacyEncoding = disableLegacyEncoding
         )
     }
 
@@ -76,6 +88,7 @@ object Provider {
 
         appAuth: AuthAppHelper,
         userlessAuth: AuthUserlessHelper
+
     ): RedditClient {
 
         if (mRedditClient == null) {

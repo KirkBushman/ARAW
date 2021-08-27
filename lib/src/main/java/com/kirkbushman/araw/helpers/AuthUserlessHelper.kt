@@ -12,8 +12,10 @@ class AuthUserlessHelper(
     clientId: String,
     deviceId: String? = null,
 
-    logging: Boolean = false
-) : AuthHelper(logging) {
+    logging: Boolean = false,
+    disableLegacyEncoding: Boolean = false
+
+) : AuthHelper(logging, disableLegacyEncoding) {
 
     override val auth by lazy {
 
@@ -37,7 +39,7 @@ class AuthUserlessHelper(
 
         val bearer = auth.authenticate()
         if (bearer != null) {
-            return RedditClient(bearer, logging)
+            return RedditClient(bearer, disableLegacyEncoding, logging)
         }
 
         return null

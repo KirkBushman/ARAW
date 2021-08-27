@@ -17,7 +17,9 @@ import com.kirkbushman.araw.models.enums.TimePeriod
 class AccountsClient(
 
     private val api: RedditApi,
+    private val disableLegacyEncoding: Boolean,
     private inline val getHeaderMap: () -> HashMap<String, String>
+
 ) {
 
     private var currentUser: Me? = null
@@ -35,9 +37,12 @@ class AccountsClient(
     fun me(): Me? {
 
         val authMap = getHeaderMap()
-        val req = api.me(header = authMap)
-        val res = req.execute()
+        val req = api.me(
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }
@@ -52,9 +57,12 @@ class AccountsClient(
     fun myBlocked(): Any? {
 
         val authMap = getHeaderMap()
-        val req = api.myBlocked(header = authMap)
-        val res = req.execute()
+        val req = api.myBlocked(
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }
@@ -66,9 +74,12 @@ class AccountsClient(
     fun myFriends(): List<Friend>? {
 
         val authMap = getHeaderMap()
-        val req = api.myFriends(header = authMap)
-        val res = req.execute()
+        val req = api.myFriends(
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }
@@ -80,9 +91,12 @@ class AccountsClient(
     fun myKarma(): List<Karma>? {
 
         val authMap = getHeaderMap()
-        val req = api.myKarma(header = authMap)
-        val res = req.execute()
+        val req = api.myKarma(
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }
@@ -94,9 +108,12 @@ class AccountsClient(
     fun myPrefs(): Prefs? {
 
         val authMap = getHeaderMap()
-        val req = api.myPrefs(header = authMap)
-        val res = req.execute()
+        val req = api.myPrefs(
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }
@@ -108,9 +125,12 @@ class AccountsClient(
     fun myTrophies(): List<Trophy>? {
 
         val authMap = getHeaderMap()
-        val req = api.myTrophies(header = authMap)
-        val res = req.execute()
+        val req = api.myTrophies(
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }
@@ -124,19 +144,15 @@ class AccountsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
-
-        disableLegacyEncoding: Boolean = false
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
 
     ): ContributionsFetcher {
 
         return fetchContributions(
-
             where = "",
             limit = limit,
             sorting = sorting,
-            timePeriod = timePeriod,
-            disableLegacyEncoding = disableLegacyEncoding
+            timePeriod = timePeriod
         )
     }
 
@@ -146,19 +162,15 @@ class AccountsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
-
-        disableLegacyEncoding: Boolean = false
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
 
     ): ContributionsFetcher {
 
         return fetchContributions(
-
             where = "submitted",
             limit = limit,
             sorting = sorting,
-            timePeriod = timePeriod,
-            disableLegacyEncoding = disableLegacyEncoding
+            timePeriod = timePeriod
         )
     }
 
@@ -168,19 +180,15 @@ class AccountsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
-
-        disableLegacyEncoding: Boolean = false
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
 
     ): ContributionsFetcher {
 
         return fetchContributions(
-
             where = "comments",
             limit = limit,
             sorting = sorting,
-            timePeriod = timePeriod,
-            disableLegacyEncoding = disableLegacyEncoding
+            timePeriod = timePeriod
         )
     }
 
@@ -190,19 +198,15 @@ class AccountsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
-
-        disableLegacyEncoding: Boolean = false
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
 
     ): ContributionsFetcher {
 
         return fetchContributions(
-
             where = "saved",
             limit = limit,
             sorting = sorting,
-            timePeriod = timePeriod,
-            disableLegacyEncoding = disableLegacyEncoding
+            timePeriod = timePeriod
         )
     }
 
@@ -212,19 +216,15 @@ class AccountsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
-
-        disableLegacyEncoding: Boolean = false
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
 
     ): ContributionsFetcher {
 
         return fetchContributions(
-
             where = "hidden",
             limit = limit,
             sorting = sorting,
-            timePeriod = timePeriod,
-            disableLegacyEncoding = disableLegacyEncoding
+            timePeriod = timePeriod
         )
     }
 
@@ -234,19 +234,15 @@ class AccountsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
-
-        disableLegacyEncoding: Boolean = false
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
 
     ): ContributionsFetcher {
 
         return fetchContributions(
-
             where = "upvoted",
             limit = limit,
             sorting = sorting,
-            timePeriod = timePeriod,
-            disableLegacyEncoding = disableLegacyEncoding
+            timePeriod = timePeriod
         )
     }
 
@@ -256,19 +252,15 @@ class AccountsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
-
-        disableLegacyEncoding: Boolean = false
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
 
     ): ContributionsFetcher {
 
         return fetchContributions(
-
             where = "downvoted",
             limit = limit,
             sorting = sorting,
-            timePeriod = timePeriod,
-            disableLegacyEncoding = disableLegacyEncoding
+            timePeriod = timePeriod
         )
     }
 
@@ -278,19 +270,15 @@ class AccountsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
-
-        disableLegacyEncoding: Boolean = false
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
 
     ): ContributionsFetcher {
 
         return fetchContributions(
-
             where = "gilded",
             limit = limit,
             sorting = sorting,
-            timePeriod = timePeriod,
-            disableLegacyEncoding = disableLegacyEncoding
+            timePeriod = timePeriod
         )
     }
 
@@ -302,14 +290,11 @@ class AccountsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
-
-        disableLegacyEncoding: Boolean = false
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
 
     ): ContributionsFetcher {
 
         return ContributionsFetcher(
-
             api = api,
             getUsername = { getCurrentUser()!!.fullname },
             where = where,
@@ -324,51 +309,39 @@ class AccountsClient(
     fun subscribedSubreddits(
 
         @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
-        limit: Long = Fetcher.DEFAULT_LIMIT,
-
-        disableLegacyEncoding: Boolean = false
+        limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): SubredditsFetcher {
 
         return fetchSubreddits(
-
             where = "subscriber",
-            limit = limit,
-            disableLegacyEncoding = disableLegacyEncoding
+            limit = limit
         )
     }
 
     fun contributedSubreddits(
 
         @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
-        limit: Long = Fetcher.DEFAULT_LIMIT,
-
-        disableLegacyEncoding: Boolean = false
+        limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): SubredditsFetcher {
 
         return fetchSubreddits(
-
             where = "contributor",
-            limit = limit,
-            disableLegacyEncoding = disableLegacyEncoding
+            limit = limit
         )
     }
 
     fun moderatedSubreddits(
 
         @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
-        limit: Long = Fetcher.DEFAULT_LIMIT,
-
-        disableLegacyEncoding: Boolean = false
+        limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): SubredditsFetcher {
 
         return fetchSubreddits(
-
             where = "moderator",
-            limit = limit,
-            disableLegacyEncoding = disableLegacyEncoding
+            limit = limit
         )
     }
 
@@ -377,9 +350,7 @@ class AccountsClient(
         where: String,
 
         @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
-        limit: Long = Fetcher.DEFAULT_LIMIT,
-
-        disableLegacyEncoding: Boolean = false
+        limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): SubredditsFetcher {
 

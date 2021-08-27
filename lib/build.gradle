@@ -22,12 +22,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility java_target
+        targetCompatibility java_target
     }
 
     kotlinOptions {
-        jvmTarget = '11'
+        jvmTarget = jvm_target
         noReflect = true
     }
 }
@@ -63,6 +63,7 @@ project.afterEvaluate {
 }
 
 dependencies {
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_ver"
 
     implementation "androidx.annotation:annotation:$ax_annot_ver"

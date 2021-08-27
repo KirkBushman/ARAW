@@ -13,7 +13,13 @@ import com.kirkbushman.araw.utils.Utils.buildRetrofit
 import com.kirkbushman.auth.models.bearers.TokenBearer
 import retrofit2.Retrofit
 
-class RedditClient @JvmOverloads constructor (private val bearer: TokenBearer, logging: Boolean = false) {
+class RedditClient @JvmOverloads constructor (
+
+    private val bearer: TokenBearer,
+    private val disableLegacyEncoding: Boolean = false,
+    logging: Boolean = false
+
+) {
 
     companion object {
 
@@ -49,14 +55,14 @@ class RedditClient @JvmOverloads constructor (private val bearer: TokenBearer, l
 
     private val api by lazy { getApi(logging) }
 
-    val accountsClient by lazy { AccountsClient(api, ::getHeaderMap) }
-    val contributionsClient by lazy { ContributionsClient(api, ::getHeaderMap) }
-    val messagesClient by lazy { MessagesClient(api, ::getHeaderMap) }
-    val multisClient by lazy { MultisClient(api, ::getHeaderMap) }
-    val subredditsClient by lazy { SubredditsClient(api, ::getHeaderMap) }
-    val searchClient by lazy { SearchClient(api, ::getHeaderMap) }
-    val redditorsClient by lazy { RedditorsClient(api, ::getHeaderMap) }
-    val wikisClient by lazy { WikisClient(api, ::getHeaderMap) }
+    val accountsClient by lazy { AccountsClient(api, disableLegacyEncoding, ::getHeaderMap) }
+    val contributionsClient by lazy { ContributionsClient(api, disableLegacyEncoding, ::getHeaderMap) }
+    val messagesClient by lazy { MessagesClient(api, disableLegacyEncoding, ::getHeaderMap) }
+    val multisClient by lazy { MultisClient(api, disableLegacyEncoding, ::getHeaderMap) }
+    val subredditsClient by lazy { SubredditsClient(api, disableLegacyEncoding, ::getHeaderMap) }
+    val searchClient by lazy { SearchClient(api, disableLegacyEncoding, ::getHeaderMap) }
+    val redditorsClient by lazy { RedditorsClient(api, disableLegacyEncoding, ::getHeaderMap) }
+    val wikisClient by lazy { WikisClient(api, disableLegacyEncoding, ::getHeaderMap) }
 
     fun getCurrentUser(): Me? {
         return accountsClient.getCurrentUser()

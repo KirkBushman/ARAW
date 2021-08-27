@@ -28,7 +28,7 @@ class SearchDataTesting {
 
     @Before
     fun onPre() {
-        client = RedditClient(bearer, true)
+        client = RedditClient(bearer, true,true)
     }
 
     @Test

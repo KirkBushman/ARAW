@@ -15,7 +15,9 @@ import com.kirkbushman.araw.models.enums.TimePeriod
 class SearchClient(
 
     private val api: RedditApi,
+    private val disableLegacyEncoding: Boolean,
     private inline val getHeaderMap: () -> HashMap<String, String>
+
 ) {
 
     fun searchSubreddits(
@@ -31,6 +33,7 @@ class SearchClient(
             exact = exact,
             includeOver18 = includeOver18,
             includeUnadvertisable = includeUnadvertisable,
+            rawJson = (if (disableLegacyEncoding) 1 else null),
             header = authMap
         )
 
@@ -55,8 +58,7 @@ class SearchClient(
         timePeriod: TimePeriod = SubmissionsSearchFetcher.DEFAULT_TIMEPERIOD,
 
         showAll: Boolean = false,
-        restrictToSubreddit: Boolean = false,
-        disableLegacyEncoding: Boolean = false
+        restrictToSubreddit: Boolean = false
 
     ): SubmissionsSearchFetcher {
 
@@ -84,8 +86,7 @@ class SearchClient(
         sorting: SubredditSearchSorting = SubredditsSearchFetcher.DEFAULT_SORTING,
         timePeriod: TimePeriod = SubredditsSearchFetcher.DEFAULT_TIMEPERIOD,
 
-        showAll: Boolean = false,
-        disableLegacyEncoding: Boolean = false
+        showAll: Boolean = false
 
     ): SubredditsSearchFetcher {
 
@@ -111,8 +112,7 @@ class SearchClient(
         sorting: RedditorSearchSorting = RedditorSearchFetcher.DEFAULT_SORTING,
         timePeriod: TimePeriod = RedditorSearchFetcher.DEFAULT_TIMEPERIOD,
 
-        showAll: Boolean = false,
-        disableLegacyEncoding: Boolean = false
+        showAll: Boolean = false
 
     ): RedditorSearchFetcher {
 

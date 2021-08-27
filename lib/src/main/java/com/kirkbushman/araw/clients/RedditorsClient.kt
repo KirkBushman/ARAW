@@ -14,11 +14,13 @@ import com.kirkbushman.araw.models.enums.TimePeriod
 class RedditorsClient(
 
     private val api: RedditApi,
+    private val disableLegacyEncoding: Boolean,
     private inline val getHeaderMap: () -> HashMap<String, String>
+
 ) {
 
     @WorkerThread
-    fun redditor(username: String, disableLegacyEncoding: Boolean = false): RedditorData? {
+    fun redditor(username: String): RedditorData? {
 
         val authMap = getHeaderMap()
         val req = api.redditor(
@@ -43,9 +45,7 @@ class RedditorsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
-
-        disableLegacyEncoding: Boolean = false
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
 
     ): ContributionsFetcher {
 
@@ -55,8 +55,7 @@ class RedditorsClient(
             where = "",
             limit = limit,
             sorting = sorting,
-            timePeriod = timePeriod,
-            disableLegacyEncoding = disableLegacyEncoding
+            timePeriod = timePeriod
         )
     }
 
@@ -68,9 +67,7 @@ class RedditorsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
-
-        disableLegacyEncoding: Boolean = false
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
 
     ): ContributionsFetcher {
 
@@ -80,8 +77,7 @@ class RedditorsClient(
             where = "submitted",
             limit = limit,
             sorting = sorting,
-            timePeriod = timePeriod,
-            disableLegacyEncoding = disableLegacyEncoding
+            timePeriod = timePeriod
         )
     }
 
@@ -93,9 +89,7 @@ class RedditorsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
-
-        disableLegacyEncoding: Boolean = false
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
 
     ): ContributionsFetcher {
 
@@ -105,8 +99,7 @@ class RedditorsClient(
             where = "comments",
             limit = limit,
             sorting = sorting,
-            timePeriod = timePeriod,
-            disableLegacyEncoding = disableLegacyEncoding
+            timePeriod = timePeriod
         )
     }
 
@@ -118,9 +111,7 @@ class RedditorsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
-
-        disableLegacyEncoding: Boolean = false
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
 
     ): ContributionsFetcher {
 
@@ -130,8 +121,7 @@ class RedditorsClient(
             where = "gilded",
             limit = limit,
             sorting = sorting,
-            timePeriod = timePeriod,
-            disableLegacyEncoding = disableLegacyEncoding
+            timePeriod = timePeriod
         )
     }
 
@@ -144,9 +134,7 @@ class RedditorsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
-
-        disableLegacyEncoding: Boolean = false
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
 
     ): ContributionsFetcher {
 
@@ -163,7 +151,7 @@ class RedditorsClient(
     }
 
     @WorkerThread
-    fun moderatedSubreddits(username: String, disableLegacyEncoding: Boolean = false): List<ModeratedSub>? {
+    fun moderatedSubreddits(username: String): List<ModeratedSub>? {
 
         val authMap = getHeaderMap()
         val req = api.redditorModeratedSubreddits(
@@ -181,7 +169,7 @@ class RedditorsClient(
     }
 
     @WorkerThread
-    fun trophies(username: String, disableLegacyEncoding: Boolean = false): List<Trophy>? {
+    fun trophies(username: String): List<Trophy>? {
 
         val authMap = getHeaderMap()
         val req = api.redditorTrophies(

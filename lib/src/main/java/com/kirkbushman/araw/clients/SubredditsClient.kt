@@ -21,11 +21,13 @@ import kotlin.collections.HashMap
 class SubredditsClient(
 
     private val api: RedditApi,
+    private val disableLegacyEncoding: Boolean,
     private inline val getHeaderMap: () -> HashMap<String, String>
+
 ) {
 
     @WorkerThread
-    fun subreddit(subreddit: String, disableLegacyEncoding: Boolean = false): SubredditData? {
+    fun subreddit(subreddit: String): SubredditData? {
 
         val authMap = getHeaderMap()
         val req = api.subreddit(
@@ -43,7 +45,7 @@ class SubredditsClient(
     }
 
     @WorkerThread
-    fun subreddits(vararg ids: String, disableLegacyEncoding: Boolean = false): List<SubredditData>? {
+    fun subreddits(vararg ids: String): List<SubredditData>? {
 
         val authMap = getHeaderMap()
         val req = api.subreddits(
@@ -69,9 +71,14 @@ class SubredditsClient(
     fun subredditBanned(subredditName: String): List<User>? {
 
         val authMap = getHeaderMap()
-        val req = api.subredditInfo(subredditName, "banned", header = authMap)
-        val res = req.execute()
+        val req = api.subredditInfo(
+            subreddit = subredditName,
+            where = "banned",
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }
@@ -88,9 +95,14 @@ class SubredditsClient(
     fun subredditMuted(subredditName: String): List<User>? {
 
         val authMap = getHeaderMap()
-        val req = api.subredditInfo(subredditName, "muted", header = authMap)
-        val res = req.execute()
+        val req = api.subredditInfo(
+            subreddit = subredditName,
+            where = "muted",
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }
@@ -107,9 +119,14 @@ class SubredditsClient(
     fun subredditWikiBanned(subredditName: String): List<User>? {
 
         val authMap = getHeaderMap()
-        val req = api.subredditInfo(subredditName, "wikibanned", header = authMap)
-        val res = req.execute()
+        val req = api.subredditInfo(
+            subreddit = subredditName,
+            where = "wikibanned",
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }
@@ -126,9 +143,14 @@ class SubredditsClient(
     fun subredditContributors(subredditName: String): List<User>? {
 
         val authMap = getHeaderMap()
-        val req = api.subredditInfo(subredditName, "contributors", header = authMap)
-        val res = req.execute()
+        val req = api.subredditInfo(
+            subreddit = subredditName,
+            where = "contributors",
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }
@@ -145,9 +167,14 @@ class SubredditsClient(
     fun subredditWikiContributors(subredditName: String): List<User>? {
 
         val authMap = getHeaderMap()
-        val req = api.subredditInfo(subredditName, "wikicontributors", header = authMap)
-        val res = req.execute()
+        val req = api.subredditInfo(
+            subreddit = subredditName,
+            where = "wikicontributors",
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }
@@ -164,9 +191,14 @@ class SubredditsClient(
     fun subredditModerators(subredditName: String): List<User>? {
 
         val authMap = getHeaderMap()
-        val req = api.subredditInfo(subredditName, "moderators", header = authMap)
-        val res = req.execute()
+        val req = api.subredditInfo(
+            subreddit = subredditName,
+            where = "moderators",
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }
@@ -185,6 +217,7 @@ class SubredditsClient(
         val authMap = getHeaderMap()
         val req = api.rules(
             subreddit = subreddit,
+            rawJson = (if (disableLegacyEncoding) 1 else null),
             header = authMap
         )
 
@@ -203,7 +236,7 @@ class SubredditsClient(
     }
 
     @WorkerThread
-    fun subredditFlairs(subreddit: String, disableLegacyEncoding: Boolean = false): List<Flair>? {
+    fun subredditFlairs(subreddit: String): List<Flair>? {
 
         val authMap = getHeaderMap()
         val req = api.subredditFlairs(
@@ -226,14 +259,11 @@ class SubredditsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD,
-
-        disableLegacyEncoding: Boolean = false
+        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD
 
     ): SubmissionsFetcher {
 
         return SubmissionsFetcher(
-
             api = api,
             subreddit = "",
             limit = limit,
@@ -250,9 +280,7 @@ class SubredditsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD,
-
-        disableLegacyEncoding: Boolean = false
+        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD
 
     ): SubmissionsFetcher {
 
@@ -274,14 +302,11 @@ class SubredditsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD,
-
-        disableLegacyEncoding: Boolean = false
+        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD
 
     ): SubmissionsFetcher {
 
         return SubmissionsFetcher(
-
             api = api,
             subreddit = "popular",
             limit = limit,
@@ -298,14 +323,11 @@ class SubredditsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD,
-
-        disableLegacyEncoding: Boolean = false
+        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD
 
     ): SubmissionsFetcher {
 
         return SubmissionsFetcher(
-
             api = api,
             subreddit = "friends",
             limit = limit,
@@ -337,9 +359,7 @@ class SubredditsClient(
         isOriginalContent: Boolean? = null,
 
         validateOnSubmit: Boolean? = null,
-        showErrorList: Boolean? = null,
-
-        disableLegacyEncoding: Boolean = false
+        showErrorList: Boolean? = null
 
     ): SubmitResponse? {
 
@@ -362,9 +382,7 @@ class SubredditsClient(
             isOriginalContent = isOriginalContent,
 
             validateOnSubmit = validateOnSubmit,
-            showErrorList = showErrorList,
-
-            disableLegacyEncoding = disableLegacyEncoding
+            showErrorList = showErrorList
         )
     }
 
@@ -389,9 +407,7 @@ class SubredditsClient(
         isOriginalContent: Boolean? = null,
 
         validateOnSubmit: Boolean? = null,
-        showErrorList: Boolean? = null,
-
-        disableLegacyEncoding: Boolean = false
+        showErrorList: Boolean? = null
 
     ): SubmitResponse? {
 
@@ -448,9 +464,11 @@ class SubredditsClient(
 
     @WorkerThread
     fun subscribe(
+
         subredditName: String,
         action: Boolean,
         skipInitialDefaults: Boolean = true
+
     ): Any? {
 
         return subscribe(
@@ -484,7 +502,6 @@ class SubredditsClient(
         )
 
         val res = req.execute()
-
         if (!res.isSuccessful) {
             return null
         }

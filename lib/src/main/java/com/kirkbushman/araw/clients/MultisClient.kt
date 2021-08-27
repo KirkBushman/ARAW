@@ -14,7 +14,9 @@ import com.kirkbushman.araw.models.enums.TimePeriod
 class MultisClient(
 
     private val api: RedditApi,
+    private val disableLegacyEncoding: Boolean,
     private inline val getHeaderMap: () -> HashMap<String, String>
+
 ) {
 
     fun multiSubmissions(
@@ -25,9 +27,7 @@ class MultisClient(
         limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: SubmissionsSorting = MultiSubmissionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = MultiSubmissionsFetcher.DEFAULT_TIMEPERIOD,
-
-        disableLegacyEncoding: Boolean = false
+        timePeriod: TimePeriod = MultiSubmissionsFetcher.DEFAULT_TIMEPERIOD
 
     ): MultiSubmissionsFetcher {
 
@@ -36,8 +36,7 @@ class MultisClient(
             multiname = multi.name,
             limit = limit,
             sorting = sorting,
-            timePeriod = timePeriod,
-            disableLegacyEncoding = disableLegacyEncoding,
+            timePeriod = timePeriod
         )
     }
 
@@ -50,9 +49,7 @@ class MultisClient(
         limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: SubmissionsSorting = MultiSubmissionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = MultiSubmissionsFetcher.DEFAULT_TIMEPERIOD,
-
-        disableLegacyEncoding: Boolean = false
+        timePeriod: TimePeriod = MultiSubmissionsFetcher.DEFAULT_TIMEPERIOD
 
     ): MultiSubmissionsFetcher {
 
@@ -72,9 +69,8 @@ class MultisClient(
     fun multi(
 
         username: String,
-        multiname: String,
+        multiname: String
 
-        disableLegacyEncoding: Boolean = false
     ): Multi? {
 
         val authMap = getHeaderMap()
@@ -94,9 +90,7 @@ class MultisClient(
     }
 
     @WorkerThread
-    fun myMultis(
-        disableLegacyEncoding: Boolean = false
-    ): List<Multi>? {
+    fun myMultis(): List<Multi>? {
 
         val authMap = getHeaderMap()
         val req = api.myMultis(
@@ -113,10 +107,7 @@ class MultisClient(
     }
 
     @WorkerThread
-    fun redditorMultis(
-        username: String,
-        disableLegacyEncoding: Boolean = false
-    ): List<Multi>? {
+    fun redditorMultis(username: String): List<Multi>? {
 
         val authMap = getHeaderMap()
         val req = api.redditorMultis(
@@ -137,9 +128,8 @@ class MultisClient(
     fun deleteMulti(
 
         username: String,
-        multiname: String,
+        multiname: String
 
-        disableLegacyEncoding: Boolean = false
     ): Boolean {
 
         val authMap = getHeaderMap()
@@ -158,9 +148,8 @@ class MultisClient(
     fun multiDescription(
 
         username: String,
-        multiname: String,
+        multiname: String
 
-        disableLegacyEncoding: Boolean = false
     ): MultiDescription? {
 
         val authMap = getHeaderMap()
@@ -185,6 +174,7 @@ class MultisClient(
         username: String,
         multiname: String,
         description: String
+
     ): Any? {
 
         val authMap = getHeaderMap()
@@ -208,9 +198,8 @@ class MultisClient(
 
         username: String,
         multiname: String,
-        subname: String,
+        subname: String
 
-        disableLegacyEncoding: Boolean = false
     ): MultiSub? {
 
         val authMap = getHeaderMap()
@@ -236,6 +225,7 @@ class MultisClient(
         username: String,
         multiname: String,
         subname: String
+
     ): MultiSub? {
 
         val authMap = getHeaderMap()
@@ -261,6 +251,7 @@ class MultisClient(
         username: String,
         multiname: String,
         subname: String
+
     ): Boolean {
 
         val authMap = getHeaderMap()
@@ -268,6 +259,7 @@ class MultisClient(
             username = username,
             multiname = multiname,
             subname = subname,
+            rawJson = (if (disableLegacyEncoding) 1 else null),
             header = authMap
         )
 

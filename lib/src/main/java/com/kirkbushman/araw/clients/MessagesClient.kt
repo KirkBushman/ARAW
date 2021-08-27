@@ -11,118 +11,99 @@ import com.kirkbushman.araw.models.enums.Vote
 class MessagesClient(
 
     private val api: RedditApi,
+    private val disableLegacyEncoding: Boolean,
     private inline val getHeaderMap: () -> HashMap<String, String>
+
 ) {
 
     fun inbox(
 
         @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
-        limit: Long = Fetcher.DEFAULT_LIMIT,
-
-        disableLegacyEncoding: Boolean = false
+        limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): InboxFetcher {
 
         return fetchMessages(
             where = "inbox",
-            limit = limit,
-            disableLegacyEncoding = disableLegacyEncoding
+            limit = limit
         )
     }
 
     fun unread(
 
         @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
-        limit: Long = Fetcher.DEFAULT_LIMIT,
-
-        disableLegacyEncoding: Boolean = false
+        limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): InboxFetcher {
 
         return fetchMessages(
             where = "unread",
-            limit = limit,
-            disableLegacyEncoding = disableLegacyEncoding
+            limit = limit
         )
     }
 
     fun messages(
 
         @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
-        limit: Long = Fetcher.DEFAULT_LIMIT,
-
-        disableLegacyEncoding: Boolean = false
+        limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): InboxFetcher {
 
         return fetchMessages(
             where = "messages",
-            limit = limit,
-            disableLegacyEncoding = disableLegacyEncoding
+            limit = limit
         )
     }
 
     fun sent(
 
         @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
-        limit: Long = Fetcher.DEFAULT_LIMIT,
-
-        disableLegacyEncoding: Boolean = false
+        limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): InboxFetcher {
 
         return fetchMessages(
             where = "sent",
-            limit = limit,
-            disableLegacyEncoding = disableLegacyEncoding
+            limit = limit
         )
     }
 
     fun commentsReplies(
 
         @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
-        limit: Long = Fetcher.DEFAULT_LIMIT,
-
-        disableLegacyEncoding: Boolean = false
+        limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): InboxFetcher {
 
         return fetchMessages(
             where = "comments",
-            limit = limit,
-            disableLegacyEncoding = disableLegacyEncoding
+            limit = limit
         )
     }
 
     fun selfReplies(
 
         @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
-        limit: Long = Fetcher.DEFAULT_LIMIT,
-
-        disableLegacyEncoding: Boolean = false
+        limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): InboxFetcher {
 
         return fetchMessages(
             where = "selfreply",
-            limit = limit,
-            disableLegacyEncoding = disableLegacyEncoding
+            limit = limit
         )
     }
 
     fun mentions(
 
         @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
-        limit: Long = Fetcher.DEFAULT_LIMIT,
-
-        disableLegacyEncoding: Boolean = false
+        limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): InboxFetcher {
 
         return fetchMessages(
             where = "mentions",
-            limit = limit,
-            disableLegacyEncoding = disableLegacyEncoding
+            limit = limit
         )
     }
 
@@ -131,9 +112,7 @@ class MessagesClient(
         where: String,
 
         @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
-        limit: Long = Fetcher.DEFAULT_LIMIT,
-
-        disableLegacyEncoding: Boolean = false
+        limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): InboxFetcher {
 
@@ -155,9 +134,13 @@ class MessagesClient(
     fun deleteMessage(fullname: String): Any? {
 
         val authMap = getHeaderMap()
-        val req = api.deleteMessage(id = fullname, header = authMap)
-        val res = req.execute()
+        val req = api.deleteMessage(
+            id = fullname,
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }
@@ -174,13 +157,21 @@ class MessagesClient(
     fun markAsRead(read: Boolean, fullname: String): Any? {
 
         val authMap = getHeaderMap()
-        val req = if (read)
-            api.readMessage(id = fullname, header = authMap)
-        else
-            api.unreadMessage(id = fullname, header = authMap)
+        val req = if (read) {
+            api.readMessage(
+                id = fullname,
+                rawJson = (if (disableLegacyEncoding) 1 else null),
+                header = authMap
+            )
+        } else {
+            api.unreadMessage(
+                id = fullname,
+                rawJson = (if (disableLegacyEncoding) 1 else null),
+                header = authMap
+            )
+        }
 
         val res = req.execute()
-
         if (!res.isSuccessful) {
             return null
         }
@@ -197,9 +188,14 @@ class MessagesClient(
     fun vote(vote: Vote, fullname: String): Any? {
 
         val authMap = getHeaderMap()
-        val req = api.vote(id = fullname, dir = vote.dir, header = authMap)
-        val res = req.execute()
+        val req = api.vote(
+            id = fullname,
+            dir = vote.dir,
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }
@@ -217,9 +213,13 @@ class MessagesClient(
     fun markAllAsRead(filters: String?): Any? {
 
         val authMap = getHeaderMap()
-        val req = api.readAllMessages(filters = filters ?: "", header = authMap)
-        val res = req.execute()
+        val req = api.readAllMessages(
+            filters = filters ?: "",
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }

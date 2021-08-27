@@ -4,7 +4,12 @@ import com.kirkbushman.araw.RedditClient
 import com.kirkbushman.auth.RedditAuth
 import com.kirkbushman.auth.models.bearers.TokenBearer
 
-abstract class AuthHelper(protected val logging: Boolean) {
+abstract class AuthHelper(
+
+    protected val logging: Boolean,
+    protected val disableLegacyEncoding: Boolean
+
+) {
 
     protected abstract val auth: RedditAuth
 
@@ -32,7 +37,7 @@ abstract class AuthHelper(protected val logging: Boolean) {
             val bearer = getSavedBearer()
             if (bearer != null) {
 
-                return RedditClient(bearer, logging)
+                return RedditClient(bearer, disableLegacyEncoding, logging)
             }
         }
 

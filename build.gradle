@@ -1,4 +1,3 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
 
@@ -14,7 +13,10 @@ buildscript {
         version_code = 3
         version_name = "1.1.0"
 
-        kotlin_ver = '1.5.21'
+        java_target = JavaVersion.VERSION_11
+        jvm_target = '11'
+
+        kotlin_ver = '1.5.30'
         coroutines_ver = '1.5.1'
 
         hilt_ver = "2.38.1"
@@ -43,7 +45,7 @@ buildscript {
         espresso_ver = '3.4.0'
         junit_ver = '1.1.3'
         leakcanary_ver = '2.7'
-        mockito_ver = '3.12.1'
+        mockito_ver = '3.12.4'
         arch_core_ver = '2.1.0'
         orchestrator_ver = '1.3.0'
 

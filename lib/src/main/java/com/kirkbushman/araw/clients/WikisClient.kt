@@ -10,18 +10,20 @@ import com.kirkbushman.araw.models.base.SubredditData
 class WikisClient(
 
     private val api: RedditApi,
+    private val disableLegacyEncoding: Boolean,
     private inline val getHeaderMap: () -> HashMap<String, String>
+
 ) {
 
     @WorkerThread
     @Throws(WikiDisabledException::class)
-    fun wiki(subreddit: SubredditData, disableLegacyEncoding: Boolean = false): WikiPage? {
-        return wiki(subreddit.displayName, disableLegacyEncoding)
+    fun wiki(subreddit: SubredditData): WikiPage? {
+        return wiki(subreddit.displayName)
     }
 
     @WorkerThread
     @Throws(WikiDisabledException::class)
-    fun wiki(subreddit: String, disableLegacyEncoding: Boolean = false): WikiPage? {
+    fun wiki(subreddit: String): WikiPage? {
 
         val authMap = getHeaderMap()
         val req = api.wiki(
@@ -46,12 +48,12 @@ class WikisClient(
     }
 
     @WorkerThread
-    fun wikiPage(subreddit: SubredditData, page: String, disableLegacyEncoding: Boolean = false): WikiPage? {
-        return wikiPage(subreddit.displayName, page, disableLegacyEncoding)
+    fun wikiPage(subreddit: SubredditData, page: String): WikiPage? {
+        return wikiPage(subreddit.displayName, page)
     }
 
     @WorkerThread
-    fun wikiPage(subreddit: String, page: String, disableLegacyEncoding: Boolean = false): WikiPage? {
+    fun wikiPage(subreddit: String, page: String): WikiPage? {
 
         val authMap = getHeaderMap()
         val req = api.wikiPage(
@@ -70,12 +72,12 @@ class WikisClient(
     }
 
     @WorkerThread
-    fun wikiPages(subreddit: SubredditData, disableLegacyEncoding: Boolean = false): List<String>? {
-        return wikiPages(subreddit.displayName, disableLegacyEncoding)
+    fun wikiPages(subreddit: SubredditData): List<String>? {
+        return wikiPages(subreddit.displayName)
     }
 
     @WorkerThread
-    fun wikiPages(subreddit: String, disableLegacyEncoding: Boolean = false): List<String>? {
+    fun wikiPages(subreddit: String): List<String>? {
 
         val authMap = getHeaderMap()
         val req = api.wikiPages(
@@ -94,18 +96,20 @@ class WikisClient(
 
     @WorkerThread
     fun wikiRevision(
+
         subreddit: SubredditData,
-        page: String,
-        disableLegacyEncoding: Boolean = false
+        page: String
+
     ): List<WikiRevision>? {
-        return wikiRevision(subreddit.displayName, page, disableLegacyEncoding)
+        return wikiRevision(subreddit.displayName, page)
     }
 
     @WorkerThread
     fun wikiRevision(
+
         subreddit: String,
-        page: String,
-        disableLegacyEncoding: Boolean = false
+        page: String
+
     ): List<WikiRevision>? {
 
         val authMap = getHeaderMap()
@@ -125,18 +129,12 @@ class WikisClient(
     }
 
     @WorkerThread
-    fun wikiRevisions(
-        subreddit: SubredditData,
-        disableLegacyEncoding: Boolean = false
-    ): List<WikiRevision>? {
-        return wikiRevisions(subreddit.displayName, disableLegacyEncoding)
+    fun wikiRevisions(subreddit: SubredditData): List<WikiRevision>? {
+        return wikiRevisions(subreddit.displayName)
     }
 
     @WorkerThread
-    fun wikiRevisions(
-        subreddit: String,
-        disableLegacyEncoding: Boolean = false
-    ): List<WikiRevision>? {
+    fun wikiRevisions(subreddit: String): List<WikiRevision>? {
 
         val authMap = getHeaderMap()
         val req = api.wikiRevisions(

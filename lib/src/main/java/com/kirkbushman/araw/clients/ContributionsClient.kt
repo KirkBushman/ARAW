@@ -26,11 +26,13 @@ import okhttp3.RequestBody.Companion.toRequestBody
 class ContributionsClient(
 
     private val api: RedditApi,
+    private val disableLegacyEncoding: Boolean,
     private inline val getHeaderMap: () -> HashMap<String, String>
+
 ) {
 
     @WorkerThread
-    fun submission(submissionId: String, disableLegacyEncoding: Boolean = false): Submission? {
+    fun submission(submissionId: String): Submission? {
 
         val authMap = getHeaderMap()
         val req = api.submission(
@@ -56,17 +58,15 @@ class ContributionsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD,
+        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD
 
-        disableLegacyEncoding: Boolean = false
     ): SubmissionsFetcher {
 
         return submissions(
             subreddit = subreddit.displayName,
             limit = limit,
             sorting = sorting,
-            timePeriod = timePeriod,
-            disableLegacyEncoding = disableLegacyEncoding
+            timePeriod = timePeriod
         )
     }
 
@@ -78,9 +78,7 @@ class ContributionsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD,
-
-        disableLegacyEncoding: Boolean = false
+        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD
 
     ): SubmissionsFetcher {
 
@@ -103,9 +101,7 @@ class ContributionsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT,
 
         sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD,
-
-        disableLegacyEncoding: Boolean = false
+        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD
 
     ): SubmissionsFetcher {
 
@@ -121,7 +117,7 @@ class ContributionsClient(
     }
 
     @WorkerThread
-    fun comment(commentId: String, disableLegacyEncoding: Boolean = false): Comment? {
+    fun comment(commentId: String): Comment? {
 
         val authMap = getHeaderMap()
         val req = api.comment(
@@ -149,8 +145,7 @@ class ContributionsClient(
         @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
         limit: Long = Fetcher.DEFAULT_LIMIT,
 
-        depth: Int? = null,
-        disableLegacyEncoding: Boolean = false
+        depth: Int? = null
 
     ): CommentsFetcher {
 
@@ -175,9 +170,7 @@ class ContributionsClient(
 
         sorting: CommentsSorting? = null,
         limitChildren: Boolean? = null,
-        depth: Int? = null,
-
-        disableLegacyEncoding: Boolean = false
+        depth: Int? = null
 
     ): List<CommentData>? {
 
@@ -187,8 +180,7 @@ class ContributionsClient(
             submissionFullname = submission.fullname,
             sorting = sorting,
             limitChildren = limitChildren,
-            depth = depth,
-            disableLegacyEncoding = disableLegacyEncoding
+            depth = depth
         )
     }
 
@@ -201,9 +193,7 @@ class ContributionsClient(
 
         sorting: CommentsSorting? = null,
         limitChildren: Boolean? = null,
-        depth: Int? = null,
-
-        disableLegacyEncoding: Boolean = false
+        depth: Int? = null
 
     ): List<CommentData>? {
 
@@ -254,9 +244,13 @@ class ContributionsClient(
     fun delete(fullname: String): Any? {
 
         val authMap = getHeaderMap()
-        val req = api.delete(fullname, header = authMap)
-        val res = req.execute()
+        val req = api.delete(
+            id = fullname,
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }
@@ -278,12 +272,21 @@ class ContributionsClient(
     fun hide(hide: Boolean, fullname: String): Any? {
 
         val authMap = getHeaderMap()
-        val req = if (hide)
-            api.hide(fullname, header = authMap)
-        else
-            api.unhide(fullname, header = authMap)
-        val res = req.execute()
+        val req = if (hide) {
+            api.hide(
+                id = fullname,
+                rawJson = (if (disableLegacyEncoding) 1 else null),
+                header = authMap
+            )
+        } else {
+            api.unhide(
+                id = fullname,
+                rawJson = (if (disableLegacyEncoding) 1 else null),
+                header = authMap
+            )
+        }
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }
@@ -315,12 +318,21 @@ class ContributionsClient(
     fun lock(lock: Boolean, fullname: String): Any? {
 
         val authMap = getHeaderMap()
-        val req = if (lock)
-            api.lock(fullname, header = authMap)
-        else
-            api.unlock(fullname, header = authMap)
-        val res = req.execute()
+        val req = if (lock) {
+            api.lock(
+                id = fullname,
+                rawJson = (if (disableLegacyEncoding) 1 else null),
+                header = authMap
+            )
+        } else {
+            api.unlock(
+                id = fullname,
+                rawJson = (if (disableLegacyEncoding) 1 else null),
+                header = authMap
+            )
+        }
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }
@@ -340,11 +352,11 @@ class ContributionsClient(
         val req = api.reply(
             fullname = fullname,
             text = text,
+            rawJson = (if (disableLegacyEncoding) 1 else null),
             header = authMap
         )
 
         val res = req.execute()
-
         if (!res.isSuccessful) {
             return null
         }
@@ -361,12 +373,21 @@ class ContributionsClient(
     fun save(save: Boolean, fullname: String): Any? {
 
         val authMap = getHeaderMap()
-        val req = if (save)
-            api.save(id = fullname, header = authMap)
-        else
-            api.unsave(id = fullname, header = authMap)
-        val res = req.execute()
+        val req = if (save) {
+            api.save(
+                id = fullname,
+                rawJson = (if (disableLegacyEncoding) 1 else null),
+                header = authMap
+            )
+        } else {
+            api.unsave(
+                id = fullname,
+                rawJson = (if (disableLegacyEncoding) 1 else null),
+                header = authMap
+            )
+        }
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }
@@ -383,9 +404,14 @@ class ContributionsClient(
     fun vote(vote: Vote, fullname: String): Any? {
 
         val authMap = getHeaderMap()
-        val req = api.vote(id = fullname, dir = vote.dir, header = authMap)
-        val res = req.execute()
+        val req = api.vote(
+            id = fullname,
+            dir = vote.dir,
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }
@@ -407,9 +433,13 @@ class ContributionsClient(
     fun markAsNsfw(fullname: String): Any? {
 
         val authMap = getHeaderMap()
-        val req = api.markAsNsfw(fullname, header = authMap)
-        val res = req.execute()
+        val req = api.markAsNsfw(
+            id = fullname,
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }
@@ -426,9 +456,13 @@ class ContributionsClient(
     fun unmarkAsNsfw(fullname: String): Any? {
 
         val authMap = getHeaderMap()
-        val req = api.unmarknsfw(fullname, header = authMap)
-        val res = req.execute()
+        val req = api.unmarknsfw(
+            id = fullname,
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }
@@ -450,9 +484,13 @@ class ContributionsClient(
     fun markAsSpoiler(fullname: String): Any? {
 
         val authMap = getHeaderMap()
-        val req = api.markAsSpoiler(fullname, header = authMap)
-        val res = req.execute()
+        val req = api.markAsSpoiler(
+            id = fullname,
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }
@@ -469,9 +507,13 @@ class ContributionsClient(
     fun unspoiler(fullname: String): Any? {
 
         val authMap = getHeaderMap()
-        val req = api.unspoiler(fullname, header = authMap)
-        val res = req.execute()
+        val req = api.unspoiler(
+            id = fullname,
+            rawJson = (if (disableLegacyEncoding) 1 else null),
+            header = authMap
+        )
 
+        val res = req.execute()
         if (!res.isSuccessful) {
             return null
         }

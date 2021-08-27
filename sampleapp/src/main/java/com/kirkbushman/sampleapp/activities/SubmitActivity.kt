@@ -65,8 +65,7 @@ class SubmitActivity : BaseActivity() {
                         isNsfw = binding.checkIsnsfw.isChecked,
                         isSpoiler = binding.checkIsspoiler.isChecked,
                         submitType = "subreddit",
-                        validateOnSubmit = true,
-                        disableLegacyEncoding = true
+                        validateOnSubmit = true
                     )
                 }
             )
