@@ -7,7 +7,8 @@ class BasicTest {
 
     @Test
     fun basicTest() {
-        assertEquals("Assert basic sum of two numbers", 4, 2 + 2)
+        val sum = 2 + 2
+        assertEquals("Assert basic sum of two numbers", 4, sum)
     }
 
     @Test

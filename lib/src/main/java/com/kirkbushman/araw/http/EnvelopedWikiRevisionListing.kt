@@ -7,7 +7,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class EnvelopedWikiRevisionListing(
+class EnvelopedWikiRevisionListing(
 
     @Json(name = "kind")
     override val kind: EnvelopeKind,

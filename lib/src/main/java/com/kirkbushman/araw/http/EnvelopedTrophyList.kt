@@ -6,7 +6,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class EnvelopedTrophyList(
+class EnvelopedTrophyList(
 
     @Json(name = "kind")
     val kind: EnvelopeKind,

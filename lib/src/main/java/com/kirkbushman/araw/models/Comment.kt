@@ -1,6 +1,5 @@
 package com.kirkbushman.araw.models
 
-import android.os.Parcelable
 import com.kirkbushman.araw.http.EnvelopedCommentDataListing
 import com.kirkbushman.araw.models.commons.Gildings
 import com.kirkbushman.araw.models.base.CommentData
@@ -212,7 +211,7 @@ data class Comment(
     @Json(name = "subreddit_name_prefixed")
     val subredditNamePrefixed: String
 
-) : CommentData, Votable, Saveable, Created, Editable, Distinguishable, Gildable, Replyable, Parcelable {
+) : CommentData, Votable, Saveable, Created, Editable, Distinguishable, Gildable, Replyable {
 
     override val hasReplies: Boolean
         get() {

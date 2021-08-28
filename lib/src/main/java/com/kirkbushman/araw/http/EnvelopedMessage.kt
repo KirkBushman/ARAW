@@ -7,7 +7,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class EnvelopedMessage(
+class EnvelopedMessage(
 
     @Json(name = "kind")
     override val kind: EnvelopeKind,
@@ -15,4 +15,4 @@ data class EnvelopedMessage(
     @Json(name = "data")
     override val data: Message
 
-) : Envelope<Message>, EnvelopedData(kind, data)
+) : Envelope<Message>, EnvelopedData

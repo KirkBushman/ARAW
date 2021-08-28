@@ -6,7 +6,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class SubredditDataListing(
+class SubredditDataListing(
 
     @Json(name = "modhash")
     override val modhash: String?,

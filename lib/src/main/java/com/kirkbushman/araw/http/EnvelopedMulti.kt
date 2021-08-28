@@ -7,7 +7,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class EnvelopedMulti(
+class EnvelopedMulti(
 
     @Json(name = "kind")
     override val kind: EnvelopeKind,

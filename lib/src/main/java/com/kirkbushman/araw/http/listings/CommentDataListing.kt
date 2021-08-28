@@ -9,7 +9,7 @@ import kotlinx.parcelize.Parcelize
 
 @JsonClass(generateAdapter = true)
 @Parcelize
-data class CommentDataListing(
+class CommentDataListing(
 
     @Json(name = "modhash")
     override val modhash: String?,

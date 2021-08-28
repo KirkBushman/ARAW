@@ -1,15 +1,12 @@
 package com.kirkbushman.araw.http.listings
 
-import android.os.Parcelable
 import com.kirkbushman.araw.http.EnvelopedSubmission
 import com.kirkbushman.araw.http.base.Listing
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import kotlinx.parcelize.Parcelize
 
 @JsonClass(generateAdapter = true)
-@Parcelize
-data class SubmissionListing(
+class SubmissionListing(
 
     @Json(name = "modhash")
     override val modhash: String?,
@@ -24,4 +21,4 @@ data class SubmissionListing(
     @Json(name = "before")
     override val before: String?
 
-) : Listing<EnvelopedSubmission>, Parcelable
+) : Listing<EnvelopedSubmission>

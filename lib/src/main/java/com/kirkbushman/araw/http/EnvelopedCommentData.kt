@@ -1,19 +1,12 @@
 package com.kirkbushman.araw.http
 
+import android.os.Parcelable
 import com.kirkbushman.araw.http.base.EnvelopeKind
 import com.kirkbushman.araw.models.base.CommentData
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
-import kotlinx.parcelize.Parcelize
 
-@JsonClass(generateAdapter = true)
-@Parcelize
-open class EnvelopedCommentData(
+interface EnvelopedCommentData : EnvelopedContribution, Parcelable {
 
-    @Json(name = "kind")
-    override val kind: EnvelopeKind,
+    override val kind: EnvelopeKind
 
-    @Json(name = "data")
     override val data: CommentData
-
-) : EnvelopedContribution(kind, data)
+}

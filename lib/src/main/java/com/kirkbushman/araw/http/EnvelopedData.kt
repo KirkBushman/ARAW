@@ -2,15 +2,10 @@ package com.kirkbushman.araw.http
 
 import com.kirkbushman.araw.http.base.EnvelopeKind
 import com.kirkbushman.araw.models.base.Thing
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 
-@JsonClass(generateAdapter = true)
-open class EnvelopedData(
+interface EnvelopedData {
 
-    @Json(name = "kind")
-    open val kind: EnvelopeKind,
+    val kind: EnvelopeKind
 
-    @Json(name = "data")
-    open val data: Thing
-)
+    val data: Thing
+}

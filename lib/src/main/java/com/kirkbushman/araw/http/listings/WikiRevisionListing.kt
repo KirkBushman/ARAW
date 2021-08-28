@@ -9,7 +9,7 @@ import kotlinx.parcelize.Parcelize
 
 @JsonClass(generateAdapter = true)
 @Parcelize
-data class WikiRevisionListing(
+class WikiRevisionListing(
 
     @Json(name = "modhash")
     override val modhash: String?,

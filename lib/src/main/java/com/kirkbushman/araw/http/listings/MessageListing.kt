@@ -6,7 +6,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class MessageListing(
+class MessageListing(
 
     @Json(name = "modhash")
     override val modhash: String?,

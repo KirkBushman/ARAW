@@ -7,7 +7,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class EnvelopedSubredditData(
+class EnvelopedSubredditData(
 
     @Json(name = "kind")
     override val kind: EnvelopeKind,
@@ -15,4 +15,4 @@ data class EnvelopedSubredditData(
     @Json(name = "data")
     override val data: SubredditData
 
-) : Envelope<SubredditData>, EnvelopedData(kind, data)
+) : Envelope<SubredditData>, EnvelopedData
