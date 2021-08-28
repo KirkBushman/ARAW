@@ -42,7 +42,7 @@ class CommentDataTest {
         val fetcher = client!!.contributionsClient.submissions(subreddit = randomSub, limit = LIMIT)
 
         val addendum = fetcher.fetchNext()
-        submissions.addAll(addendum)
+        submissions.addAll(addendum ?: emptyList())
     }
 
     @Test
@@ -54,7 +54,7 @@ class CommentDataTest {
             ?: throw IllegalAccessError("No submission found!")
 
         val commentsFetcher = client!!.contributionsClient.comments(selectedSubmission.id)
-        val comments = commentsFetcher.fetchNext()
+        val comments = commentsFetcher.fetchNext() ?: emptyList()
 
         val linearList = comments.toLinearList()
 
@@ -94,10 +94,10 @@ class CommentDataTest {
         return true
     }
 
-    private fun compareCommentList(comments: List<CommentData>, linearList: List<CommentData>): Boolean {
+    private fun compareCommentList(comments: List<CommentData>?, linearList: List<CommentData>): Boolean {
 
         var position = 0
-        comments.treeIterator().forEach {
+        comments?.treeIterator()?.forEach {
 
             if (it.fullname != linearList[position].fullname) {
                 return false
@@ -109,13 +109,13 @@ class CommentDataTest {
         return true
     }
 
-    private fun wrappedCommentModels(comments: List<CommentData>): List<CommentData> {
+    private fun wrappedCommentModels(comments: List<CommentData>?): List<CommentData> {
 
         val childMap = HashMap<String, CommentData>()
         val newComm = ArrayList<CommentData>()
 
         // wrap the children
-        comments.treeIterator().forEach {
+        comments?.treeIterator()?.forEach {
 
             if (it.depth == 0) {
                 val copyComm = deepCopy(it)

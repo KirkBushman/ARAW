@@ -28,6 +28,15 @@ class ContributionsFetcher(
 
     companion object {
 
+        const val USER_CONTRIB_OVERVIEW = "overview"
+        const val USER_CONTRIB_SUBMITTED = "submitted"
+        const val USER_CONTRIB_COMMENTS = "comments"
+        const val USER_CONTRIB_UPVOTED = "upvoted"
+        const val USER_CONTRIB_DOWNVOTED = "downvoted"
+        const val USER_CONTRIB_HIDDEN = "hidden"
+        const val USER_CONTRIB_SAVED = "saved"
+        const val USER_CONTRIB_GILDED = "gilded"
+
         val DEFAULT_SORTING = ContributionsSorting.NEW
         val DEFAULT_TIMEPERIOD = TimePeriod.ALL_TIME
     }
@@ -94,7 +103,6 @@ class ContributionsFetcher(
             ?.data
             ?.children
             ?.map { it.data }
-            ?.toList()
     }
 
     fun getSorting(): ContributionsSorting = sorting

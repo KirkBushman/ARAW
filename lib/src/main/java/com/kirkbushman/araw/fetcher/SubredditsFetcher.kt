@@ -19,6 +19,14 @@ class SubredditsFetcher(
 
 ) : Fetcher<SubredditData>(limit) {
 
+    companion object {
+
+        const val SUBREDDITS_MINE_SUBSCRIBER = "subscriber"
+        const val SUBREDDITS_MINE_CONTRIBUTOR = "contributor"
+        const val SUBREDDITS_MINE_MODERATOR = "moderator"
+        const val SUBREDDITS_MINE_STREAMS = "streams"
+    }
+
     @WorkerThread
     override fun onFetching(
         previousToken: String?,
@@ -48,6 +56,5 @@ class SubredditsFetcher(
             ?.data
             ?.children
             ?.map { it.data }
-            ?.toList()
     }
 }

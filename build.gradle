@@ -10,8 +10,8 @@ buildscript {
         min_sdk_ver = 21
         compile_sdk_ver = 31
 
-        version_code = 3
-        version_name = "1.1.0"
+        version_code = 4
+        version_name = "1.1.0-alpha01"
 
         java_target = JavaVersion.VERSION_11
         jvm_target = '11'

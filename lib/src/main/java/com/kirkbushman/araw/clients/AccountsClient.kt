@@ -135,162 +135,162 @@ class AccountsClient(
             return null
         }
 
-        return res.body()?.data?.trophies?.map { it.data }?.toList()
+        return res.body()?.data?.trophies?.map { it.data }
     }
 
-    fun overview(
-
-        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
-        limit: Long = Fetcher.DEFAULT_LIMIT,
+    fun createOverviewContributionsFetcher(
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): ContributionsFetcher {
 
-        return fetchContributions(
-            where = "",
+        return createContributionsFetcher(
+            where = ContributionsFetcher.USER_CONTRIB_OVERVIEW,
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod
         )
     }
 
-    fun submitted(
-
-        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
-        limit: Long = Fetcher.DEFAULT_LIMIT,
+    fun createSubmittedContributionsFetcher(
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): ContributionsFetcher {
 
-        return fetchContributions(
-            where = "submitted",
+        return createContributionsFetcher(
+            where = ContributionsFetcher.USER_CONTRIB_SUBMITTED,
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod
         )
     }
 
-    fun comments(
-
-        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
-        limit: Long = Fetcher.DEFAULT_LIMIT,
+    fun createCommentsContributionsFetcher(
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): ContributionsFetcher {
 
-        return fetchContributions(
-            where = "comments",
+        return createContributionsFetcher(
+            where = ContributionsFetcher.USER_CONTRIB_COMMENTS,
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod
         )
     }
 
-    fun saved(
-
-        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
-        limit: Long = Fetcher.DEFAULT_LIMIT,
+    fun createSavedContributionsFetcher(
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): ContributionsFetcher {
 
-        return fetchContributions(
-            where = "saved",
+        return createContributionsFetcher(
+            where = ContributionsFetcher.USER_CONTRIB_SAVED,
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod
         )
     }
 
-    fun hidden(
-
-        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
-        limit: Long = Fetcher.DEFAULT_LIMIT,
+    fun createHiddenContributionsFetcher(
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): ContributionsFetcher {
 
-        return fetchContributions(
-            where = "hidden",
+        return createContributionsFetcher(
+            where = ContributionsFetcher.USER_CONTRIB_HIDDEN,
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod
         )
     }
 
-    fun upvoted(
-
-        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
-        limit: Long = Fetcher.DEFAULT_LIMIT,
+    fun createUpvotedContributionsFetcher(
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): ContributionsFetcher {
 
-        return fetchContributions(
-            where = "upvoted",
+        return createContributionsFetcher(
+            where = ContributionsFetcher.USER_CONTRIB_UPVOTED,
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod
         )
     }
 
-    fun downvoted(
-
-        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
-        limit: Long = Fetcher.DEFAULT_LIMIT,
+    fun createDownvotedContributionsFetcher(
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): ContributionsFetcher {
 
-        return fetchContributions(
-            where = "downvoted",
+        return createContributionsFetcher(
+            where = ContributionsFetcher.USER_CONTRIB_DOWNVOTED,
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod
         )
     }
 
-    fun gilded(
-
-        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
-        limit: Long = Fetcher.DEFAULT_LIMIT,
+    fun createGildedContributionsFetcher(
 
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): ContributionsFetcher {
 
-        return fetchContributions(
-            where = "gilded",
+        return createContributionsFetcher(
+            where = ContributionsFetcher.USER_CONTRIB_GILDED,
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod
         )
     }
 
-    fun fetchContributions(
+    fun createContributionsFetcher(
 
         where: String,
 
-        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
-        limit: Long = Fetcher.DEFAULT_LIMIT,
-
         sorting: ContributionsSorting = ContributionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD
+        timePeriod: TimePeriod = ContributionsFetcher.DEFAULT_TIMEPERIOD,
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): ContributionsFetcher {
 
@@ -306,46 +306,59 @@ class AccountsClient(
         )
     }
 
-    fun subscribedSubreddits(
+    fun createSubscribedSubredditsFetcher(
 
         @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): SubredditsFetcher {
 
-        return fetchSubreddits(
-            where = "subscriber",
+        return createSubredditsFetcher(
+            where = SubredditsFetcher.SUBREDDITS_MINE_SUBSCRIBER,
             limit = limit
         )
     }
 
-    fun contributedSubreddits(
+    fun createContributedSubredditsFetcher(
 
         @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): SubredditsFetcher {
 
-        return fetchSubreddits(
-            where = "contributor",
+        return createSubredditsFetcher(
+            where = SubredditsFetcher.SUBREDDITS_MINE_CONTRIBUTOR,
             limit = limit
         )
     }
 
-    fun moderatedSubreddits(
+    fun createModeratedSubredditsFetcher(
 
         @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): SubredditsFetcher {
 
-        return fetchSubreddits(
-            where = "moderator",
+        return createSubredditsFetcher(
+            where = SubredditsFetcher.SUBREDDITS_MINE_MODERATOR,
             limit = limit
         )
     }
 
-    fun fetchSubreddits(
+    fun createStreamsSubredditsFetcher(
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT
+
+    ): SubredditsFetcher {
+
+        return createSubredditsFetcher(
+            where = SubredditsFetcher.SUBREDDITS_MINE_STREAMS,
+            limit = limit
+        )
+    }
+
+    fun createSubredditsFetcher(
 
         where: String,
 

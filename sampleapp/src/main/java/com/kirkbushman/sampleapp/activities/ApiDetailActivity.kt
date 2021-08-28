@@ -386,49 +386,49 @@ class ApiDetailActivity : BaseActivity() {
             }
 
             API_OVERVIEW -> {
-                val fetcher = client.accountsClient.overview()
+                val fetcher = client.accountsClient.createOverviewContributionsFetcher()
                 val overview = fetcher.fetchNext()
                 overview.toString()
             }
 
             API_SUBMITTED -> {
-                val fetcher = client.accountsClient.submitted()
+                val fetcher = client.accountsClient.createSubmittedContributionsFetcher()
                 val submitted = fetcher.fetchNext()
                 submitted.toString()
             }
 
             API_COMMENTS -> {
-                val fetcher = client.accountsClient.comments()
+                val fetcher = client.accountsClient.createCommentsContributionsFetcher()
                 val comments = fetcher.fetchNext()
                 comments.toString()
             }
 
             API_SAVED -> {
-                val fetcher = client.accountsClient.saved()
+                val fetcher = client.accountsClient.createSavedContributionsFetcher()
                 val saved = fetcher.fetchNext()
                 saved.toString()
             }
 
             API_HIDDEN -> {
-                val fetcher = client.accountsClient.hidden()
+                val fetcher = client.accountsClient.createHiddenContributionsFetcher()
                 val hidden = fetcher.fetchNext()
                 hidden.toString()
             }
 
             API_UPVOTED -> {
-                val fetcher = client.accountsClient.upvoted()
+                val fetcher = client.accountsClient.createUpvotedContributionsFetcher()
                 val upvoted = fetcher.fetchNext()
                 upvoted.toString()
             }
 
             API_DOWNVOTED -> {
-                val fetcher = client.accountsClient.downvoted()
+                val fetcher = client.accountsClient.createDownvotedContributionsFetcher()
                 val downvoted = fetcher.fetchNext()
                 downvoted.toString()
             }
 
             API_GILDED -> {
-                val fetcher = client.accountsClient.gilded()
+                val fetcher = client.accountsClient.createGildedContributionsFetcher()
                 val gilded = fetcher.fetchNext()
                 gilded.toString()
             }

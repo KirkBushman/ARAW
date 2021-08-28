@@ -106,13 +106,13 @@ class SelfContributionFragment : BaseControllerFragment<Contribution, Submission
     override fun fetchItem(client: RedditClient?): Collection<Contribution>? {
 
         fetcher = when (passedTag) {
-            TAG_OVERVIEW -> client?.accountsClient?.overview()
-            TAG_SUBMITTED -> client?.accountsClient?.submitted()
-            TAG_COMMENTS -> client?.accountsClient?.comments()
-            TAG_SAVED -> client?.accountsClient?.saved()
-            TAG_UPVOTED -> client?.accountsClient?.upvoted()
-            TAG_DOWNVOTED -> client?.accountsClient?.downvoted()
-            TAG_GILDED -> client?.accountsClient?.gilded()
+            TAG_OVERVIEW -> client?.accountsClient?.createOverviewContributionsFetcher()
+            TAG_SUBMITTED -> client?.accountsClient?.createSubmittedContributionsFetcher()
+            TAG_COMMENTS -> client?.accountsClient?.createCommentsContributionsFetcher()
+            TAG_SAVED -> client?.accountsClient?.createSavedContributionsFetcher()
+            TAG_UPVOTED -> client?.accountsClient?.createUpvotedContributionsFetcher()
+            TAG_DOWNVOTED -> client?.accountsClient?.createDownvotedContributionsFetcher()
+            TAG_GILDED -> client?.accountsClient?.createGildedContributionsFetcher()
 
             else -> null
         }
