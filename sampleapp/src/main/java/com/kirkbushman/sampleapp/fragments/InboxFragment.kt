@@ -66,11 +66,11 @@ class InboxFragment : BaseControllerFragment<Message, InboxController.InboxCallb
     override fun fetchItem(client: RedditClient?): Collection<Message>? {
 
         val fetcher = when (passedTag) {
-            TAG_INBOX -> client?.messagesClient?.inbox()
-            TAG_UNREAD -> client?.messagesClient?.unread()
-            TAG_MESSAGES -> client?.messagesClient?.messages()
-            TAG_SENT -> client?.messagesClient?.sent()
-            TAG_MENTIONS -> client?.messagesClient?.mentions()
+            TAG_INBOX -> client?.messagesClient?.createOverviewInboxFetcher()
+            TAG_UNREAD -> client?.messagesClient?.createUnreadInboxFetcher()
+            TAG_MESSAGES -> client?.messagesClient?.createMessagesInboxFetcher()
+            TAG_SENT -> client?.messagesClient?.createSentInboxFetcher()
+            TAG_MENTIONS -> client?.messagesClient?.createMentionsInboxFetcher()
 
             else -> null
         }

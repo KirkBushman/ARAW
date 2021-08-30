@@ -19,19 +19,19 @@ class MultisClient(
 
 ) {
 
-    fun multiSubmissions(
+    fun createMultiSubmissionsFetcher(
 
         multi: Multi,
 
-        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
-        limit: Long = Fetcher.DEFAULT_LIMIT,
-
         sorting: SubmissionsSorting = MultiSubmissionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = MultiSubmissionsFetcher.DEFAULT_TIMEPERIOD
+        timePeriod: TimePeriod = MultiSubmissionsFetcher.DEFAULT_TIMEPERIOD,
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): MultiSubmissionsFetcher {
 
-        return multiSubmissions(
+        return createMultiSubmissionsFetcher(
             username = multi.ownerName,
             multiname = multi.name,
             limit = limit,
@@ -40,16 +40,16 @@ class MultisClient(
         )
     }
 
-    fun multiSubmissions(
+    fun createMultiSubmissionsFetcher(
 
         username: String,
         multiname: String,
 
-        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
-        limit: Long = Fetcher.DEFAULT_LIMIT,
-
         sorting: SubmissionsSorting = MultiSubmissionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = MultiSubmissionsFetcher.DEFAULT_TIMEPERIOD
+        timePeriod: TimePeriod = MultiSubmissionsFetcher.DEFAULT_TIMEPERIOD,
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): MultiSubmissionsFetcher {
 

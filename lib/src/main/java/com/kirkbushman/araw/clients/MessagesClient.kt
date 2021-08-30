@@ -16,98 +16,98 @@ class MessagesClient(
 
 ) {
 
-    fun inbox(
+    fun createOverviewInboxFetcher(
 
         @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): InboxFetcher {
 
-        return fetchMessages(
-            where = "inbox",
+        return createInboxFetcher(
+            where = InboxFetcher.MESSAGES_INBOX,
             limit = limit
         )
     }
 
-    fun unread(
+    fun createUnreadInboxFetcher(
 
         @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): InboxFetcher {
 
-        return fetchMessages(
-            where = "unread",
+        return createInboxFetcher(
+            where = InboxFetcher.MESSAGES_UNREAD,
             limit = limit
         )
     }
 
-    fun messages(
+    fun createMessagesInboxFetcher(
 
         @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): InboxFetcher {
 
-        return fetchMessages(
-            where = "messages",
+        return createInboxFetcher(
+            where = InboxFetcher.MESSAGES_MESSAGES,
             limit = limit
         )
     }
 
-    fun sent(
+    fun createSentInboxFetcher(
 
         @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): InboxFetcher {
 
-        return fetchMessages(
-            where = "sent",
+        return createInboxFetcher(
+            where = InboxFetcher.MESSAGES_SENT,
             limit = limit
         )
     }
 
-    fun commentsReplies(
+    fun createCommentsRepliesInboxFetcher(
 
         @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): InboxFetcher {
 
-        return fetchMessages(
-            where = "comments",
+        return createInboxFetcher(
+            where = InboxFetcher.MESSAGES_COMMENTS,
             limit = limit
         )
     }
 
-    fun selfReplies(
+    fun createSelfRepliesInboxFetcher(
 
         @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): InboxFetcher {
 
-        return fetchMessages(
-            where = "selfreply",
+        return createInboxFetcher(
+            where = InboxFetcher.MESSAGES_SELF_REPLY,
             limit = limit
         )
     }
 
-    fun mentions(
+    fun createMentionsInboxFetcher(
 
         @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): InboxFetcher {
 
-        return fetchMessages(
-            where = "mentions",
+        return createInboxFetcher(
+            where = InboxFetcher.MESSAGES_MENTIONS,
             limit = limit
         )
     }
 
-    fun fetchMessages(
+    fun createInboxFetcher(
 
         where: String,
 
@@ -201,6 +201,12 @@ class MessagesClient(
         }
 
         return res.body()
+    }
+
+    @WorkerThread
+    fun markAllAsRead(filters: Array<Message>?): Any? {
+
+        return markAllAsRead(filters?.joinToString(separator = ",") { it.fullname })
     }
 
     @WorkerThread

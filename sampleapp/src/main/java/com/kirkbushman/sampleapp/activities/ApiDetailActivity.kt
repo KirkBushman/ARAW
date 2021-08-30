@@ -476,37 +476,37 @@ class ApiDetailActivity : BaseActivity() {
             }
 
             API_MESSAGE_INBOX -> {
-                val fetcher = client.messagesClient.inbox()
+                val fetcher = client.messagesClient.createOverviewInboxFetcher()
                 val inbox = fetcher.fetchNext()
                 inbox.toString()
             }
 
             API_MESSAGE_UNREAD -> {
-                val fetcher = client.messagesClient.unread()
+                val fetcher = client.messagesClient.createUnreadInboxFetcher()
                 val unread = fetcher.fetchNext()
                 unread.toString()
             }
 
             API_MESSAGE_MESSAGES -> {
-                val fetcher = client.messagesClient.messages()
+                val fetcher = client.messagesClient.createMessagesInboxFetcher()
                 val messages = fetcher.fetchNext()
                 messages.toString()
             }
 
             API_MESSAGE_SENT -> {
-                val fetcher = client.messagesClient.sent()
+                val fetcher = client.messagesClient.createSentInboxFetcher()
                 val sent = fetcher.fetchNext()
                 sent.toString()
             }
 
             API_MESSAGE_COMMENT_REPLIES -> {
-                val fetcher = client.messagesClient.commentsReplies()
+                val fetcher = client.messagesClient.createCommentsRepliesInboxFetcher()
                 val replies = fetcher.fetchNext()
                 replies.toString()
             }
 
             API_MESSAGE_SELF_REPLIES -> {
-                val fetcher = client.messagesClient.selfReplies()
+                val fetcher = client.messagesClient.createSelfRepliesInboxFetcher()
                 val replies = fetcher.fetchNext()
                 replies.toString()
             }
@@ -534,7 +534,7 @@ class ApiDetailActivity : BaseActivity() {
             API_MULTI_SUBMISSIONS -> {
                 val fetcher = client
                     .multisClient
-                    .multiSubmissions("Kirk-Bushman", "karmafarming")
+                    .createMultiSubmissionsFetcher("Kirk-Bushman", "karmafarming")
 
                 val submissions = fetcher.fetchNext()
                 submissions.toString()

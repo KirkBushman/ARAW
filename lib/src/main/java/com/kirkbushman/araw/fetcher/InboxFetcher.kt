@@ -19,6 +19,17 @@ class InboxFetcher(
 
 ) : Fetcher<Message>(limit) {
 
+    companion object {
+
+        const val MESSAGES_INBOX = "inbox"
+        const val MESSAGES_UNREAD = "unread"
+        const val MESSAGES_MESSAGES = "messages"
+        const val MESSAGES_SENT = "sent"
+        const val MESSAGES_COMMENTS = "comments"
+        const val MESSAGES_SELF_REPLY = "selfreply"
+        const val MESSAGES_MENTIONS = "mentions"
+    }
+
     @WorkerThread
     override fun onFetching(
         previousToken: String?,
@@ -48,6 +59,5 @@ class InboxFetcher(
             ?.data
             ?.children
             ?.map { it.data }
-            ?.toList()
     }
 }
