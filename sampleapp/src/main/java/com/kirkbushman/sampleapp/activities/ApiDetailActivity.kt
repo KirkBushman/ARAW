@@ -658,28 +658,28 @@ class ApiDetailActivity : BaseActivity() {
 
             API_USER_OVERVIEW -> {
                 val userName = getRandomUserFromRandomSubreddit()
-                val fetcher = client.redditorsClient.overview(userName)
+                val fetcher = client.redditorsClient.createOverviewContributionsFetcher(userName)
                 val overview = fetcher.fetchNext()
                 overview.toString()
             }
 
             API_USER_SUBMITTED -> {
                 val userName = getRandomUserFromRandomSubreddit()
-                val fetcher = client.redditorsClient.submitted(userName)
+                val fetcher = client.redditorsClient.createSubmittedContributionsFetcher(userName)
                 val submitted = fetcher.fetchNext()
                 submitted.toString()
             }
 
             API_USER_COMMENTS -> {
                 val userName = getRandomUserFromRandomSubreddit()
-                val fetcher = client.redditorsClient.comments(userName)
+                val fetcher = client.redditorsClient.createCommentsContributionsFetcher(userName)
                 val comments = fetcher.fetchNext()
                 comments.toString()
             }
 
             API_USER_GILDED -> {
                 val userName = getRandomUserFromRandomSubreddit()
-                val fetcher = client.redditorsClient.gilded(userName)
+                val fetcher = client.redditorsClient.createGildedContributionsFetcher(userName)
                 val gilded = fetcher.fetchNext()
                 gilded.toString()
             }

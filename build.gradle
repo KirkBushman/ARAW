@@ -2,7 +2,7 @@
 buildscript {
 
     ext {
-        android_gradle_ver = '7.0.1'
+        android_gradle_ver = '7.0.2'
 
         compile_sdk_ver = 31
         build_tools_ver = '31.0.0'
@@ -17,7 +17,7 @@ buildscript {
         jvm_target = '11'
 
         kotlin_ver = '1.5.30'
-        coroutines_ver = '1.5.1'
+        coroutines_ver = '1.5.2'
 
         hilt_ver = "2.38.1"
         ax_hilt_ver = "1.0.0"

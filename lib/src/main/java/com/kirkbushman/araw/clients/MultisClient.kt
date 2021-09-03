@@ -127,6 +127,19 @@ class MultisClient(
     @WorkerThread
     fun deleteMulti(
 
+        multi: Multi
+
+    ): Boolean {
+
+        return deleteMulti(
+            username = multi.ownerName,
+            multiname = multi.name
+        )
+    }
+
+    @WorkerThread
+    fun deleteMulti(
+
         username: String,
         multiname: String
 
@@ -142,6 +155,19 @@ class MultisClient(
 
         val res = req.execute()
         return res.isSuccessful
+    }
+
+    @WorkerThread
+    fun multiDescription(
+
+        multi: Multi
+
+    ): MultiDescription? {
+
+        return multiDescription(
+            username = multi.ownerName,
+            multiname = multi.name
+        )
     }
 
     @WorkerThread
@@ -171,11 +197,26 @@ class MultisClient(
     @WorkerThread
     fun setMultiDescription(
 
+        multi: Multi,
+        description: String
+
+    ): Boolean {
+
+        return setMultiDescription(
+            username = multi.ownerName,
+            multiname = multi.name,
+            description = description
+        )
+    }
+
+    @WorkerThread
+    fun setMultiDescription(
+
         username: String,
         multiname: String,
         description: String
 
-    ): Any? {
+    ): Boolean {
 
         val authMap = getHeaderMap()
         val req = api.setMultiDescription(
@@ -186,11 +227,7 @@ class MultisClient(
         )
 
         val res = req.execute()
-        if (!res.isSuccessful) {
-            return null
-        }
-
-        return res.body()
+        return res.isSuccessful
     }
 
     @WorkerThread
