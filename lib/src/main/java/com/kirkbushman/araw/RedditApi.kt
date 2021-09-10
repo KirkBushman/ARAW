@@ -264,16 +264,17 @@ interface RedditApi {
         @HeaderMap header: Map<String, String>
     ): Call<EnvelopedSubmissionListing>
 
-    @GET(Endpoints.URL_MORECHILDREN)
+    @FormUrlEncoded
+    @POST(Endpoints.URL_MORECHILDREN)
     fun moreChildren(
-        @Query("api_type") apiType: String = "json",
-        @Query("children") children: String,
-        @Query("limit_children") limitChildren: Boolean? = null,
-        @Query("sort") sorting: String? = null,
-        @Query("depth") depth: Int? = null,
-        @Query("id") id: String? = null,
-        @Query("link_id") linkId: String,
-        @Query("raw_json") rawJson: Int? = null,
+        @Field("api_type") apiType: String = "json",
+        @Field("children") children: String,
+        @Field("limit_children") limitChildren: Boolean? = null,
+        @Field("sort") sorting: String? = null,
+        @Field("depth") depth: Int? = null,
+        @Field("id") id: String? = null,
+        @Field("link_id") linkId: String,
+        @Field("raw_json") rawJson: Int? = null,
         @HeaderMap header: Map<String, String>
     ): Call<MoreChildrenResponse>
 
