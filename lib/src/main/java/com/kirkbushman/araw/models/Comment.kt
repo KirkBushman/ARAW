@@ -1,7 +1,14 @@
 package com.kirkbushman.araw.models
 
 import com.kirkbushman.araw.http.EnvelopedCommentDataListing
-import com.kirkbushman.araw.models.base.*
+import com.kirkbushman.araw.models.base.CommentData
+import com.kirkbushman.araw.models.base.Created
+import com.kirkbushman.araw.models.base.Distinguishable
+import com.kirkbushman.araw.models.base.Editable
+import com.kirkbushman.araw.models.base.Gildable
+import com.kirkbushman.araw.models.base.Replyable
+import com.kirkbushman.araw.models.base.Saveable
+import com.kirkbushman.araw.models.base.Votable
 import com.kirkbushman.araw.models.commons.FlairRichtext
 import com.kirkbushman.araw.models.commons.Gildings
 import com.squareup.moshi.Json

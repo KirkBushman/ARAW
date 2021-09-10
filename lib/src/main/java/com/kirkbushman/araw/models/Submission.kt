@@ -1,8 +1,20 @@
 package com.kirkbushman.araw.models
 
 import android.os.Parcelable
-import com.kirkbushman.araw.models.base.*
-import com.kirkbushman.araw.models.commons.*
+import com.kirkbushman.araw.models.commons.FlairRichtext
+import com.kirkbushman.araw.models.commons.Gildings
+import com.kirkbushman.araw.models.commons.Media
+import com.kirkbushman.araw.models.commons.MediaEmbed
+import com.kirkbushman.araw.models.commons.RedditMedia
+import com.kirkbushman.araw.models.commons.SubmissionPreview
+import com.kirkbushman.araw.models.base.Contribution
+import com.kirkbushman.araw.models.base.Created
+import com.kirkbushman.araw.models.base.Distinguishable
+import com.kirkbushman.araw.models.base.Editable
+import com.kirkbushman.araw.models.base.Gildable
+import com.kirkbushman.araw.models.base.Replyable
+import com.kirkbushman.araw.models.base.Saveable
+import com.kirkbushman.araw.models.base.Votable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.parcelize.Parcelize
@@ -69,7 +81,7 @@ data class Submission(
     val authorFlairRichtext: List<FlairRichtext>,
 
     @Json(name = "author_flair_text")
-    val authorFlairtext: String?,
+    val authorFlairText: String?,
 
     @Json(name = "author_flair_text_color")
     val authorFlairTextColor: String?,
