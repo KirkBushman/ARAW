@@ -78,7 +78,7 @@ data class Submission(
     val authorFlairCssClass: String?,
 
     @Json(name = "author_flair_richtext")
-    val authorFlairRichtext: List<FlairRichtext>,
+    val authorFlairRichtext: List<FlairRichtext>?,
 
     @Json(name = "author_flair_text")
     val authorFlairText: String?,
@@ -272,5 +272,4 @@ data class Submission(
     @Json(name = "url")
     val url: String
 
-) : Contribution, Votable, Saveable, Created, Editable, Distinguishable, Gildable, Replyable,
-    Parcelable
+) : Contribution, Votable, Saveable, Created, Editable, Distinguishable, Gildable, Replyable, Parcelable
