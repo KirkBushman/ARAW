@@ -121,7 +121,7 @@ data class Comment(
     val authorFlairCssClass: String?,
 
     @Json(name = "author_flair_richtext")
-    val authorFlairRichtext: List<FlairRichtext>?,
+    val authorFlairRichtext: List<FlairRichtext>,
 
     @Json(name = "author_flair_text")
     val authorFlairtext: String?,

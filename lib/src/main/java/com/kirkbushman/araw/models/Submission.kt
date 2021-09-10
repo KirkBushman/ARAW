@@ -66,7 +66,7 @@ data class Submission(
     val authorFlairCssClass: String?,
 
     @Json(name = "author_flair_richtext")
-    val authorFlairRichtext: List<FlairRichtext>?,
+    val authorFlairRichtext: List<FlairRichtext>,
 
     @Json(name = "author_flair_text")
     val authorFlairtext: String?,
@@ -117,7 +117,7 @@ data class Submission(
     val linkFlairCssClass: String?,
 
     @Json(name = "link_flair_richtext")
-    val linkFlairRichtext: List<FlairRichtext>?,
+    val linkFlairRichtext: List<FlairRichtext>,
 
     @Json(name = "link_flair_text")
     val linkFlairText: String?,
