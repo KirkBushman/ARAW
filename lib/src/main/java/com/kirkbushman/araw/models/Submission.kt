@@ -1,19 +1,8 @@
 package com.kirkbushman.araw.models
 
 import android.os.Parcelable
-import com.kirkbushman.araw.models.commons.Gildings
-import com.kirkbushman.araw.models.commons.Media
-import com.kirkbushman.araw.models.commons.MediaEmbed
-import com.kirkbushman.araw.models.commons.RedditMedia
-import com.kirkbushman.araw.models.commons.SubmissionPreview
-import com.kirkbushman.araw.models.base.Contribution
-import com.kirkbushman.araw.models.base.Created
-import com.kirkbushman.araw.models.base.Distinguishable
-import com.kirkbushman.araw.models.base.Editable
-import com.kirkbushman.araw.models.base.Gildable
-import com.kirkbushman.araw.models.base.Replyable
-import com.kirkbushman.araw.models.base.Saveable
-import com.kirkbushman.araw.models.base.Votable
+import com.kirkbushman.araw.models.base.*
+import com.kirkbushman.araw.models.commons.*
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.parcelize.Parcelize
@@ -76,8 +65,11 @@ data class Submission(
     @Json(name = "author_flair_css_class")
     val authorFlairCssClass: String?,
 
+    @Json(name = "author_flair_richtext")
+    val authorFlairRichtext: List<FlairRichtext>?,
+
     @Json(name = "author_flair_text")
-    val authorFlairText: String?,
+    val authorFlairtext: String?,
 
     @Json(name = "author_flair_text_color")
     val authorFlairTextColor: String?,
@@ -123,6 +115,9 @@ data class Submission(
 
     @Json(name = "link_flair_css_class")
     val linkFlairCssClass: String?,
+
+    @Json(name = "link_flair_richtext")
+    val linkFlairRichtext: List<FlairRichtext>?,
 
     @Json(name = "link_flair_text")
     val linkFlairText: String?,
@@ -265,4 +260,5 @@ data class Submission(
     @Json(name = "url")
     val url: String
 
-) : Contribution, Votable, Saveable, Created, Editable, Distinguishable, Gildable, Replyable, Parcelable
+) : Contribution, Votable, Saveable, Created, Editable, Distinguishable, Gildable, Replyable,
+    Parcelable

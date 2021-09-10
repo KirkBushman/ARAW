@@ -1,15 +1,9 @@
 package com.kirkbushman.araw.models
 
 import com.kirkbushman.araw.http.EnvelopedCommentDataListing
+import com.kirkbushman.araw.models.base.*
+import com.kirkbushman.araw.models.commons.FlairRichtext
 import com.kirkbushman.araw.models.commons.Gildings
-import com.kirkbushman.araw.models.base.CommentData
-import com.kirkbushman.araw.models.base.Created
-import com.kirkbushman.araw.models.base.Distinguishable
-import com.kirkbushman.araw.models.base.Editable
-import com.kirkbushman.araw.models.base.Gildable
-import com.kirkbushman.araw.models.base.Replyable
-import com.kirkbushman.araw.models.base.Saveable
-import com.kirkbushman.araw.models.base.Votable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.parcelize.Parcelize
@@ -119,6 +113,27 @@ data class Comment(
 
     @Json(name = "author")
     val author: String,
+
+    @Json(name = "author_flair_background_color")
+    val authorFlairBackgroundColor: String?,
+
+    @Json(name = "author_flair_css_class")
+    val authorFlairCssClass: String?,
+
+    @Json(name = "author_flair_richtext")
+    val authorFlairRichtext: List<FlairRichtext>?,
+
+    @Json(name = "author_flair_text")
+    val authorFlairtext: String?,
+
+    @Json(name = "author_flair_text_color")
+    val authorFlairTextColor: String?,
+
+    @Json(name = "author_flair_template_id")
+    val authorFlairTemplateId: String?,
+
+    @Json(name = "author_flair_type")
+    val authorFlairType: String?,
 
     @Json(name = "body")
     val body: String,
