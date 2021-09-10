@@ -129,7 +129,7 @@ data class Submission(
     val linkFlairCssClass: String?,
 
     @Json(name = "link_flair_richtext")
-    val linkFlairRichtext: List<FlairRichtext>,
+    val linkFlairRichtext: List<FlairRichtext>?,
 
     @Json(name = "link_flair_text")
     val linkFlairText: String?,
