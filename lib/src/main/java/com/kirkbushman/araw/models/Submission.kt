@@ -1,6 +1,7 @@
 package com.kirkbushman.araw.models
 
 import android.os.Parcelable
+import com.kirkbushman.araw.models.commons.FlairRichtext
 import com.kirkbushman.araw.models.commons.Gildings
 import com.kirkbushman.araw.models.commons.Media
 import com.kirkbushman.araw.models.commons.MediaEmbed
@@ -76,6 +77,9 @@ data class Submission(
     @Json(name = "author_flair_css_class")
     val authorFlairCssClass: String?,
 
+    @Json(name = "author_flair_richtext")
+    val authorFlairRichtext: List<FlairRichtext>?,
+
     @Json(name = "author_flair_text")
     val authorFlairText: String?,
 
@@ -123,6 +127,9 @@ data class Submission(
 
     @Json(name = "link_flair_css_class")
     val linkFlairCssClass: String?,
+
+    @Json(name = "link_flair_richtext")
+    val linkFlairRichtext: List<FlairRichtext>?,
 
     @Json(name = "link_flair_text")
     val linkFlairText: String?,
