@@ -26,7 +26,7 @@ class UserSearchActivity : BaseSearchControllerActivity2<RedditorData>() {
 
     override fun fetchItem(client: RedditClient, query: String): Collection<RedditorData> {
 
-        val fetcher = client.searchClient.fetchRedditorSearch(query, showAll = true)
+        val fetcher = client.searchClient.createRedditorSearchFetcher(query, showAll = true)
         return fetcher.fetchNext() ?: emptyList()
     }
 }

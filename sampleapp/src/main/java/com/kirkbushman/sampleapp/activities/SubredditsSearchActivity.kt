@@ -87,7 +87,7 @@ class SubredditsSearchActivity : BaseActivity() {
                 DoAsync(
                     doWork = {
 
-                        val fetcher = client.searchClient.fetchSubredditsSearch(query)
+                        val fetcher = client.searchClient.createSubredditsSearchFetcher(query)
 
                         data.clear()
                         data.addAll(fetcher.fetchNext() ?: emptyList())

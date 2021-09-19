@@ -24,6 +24,16 @@ class SubredditsClient(
 
 ) {
 
+    companion object {
+
+        const val SUBREDDIT_INFO_BANNED = "banned"
+        const val SUBREDDIT_INFO_WIKIBANNED = "wikibanned"
+        const val SUBREDDIT_INFO_MUTED = "muted"
+        const val SUBREDDIT_INFO_CONTRIBUTORS = "contributors"
+        const val SUBREDDIT_INFO_WIKICONTRIBUTORS = "wikicontributors"
+        const val SUBREDDIT_INFO_MODERATORS = "moderators"
+    }
+
     @WorkerThread
     fun subreddit(subreddit: String): SubredditData? {
 
@@ -71,7 +81,7 @@ class SubredditsClient(
         val authMap = getHeaderMap()
         val req = api.subredditInfo(
             subreddit = subredditName,
-            where = "banned",
+            where = SUBREDDIT_INFO_BANNED,
             rawJson = (if (disableLegacyEncoding) 1 else null),
             header = authMap
         )
@@ -95,7 +105,7 @@ class SubredditsClient(
         val authMap = getHeaderMap()
         val req = api.subredditInfo(
             subreddit = subredditName,
-            where = "muted",
+            where = SUBREDDIT_INFO_MUTED,
             rawJson = (if (disableLegacyEncoding) 1 else null),
             header = authMap
         )
@@ -119,7 +129,7 @@ class SubredditsClient(
         val authMap = getHeaderMap()
         val req = api.subredditInfo(
             subreddit = subredditName,
-            where = "wikibanned",
+            where = SUBREDDIT_INFO_WIKIBANNED,
             rawJson = (if (disableLegacyEncoding) 1 else null),
             header = authMap
         )
@@ -143,7 +153,7 @@ class SubredditsClient(
         val authMap = getHeaderMap()
         val req = api.subredditInfo(
             subreddit = subredditName,
-            where = "contributors",
+            where = SUBREDDIT_INFO_CONTRIBUTORS,
             rawJson = (if (disableLegacyEncoding) 1 else null),
             header = authMap
         )
@@ -167,7 +177,7 @@ class SubredditsClient(
         val authMap = getHeaderMap()
         val req = api.subredditInfo(
             subreddit = subredditName,
-            where = "wikicontributors",
+            where = SUBREDDIT_INFO_WIKICONTRIBUTORS,
             rawJson = (if (disableLegacyEncoding) 1 else null),
             header = authMap
         )
@@ -191,7 +201,7 @@ class SubredditsClient(
         val authMap = getHeaderMap()
         val req = api.subredditInfo(
             subreddit = subredditName,
-            where = "moderators",
+            where = SUBREDDIT_INFO_MODERATORS,
             rawJson = (if (disableLegacyEncoding) 1 else null),
             header = authMap
         )
@@ -251,83 +261,111 @@ class SubredditsClient(
         return res.body()
     }
 
-    fun frontpage(
-
-        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
-        limit: Long = Fetcher.DEFAULT_LIMIT,
+    fun createFrontpageSubmissionsFetcher(
 
         sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD
+        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD,
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): SubmissionsFetcher {
 
-        return SubmissionsFetcher(
-            api = api,
-            subreddit = "",
-            limit = limit,
+        return createSubmissionsFetcher(
+            subreddit = SubmissionsFetcher.SUBMISSIONS_FRONTPAGE,
             sorting = sorting,
             timePeriod = timePeriod,
-            disableLegacyEncoding = disableLegacyEncoding,
-            getHeader = getHeaderMap
+            limit = limit
         )
     }
 
-    fun all(
-
-        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
-        limit: Long = Fetcher.DEFAULT_LIMIT,
+    fun createAllSubmissionsFetcher(
 
         sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD
+        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD,
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): SubmissionsFetcher {
 
-        return SubmissionsFetcher(
-
-            api = api,
-            subreddit = "all",
-            limit = limit,
+        return createSubmissionsFetcher(
+            subreddit = SubmissionsFetcher.SUBMISSIONS_ALL,
             sorting = sorting,
             timePeriod = timePeriod,
-            disableLegacyEncoding = disableLegacyEncoding,
-            getHeader = getHeaderMap
+            limit = limit
         )
     }
 
-    fun popular(
-
-        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
-        limit: Long = Fetcher.DEFAULT_LIMIT,
+    fun createPopularSubmissionsFetcher(
 
         sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD
+        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD,
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): SubmissionsFetcher {
 
-        return SubmissionsFetcher(
-            api = api,
-            subreddit = "popular",
-            limit = limit,
+        return createSubmissionsFetcher(
+            subreddit = SubmissionsFetcher.SUBMISSIONS_POPULAR,
             sorting = sorting,
             timePeriod = timePeriod,
-            disableLegacyEncoding = disableLegacyEncoding,
-            getHeader = getHeaderMap
+            limit = limit
         )
     }
 
-    fun friends(
+    fun createFriendsSubmissionsFetcher(
+
+        sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
+        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD,
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT
+
+    ): SubmissionsFetcher {
+
+        return createSubmissionsFetcher(
+            subreddit = SubmissionsFetcher.SUBMISSIONS_FRIENDS,
+            sorting = sorting,
+            timePeriod = timePeriod,
+            limit = limit
+        )
+    }
+
+    fun createOriginalSubmissionsFetcher(
+
+        sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
+        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD,
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT
+
+    ): SubmissionsFetcher {
+
+        return createSubmissionsFetcher(
+            subreddit = SubmissionsFetcher.SUBMISSIONS_ORIGINAL,
+            sorting = sorting,
+            timePeriod = timePeriod,
+            limit = limit
+        )
+    }
+
+    fun createSubmissionsFetcher(
+
+        subreddit: String,
+
+        sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
+        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD,
 
         @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
         limit: Long = Fetcher.DEFAULT_LIMIT,
-
-        sorting: SubmissionsSorting = SubmissionsFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD
 
     ): SubmissionsFetcher {
 
         return SubmissionsFetcher(
             api = api,
-            subreddit = "friends",
+            subreddit = subreddit,
             limit = limit,
             sorting = sorting,
             timePeriod = timePeriod,

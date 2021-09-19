@@ -46,16 +46,16 @@ class SearchClient(
         return res.body()
     }
 
-    fun submissionsSearch(
+    fun createSubmissionsSearchFetcher(
 
         subreddit: String?,
         query: String,
 
-        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
-        limit: Long = Fetcher.DEFAULT_LIMIT,
-
         sorting: SearchSorting = SubmissionsSearchFetcher.DEFAULT_SORTING,
         timePeriod: TimePeriod = SubmissionsSearchFetcher.DEFAULT_TIMEPERIOD,
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
 
         showAll: Boolean = false,
         restrictToSubreddit: Boolean = false
@@ -76,15 +76,15 @@ class SearchClient(
         )
     }
 
-    fun fetchSubredditsSearch(
+    fun createSubredditsSearchFetcher(
 
         query: String,
 
-        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
-        limit: Long = Fetcher.DEFAULT_LIMIT,
-
         sorting: SubredditSearchSorting = SubredditsSearchFetcher.DEFAULT_SORTING,
         timePeriod: TimePeriod = SubredditsSearchFetcher.DEFAULT_TIMEPERIOD,
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
 
         showAll: Boolean = false
 
@@ -102,15 +102,15 @@ class SearchClient(
         )
     }
 
-    fun fetchRedditorSearch(
+    fun createRedditorSearchFetcher(
 
         query: String,
 
-        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
-        limit: Long = Fetcher.DEFAULT_LIMIT,
-
         sorting: RedditorSearchSorting = RedditorSearchFetcher.DEFAULT_SORTING,
         timePeriod: TimePeriod = RedditorSearchFetcher.DEFAULT_TIMEPERIOD,
+
+        @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
+        limit: Long = Fetcher.DEFAULT_LIMIT,
 
         showAll: Boolean = false
 

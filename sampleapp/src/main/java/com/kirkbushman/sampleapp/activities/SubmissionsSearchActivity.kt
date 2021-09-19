@@ -127,7 +127,7 @@ class SubmissionsSearchActivity : BaseActivity() {
             DoAsync(
                 doWork = {
 
-                    val fetcher = client.searchClient.submissionsSearch(
+                    val fetcher = client.searchClient.createSubmissionsSearchFetcher(
                         subreddit = if (allSubs) null else subreddit,
                         query = query,
                         restrictToSubreddit = true

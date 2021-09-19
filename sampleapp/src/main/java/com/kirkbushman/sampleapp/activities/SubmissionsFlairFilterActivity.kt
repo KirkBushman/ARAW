@@ -34,7 +34,7 @@ class SubmissionsFlairFilterActivity : BaseSearchPrint2Activity<List<Submission>
 
         val fetcher = client
             .searchClient
-            .submissionsSearch(
+            .createSubmissionsSearchFetcher(
                 subreddit = query,
                 query = "flair_name:\"$query2\"",
                 sorting = SearchSorting.NEW,

@@ -26,6 +26,12 @@ class SubmissionsFetcher(
 
     companion object {
 
+        const val SUBMISSIONS_FRONTPAGE = ""
+        const val SUBMISSIONS_ALL = "all"
+        const val SUBMISSIONS_POPULAR = "popular"
+        const val SUBMISSIONS_FRIENDS = "friends"
+        const val SUBMISSIONS_ORIGINAL = "original"
+
         val DEFAULT_SORTING = SubmissionsSorting.HOT
         val DEFAULT_TIMEPERIOD = TimePeriod.LAST_DAY
     }

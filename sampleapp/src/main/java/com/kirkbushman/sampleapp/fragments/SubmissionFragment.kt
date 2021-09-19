@@ -113,10 +113,10 @@ class SubmissionFragment : BaseControllerFragment<Submission, SubmissionControll
     override fun fetchItem(client: RedditClient?): Collection<Submission>? {
 
         fetcher = when (passedTag) {
-            TAG_FRONTPAGE -> client?.subredditsClient?.frontpage()
-            TAG_ALL -> client?.subredditsClient?.all()
-            TAG_POPULAR -> client?.subredditsClient?.popular()
-            TAG_FRIENDS -> client?.subredditsClient?.friends()
+            TAG_FRONTPAGE -> client?.subredditsClient?.createFrontpageSubmissionsFetcher()
+            TAG_ALL -> client?.subredditsClient?.createAllSubmissionsFetcher()
+            TAG_POPULAR -> client?.subredditsClient?.createPopularSubmissionsFetcher()
+            TAG_FRIENDS -> client?.subredditsClient?.createFriendsSubmissionsFetcher()
 
             else -> null
         }
