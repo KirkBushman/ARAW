@@ -16,7 +16,7 @@ buildscript {
         java_target = JavaVersion.VERSION_11
         jvm_target = '11'
 
-        kotlin_ver = '1.5.30'
+        kotlin_ver = '1.5.31'
         coroutines_ver = '1.5.2'
 
         hilt_ver = "2.38.1"
