@@ -28,7 +28,7 @@ buildscript {
         ax_annot_ver = '1.3.0'
         ax_browser_ver = '1.4.0'
 
-        constr_ver = '2.1.1'
+        constr_ver = '2.1.2'
 
         retrofit_ver = '2.9.0'
         moshi_ver = '1.12.0'
