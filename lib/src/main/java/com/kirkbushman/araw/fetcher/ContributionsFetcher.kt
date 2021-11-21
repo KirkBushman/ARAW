@@ -105,6 +105,14 @@ class ContributionsFetcher(
             ?.map { it.data }
     }
 
+    fun getUsername(): String? {
+        return username
+    }
+
+    fun getWhere(): String {
+        return where
+    }
+
     fun getSorting(): ContributionsSorting = sorting
     fun setSorting(newSorting: ContributionsSorting) {
         sorting = newSorting

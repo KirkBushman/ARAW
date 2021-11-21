@@ -57,4 +57,8 @@ class SubredditsFetcher(
             ?.children
             ?.map { it.data }
     }
+
+    fun getWhere(): String {
+        return where
+    }
 }

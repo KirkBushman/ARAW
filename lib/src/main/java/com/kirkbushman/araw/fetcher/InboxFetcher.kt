@@ -60,4 +60,8 @@ class InboxFetcher(
             ?.children
             ?.map { it.data }
     }
+
+    fun getWhere(): String {
+        return where
+    }
 }

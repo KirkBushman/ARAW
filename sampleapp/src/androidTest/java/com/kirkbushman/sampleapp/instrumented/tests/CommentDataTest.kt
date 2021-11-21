@@ -39,7 +39,7 @@ class CommentDataTest {
         client = RedditClient(bearer, true)
 
         val randomSub = subreddits.random()
-        val fetcher = client!!.contributionsClient.submissions(subreddit = randomSub, limit = LIMIT)
+        val fetcher = client!!.contributionsClient.createSubmissionsFetcher(subreddit = randomSub, limit = LIMIT)
 
         val addendum = fetcher.fetchNext()
         submissions.addAll(addendum ?: emptyList())
@@ -53,7 +53,7 @@ class CommentDataTest {
             .maxByOrNull { it.numComments }
             ?: throw IllegalAccessError("No submission found!")
 
-        val commentsFetcher = client!!.contributionsClient.comments(selectedSubmission.id)
+        val commentsFetcher = client!!.contributionsClient.createCommentsFetcher(selectedSubmission.id)
         val comments = commentsFetcher.fetchNext() ?: emptyList()
 
         val linearList = comments.toLinearList()

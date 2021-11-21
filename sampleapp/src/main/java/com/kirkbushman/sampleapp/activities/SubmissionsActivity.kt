@@ -99,11 +99,11 @@ class SubmissionsActivity : BaseSearchControllerActivity<Submission, SubmissionC
 
     override fun fetchItem(client: RedditClient, query: String): Collection<Submission>? {
 
-        fetcher = client.contributionsClient.submissions(query, limit = 100L)
+        fetcher = client.contributionsClient.createSubmissionsFetcher(query, limit = 100L)
         return fetcher?.fetchNext()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_sorting_time, menu)
         return true
     }

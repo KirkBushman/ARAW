@@ -441,21 +441,21 @@ class ApiDetailActivity : BaseActivity() {
 
             API_SUB_COMMENT -> {
                 val submissionId = getRandomSubmissionIdFromRandomSubreddit()
-                val fetcher = client.contributionsClient.comments(submissionId)
+                val fetcher = client.contributionsClient.createCommentsFetcher(submissionId)
                 val comments = fetcher.fetchNext()
                 comments?.random().toString()
             }
 
             API_SUB_SUBMISSIONS -> {
                 val subreddit = getRandomSubredditName()
-                val fetcher = client.contributionsClient.submissions(subreddit)
+                val fetcher = client.contributionsClient.createSubmissionsFetcher(subreddit)
                 val submissions = fetcher.fetchNext()
                 submissions.toString()
             }
 
             API_SUB_COMMENTS -> {
                 val submissionId = getRandomSubmissionIdFromRandomSubreddit()
-                val fetcher = client.contributionsClient.comments(submissionId)
+                val fetcher = client.contributionsClient.createCommentsFetcher(submissionId)
                 val comments = fetcher.fetchNext()
                 comments.toString()
             }
@@ -464,7 +464,7 @@ class ApiDetailActivity : BaseActivity() {
                 val subreddits = getRandomSubredditNames()
                 val fetcher = client
                     .contributionsClient
-                    .multiredditSubmissions(*subreddits, limit = 100)
+                    .createSubmissionsFetcher(*subreddits, limit = 100)
 
                 val submissions = fetcher.fetchNext()
                 submissions.toString()
@@ -839,7 +839,7 @@ class ApiDetailActivity : BaseActivity() {
 
     private fun getRandomSubmissionIdFromRandomSubreddit(): String {
         val subredditName = getRandomSubredditName()
-        val fetcher = client.contributionsClient.submissions(subredditName)
+        val fetcher = client.contributionsClient.createSubmissionsFetcher(subredditName)
         val submissions = fetcher.fetchNext()
 
         return submissions
@@ -850,7 +850,7 @@ class ApiDetailActivity : BaseActivity() {
 
     private fun getRandomUserFromRandomSubreddit(): String {
         val subredditName = getRandomSubredditName()
-        val fetcher = client.contributionsClient.submissions(subredditName)
+        val fetcher = client.contributionsClient.createSubmissionsFetcher(subredditName)
         val submissions = fetcher.fetchNext()
 
         return submissions

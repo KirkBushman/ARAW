@@ -32,7 +32,7 @@ class FetcherTest {
 
     @Test
     fun testFetcher() {
-        val fetcher = client?.subredditsClient?.all(limit = LIMIT)
+        val fetcher = client?.subredditsClient?.createAllSubmissionsFetcher(limit = LIMIT)
 
         assertTrue("Starting index should be null", fetcher?.getPageNum() == null)
         assertTrue("Initially hasStarted should not be true", !(fetcher?.hasStarted() ?: false))

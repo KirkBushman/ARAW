@@ -83,6 +83,10 @@ class SubmissionsFetcher(
             ?.toList()
     }
 
+    fun getSubreddit(): String {
+        return subreddit
+    }
+
     fun getSorting(): SubmissionsSorting = sorting
     fun setSorting(newSorting: SubmissionsSorting) {
         sorting = newSorting

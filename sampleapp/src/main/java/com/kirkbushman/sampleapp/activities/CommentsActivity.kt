@@ -146,7 +146,7 @@ class CommentsActivity : BaseActivity() {
                         null
                     }
 
-                    fetcher = client.contributionsClient.comments(
+                    fetcher = client.contributionsClient.createCommentsFetcher(
                         submissionId = submissionId,
                         focusedCommentId = sanitizedCommentId
                     )
@@ -168,7 +168,7 @@ class CommentsActivity : BaseActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_sorting_comments, menu)
         return true
     }

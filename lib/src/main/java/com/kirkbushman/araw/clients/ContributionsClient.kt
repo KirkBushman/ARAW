@@ -50,7 +50,7 @@ class ContributionsClient(
         return res.body()?.data?.children?.firstOrNull()?.data
     }
 
-    fun submissions(
+    fun createSubmissionsFetcher(
 
         subreddit: SubredditData,
 
@@ -62,7 +62,7 @@ class ContributionsClient(
 
     ): SubmissionsFetcher {
 
-        return submissions(
+        return createSubmissionsFetcher(
             subreddit = subreddit.displayName,
             limit = limit,
             sorting = sorting,
@@ -70,7 +70,7 @@ class ContributionsClient(
         )
     }
 
-    fun submissions(
+    fun createSubmissionsFetcher(
 
         subreddit: String,
 
@@ -93,7 +93,7 @@ class ContributionsClient(
         )
     }
 
-    fun multiredditSubmissions(
+    fun createSubmissionsFetcher(
 
         vararg subreddits: String,
 
@@ -134,7 +134,7 @@ class ContributionsClient(
         return res.body()?.data?.children?.firstOrNull()?.data
     }
 
-    fun comments(
+    fun createCommentsFetcher(
 
         submissionId: String,
         focusedCommentId: String? = null,

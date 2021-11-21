@@ -76,7 +76,7 @@ class UserlessFetchTest {
 
         try {
 
-            val fetcher = client?.subredditsClient?.frontpage(limit = LIMIT)
+            val fetcher = client?.subredditsClient?.createFrontpageSubmissionsFetcher(limit = LIMIT)
             val submissions = fetcher?.fetchNext()
             assertNotEquals("Assert that submissions from /r/frontpage are not null", null, submissions)
             assertTrue(
@@ -98,7 +98,7 @@ class UserlessFetchTest {
 
         try {
 
-            val fetcher = client?.subredditsClient?.all(limit = LIMIT)
+            val fetcher = client?.subredditsClient?.createAllSubmissionsFetcher(limit = LIMIT)
             val submissions = fetcher?.fetchNext()
             assertNotEquals("Assert that submissions from /r/all are not null", null, submissions)
             assertTrue(
@@ -122,7 +122,7 @@ class UserlessFetchTest {
 
             subreddits.forEach {
 
-                val fetcher = client?.contributionsClient?.submissions(it, limit = LIMIT)
+                val fetcher = client?.contributionsClient?.createSubmissionsFetcher(it, limit = LIMIT)
                 val submissions = fetcher?.fetchNext()
                 assertNotEquals("Assert that submissions from /r/$it are not null", null, submissions)
                 assertTrue(
@@ -165,7 +165,7 @@ class UserlessFetchTest {
 
         try {
 
-            val fetcher = client?.messagesClient?.sent(limit = LIMIT)
+            val fetcher = client?.messagesClient?.createSentInboxFetcher(limit = LIMIT)
             val messages = fetcher?.fetchNext()
             assertNotEquals("Assert that messages in inbox are not null", null, messages)
             assertTrue("Assert that messages in inbox are not empty", messages?.isNotEmpty() ?: false)
@@ -184,7 +184,7 @@ class UserlessFetchTest {
 
         try {
 
-            val fetcher = client?.messagesClient?.inbox(limit = LIMIT)
+            val fetcher = client?.messagesClient?.createOverviewInboxFetcher(limit = LIMIT)
             val messages = fetcher?.fetchNext()
             assertNotEquals("Assert that messages in inbox are not null", null, messages)
             assertTrue("Assert that messages in inbox are not empty", messages?.isNotEmpty() ?: false)
@@ -199,14 +199,14 @@ class UserlessFetchTest {
     @Test
     fun modelsCommentsTest() {
 
-        val fetcher = client?.subredditsClient?.all(limit = LIMIT)
+        val fetcher = client?.subredditsClient?.createAllSubmissionsFetcher(limit = LIMIT)
         val submissions = fetcher?.fetchNext()
 
         val randomSub = submissions?.randomOrNull()
 
         assertNotEquals("Assert that this random submission is not null", null, randomSub)
 
-        val fetcherComm = client?.contributionsClient?.comments(randomSub!!.id)
+        val fetcherComm = client?.contributionsClient?.createCommentsFetcher(randomSub!!.id)
         val comments = fetcherComm?.fetchNext()
 
         assertNotEquals("Assert that comments in submission are not null", null, comments)

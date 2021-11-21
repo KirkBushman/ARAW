@@ -66,6 +66,14 @@ class MultiSubmissionsFetcher(
             ?.toList()
     }
 
+    fun getUsername(): String {
+        return username
+    }
+
+    fun getMultiname(): String {
+        return multiname
+    }
+
     fun getSorting(): SubmissionsSorting = sorting
     fun setSorting(newSorting: SubmissionsSorting) {
         sorting = newSorting

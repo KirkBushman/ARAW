@@ -34,7 +34,7 @@ class SelfAccountInfoActivity : BaseAdapterActivity<SelfContributionsAdapter>() 
         tab.text = adapter.getTitleAtPos(position)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_sorting_time_contrib, menu)
         return true
     }

@@ -7,7 +7,7 @@ import com.kirkbushman.araw.models.base.RedditorData
 import com.kirkbushman.araw.models.enums.RedditorSearchSorting
 import com.kirkbushman.araw.models.enums.TimePeriod
 
-class RedditorSearchFetcher(
+class RedditorsSearchFetcher(
 
     private val api: RedditApi,
     private val query: String,

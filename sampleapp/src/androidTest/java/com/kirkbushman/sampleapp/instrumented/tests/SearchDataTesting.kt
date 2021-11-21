@@ -38,7 +38,7 @@ class SearchDataTesting {
 
         try {
 
-            val fetcher = client?.searchClient?.submissionsSearch(
+            val fetcher = client?.searchClient?.createSubmissionsSearchFetcher(
                 subreddit = "news",
                 query = "news",
                 limit = LIMIT,
@@ -70,7 +70,7 @@ class SearchDataTesting {
 
         try {
 
-            val fetcher = client?.searchClient?.submissionsSearch(
+            val fetcher = client?.searchClient?.createSubmissionsSearchFetcher(
                 subreddit = "news",
                 query = "sakifjewijr3o4jr8fs9dfsadofishadfkjasdhfskaldjfhasdkjlfhsadklfhasdfjksdbcsc7738783",
                 limit = LIMIT,

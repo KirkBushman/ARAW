@@ -3,7 +3,7 @@ package com.kirkbushman.araw.clients
 import androidx.annotation.IntRange
 import com.kirkbushman.araw.RedditApi
 import com.kirkbushman.araw.fetcher.Fetcher
-import com.kirkbushman.araw.fetcher.RedditorSearchFetcher
+import com.kirkbushman.araw.fetcher.RedditorsSearchFetcher
 import com.kirkbushman.araw.fetcher.SubmissionsSearchFetcher
 import com.kirkbushman.araw.fetcher.SubredditsSearchFetcher
 import com.kirkbushman.araw.models.SubredditSearchResult
@@ -106,17 +106,17 @@ class SearchClient(
 
         query: String,
 
-        sorting: RedditorSearchSorting = RedditorSearchFetcher.DEFAULT_SORTING,
-        timePeriod: TimePeriod = RedditorSearchFetcher.DEFAULT_TIMEPERIOD,
+        sorting: RedditorSearchSorting = RedditorsSearchFetcher.DEFAULT_SORTING,
+        timePeriod: TimePeriod = RedditorsSearchFetcher.DEFAULT_TIMEPERIOD,
 
         @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
         limit: Long = Fetcher.DEFAULT_LIMIT,
 
         showAll: Boolean = false
 
-    ): RedditorSearchFetcher {
+    ): RedditorsSearchFetcher {
 
-        return RedditorSearchFetcher(
+        return RedditorsSearchFetcher(
             api = api,
             query = query,
             showAll = showAll,
