@@ -2,8 +2,8 @@ plugins {
     id "com.android.library"
     id "org.jetbrains.kotlin.android"
     id "org.jetbrains.kotlin.plugin.parcelize"
-    id "org.jetbrains.kotlin.kapt"
     id "org.jetbrains.dokka"
+    id "com.google.devtools.ksp"
     id "io.gitlab.arturbosch.detekt"
     id "maven-publish"
 }
@@ -28,17 +28,12 @@ android {
 
     kotlinOptions {
         jvmTarget = jvm_target
-        noReflect = true
     }
 }
 
 kotlin {
     explicitApi()
     explicitApiWarning()
-}
-
-kapt {
-    useBuildCache = true
 }
 
 dokkaHtml {
@@ -76,7 +71,7 @@ dependencies {
 
     implementation "com.squareup.moshi:moshi:$moshi_ver"
     implementation "com.squareup.moshi:moshi-adapters:$moshi_ver"
-    kapt           "com.squareup.moshi:moshi-kotlin-codegen:$moshi_ver"
+    ksp            "com.squareup.moshi:moshi-kotlin-codegen:$moshi_ver"
 
     implementation "com.github.KirkBushman:Android-Reddit-OAuth2:$oauth2_ver"
 }

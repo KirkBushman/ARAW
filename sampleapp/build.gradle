@@ -3,6 +3,7 @@ plugins {
     id "org.jetbrains.kotlin.android"
     id "org.jetbrains.kotlin.plugin.parcelize"
     id "org.jetbrains.kotlin.kapt"
+    id "com.google.devtools.ksp"
     id "dagger.hilt.android.plugin"
     id "io.gitlab.arturbosch.detekt"
 }
@@ -43,7 +44,6 @@ android {
 
     kotlinOptions {
         jvmTarget = jvm_target
-        noReflect = true
     }
 
     /*lintOptions {
@@ -114,7 +114,7 @@ dependencies {
 
     testImplementation "com.squareup.moshi:moshi:$moshi_ver"
     testImplementation "com.squareup.moshi:moshi-adapters:$moshi_ver"
-    kaptTest           "com.squareup.moshi:moshi-kotlin-codegen:$moshi_ver"
+    kspTest            "com.squareup.moshi:moshi-kotlin-codegen:$moshi_ver"
 
     androidTestImplementation "androidx.test:core-ktx:$test_ver"
     androidTestImplementation "androidx.test:runner:$test_ver"

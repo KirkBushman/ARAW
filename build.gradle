@@ -2,7 +2,7 @@
 buildscript {
 
     ext {
-        android_gradle_ver = '7.0.3'
+        android_gradle_ver = '7.0.4'
 
         compile_sdk_ver = 31
         build_tools_ver = '31.0.0'
@@ -16,10 +16,12 @@ buildscript {
         java_target = JavaVersion.VERSION_11
         jvm_target = '11'
 
-        kotlin_ver = '1.5.31'
+        kotlin_ver = '1.6.0'
         coroutines_ver = '1.5.2'
 
-        hilt_ver = "2.40.1"
+        ksp_ver = '1.6.0-1.0.1'
+
+        hilt_ver = "2.40.5"
         ax_hilt_ver = "1.0.0"
 
         ax_core_ver = '1.7.0'
@@ -31,14 +33,14 @@ buildscript {
         constr_ver = '2.1.2'
 
         retrofit_ver = '2.9.0'
-        moshi_ver = '1.12.0'
-        okhttp_ver = '4.9.2'
+        moshi_ver = '1.13.0'
+        okhttp_ver = '4.9.3'
         mdc_ver = '1.4.0'
         epoxy_ver = '4.6.4'
 
         oauth2_ver = '8e57a372a6' // '1.2.2'
 
-        ktlint_ver = '0.43.0'
+        ktlint_ver = '0.43.2'
         detekt_ver = '1.18.1'
 
         test_ver = '1.4.0'
@@ -61,6 +63,7 @@ buildscript {
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_ver"
         classpath "com.android.tools.build:gradle:${android_gradle_ver}"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_ver"
+        classpath "com.google.devtools.ksp:symbol-processing-gradle-plugin:$ksp_ver"
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokka_ver"
         classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$detekt_ver"
     }
