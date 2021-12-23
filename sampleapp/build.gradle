@@ -128,5 +128,5 @@ dependencies {
 
     androidTestImplementation "com.github.KirkBushman:Android-Reddit-OAuth2:$oauth2_ver"
 
-    androidTestUtil 'androidx.test:orchestrator:1.4.0'
+    androidTestUtil 'androidx.test:orchestrator:1.4.1'
 }

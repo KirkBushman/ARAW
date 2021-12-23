@@ -10,14 +10,14 @@ buildscript {
         min_sdk_ver = 21
         compile_sdk_ver = 31
 
-        version_code = 5
-        version_name = "1.1.0-alpha02"
+        version_code = 6
+        version_name = "1.1.0-beta01"
 
         java_target = JavaVersion.VERSION_11
         jvm_target = '11'
 
         kotlin_ver = '1.6.0'
-        coroutines_ver = '1.5.2'
+        coroutines_ver = '1.6.0'
 
         ksp_ver = '1.6.0-1.0.1'
 
@@ -41,17 +41,17 @@ buildscript {
         oauth2_ver = '8e57a372a6' // '1.2.2'
 
         ktlint_ver = '0.43.2'
-        detekt_ver = '1.18.1'
+        detekt_ver = '1.19.0'
 
         test_ver = '1.4.0'
         espresso_ver = '3.4.0'
         junit_ver = '1.1.3'
         leakcanary_ver = '2.7'
-        mockito_ver = '4.1.0'
+        mockito_ver = '4.2.0'
         arch_core_ver = '2.1.0'
         orchestrator_ver = '1.3.0'
 
-        dokka_ver = '1.5.31'
+        dokka_ver = '1.6.0'
     }
 
     repositories {

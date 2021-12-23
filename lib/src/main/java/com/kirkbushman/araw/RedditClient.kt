@@ -13,7 +13,7 @@ import com.kirkbushman.araw.utils.Utils.buildRetrofit
 import com.kirkbushman.auth.models.bearers.TokenBearer
 import retrofit2.Retrofit
 
-class RedditClient @JvmOverloads constructor (
+class RedditClient @JvmOverloads constructor(
 
     private val bearer: TokenBearer,
     private val disableLegacyEncoding: Boolean = false,
