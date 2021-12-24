@@ -61,4 +61,8 @@ class SubredditsFetcher(
     fun getWhere(): String {
         return where
     }
+
+    fun getDisableLegacyEncoding(): Boolean {
+        return disableLegacyEncoding
+    }
 }

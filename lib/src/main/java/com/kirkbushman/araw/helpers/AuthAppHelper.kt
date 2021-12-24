@@ -19,7 +19,10 @@ class AuthAppHelper(
     logging: Boolean = false,
     disableLegacyEncoding: Boolean = false
 
-) : AuthHelper(logging, disableLegacyEncoding) {
+) : AuthHelper(
+    logging = logging,
+    disableLegacyEncoding = disableLegacyEncoding
+) {
 
     override val auth by lazy {
 
@@ -83,7 +86,11 @@ class AuthAppHelper(
         val bearer = auth.authenticate(returnUrl)
         if (bearer != null) {
 
-            return RedditClient(bearer, disableLegacyEncoding, logging)
+            return RedditClient(
+                bearer = bearer,
+                disableLegacyEncoding = disableLegacyEncoding,
+                logging = logging
+            )
         }
 
         return null

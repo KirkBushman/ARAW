@@ -74,4 +74,28 @@ class SubredditsClientTests {
 
         Assert.assertEquals("original", fetcher.getSubreddit())
     }
+
+    @Test
+    fun testDisableLegacyEncoding_coherence() {
+
+        client = SubredditsClient(
+            api = mockApi,
+            disableLegacyEncoding = false,
+            getHeaderMap = { mapOf() }
+        )
+
+        val fetcher = client.createFrontpageSubmissionsFetcher()
+
+        Assert.assertEquals(false, fetcher.getDisableLegacyEncoding())
+
+        client = SubredditsClient(
+            api = mockApi,
+            disableLegacyEncoding = true,
+            getHeaderMap = { mapOf() }
+        )
+
+        val fetcher2 = client.createFrontpageSubmissionsFetcher()
+
+        Assert.assertEquals(true, fetcher2.getDisableLegacyEncoding())
+    }
 }

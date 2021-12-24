@@ -36,7 +36,7 @@ class CommentDataTest {
 
     @Before
     fun onPre() {
-        client = RedditClient(bearer, true)
+        client = RedditClient(bearer, true, true)
 
         val randomSub = subreddits.random()
         val fetcher = client!!.contributionsClient.createSubmissionsFetcher(subreddit = randomSub, limit = LIMIT)

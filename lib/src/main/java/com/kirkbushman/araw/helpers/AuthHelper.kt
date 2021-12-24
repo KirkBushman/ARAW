@@ -37,7 +37,11 @@ abstract class AuthHelper(
             val bearer = getSavedBearer()
             if (bearer != null) {
 
-                return RedditClient(bearer, disableLegacyEncoding, logging)
+                return RedditClient(
+                    bearer = bearer,
+                    disableLegacyEncoding = disableLegacyEncoding,
+                    logging = logging
+                )
             }
         }
 

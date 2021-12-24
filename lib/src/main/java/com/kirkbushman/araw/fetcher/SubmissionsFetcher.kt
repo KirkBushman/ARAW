@@ -104,4 +104,8 @@ class SubmissionsFetcher(
     fun requiresTimePeriod(): Boolean {
         return getSorting().requiresTimePeriod
     }
+
+    fun getDisableLegacyEncoding(): Boolean {
+        return disableLegacyEncoding
+    }
 }
