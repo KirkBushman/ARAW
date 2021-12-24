@@ -16,7 +16,7 @@ buildscript {
         java_target = JavaVersion.VERSION_11
         jvm_target = '11'
 
-        kotlin_ver = '1.6.0'
+        kotlin_ver = '1.6.10'
         coroutines_ver = '1.6.0'
 
         ksp_ver = '1.6.0-1.0.1'
