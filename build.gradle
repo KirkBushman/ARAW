@@ -61,7 +61,7 @@ buildscript {
 
     dependencies {
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_ver"
-        classpath "com.android.tools.build:gradle:${android_gradle_ver}"
+        classpath "com.android.tools.build:gradle:$android_gradle_ver"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_ver"
         classpath "com.google.devtools.ksp:symbol-processing-gradle-plugin:$ksp_ver"
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokka_ver"
