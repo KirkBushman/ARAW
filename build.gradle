@@ -38,7 +38,7 @@ buildscript {
         mdc_ver = '1.4.0'
         epoxy_ver = '4.6.4'
 
-        oauth2_ver = 'a364454d6f' // '1.2.2'
+        oauth2_ver = 'v1.2.2' // '1.2.2'
 
         ktlint_ver = '0.42.1'
         detekt_ver = '1.19.0'
