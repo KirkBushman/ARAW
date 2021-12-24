@@ -19,7 +19,7 @@ buildscript {
         kotlin_ver = '1.6.0'
         coroutines_ver = '1.6.0'
 
-        ksp_ver = '1.6.0-1.0.1'
+        ksp_ver = '1.6.10-1.0.2'
 
         hilt_ver = "2.40.5"
         ax_hilt_ver = "1.0.0"
