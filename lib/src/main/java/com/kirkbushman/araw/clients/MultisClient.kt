@@ -271,6 +271,7 @@ class MultisClient(
             multiname = multiname,
             subname = subname,
             model = "{\"name\":\"$subname\"}",
+            rawJson = (if (disableLegacyEncoding) 1 else null),
             header = authMap
         )
 

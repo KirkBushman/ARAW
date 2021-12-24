@@ -220,7 +220,7 @@ class ContributionsClient(
     @WorkerThread
     fun trendingSubreddits(): TrendingSubreddits? {
 
-        val req = api.trendingSubreddits()
+        val req = api.trendingSubreddits(rawJson = (if (disableLegacyEncoding) 1 else null))
         val res = req.execute()
 
         if (!res.isSuccessful) {

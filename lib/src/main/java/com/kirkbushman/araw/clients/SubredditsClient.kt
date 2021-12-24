@@ -534,6 +534,7 @@ class SubredditsClient(
             subredditNames = subredditNames?.joinToString(separator = ","),
             action = if (action) "sub" else "unsub",
             skipInitialDefaults = if (action) skipInitialDefaults else null,
+            rawJson = (if (disableLegacyEncoding) 1 else null),
             header = authMap
         )
 
