@@ -35,7 +35,7 @@ buildscript {
         retrofit_ver = '2.9.0'
         moshi_ver = '1.13.0'
         okhttp_ver = '4.9.3'
-        mdc_ver = '1.4.0'
+        mdc_ver = '1.5.0'
         epoxy_ver = '4.6.4'
 
         oauth2_ver = 'a364454d6f' // '1.2.2'
