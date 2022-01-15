@@ -25,17 +25,17 @@ buildscript {
         ax_hilt_ver = "1.0.0"
 
         ax_core_ver = '1.7.0'
-        ax_appcompat_ver = '1.4.0'
+        ax_appcompat_ver = '1.4.1'
         ax_activity_ver = '1.4.0'
         ax_annot_ver = '1.3.0'
         ax_browser_ver = '1.4.0'
 
-        constr_ver = '2.1.2'
+        constr_ver = '2.1.3'
 
         retrofit_ver = '2.9.0'
         moshi_ver = '1.13.0'
         okhttp_ver = '4.9.3'
-        mdc_ver = '1.4.0'
+        mdc_ver = '1.5.0'
         epoxy_ver = '4.6.4'
 
         oauth2_ver = 'a364454d6f' // '1.2.2'
@@ -51,7 +51,7 @@ buildscript {
         arch_core_ver = '2.1.0'
         orchestrator_ver = '1.3.0'
 
-        dokka_ver = '1.6.0'
+        dokka_ver = '1.6.10'
     }
 
     repositories {
