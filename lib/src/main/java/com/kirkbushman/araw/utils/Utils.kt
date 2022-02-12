@@ -11,10 +11,7 @@ import com.kirkbushman.araw.http.EnvelopedRedditor
 import com.kirkbushman.araw.http.EnvelopedSubmission
 import com.kirkbushman.araw.http.EnvelopedSubreddit
 import com.kirkbushman.araw.http.base.EnvelopeKind
-import com.kirkbushman.araw.models.PrivateSubreddit
-import com.kirkbushman.araw.models.Redditor
-import com.kirkbushman.araw.models.Subreddit
-import com.kirkbushman.araw.models.SuspendedRedditor
+import com.kirkbushman.araw.models.*
 import com.kirkbushman.araw.models.base.RedditorData
 import com.kirkbushman.araw.models.base.SubredditData
 import com.squareup.moshi.Moshi
@@ -58,8 +55,8 @@ object Utils {
             )
             .add(
                 PolymorphicJsonAdapterFactory.of(SubredditData::class.java, "subreddit_type")
-                    .withSubtype(Subreddit::class.java, "gold_only")
-                    .withSubtype(Subreddit::class.java, "gold_restricted")
+                    .withSubtype(PremiumSubreddit::class.java, "gold_only")
+                    .withSubtype(PremiumSubreddit::class.java, "gold_restricted")
                     .withSubtype(Subreddit::class.java, "archived")
                     .withSubtype(Subreddit::class.java, "public")
                     .withSubtype(Subreddit::class.java, "restricted")
