@@ -21,7 +21,7 @@ buildscript {
 
         ksp_ver = '1.6.10-1.0.2'
 
-        hilt_ver = "2.40.5"
+        hilt_ver = "2.41"
         ax_hilt_ver = "1.0.0"
 
         ax_core_ver = '1.7.0'
