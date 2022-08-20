@@ -18,16 +18,13 @@ abstract class BaseController<T, C : BaseCallback>(private val callback: C?) : E
     }
 
     override fun buildModels() {
-
         if (items.isEmpty()) {
-
             empty {
                 id("empty_items")
             }
         }
 
         items.forEachIndexed { index, it ->
-
             itemModel(index, it, callback)
         }
     }

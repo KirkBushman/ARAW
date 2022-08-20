@@ -28,7 +28,6 @@ data class Images(
     }
 
     override fun equals(other: Any?): Boolean {
-
         if (other == null) {
             return false
         }

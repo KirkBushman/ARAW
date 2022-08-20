@@ -17,7 +17,6 @@ class SubredditSearchController(
 ) : EpoxyController() {
 
     interface SubredditCallback : BaseCallback {
-
         fun subscribeClick(index: Int)
     }
 
@@ -36,7 +35,6 @@ class SubredditSearchController(
     }
 
     override fun buildModels() {
-
         if (data.isEmpty() && searchResult == null) {
             empty {
                 id("empty_model")
@@ -44,7 +42,6 @@ class SubredditSearchController(
         }
 
         data.forEachIndexed { index, it ->
-
             when (it) {
 
                 is Subreddit ->
@@ -75,7 +72,6 @@ class SubredditSearchController(
 
         if (searchResult != null) {
             searchResult!!.subreddits.forEach {
-
                 subreddit {
                     id(it.name)
                     subreddit(it.name)

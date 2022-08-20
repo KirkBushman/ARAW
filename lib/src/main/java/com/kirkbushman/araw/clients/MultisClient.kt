@@ -30,7 +30,6 @@ class MultisClient(
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): MultiSubmissionsFetcher {
-
         return createMultiSubmissionsFetcher(
             username = multi.ownerName,
             multiname = multi.name,
@@ -52,7 +51,6 @@ class MultisClient(
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): MultiSubmissionsFetcher {
-
         return MultiSubmissionsFetcher(
             api = api,
             username = username,
@@ -91,7 +89,6 @@ class MultisClient(
 
     @WorkerThread
     fun myMultis(): List<Multi>? {
-
         val authMap = getHeaderMap()
         val req = api.myMultis(
             rawJson = (if (disableLegacyEncoding) 1 else null),
@@ -108,7 +105,6 @@ class MultisClient(
 
     @WorkerThread
     fun redditorMultis(username: String): List<Multi>? {
-
         val authMap = getHeaderMap()
         val req = api.redditorMultis(
             username = username,
@@ -130,7 +126,6 @@ class MultisClient(
         multi: Multi
 
     ): Boolean {
-
         return deleteMulti(
             username = multi.ownerName,
             multiname = multi.name
@@ -144,7 +139,6 @@ class MultisClient(
         multiname: String
 
     ): Boolean {
-
         val authMap = getHeaderMap()
         val req = api.deleteMulti(
             username = username,
@@ -163,7 +157,6 @@ class MultisClient(
         multi: Multi
 
     ): MultiDescription? {
-
         return multiDescription(
             username = multi.ownerName,
             multiname = multi.name
@@ -177,7 +170,6 @@ class MultisClient(
         multiname: String
 
     ): MultiDescription? {
-
         val authMap = getHeaderMap()
         val req = api.multiDescription(
             username = username,
@@ -201,7 +193,6 @@ class MultisClient(
         description: String
 
     ): Boolean {
-
         return setMultiDescription(
             username = multi.ownerName,
             multiname = multi.name,
@@ -217,7 +208,6 @@ class MultisClient(
         description: String
 
     ): Boolean {
-
         val authMap = getHeaderMap()
         val req = api.setMultiDescription(
             username = username,
@@ -238,7 +228,6 @@ class MultisClient(
         subname: String
 
     ): MultiSub? {
-
         val authMap = getHeaderMap()
         val req = api.multiSubreddit(
             username = username,
@@ -264,7 +253,6 @@ class MultisClient(
         subname: String
 
     ): MultiSub? {
-
         val authMap = getHeaderMap()
         val req = api.addSubredditToMulti(
             username = username,
@@ -291,7 +279,6 @@ class MultisClient(
         subname: String
 
     ): Boolean {
-
         val authMap = getHeaderMap()
         val req = api.removeSubredditToMulti(
             username = username,

@@ -21,7 +21,6 @@ data class SubmissionPreview(
 ) : Parcelable {
 
     fun id(): String? {
-
         if (images.isEmpty()) {
             return null
         }
@@ -30,7 +29,6 @@ data class SubmissionPreview(
     }
 
     fun source(): ImageDetail? {
-
         if (images.isEmpty()) {
             return null
         }
@@ -39,7 +37,6 @@ data class SubmissionPreview(
     }
 
     fun lowerRes(): ImageDetail? {
-
         if (images.isEmpty()) {
             return null
         }
@@ -48,7 +45,6 @@ data class SubmissionPreview(
     }
 
     fun higherRes(): ImageDetail? {
-
         if (images.isEmpty()) {
             return null
         }
@@ -57,7 +53,6 @@ data class SubmissionPreview(
     }
 
     fun variants(): ImageVariants? {
-
         if (images.isEmpty()) {
             return null
         }

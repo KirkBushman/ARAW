@@ -26,7 +26,6 @@ class SearchClient(
         includeOver18: Boolean? = null,
         includeUnadvertisable: Boolean? = null
     ): SubredditSearchResult? {
-
         val authMap = getHeaderMap()
         val req = api.searchSubreddits(
             query = query,
@@ -61,7 +60,6 @@ class SearchClient(
         restrictToSubreddit: Boolean = false
 
     ): SubmissionsSearchFetcher {
-
         return SubmissionsSearchFetcher(
             api = api,
             subreddit = subreddit,
@@ -89,7 +87,6 @@ class SearchClient(
         showAll: Boolean = false
 
     ): SubredditsSearchFetcher {
-
         return SubredditsSearchFetcher(
             api = api,
             query = query,
@@ -115,7 +112,6 @@ class SearchClient(
         showAll: Boolean = false
 
     ): RedditorsSearchFetcher {
-
         return RedditorsSearchFetcher(
             api = api,
             query = query,

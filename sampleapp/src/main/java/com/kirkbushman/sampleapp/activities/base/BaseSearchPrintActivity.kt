@@ -33,7 +33,6 @@ abstract class BaseSearchPrintActivity<T> : BaseActivity() {
         binding.editSearch.hint = getString(hintTextRes())
 
         binding.bttnSearch.setOnClickListener {
-
             val searchQuery = binding.editSearch.text.toString().trim()
             if (searchQuery.isNotEmpty()) {
 

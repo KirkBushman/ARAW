@@ -11,10 +11,10 @@ import com.kirkbushman.sampleapp.models.submission
 class SubmissionController(
 
     callback: SubmissionCallback
+
 ) : BaseController<Submission, SubmissionController.SubmissionCallback>(callback) {
 
     interface SubmissionCallback : BaseCallback {
-
         fun onUpvoteClick(index: Int)
         fun onNoneClick(index: Int)
         fun onDownClick(index: Int)
@@ -26,7 +26,6 @@ class SubmissionController(
     }
 
     override fun itemModel(index: Int, it: Submission, callback: SubmissionCallback?) {
-
         submission {
             id(it.id)
             subredditText(it.subreddit)
@@ -46,7 +45,6 @@ class SubmissionController(
 }
 
 fun getTaggedTitle(submission: Submission): String {
-
     var out = ""
 
     if (submission.vote != Vote.NONE) {

@@ -11,7 +11,6 @@ object RandomUtil {
     private val charPool: List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')
 
     fun randomString(): String {
-
         return (1..RANDOM_STR_LENGTH)
             .map { Random.nextInt(0, charPool.size) }
             .map(charPool::get)
@@ -19,17 +18,14 @@ object RandomUtil {
     }
 
     fun randomInt(): Int {
-
         return Random.nextInt(0, RANDOM_INT_LIMIT)
     }
 
     fun randomLong(): Long {
-
         return Random.nextLong(0L, RANDOM_LNG_LIMIT)
     }
 
     fun randomBool(): Boolean {
-
         return Random.nextBoolean()
     }
 }

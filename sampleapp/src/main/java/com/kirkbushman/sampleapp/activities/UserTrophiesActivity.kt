@@ -13,9 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class UserTrophiesActivity : BaseSearchControllerActivity2<Trophy>() {
 
     companion object {
-
         fun start(context: Context) {
-
             val intent = Intent(context, UserTrophiesActivity::class.java)
             context.startActivity(intent)
         }
@@ -28,7 +26,6 @@ class UserTrophiesActivity : BaseSearchControllerActivity2<Trophy>() {
     override val controller by lazy { TrophiesController() }
 
     override fun fetchItem(client: RedditClient, query: String): Collection<Trophy>? {
-
         return client.redditorsClient.trophies(query)
     }
 }

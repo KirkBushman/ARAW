@@ -22,7 +22,6 @@ abstract class AuthHelper(
     }
 
     fun getSavedBearer(): TokenBearer? {
-
         if (auth.hasSavedBearer()) {
             return auth.retrieveSavedBearer()
         }
@@ -31,12 +30,9 @@ abstract class AuthHelper(
     }
 
     fun getSavedRedditClient(): RedditClient? {
-
         if (auth.hasSavedBearer()) {
-
             val bearer = getSavedBearer()
             if (bearer != null) {
-
                 return RedditClient(
                     bearer = bearer,
                     disableLegacyEncoding = disableLegacyEncoding,
@@ -51,7 +47,6 @@ abstract class AuthHelper(
     abstract fun getRedditClient(): RedditClient?
 
     fun forceRenew() {
-
         if (hasSavedBearer()) {
             val bearer = getSavedBearer()
             bearer?.renewToken()
@@ -59,7 +54,6 @@ abstract class AuthHelper(
     }
 
     fun forceRevoke() {
-
         if (hasSavedBearer()) {
             val bearer = getSavedBearer()
             bearer?.revokeToken()

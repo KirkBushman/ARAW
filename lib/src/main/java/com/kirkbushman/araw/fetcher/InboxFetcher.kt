@@ -36,7 +36,6 @@ class InboxFetcher(
         nextToken: String?,
         setTokens: (previous: String?, next: String?) -> Unit
     ): List<Message>? {
-
         val req = api.fetchMessages(
             where = where,
             limit = getLimit(),

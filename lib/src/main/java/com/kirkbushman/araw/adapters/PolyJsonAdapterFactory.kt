@@ -16,7 +16,6 @@ class PolyJsonAdapterFactory<T>(
 ) : JsonAdapter.Factory {
 
     override fun create(type: Type, annotations: Set<Annotation?>, moshi: Moshi): JsonAdapter<Any>? {
-
         if (Types.getRawType(type) != baseType || annotations.isNotEmpty()) {
             return null
         }

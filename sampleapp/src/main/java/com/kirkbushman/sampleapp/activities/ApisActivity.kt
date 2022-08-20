@@ -11,7 +11,6 @@ class ApisActivity : BaseActivity() {
     companion object {
 
         fun start(context: Context) {
-
             val intent = Intent(context, ApisActivity::class.java)
             context.startActivity(intent)
         }

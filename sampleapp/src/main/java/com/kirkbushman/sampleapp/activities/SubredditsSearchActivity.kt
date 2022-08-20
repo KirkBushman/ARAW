@@ -18,9 +18,7 @@ import javax.inject.Inject
 class SubredditsSearchActivity : BaseActivity() {
 
     companion object {
-
         fun start(context: Context) {
-
             val intent = Intent(context, SubredditsSearchActivity::class.java)
             context.startActivity(intent)
         }
@@ -34,23 +32,17 @@ class SubredditsSearchActivity : BaseActivity() {
     private val controller by lazy {
 
         SubredditSearchController(
-
             object : SubredditSearchController.SubredditCallback {
-
                 override fun subscribeClick(index: Int) {
-
                     val subreddit = data[index]
                     DoAsync(
                         doWork = {
-
                             if (subreddit is Subreddit) {
                                 client.subredditsClient.subscribe(subreddit)
                             }
                         },
                         onPost = {
-
                             if (subreddit is Subreddit && subreddit.isSubscriber != null) {
-
                                 data[index] = subreddit.copy(isSubscriber = !subreddit.isSubscriber!!)
                                 refresh()
                             }
@@ -83,32 +75,26 @@ class SubredditsSearchActivity : BaseActivity() {
             val query = binding.query.text.toString().trim()
 
             if (!binding.startsWith.isChecked) {
-
                 DoAsync(
                     doWork = {
-
                         val fetcher = client.searchClient.createSubredditsSearchFetcher(query)
 
                         data.clear()
                         data.addAll(fetcher.fetchNext() ?: emptyList())
                     },
                     onPost = {
-
                         controller.setSubreddits(data)
                     }
                 )
             } else {
-
                 DoAsync(
                     doWork = {
-
                         searchResult = client.searchClient.searchSubreddits(
                             query = query,
                             includeOver18 = true
                         )
                     },
                     onPost = {
-
                         if (searchResult != null) {
                             controller.setSearchResult(searchResult!!)
                         }

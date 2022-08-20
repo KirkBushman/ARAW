@@ -41,7 +41,6 @@ class SubmissionFragment : BaseControllerFragment<Submission, SubmissionControll
     override val callback = object : SubmissionController.SubmissionCallback {
 
         override fun onUpvoteClick(index: Int) {
-
             DoAsync(
                 doWork = {
                     val submission = items[index]
@@ -51,7 +50,6 @@ class SubmissionFragment : BaseControllerFragment<Submission, SubmissionControll
         }
 
         override fun onNoneClick(index: Int) {
-
             DoAsync(
                 doWork = {
                     val submission = items[index]
@@ -61,7 +59,6 @@ class SubmissionFragment : BaseControllerFragment<Submission, SubmissionControll
         }
 
         override fun onDownClick(index: Int) {
-
             DoAsync(
                 doWork = {
                     val submission = items[index]
@@ -71,7 +68,6 @@ class SubmissionFragment : BaseControllerFragment<Submission, SubmissionControll
         }
 
         override fun onSaveClick(index: Int) {
-
             DoAsync(
                 doWork = {
                     val submission = items[index]
@@ -81,7 +77,6 @@ class SubmissionFragment : BaseControllerFragment<Submission, SubmissionControll
         }
 
         override fun onHideClick(index: Int) {
-
             DoAsync(
                 doWork = {
                     val submission = items[index]
@@ -91,7 +86,6 @@ class SubmissionFragment : BaseControllerFragment<Submission, SubmissionControll
         }
 
         override fun onLockClick(index: Int) {
-
             DoAsync(
                 doWork = {
                     val submission = items[index]
@@ -103,15 +97,11 @@ class SubmissionFragment : BaseControllerFragment<Submission, SubmissionControll
         override fun onReplyClick(index: Int) = Unit
     }
 
-    override val controller by lazy {
-
-        SubmissionController(callback)
-    }
+    override val controller by lazy { SubmissionController(callback) }
 
     private var fetcher: SubmissionsFetcher? = null
 
     override fun fetchItem(client: RedditClient?): Collection<Submission>? {
-
         fetcher = when (passedTag) {
             TAG_FRONTPAGE -> client?.subredditsClient?.createFrontpageSubmissionsFetcher()
             TAG_ALL -> client?.subredditsClient?.createAllSubmissionsFetcher()
@@ -127,10 +117,8 @@ class SubmissionFragment : BaseControllerFragment<Submission, SubmissionControll
     fun reload(sorting: SubmissionsSorting? = null, timePeriod: TimePeriod? = null) {
 
         if (sorting != null) {
-
             DoAsync(
                 doWork = {
-
                     fetcher!!.setSorting(sorting)
 
                     items.clear()
@@ -143,10 +131,8 @@ class SubmissionFragment : BaseControllerFragment<Submission, SubmissionControll
         }
 
         if (timePeriod != null) {
-
             DoAsync(
                 doWork = {
-
                     fetcher!!.setTimePeriod(timePeriod)
 
                     items.clear()

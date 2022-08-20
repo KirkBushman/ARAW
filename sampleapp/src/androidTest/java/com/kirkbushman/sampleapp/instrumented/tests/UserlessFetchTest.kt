@@ -54,11 +54,9 @@ class UserlessFetchTest {
 
     @Test
     fun modelMeTest() {
-
         var exception: Exception? = null
 
         try {
-
             val me = client?.accountsClient?.me()
             assertNotEquals("Assert that Me Object is not null", null, me)
         } catch (ex: Exception) {
@@ -71,11 +69,9 @@ class UserlessFetchTest {
 
     @Test
     fun modelsFrontpageSubmissionsTest() {
-
         var exception: Exception? = null
 
         try {
-
             val fetcher = client?.subredditsClient?.createFrontpageSubmissionsFetcher(limit = LIMIT)
             val submissions = fetcher?.fetchNext()
             assertNotEquals("Assert that submissions from /r/frontpage are not null", null, submissions)
@@ -93,11 +89,9 @@ class UserlessFetchTest {
 
     @Test
     fun modelsAllSubmissionsTest() {
-
         var exception: Exception? = null
 
         try {
-
             val fetcher = client?.subredditsClient?.createAllSubmissionsFetcher(limit = LIMIT)
             val submissions = fetcher?.fetchNext()
             assertNotEquals("Assert that submissions from /r/all are not null", null, submissions)
@@ -115,11 +109,9 @@ class UserlessFetchTest {
 
     @Test
     fun modelsSubmissionsTest() {
-
         var exception: Exception? = null
 
         try {
-
             subreddits.forEach {
 
                 val fetcher = client?.contributionsClient?.createSubmissionsFetcher(it, limit = LIMIT)
@@ -140,11 +132,9 @@ class UserlessFetchTest {
 
     @Test
     fun modelsSubredditTest() {
-
         var exception: Exception? = null
 
         try {
-
             subreddits.forEach {
 
                 val subreddit = client?.subredditsClient?.subreddit(it)
@@ -160,11 +150,9 @@ class UserlessFetchTest {
 
     @Test
     fun modelsInboxSentTest() {
-
         var exception: Exception? = null
 
         try {
-
             val fetcher = client?.messagesClient?.createSentInboxFetcher(limit = LIMIT)
             val messages = fetcher?.fetchNext()
             assertNotEquals("Assert that messages in inbox are not null", null, messages)
@@ -179,11 +167,9 @@ class UserlessFetchTest {
 
     @Test
     fun modelsInboxTest() {
-
         var exception: Exception? = null
 
         try {
-
             val fetcher = client?.messagesClient?.createOverviewInboxFetcher(limit = LIMIT)
             val messages = fetcher?.fetchNext()
             assertNotEquals("Assert that messages in inbox are not null", null, messages)
@@ -198,7 +184,6 @@ class UserlessFetchTest {
 
     @Test
     fun modelsCommentsTest() {
-
         val fetcher = client?.subredditsClient?.createAllSubmissionsFetcher(limit = LIMIT)
         val submissions = fetcher?.fetchNext()
 
@@ -219,7 +204,6 @@ class UserlessFetchTest {
         var exception: Exception? = null
 
         try {
-
             val wikiSubs = listOf("soccer", "pics")
             val randomSub = wikiSubs.random()
             val pages = client?.wikisClient?.wikiPages(subreddit = randomSub)

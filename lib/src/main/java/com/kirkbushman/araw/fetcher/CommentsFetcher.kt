@@ -43,7 +43,6 @@ class CommentsFetcher(
         nextToken: String?,
         setTokens: (previous: String?, next: String?) -> Unit
     ): List<CommentData>? {
-
         val req = api.fetchComments(
             submissionId = submissionId,
             focusedCommentId = focusedCommentId,

@@ -22,7 +22,6 @@ class SubmissionsActivity : BaseSearchControllerActivity<Submission, SubmissionC
     companion object {
 
         fun start(context: Context) {
-
             val intent = Intent(context, SubmissionsActivity::class.java)
             context.startActivity(intent)
         }
@@ -31,7 +30,6 @@ class SubmissionsActivity : BaseSearchControllerActivity<Submission, SubmissionC
     override val callback = object : SubmissionController.SubmissionCallback {
 
         override fun onUpvoteClick(index: Int) {
-
             DoAsync(
                 doWork = {
                     val submission = items[index]
@@ -41,7 +39,6 @@ class SubmissionsActivity : BaseSearchControllerActivity<Submission, SubmissionC
         }
 
         override fun onNoneClick(index: Int) {
-
             DoAsync(
                 doWork = {
                     val submission = items[index]
@@ -51,7 +48,6 @@ class SubmissionsActivity : BaseSearchControllerActivity<Submission, SubmissionC
         }
 
         override fun onDownClick(index: Int) {
-
             DoAsync(
                 doWork = {
                     val submission = items[index]
@@ -61,7 +57,6 @@ class SubmissionsActivity : BaseSearchControllerActivity<Submission, SubmissionC
         }
 
         override fun onSaveClick(index: Int) {
-
             DoAsync(
                 doWork = {
                     val submission = items[index]
@@ -71,7 +66,6 @@ class SubmissionsActivity : BaseSearchControllerActivity<Submission, SubmissionC
         }
 
         override fun onHideClick(index: Int) {
-
             DoAsync(
                 doWork = {
                     val submission = items[index]
@@ -81,7 +75,6 @@ class SubmissionsActivity : BaseSearchControllerActivity<Submission, SubmissionC
         }
 
         override fun onLockClick(index: Int) {
-
             DoAsync(
                 doWork = {
                     val submission = items[index]
@@ -98,7 +91,6 @@ class SubmissionsActivity : BaseSearchControllerActivity<Submission, SubmissionC
     private var fetcher: SubmissionsFetcher? = null
 
     override fun fetchItem(client: RedditClient, query: String): Collection<Submission>? {
-
         fetcher = client.contributionsClient.createSubmissionsFetcher(query, limit = 100L)
         return fetcher?.fetchNext()
     }
@@ -111,7 +103,6 @@ class SubmissionsActivity : BaseSearchControllerActivity<Submission, SubmissionC
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         return when (item.itemId) {
-
             R.id.item_sorting_hot -> { reloadSubmission(sorting = SubmissionsSorting.HOT); true }
             R.id.item_sorting_best -> { reloadSubmission(sorting = SubmissionsSorting.BEST); true }
             R.id.item_sorting_new -> { reloadSubmission(sorting = SubmissionsSorting.NEW); true }
@@ -133,10 +124,8 @@ class SubmissionsActivity : BaseSearchControllerActivity<Submission, SubmissionC
     private fun reloadSubmission(sorting: SubmissionsSorting? = null, timePeriod: TimePeriod? = null) {
 
         if (sorting != null) {
-
             DoAsync(
                 doWork = {
-
                     fetcher!!.setSorting(sorting)
 
                     items.clear()
@@ -149,10 +138,8 @@ class SubmissionsActivity : BaseSearchControllerActivity<Submission, SubmissionC
         }
 
         if (timePeriod != null) {
-
             DoAsync(
                 doWork = {
-
                     fetcher!!.setTimePeriod(timePeriod)
 
                     items.clear()

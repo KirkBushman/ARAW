@@ -35,7 +35,6 @@ class MessagesClient(
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): InboxFetcher {
-
         return createInboxFetcher(
             where = InboxFetcher.MESSAGES_UNREAD,
             limit = limit
@@ -48,7 +47,6 @@ class MessagesClient(
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): InboxFetcher {
-
         return createInboxFetcher(
             where = InboxFetcher.MESSAGES_MESSAGES,
             limit = limit
@@ -61,7 +59,6 @@ class MessagesClient(
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): InboxFetcher {
-
         return createInboxFetcher(
             where = InboxFetcher.MESSAGES_SENT,
             limit = limit
@@ -74,7 +71,6 @@ class MessagesClient(
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): InboxFetcher {
-
         return createInboxFetcher(
             where = InboxFetcher.MESSAGES_COMMENTS,
             limit = limit
@@ -87,7 +83,6 @@ class MessagesClient(
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): InboxFetcher {
-
         return createInboxFetcher(
             where = InboxFetcher.MESSAGES_SELF_REPLY,
             limit = limit
@@ -100,7 +95,6 @@ class MessagesClient(
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): InboxFetcher {
-
         return createInboxFetcher(
             where = InboxFetcher.MESSAGES_MENTIONS,
             limit = limit
@@ -115,7 +109,6 @@ class MessagesClient(
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): InboxFetcher {
-
         return InboxFetcher(
             api = api,
             where = where,
@@ -132,7 +125,6 @@ class MessagesClient(
 
     @WorkerThread
     fun deleteMessage(fullname: String): Any? {
-
         val authMap = getHeaderMap()
         val req = api.deleteMessage(
             id = fullname,
@@ -155,7 +147,6 @@ class MessagesClient(
 
     @WorkerThread
     fun markAsRead(read: Boolean, fullname: String): Any? {
-
         val authMap = getHeaderMap()
         val req = if (read) {
             api.readMessage(
@@ -186,7 +177,6 @@ class MessagesClient(
 
     @WorkerThread
     fun vote(vote: Vote, fullname: String): Any? {
-
         val authMap = getHeaderMap()
         val req = api.vote(
             id = fullname,
@@ -205,19 +195,16 @@ class MessagesClient(
 
     @WorkerThread
     fun markAllAsRead(filters: Array<Message>?): Any? {
-
         return markAllAsRead(filters?.joinToString(separator = ",") { it.fullname })
     }
 
     @WorkerThread
     fun markAllAsRead(filters: List<Message>?): Any? {
-
         return markAllAsRead(filters?.joinToString(separator = ",") { it.fullname })
     }
 
     @WorkerThread
     fun markAllAsRead(filters: String?): Any? {
-
         val authMap = getHeaderMap()
         val req = api.readAllMessages(
             filters = filters ?: "",

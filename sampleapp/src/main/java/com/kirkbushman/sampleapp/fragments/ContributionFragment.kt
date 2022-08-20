@@ -45,16 +45,15 @@ class ContributionFragment : BaseControllerFragment<Contribution, SubmissionCont
 
     private val username: String
         get() {
-            return if (activity is RedditorInfoActivity)
+            return if (activity is RedditorInfoActivity) {
                 (activity as RedditorInfoActivity).getUsername()
-            else
+            } else {
                 ""
+            }
         }
 
     override val callback = object : SubmissionController.SubmissionCallback {
-
         override fun onUpvoteClick(index: Int) {
-
             DoAsync(
                 doWork = {
                     val votable = items[index] as Votable
@@ -64,7 +63,6 @@ class ContributionFragment : BaseControllerFragment<Contribution, SubmissionCont
         }
 
         override fun onNoneClick(index: Int) {
-
             DoAsync(
                 doWork = {
                     val votable = items[index] as Votable
@@ -74,7 +72,6 @@ class ContributionFragment : BaseControllerFragment<Contribution, SubmissionCont
         }
 
         override fun onDownClick(index: Int) {
-
             DoAsync(
                 doWork = {
                     val votable = items[index] as Votable
@@ -84,7 +81,6 @@ class ContributionFragment : BaseControllerFragment<Contribution, SubmissionCont
         }
 
         override fun onSaveClick(index: Int) {
-
             DoAsync(
                 doWork = {
                     when (val contribution = items[index]) {
@@ -103,14 +99,12 @@ class ContributionFragment : BaseControllerFragment<Contribution, SubmissionCont
     }
 
     override val controller by lazy {
-
         ContributionController(callback)
     }
 
     private var fetcher: ContributionsFetcher? = null
 
     override fun fetchItem(client: RedditClient?): Collection<Contribution>? {
-
         fetcher = when (passedTag) {
             TAG_OVERVIEW -> client?.redditorsClient?.createOverviewContributionsFetcher(username)
             TAG_SUBMITTED -> client?.redditorsClient?.createSubmittedContributionsFetcher(username)
@@ -127,12 +121,10 @@ class ContributionFragment : BaseControllerFragment<Contribution, SubmissionCont
 
         DoAsync(
             doWork = {
-
                 items.clear()
                 items.addAll(fetcher?.fetchNext() ?: listOf())
             },
             onPost = {
-
                 controller.setItems(items)
             }
         )
@@ -141,34 +133,28 @@ class ContributionFragment : BaseControllerFragment<Contribution, SubmissionCont
     fun reload(sorting: ContributionsSorting? = null, timePeriod: TimePeriod? = null) {
 
         if (sorting != null) {
-
             DoAsync(
                 doWork = {
-
                     fetcher!!.setSorting(sorting)
 
                     items.clear()
                     items.addAll(fetcher?.fetchNext() ?: listOf())
                 },
                 onPost = {
-
                     controller.setItems(items)
                 }
             )
         }
 
         if (timePeriod != null) {
-
             DoAsync(
                 doWork = {
-
                     fetcher!!.setTimePeriod(timePeriod)
 
                     items.clear()
                     items.addAll(fetcher?.fetchNext() ?: listOf())
                 },
                 onPost = {
-
                     controller.setItems(items)
                 }
             )

@@ -42,7 +42,6 @@ class SubmissionsFetcher(
         nextToken: String?,
         setTokens: (previous: String?, next: String?) -> Unit
     ): List<Submission>? {
-
         val req = if (subreddit != "") {
             api.fetchSubmissions(
                 subreddit = subreddit,

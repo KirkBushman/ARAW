@@ -19,7 +19,6 @@ class MultisClientTests {
 
     @Before
     fun onPre() {
-
         client = MultisClient(
             api = mockApi,
             disableLegacyEncoding = false,
@@ -29,7 +28,6 @@ class MultisClientTests {
 
     @Test
     fun testCreateFetcher_genericWhere() {
-
         val fetcher = client.createMultiSubmissionsFetcher("test_username", "test_multiname")
 
         Assert.assertEquals("test_username", fetcher.getUsername())

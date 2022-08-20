@@ -16,7 +16,6 @@ class ModeratedSubsController(
         it: ModeratedSub,
         callback: SubredditController.SubredditCallback?
     ) {
-
         subreddit {
             id(it.fullname)
             subreddit(it.displayNamePrefixed)

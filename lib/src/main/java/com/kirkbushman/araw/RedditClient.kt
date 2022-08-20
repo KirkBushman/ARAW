@@ -25,13 +25,13 @@ class RedditClient @JvmOverloads constructor(
 
         @Volatile
         private var retrofit: Retrofit? = null
+
         @Volatile
         private var api: RedditApi? = null
 
         @Synchronized
         fun getRetrofit(logging: Boolean = false): Retrofit {
             return synchronized(this) {
-
                 if (retrofit == null) {
                     retrofit = buildRetrofit(logging)
                 }
@@ -43,7 +43,6 @@ class RedditClient @JvmOverloads constructor(
         @Synchronized
         fun getApi(logging: Boolean = false): RedditApi {
             return synchronized(this) {
-
                 if (api == null) {
                     api = getRetrofit(logging).create(RedditApi::class.java)
                 }

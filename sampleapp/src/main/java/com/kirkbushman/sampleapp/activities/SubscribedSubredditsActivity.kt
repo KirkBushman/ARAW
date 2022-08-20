@@ -16,7 +16,6 @@ class SubscribedSubredditsActivity : BaseControllerActivity<SubredditData, Subre
     companion object {
 
         fun start(context: Context) {
-
             val intent = Intent(context, SubscribedSubredditsActivity::class.java)
             context.startActivity(intent)
         }
@@ -29,15 +28,12 @@ class SubscribedSubredditsActivity : BaseControllerActivity<SubredditData, Subre
             val subreddit = items[index]
             DoAsync(
                 doWork = {
-
                     if (subreddit is Subreddit) {
                         client.subredditsClient.subscribe(subreddit)
                     }
                 },
                 onPost = {
-
                     if (subreddit is Subreddit && subreddit.isSubscriber != null) {
-
                         items[index] = subreddit.copy(isSubscriber = !subreddit.isSubscriber!!)
                         controller.setItems(items)
                     }
@@ -49,7 +45,6 @@ class SubscribedSubredditsActivity : BaseControllerActivity<SubredditData, Subre
     override val controller: SubredditController by lazy { SubredditController(callback) }
 
     override fun fetchItem(client: RedditClient): Collection<SubredditData> {
-
         val fetcher = client.accountsClient.createSubscribedSubredditsFetcher(limit = 100)
         return fetcher.fetchNext() ?: emptyList()
     }

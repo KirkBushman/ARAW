@@ -22,7 +22,6 @@ class LoginActivity : AppCompatActivity() {
         private const val PARAM_AUTO_LOGIN = "intent_param_auto_login"
 
         fun start(context: Context, stopAutoLogin: Boolean = false) {
-
             val intent = Intent(context, LoginActivity::class.java)
             intent.putExtra(PARAM_AUTO_LOGIN, stopAutoLogin)
 
@@ -54,23 +53,18 @@ class LoginActivity : AppCompatActivity() {
         checkAuthStatus()
 
         if (!stopAutoLogin) {
-
             if (!appAuth.shouldLogin() || !userlessAuth.shouldLogin()) {
-
                 if (!appAuth.shouldLogin()) {
-
                     savedInstalledApp()
                 }
 
                 if (!userlessAuth.shouldLogin()) {
-
                     savedUserless()
                 }
             }
         }
 
         binding.bttnAppLogin.setOnClickListener {
-
             binding.browser.visibility = View.VISIBLE
             binding.textCurrentLogin.visibility = View.GONE
             binding.bttnAppLogin.visibility = View.GONE
@@ -86,29 +80,23 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.bttnUserlessLogin.setOnClickListener {
-
             if (!userlessAuth.shouldLogin()) {
-
                 savedUserless()
             } else {
-
                 fetchUserless()
             }
         }
     }
 
     private fun savedInstalledApp() {
-
         DoAsync(
             doWork = {
-
                 val client = appAuth.getSavedRedditClient()
                 if (client != null) {
                     Provider.setRedditClient(client)
                 }
             },
             onPost = {
-
                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
                 startActivity(intent)
             }
@@ -116,17 +104,14 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun savedUserless() {
-
         DoAsync(
             doWork = {
-
                 val client = userlessAuth.getSavedRedditClient()
                 if (client != null) {
                     Provider.setRedditClient(client)
                 }
             },
             onPost = {
-
                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
                 startActivity(intent)
             }
@@ -134,14 +119,11 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun fetchInstalledApp() {
-
         appAuth.startWebViewAuthentication(binding.browser) {
-
             binding.browser.stopLoading()
 
             DoAsync(
                 doWork = {
-
                     if (!userlessAuth.shouldLogin()) {
                         userlessAuth.forceRevoke()
                     }
@@ -161,12 +143,10 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun fetchUserless() {
-
         var client: RedditClient? = null
 
         DoAsync(
             doWork = {
-
                 if (!appAuth.shouldLogin()) {
                     appAuth.forceRevoke()
                 }
@@ -174,7 +154,6 @@ class LoginActivity : AppCompatActivity() {
                 client = userlessAuth.getRedditClient()
             },
             onPost = {
-
                 if (client != null) {
                     Provider.setRedditClient(client!!)
                 }
@@ -188,7 +167,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun checkAuthStatus() {
-
         if (!appAuth.shouldLogin()) {
 
             binding.textCurrentLogin.text = getString(R.string.header_login_type, "INSTALLED_APP")

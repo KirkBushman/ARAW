@@ -18,7 +18,6 @@ class CommentController(
 ) : EpoxyController() {
 
     interface CommentCallback {
-
         fun onUpvoteClick(submission: Submission)
         fun onNoneClick(submission: Submission)
         fun onDownClick(submission: Submission)
@@ -49,14 +48,12 @@ class CommentController(
     override fun buildModels() {
 
         if (comments.isEmpty()) {
-
             empty {
                 id("empty_model")
             }
         }
 
         submission?.let {
-
             submission {
                 id(it.id)
                 subredditText(it.subreddit)
@@ -77,9 +74,7 @@ class CommentController(
         comments
             .treeIterator()
             .forEach {
-
                 if (it is Comment) {
-
                     comment {
                         id(it.id)
                         authorText(it.author)
@@ -91,7 +86,6 @@ class CommentController(
                 }
 
                 if (it is MoreComments) {
-
                     moreComment {
                         id(it.fullname)
                         moreText("${it.count} more children")

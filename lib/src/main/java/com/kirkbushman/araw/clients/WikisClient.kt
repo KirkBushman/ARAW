@@ -24,7 +24,6 @@ class WikisClient(
     @WorkerThread
     @Throws(WikiDisabledException::class)
     fun wiki(subreddit: String): WikiPage? {
-
         val authMap = getHeaderMap()
         val req = api.wiki(
             subreddit = subreddit,
@@ -34,7 +33,6 @@ class WikisClient(
 
         val res = req.execute()
         if (!res.isSuccessful) {
-
             val errorBody = res.errorBody()
             if (errorBody != null && errorBody.string().contains("WIKI_DISABLED")) {
 
@@ -54,7 +52,6 @@ class WikisClient(
 
     @WorkerThread
     fun wikiPage(subreddit: String, page: String): WikiPage? {
-
         val authMap = getHeaderMap()
         val req = api.wikiPage(
             subreddit = subreddit,
@@ -78,7 +75,6 @@ class WikisClient(
 
     @WorkerThread
     fun wikiPages(subreddit: String): List<String>? {
-
         val authMap = getHeaderMap()
         val req = api.wikiPages(
             subreddit = subreddit,
@@ -111,7 +107,6 @@ class WikisClient(
         page: String
 
     ): List<WikiRevision>? {
-
         val authMap = getHeaderMap()
         val req = api.wikiRevision(
             subreddit = subreddit,
@@ -135,7 +130,6 @@ class WikisClient(
 
     @WorkerThread
     fun wikiRevisions(subreddit: String): List<WikiRevision>? {
-
         val authMap = getHeaderMap()
         val req = api.wikiRevisions(
             subreddit = subreddit,

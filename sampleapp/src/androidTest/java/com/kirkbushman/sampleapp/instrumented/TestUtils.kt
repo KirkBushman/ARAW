@@ -31,19 +31,21 @@ object TestUtils {
 
     fun getTokenBearer(auth: ScriptAuth): TokenBearer {
         return (
-            if (auth.hasSavedBearer())
+            if (auth.hasSavedBearer()) {
                 auth.retrieveSavedBearer()
-            else
+            } else {
                 auth.authenticate()
+            }
             ) ?: throw IllegalStateException("Bearer cannot be null!")
     }
 
     fun getTokenBearer(auth: UserlessAuth): TokenBearer {
         return (
-            if (auth.hasSavedBearer())
+            if (auth.hasSavedBearer()) {
                 auth.retrieveSavedBearer()
-            else
+            } else {
                 auth.authenticate()
+            }
             ) ?: throw IllegalStateException("Bearer cannot be null!")
     }
 

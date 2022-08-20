@@ -57,11 +57,9 @@ class UploadImagesActivity : AppCompatActivity() {
 
                 DoAsync(
                     doWork = {
-
                         mediaUrl = client.contributionsClient.uploadMedia(fileName!!, mimeType!!, fileContent!!)
                     },
                     onPost = {
-
                         if (mediaUrl != null) {
 
                             Toast.makeText(this, mediaUrl, Toast.LENGTH_SHORT).show()
@@ -74,7 +72,6 @@ class UploadImagesActivity : AppCompatActivity() {
         }
 
         binding.bttnLoadImage.setOnClickListener {
-
             StorageUtil.openMediaChooser(this)
         }
 
@@ -94,7 +91,6 @@ class UploadImagesActivity : AppCompatActivity() {
             resultCode = resultCode,
             resultIntent = data
         ) { fileName, mimeType, fileContent, bitmap ->
-
             this.fileName = fileName
             this.mimeType = mimeType
             this.fileContent = fileContent

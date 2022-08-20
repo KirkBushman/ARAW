@@ -19,7 +19,6 @@ class MessagesClientTests {
 
     @Before
     fun onPre() {
-
         client = MessagesClient(
             api = mockApi,
             disableLegacyEncoding = false,
@@ -29,7 +28,6 @@ class MessagesClientTests {
 
     @Test
     fun testCreateFetcher_genericWhere() {
-
         val fetcher = client.createInboxFetcher("test_string")
 
         Assert.assertEquals("test_string", fetcher.getWhere())
@@ -37,7 +35,6 @@ class MessagesClientTests {
 
     @Test
     fun testCreateFetcher_overview() {
-
         val fetcher = client.createOverviewInboxFetcher()
 
         Assert.assertEquals("inbox", fetcher.getWhere())
@@ -45,7 +42,6 @@ class MessagesClientTests {
 
     @Test
     fun testCreateFetcher_unread() {
-
         val fetcher = client.createUnreadInboxFetcher()
 
         Assert.assertEquals("unread", fetcher.getWhere())
@@ -53,7 +49,6 @@ class MessagesClientTests {
 
     @Test
     fun testCreateFetcher_messages() {
-
         val fetcher = client.createMessagesInboxFetcher()
 
         Assert.assertEquals("messages", fetcher.getWhere())
@@ -61,7 +56,6 @@ class MessagesClientTests {
 
     @Test
     fun testCreateFetcher_sent() {
-
         val fetcher = client.createSentInboxFetcher()
 
         Assert.assertEquals("sent", fetcher.getWhere())
@@ -69,7 +63,6 @@ class MessagesClientTests {
 
     @Test
     fun testCreateFetcher_comments() {
-
         val fetcher = client.createCommentsRepliesInboxFetcher()
 
         Assert.assertEquals("comments", fetcher.getWhere())
@@ -77,7 +70,6 @@ class MessagesClientTests {
 
     @Test
     fun testCreateFetcher_selfReply() {
-
         val fetcher = client.createSelfRepliesInboxFetcher()
 
         Assert.assertEquals("selfreply", fetcher.getWhere())
@@ -85,7 +77,6 @@ class MessagesClientTests {
 
     @Test
     fun testCreateFetcher_mentions() {
-
         val fetcher = client.createMentionsInboxFetcher()
 
         Assert.assertEquals("mentions", fetcher.getWhere())

@@ -726,7 +726,6 @@ class ApiDetailActivity : BaseActivity() {
     }
 
     private fun getRandomSubredditNames(): Array<String> {
-
         return subreddits
             .shuffled()
             .take(TAKE_SUB_NUM)
@@ -734,9 +733,7 @@ class ApiDetailActivity : BaseActivity() {
     }
 
     private fun getRandomSubredditIds(): List<String> {
-
         return listOf(
-
             // centuryclub
             // testing private subreddit
             "2u3fa",

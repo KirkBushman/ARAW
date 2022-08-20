@@ -38,7 +38,6 @@ class AuthScriptHelper(
     }
 
     override fun getRedditClient(): RedditClient? {
-
         val savedClient = getSavedRedditClient()
         if (savedClient != null) {
             return savedClient
@@ -46,7 +45,6 @@ class AuthScriptHelper(
 
         val bearer = auth.authenticate()
         if (bearer != null) {
-
             return RedditClient(
                 bearer = bearer,
                 disableLegacyEncoding = disableLegacyEncoding,

@@ -25,7 +25,6 @@ class AccountsClient(
     private var currentUser: Me? = null
 
     fun getCurrentUser(): Me? {
-
         if (currentUser == null) {
             currentUser = me()
         }
@@ -35,7 +34,6 @@ class AccountsClient(
 
     @WorkerThread
     fun me(): Me? {
-
         val authMap = getHeaderMap()
         val req = api.me(
             rawJson = (if (disableLegacyEncoding) 1 else null),
@@ -55,7 +53,6 @@ class AccountsClient(
     // todo check why it is not working
     @WorkerThread
     fun myBlocked(): Any? {
-
         val authMap = getHeaderMap()
         val req = api.myBlocked(
             rawJson = (if (disableLegacyEncoding) 1 else null),
@@ -72,7 +69,6 @@ class AccountsClient(
 
     @WorkerThread
     fun myFriends(): List<Friend>? {
-
         val authMap = getHeaderMap()
         val req = api.myFriends(
             rawJson = (if (disableLegacyEncoding) 1 else null),
@@ -89,7 +85,6 @@ class AccountsClient(
 
     @WorkerThread
     fun myKarma(): List<Karma>? {
-
         val authMap = getHeaderMap()
         val req = api.myKarma(
             rawJson = (if (disableLegacyEncoding) 1 else null),
@@ -106,7 +101,6 @@ class AccountsClient(
 
     @WorkerThread
     fun myPrefs(): Prefs? {
-
         val authMap = getHeaderMap()
         val req = api.myPrefs(
             rawJson = (if (disableLegacyEncoding) 1 else null),
@@ -123,7 +117,6 @@ class AccountsClient(
 
     @WorkerThread
     fun myTrophies(): List<Trophy>? {
-
         val authMap = getHeaderMap()
         val req = api.myTrophies(
             rawJson = (if (disableLegacyEncoding) 1 else null),
@@ -147,7 +140,6 @@ class AccountsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): ContributionsFetcher {
-
         return createContributionsFetcher(
             where = ContributionsFetcher.USER_CONTRIB_OVERVIEW,
             limit = limit,
@@ -165,7 +157,6 @@ class AccountsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): ContributionsFetcher {
-
         return createContributionsFetcher(
             where = ContributionsFetcher.USER_CONTRIB_SUBMITTED,
             limit = limit,
@@ -183,7 +174,6 @@ class AccountsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): ContributionsFetcher {
-
         return createContributionsFetcher(
             where = ContributionsFetcher.USER_CONTRIB_COMMENTS,
             limit = limit,
@@ -201,7 +191,6 @@ class AccountsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): ContributionsFetcher {
-
         return createContributionsFetcher(
             where = ContributionsFetcher.USER_CONTRIB_SAVED,
             limit = limit,
@@ -219,7 +208,6 @@ class AccountsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): ContributionsFetcher {
-
         return createContributionsFetcher(
             where = ContributionsFetcher.USER_CONTRIB_HIDDEN,
             limit = limit,
@@ -237,7 +225,6 @@ class AccountsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): ContributionsFetcher {
-
         return createContributionsFetcher(
             where = ContributionsFetcher.USER_CONTRIB_UPVOTED,
             limit = limit,
@@ -255,7 +242,6 @@ class AccountsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): ContributionsFetcher {
-
         return createContributionsFetcher(
             where = ContributionsFetcher.USER_CONTRIB_DOWNVOTED,
             limit = limit,
@@ -273,7 +259,6 @@ class AccountsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): ContributionsFetcher {
-
         return createContributionsFetcher(
             where = ContributionsFetcher.USER_CONTRIB_GILDED,
             limit = limit,
@@ -293,7 +278,6 @@ class AccountsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): ContributionsFetcher {
-
         return ContributionsFetcher(
             api = api,
             getUsername = { getCurrentUser()!!.fullname },
@@ -312,7 +296,6 @@ class AccountsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): SubredditsFetcher {
-
         return createSubredditsFetcher(
             where = SubredditsFetcher.SUBREDDITS_MINE_SUBSCRIBER,
             limit = limit
@@ -325,7 +308,6 @@ class AccountsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): SubredditsFetcher {
-
         return createSubredditsFetcher(
             where = SubredditsFetcher.SUBREDDITS_MINE_CONTRIBUTOR,
             limit = limit
@@ -338,7 +320,6 @@ class AccountsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): SubredditsFetcher {
-
         return createSubredditsFetcher(
             where = SubredditsFetcher.SUBREDDITS_MINE_MODERATOR,
             limit = limit
@@ -351,7 +332,6 @@ class AccountsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): SubredditsFetcher {
-
         return createSubredditsFetcher(
             where = SubredditsFetcher.SUBREDDITS_MINE_STREAMS,
             limit = limit
@@ -366,7 +346,6 @@ class AccountsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): SubredditsFetcher {
-
         return SubredditsFetcher(
             api = api,
             where = where,

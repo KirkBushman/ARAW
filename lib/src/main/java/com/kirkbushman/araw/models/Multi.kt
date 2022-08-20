@@ -62,7 +62,7 @@ data class Multi(
     val subreddits: List<MultiSub>,
 
     @Json(name = "visibility")
-    val visibility: String,
+    val visibility: String
 
 ) : Created, Parcelable
 

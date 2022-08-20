@@ -26,12 +26,10 @@ object Utils {
     const val BASE_URL = "https://oauth.reddit.com"
 
     fun buildRetrofit(logging: Boolean): Retrofit {
-
         return buildRetrofit(BASE_URL, logging)
     }
 
     fun buildRetrofit(baseUrl: String, logging: Boolean): Retrofit {
-
         val moshi = Moshi.Builder()
             .add(
                 PolymorphicJsonAdapterFactory.of(EnvelopedData::class.java, "kind")
@@ -83,7 +81,6 @@ object Utils {
         val nullRepliesInterceptor = NullRepliesInterceptor
 
         val httpClient = if (logging) {
-
             val logger = HttpLoggingInterceptor()
             logger.level = HttpLoggingInterceptor.Level.BODY
 
@@ -93,7 +90,6 @@ object Utils {
                 .addInterceptor(logger)
                 .build()
         } else {
-
             OkHttpClient
                 .Builder()
                 .addInterceptor(nullRepliesInterceptor)

@@ -47,7 +47,6 @@ class CommentDataTest {
 
     @Test
     fun linearCommentsTest() {
-
         val selectedSubmission = submissions
             .filter { it.numComments > 0 }
             .maxByOrNull { it.numComments }
@@ -85,7 +84,6 @@ class CommentDataTest {
 
     private fun areRepliesBlank(list: List<CommentData>): Boolean {
         list.forEach {
-
             if (it.hasReplies) {
                 return false
             }
@@ -98,7 +96,6 @@ class CommentDataTest {
 
         var position = 0
         comments?.treeIterator()?.forEach {
-
             if (it.fullname != linearList[position].fullname) {
                 return false
             }
@@ -116,14 +113,12 @@ class CommentDataTest {
 
         // wrap the children
         comments?.treeIterator()?.forEach {
-
             if (it.depth == 0) {
                 val copyComm = deepCopy(it)
                 newComm.add(copyComm)
 
                 if (it.hasReplies) {
                     it.replies?.forEach { r ->
-
                         childMap[r.fullname] = copyComm
                     }
                 }
@@ -141,7 +136,6 @@ class CommentDataTest {
 
                 if (it.hasReplies) {
                     it.replies?.forEach { r ->
-
                         childMap[r.fullname] = copyComm
                     }
                 }
@@ -152,9 +146,7 @@ class CommentDataTest {
     }
 
     private fun wrappedLinearCommentModels(comments: List<CommentData>): List<CommentData> {
-
         return comments.toList().treeIterable().map {
-
             if (it is Comment) {
                 TestComment(it.copy())
             } else {
@@ -167,13 +159,11 @@ class CommentDataTest {
      * Once wrapped there should be the same amount of items, in the same place, with the same id
      */
     private fun compareModelNumber(wrapped: List<CommentData>, comment: List<CommentData>): Boolean {
-
         val wrappedNames = ArrayList<String>()
         val commentNames = ArrayList<String>()
 
         var wrappedNum = 0
         wrapped.treeIterator().forEach {
-
             if (it is TestComment) {
                 wrappedNum++
             }
@@ -183,7 +173,6 @@ class CommentDataTest {
 
         var commentsNum = 0
         comment.treeIterator().forEach {
-
             if (it is Comment) {
                 commentsNum++
             }
@@ -198,10 +187,8 @@ class CommentDataTest {
      * Walking the tree and running through the list one should have the same amounts of items
      */
     private fun compareModelLinearNumber(wrapped: List<CommentData>, linearList: List<CommentData>): Boolean {
-
         var wrappedNum = 0
         wrapped.treeIterator().forEach {
-
             if (it is TestComment) {
                 wrappedNum++
             }
@@ -209,7 +196,6 @@ class CommentDataTest {
 
         var linearNum = 0
         linearList.forEach {
-
             if (it is Comment) {
                 linearNum++
             }
@@ -226,7 +212,6 @@ class CommentDataTest {
             is Comment -> {
                 val newItem = TestComment(item.copy())
                 newItem.replies = null
-
                 newItem
             }
             is MoreComments -> item.copy()
@@ -240,7 +225,6 @@ class CommentDataTest {
                 if (parent.replies != null) {
                     val newRep = parent.replies!!.toMutableList()
                     newRep.add(child)
-
                     parent.replies = newRep
                 } else {
                     parent.replies = listOf(child)
@@ -250,7 +234,6 @@ class CommentDataTest {
                 if (parent.replies != null) {
                     val newRep = parent.replies!!.toMutableList()
                     newRep.add(child)
-
                     parent.replies = newRep
                 } else {
                     parent.replies = listOf(child)

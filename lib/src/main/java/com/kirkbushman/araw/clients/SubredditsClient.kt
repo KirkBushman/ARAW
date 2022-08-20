@@ -36,7 +36,6 @@ class SubredditsClient(
 
     @WorkerThread
     fun subreddit(subreddit: String): SubredditData? {
-
         val authMap = getHeaderMap()
         val req = api.subreddit(
             subreddit = subreddit,
@@ -54,7 +53,6 @@ class SubredditsClient(
 
     @WorkerThread
     fun subreddits(vararg ids: String): List<SubredditData>? {
-
         val authMap = getHeaderMap()
         val req = api.subreddits(
             subredditIds = ids.joinToString { "t5_$it" },
@@ -77,7 +75,6 @@ class SubredditsClient(
 
     @WorkerThread
     fun subredditBanned(subredditName: String): List<User>? {
-
         val authMap = getHeaderMap()
         val req = api.subredditInfo(
             subreddit = subredditName,
@@ -101,7 +98,6 @@ class SubredditsClient(
 
     @WorkerThread
     fun subredditMuted(subredditName: String): List<User>? {
-
         val authMap = getHeaderMap()
         val req = api.subredditInfo(
             subreddit = subredditName,
@@ -125,7 +121,6 @@ class SubredditsClient(
 
     @WorkerThread
     fun subredditWikiBanned(subredditName: String): List<User>? {
-
         val authMap = getHeaderMap()
         val req = api.subredditInfo(
             subreddit = subredditName,
@@ -149,7 +144,6 @@ class SubredditsClient(
 
     @WorkerThread
     fun subredditContributors(subredditName: String): List<User>? {
-
         val authMap = getHeaderMap()
         val req = api.subredditInfo(
             subreddit = subredditName,
@@ -173,7 +167,6 @@ class SubredditsClient(
 
     @WorkerThread
     fun subredditWikiContributors(subredditName: String): List<User>? {
-
         val authMap = getHeaderMap()
         val req = api.subredditInfo(
             subreddit = subredditName,
@@ -197,7 +190,6 @@ class SubredditsClient(
 
     @WorkerThread
     fun subredditModerators(subredditName: String): List<User>? {
-
         val authMap = getHeaderMap()
         val req = api.subredditInfo(
             subreddit = subredditName,
@@ -221,7 +213,6 @@ class SubredditsClient(
 
     @WorkerThread
     fun rules(subreddit: String): Array<SubredditRule>? {
-
         val authMap = getHeaderMap()
         val req = api.rules(
             subreddit = subreddit,
@@ -239,13 +230,11 @@ class SubredditsClient(
 
     @WorkerThread
     fun subredditFlairs(subreddit: SubredditData): List<Flair>? {
-
         return subredditFlairs(subreddit.displayName)
     }
 
     @WorkerThread
     fun subredditFlairs(subreddit: String): List<Flair>? {
-
         val authMap = getHeaderMap()
         val req = api.subredditFlairs(
             subreddit = subreddit,
@@ -270,7 +259,6 @@ class SubredditsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): SubmissionsFetcher {
-
         return createSubmissionsFetcher(
             subreddit = SubmissionsFetcher.SUBMISSIONS_FRONTPAGE,
             sorting = sorting,
@@ -288,7 +276,6 @@ class SubredditsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): SubmissionsFetcher {
-
         return createSubmissionsFetcher(
             subreddit = SubmissionsFetcher.SUBMISSIONS_ALL,
             sorting = sorting,
@@ -306,7 +293,6 @@ class SubredditsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): SubmissionsFetcher {
-
         return createSubmissionsFetcher(
             subreddit = SubmissionsFetcher.SUBMISSIONS_POPULAR,
             sorting = sorting,
@@ -324,7 +310,6 @@ class SubredditsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): SubmissionsFetcher {
-
         return createSubmissionsFetcher(
             subreddit = SubmissionsFetcher.SUBMISSIONS_FRIENDS,
             sorting = sorting,
@@ -342,7 +327,6 @@ class SubredditsClient(
         limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): SubmissionsFetcher {
-
         return createSubmissionsFetcher(
             subreddit = SubmissionsFetcher.SUBMISSIONS_ORIGINAL,
             sorting = sorting,
@@ -359,10 +343,9 @@ class SubredditsClient(
         timePeriod: TimePeriod = SubmissionsFetcher.DEFAULT_TIMEPERIOD,
 
         @IntRange(from = Fetcher.MIN_LIMIT, to = Fetcher.MAX_LIMIT)
-        limit: Long = Fetcher.DEFAULT_LIMIT,
+        limit: Long = Fetcher.DEFAULT_LIMIT
 
     ): SubmissionsFetcher {
-
         return SubmissionsFetcher(
             api = api,
             subreddit = subreddit,
@@ -398,7 +381,6 @@ class SubredditsClient(
         showErrorList: Boolean? = null
 
     ): SubmitResponse? {
-
         return submit(
             subredditName = subreddit.displayName,
 
@@ -446,7 +428,6 @@ class SubredditsClient(
         showErrorList: Boolean? = null
 
     ): SubmitResponse? {
-
         val authMap = getHeaderMap()
         val req = api.submit(
             subreddit = subredditName,
@@ -484,7 +465,6 @@ class SubredditsClient(
 
     @WorkerThread
     fun subscribe(subreddit: Subreddit, skipInitialDefaults: Boolean = true): Any? {
-
         if (subreddit.isSubscriber == null) {
             throw IllegalStateException("isSubscriber is null! Is this a userless grant...?")
         }
@@ -506,7 +486,6 @@ class SubredditsClient(
         skipInitialDefaults: Boolean = true
 
     ): Any? {
-
         return subscribe(
 
             subredditNames = listOf(subredditName),
@@ -527,7 +506,6 @@ class SubredditsClient(
         skipInitialDefaults: Boolean = true
 
     ): Any? {
-
         val authMap = getHeaderMap()
         val req = api.subscribe(
             subredditIds = subredditIds?.joinToString(separator = ","),
