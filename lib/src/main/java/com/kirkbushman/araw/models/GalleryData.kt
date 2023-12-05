@@ -42,6 +42,9 @@ data class GalleryMedia(
     @Json(name = "m")
     val m: String?,
 
+    @Json(name = "o")
+    val o: List<GalleryImageData>?,
+
     @Json(name = "p")
     val p: List<GalleryImageData>?,
 
