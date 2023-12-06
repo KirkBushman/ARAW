@@ -11,6 +11,7 @@ import com.kirkbushman.araw.clients.WikisClient
 import com.kirkbushman.araw.models.Me
 import com.kirkbushman.araw.utils.Utils.buildRetrofit
 import com.kirkbushman.auth.models.bearers.TokenBearer
+import com.kirkbushman.auth.models.enums.AuthType
 import retrofit2.Retrofit
 
 class RedditClient @JvmOverloads constructor(
@@ -68,6 +69,8 @@ class RedditClient @JvmOverloads constructor(
     }
 
     private fun getHeaderMap(): Map<String, String> {
+        if (bearer.getAuthType() == AuthType.NONE)
+            return emptyMap()
         return mapOf("Authorization" to "bearer ".plus(bearer.getAccessToken()))
     }
 }
