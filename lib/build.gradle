@@ -21,6 +21,17 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildTypes {
+        release {
+            minifyEnabled true
+            consumerProguardFiles 'araw-proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            consumerProguardFiles 'araw-proguard-rules.pro'
+        }
+    }
+
     compileOptions {
         sourceCompatibility java_target
         targetCompatibility java_target
@@ -28,6 +39,8 @@ android {
 
     kotlinOptions {
         jvmTarget = jvm_target
+        // see https://github.com/Kotlin/kotlinx.serialization/issues/2145
+        freeCompilerArgs = ["-Xstring-concat=inline"]
     }
 }
 
